@@ -29,6 +29,8 @@ Prepare EasyUUV for Koopman+MPC by preserving the legacy controller baseline, ex
 
 <context>
 Phase 1 intentionally does not implement EDMD, MPC, or online Kalman updates. It creates the stable seam needed for later phases. The current code already has the critical physics path in `easyuuv_env.py`: 4D action -> `_pid_control()` -> 8D PWM -> `_compute_dynamics()` -> Isaac force/torque.
+
+Local workstation constraint: code can be written and offline helpers can be tested locally, but any Isaac environment rollout must run on the server. Phase 1 therefore stops at a clear Isaac Gate after local controller-boundary and schema work is ready.
 </context>
 
 <tasks>
@@ -56,6 +58,7 @@ Phase 1 intentionally does not implement EDMD, MPC, or online Kalman updates. It
 
 **Type:** implementation  
 **Files:** `easyuuv_env.py`
+**Execution environment:** Local code writing; server Isaac verification.
 
 **Action:**
 1. Add a controller-mode boundary that can later route to legacy or Koopman+MPC.
@@ -75,6 +78,7 @@ Phase 1 intentionally does not implement EDMD, MPC, or online Kalman updates. It
 
 **Type:** implementation  
 **Files:** `workflows/play_controller.py`, optional shared workflow helper
+**Execution environment:** Local schema/helper implementation; server Isaac rollout to generate real logs.
 
 **Action:**
 1. Define a row schema with `t`, `state`, `reference`, `action_4d`, `pwm_8d`, `next_state`.
@@ -89,11 +93,13 @@ Phase 1 intentionally does not implement EDMD, MPC, or online Kalman updates. It
 **Acceptance criteria:**
 - A downstream EDMD script can load the file without needing Isaac Sim.
 - Logs include both current state and next state.
+- A synthetic sample log can be created and read locally before any server run.
 
 ## Task 4 - Extend trajectory coverage plan
 
 **Type:** implementation + documentation  
 **Files:** `workflows/play_eval.py`, `workflows/play_eval_step.py`, `workflows/play_eval_task2.py`, `docs/koopman_mpc_migration_plan.md`
+**Execution environment:** Local workflow wiring and documentation; server Isaac trajectory runs.
 
 **Action:**
 1. Reuse existing sine, step and irregular goal generation.
@@ -111,6 +117,7 @@ Phase 1 intentionally does not implement EDMD, MPC, or online Kalman updates. It
 
 **Type:** verification  
 **Files:** `.planning/phases/01-baseline-data-controller-seam/01-SUMMARY.md`
+**Execution environment:** Local summary after local checks; update after server Isaac gate completes.
 
 **Action:**
 1. Summarize code changes and data schema.
@@ -135,6 +142,18 @@ python -m py_compile easyuuv_env.py workflows\play_controller.py workflows\play_
 
 Expected result: Python syntax succeeds in the active environment. If Isaac imports are unavailable outside Isaac Lab, document the limitation and run syntax checks inside the Isaac Lab Python environment instead.
 
+Run local schema checks before server handoff:
+
+```powershell
+python -m pytest tests
+```
+
+Expected result: offline helper tests pass without importing Isaac Lab. If no tests exist yet, add focused tests for log record creation, serialization and replay loading before declaring local work complete.
+
+## Isaac Gate
+
+Stop local-only development at this point and move to the server with Isaac Sim/Lab installed. The server must run the following before Phase 1 can be marked complete.
+
 Run Isaac validation when the simulator environment is available:
 
 ```bash
@@ -157,6 +176,8 @@ Expected result: A data log is produced with the Phase 1 schema.
 - Controller boundary is explicit enough for Phase 3 Koopman+MPC integration.
 - PWM is observable before thrust conversion.
 - Data schema supports offline EDMD training.
+- Local helper tests pass without Isaac.
+- Server Isaac produces at least one direct-controller data log.
 - Direct controller path can generate data without PPO.
 - All limitations are documented instead of hidden.
 </success_criteria>
