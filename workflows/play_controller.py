@@ -17,6 +17,7 @@ parser.add_argument("--task", type=str, default='EasyUUV-Direct-v1', help="Name 
 parser.add_argument("--seed", type=int, default=None, help="Seed used for the environment")
 parser.add_argument("--eval_name", type=str, default='eval_controller', help="Name of the eval run to store in wandb")
 parser.add_argument("--custom_weights", type=str, default=None, help="Path to custom weights file")
+parser.add_argument("--koopman_log_path", type=str, default=None, help="Path for Koopman JSONL data logging.")
 
 # Eval parameters
 parser.add_argument("--action_noise_std", type=float, default=0., help="Standard deviation of action noise distribution")
@@ -58,6 +59,8 @@ from omni.isaac.lab.utils.math import quat_from_angle_axis, quat_error_magnitude
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from asymmetric_noise_cfg import *
+from koopman_data import KoopmanDataLogger
+from koopman_logging import record_koopman_step, reference_vector, state_vector_from_env
 
 from datetime import datetime
 strftime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
@@ -122,6 +125,7 @@ def main():
 
     env_cfg.eval_mode = True
 
+    env_cfg.controller_mode = 'legacy'
     env_cfg.control_method = 'Ssurface'
     env_cfg.s_ratio = 4
     env_cfg.self_adapt = True
@@ -133,30 +137,14 @@ def main():
     # wrap around environment for rsl-rl
     env = RslRlVecEnvWrapper(env)
 
-    # specify directory for logging experiments
-    log_root_path = os.path.join("logs", "rsl_rl", agent_cfg.experiment_name)
-    log_root_path = os.path.abspath(log_root_path)
-    print(f"[INFO] Loading experiment from directory: {log_root_path}")
-    if not args_cli.custom_weights:
-        resume_path = get_checkpoint_path(log_root_path, agent_cfg.load_run, agent_cfg.load_checkpoint)
-    else:
-        resume_path = args_cli.custom_weights
-    
-    print(f"[INFO]: Loading model checkpoint from: {resume_path}")
-
     wandb.init(
         project=agent_cfg.to_dict()['wandb_project'],
         name=args_cli.eval_name + '_' + strftime,
         config=env_cfg
     )
 
-    # load previously trained model
-    ppo_runner = OnPolicyRunner(env, agent_cfg.to_dict(), log_dir=None, device=agent_cfg.device)
-    ppo_runner.load(resume_path)
-    print(f"[INFO]: Loading model checkpoint from: {resume_path}")
-
     # create dir to save logs into
-    save_path = os.path.join("source", "results", "rsl_rl", agent_cfg.experiment_name, agent_cfg.load_run, agent_cfg.load_checkpoint[:-3] + "_play")
+    save_path = os.path.join("source", "results", "direct_controller", args_cli.eval_name + "_" + strftime)
 
     if not os.path.exists(save_path):
         os.makedirs(save_path)
@@ -165,6 +153,9 @@ def main():
 
     # path for saving csv logs
     eval_csv_path = os.path.join(save_path, "logs.csv")
+    koopman_log_path = args_cli.koopman_log_path or os.path.join(save_path, "koopman_step.jsonl")
+    koopman_logger = KoopmanDataLogger(koopman_log_path)
+    print(f"[INFO]: Saving Koopman data into: {koopman_log_path}")
 
     # create dataframe to save results into
     log_df = pd.DataFrame(columns=[
@@ -187,16 +178,6 @@ def main():
         'mse',
         'reward'
         ])
-
-    # obtain the trained policy for inference
-    policy = ppo_runner.get_inference_policy(device=env.unwrapped.device)
-
-    # export policy to onnx
-    export_model_dir = os.path.join(os.path.dirname(resume_path), "exported")
-    export_policy_as_jit(
-        ppo_runner.alg.actor_critic, ppo_runner.obs_normalizer, path=export_model_dir, filename="policy.pt"
-    )
-    export_policy_as_onnx(ppo_runner.alg.actor_critic, path=export_model_dir, filename="policy.onnx")
 
     goal_list = [
         # ([0, 0, 0], [1, 0, 0]),
@@ -257,8 +238,21 @@ def main():
 
             action_lim = torch.tensor([1, 1, 1, 1]).reshape(1, 4).to(env_cfg.sim.device)
             action = torch.clip(action, -action_lim, action_lim).to(env_cfg.sim.device)
-            actions = policy(obs)
+            previous_state = state_vector_from_env(env.unwrapped)
+            reference = reference_vector(goal_pos[2], des_ang_quat[0])
             obs, _, _, _ = env.step(action)
+            next_state = state_vector_from_env(env.unwrapped)
+            record_koopman_step(
+                koopman_logger,
+                t=counter / 60,
+                env=env.unwrapped,
+                previous_state=previous_state,
+                reference=reference,
+                action_4d=action,
+                next_state=next_state,
+                trajectory_type="step",
+                controller_mode=f"legacy/{env_cfg.control_method}",
+            )
 
             true_pos = env.unwrapped._robot.data.root_pos_w[0].cpu().numpy()
             true_ang = obs[0, 5:9]
@@ -272,7 +266,7 @@ def main():
             des_ang_rpy = np.where(des_ang_rpy >= math.pi, des_ang_rpy - (2 * math.pi), des_ang_rpy)
 
             record1 = action.detach().cpu().numpy()[0]
-            record2 = actions.detach().cpu().numpy()[0]
+            record2 = np.zeros(4)
 
             des_depth = goal_pos[2]
             log_row = {
@@ -323,6 +317,7 @@ def main():
         
     # save logs dataframe
     log_df.to_csv(eval_csv_path)
+    koopman_logger.close()
 
     # close the simulator
     env.close()

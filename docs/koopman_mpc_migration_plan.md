@@ -318,3 +318,40 @@ https://github.com/770122whrt/EASYkoopman.git
 4. 生成 Phase 1 summary，供 Phase 2 EDMD 使用。
 
 所有后续代码改动都应以 `.planning/phases/01-baseline-data-controller-seam/01-PLAN.md` 为边界，不要提前实现 Phase 2/3 的内容。
+# Phase 1 local implementation update (2026-06-29)
+
+Local work has reached the Isaac Gate:
+
+- `easyuuv_env.py` now has `controller_mode = "legacy"` while preserving the existing `control_method = "Ssurface"` / `"PID"` path.
+- `_compute_dynamics()` caches `_last_pwm_8d` before dead-zone handling and thrust-polynomial conversion.
+- `koopman_data.py` provides Isaac-free JSONL sample validation, writing, loading and `(x_k, u_k, r_k, x_{k+1})` reconstruction.
+- `workflows/play_controller.py` is now the first direct-controller data path and does not require a PPO checkpoint.
+- `workflows/play_eval.py`, `workflows/play_eval_step.py` and `workflows/play_eval_task2.py` emit the same Koopman schema for `sine`, `step` and `irregular` trajectories.
+
+Current Koopman sample fields:
+
+| Field | Content |
+|------|------|
+| `t` | Control-step timestamp; current workflows use `counter / 60`. |
+| `state` | `[z, quat_wxyz, body_linear_velocity_xyz, body_angular_velocity_xyz]`. |
+| `reference` | `[depth_ref, quat_ref_wxyz]`. |
+| `action_4d` | Legacy/direct controller input. |
+| `pwm_8d` | 8D PWM before thruster dead-zone and thrust-polynomial conversion. |
+| `next_state` | Next-step state with the same schema as `state`. |
+| `trajectory_type` | `step`, `sine` or `irregular`. |
+| `controller_mode` | Currently `legacy/Ssurface`. |
+
+Local verification:
+
+```powershell
+python -m pytest -p no:cacheprovider --capture=no tests -q
+python -m compileall -q easyuuv_env.py koopman_data.py workflows\koopman_logging.py workflows\play_controller.py workflows\play_eval.py workflows\play_eval_step.py workflows\play_eval_task2.py
+```
+
+Server Isaac validation still required:
+
+```bash
+./isaaclab.sh -p <EasyUUV-path>/workflows/play_controller.py --task EasyUUV-Direct-v1 --num_envs 1 --headless
+```
+
+Expected result: `source/results/direct_controller/<run>/koopman_step.jsonl` exists and can be loaded with `koopman_data.load_koopman_samples()`.

@@ -104,6 +104,7 @@ class EasyUUVEnvCfg(DirectRLEnvCfg):
                      [1.67, 0.22, 0.00], # z-axis rotation, Yaw
                      [0.27, 0.12, 0.00]], device='cuda:0') # depth
     
+    controller_mode = 'legacy' # legacy now; koopman_mpc is reserved for Phase 3
     control_method = 'Ssurface' # Ssurface & PID
     s_ratio = 4 # (Ssurface coeff / PID coeff)
     self_adapt = True # dummy if control_method == 'PID'
@@ -137,6 +138,7 @@ class EasyUUVEnv(DirectRLEnv):
         self._default_env_origins = torch.zeros(self.num_envs, 3, device=self.device)
         self._goal_pos_w = self._default_env_origins # just for visualizations at the moment
         self._step_count = 0
+        self._last_pwm_8d = torch.zeros(self.num_envs, 8, device=self.device)
         
         # Get thruster configurations
         self.thruster_com_offsets, self.thruster_quats = get_thruster_com_and_orientations(self.device)
@@ -410,8 +412,14 @@ class EasyUUVEnv(DirectRLEnv):
         thruster_forces = torch.zeros((self.num_envs, 8, 3), device=self.device, dtype=torch.float)
         thruster_torques = torch.zeros((self.num_envs, 8, 3), device=self.device, dtype=torch.float)
 
-        motorValues = self._pid_control(actions, actions - self.old_actions, self.actions_i) # motorValues (num_envs, 8)
+        if self.cfg.controller_mode == 'legacy':
+            motorValues = self._pid_control(actions, actions - self.old_actions, self.actions_i) # motorValues (num_envs, 8)
+        elif self.cfg.controller_mode == 'koopman_mpc':
+            raise NotImplementedError("koopman_mpc controller mode is reserved for Phase 3.")
+        else:
+            raise ValueError(f"Unknown controller_mode: {self.cfg.controller_mode}")
         self.old_actions = actions.clone()
+        self._last_pwm_8d = motorValues.clone()
         # motorValues = torch.clone(actions) # at this point these are PWM commands between -1 and 1
 
         if self._debug: print("motorValues: ", motorValues)

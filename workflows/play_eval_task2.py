@@ -17,6 +17,7 @@ parser.add_argument("--task", type=str, default='EasyUUV-Direct-v1', help="Name 
 parser.add_argument("--seed", type=int, default=None, help="Seed used for the environment")
 parser.add_argument("--eval_name", type=str, default='eval_task2', help="Name of the eval run to store in wandb")
 parser.add_argument("--custom_weights", type=str, default=None, help="Path to custom weights file")
+parser.add_argument("--koopman_log_path", type=str, default=None, help="Path for Koopman JSONL data logging.")
 
 # Eval parameters
 parser.add_argument("--action_noise_std", type=float, default=0., help="Standard deviation of action noise distribution")
@@ -58,6 +59,8 @@ from omni.isaac.lab.utils.math import quat_from_angle_axis, quat_error_magnitude
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from asymmetric_noise_cfg import *
+from koopman_data import KoopmanDataLogger
+from koopman_logging import record_koopman_step, reference_vector, state_vector_from_env
 
 from datetime import datetime
 strftime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
@@ -123,6 +126,7 @@ def main():
 
     env_cfg.eval_mode = True
 
+    env_cfg.controller_mode = 'legacy'
     env_cfg.control_method = 'Ssurface'
     env_cfg.s_ratio = 4
     env_cfg.self_adapt = True
@@ -166,6 +170,9 @@ def main():
 
     # path for saving csv logs
     eval_csv_path = os.path.join(save_path, "logs.csv")
+    koopman_log_path = args_cli.koopman_log_path or os.path.join(save_path, "koopman_irregular.jsonl")
+    koopman_logger = KoopmanDataLogger(koopman_log_path)
+    print(f"[INFO]: Saving Koopman data into: {koopman_log_path}")
 
     # create dataframe to save results into
     log_df = pd.DataFrame(columns=[
@@ -238,7 +245,21 @@ def main():
             des_ang_quat = quat_from_euler_xyz(torch.Tensor([des_ang_rpy[0]]), torch.Tensor([des_ang_rpy[1]]), torch.Tensor([des_ang_rpy[2]]))
             env.unwrapped._goal[:] = des_ang_quat.to(env_cfg.sim.device)
             actions = policy(obs)
+            previous_state = state_vector_from_env(env.unwrapped)
+            reference = reference_vector(goal_pos[2], des_ang_quat[0])
             obs, _, _, _ = env.step(actions)
+            next_state = state_vector_from_env(env.unwrapped)
+            record_koopman_step(
+                koopman_logger,
+                t=counter / 60,
+                env=env.unwrapped,
+                previous_state=previous_state,
+                reference=reference,
+                action_4d=actions,
+                next_state=next_state,
+                trajectory_type="irregular",
+                controller_mode=f"legacy/{env_cfg.control_method}",
+            )
 
             true_pos = env.unwrapped._robot.data.root_pos_w[0].cpu().numpy()
             true_ang = obs[0, 5:9]
@@ -292,6 +313,7 @@ def main():
         
     # save logs dataframe
     log_df.to_csv(eval_csv_path)
+    koopman_logger.close()
 
     # close the simulator
     env.close()
