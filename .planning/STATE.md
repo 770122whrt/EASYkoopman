@@ -1,7 +1,7 @@
 # Project State: EASYkoopman
 
 **Updated:** 2026-06-30
-**Current focus:** Phase 2 - Offline Koopman Identification
+**Current focus:** Collect longer legacy logs for Koopman model training
 
 ## Project Reference
 
@@ -17,6 +17,7 @@ See: `.planning/PROJECT.md`
 - Phase 1 已经建立 legacy controller boundary、pre-thrust 8D PWM cache 和 Koopman JSONL logging helper。
 - Phase 1.5 已经让 direct-controller smoke rollout 在服务器上跑通，并生成可验证 JSONL。
 - 当前 smoke log 只有 2 samples，足够证明数据链路，不足以训练正式 Koopman 模型。
+- Phase 2 离线代码已经完成：dataset、lifting、EDMD、model artifact、evaluation 和 CLI。
 - EasyUUV USD assets 可以纳入 Git，以避免服务器代码和模型资产不同步。
 
 ## Decisions
@@ -31,6 +32,7 @@ See: `.planning/PROJECT.md`
 | 2026-06-30 | Phase 1.5 server smoke gate 通过 | `validate_koopman_log.py` 接受服务器生成的 JSONL |
 | 2026-06-30 | USD assets 可纳入 Git | 两个 USD 文件低于 GitHub 单文件限制，且服务器必须拥有这些资产 |
 | 2026-06-30 | Phase 2 以离线 EDMD 为核心 | 先做可保存、可评估的 Koopman model，再进入 Phase 3 MPC |
+| 2026-06-30 | Phase 2 本地实现通过验证 | `python -m pytest -q` 显示 36 passed |
 
 ## Blockers And Risks
 
@@ -41,10 +43,10 @@ See: `.planning/PROJECT.md`
 
 ## Next Action
 
-执行 Phase 2:
+采集长日志并训练正式模型:
 
-1. 跟踪并提交 `data/easyuuv/model.usd` 和 `data/easyuuv/Props/instanceable_meshes.usd`。
-2. 实现离线 dataset loader，把 JSONL 转成 `X/U/R/Y` 矩阵。
-3. 实现 Koopman lifting 和 EDMD/ridge training。
-4. 实现模型保存/加载和 one-step/multi-step 评估。
-5. 在本地 fixture 上验证后，再用服务器长日志做正式训练。
+1. 在服务器运行长 step/sine/irregular legacy-controller rollout。
+2. 用 `workflows/validate_koopman_log.py` 验证每份 JSONL。
+3. 用 `workflows/train_koopman.py` 训练真实 Koopman 模型。
+4. 用 `workflows/evaluate_koopman.py` 生成 one-step 和 multi-step metrics。
+5. 根据预测误差决定是否需要更多 excitation 数据，再进入 Phase 3 MPC。

@@ -1,0 +1,16 @@
+"""Offline Koopman identification utilities for EasyUUV."""
+
+from .dataset import KoopmanDataset, load_dataset
+from .edmd import fit_edmd
+from .lifting import LiftingConfig, lift_state_reference
+from .model import KoopmanModel
+
+__all__ = [
+    "KoopmanDataset",
+    "KoopmanModel",
+    "LiftingConfig",
+    "fit_edmd",
+    "lift_state_reference",
+    "load_dataset",
+]
+
