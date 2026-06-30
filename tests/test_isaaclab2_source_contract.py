@@ -29,6 +29,13 @@ def test_direct_controller_starts_app_before_task_registration():
     assert source.index("simulation_app = app_launcher.app") < source.index("register_easyuuv_task()")
 
 
+def test_direct_controller_does_not_duplicate_applauncher_cli_flags():
+    source = read_source("workflows/play_controller.py")
+
+    assert 'parser.add_argument("--cpu"' not in source
+    assert 'getattr(args_cli, "cpu", False)' in source
+
+
 def test_direct_controller_does_not_require_ppo_wrapper_or_checkpoint():
     source = read_source("workflows/play_controller.py")
     forbidden = [

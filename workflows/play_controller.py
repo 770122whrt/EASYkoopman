@@ -13,7 +13,6 @@ from isaaclab_app import AppLauncher
 
 
 parser = argparse.ArgumentParser(description="Run the EasyUUV direct legacy controller.")
-parser.add_argument("--cpu", action="store_true", default=False, help="Use CPU pipeline.")
 parser.add_argument(
     "--disable_fabric", action="store_true", default=False, help="Disable fabric and use USD I/O operations."
 )
@@ -179,7 +178,7 @@ _, signal3 = generate_signal(amplitude=0.95, frequencies=(0.15, 0.3, 0.5, -0.9, 
 def main():
     env_cfg = parse_env_cfg(
         args_cli.task,
-        use_gpu=not args_cli.cpu,
+        use_gpu=not getattr(args_cli, "cpu", False),
         num_envs=args_cli.num_envs,
         use_fabric=not args_cli.disable_fabric,
     )
