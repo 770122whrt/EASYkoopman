@@ -66,5 +66,10 @@ Before training a useful model, collect longer logs on the server:
 
 ## Next Gate
 
-Run the long legacy-controller data collection on the server, validate the logs with `workflows/validate_koopman_log.py`, then train a real model locally or on the server with `workflows/train_koopman.py`.
+Run Phase 2.5 before MPC integration. The next gate is no longer "train one real model and proceed"; it is:
 
+- collect long step/sine/irregular logs,
+- validate every JSONL with `workflows/validate_koopman_log.py`,
+- split logs into train/validation/test,
+- sweep Koopman model candidates,
+- select one model only if held-out multi-step prediction stays stable.

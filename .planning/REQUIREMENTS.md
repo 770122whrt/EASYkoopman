@@ -31,6 +31,13 @@
 - [ ] **KOOP-02**: 实现离线 EDMD 训练，输出可保存、可加载的 Koopman 模型参数。
 - [ ] **KOOP-03**: 提供 one-step 和 multi-step 预测误差评估，避免只看闭环表现。
 
+### Koopman Model Quality Gate
+
+- [ ] **QUAL-01**: 训练、验证和测试日志必须可明确分离，模型选择不得只依赖训练集误差。
+- [ ] **QUAL-02**: 模型训练必须支持多个 JSONL 日志联合输入，覆盖 step、sine、irregular 轨迹和可选多次初始条件运行。
+- [ ] **QUAL-03**: 模型选择必须比较至少两类候选配置，例如不同 ridge 系数或不同 lifting 配置，并输出可复现的 metrics summary。
+- [ ] **QUAL-04**: 进入 MPC 前必须生成 selected model manifest，记录模型路径、训练数据、验证数据、测试数据、关键误差和是否出现 rollout divergence。
+
 ### MPC Control
 
 - [ ] **MPC-01**: MPC 使用 Koopman 模型预测未来状态，并优化姿态/深度跟踪代价。
@@ -81,6 +88,10 @@
 | KOOP-01 | Phase 2 | Pending |
 | KOOP-02 | Phase 2 | Pending |
 | KOOP-03 | Phase 2 | Pending |
+| QUAL-01 | Phase 2.5 | Pending |
+| QUAL-02 | Phase 2.5 | Pending |
+| QUAL-03 | Phase 2.5 | Pending |
+| QUAL-04 | Phase 2.5 | Pending |
 | MPC-01 | Phase 3 | Pending |
 | MPC-02 | Phase 3 | Pending |
 | MPC-03 | Phase 3 | Pending |
@@ -91,10 +102,10 @@
 | DOC-02 | Phase 4 | Pending |
 
 **Coverage:**
-- v1 requirements: 22 total
-- Mapped to phases: 22
+- v1 requirements: 26 total
+- Mapped to phases: 26
 - Unmapped: 0
 
 ---
 *Requirements defined: 2026-06-10*
-*Last updated: 2026-06-30 after Isaac Lab 2 compatibility phase insertion*
+*Last updated: 2026-06-30 after Koopman quality gate phase insertion*

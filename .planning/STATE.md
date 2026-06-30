@@ -1,7 +1,7 @@
 # Project State: EASYkoopman
 
 **Updated:** 2026-06-30
-**Current focus:** Collect longer legacy logs for Koopman model training
+**Current focus:** Phase 2.5 - Koopman Prediction Quality Gate
 
 ## Project Reference
 
@@ -16,9 +16,10 @@ See: `.planning/PROJECT.md`
 - 服务器实际环境已经确认：Isaac Sim 5.0 + Isaac Lab 2.2.1。
 - Phase 1 已经建立 legacy controller boundary、pre-thrust 8D PWM cache 和 Koopman JSONL logging helper。
 - Phase 1.5 已经让 direct-controller smoke rollout 在服务器上跑通，并生成可验证 JSONL。
-- 当前 smoke log 只有 2 samples，足够证明数据链路，不足以训练正式 Koopman 模型。
 - Phase 2 离线代码已经完成：dataset、lifting、EDMD、model artifact、evaluation 和 CLI。
-- EasyUUV USD assets 可以纳入 Git，以避免服务器代码和模型资产不同步。
+- 用户已经用 1400 samples 的 step log 完成一次训练和评估，结果证明链路可用，但仍是同分布/同日志评估。
+- 进入 MPC 前需要 Phase 2.5：用 train/validation/test split、多轨迹日志、candidate sweep 和 rollout divergence 检查来筛选可信模型。
+- EasyUUV USD assets 已纳入 Git，以避免服务器代码和模型资产不同步。
 
 ## Decisions
 
@@ -31,22 +32,24 @@ See: `.planning/PROJECT.md`
 | 2026-06-30 | 插入 Phase 1.5 做 Isaac Lab 2.x 兼容迁移 | 服务器实际环境是 Isaac Sim 5.0 + Isaac Lab 2.2.1 |
 | 2026-06-30 | Phase 1.5 server smoke gate 通过 | `validate_koopman_log.py` 接受服务器生成的 JSONL |
 | 2026-06-30 | USD assets 可纳入 Git | 两个 USD 文件低于 GitHub 单文件限制，且服务器必须拥有这些资产 |
-| 2026-06-30 | Phase 2 以离线 EDMD 为核心 | 先做可保存、可评估的 Koopman model，再进入 Phase 3 MPC |
-| 2026-06-30 | Phase 2 本地实现通过验证 | `python -m pytest -q` 显示 36 passed |
+| 2026-06-30 | Phase 2 以离线 EDMD 为核心 | 先做可保存、可评估的 Koopman model，再进入模型质量 gate |
+| 2026-06-30 | 插入 Phase 2.5 做 Koopman prediction quality gate | 防止在模型只拟合训练数据时过早接 MPC |
+| 2026-06-30 | 多环境数据不是第一优先级 | 当前 logger 主要记录单 env；先用多轨迹、多次运行和不同初始条件覆盖数据多样性 |
 
 ## Blockers And Risks
 
 - 本地仍不能运行 Isaac；所有 Isaac rollout 继续在服务器 `/root/IsaacLab` 执行。
-- 当前只有 2 条 smoke samples，不能用于正式训练。
+- 目前只有 step long log 的一次结果；还缺 sine 和 irregular 长日志。
 - 服务器 Git clone/pull 可能继续遇到 TLS 超时；必要时使用 zip 或 git bundle 传输。
-- Phase 2 必须保持 Isaac-free，避免把本地可运行的离线训练又绑回服务器。
+- 如果只用训练集误差选模型，MPC 闭环可能因为模型泛化失败而不稳定。
+- Phase 2.5 必须保持 Isaac-free，除非发现日志采集脚本本身阻塞数据生成。
 
 ## Next Action
 
-采集长日志并训练正式模型:
+执行 Phase 2.5:
 
-1. 在服务器运行长 step/sine/irregular legacy-controller rollout。
-2. 用 `workflows/validate_koopman_log.py` 验证每份 JSONL。
-3. 用 `workflows/train_koopman.py` 训练真实 Koopman 模型。
-4. 用 `workflows/evaluate_koopman.py` 生成 one-step 和 multi-step metrics。
-5. 根据预测误差决定是否需要更多 excitation 数据，再进入 Phase 3 MPC。
+1. 增加 train/validation/test split manifest。
+2. 增加 held-out evaluation 和 rollout divergence 指标。
+3. 增加 ridge/lifting candidate sweep。
+4. 增加 selected model manifest，作为 Phase 3 MPC 的输入 gate。
+5. 在服务器采集并验证 step、sine、irregular 长日志。
