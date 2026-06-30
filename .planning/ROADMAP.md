@@ -51,6 +51,33 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 - Data logs contain state, reference, action, PWM, next state and timestamp.
 - Existing evaluation scripts remain usable.
 
+## Phase 1.5: Isaac Lab 2.x Compatibility Migration
+
+**Goal:** Make the Phase 1 direct-controller data path runnable on the confirmed server stack: Isaac Sim 5.0 + Isaac Lab 2.2.1.
+
+**Execution:** Local code changes and source-contract tests first; server Isaac is required for final task creation and rollout verification.
+
+**Requirement coverage:** COMPAT-01, COMPAT-02, COMPAT-03, COMPAT-04, BASE-04, DATA-01, DATA-02
+
+**Canonical refs:**
+- `docs/isaaclab2_server_environment.md` - confirmed server environment and import-order findings
+- `workflows/play_controller.py` - first direct controller rollout entrypoint
+- `easyuuv_env.py`, `assets/easyuuv.py`, `rigid_body_hydrodynamics.py`, `thruster_dynamics.py` - Isaac Lab API surface
+- `koopman_data.py`, `workflows/koopman_logging.py` - Phase 1 JSONL data path
+
+**Deliverables:**
+- Compatibility import layer for Isaac Lab 2.x with old `omni.isaac.lab` fallback where practical.
+- Valid Gym task registration that does not depend on the legacy `omni.isaac.lab_tasks.direct.EasyUUV-Isaac-Simulation` module path.
+- `play_controller.py` direct-controller rollout path that does not require PPO/RSL-RL wrapping.
+- Local source-contract tests covering import migration, task registration and direct rollout structure.
+- Server verification commands for pulling the branch and generating a Koopman JSONL sample.
+
+**Verification:**
+- Local: source-contract tests pass without Isaac installed.
+- Local: Python compile check passes for modified Python files.
+- Isaac Gate: server runs `workflows/play_controller.py --task EasyUUV-Direct-v1 --headless` through `/root/IsaacLab/isaaclab.sh`.
+- Isaac Gate: generated JSONL contains Phase 1 Koopman records from the legacy controller path.
+
 ## Phase 2: Offline Koopman Identification
 
 **Goal:** Train and validate an offline Koopman model for EasyUUV attitude/depth dynamics from Isaac simulation data.

@@ -18,6 +18,13 @@
 - [ ] **DATA-02**: 数据集格式可离线读取，用于 EDMD 训练和 one-step/multi-step prediction 验证。
 - [ ] **DATA-03**: 数据采集覆盖 step、sine、irregular 三类轨迹，包含足够激励以辨识姿态/深度动态。
 
+### Isaac Lab 2 Compatibility
+
+- [ ] **COMPAT-01**: 核心环境代码优先支持 Isaac Lab 2.x 的 `isaaclab.*`、`isaaclab_tasks.*`、`isaaclab_rl.*` 命名空间，并在可行处保留 Isaac Lab 1.x `omni.isaac.lab.*` fallback。
+- [ ] **COMPAT-02**: 所有需要 Kit/Omniverse 模块的 direct rollout 入口必须先启动 `AppLauncher`，再导入环境、任务注册和 Isaac Lab task utilities。
+- [ ] **COMPAT-03**: `EasyUUV-Direct-v1` 的 Gym 注册不能依赖包含连字符的旧 extension module path，必须能从普通 Git clone 目录导入。
+- [ ] **COMPAT-04**: 第一阶段服务器验证只要求 direct controller + legacy control + Koopman JSONL 数据链路跑通；PPO train/eval 全链路迁移延后到后续阶段。
+
 ### Koopman Identification
 
 - [ ] **KOOP-01**: 定义 EasyUUV 姿态/深度控制的 lifting 函数，包含状态、参考误差、控制量和关键二次项。
@@ -67,6 +74,10 @@
 | DATA-01 | Phase 1 | Pending |
 | DATA-02 | Phase 1 | Pending |
 | DATA-03 | Phase 1 | Pending |
+| COMPAT-01 | Phase 1.5 | Pending |
+| COMPAT-02 | Phase 1.5 | Pending |
+| COMPAT-03 | Phase 1.5 | Pending |
+| COMPAT-04 | Phase 1.5 | Pending |
 | KOOP-01 | Phase 2 | Pending |
 | KOOP-02 | Phase 2 | Pending |
 | KOOP-03 | Phase 2 | Pending |
@@ -80,10 +91,10 @@
 | DOC-02 | Phase 4 | Pending |
 
 **Coverage:**
-- v1 requirements: 18 total
-- Mapped to phases: 18
+- v1 requirements: 22 total
+- Mapped to phases: 22
 - Unmapped: 0
 
 ---
 *Requirements defined: 2026-06-10*
-*Last updated: 2026-06-10 after GSD project initialization*
+*Last updated: 2026-06-30 after Isaac Lab 2 compatibility phase insertion*
