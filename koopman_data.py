@@ -1,9 +1,15 @@
 from __future__ import annotations
 
 import json
+import math
 from pathlib import Path
 from typing import Any, Iterable
 
+
+STATE_DIM = 11
+REFERENCE_DIM = 5
+ACTION_DIM = 4
+PWM_DIM = 8
 
 REQUIRED_FIELDS = (
     "t",
@@ -12,6 +18,8 @@ REQUIRED_FIELDS = (
     "action_4d",
     "pwm_8d",
     "next_state",
+    "trajectory_type",
+    "controller_mode",
 )
 
 
@@ -62,16 +70,66 @@ def validate_koopman_sample(sample: dict[str, Any]) -> None:
     missing = [field for field in REQUIRED_FIELDS if field not in sample]
     if missing:
         raise ValueError(f"Missing Koopman sample fields: {missing}")
-    if len(sample["action_4d"]) != 4:
-        raise ValueError("action_4d must contain exactly 4 values")
-    if len(sample["pwm_8d"]) != 8:
-        raise ValueError("pwm_8d must contain exactly 8 values")
-    if len(sample["state"]) == 0:
-        raise ValueError("state must not be empty")
-    if len(sample["state"]) != len(sample["next_state"]):
-        raise ValueError("state and next_state must have the same length")
-    if len(sample["reference"]) == 0:
-        raise ValueError("reference must not be empty")
+
+    sample["t"] = float(sample["t"])
+    if not math.isfinite(sample["t"]):
+        raise ValueError("t must be a finite number")
+
+    for field_name in ("trajectory_type", "controller_mode"):
+        if not isinstance(sample[field_name], str) or not sample[field_name].strip():
+            raise ValueError(f"{field_name} must be a non-empty string")
+
+    expected_lengths = {
+        "state": STATE_DIM,
+        "reference": REFERENCE_DIM,
+        "action_4d": ACTION_DIM,
+        "pwm_8d": PWM_DIM,
+        "next_state": STATE_DIM,
+    }
+    for field_name, expected_length in expected_lengths.items():
+        values = _flat_float_list(sample[field_name], field_name)
+        if len(values) != expected_length:
+            raise ValueError(f"{field_name} must contain exactly {expected_length} values")
+        if not all(math.isfinite(value) for value in values):
+            raise ValueError(f"{field_name} values must be finite numbers")
+        sample[field_name] = values
+
+    if not all(-1.0 <= value <= 1.0 for value in sample["pwm_8d"]):
+        raise ValueError("pwm_8d values must stay within [-1, 1]")
+
+
+def validate_koopman_sequence(samples: Iterable[dict[str, Any]]) -> None:
+    previous_t: float | None = None
+    count = 0
+    for index, sample in enumerate(samples):
+        validate_koopman_sample(sample)
+        current_t = sample["t"]
+        if previous_t is not None and current_t <= previous_t:
+            raise ValueError(
+                f"Koopman timestamps must be strictly increasing at sample {index}: {current_t} <= {previous_t}"
+            )
+        previous_t = current_t
+        count += 1
+    if count == 0:
+        raise ValueError("Koopman log must contain at least one sample")
+
+
+def summarize_koopman_samples(samples: Iterable[dict[str, Any]]) -> dict[str, Any]:
+    sample_list = list(samples)
+    validate_koopman_sequence(sample_list)
+    first = sample_list[0]
+    last = sample_list[-1]
+    return {
+        "count": len(sample_list),
+        "state_dim": len(first["state"]),
+        "reference_dim": len(first["reference"]),
+        "action_dim": len(first["action_4d"]),
+        "pwm_dim": len(first["pwm_8d"]),
+        "t_start": first["t"],
+        "t_end": last["t"],
+        "trajectory_types": sorted({sample["trajectory_type"] for sample in sample_list}),
+        "controller_modes": sorted({sample["controller_mode"] for sample in sample_list}),
+    }
 
 
 class KoopmanDataLogger:
@@ -107,6 +165,7 @@ def load_koopman_samples(path: str | Path) -> list[dict[str, Any]]:
             sample = json.loads(line)
             validate_koopman_sample(sample)
             samples.append(sample)
+    validate_koopman_sequence(samples)
     return samples
 
 
