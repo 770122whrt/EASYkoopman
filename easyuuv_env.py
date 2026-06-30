@@ -74,6 +74,9 @@ class EasyUUVEnvCfg(DirectRLEnvCfg):
     cap_episode_length = True
     episode_length_s = 3.0
     episode_length_before_reset = None
+    action_space = 4
+    observation_space = 9
+    state_space = 0
     num_actions = 4 
     num_observations = 9 
     num_states = 0

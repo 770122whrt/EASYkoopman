@@ -94,3 +94,10 @@ def test_core_direct_path_uses_compat_layer_instead_of_old_namespace():
 
     for relative_path in migrated_files:
         assert "omni.isaac.lab" not in read_source(relative_path), relative_path
+
+
+def test_easyuuv_env_cfg_declares_isaaclab2_spaces():
+    source = read_source("easyuuv_env.py")
+
+    assert "observation_space = 9" in source
+    assert "action_space = 4" in source
