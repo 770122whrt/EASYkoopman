@@ -47,6 +47,14 @@ def test_direct_controller_has_stage_logging_and_short_smoke_flags():
     assert "Gym environment created" in source
 
 
+def test_direct_controller_builds_env_cfg_without_registry_parser():
+    source = read_source("workflows/play_controller.py")
+
+    assert "from easyuuv_env import EasyUUVEnvCfg" in source
+    assert "env_cfg = EasyUUVEnvCfg()" in source
+    assert "parse_env_cfg(" not in source
+
+
 def test_direct_controller_does_not_require_ppo_wrapper_or_checkpoint():
     source = read_source("workflows/play_controller.py")
     forbidden = [

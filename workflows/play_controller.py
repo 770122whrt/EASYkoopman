@@ -2,6 +2,7 @@ import argparse
 import math
 import os
 import sys
+import traceback
 from datetime import datetime
 
 
@@ -48,9 +49,9 @@ except ImportError:
     wandb = None
 
 from easyuuv_task_registration import register_easyuuv_task
+from easyuuv_env import EasyUUVEnvCfg
 from isaaclab_compat import (
     euler_xyz_from_quat,
-    parse_env_cfg,
     quat_apply,
     quat_conjugate,
     quat_from_euler_xyz,
@@ -184,14 +185,21 @@ _, signal2 = generate_signal(amplitude=1.35, frequencies=(-0.1, 0.2, 0.4, 0.8, 1
 _, signal3 = generate_signal(amplitude=0.95, frequencies=(0.15, 0.3, 0.5, -0.9, 1.8, -3))
 
 
+def build_env_cfg():
+    env_cfg = EasyUUVEnvCfg()
+    env_cfg.scene.num_envs = args_cli.num_envs
+
+    if hasattr(env_cfg.sim, "device"):
+        env_cfg.sim.device = "cpu" if getattr(args_cli, "cpu", False) else getattr(args_cli, "device", "cuda:0")
+    if hasattr(env_cfg.sim, "use_fabric"):
+        env_cfg.sim.use_fabric = not args_cli.disable_fabric
+
+    return env_cfg
+
+
 def main():
-    log_stage("Parsing environment config")
-    env_cfg = parse_env_cfg(
-        args_cli.task,
-        use_gpu=not getattr(args_cli, "cpu", False),
-        num_envs=args_cli.num_envs,
-        use_fabric=not args_cli.disable_fabric,
-    )
+    log_stage("Building EasyUUVEnvCfg directly")
+    env_cfg = build_env_cfg()
 
     env_cfg.domain_randomization.use_custom_randomization = False
     env_cfg.volume = 0.0187613
@@ -389,5 +397,9 @@ def main():
 if __name__ == "__main__":
     try:
         main()
+    except BaseException:
+        log_stage("Unhandled exception follows")
+        traceback.print_exc()
+        raise
     finally:
         simulation_app.close()
