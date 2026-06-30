@@ -3,9 +3,8 @@
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
-from omni.isaac.lab.utils import configclass
-
-from omni.isaac.lab_tasks.utils.wrappers.rsl_rl import (
+from isaaclab_compat import (
+    configclass,
     RslRlOnPolicyRunnerCfg,
     RslRlPpoActorCriticCfg,
     RslRlPpoAlgorithmCfg,

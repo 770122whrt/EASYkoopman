@@ -1,6 +1,4 @@
-import omni.isaac.lab.sim as sim_utils
-
-from omni.isaac.lab.assets import RigidObjectCfg
+from isaaclab_compat import RigidObjectCfg, sim_utils
 
 import os
 USD_PATH = os.path.join(os.path.dirname(__file__), "../data/easyuuv/model.usd")
