@@ -5,6 +5,10 @@ import sys
 from datetime import datetime
 
 
+def log_stage(message: str) -> None:
+    print(f"[EASYUUV] {message}", flush=True)
+
+
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
@@ -23,12 +27,15 @@ parser.add_argument("--eval_name", type=str, default="eval_controller", help="Na
 parser.add_argument("--koopman_log_path", type=str, default=None, help="Path for Koopman JSONL data logging.")
 parser.add_argument("--action_noise_std", type=float, default=0.0, help="Reserved for future controller tests.")
 parser.add_argument("--observation_noise_std", type=float, default=0.0, help="Reserved for future controller tests.")
+parser.add_argument("--steps_per_action", type=int, default=200, help="Steps to hold each target action.")
+parser.add_argument("--max_goals", type=int, default=None, help="Limit target goals for short smoke tests.")
 
 AppLauncher.add_app_launcher_args(parser)
 args_cli = parser.parse_args()
 
 app_launcher = AppLauncher(args_cli)
 simulation_app = app_launcher.app
+log_stage("Isaac app started; importing post-app modules")
 
 import gymnasium as gym
 import numpy as np
@@ -53,7 +60,9 @@ from koopman_data import KoopmanDataLogger
 from koopman_logging import record_koopman_step, reference_vector, state_vector_from_env
 
 
+log_stage("Registering EasyUUV task")
 register_easyuuv_task()
+log_stage("EasyUUV task registered")
 strftime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
 
@@ -176,6 +185,7 @@ _, signal3 = generate_signal(amplitude=0.95, frequencies=(0.15, 0.3, 0.5, -0.9, 
 
 
 def main():
+    log_stage("Parsing environment config")
     env_cfg = parse_env_cfg(
         args_cli.task,
         use_gpu=not getattr(args_cli, "cpu", False),
@@ -195,18 +205,20 @@ def main():
     env_cfg.s_ratio = 4
     env_cfg.self_adapt = True
 
+    log_stage("Creating Gym environment")
     env = gym.make(args_cli.task, cfg=env_cfg)
+    log_stage("Gym environment created")
     wandb_run = init_wandb_run(args_cli.eval_name + "_" + strftime, env_cfg)
 
     save_path = os.path.join(PROJECT_ROOT, "source", "results", "direct_controller", args_cli.eval_name + "_" + strftime)
     os.makedirs(save_path, exist_ok=True)
 
-    print(f"[INFO]: Saving results into: {save_path}")
+    print(f"[INFO]: Saving results into: {save_path}", flush=True)
 
     eval_csv_path = os.path.join(save_path, "logs.csv")
     koopman_log_path = args_cli.koopman_log_path or os.path.join(save_path, "koopman_step.jsonl")
     koopman_logger = KoopmanDataLogger(koopman_log_path)
-    print(f"[INFO]: Saving Koopman data into: {koopman_log_path}")
+    print(f"[INFO]: Saving Koopman data into: {koopman_log_path}", flush=True)
 
     log_df = pd.DataFrame(
         columns=[
@@ -240,12 +252,16 @@ def main():
         ([0, 0, 1.0472], [0, 0, 0]),
         ([0, 0, -1.0472], [0, 0, 0]),
     ]
+    if args_cli.max_goals is not None:
+        goal_list = goal_list[: args_cli.max_goals]
 
+    log_stage("Fetching initial observations")
     obs = get_policy_obs(env)
     action_iter = 0
-    steps_per_action = 200
+    steps_per_action = args_cli.steps_per_action
     action_ix = 0
     counter = 0
+    log_stage(f"Starting rollout with {len(goal_list)} goals and {steps_per_action} steps per action")
 
     while action_ix < len(goal_list):
         counter += 1
@@ -363,6 +379,8 @@ def main():
 
     log_df.to_csv(eval_csv_path)
     koopman_logger.close()
+    log_stage(f"Rollout finished; wrote CSV to {eval_csv_path}")
+    log_stage(f"Rollout finished; wrote Koopman JSONL to {koopman_log_path}")
     if wandb_run is not None:
         wandb_run.finish()
     env.close()

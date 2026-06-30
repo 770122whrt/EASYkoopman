@@ -36,6 +36,17 @@ def test_direct_controller_does_not_duplicate_applauncher_cli_flags():
     assert 'getattr(args_cli, "cpu", False)' in source
 
 
+def test_direct_controller_has_stage_logging_and_short_smoke_flags():
+    source = read_source("workflows/play_controller.py")
+
+    assert "def log_stage(" in source
+    assert "flush=True" in source
+    assert "--steps_per_action" in source
+    assert "--max_goals" in source
+    assert "Creating Gym environment" in source
+    assert "Gym environment created" in source
+
+
 def test_direct_controller_does_not_require_ppo_wrapper_or_checkpoint():
     source = read_source("workflows/play_controller.py")
     forbidden = [
