@@ -101,3 +101,10 @@ def test_easyuuv_env_cfg_declares_isaaclab2_spaces():
 
     assert "observation_space = 9" in source
     assert "action_space = 4" in source
+
+
+def test_easyuuv_asset_disables_usd_articulation_root_for_rigid_object():
+    source = read_source("assets/easyuuv.py")
+
+    assert "ArticulationRootPropertiesCfg" in source
+    assert "articulation_enabled=False" in source
