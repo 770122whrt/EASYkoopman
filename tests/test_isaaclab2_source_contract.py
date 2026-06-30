@@ -55,6 +55,13 @@ def test_direct_controller_builds_env_cfg_without_registry_parser():
     assert "parse_env_cfg(" not in source
 
 
+def test_direct_controller_uses_reset_when_public_observation_api_is_missing():
+    source = read_source("workflows/play_controller.py")
+
+    assert "result = env.reset()" in source
+    assert 'hasattr(env.unwrapped, "get_observations")' in source
+
+
 def test_direct_controller_does_not_require_ppo_wrapper_or_checkpoint():
     source = read_source("workflows/play_controller.py")
     forbidden = [

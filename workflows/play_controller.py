@@ -151,8 +151,12 @@ def policy_obs_from_observations(observations):
 
 
 def get_policy_obs(env):
-    target_env = env if hasattr(env, "get_observations") else env.unwrapped
-    result = target_env.get_observations()
+    if hasattr(env, "get_observations"):
+        result = env.get_observations()
+    elif hasattr(env.unwrapped, "get_observations"):
+        result = env.unwrapped.get_observations()
+    else:
+        result = env.reset()
     observations = result[0] if isinstance(result, tuple) else result
     return policy_obs_from_observations(observations)
 
