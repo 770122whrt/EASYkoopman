@@ -72,7 +72,7 @@ def test_offline_mpc_workflow_writes_latency_fallback_and_backend_report(tmp_pat
     assert report["pwm_max"] <= 1.0
     assert "average_latency_ms" in report
     assert "fallback_count" in report
-    assert "known_limitations" in report
+    assert report["known_limitations"]
 
 
 def test_backend_check_compares_direct_and_paper_lifted_candidates(tmp_path):
