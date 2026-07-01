@@ -19,7 +19,7 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 - Koopman+MPC closed-loop control in Isaac.
 - Final comparison experiments across step, sine and irregular trajectories.
 
-**Next coding target before Isaac is needed:** strengthen Koopman model quality checks with train/validation/test splitting, ridge/lifting sweeps and multi-step rollout stability analysis before attempting MPC closed-loop control.
+**Next coding target before Isaac is needed:** implement the Phase 3 offline Koopman MPC runtime contract, cost function and bounded PWM solver before touching the Isaac closed-loop branch.
 
 ## Phase 1: Baseline Data And Controller Boundary
 
@@ -146,24 +146,39 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 **Requirement coverage:** MPC-01, MPC-02, MPC-03, MPC-04
 
 **Canonical refs:**
-- `easyuuv_env.py`
-- `koopman/` modules from Phase 2
-- Phase 2.5 selected model manifest, validation/test metrics and gate report
-- `workflows/play_controller.py`
+- `.planning/phases/03-koopman-mpc-controller-integration/03-SPEC.md` - locked Phase 3 scope and acceptance criteria.
+- `.planning/phases/03-koopman-mpc-controller-integration/03-CONTEXT.md` - implementation decisions and canonical refs.
+- `.planning/phases/03-koopman-mpc-controller-integration/03-RESEARCH.md` - EasyUUV and Koopman-Sim2Real article mapping.
+- `docs/phase2_5_consolidation_report.md` - selected model gate result and limitations.
+- `source/results/koopman_phase2_5_verify_20260701_231802/selected_model_manifest.json` - default Phase 3 model input.
+- `easyuuv_env.py` - `controller_mode`, `_compute_dynamics()` and `_last_pwm_8d` controller seam.
+- `koopman/model.py`, `koopman/lifted_edmd.py` - loadable prediction model contracts.
+- `workflows/play_controller.py` - first direct-controller and Koopman MPC smoke entrypoint.
 
 **Deliverables:**
-- MPC solver module.
+- Manifest-first Koopman runtime loader that rejects non-pass or stale selected models.
+- Pure NumPy first-pass MPC problem and bounded 8D PWM solver.
+- Offline MPC replay workflow that runs without Isaac.
 - Controller adapter connecting current sim state, reference, Koopman model and PWM output.
-- Runtime fallback if solver fails or exceeds time budget.
+- `koopman_mpc` branch in `easyuuv_env.py` that preserves existing thruster and hydrodynamic logic.
+- Runtime fallback if solver fails, returns non-finite commands or exceeds time budget.
+- Solver diagnostics in logs: latency, status, cost and fallback flag.
 
 **Verification:**
+- Local: manifest loader rejects `gate_status != pass`, missing model paths and unsupported model classes.
+- Local: prediction wrapper can run against the Phase 2.5 selected model and produce finite 11D predictions.
 - Local: MPC solver can run against saved Koopman model and replayed states.
-- Local: controller adapter returns bounded commands for fixture states.
-- Isaac Gate: server runs the first `koopman_mpc` closed-loop rollout.
-- Koopman+MPC can run at the configured control rate for a single environment.
-- PWM output remains bounded.
-- Solver latency is logged.
-- Step trajectory can complete without Isaac simulation crash.
+- Local: controller adapter returns bounded 8D PWM for fixture states.
+- Local: `python -m pytest -q`, `python -m compileall __init__.py easyuuv_env.py koopman workflows tests` and `git diff --check` pass.
+- Isaac Gate: server runs the first `koopman_mpc` closed-loop rollout via `workflows/play_controller.py`.
+- Isaac Gate: PWM output remains bounded, solver latency is logged and fallback count is reported.
+- Step smoke trajectory can complete without Isaac simulation crash.
+
+**Phase 3 plan artifacts:**
+- `.planning/phases/03-koopman-mpc-controller-integration/03-SPEC.md`
+- `.planning/phases/03-koopman-mpc-controller-integration/03-CONTEXT.md`
+- `.planning/phases/03-koopman-mpc-controller-integration/03-RESEARCH.md`
+- `.planning/phases/03-koopman-mpc-controller-integration/03-PLAN.md`
 
 ## Phase 4: Evaluation, Documentation And Isaac Sim Runbook
 

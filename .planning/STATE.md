@@ -1,7 +1,7 @@
 # Project State: EASYkoopman
 
-**Updated:** 2026-06-30
-**Current focus:** Phase 2.5 - Offline Koopman Model Qualification Gate
+**Updated:** 2026-07-01
+**Current focus:** Phase 3 - Koopman MPC Controller Integration
 
 ## Project Reference
 
@@ -83,3 +83,39 @@ Current next action:
 2. Collect or provide validated `step`, `sine` and `irregular` long JSONL logs.
 3. Run `split_koopman_logs.py`, `sweep_koopman_models.py`, `select_koopman_model.py` and `write_koopman_gate_report.py`.
 4. Enter Phase 3 only if `selected_model_manifest.json` reports `gate_status = pass`.
+
+## 2026-07-01 Phase 2.5 Server Gate And Phase 3 Planning Note
+
+Phase 2.5 has now been re-run on the `agentic-AUV` server with validated step, sine and irregular long logs.
+
+Verified server artifacts copied back locally:
+
+- `source/results/koopman_phase2_5_verify_20260701_231802/selected_model_manifest.json`
+- `source/results/koopman_phase2_5_verify_20260701_231802/gate_report.md`
+- `source/results/koopman_phase1/smoke_reverify_20260701_231917.jsonl`
+
+Gate result:
+
+```text
+gate_status = pass
+selected_candidate_id = direct_state_selected_quadratic_ridge_0p0001_norm_off
+model_class = direct_state
+control_dim = 8
+dt = 0.016666666666666607
+test multi_step_rmse@20 = 0.5243264020346085
+```
+
+Phase 3 planning is created in:
+
+- `.planning/phases/03-koopman-mpc-controller-integration/03-SPEC.md`
+- `.planning/phases/03-koopman-mpc-controller-integration/03-CONTEXT.md`
+- `.planning/phases/03-koopman-mpc-controller-integration/03-RESEARCH.md`
+- `.planning/phases/03-koopman-mpc-controller-integration/03-PLAN.md`
+
+Current Phase 3 decision:
+
+1. Use the selected model manifest as the runtime contract.
+2. Optimize 8D PWM first, because the selected model was trained with `pwm_8d`.
+3. Keep the first MPC solver pure NumPy, short-horizon and fallback-safe.
+4. Preserve existing EasyUUV thruster and hydrodynamic logic.
+5. Use `workflows/play_controller.py` for the first server Isaac smoke; PPO remains deferred because no checkpoint exists on the server.
