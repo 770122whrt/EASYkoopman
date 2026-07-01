@@ -10,6 +10,13 @@ from koopman_data import PWM_DIM, REFERENCE_DIM, STATE_DIM
 from .mpc import MPCConfig, solve_mpc
 
 
+DEFAULT_KNOWN_LIMITATIONS = (
+    "selected backend is direct_state, not paper_lifted_edmd",
+    "Phase 2.5 is an offline model gate, not closed-loop control evidence",
+    "Phase 4 must compare closed-loop performance before superiority claims",
+)
+
+
 @dataclass(frozen=True)
 class MPCControllerOutput:
     pwm: np.ndarray
@@ -43,13 +50,16 @@ class KoopmanMPCController:
 
         result = solve_mpc(self.runtime, x, r, previous_pwm=prev, fallback_pwm=fallback, config=self.config)
         diagnostics = result.diagnostics(backend_used=getattr(self.runtime, "backend_used", None))
+        latency_ms = float(diagnostics.get("latency_ms") or 0.0)
         diagnostics.update(
             {
                 "model_class": getattr(self.runtime, "model_class", None),
                 "backend_is_paper_style_lifted_edmd": bool(
                     getattr(self.runtime, "backend_is_paper_style_lifted_edmd", False)
                 ),
-                "known_limitations": list(getattr(self.runtime, "known_limitations", ())),
+                "latency_budget_ms": float(self.config.timeout_ms),
+                "latency_budget_met": latency_ms <= float(self.config.timeout_ms),
+                "known_limitations": self._known_limitations(),
             }
         )
         return MPCControllerOutput(
@@ -68,10 +78,16 @@ class KoopmanMPCController:
                 "fallback_used": True,
                 "fallback_reason": reason,
                 "latency_ms": 0.0,
+                "latency_budget_ms": float(self.config.timeout_ms),
+                "latency_budget_met": True,
                 "cost": None,
                 "baseline_cost": None,
                 "candidate_count": 0,
-                "known_limitations": list(getattr(self.runtime, "known_limitations", ())),
+                "known_limitations": self._known_limitations(),
             },
             fallback_used=True,
         )
+
+    def _known_limitations(self) -> list[str]:
+        limitations = [str(item) for item in getattr(self.runtime, "known_limitations", ()) if str(item).strip()]
+        return limitations or list(DEFAULT_KNOWN_LIMITATIONS)
