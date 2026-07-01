@@ -8,7 +8,7 @@ class Runtime:
     backend_used = "direct_state"
     model_class = "direct_state"
     backend_is_paper_style_lifted_edmd = False
-    known_limitations = ("fixture limitation",)
+    known_limitations = ()
 
     def predict_next(self, state, pwm, reference):
         next_state = np.asarray(state, dtype=float).copy()
@@ -39,7 +39,9 @@ def test_controller_returns_bounded_pwm_and_solver_diagnostics():
     assert np.all(output.pwm <= 1.0)
     assert output.diagnostics["backend_used"] == "direct_state"
     assert "latency_ms" in output.diagnostics
+    assert "latency_budget_met" in output.diagnostics
     assert "fallback_used" in output.diagnostics
+    assert output.diagnostics["known_limitations"]
 
 
 def test_controller_falls_back_to_legacy_on_nonfinite_state():
