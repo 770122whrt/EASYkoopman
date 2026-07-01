@@ -2,7 +2,7 @@ import json
 
 from koopman.dataset import load_dataset
 from koopman.edmd import fit_edmd
-from koopman.evaluation import evaluate_model, write_metrics
+from koopman.evaluation import evaluate_model, has_diverged, write_metrics
 
 from tests.test_koopman_dataset import FIXTURE
 
@@ -24,3 +24,6 @@ def test_evaluate_model_reports_one_step_and_multi_step_metrics(tmp_path):
     write_metrics(metrics, path)
     assert json.loads(path.read_text(encoding="utf-8"))["sample_count"] == 4
 
+
+def test_has_diverged_respects_existing_diverged_flag():
+    assert has_diverged({"diverged": True}) is True

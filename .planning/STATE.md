@@ -59,3 +59,27 @@ See: `.planning/PROJECT.md`
 5. 增加 multi-horizon held-out evaluation 和 rollout divergence 指标。
 6. 增加 selected model manifest 和 gate report，作为 Phase 3 MPC 的输入 gate。
 7. 在服务器采集并验证 step、sine、irregular 长日志。
+
+## 2026-07-01 Phase 2.5 Local Implementation Note
+
+Phase 2.5 local code is now implemented on `isaaclab2-migration`.
+
+Implemented:
+
+- log-level split manifest and data-insufficient validation;
+- paper-style lifted-space EDMD candidate;
+- direct-state candidate retained as engineering baseline;
+- persistence and simple linear baselines;
+- optional standard normalization artifacts;
+- multi-horizon validation metrics and divergence flags;
+- candidate sweep output;
+- selected model manifest generation;
+- gate report generation;
+- server runbook at `docs/phase2_5_koopman_gate_runbook.md`.
+
+Current next action:
+
+1. Package/upload this branch to the Isaac server.
+2. Collect or provide validated `step`, `sine` and `irregular` long JSONL logs.
+3. Run `split_koopman_logs.py`, `sweep_koopman_models.py`, `select_koopman_model.py` and `write_koopman_gate_report.py`.
+4. Enter Phase 3 only if `selected_model_manifest.json` reports `gate_status = pass`.
