@@ -6,6 +6,7 @@
 **Target branch:** `isaaclab2-migration`  
 **Mode:** local-first implementation with server Isaac smoke gate  
 **Primary model manifest:** `source/results/koopman_phase2_5_verify_20260701_231802/selected_model_manifest.json`
+**Execution status:** Complete on 2026-07-02. See `03-SUMMARY.md` and `03-VERIFICATION.md`.
 
 ## Purpose
 

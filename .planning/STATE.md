@@ -1,7 +1,7 @@
 # Project State: EASYkoopman
 
-**Updated:** 2026-07-01
-**Current focus:** Phase 3 - Koopman MPC Controller Integration
+**Updated:** 2026-07-02
+**Current focus:** Phase 4 - Evaluation, Documentation And Isaac Sim Runbook
 
 ## Project Reference
 
@@ -134,3 +134,49 @@ paper-aligned algorithm layer:
 ```
 
 The Phase 3 summary must report `backend_used`, `backend_reason`, `fallback_rate`, `latency_budget_met` and known limitations.
+
+## 2026-07-02 Phase 3 Completion Note
+
+Phase 3 is complete on `isaaclab2-migration`.
+
+Implemented:
+
+- manifest-first Koopman runtime loader;
+- pure NumPy bounded 8D PWM MPC solver;
+- fallback-safe Koopman MPC controller adapter;
+- `koopman_mpc` branch in `easyuuv_env.py`;
+- `play_controller.py` Koopman MPC CLI flags and diagnostic logging;
+- offline backend check and offline MPC smoke workflows;
+- tests covering runtime loading, MPC costs/solver, controller fallback and workflow contracts.
+
+Verified:
+
+```text
+local pytest: 63 passed
+local compileall: passed
+git diff --check: passed
+server pytest: 63 passed
+server compileall: passed
+Isaac smoke: completed one-env step rollout with koopman_mpc/Ssurface
+fallback_rate: 0.0
+latency_budget_met: true for both smoke samples
+backend_used: direct_state
+```
+
+Current Phase 3 boundary:
+
+```text
+Completed claim:
+  fallback-safe Koopman-MPC engineering integration.
+
+Not yet claimed:
+  final control superiority over legacy, long-horizon stability, or full paper-style lifted EDMD equivalence.
+```
+
+Next action is Phase 4:
+
+1. Run matched legacy and Koopman MPC trajectories on the server.
+2. Cover step, sine and irregular trajectories.
+3. Export comparable logs.
+4. Compute tracking, depth, attitude, control energy, PWM smoothness, fallback and latency metrics.
+5. Decide whether `direct_state` remains primary or `paper_lifted_edmd` should be promoted for closed-loop experiments.

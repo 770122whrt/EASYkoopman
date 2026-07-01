@@ -19,7 +19,7 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 - Koopman+MPC closed-loop control in Isaac.
 - Final comparison experiments across step, sine and irregular trajectories.
 
-**Next coding target before Isaac is needed:** implement the Phase 3 offline Koopman MPC runtime contract, cost function and bounded PWM solver before touching the Isaac closed-loop branch.
+**Next coding target:** Phase 4 evaluation tooling and matched Isaac experiments for legacy vs Koopman MPC.
 
 ## Phase 1: Baseline Data And Controller Boundary
 
@@ -183,6 +183,20 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 - `.planning/phases/03-koopman-mpc-controller-integration/03-CONTEXT.md`
 - `.planning/phases/03-koopman-mpc-controller-integration/03-RESEARCH.md`
 - `.planning/phases/03-koopman-mpc-controller-integration/03-PLAN.md`
+- `.planning/phases/03-koopman-mpc-controller-integration/03-SUMMARY.md`
+- `.planning/phases/03-koopman-mpc-controller-integration/03-VERIFICATION.md`
+
+**Completion status:** Complete on 2026-07-02.
+
+**Completion evidence:**
+- Local tests: `python -m pytest -q` -> 63 passed.
+- Local compile: `python -m compileall __init__.py easyuuv_env.py koopman workflows tests` -> passed.
+- Local hygiene: `git diff --check` -> passed.
+- Server tests: `/opt/conda/envs/isaaclab/bin/python -m pytest -q` -> 63 passed.
+- Server compile: `/opt/conda/envs/isaaclab/bin/python -m compileall __init__.py easyuuv_env.py koopman workflows tests` -> passed.
+- Isaac smoke: `workflows/play_controller.py --controller_mode koopman_mpc` completed one-env step smoke and produced a valid Koopman JSONL.
+
+**Phase 3 result boundary:** This is a fallback-safe Koopman-MPC engineering integration using the Phase 2.5 selected `direct_state` backend. It does not yet prove performance superiority or full paper-style lifted EDMD equivalence; those claims move to Phase 4.
 
 ## Phase 4: Evaluation, Documentation And Isaac Sim Runbook
 

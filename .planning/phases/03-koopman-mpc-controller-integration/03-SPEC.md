@@ -154,19 +154,19 @@ known_limitations
 
 ## Acceptance Criteria
 
-- [ ] Manifest loader rejects non-pass gate and missing model artifacts.
-- [ ] Prediction wrapper can load selected model and produce finite 11D next-state prediction.
-- [ ] MPC solver returns bounded 8D PWM for fixture states.
-- [ ] MPC cost includes tracking, energy and smoothness terms.
-- [ ] MPC cost handles quaternion sign equivalence without changing model input quaternion convention.
-- [ ] Solver beats hold-previous-PWM predicted horizon cost on fixture states or explicitly falls back.
-- [ ] Solver reports latency/status/cost and handles timeout/failure through fallback.
-- [ ] Backend check compares selected `direct_state` with the best passing `paper_lifted_edmd` candidate offline.
-- [ ] `easyuuv_env.py` has a real `koopman_mpc` branch that preserves the existing force/torque pipeline.
-- [ ] `workflows/play_controller.py` can select `koopman_mpc` and point to a selected manifest.
-- [ ] Local tests pass with no Isaac runtime requirement for pure Koopman/MPC modules.
-- [ ] Server Isaac smoke runs `koopman_mpc` for one env without simulation crash.
-- [ ] Phase 3 summary states `backend_used`, `backend_reason`, fallback rate, whether the backend is paper-style lifted EDMD, and whether 60 Hz budget was met.
+- [x] Manifest loader rejects non-pass gate and missing model artifacts.
+- [x] Prediction wrapper can load selected model and produce finite 11D next-state prediction.
+- [x] MPC solver returns bounded 8D PWM for fixture states.
+- [x] MPC cost includes tracking, energy and smoothness terms.
+- [x] MPC cost handles quaternion sign equivalence without changing model input quaternion convention.
+- [x] Solver beats hold-previous-PWM predicted horizon cost on fixture states or explicitly falls back.
+- [x] Solver reports latency/status/cost and handles timeout/failure through fallback.
+- [x] Backend check compares selected `direct_state` with the best passing `paper_lifted_edmd` candidate offline.
+- [x] `easyuuv_env.py` has a real `koopman_mpc` branch that preserves the existing force/torque pipeline.
+- [x] `workflows/play_controller.py` can select `koopman_mpc` and point to a selected manifest.
+- [x] Local tests pass with no Isaac runtime requirement for pure Koopman/MPC modules.
+- [x] Server Isaac smoke runs `koopman_mpc` for one env without simulation crash.
+- [x] Phase 3 summary states `backend_used`, `backend_reason`, fallback rate, whether the backend is paper-style lifted EDMD, and whether 60 Hz budget was met.
 
 ## Ambiguity Report
 
