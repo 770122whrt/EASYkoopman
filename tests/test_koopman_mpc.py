@@ -36,7 +36,7 @@ def _reference(z=0.0, quat=None):
 
 
 def test_tracking_cost_handles_quaternion_sign_equivalence_without_mutating_inputs():
-    state = _state(quat=[1.0, 0.0, 0.0, 0.0])
+    state = _state(z=0.0, quat=[1.0, 0.0, 0.0, 0.0])
     reference = _reference(quat=[-1.0, 0.0, 0.0, 0.0])
     original_reference = reference.copy()
 

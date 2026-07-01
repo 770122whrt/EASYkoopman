@@ -4,6 +4,7 @@ import random
 import math
 import torch
 from collections.abc import Sequence
+from pathlib import Path
 
 from isaaclab_compat import (
     BLUE_ARROW_X_MARKER_CFG,
@@ -38,6 +39,10 @@ except ImportError:
     from assets.easyuuv import EasyUUV_CFG
     from rigid_body_hydrodynamics import HydrodynamicForceModels
     from thruster_dynamics import get_thruster_com_and_orientations
+
+from koopman.mpc import MPCBounds, MPCConfig, MPCWeights
+from koopman.mpc_controller import KoopmanMPCController
+from koopman.runtime import load_koopman_runtime
 
 class EasyUUVEnvWindow(BaseEnvWindow):
     def __init__(self, env: EasyUUVEnv, window_name: str = "IsaacLab"):
@@ -119,10 +124,18 @@ class EasyUUVEnvCfg(DirectRLEnvCfg):
                      [1.67, 0.22, 0.00], # z-axis rotation, Yaw
                      [0.27, 0.12, 0.00]], device='cuda:0') # depth
     
-    controller_mode = 'legacy' # legacy now; koopman_mpc is reserved for Phase 3
+    controller_mode = 'legacy'
     control_method = 'Ssurface' # Ssurface & PID
     s_ratio = 4 # (Ssurface coeff / PID coeff)
     self_adapt = True # dummy if control_method == 'PID'
+    koopman_manifest_path = ''
+    mpc_horizon = 5
+    mpc_timeout_ms = 12.0
+    mpc_delta_pwm_limit = 0.35
+    mpc_depth_weight = 1.0
+    mpc_attitude_weight = 1.0
+    mpc_control_weight = 0.01
+    mpc_smoothness_weight = 0.05
 
      # domain randomization
     # todo: isaaclabs has a built-in method somehow
@@ -154,6 +167,7 @@ class EasyUUVEnv(DirectRLEnv):
         self._goal_pos_w = self._default_env_origins # just for visualizations at the moment
         self._step_count = 0
         self._last_pwm_8d = torch.zeros(self.num_envs, 8, device=self.device)
+        self._last_koopman_mpc_diagnostics = [{} for _ in range(self.num_envs)]
         
         # Get thruster configurations
         self.thruster_com_offsets, self.thruster_quats = get_thruster_com_and_orientations(self.device)
@@ -211,11 +225,48 @@ class EasyUUVEnv(DirectRLEnv):
 
         self.inertia_tensors_mean = self.inertia_tensors.mean(dim=1, keepdim=True) 
 
+        self._koopman_mpc_controller = None
+        if self.cfg.controller_mode == 'koopman_mpc':
+            self._init_koopman_mpc_controller()
+
         # Initialize dynamics calculators
         self._init_thruster_dynamics()
         
         # Set initial goals
         self._reset_idx(self._robot._ALL_INDICES)
+
+    def _init_koopman_mpc_controller(self):
+        if not self.cfg.koopman_manifest_path:
+            raise ValueError("koopman_manifest_path is required when controller_mode == 'koopman_mpc'")
+        runtime = load_koopman_runtime(self.cfg.koopman_manifest_path, project_root=Path(__file__).resolve().parent)
+        config = MPCConfig(
+            horizon=int(self.cfg.mpc_horizon),
+            timeout_ms=float(self.cfg.mpc_timeout_ms),
+            bounds=MPCBounds(delta_pwm_limit=float(self.cfg.mpc_delta_pwm_limit)),
+            weights=MPCWeights(
+                depth=float(self.cfg.mpc_depth_weight),
+                attitude=float(self.cfg.mpc_attitude_weight),
+                control=float(self.cfg.mpc_control_weight),
+                smoothness=float(self.cfg.mpc_smoothness_weight),
+            ),
+        )
+        self._koopman_mpc_controller = KoopmanMPCController(runtime, config)
+
+    def _koopman_state_reference(self) -> tuple[torch.Tensor, torch.Tensor]:
+        state = torch.cat(
+            [
+                self._robot.data.root_pos_w[:, 2].unsqueeze(1),
+                self._robot.data.root_quat_w,
+                self._robot.data.root_lin_vel_b,
+                self._robot.data.root_ang_vel_b,
+            ],
+            dim=1,
+        )
+        reference = getattr(self, "_koopman_reference_5d", None)
+        if reference is None:
+            depth_reference = torch.zeros((self.num_envs, 1), device=self.device)
+            reference = torch.cat([depth_reference, self._goal], dim=1)
+        return state, reference.to(self.device)
 
     def _init_thruster_dynamics(self):
         if type(self.cfg.com_to_cob_offset) != torch.Tensor:
@@ -427,10 +478,26 @@ class EasyUUVEnv(DirectRLEnv):
         thruster_forces = torch.zeros((self.num_envs, 8, 3), device=self.device, dtype=torch.float)
         thruster_torques = torch.zeros((self.num_envs, 8, 3), device=self.device, dtype=torch.float)
 
+        legacy_pwm = self._pid_control(actions, actions - self.old_actions, self.actions_i) # motorValues (num_envs, 8)
         if self.cfg.controller_mode == 'legacy':
-            motorValues = self._pid_control(actions, actions - self.old_actions, self.actions_i) # motorValues (num_envs, 8)
+            motorValues = legacy_pwm
+            self._last_koopman_mpc_diagnostics = [{} for _ in range(self.num_envs)]
         elif self.cfg.controller_mode == 'koopman_mpc':
-            raise NotImplementedError("koopman_mpc controller mode is reserved for Phase 3.")
+            if self._koopman_mpc_controller is None:
+                raise RuntimeError("koopman_mpc controller was not initialized")
+            state, reference = self._koopman_state_reference()
+            motorValues = torch.zeros_like(legacy_pwm)
+            diagnostics = []
+            for env_index in range(self.num_envs):
+                output = self._koopman_mpc_controller.command(
+                    state[env_index].detach().cpu().numpy(),
+                    reference[env_index].detach().cpu().numpy(),
+                    previous_pwm=self._last_pwm_8d[env_index].detach().cpu().numpy(),
+                    legacy_pwm=legacy_pwm[env_index].detach().cpu().numpy(),
+                )
+                motorValues[env_index] = torch.tensor(output.pwm, dtype=torch.float32, device=self.device)
+                diagnostics.append(output.diagnostics)
+            self._last_koopman_mpc_diagnostics = diagnostics
         else:
             raise ValueError(f"Unknown controller_mode: {self.cfg.controller_mode}")
         self.old_actions = actions.clone()

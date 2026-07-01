@@ -46,21 +46,23 @@ def record_koopman_step(
     next_state: list[float],
     trajectory_type: str,
     controller_mode: str,
+    solver_diagnostics: dict[str, Any] | None = None,
     env_index: int = 0,
 ) -> None:
     pwm_8d = getattr(env, "_last_pwm_8d", None)
     if pwm_8d is None:
         raise AttributeError("EasyUUVEnv must expose _last_pwm_8d before Koopman logging")
 
-    logger.write(
-        build_koopman_sample(
-            t=t,
-            state=previous_state,
-            reference=reference,
-            action_4d=action_4d,
-            pwm_8d=pwm_8d[env_index],
-            next_state=next_state,
-            trajectory_type=trajectory_type,
-            controller_mode=controller_mode,
-        )
+    sample = build_koopman_sample(
+        t=t,
+        state=previous_state,
+        reference=reference,
+        action_4d=action_4d,
+        pwm_8d=pwm_8d[env_index],
+        next_state=next_state,
+        trajectory_type=trajectory_type,
+        controller_mode=controller_mode,
     )
+    if solver_diagnostics is not None:
+        sample["solver_diagnostics"] = solver_diagnostics
+    logger.write(sample)

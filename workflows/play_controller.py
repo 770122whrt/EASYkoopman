@@ -17,7 +17,7 @@ if PROJECT_ROOT not in sys.path:
 from isaaclab_app import AppLauncher
 
 
-parser = argparse.ArgumentParser(description="Run the EasyUUV direct legacy controller.")
+parser = argparse.ArgumentParser(description="Run the EasyUUV direct or Koopman MPC controller.")
 parser.add_argument(
     "--disable_fabric", action="store_true", default=False, help="Disable fabric and use USD I/O operations."
 )
@@ -37,6 +37,20 @@ parser.add_argument(
     help="Reference trajectory family to log for Koopman identification.",
 )
 parser.add_argument("--trajectory_cycles", type=int, default=1, help="Repeat the trajectory goal list this many times.")
+parser.add_argument(
+    "--controller_mode",
+    choices=("legacy", "koopman_mpc"),
+    default="legacy",
+    help="Controller mode to use inside EasyUUVEnv.",
+)
+parser.add_argument("--koopman_manifest_path", type=str, default="", help="Selected Koopman model manifest path.")
+parser.add_argument("--mpc_horizon", type=int, default=5, help="Koopman MPC horizon.")
+parser.add_argument("--mpc_timeout_ms", type=float, default=12.0, help="Koopman MPC timeout in milliseconds.")
+parser.add_argument("--mpc_delta_pwm_limit", type=float, default=0.35, help="Per-step PWM delta limit.")
+parser.add_argument("--mpc_depth_weight", type=float, default=1.0, help="MPC depth tracking weight.")
+parser.add_argument("--mpc_attitude_weight", type=float, default=1.0, help="MPC attitude tracking weight.")
+parser.add_argument("--mpc_control_weight", type=float, default=0.01, help="MPC control energy weight.")
+parser.add_argument("--mpc_smoothness_weight", type=float, default=0.05, help="MPC control smoothness weight.")
 
 AppLauncher.add_app_launcher_args(parser)
 args_cli = parser.parse_args()
@@ -248,6 +262,18 @@ def build_env_cfg():
     return env_cfg
 
 
+def set_koopman_reference(env, reference: list[float]) -> None:
+    reference_tensor = torch.tensor(reference, dtype=torch.float32, device=env.device).reshape(1, 5)
+    env._koopman_reference_5d = reference_tensor.repeat(env.num_envs, 1)
+
+
+def first_solver_diagnostics(env) -> dict | None:
+    diagnostics = getattr(env, "_last_koopman_mpc_diagnostics", None)
+    if isinstance(diagnostics, list) and diagnostics:
+        return diagnostics[0]
+    return None
+
+
 def main():
     log_stage("Building EasyUUVEnvCfg directly")
     env_cfg = build_env_cfg()
@@ -259,10 +285,18 @@ def main():
     env_cfg.episode_length_before_reset = 0
     env_cfg.goal_spawn_radius = 0
     env_cfg.eval_mode = True
-    env_cfg.controller_mode = "legacy"
+    env_cfg.controller_mode = args_cli.controller_mode
     env_cfg.control_method = "Ssurface"
     env_cfg.s_ratio = 4
     env_cfg.self_adapt = True
+    env_cfg.koopman_manifest_path = args_cli.koopman_manifest_path
+    env_cfg.mpc_horizon = args_cli.mpc_horizon
+    env_cfg.mpc_timeout_ms = args_cli.mpc_timeout_ms
+    env_cfg.mpc_delta_pwm_limit = args_cli.mpc_delta_pwm_limit
+    env_cfg.mpc_depth_weight = args_cli.mpc_depth_weight
+    env_cfg.mpc_attitude_weight = args_cli.mpc_attitude_weight
+    env_cfg.mpc_control_weight = args_cli.mpc_control_weight
+    env_cfg.mpc_smoothness_weight = args_cli.mpc_smoothness_weight
 
     log_stage("Creating Gym environment")
     env = gym.make(args_cli.task, cfg=env_cfg)
@@ -349,8 +383,11 @@ def main():
             action = torch.clip(action, -action_lim, action_lim).to(env_cfg.sim.device)
             previous_state = state_vector_from_env(env.unwrapped)
             reference = reference_vector(goal_pos[2], des_ang_quat[0])
+            if args_cli.controller_mode == "koopman_mpc":
+                set_koopman_reference(env.unwrapped, reference)
             obs = step_policy_obs(env, action)
             next_state = state_vector_from_env(env.unwrapped)
+            solver_diagnostics = first_solver_diagnostics(env.unwrapped)
             record_koopman_step(
                 koopman_logger,
                 t=counter / 60,
@@ -360,7 +397,8 @@ def main():
                 action_4d=action,
                 next_state=next_state,
                 trajectory_type=args_cli.trajectory_type,
-                controller_mode=f"legacy/{env_cfg.control_method}",
+                controller_mode=f"{args_cli.controller_mode}/{env_cfg.control_method}",
+                solver_diagnostics=solver_diagnostics,
             )
 
             true_pos = env.unwrapped._robot.data.root_pos_w[0].cpu().numpy()
@@ -380,6 +418,15 @@ def main():
 
             record1 = action.detach().cpu().numpy()[0]
             record2 = np.zeros(4)
+            solver_status = None
+            solver_latency_ms = None
+            solver_fallback = None
+            solver_cost = None
+            if solver_diagnostics:
+                solver_status = solver_diagnostics.get("status")
+                solver_latency_ms = solver_diagnostics.get("latency_ms")
+                solver_fallback = solver_diagnostics.get("fallback_used")
+                solver_cost = solver_diagnostics.get("cost")
 
             log_row = {
                 "des_depth": goal_pos[2],
@@ -406,6 +453,10 @@ def main():
                 "action_real_2": record2[1],
                 "action_real_3": record2[2],
                 "action_real_4": record2[3],
+                "solver_status": solver_status,
+                "solver_latency_ms": solver_latency_ms,
+                "solver_fallback": solver_fallback,
+                "solver_cost": solver_cost,
             }
 
             action_iter += 1
