@@ -25,9 +25,11 @@ It should not claim final performance superiority. That belongs to Phase 4.
 - Use the selected model manifest as the only runtime model contract.
 - Optimize 8D PWM in the first version because the selected Koopman model was trained on `pwm_8d`.
 - Preserve the existing thrust and hydrodynamics pipeline.
-- Keep the first solver pure NumPy and short-horizon.
+- Keep the first solver a pure NumPy first-pass receding-horizon optimizer, not a claim of full paper-equivalent CasADi MPC.
 - Add fallback before any server closed-loop test.
 - Use `workflows/play_controller.py` as the first Isaac entrypoint; do not require PPO.
+- Compare the selected `direct_state` backend with the best passing `paper_lifted_edmd` backend offline before the Isaac smoke.
+- Preserve a state/reference-based adapter so future PPO/RL outputs can become references without bypassing the controller safety boundary.
 
 <threat_model>
 ## Threat Model
@@ -77,6 +79,54 @@ Acceptance criteria:
 - A `gate_status = fail` fixture is rejected.
 - Missing model path is rejected.
 - Prediction returns finite shape `(11,)`.
+- Runtime exposes backend metadata for Phase 3 summary: `backend_used`, `model_class`, `known_limitations`.
+
+## Wave 1.5: Core Algorithm Backend Check
+
+Create:
+
+- `workflows/check_koopman_mpc_backend.py`
+- `tests/test_koopman_mpc_backend_check.py` or source-contract equivalent
+
+Tasks:
+
+- Load the Phase 2.5 selected `direct_state` model from `selected_model_manifest.json`.
+- Read `sweep_results.json` and find the best passing `paper_lifted_edmd` candidate.
+- Run the same offline replay samples through both backends.
+- Compare:
+  - prediction finite-value status;
+  - predicted horizon cost;
+  - command boundedness under the same MPC configuration;
+  - fallback-needed status;
+  - latency if the full MPC solver is used in the check.
+- Keep `direct_state` for the first Isaac smoke only if it is clearly safer or if `paper_lifted_edmd` fails the backend check.
+- Write a backend decision report containing:
+
+```text
+backend_used
+backend_reason
+direct_state_metrics
+paper_lifted_edmd_metrics
+paper_alignment_note
+known_limitations
+```
+
+Verification:
+
+```powershell
+python workflows\check_koopman_mpc_backend.py --help
+python workflows\check_koopman_mpc_backend.py ^
+  --manifest source\results\koopman_phase2_5_verify_20260701_231802\selected_model_manifest.json ^
+  --sweep_results source\results\koopman_phase2_5_verify_20260701_231802\sweep\sweep_results.json ^
+  --log source\results\koopman_phase1\smoke_reverify_20260701_231917.jsonl ^
+  --output source\results\koopman_phase3\backend_check.json
+```
+
+Acceptance criteria:
+
+- The backend check is Isaac-free.
+- The report states whether the first Isaac smoke will use `direct_state` or `paper_lifted_edmd`.
+- The report states that a `direct_state` smoke is an engineering integration, not a full paper-style lifted EDMD replication.
 
 ## Wave 2: MPC Problem, Cost And Solver
 
@@ -93,15 +143,18 @@ Tasks:
   - `MPCConfig`
   - `MPCResult`
 - Implement tracking cost over `[z, quat_wxyz]`.
-- Align quaternion sign before computing quaternion error.
+- Align quaternion sign before computing quaternion error, only inside the cost function.
+- Preserve model input quaternion convention exactly as logged in the training data.
+- Record predicted quaternion norm in diagnostics.
 - Add control energy and smoothness terms.
-- Implement first solver as pure NumPy:
+- Implement first-pass receding-horizon optimizer as pure NumPy:
   - short horizon, default 5;
   - bounded candidate/control sequence generation;
   - optional coordinate refinement if simple enough;
   - projection to `[-1, 1]`;
   - `delta_pwm_limit`;
   - latency measurement.
+- Compare optimized sequence cost against hold-previous-PWM baseline and prefer fallback if it cannot improve predicted horizon cost.
 - Return first PWM command and diagnostic metadata.
 
 Verification:
@@ -117,6 +170,7 @@ Acceptance criteria:
 - Abrupt PWM changes increase smoothness cost.
 - Solver returns 8D bounded PWM.
 - Solver reports status, cost, latency and fallback-needed flag.
+- Solver either beats hold-previous-PWM predicted horizon cost or returns a fallback-preferred status.
 
 ## Wave 3: Offline MPC Replay Workflow
 
@@ -132,6 +186,7 @@ Tasks:
 - For a small number of samples, run MPC using logged state/reference.
 - Write an offline report containing:
   - selected manifest path;
+  - backend used and backend reason;
   - horizon;
   - average latency;
   - max latency;
@@ -157,6 +212,7 @@ Acceptance criteria:
 - The offline workflow completes without Isaac.
 - Output PWM is bounded.
 - Report records latency and fallback count.
+- Report records `backend_used`, `backend_reason` and `known_limitations`.
 
 ## Wave 4: EasyUUV Controller Adapter
 
@@ -182,6 +238,7 @@ Tasks:
   - cost weights.
 - Initialize Koopman MPC controller only when `controller_mode == "koopman_mpc"`.
 - Build current 11D state and 5D reference from existing env tensors.
+- Keep adapter input state/reference based so future PPO-generated 4D corrections can be converted into references before MPC, preserving the EasyUUV layered architecture.
 - In `_compute_dynamics()`:
   - keep legacy branch unchanged;
   - replace `NotImplementedError` with adapter call;
@@ -207,6 +264,7 @@ Acceptance criteria:
 - Legacy branch remains present.
 - Adapter returns bounded PWM or fallback PWM.
 - `play_controller.py --help` includes the MPC flags.
+- Source-contract tests show future PPO/RL can remain outside the real-time actuator loop by targeting the same reference interface.
 
 ## Wave 5: Server Isaac Smoke Gate
 
@@ -246,6 +304,7 @@ Acceptance criteria:
 - JSONL exists and passes schema validation.
 - PWM min/max remains inside `[-1, 1]`.
 - Solver latency and fallback count are reported.
+- The run summary reports `backend_used`, `backend_reason`, `fallback_rate`, `latency_budget_met` and known limitations.
 
 ## Final Verification
 
@@ -290,4 +349,6 @@ At the end of Phase 3:
 - MPC produces bounded 8D PWM and logs diagnostics.
 - Runtime fallback prevents solver failure from crashing control.
 - The first Isaac smoke run proves the loop can execute.
+- The summary states whether the smoke used `direct_state` or `paper_lifted_edmd`.
+- The summary does not claim final performance superiority or full paper-style lifted EDMD control unless the backend check and server results support it.
 - Phase 4 can then compare legacy and Koopman+MPC across step, sine and irregular trajectories.

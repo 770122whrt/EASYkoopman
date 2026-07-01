@@ -167,10 +167,25 @@ gate 通过的直接原因：
 - held-out test 没有触发 `has_diverged()`。
 - 复跑后仍然得到同一个 best candidate。
 
+### Known limitations for Phase 3 handoff
+
+`selected_model_manifest.json` 当前的 `known_limitations` 是空列表，这是服务器产物的事实。但 Phase 3 不能把它解释成“没有限制”。本报告将以下限制提升为 Phase 3 handoff contract：
+
+```text
+known_limitations:
+- selected backend is direct_state, not paper_lifted_edmd
+- one-step RMSE remains high despite non-divergent multi-step rollout
+- validation/test trajectory gap remains visible
+- Phase 2.5 is an offline model gate, not closed-loop control evidence
+- Phase 3 may use this model for fallback-safe smoke integration only
+- Phase 4 must perform closed-loop comparison before performance claims
+```
+
 需要谨慎解释的地方：
 
 - one-step RMSE 较大，说明逐点一步预测并不完美。
 - validation RMSE@20 很低，但 test RMSE@20 明显更高，说明不同轨迹分布之间仍有泛化压力。
+- 选中 backend 是 `direct_state`，不是与 Koopman-Sim2Real 更接近的 `paper_lifted_edmd`。
 - Phase 2.5 的 gate 是工程准入线，不是论文级最终证明。
 
 ## 7. 服务器验证命令摘要
@@ -291,14 +306,16 @@ Phase 2.5 还没有完成的内容：
 - 与 legacy controller 的公平对比。
 - 多 seed / 多初始条件统计。
 - PPO policy 数据链路。
+- paper-style lifted EDMD backend 的闭环控制证明。
 
 ## 10. 进入 Phase 3 前的建议
 
 不要立刻大改 Isaac 环境。建议先做一个很小的 Phase 3 入口：
 
 1. 写离线 MPC adapter，只读取 `selected_model_manifest.json`。
-2. 用固定 reference 和当前 logs 做离线 rollout。
-3. 确认 MPC 输出的控制量维度、范围和约束合理。
-4. 再接入 Isaac smoke，先跑 1 个 env、1 个短目标。
+2. 先做 backend check，对比 selected `direct_state` 和 best passing `paper_lifted_edmd`。
+3. 用固定 reference 和当前 logs 做离线 rollout。
+4. 确认 MPC 输出的控制量维度、范围和约束合理。
+5. 再接入 Isaac smoke，先跑 1 个 env、1 个短目标。
 
 如果离线 MPC 都不能稳定，就不要上 Isaac。这样可以把问题限定在优化器、模型预测和约束设计，而不是同时混入 Isaac app、USD、物理和日志问题。

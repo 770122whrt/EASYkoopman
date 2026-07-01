@@ -116,6 +116,21 @@ Current Phase 3 decision:
 
 1. Use the selected model manifest as the runtime contract.
 2. Optimize 8D PWM first, because the selected model was trained with `pwm_8d`.
-3. Keep the first MPC solver pure NumPy, short-horizon and fallback-safe.
-4. Preserve existing EasyUUV thruster and hydrodynamic logic.
-5. Use `workflows/play_controller.py` for the first server Isaac smoke; PPO remains deferred because no checkpoint exists on the server.
+3. Treat the current selected `direct_state` model as the first engineering backend, not as a full paper-style lifted EDMD controller.
+4. Add a Phase 3 backend check comparing selected `direct_state` with the best passing `paper_lifted_edmd` candidate before Isaac smoke.
+5. Keep the first MPC solver a pure NumPy first-pass receding-horizon optimizer, short-horizon and fallback-safe.
+6. Preserve existing EasyUUV thruster and hydrodynamic logic.
+7. Keep the adapter state/reference based so future PPO/RL outputs can become references instead of bypassing the controller boundary.
+8. Use `workflows/play_controller.py` for the first server Isaac smoke; PPO remains deferred because no checkpoint exists on the server.
+
+Phase 3 success statements must distinguish:
+
+```text
+engineering integration layer:
+  selected direct_state backend + 8D PWM MPC + fallback-safe Isaac smoke
+
+paper-aligned algorithm layer:
+  paper_lifted_edmd backend + MPC comparison + Phase 4 experiments
+```
+
+The Phase 3 summary must report `backend_used`, `backend_reason`, `fallback_rate`, `latency_budget_met` and known limitations.

@@ -150,6 +150,7 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 - `.planning/phases/03-koopman-mpc-controller-integration/03-CONTEXT.md` - implementation decisions and canonical refs.
 - `.planning/phases/03-koopman-mpc-controller-integration/03-RESEARCH.md` - EasyUUV and Koopman-Sim2Real article mapping.
 - `docs/phase2_5_consolidation_report.md` - selected model gate result and limitations.
+- `docs/phase3_algorithm_alignment_review.md` - algorithm contract review distinguishing engineering integration from full paper-style lifted EDMD control.
 - `source/results/koopman_phase2_5_verify_20260701_231802/selected_model_manifest.json` - default Phase 3 model input.
 - `easyuuv_env.py` - `controller_mode`, `_compute_dynamics()` and `_last_pwm_8d` controller seam.
 - `koopman/model.py`, `koopman/lifted_edmd.py` - loadable prediction model contracts.
@@ -157,6 +158,7 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 
 **Deliverables:**
 - Manifest-first Koopman runtime loader that rejects non-pass or stale selected models.
+- Offline backend check comparing selected `direct_state` with best passing `paper_lifted_edmd`.
 - Pure NumPy first-pass MPC problem and bounded 8D PWM solver.
 - Offline MPC replay workflow that runs without Isaac.
 - Controller adapter connecting current sim state, reference, Koopman model and PWM output.
@@ -167,11 +169,13 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 **Verification:**
 - Local: manifest loader rejects `gate_status != pass`, missing model paths and unsupported model classes.
 - Local: prediction wrapper can run against the Phase 2.5 selected model and produce finite 11D predictions.
+- Local: backend check reports whether first Isaac smoke uses `direct_state` or `paper_lifted_edmd` and why.
 - Local: MPC solver can run against saved Koopman model and replayed states.
 - Local: controller adapter returns bounded 8D PWM for fixture states.
 - Local: `python -m pytest -q`, `python -m compileall __init__.py easyuuv_env.py koopman workflows tests` and `git diff --check` pass.
 - Isaac Gate: server runs the first `koopman_mpc` closed-loop rollout via `workflows/play_controller.py`.
 - Isaac Gate: PWM output remains bounded, solver latency is logged and fallback count is reported.
+- Isaac Gate: run summary states backend used, backend reason, fallback rate, latency budget status and limitations.
 - Step smoke trajectory can complete without Isaac simulation crash.
 
 **Phase 3 plan artifacts:**

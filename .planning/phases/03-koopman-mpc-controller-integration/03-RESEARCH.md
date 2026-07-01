@@ -35,7 +35,17 @@ Important differences from EasyUUV:
 - The paper-style lifted EDMD candidate exists in Phase 2.5, but the selected Phase 2.5 gate model is currently `direct_state`.
 - Online Kalman/adaptive update is a later phase, not Phase 3.
 
-Planning implication: Phase 3 can honestly claim Koopman-MPC structure, but should avoid overstating theoretical equivalence to the paper. The first controller should consume the selected manifest and report known limitations.
+Planning implication: Phase 3 can honestly claim Koopman-MPC structure only when described as an EDMD-trained prediction model plus first-pass receding-horizon control. It should avoid overstating theoretical equivalence to the paper. The first controller should consume the selected manifest and report known limitations.
+
+The current selected backend is not the paper's exact lifted-space transition. The implementation should therefore separate:
+
+```text
+engineering integration layer:
+  selected direct_state backend + 8D PWM MPC + fallback-safe Isaac smoke
+
+paper-aligned algorithm layer:
+  paper_lifted_edmd backend + MPC comparison + later Phase 4 evaluation
+```
 
 ## 2. Current Code Seam
 
@@ -108,6 +118,8 @@ reference = [depth_ref, quat_ref_wxyz]
 
 Quaternion sign must be handled in cost because `q` and `-q` represent the same orientation.
 
+The prediction wrapper should not silently change quaternion signs. The model input convention must match the training logs; sign alignment belongs only in tracking-cost calculation and diagnostics.
+
 ## 5. Solver Choice
 
 Three implementation approaches were considered:
@@ -127,7 +139,9 @@ Recommended first solver:
 - latency measurement;
 - fallback on failure.
 
-This is still MPC in the practical sense: it optimizes a finite-horizon cost with a predictive model and applies the first action in receding-horizon fashion. It is not the final high-performance solver.
+This is a first-pass receding-horizon optimizer. It is MPC in the practical engineering sense: it optimizes a finite-horizon cost with a predictive model and applies the first action in receding-horizon fashion. It is not a full equivalent to the paper's more formal nonlinear/CasADi-style MPC implementation.
+
+The solver should also compare against a hold-previous-PWM predicted-cost baseline. If it cannot reduce predicted horizon cost on fixture states, it should prefer fallback and record the reason.
 
 ## 6. Risks
 
@@ -138,16 +152,19 @@ This is still MPC in the practical sense: it optimizes a finite-horizon cost wit
 | 8D optimization too slow | 60 Hz control budget may be missed | latency budget, timeout, fallback, short horizon |
 | PWM search causes abrupt commands | Thruster jitter and instability | smoothness cost and delta PWM limit |
 | quaternion cost is naive | q/-q ambiguity can mislead objective | align quaternion sign in cost |
+| model input convention changes silently | prediction may leave the training distribution | never flip model input quaternion; only align signs in cost |
+| direct_state backend is overstated | research claim becomes inaccurate | backend check and summary must name backend type |
 | server Git remote is bundle | Sync may be awkward | Use zip/scp/bundle as needed; do not block planning on git pull |
 
 ## 7. Planning Recommendation
 
-Plan Phase 3 in five waves:
+Plan Phase 3 in six waves:
 
 1. Manifest/model runtime contract.
-2. MPC cost and solver in pure Python.
-3. Offline replay workflow.
-4. EasyUUV environment integration with fallback.
-5. Server Isaac smoke and summary.
+2. Core algorithm backend check between `direct_state` and best passing `paper_lifted_edmd`.
+3. MPC cost and solver in pure Python.
+4. Offline replay workflow.
+5. EasyUUV environment integration with fallback.
+6. Server Isaac smoke and summary.
 
 Do not start with Isaac edits. Offline adapter and solver tests should fail fast locally before we touch the closed-loop simulation.

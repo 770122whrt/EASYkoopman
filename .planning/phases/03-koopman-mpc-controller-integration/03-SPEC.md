@@ -43,6 +43,40 @@ Koopman-Sim2Real 论文启发：
 - 在线 Kalman / adaptation 是后续阶段，不属于本阶段。
 - 原论文是 3-DOF 平面系统；EasyUUV 当前是 11D state 和 8D PWM，所以只能继承“EDMD -> Koopman model -> MPC”的方法结构，不能照搬状态和控制维度。
 
+## Algorithm Contract
+
+Phase 3 使用 Phase 2.5 选中的 `direct_state` 模型作为第一版 MPC prediction backend。这个 backend 是工程可用的 Koopman-style next-state predictor：
+
+```text
+x[k+1] = W * [phi(x[k], r[k]), u[k]]
+```
+
+它不是 Koopman-Sim2Real 论文中完整的 lifted-space transition：
+
+```text
+f[k+1] = Theta^T * f[k]
+```
+
+因此 Phase 3 的成功声明必须写成“fallback-safe Koopman-MPC engineering integration”，不能写成“完整复现 Koopman-Sim2Real 核心算法”。本阶段继承的是 `EDMD-trained prediction model -> receding-horizon control -> bounded actuator command` 的结构。
+
+Phase 3 runtime interface 必须支持两个 backend：
+
+- `direct_state` - Phase 2.5 当前选中 backend，用于第一版 Isaac smoke。
+- `paper_lifted_edmd` - 与 Koopman-Sim2Real 更接近的 lifted-space backend，用于 backend check 和后续 Phase 4 对比。
+
+Phase 3 summary 必须记录：
+
+```text
+backend_used
+backend_reason
+backend_is_paper_style_lifted_edmd
+fallback_rate
+latency_budget_met
+known_limitations
+```
+
+如果 `selected_model_manifest.json` 的 `known_limitations` 为空，Phase 3 summary 必须从 `docs/phase2_5_consolidation_report.md` 和 backend check 中补充 handoff limitations。
+
 ## Requirements
 
 1. **Manifest-first runtime contract**
@@ -53,13 +87,15 @@ Koopman-Sim2Real 论文启发：
 2. **Prediction wrapper**
    - 提供统一 `predict_next(state, pwm, reference)` 接口，支持当前 `direct_state`，并保留 `paper_lifted_edmd` loader 分支。
    - 输出维度必须是 11D。
+   - 模型输入 quaternion convention 必须保持和训练日志一致；prediction wrapper 不得静默翻转输入 quaternion。
    - Acceptance: 用 Phase 2.5 selected model 和 fixture state 可以预测下一状态，维度和有限值检查通过。
 
 3. **MPC problem definition**
    - MPC 优化变量为 horizon 内的 8D PWM 序列。
    - 代价函数至少包含姿态/深度 tracking、control energy、control smoothness。
    - Controlled state 第一版使用 `state[0:5] = [z, quat_wxyz]` 对齐 5D reference。
-   - Quaternion tracking cost 必须处理 `q` 与 `-q` 等价问题。
+   - Quaternion tracking cost 必须处理 `q` 与 `-q` 等价问题，但该符号对齐只用于误差计算，不改变送入 Koopman 模型的 state。
+   - Diagnostics 必须记录 predicted quaternion norm，用于发现模型 rollout 是否离开物理 envelope。
    - Acceptance: 离线测试验证代价函数对 tracking error、control energy、smoothness 单调合理。
 
 4. **Bounded control output**
@@ -68,8 +104,10 @@ Koopman-Sim2Real 论文启发：
    - Acceptance: 任意 fixture 输入下 solver 返回 8D bounded PWM。
 
 5. **Solver safety and fallback**
-   - 第一版使用纯 NumPy 可测试 solver，不引入必须安装的新优化器依赖。
+   - 第一版使用纯 NumPy first-pass receding-horizon optimizer，不引入必须安装的新优化器依赖。
+   - 该 solver 不得被描述为与论文中 CasADi/非线性 MPC 完全等价。
    - solver 必须记录 latency、status、cost、iteration/candidate count。
+   - 对 fixture states，solver 的 predicted horizon cost 必须低于 hold-previous-PWM baseline；如果做不到，必须优先 fallback 并记录原因。
    - 如果 solver 超时、返回非有限值或超过预算，控制器必须 fallback。
    - 第一 fallback 是上一帧有效 PWM；如果没有上一帧，则 fallback 到 legacy `_pid_control()` 结果。
    - Acceptance: 测试覆盖 solver failure、timeout flag、nonfinite output。
@@ -82,6 +120,7 @@ Koopman-Sim2Real 论文启发：
 7. **Workflow integration**
    - `workflows/play_controller.py` 支持 `--controller_mode koopman_mpc` 和 `--koopman_manifest_path`。
    - Koopman MPC 日志需要包含 solver status、latency、cost、fallback 标记。
+   - MPC adapter 输入必须保持 state/reference based，使未来 PPO 生成的 4D 姿态/深度修正可以先转换为同一 reference interface，而不是绕过安全控制层直接输出 PWM。
    - Acceptance: `--help` 输出包含新参数；短 offline smoke 可以不导入 Isaac。
 
 8. **Server Isaac gate**
@@ -111,6 +150,7 @@ Koopman-Sim2Real 论文启发：
 - Full 6-DOF wrench-space MPC。
 - Replacing hydrodynamics, thruster geometry, USD assets or Isaac environment architecture。
 - Claiming Sim2Real readiness.
+- Claiming that a `direct_state` smoke run is a complete paper-style lifted EDMD controller.
 
 ## Acceptance Criteria
 
@@ -118,12 +158,15 @@ Koopman-Sim2Real 论文启发：
 - [ ] Prediction wrapper can load selected model and produce finite 11D next-state prediction.
 - [ ] MPC solver returns bounded 8D PWM for fixture states.
 - [ ] MPC cost includes tracking, energy and smoothness terms.
+- [ ] MPC cost handles quaternion sign equivalence without changing model input quaternion convention.
+- [ ] Solver beats hold-previous-PWM predicted horizon cost on fixture states or explicitly falls back.
 - [ ] Solver reports latency/status/cost and handles timeout/failure through fallback.
+- [ ] Backend check compares selected `direct_state` with the best passing `paper_lifted_edmd` candidate offline.
 - [ ] `easyuuv_env.py` has a real `koopman_mpc` branch that preserves the existing force/torque pipeline.
 - [ ] `workflows/play_controller.py` can select `koopman_mpc` and point to a selected manifest.
 - [ ] Local tests pass with no Isaac runtime requirement for pure Koopman/MPC modules.
 - [ ] Server Isaac smoke runs `koopman_mpc` for one env without simulation crash.
-- [ ] Phase 3 summary states whether the first smoke used fallback and whether 60 Hz budget was met.
+- [ ] Phase 3 summary states `backend_used`, `backend_reason`, fallback rate, whether the backend is paper-style lifted EDMD, and whether 60 Hz budget was met.
 
 ## Ambiguity Report
 
@@ -140,3 +183,15 @@ Koopman-Sim2Real 论文启发：
 推荐方案：**离线 MPC adapter -> 8D PWM-space solver -> Isaac smoke**。
 
 该方案和 Phase 2.5 selected model 的 `control_dim = 8` 对齐，不需要先训练 PPO，也不需要改动推进器/水动力层。它牺牲了一部分“求解器高级性”，换取最小闭环风险和清晰可调试的失败边界。
+
+推荐的 Phase 3 成功声明是：
+
+```text
+Phase 3 completed the first fallback-safe Koopman-MPC controller integration.
+The smoke run used the Phase 2.5 selected direct_state prediction backend.
+This validates the controller seam, bounded 8D PWM output, manifest loading,
+solver diagnostics and Isaac closed-loop execution.
+It does not yet prove final performance superiority or full paper-style lifted
+EDMD control. Those claims are deferred to backend comparison and Phase 4
+experiments.
+```

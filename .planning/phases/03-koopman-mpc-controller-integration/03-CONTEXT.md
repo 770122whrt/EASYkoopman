@@ -38,12 +38,22 @@ Phase 3 接入 Koopman+MPC 控制器模式。它必须从 Phase 2.5 selected mod
 
 ### D-08 Paper alignment
 - 继承 Koopman-Sim2Real 的 `EDMD -> Koopman model -> MPC` 结构，但不照搬 3-DOF turtle 状态和控制维度。
+- 当前第一版 smoke 若使用 `direct_state`，只能声明为工程 Koopman predictor + MPC integration，不能声明为完整 paper-style lifted EDMD controller。
 
 ### D-09 PPO deferred
 - 服务器当前没有 PPO checkpoint。Phase 3 不依赖 PPO endpoint，继续使用 `workflows/play_controller.py` direct-controller path。
 
 ### D-10 Server gate
 - 真实 Isaac 闭环只在服务器验证。本地只做 pure Python tests、offline rollout 和 source-contract checks。
+
+### D-11 Backend check
+- Phase 3 必须离线比较 selected `direct_state` backend 与 Phase 2.5 sweep 中 best passing `paper_lifted_edmd` backend，并记录为何 first Isaac smoke 使用某个 backend。
+
+### D-12 Quaternion convention
+- MPC cost 可以为误差计算处理 `q` / `-q` 等价，但模型输入 quaternion 不得静默改写，必须保持训练日志 convention。
+
+### D-13 Future PPO/RL interface
+- Koopman MPC adapter 输入保持 state/reference based。未来 PPO/RL 可以输出 4D 姿态/深度修正并转换成同一 reference interface，而不是直接绕过 MPC 输出 PWM。
 </decisions>
 
 <canonical_refs>
@@ -51,6 +61,7 @@ Phase 3 接入 Koopman+MPC 控制器模式。它必须从 Phase 2.5 selected mod
 
 **Phase 2.5 handoff**
 - `docs/phase2_5_consolidation_report.md` - 服务器复跑结果、selected model、指标、限制。
+- `docs/phase3_algorithm_alignment_review.md` - Phase 3 algorithm contract review and required doc corrections.
 - `source/results/koopman_phase2_5_verify_20260701_231802/selected_model_manifest.json` - Phase 3 的默认模型入口。
 - `source/results/koopman_phase2_5_verify_20260701_231802/gate_report.md` - Phase 2.5 pass/fail 报告。
 
@@ -75,6 +86,7 @@ Phase 3 接入 Koopman+MPC 控制器模式。它必须从 Phase 2.5 selected mod
 
 - 新增 `koopman/runtime.py` 或等价模块，用于从 manifest 加载模型和进行 contract validation。
 - 新增 `koopman/mpc.py`，包含 `MPCProblem`、`MPCWeights`、`MPCResult` 和 first solver。
+- 新增 backend check workflow，对比 `direct_state` 与 best passing `paper_lifted_edmd` 后端。
 - 新增 `koopman/mpc_controller.py`，把 EasyUUV state/reference 和 solver 输出接起来。
 - `easyuuv_env.py` 只在 `controller_mode == "koopman_mpc"` 分支调用 adapter；其余 legacy path 不变。
 - `workflows/play_controller.py` 新增 `--controller_mode`、`--koopman_manifest_path`、`--mpc_horizon`、`--mpc_timeout_ms`。
