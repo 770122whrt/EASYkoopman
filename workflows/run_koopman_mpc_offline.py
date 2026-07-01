@@ -18,6 +18,13 @@ from koopman.mpc_controller import KoopmanMPCController
 from koopman_data import load_koopman_samples
 
 
+DEFAULT_LIMITATIONS = [
+    "selected backend is direct_state, not paper_lifted_edmd",
+    "Phase 2.5 is an offline model gate, not closed-loop control evidence",
+    "Phase 4 must compare legacy and Koopman MPC before performance claims",
+]
+
+
 def _config_from_args(args: argparse.Namespace) -> MPCConfig:
     return MPCConfig(
         horizon=args.horizon,
@@ -69,7 +76,7 @@ def run_offline(args: argparse.Namespace) -> dict:
         "backend_used": runtime.backend_used,
         "backend_reason": f"selected manifest model_class is {runtime.model_class}",
         "backend_is_paper_style_lifted_edmd": runtime.backend_is_paper_style_lifted_edmd,
-        "known_limitations": list(runtime.known_limitations),
+        "known_limitations": list(runtime.known_limitations) or list(DEFAULT_LIMITATIONS),
         "horizon": int(controller.config.horizon),
         "sample_count": len(samples),
         "average_latency_ms": float(np.mean(latencies)),
