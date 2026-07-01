@@ -43,6 +43,9 @@ def test_direct_controller_has_stage_logging_and_short_smoke_flags():
     assert "flush=True" in source
     assert "--steps_per_action" in source
     assert "--max_goals" in source
+    assert "--trajectory_type" in source
+    assert "--trajectory_cycles" in source
+    assert "def build_goal_list(" in source
     assert "Creating Gym environment" in source
     assert "Gym environment created" in source
 
@@ -86,6 +89,14 @@ def test_task_registration_uses_callable_entrypoint():
     assert "entry_point=EasyUUVEnv" in source
     assert "register_easyuuv_task" in source
     assert "EasyUUV-Isaac-Simulation" not in source
+
+
+def test_package_import_does_not_register_task_before_app_startup():
+    source = read_source("__init__.py")
+
+    assert "def register_easyuuv_task(" in source
+    assert "easyuuv_task_registration import register_easyuuv_task as" in source
+    assert "\nregister_easyuuv_task()\n" not in source
 
 
 def test_core_direct_path_uses_compat_layer_instead_of_old_namespace():

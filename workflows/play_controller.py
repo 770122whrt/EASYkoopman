@@ -30,6 +30,13 @@ parser.add_argument("--action_noise_std", type=float, default=0.0, help="Reserve
 parser.add_argument("--observation_noise_std", type=float, default=0.0, help="Reserved for future controller tests.")
 parser.add_argument("--steps_per_action", type=int, default=200, help="Steps to hold each target action.")
 parser.add_argument("--max_goals", type=int, default=None, help="Limit target goals for short smoke tests.")
+parser.add_argument(
+    "--trajectory_type",
+    choices=("step", "sine", "irregular"),
+    default="step",
+    help="Reference trajectory family to log for Koopman identification.",
+)
+parser.add_argument("--trajectory_cycles", type=int, default=1, help="Repeat the trajectory goal list this many times.")
 
 AppLauncher.add_app_launcher_args(parser)
 args_cli = parser.parse_args()
@@ -189,6 +196,46 @@ _, signal2 = generate_signal(amplitude=1.35, frequencies=(-0.1, 0.2, 0.4, 0.8, 1
 _, signal3 = generate_signal(amplitude=0.95, frequencies=(0.15, 0.3, 0.5, -0.9, 1.8, -3))
 
 
+def build_goal_list(trajectory_type: str, cycles: int) -> list[tuple[list[float], list[float]]]:
+    if cycles <= 0:
+        raise ValueError("trajectory_cycles must be positive")
+
+    step_goals = [
+        ([0, 0, 0], [0, 0, 0]),
+        ([1.0472, 0, 0], [0, 0, 0]),
+        ([-1.0472, 0, 0], [0, 0, 0]),
+        ([0, 1.0472, 0], [0, 0, 0]),
+        ([0, -1.0472, 0], [0, 0, 0]),
+        ([0, 0, 1.0472], [0, 0, 0]),
+        ([0, 0, -1.0472], [0, 0, 0]),
+    ]
+    if trajectory_type == "step":
+        base_goals = step_goals
+    elif trajectory_type == "sine":
+        sample_indices = np.linspace(0, len(signal1) - 1, len(step_goals), dtype=int)
+        base_goals = [
+            (
+                [float(signal1[index]), float(signal2[index]), float(signal3[index])],
+                [0, 0, 0],
+            )
+            for index in sample_indices
+        ]
+    elif trajectory_type == "irregular":
+        base_goals = [
+            ([0.20, -0.45, 0.75], [0, 0, 0.10]),
+            ([-0.80, 0.15, -0.35], [0, 0, -0.15]),
+            ([0.55, 0.85, -0.70], [0, 0, 0.05]),
+            ([-0.35, -0.65, 0.25], [0, 0, -0.10]),
+            ([0.95, -0.20, 0.55], [0, 0, 0.15]),
+            ([-0.60, 0.50, -0.95], [0, 0, 0.00]),
+            ([0.10, -0.90, 0.40], [0, 0, -0.05]),
+        ]
+    else:
+        raise ValueError(f"Unsupported trajectory_type: {trajectory_type}")
+
+    return base_goals * cycles
+
+
 def build_env_cfg():
     env_cfg = EasyUUVEnvCfg()
     env_cfg.scene.num_envs = args_cli.num_envs
@@ -255,15 +302,7 @@ def main():
         ]
     )
 
-    goal_list = [
-        ([0, 0, 0], [0, 0, 0]),
-        ([1.0472, 0, 0], [0, 0, 0]),
-        ([-1.0472, 0, 0], [0, 0, 0]),
-        ([0, 1.0472, 0], [0, 0, 0]),
-        ([0, -1.0472, 0], [0, 0, 0]),
-        ([0, 0, 1.0472], [0, 0, 0]),
-        ([0, 0, -1.0472], [0, 0, 0]),
-    ]
+    goal_list = build_goal_list(args_cli.trajectory_type, args_cli.trajectory_cycles)
     if args_cli.max_goals is not None:
         goal_list = goal_list[: args_cli.max_goals]
 
@@ -320,7 +359,7 @@ def main():
                 reference=reference,
                 action_4d=action,
                 next_state=next_state,
-                trajectory_type="step",
+                trajectory_type=args_cli.trajectory_type,
                 controller_mode=f"legacy/{env_cfg.control_method}",
             )
 
