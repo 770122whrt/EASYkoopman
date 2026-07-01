@@ -71,5 +71,6 @@ Run Phase 2.5 before MPC integration. The next gate is no longer "train one real
 - collect long step/sine/irregular logs,
 - validate every JSONL with `workflows/validate_koopman_log.py`,
 - split logs into train/validation/test,
-- sweep Koopman model candidates,
-- select one model only if held-out multi-step prediction stays stable.
+- sweep direct-state and paper-style lifted-space Koopman model candidates,
+- compare against persistence and simple linear baselines,
+- select one model only if held-out multi-step prediction stays stable and the gate report states pass.

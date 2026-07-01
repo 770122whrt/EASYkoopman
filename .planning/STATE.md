@@ -1,7 +1,7 @@
 # Project State: EASYkoopman
 
 **Updated:** 2026-06-30
-**Current focus:** Phase 2.5 - Koopman Prediction Quality Gate
+**Current focus:** Phase 2.5 - Offline Koopman Model Qualification Gate
 
 ## Project Reference
 
@@ -18,7 +18,8 @@ See: `.planning/PROJECT.md`
 - Phase 1.5 已经让 direct-controller smoke rollout 在服务器上跑通，并生成可验证 JSONL。
 - Phase 2 离线代码已经完成：dataset、lifting、EDMD、model artifact、evaluation 和 CLI。
 - 用户已经用 1400 samples 的 step log 完成一次训练和评估，结果证明链路可用，但仍是同分布/同日志评估。
-- 进入 MPC 前需要 Phase 2.5：用 train/validation/test split、多轨迹日志、candidate sweep 和 rollout divergence 检查来筛选可信模型。
+- 进入 MPC 前需要 Phase 2.5：用 log-level train/validation/test split、多轨迹日志、candidate sweep、baseline comparison 和 rollout divergence 检查来筛选可信模型。
+- `docs/phase2_5_koopman_model_gate_recommendations.md` 明确指出当前 direct-state predictor 只是工程 baseline，Phase 2.5 必须新增 paper-style lifted-space EDMD 候选以贴近 Koopman-Sim2Real。
 - EasyUUV USD assets 已纳入 Git，以避免服务器代码和模型资产不同步。
 
 ## Decisions
@@ -34,6 +35,7 @@ See: `.planning/PROJECT.md`
 | 2026-06-30 | USD assets 可纳入 Git | 两个 USD 文件低于 GitHub 单文件限制，且服务器必须拥有这些资产 |
 | 2026-06-30 | Phase 2 以离线 EDMD 为核心 | 先做可保存、可评估的 Koopman model，再进入模型质量 gate |
 | 2026-06-30 | 插入 Phase 2.5 做 Koopman prediction quality gate | 防止在模型只拟合训练数据时过早接 MPC |
+| 2026-07-01 | Phase 2.5 升级为 Offline Koopman Model Qualification Gate | recommendations 文档要求 paper-style lifted EDMD、baseline comparison、normalization、gate report 和 held-out test |
 | 2026-06-30 | 多环境数据不是第一优先级 | 当前 logger 主要记录单 env；先用多轨迹、多次运行和不同初始条件覆盖数据多样性 |
 
 ## Blockers And Risks
@@ -42,14 +44,18 @@ See: `.planning/PROJECT.md`
 - 目前只有 step long log 的一次结果；还缺 sine 和 irregular 长日志。
 - 服务器 Git clone/pull 可能继续遇到 TLS 超时；必要时使用 zip 或 git bundle 传输。
 - 如果只用训练集误差选模型，MPC 闭环可能因为模型泛化失败而不稳定。
+- 如果 selected model 没有优于 persistence/simple linear baseline，Phase 3 不应使用它。
+- 如果 held-out rollout 出现 NaN/Inf、物理 envelope 越界或 multi-step divergence，Phase 3 不应开始。
 - Phase 2.5 必须保持 Isaac-free，除非发现日志采集脚本本身阻塞数据生成。
 
 ## Next Action
 
 执行 Phase 2.5:
 
-1. 增加 train/validation/test split manifest。
-2. 增加 held-out evaluation 和 rollout divergence 指标。
-3. 增加 ridge/lifting candidate sweep。
-4. 增加 selected model manifest，作为 Phase 3 MPC 的输入 gate。
-5. 在服务器采集并验证 step、sine、irregular 长日志。
+1. 增加 log-level train/validation/test split manifest，禁止 row-level split。
+2. 新增 paper-style lifted-space EDMD candidate，同时保留 direct-state predictor baseline。
+3. 增加 persistence 和 simple linear baselines。
+4. 增加 normalization-aware ridge/lifting candidate sweep。
+5. 增加 multi-horizon held-out evaluation 和 rollout divergence 指标。
+6. 增加 selected model manifest 和 gate report，作为 Phase 3 MPC 的输入 gate。
+7. 在服务器采集并验证 step、sine、irregular 长日志。

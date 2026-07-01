@@ -35,8 +35,10 @@
 
 - [ ] **QUAL-01**: 训练、验证和测试日志必须可明确分离，模型选择不得只依赖训练集误差。
 - [ ] **QUAL-02**: 模型训练必须支持多个 JSONL 日志联合输入，覆盖 step、sine、irregular 轨迹和可选多次初始条件运行。
-- [ ] **QUAL-03**: 模型选择必须比较至少两类候选配置，例如不同 ridge 系数或不同 lifting 配置，并输出可复现的 metrics summary。
-- [ ] **QUAL-04**: 进入 MPC 前必须生成 selected model manifest，记录模型路径、训练数据、验证数据、测试数据、关键误差和是否出现 rollout divergence。
+- [ ] **QUAL-03**: 模型选择必须比较当前 direct-state predictor、paper-style lifted-space EDMD、persistence baseline 和 simple linear baseline。
+- [ ] **QUAL-04**: 模型选择必须比较多个 ridge/lifting/normalization 配置，并输出可复现的 sweep metrics summary。
+- [ ] **QUAL-05**: 进入 MPC 前必须生成 selected model manifest，记录模型路径、模型类别、训练/验证/测试数据、关键误差、normalizer、dt、维度和是否出现 rollout divergence。
+- [ ] **QUAL-06**: 进入 MPC 前必须生成 gate report，明确 pass/fail、baseline 对比、held-out test 指标、divergence 检查和已知限制。
 
 ### MPC Control
 
@@ -92,6 +94,8 @@
 | QUAL-02 | Phase 2.5 | Pending |
 | QUAL-03 | Phase 2.5 | Pending |
 | QUAL-04 | Phase 2.5 | Pending |
+| QUAL-05 | Phase 2.5 | Pending |
+| QUAL-06 | Phase 2.5 | Pending |
 | MPC-01 | Phase 3 | Pending |
 | MPC-02 | Phase 3 | Pending |
 | MPC-03 | Phase 3 | Pending |
@@ -102,8 +106,8 @@
 | DOC-02 | Phase 4 | Pending |
 
 **Coverage:**
-- v1 requirements: 26 total
-- Mapped to phases: 26
+- v1 requirements: 28 total
+- Mapped to phases: 28
 - Unmapped: 0
 
 ---

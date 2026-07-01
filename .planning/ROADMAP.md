@@ -103,13 +103,13 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 - Saved model reloads and reproduces prediction metrics.
 - One-step and multi-step prediction errors are reported.
 
-## Phase 2.5: Koopman Prediction Quality Gate
+## Phase 2.5: Offline Koopman Model Qualification Gate
 
-**Goal:** Prove the trained Koopman model predicts unseen EasyUUV trajectories well enough to justify using it inside MPC.
+**Goal:** Qualify one Koopman model as stable, generalizable, reproducible and sufficiently aligned with Koopman-Sim2Real before Phase 3 uses it inside MPC.
 
 **Execution:** Mostly local analysis and tooling. Server Isaac is required only to collect longer step/sine/irregular logs, preferably with varied initial conditions or repeated runs.
 
-**Requirement coverage:** QUAL-01, QUAL-02, QUAL-03, QUAL-04, DATA-03, KOOP-03
+**Requirement coverage:** QUAL-01, QUAL-02, QUAL-03, QUAL-04, QUAL-05, QUAL-06, DATA-03, KOOP-03
 
 **Canonical refs:**
 - `koopman/dataset.py` - JSONL to matrix conversion.
@@ -117,21 +117,25 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 - `koopman/evaluation.py` - one-step and multi-step prediction metrics.
 - `workflows/train_koopman.py`, `workflows/evaluate_koopman.py` - current offline workflow commands.
 - `workflows/play_controller.py` - known-good server collection path.
+- `docs/phase2_5_koopman_model_gate_recommendations.md` - model qualification recommendations and gate criteria.
 
 **Deliverables:**
 - Train/validation/test log split workflow.
 - Multi-log training and evaluation workflow.
-- Ridge/lifting sweep workflow that produces comparable model artifacts and metrics.
-- Rollout stability report over horizons longer than the MPC horizon.
+- Candidate model sweep including current direct-state predictor, paper-style lifted-space EDMD and baselines.
+- Normalization-aware ridge/lifting sweep workflow that produces comparable model artifacts and metrics.
+- Rollout stability report over horizons longer than the MPC horizon, including divergence rates.
 - Selected model manifest that Phase 3 consumes.
+- Gate report with pass/fail decision, known limitations and recommendation.
 
 **Verification:**
 - Local: split workflow creates disjoint train/validation/test manifests.
-- Local: sweep workflow trains multiple candidate models without Isaac imports.
-- Local: comparison output ranks models by validation multi-step RMSE and flags rollout divergence.
+- Local: sweep workflow trains direct-state and paper-style lifted EDMD candidates without Isaac imports.
+- Local: persistence and simple linear baselines are evaluated on the same validation/test splits.
+- Local: comparison output ranks models by validation multi-step RMSE at multiple horizons and flags rollout divergence.
 - Local: selected model reloads and evaluates on held-out test logs.
 - Server data gate: at least step, sine and irregular logs are validated before model selection.
-- Phase 3 does not begin until a selected model manifest exists.
+- Phase 3 does not begin until a selected model manifest and gate report both state pass.
 
 ## Phase 3: Koopman MPC Controller Integration
 
@@ -144,7 +148,7 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 **Canonical refs:**
 - `easyuuv_env.py`
 - `koopman/` modules from Phase 2
-- Phase 2.5 selected model manifest and validation metrics
+- Phase 2.5 selected model manifest, validation/test metrics and gate report
 - `workflows/play_controller.py`
 
 **Deliverables:**
