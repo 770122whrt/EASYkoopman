@@ -235,11 +235,19 @@ Current Phase 4 decision:
 5. Document the server Isaac command matrix and artifact pullback procedure.
 6. Hand Phase 4.5 a clean PPO/RL baseline rather than reconnecting PPO inside Phase 4.
 
+Local Phase 4 implementation status:
+
+```text
+Completed locally:
+  Wave 1 metrics aggregation workflow.
+  Wave 2 server runbook.
+```
+
 Current next action:
 
 ```text
-Implement Phase 4 Wave 1:
-  add local metrics aggregation for Koopman JSONL logs,
-  test it with fixture logs,
-  and keep it Isaac-free.
+Run Phase 4 server Isaac matrix:
+  legacy, direct_state Koopman+MPC and paper_lifted Koopman+MPC
+  across step, sine and irregular trajectories,
+  then pull JSONL logs back for local metrics summary.
 ```

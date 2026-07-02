@@ -246,6 +246,7 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 - `.planning/phases/04-evaluation-documentation-and-isaac-sim-runbook/04-CONTEXT.md` - controller-only evaluation decisions and boundaries.
 - `.planning/phases/04-evaluation-documentation-and-isaac-sim-runbook/04-RESEARCH.md` - metrics and run-matrix research.
 - `.planning/phases/04-evaluation-documentation-and-isaac-sim-runbook/04-PLAN.md` - executable Phase 4 waves.
+- `docs/phase4_controller_evaluation_runbook.md` - server Isaac command matrix and artifact pullback procedure.
 - `workflows/play_eval.py`
 - `workflows/play_eval_step.py`
 - `workflows/play_eval_task2.py`
