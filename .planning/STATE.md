@@ -1,7 +1,7 @@
 # Project State: EASYkoopman
 
 **Updated:** 2026-07-02
-**Current focus:** Phase 4 - Evaluation, Documentation And Isaac Sim Runbook
+**Current focus:** Phase 3.5 - Paper-Style Lifted EDMD Backend Qualification
 
 ## Project Reference
 
@@ -173,10 +173,46 @@ Not yet claimed:
   final control superiority over legacy, long-horizon stability, or full paper-style lifted EDMD equivalence.
 ```
 
-Next action is Phase 4:
+Previous next action was Phase 4:
 
 1. Run matched legacy and Koopman MPC trajectories on the server.
 2. Cover step, sine and irregular trajectories.
 3. Export comparable logs.
 4. Compute tracking, depth, attitude, control energy, PWM smoothness, fallback and latency metrics.
 5. Decide whether `direct_state` remains primary or `paper_lifted_edmd` should be promoted for closed-loop experiments.
+
+## 2026-07-02 Phase 3.5 Planning Note
+
+The immediate next phase is now Phase 3.5, inserted before Phase 4.
+
+Reason:
+
+```text
+Phase 3 proved fallback-safe Koopman-MPC integration using direct_state.
+The remaining paper-aligned gap is paper-style lifted EDMD.
+```
+
+Phase 3.5 will:
+
+- create or select a separate `paper_lifted_edmd` comparison manifest;
+- preserve the existing Phase 2.5 direct-state manifest as the engineering baseline;
+- evaluate direct-state and paper-lifted prediction metrics side by side;
+- run offline MPC replay with identical solver settings for both backends;
+- use the Isaac server for repeated paper-lifted smoke/data runs;
+- hand Phase 4 either a three-way evaluation plan or a documented paper-lifted failure analysis.
+
+Created planning artifacts:
+
+- `.planning/phases/03.5-paper-style-lifted-edmd-backend-qualification/03.5-SPEC.md`
+- `.planning/phases/03.5-paper-style-lifted-edmd-backend-qualification/03.5-CONTEXT.md`
+- `.planning/phases/03.5-paper-style-lifted-edmd-backend-qualification/03.5-RESEARCH.md`
+- `.planning/phases/03.5-paper-style-lifted-edmd-backend-qualification/03.5-PLAN.md`
+
+Current next action:
+
+```text
+Implement Phase 3.5 Wave 1:
+  select the best passing paper_lifted_edmd candidate,
+  write paper_lifted_manifest.json,
+  and verify it reloads through koopman.runtime.
+```

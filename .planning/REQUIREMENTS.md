@@ -47,6 +47,15 @@
 - [ ] **MPC-03**: MPC 包含控制能量和平滑项，避免推进器命令剧烈抖动。
 - [ ] **MPC-04**: MPC 求解时间满足第一版 60 Hz 控制预算，若不满足必须降级或缩短预测域。
 
+### Paper-Style Lifted EDMD Backend
+
+- [ ] **PLED-01**: Produce a separate `paper_lifted_edmd` comparison manifest without overwriting the Phase 2.5 `direct_state` selected manifest.
+- [ ] **PLED-02**: Use Isaac-generated step, sine and irregular logs, with repeated runs where feasible, to support paper-style backend qualification.
+- [ ] **PLED-03**: Evaluate paper-style lifted EDMD on held-out one-step, multi-step and divergence metrics side by side with direct-state.
+- [ ] **PLED-04**: Run offline MPC replay for both direct-state and paper-lifted backends with the same horizon, bounds and weights.
+- [ ] **PLED-05**: Run repeated Isaac smoke tests for `paper_lifted_edmd` before allowing it into Phase 4 full evaluation.
+- [ ] **PLED-06**: Produce a Phase 4 handoff that states whether paper-style lifted EDMD is eligible for three-way comparison or should remain failure analysis.
+
 ### Evaluation And Documentation
 
 - [ ] **EVAL-01**: legacy controller 与 Koopman+MPC 在 step、sine、irregular 轨迹上有同格式日志。
@@ -100,16 +109,22 @@
 | MPC-02 | Phase 3 | Complete |
 | MPC-03 | Phase 3 | Complete |
 | MPC-04 | Phase 3 | Complete |
+| PLED-01 | Phase 3.5 | Pending |
+| PLED-02 | Phase 3.5 | Pending |
+| PLED-03 | Phase 3.5 | Pending |
+| PLED-04 | Phase 3.5 | Pending |
+| PLED-05 | Phase 3.5 | Pending |
+| PLED-06 | Phase 3.5 | Pending |
 | EVAL-01 | Phase 4 | Pending |
 | EVAL-02 | Phase 4 | Pending |
 | DOC-01 | Phase 4 | Pending |
 | DOC-02 | Phase 4 | Pending |
 
 **Coverage:**
-- v1 requirements: 28 total
-- Mapped to phases: 28
+- v1 requirements: 34 total
+- Mapped to phases: 34
 - Unmapped: 0
 
 ---
 *Requirements defined: 2026-06-10*
-*Last updated: 2026-07-02 after Phase 3 Koopman MPC integration verification*
+*Last updated: 2026-07-02 after Phase 3.5 paper-style lifted EDMD planning insertion*

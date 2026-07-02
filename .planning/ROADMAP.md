@@ -19,7 +19,7 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 - Koopman+MPC closed-loop control in Isaac.
 - Final comparison experiments across step, sine and irregular trajectories.
 
-**Next coding target:** Phase 4 evaluation tooling and matched Isaac experiments for legacy vs Koopman MPC.
+**Next coding target:** Phase 3.5 paper-style lifted EDMD backend qualification before full Phase 4 evaluation.
 
 ## Phase 1: Baseline Data And Controller Boundary
 
@@ -198,9 +198,42 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 
 **Phase 3 result boundary:** This is a fallback-safe Koopman-MPC engineering integration using the Phase 2.5 selected `direct_state` backend. It does not yet prove performance superiority or full paper-style lifted EDMD equivalence; those claims move to Phase 4.
 
+## Phase 3.5: Paper-Style Lifted EDMD Backend Qualification
+
+**Goal:** Promote `paper_lifted_edmd` from a hidden sweep candidate into a formal research comparison backend, then decide whether it is eligible for Phase 4 closed-loop evaluation.
+
+**Execution:** Local-first for manifest selection, reports and offline MPC replay; server Isaac is required for repeated smoke runs and optional additional simulation data collection.
+
+**Requirement coverage:** PLED-01, PLED-02, PLED-03, PLED-04, PLED-05, PLED-06
+
+**Canonical refs:**
+- `.planning/phases/03.5-paper-style-lifted-edmd-backend-qualification/03.5-SPEC.md` - phase contract and acceptance criteria.
+- `.planning/phases/03.5-paper-style-lifted-edmd-backend-qualification/03.5-CONTEXT.md` - current code contracts and review carry-forward.
+- `.planning/phases/03.5-paper-style-lifted-edmd-backend-qualification/03.5-RESEARCH.md` - relation to EasyUUV and Koopman-Sim2Real papers.
+- `.planning/phases/03.5-paper-style-lifted-edmd-backend-qualification/03.5-PLAN.md` - execution waves and server commands.
+- `docs/phase2_5_koopman_model_gate_recommendations.md` - paper-style lifted EDMD recommendation.
+- `docs/phase3_algorithm_alignment_review.md` - warning that Phase 3 direct-state smoke is not full paper-style lifted EDMD control.
+- `koopman/lifted_edmd.py`, `koopman/observables.py`, `koopman/sweep.py` - current paper-style backend implementation.
+- `workflows/play_controller.py` - repeated Isaac smoke/data collection entrypoint.
+
+**Deliverables:**
+- Separate `paper_lifted_edmd` manifest for comparison.
+- Offline direct-state vs paper-lifted prediction report.
+- Offline direct-state vs paper-lifted MPC replay report.
+- Repeated Isaac smoke logs for `paper_lifted_edmd` where feasible.
+- Phase 4 handoff stating whether to run a three-way evaluation or record paper-lifted failure analysis.
+
+**Verification:**
+- Local: selected paper-lifted manifest reloads through `koopman.runtime`.
+- Local: prediction metrics and divergence status are reported side by side with direct-state.
+- Local: offline MPC commands stay bounded and report fallback/latency.
+- Server: at least one `paper_lifted_edmd` step smoke completes through `play_controller.py`.
+- Server: additional sine/irregular smoke or data runs are collected if server time permits.
+- Handoff explicitly states paper-aligned claims and limitations.
+
 ## Phase 4: Evaluation, Documentation And Isaac Sim Runbook
 
-**Goal:** Produce a repeatable comparison between legacy controller and Koopman+MPC and document how to run the project on Isaac Sim/Lab.
+**Goal:** Produce a repeatable comparison between legacy controller, direct-state Koopman+MPC and, if Phase 3.5 passes, paper-style lifted EDMD Koopman+MPC; document how to run the project on Isaac Sim/Lab.
 
 **Execution:** Server runs Isaac experiments; local analyzes exported logs and writes documentation.
 
@@ -212,15 +245,16 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 - `workflows/play_eval_task2.py`
 - `README.md`
 - `docs/koopman_mpc_migration_plan.md`
+- `.planning/phases/03.5-paper-style-lifted-edmd-backend-qualification/03.5-SUMMARY.md` once Phase 3.5 is complete.
 
 **Deliverables:**
-- Unified evaluation command set.
+- Unified evaluation command set for legacy, direct-state MPC and eligible paper-lifted MPC.
 - Metrics summary format.
 - Updated README or runbook.
 - Known limitations and next-step Sim2Real notes.
 
 **Verification:**
-- Server: run legacy and Koopman+MPC on step, sine and irregular trajectories.
+- Server: run legacy, direct-state Koopman+MPC and eligible paper-lifted Koopman+MPC on step, sine and irregular trajectories.
 - Local: regenerate metrics/plots from exported logs without Isaac.
 - Each evaluation script produces comparable legacy and Koopman+MPC logs.
 - Documentation commands point to files that exist.
