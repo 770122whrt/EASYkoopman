@@ -1,7 +1,7 @@
 # Project State: EASYkoopman
 
 **Updated:** 2026-07-02
-**Current focus:** Phase 3.5 - Paper-Style Lifted EDMD Backend Qualification
+**Current focus:** Phase 4 - Evaluation, Documentation And Isaac Sim Runbook
 
 ## Project Reference
 
@@ -215,4 +215,31 @@ Implement Phase 3.5 Wave 1:
   select the best passing paper_lifted_edmd candidate,
   write paper_lifted_manifest.json,
   and verify it reloads through koopman.runtime.
+```
+
+## 2026-07-02 Phase 4 Planning Note
+
+Phase 4 planning is now created in:
+
+- `.planning/phases/04-evaluation-documentation-and-isaac-sim-runbook/04-SPEC.md`
+- `.planning/phases/04-evaluation-documentation-and-isaac-sim-runbook/04-CONTEXT.md`
+- `.planning/phases/04-evaluation-documentation-and-isaac-sim-runbook/04-RESEARCH.md`
+- `.planning/phases/04-evaluation-documentation-and-isaac-sim-runbook/04-PLAN.md`
+
+Current Phase 4 decision:
+
+1. Keep Phase 4 as controller-only evaluation before PPO.
+2. Use `workflows/play_controller.py` for matched legacy, direct-state Koopman+MPC and paper-lifted Koopman+MPC runs.
+3. Use JSONL logs as the common evaluation substrate.
+4. Add local Isaac-free metrics aggregation for tracking error, depth error, control effort, PWM smoothness, fallback rate and solver latency.
+5. Document the server Isaac command matrix and artifact pullback procedure.
+6. Hand Phase 4.5 a clean PPO/RL baseline rather than reconnecting PPO inside Phase 4.
+
+Current next action:
+
+```text
+Implement Phase 4 Wave 1:
+  add local metrics aggregation for Koopman JSONL logs,
+  test it with fixture logs,
+  and keep it Isaac-free.
 ```

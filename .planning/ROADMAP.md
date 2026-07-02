@@ -19,7 +19,9 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 - Koopman+MPC closed-loop control in Isaac.
 - Final comparison experiments across step, sine and irregular trajectories.
 
-**Next coding target:** Phase 3.5 paper-style lifted EDMD backend qualification before full Phase 4 evaluation.
+**Original next step after Phase 3.5:** Phase 4 evaluation, documentation and Isaac Sim runbook. This would compare legacy control, direct-state Koopman+MPC and paper-style lifted EDMD Koopman+MPC before adding higher-level intelligence.
+
+**Updated next coding target:** Phase 4.5 PPO/RL reference adapter, after preserving enough Phase 4 smoke/evaluation evidence to avoid mixing controller defects with policy defects. The roadmap now makes PPO integration explicit before the LLM tuning layer.
 
 ## Phase 1: Baseline Data And Controller Boundary
 
@@ -233,16 +235,21 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 
 ## Phase 4: Evaluation, Documentation And Isaac Sim Runbook
 
-**Goal:** Produce a repeatable comparison between legacy controller, direct-state Koopman+MPC and, if Phase 3.5 passes, paper-style lifted EDMD Koopman+MPC; document how to run the project on Isaac Sim/Lab.
+**Goal:** Produce a repeatable comparison between legacy controller, direct-state Koopman+MPC and, if Phase 3.5 passes, paper-style lifted EDMD Koopman+MPC; document how to run the project on Isaac Sim/Lab. After the 2026-07-02 roadmap update, this phase should at minimum preserve a short, comparable controller-only evaluation baseline before Phase 4.5 reconnects PPO.
 
 **Execution:** Server runs Isaac experiments; local analyzes exported logs and writes documentation.
 
 **Requirement coverage:** EVAL-01, EVAL-02, DOC-01, DOC-02
 
 **Canonical refs:**
+- `.planning/phases/04-evaluation-documentation-and-isaac-sim-runbook/04-SPEC.md` - locked Phase 4 scope and acceptance criteria.
+- `.planning/phases/04-evaluation-documentation-and-isaac-sim-runbook/04-CONTEXT.md` - controller-only evaluation decisions and boundaries.
+- `.planning/phases/04-evaluation-documentation-and-isaac-sim-runbook/04-RESEARCH.md` - metrics and run-matrix research.
+- `.planning/phases/04-evaluation-documentation-and-isaac-sim-runbook/04-PLAN.md` - executable Phase 4 waves.
 - `workflows/play_eval.py`
 - `workflows/play_eval_step.py`
 - `workflows/play_eval_task2.py`
+- `workflows/play_controller.py`
 - `README.md`
 - `docs/koopman_mpc_migration_plan.md`
 - `.planning/phases/03.5-paper-style-lifted-edmd-backend-qualification/03.5-SUMMARY.md` once Phase 3.5 is complete.
@@ -260,7 +267,69 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 - Documentation commands point to files that exist.
 -待确认 Isaac Sim/Lab local version is documented.
 
-## Phase 5: Online Adaptation And Sim2Real Readiness
+## Phase 4.5: PPO/RL Reference Adapter Integration
+
+**Goal:** Reconnect the EasyUUV PPO/RSL-RL policy path above Koopman+MPC so the policy outputs a high-level 4D correction or reference while Koopman+MPC remains the low-level real-time controller that produces bounded 8D PWM.
+
+**Execution:** Hybrid. Local work defines the adapter contract, source-compatible scripts and unit tests; server Isaac is required for PPO checkpoint discovery, short PPO inference smoke and any PPO retraining.
+
+**Requirement coverage:** RL-01, RL-02, RL-03, MPC-05, EVAL-03
+
+**Canonical refs:**
+- `workflows/train.py` - RSL-RL PPO training entrypoint.
+- `workflows/gen_policy.py` - checkpoint export path.
+- `workflows/play_eval.py`, `workflows/play_eval_step.py`, `workflows/play_eval_task2.py` - current PPO inference/evaluation path.
+- `agents/rsl_rl_ppo_cfg.py` - PPO runner, policy and algorithm configuration.
+- `easyuuv_task_registration.py` - Gym task registration and `rsl_rl_cfg_entry_point`.
+- `easyuuv_env.py` - 4D action interface, observation contract and Koopman+MPC controller mode.
+- `workflows/play_controller.py` - current controller-only Koopman+MPC smoke path.
+
+**Deliverables:**
+- Policy adapter contract that converts PPO output into either the existing 4D correction or a 5D Koopman reference.
+- Inference workflow that can run `PPO -> Koopman+MPC -> 8D PWM` without allowing PPO to directly command thrusters.
+- Compatibility path for missing checkpoints: fail clearly, or run a smoke with a deterministic stub policy before training.
+- Optional short PPO retraining command set on Isaac Lab 2.2.1 if no usable checkpoint exists.
+- JSONL/CSV logs that record policy output, Koopman reference, MPC diagnostics, fallback usage and final PWM.
+- Comparison note against controller-only Phase 4 results so instability can be attributed to policy, model or solver.
+
+**Verification:**
+- Local: adapter unit tests cover 4D correction, 5D reference conversion, clipping and non-finite input rejection.
+- Local: scripts compile without Isaac imports where practical.
+- Server: PPO checkpoint discovery command reports whether a checkpoint exists under `logs/rsl_rl/easyuuv`.
+- Server: if a checkpoint exists, short one-env inference smoke runs `PPO -> Koopman+MPC`.
+- Server: if no checkpoint exists, a short PPO training smoke runs with small `num_envs` and `max_iterations` to prove the training path still works.
+- Server: resulting logs keep PWM bounded and include solver fallback/latency diagnostics.
+
+**Boundary:** PPO is a high-level policy layer. It must not bypass Koopman+MPC to send direct 8D PWM in this phase.
+
+## Phase 5: LLM Low-Frequency Planning And Tuning Interface
+
+**Goal:** Add a low-frequency LLM supervisor that analyzes task intent, logs and controller metrics, then proposes reference plans or safe tuning suggestions without entering the real-time control loop.
+
+**Execution:** Local-first for interface design, prompt contract and offline log analysis. Server Isaac is required only for validation runs that apply approved tuning suggestions.
+
+**Requirement coverage:** LLM-01, LLM-02, LLM-03, SAFE-01
+
+**Canonical refs:**
+- `docs/koopman_mpc_migration_plan.md` - layered EasyUUV interpretation: PPO high-level policy, low-level controller, LLM tuning outside real-time control.
+- External EasyUUV deployment repository - hardware-side LLM configuration pattern (`enable_LLM`, API endpoint, prompt file and main process).
+- Phase 4/4.5 logs - metrics consumed by the LLM supervisor.
+
+**Deliverables:**
+- LLM interface contract for reading experiment summaries and proposing bounded tuning changes.
+- Prompt/input schema that separates task planning, MPC parameter suggestions and policy-level reference envelopes.
+- Human-approval gate for applying any LLM-suggested controller or policy change.
+- Offline dry-run workflow that generates recommendations from existing logs without launching Isaac.
+- Server validation runbook for applying one approved tuning profile and comparing against baseline.
+
+**Verification:**
+- Local: schema validation rejects direct PWM commands, real-time loop calls and unsafe parameter ranges.
+- Local: dry-run recommendation can be generated from saved Phase 4/4.5 logs.
+- Server: optional approved-tuning smoke produces comparable logs without increasing fallback rate beyond the accepted threshold.
+
+**Boundary:** LLM is a low-frequency supervisor. It may propose task plans, references or tuning parameters, but it must not directly control `env.step()`, PPO actions or 8D PWM.
+
+## Phase 6: Online Adaptation And Sim2Real Readiness
 
 **Goal:** Prepare the controller for model drift and eventual real-world data adaptation.
 
@@ -274,7 +343,7 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 - Kalman or RLS online update design.
 - Real log replay format.
 - 6-DOF/8D PWM expansion plan.
-- Optional LLM low-frequency tuning interface.
+- Integration notes for how online adaptation interacts with the Phase 5 LLM tuning supervisor.
 
 **Verification:**
 - Online update can be replayed offline without destabilizing the saved model.
