@@ -266,7 +266,20 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 - Local: regenerate metrics/plots from exported logs without Isaac.
 - Each evaluation script produces comparable legacy and Koopman+MPC logs.
 - Documentation commands point to files that exist.
--待确认 Isaac Sim/Lab local version is documented.
+- Isaac Sim/Lab server version is documented.
+
+**Completion status:** Complete on 2026-07-02.
+
+**Completion evidence:**
+- Server matrix: 9/9 controller-only Isaac runs completed on `agentic-AUV`.
+- Controllers: `legacy/Ssurface`, `direct_state` Koopman+MPC and `paper_lifted_edmd` Koopman+MPC.
+- Trajectories: `step`, `sine` and `irregular`.
+- Log validation: all 9 logs passed `workflows/validate_koopman_log.py`.
+- Metrics: `source/results/koopman_phase4/reports/metrics_summary.json` and `.md` generated.
+- Server tests after sync: `70 passed`; compileall passed.
+- Local docs: `04-SUMMARY.md`, `04-VERIFICATION.md` and `04-PHASE45-HANDOFF.md` written.
+
+**Phase 4 result boundary:** Legacy is the strongest controller-only baseline. Direct-state Koopman+MPC is a bounded, runnable Koopman baseline but not yet superior to legacy. Paper-lifted EDMD is included as a paper-style comparison backend, but its depth RMSE is too high to promote as the default controller for Phase 4.5.
 
 ## Phase 4.5: PPO/RL Reference Adapter Integration
 

@@ -1,6 +1,6 @@
 ---
 phase: 04-evaluation-documentation-and-isaac-sim-runbook
-status: planned
+status: completed
 created: 2026-07-02
 target_branch: isaaclab2-migration
 type: implementation
@@ -15,6 +15,7 @@ requirements: [EVAL-01, EVAL-02, DOC-01, DOC-02]
 **Research:** `.planning/phases/04-evaluation-documentation-and-isaac-sim-runbook/04-RESEARCH.md`
 **Mode:** local metrics tooling plus server Isaac experiments
 **Primary outputs:** `source/results/koopman_phase4/` and Phase 4 docs
+**Completed:** 2026-07-02
 
 ## Purpose
 
@@ -316,3 +317,13 @@ Koopman+MPC under matched scripted references, generated local metrics from
 validated JSONL logs, documented the server runbook and handed Phase 4.5 a
 clean PPO integration baseline.
 ```
+
+## Completion Evidence
+
+Phase 4 completed on the `agentic-AUV` Isaac server and the local workstation on 2026-07-02.
+
+- Server matrix: 9/9 runs completed for `legacy`, `direct_state_mpc` and `paper_lifted_mpc` across `step`, `sine` and `irregular`.
+- Log validation: all 9 JSONL logs passed `workflows/validate_koopman_log.py` with `state_dim=11`, `reference_dim=5`, `action_dim=4` and `pwm_dim=8`.
+- Metrics report: `source/results/koopman_phase4/reports/metrics_summary.json` and `.md` generated.
+- Main result: legacy remains the most stable controller-only baseline; direct-state Koopman+MPC is runnable but fallback/latency need reduction; paper-lifted EDMD is included as a paper-style comparison backend but is not ready to replace direct-state for depth control.
+- Handoff: `.planning/phases/04-evaluation-documentation-and-isaac-sim-runbook/04-PHASE45-HANDOFF.md`.

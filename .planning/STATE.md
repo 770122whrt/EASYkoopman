@@ -1,7 +1,7 @@
 # Project State: EASYkoopman
 
 **Updated:** 2026-07-02
-**Current focus:** Phase 4 - Evaluation, Documentation And Isaac Sim Runbook
+**Current focus:** Phase 4.5 - PPO/RL Reference Adapter Integration
 
 ## Project Reference
 
@@ -235,7 +235,7 @@ Current Phase 4 decision:
 5. Document the server Isaac command matrix and artifact pullback procedure.
 6. Hand Phase 4.5 a clean PPO/RL baseline rather than reconnecting PPO inside Phase 4.
 
-Local Phase 4 implementation status:
+Previous Phase 4 implementation status before server evaluation:
 
 ```text
 Completed locally:
@@ -243,11 +243,43 @@ Completed locally:
   Wave 2 server runbook.
 ```
 
-Current next action:
+Previous Phase 4 next action, now completed:
 
 ```text
 Run Phase 4 server Isaac matrix:
   legacy, direct_state Koopman+MPC and paper_lifted Koopman+MPC
   across step, sine and irregular trajectories,
   then pull JSONL logs back for local metrics summary.
+```
+
+## 2026-07-02 Phase 4 Completion Note
+
+Phase 4 is complete on `isaaclab2-migration`.
+
+Implemented and verified:
+
+- Phase 4 controller-only metrics workflow.
+- Phase 4 Isaac server runbook.
+- Matched server evaluation matrix across `legacy`, `direct_state` Koopman+MPC and `paper_lifted_edmd` Koopman+MPC.
+- Three trajectories: `step`, `sine` and `irregular`.
+- 9/9 logs validated with 1400 samples each.
+- Metrics summary generated and artifacts pulled back under `source/results/koopman_phase4/`.
+- Phase 4 summary, verification and Phase 4.5 PPO handoff documents written.
+
+Main result:
+
+```text
+legacy/Ssurface remains the strongest controller-only baseline.
+direct_state Koopman+MPC is runnable with bounded PWM but still has fallback/latency issues.
+paper_lifted_edmd is useful as a paper-style comparison backend, but current depth RMSE makes it unsuitable as the default Phase 4.5 low-level controller.
+```
+
+Current next action:
+
+```text
+Start Phase 4.5:
+  discover whether a PPO checkpoint exists on the Isaac server,
+  implement a PPO/RL reference adapter that cannot bypass Koopman+MPC,
+  run stub-policy smoke first,
+  then run checkpoint inference or short PPO training smoke depending on server artifacts.
 ```

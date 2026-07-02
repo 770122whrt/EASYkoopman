@@ -2,7 +2,7 @@
 phase: 04-evaluation-documentation-and-isaac-sim-runbook
 plan: 04
 subsystem: evaluation-documentation
-status: planned
+status: completed
 created: 2026-07-02
 tags: [evaluation, isaaclab, koopman-mpc, runbook, metrics]
 requires:
@@ -109,14 +109,14 @@ Phase 4 therefore freezes a controller-only baseline before Phase 4.5 adds PPO. 
 
 ## Acceptance Criteria
 
-- [ ] A Phase 4 run matrix names every expected controller/trajectory JSONL artifact.
-- [ ] Server commands are documented for legacy, direct-state Koopman+MPC and eligible paper-lifted Koopman+MPC.
-- [ ] Every generated JSONL log is validated before being included in the summary.
-- [ ] Local metrics aggregation runs without Isaac imports.
-- [ ] Metrics report includes sample count, depth RMSE, attitude error, control energy, PWM smoothness, fallback rate, latency stats and bounded PWM status.
-- [ ] Report explicitly states whether paper-lifted was included in three-way comparison or treated as diagnostic/failure analysis.
-- [ ] Runbook documents server environment activation, run commands, validation commands and artifact copy-back.
-- [ ] Summary defines the Phase 4.5 PPO baseline and does not claim PPO or LLM integration.
+- [x] A Phase 4 run matrix names every expected controller/trajectory JSONL artifact.
+- [x] Server commands are documented for legacy, direct-state Koopman+MPC and eligible paper-lifted Koopman+MPC.
+- [x] Every generated JSONL log is validated before being included in the summary.
+- [x] Local metrics aggregation runs without Isaac imports.
+- [x] Metrics report includes sample count, depth RMSE, attitude error, control energy, PWM smoothness, fallback rate, latency stats and bounded PWM status.
+- [x] Report explicitly states whether paper-lifted was included in three-way comparison or treated as diagnostic/failure analysis.
+- [x] Runbook documents server environment activation, run commands, validation commands and artifact copy-back.
+- [x] Summary defines the Phase 4.5 PPO baseline and does not claim PPO or LLM integration.
 
 ## Ambiguity Report
 

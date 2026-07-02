@@ -193,11 +193,13 @@ New-Item -ItemType Directory -Force "E:\code for project\Agentic AUV\EasyUUV\sou
 New-Item -ItemType Directory -Force "E:\code for project\Agentic AUV\EasyUUV\source\results\koopman_phase4\reports"
 
 scp -F "$env:USERPROFILE\.ssh\config" agentic-AUV:/root/EASYkoopman/source/results/koopman_phase4/data/*.jsonl `
-  "E:\code for project\Agentic AUV\EasyUUV\source\results\koopman_phase4\data\"
+  "E:\code for project\Agentic AUV\EasyUUV\source\results\koopman_phase4\data"
 
 scp -F "$env:USERPROFILE\.ssh\config" agentic-AUV:/root/EASYkoopman/source/results/koopman_phase4/reports/* `
-  "E:\code for project\Agentic AUV\EasyUUV\source\results\koopman_phase4\reports\"
+  "E:\code for project\Agentic AUV\EasyUUV\source\results\koopman_phase4\reports"
 ```
+
+注意：Windows `scp` 目标路径包含空格时，目标目录不要写尾部反斜杠，否则 OpenSSH 可能把结尾引号解析进路径。
 
 本地也可以重新生成 summary：
 
@@ -221,12 +223,25 @@ python workflows\summarize_phase4_evaluation.py `
 - 哪些结果只能说明 Isaac 仿真表现，不能说明真实硬件表现；
 - Phase 4.5 PPO 接入应该拿哪组 controller-only log 作为 baseline。
 
-## 11. 停止点
+## 11. 2026-07-02 已完成的一次基线结果
 
-当前本地开发只做到：
+本项目已经在 `agentic-AUV` 服务器完成一轮 Phase 4 基线评估：
 
 ```text
-metrics 工具 + runbook
+legacy, direct_state Koopman+MPC, paper_lifted Koopman+MPC
+step, sine, irregular
+9/9 logs validated
+1400 samples per log
+all PWM bounded
 ```
 
-下一步需要服务器执行 Isaac rollout。没有这些 Phase 4 JSONL，不能声明 Phase 4 controller evaluation 完成。
+结果摘要位于：
+
+```text
+.planning/phases/04-evaluation-documentation-and-isaac-sim-runbook/04-SUMMARY.md
+.planning/phases/04-evaluation-documentation-and-isaac-sim-runbook/04-VERIFICATION.md
+.planning/phases/04-evaluation-documentation-and-isaac-sim-runbook/04-PHASE45-HANDOFF.md
+source/results/koopman_phase4/reports/metrics_summary.md
+```
+
+当前结论是：`legacy/Ssurface` 仍是最稳的 controller-only baseline；`direct_state` Koopman+MPC 已闭环可用但 fallback/latency 需要优化；`paper_lifted_edmd` 已进入论文风格对比，但暂不适合作为 Phase 4.5 PPO 的默认底层控制器。
