@@ -71,6 +71,8 @@ def run_offline(args: argparse.Namespace) -> dict:
         )
 
     pwm_array = np.asarray(commands, dtype=float)
+    command_bounded = bool(np.min(pwm_array) >= -1.0 and np.max(pwm_array) <= 1.0)
+    latency_budget_met = bool(np.max(latencies) <= controller.config.timeout_ms) if latencies else True
     return {
         "manifest_path": str(args.manifest),
         "backend_used": runtime.backend_used,
@@ -85,6 +87,8 @@ def run_offline(args: argparse.Namespace) -> dict:
         "fallback_rate": float(fallback_count / len(samples)),
         "pwm_min": float(np.min(pwm_array)),
         "pwm_max": float(np.max(pwm_array)),
+        "command_bounded": command_bounded,
+        "latency_budget_met": latency_budget_met,
         "mean_tracking_cost": float(np.mean(costs)),
         "first_commands": commands[:5],
     }
