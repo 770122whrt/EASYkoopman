@@ -287,7 +287,7 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 
 **Execution:** Hybrid. Local work defines the adapter contract, source-compatible scripts and unit tests; server Isaac is required for PPO checkpoint discovery, short PPO inference smoke and any PPO retraining.
 
-**Requirement coverage:** RL-01, RL-02, RL-03, MPC-05, EVAL-03
+**Requirement coverage:** RL-01, RL-02, RL-03, RL-04, MPC-05, EVAL-03
 
 **Canonical refs:**
 - `workflows/train.py` - RSL-RL PPO training entrypoint.
@@ -299,22 +299,22 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 - `workflows/play_controller.py` - current controller-only Koopman+MPC smoke path.
 
 **Deliverables:**
-- Policy adapter contract that converts PPO output into either the existing 4D correction or a 5D Koopman reference.
+- Policy adapter contract named `heuristic_reference_delta_v0` that interprets PPO 4D output as a bounded reference delta and converts it into a 5D Koopman reference.
 - Inference workflow that can run `PPO -> Koopman+MPC -> 8D PWM` without allowing PPO to directly command thrusters.
 - Compatibility path for missing checkpoints: fail clearly, or run a smoke with a deterministic stub policy before training.
 - Optional short PPO retraining command set on Isaac Lab 2.2.1 if no usable checkpoint exists.
-- JSONL/CSV logs that record policy output, Koopman reference, MPC diagnostics, fallback usage and final PWM.
+- JSONL/CSV logs that record policy output, action semantics, evidence level, adapter quaternion convention, goal/reference matching error, Koopman reference, MPC diagnostics, fallback usage and final PWM.
 - Comparison note against controller-only Phase 4 results so instability can be attributed to policy, model or solver.
 
 **Verification:**
-- Local: adapter unit tests cover 4D correction, 5D reference conversion, clipping and non-finite input rejection.
+- Local: adapter unit tests cover `heuristic_reference_delta_v0`, 4D correction, 5D reference conversion, clipping, quaternion normalization and non-finite input rejection.
 - Local: scripts compile without Isaac imports where practical.
 - Server: PPO checkpoint discovery command reports whether a checkpoint exists under `logs/rsl_rl/easyuuv`.
 - Server: if a checkpoint exists, short one-env inference smoke runs `PPO -> Koopman+MPC`.
 - Server: if no checkpoint exists, a short PPO training smoke runs with small `num_envs` and `max_iterations` to prove the training path still works.
-- Server: resulting logs keep PWM bounded and include solver fallback/latency diagnostics.
+- Server: resulting logs keep PWM bounded and include solver fallback/latency diagnostics plus `ppo_evidence_level`.
 
-**Boundary:** PPO is a high-level policy layer. It must not bypass Koopman+MPC to send direct 8D PWM in this phase.
+**Boundary:** PPO is a high-level policy layer. It must not bypass Koopman+MPC to send direct 8D PWM in this phase. The first adapter is a guarded heuristic bridge, not proof that PPO's original legacy-controller action semantics are losslessly preserved.
 
 **Phase 4.5 plan artifacts:**
 - `.planning/phases/04.5-ppo-rl-reference-adapter-integration/04.5-SPEC.md`
@@ -322,7 +322,7 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 
 **Planning status:** Planned on 2026-07-03.
 
-**Planning decision:** Follow the control expert review: do not connect PPO by merely flipping `play_eval.py` to `controller_mode=koopman_mpc`. The first implementation must introduce an adapter that converts PPO's current 4D output into a bounded 5D Koopman reference/correction. Use `direct_state` as the default Koopman backend; keep `paper_lifted_edmd` research-only until its depth mismatch is diagnosed.
+**Planning decision:** Follow the control expert review and Phase 4.5 adapter review: do not connect PPO by merely flipping `play_eval.py` to `controller_mode=koopman_mpc`. The first implementation must introduce `heuristic_reference_delta_v0`, an adapter that treats PPO's current 4D output as a bounded reference delta under an explicit assumption, then converts it into a 5D Koopman reference/correction. Use `direct_state` as the default Koopman backend; keep `paper_lifted_edmd` research-only until its depth mismatch is diagnosed. Checkpoint inference is a guarded smoke under this adapter assumption, not a performance or semantic-equivalence claim.
 
 ## Phase 5: LLM Low-Frequency Planning And Tuning Interface
 

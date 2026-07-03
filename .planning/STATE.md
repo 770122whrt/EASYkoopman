@@ -1,6 +1,6 @@
 # Project State: EASYkoopman
 
-**Updated:** 2026-07-02
+**Updated:** 2026-07-03
 **Current focus:** Phase 4.5 - PPO/RL Reference Adapter Integration
 
 ## Project Reference
@@ -296,15 +296,17 @@ Locked Phase 4.5 decisions:
 1. PPO currently consumes 9D observation and emits 4D action/correction.
 2. Koopman+MPC consumes 11D state plus 5D reference and emits 8D PWM.
 3. A PPO-to-Koopman adapter is required; directly switching `play_eval.py` to `controller_mode=koopman_mpc` is not a valid integration.
-4. The first adapter mode is bounded 4D correction around a base 5D reference.
+4. The first adapter mode is exactly `heuristic_reference_delta_v0`: it treats PPO's legacy 4D action as a bounded reference delta under an explicit heuristic assumption.
 5. `direct_state` Koopman+MPC is the default low-level backend for Phase 4.5.
 6. `paper_lifted_edmd` remains research-only until the Phase 4 depth mismatch is diagnosed.
 7. The first server gate is `stub policy -> adapter -> direct_state Koopman+MPC -> 8D PWM`; checkpoint inference is attempted only if a PPO checkpoint exists.
+8. Checkpoint inference is only a guarded smoke unless logs include `ppo_evidence_level`, `action_semantics`, `adapter_quat_convention`, `base_reference_goal_match_max_error` and controller-swap distribution-shift notes.
 
 Current next action:
 
 ```text
 Execute Phase 4.5 Wave 1:
-  implement the local PPO reference adapter and adapter tests,
+  implement heuristic_reference_delta_v0 with action-semantics diagnostics,
+  verify base-reference/goal matching and per-step Koopman reference refresh,
   then add the stub-policy PPO+Koopman workflow before touching real checkpoints.
 ```

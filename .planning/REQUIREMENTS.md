@@ -66,8 +66,9 @@
 ### PPO/RL Reference Adapter
 
 - [ ] **RL-01**: PPO/RSL-RL policy 必须作为高层 reference 或 correction 生成器接入，不能直接输出或绕过到 8D PWM。
-- [ ] **RL-02**: 需要一个可离线测试的 adapter，将当前 PPO 4D action/correction 转换为 Koopman+MPC 可消费的 5D reference。
+- [ ] **RL-02**: 需要一个可离线测试的 `heuristic_reference_delta_v0` adapter，将当前 PPO 4D action/correction 作为有界 reference delta 转换为 Koopman+MPC 可消费的 5D reference，并明确这不是 PPO 原语义无损迁移声明。
 - [ ] **RL-03**: PPO checkpoint 缺失时必须有明确的 stub-policy 或 training-smoke 路径，不能把无 checkpoint 的结果伪装成 PPO inference。
+- [ ] **RL-04**: PPO/RL 接入日志必须记录 `ppo_evidence_level`（`stub_only`、`checkpoint_smoke`、`training_entrypoint_only` 或 `retrained_policy_smoke`）、`action_semantics`、`adapter_quat_convention`、`base_reference_goal_match_max_error` 和 `policy_action_clip_rate`，以区分 smoke、训练入口验证与真实性能结论。
 - [ ] **MPC-05**: Koopman+MPC 在 PPO 接入后仍必须记录 solver diagnostics、fallback、latency 和 bounded PWM 状态。
 - [ ] **EVAL-03**: PPO/RL 接入后的日志必须能与 Phase 4 controller-only baseline 对比，以区分 policy、adapter、MPC 和模型误差来源。
 
@@ -130,12 +131,13 @@
 | RL-01 | Phase 4.5 | Pending |
 | RL-02 | Phase 4.5 | Pending |
 | RL-03 | Phase 4.5 | Pending |
+| RL-04 | Phase 4.5 | Pending |
 | MPC-05 | Phase 4.5 | Pending |
 | EVAL-03 | Phase 4.5 | Pending |
 
 **Coverage:**
-- v1 requirements: 39 total
-- Mapped to phases: 39
+- v1 requirements: 40 total
+- Mapped to phases: 40
 - Unmapped: 0
 
 ---
