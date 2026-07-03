@@ -310,3 +310,35 @@ Execute Phase 4.5 Wave 1:
   verify base-reference/goal matching and per-step Koopman reference refresh,
   then add the stub-policy PPO+Koopman workflow before touching real checkpoints.
 ```
+
+## 2026-07-03 Phase 4.5 Local Implementation Note
+
+Phase 4.5 local implementation is now written on `isaaclab2-migration`.
+
+Implemented:
+
+- `heuristic_reference_delta_v0` policy adapter;
+- PPO/Koopman JSONL validator;
+- PPO checkpoint discovery CLI;
+- guarded `play_ppo_koopman.py` workflow;
+- source-contract tests for AppLauncher order, adapter mode, evidence levels, per-step reference refresh and direct-state manifest gate.
+
+Verified locally:
+
+```text
+Phase 4.5 tests: 21 passed
+Full pytest: 91 passed
+compileall: passed
+git diff --check: passed
+```
+
+Current next action:
+
+```text
+Package/upload this branch to the Isaac server, then run the stub-only smoke:
+  workflows/play_ppo_koopman.py --policy_mode stub --controller_mode koopman_mpc
+
+Only after that succeeds:
+  run discover_ppo_checkpoints.py --json,
+  then attempt checkpoint_smoke if a PPO checkpoint exists.
+```
