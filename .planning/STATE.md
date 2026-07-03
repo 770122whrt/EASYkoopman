@@ -342,3 +342,60 @@ Only after that succeeds:
   run discover_ppo_checkpoints.py --json,
   then attempt checkpoint_smoke if a PPO checkpoint exists.
 ```
+
+## 2026-07-03 Phase 4.5 Server Verification Note
+
+Phase 4.5 has now been validated on `agentic-AUV` with code synced from local commit `97025ed`.
+
+Additional local fix before final sync:
+
+```text
+fix(04.5): preflight checkpoint mode before Isaac startup
+```
+
+Reason:
+
+```text
+When no checkpoint existed, the old checkpoint mode started Isaac before discovering the missing checkpoint.
+The fixed workflow now exits before AppLauncher creates the Isaac app.
+```
+
+Verified after fix:
+
+```text
+server pytest: 92 passed
+server compileall: passed
+stub_only Isaac smoke: completed
+PPO/Koopman validator: OK, 350 samples
+checkpoint discovery: checkpoint_found=false, count=0
+missing checkpoint preflight: exit code 2 in 0 seconds, clear message
+```
+
+Stub smoke artifact:
+
+```text
+/root/EASYkoopman/source/results/koopman_phase4_5/stub_step_97025ed.jsonl
+```
+
+Stub smoke metrics:
+
+```text
+adapter_mode: heuristic_reference_delta_v0
+ppo_evidence_level: stub_only
+backend_used: direct_state
+pwm_min: -1.0
+pwm_max: 1.0
+policy_action_clip_rate_max: 0.0
+base_reference_goal_match_max_error_max: 0.0
+fallback_rate: 0.28
+latency_ms_mean: 11.87197584392769
+latency_ms_max: 12.386091984808445
+```
+
+Current boundary:
+
+```text
+Phase 4.5 proves the adapter/control chain can run in Isaac with stub policy.
+It does not prove PPO performance because no PPO checkpoint exists on the server.
+Fallback and latency remain known direct_state Koopman+MPC limitations for the next optimization phase.
+```
