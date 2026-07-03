@@ -63,6 +63,14 @@
 - [ ] **DOC-01**: 文档说明当前架构、目标架构、阶段计划、运行命令和已知限制。
 - [ ] **DOC-02**: 文档明确哪些事实已由代码验证，哪些仍为待确认项。
 
+### PPO/RL Reference Adapter
+
+- [ ] **RL-01**: PPO/RSL-RL policy 必须作为高层 reference 或 correction 生成器接入，不能直接输出或绕过到 8D PWM。
+- [ ] **RL-02**: 需要一个可离线测试的 adapter，将当前 PPO 4D action/correction 转换为 Koopman+MPC 可消费的 5D reference。
+- [ ] **RL-03**: PPO checkpoint 缺失时必须有明确的 stub-policy 或 training-smoke 路径，不能把无 checkpoint 的结果伪装成 PPO inference。
+- [ ] **MPC-05**: Koopman+MPC 在 PPO 接入后仍必须记录 solver diagnostics、fallback、latency 和 bounded PWM 状态。
+- [ ] **EVAL-03**: PPO/RL 接入后的日志必须能与 Phase 4 controller-only baseline 对比，以区分 policy、adapter、MPC 和模型误差来源。
+
 ## v2 Requirements
 
 ### Online Adaptation And Sim2Real
@@ -119,12 +127,17 @@
 | EVAL-02 | Phase 4 | Pending |
 | DOC-01 | Phase 4 | Pending |
 | DOC-02 | Phase 4 | Pending |
+| RL-01 | Phase 4.5 | Pending |
+| RL-02 | Phase 4.5 | Pending |
+| RL-03 | Phase 4.5 | Pending |
+| MPC-05 | Phase 4.5 | Pending |
+| EVAL-03 | Phase 4.5 | Pending |
 
 **Coverage:**
-- v1 requirements: 34 total
-- Mapped to phases: 34
+- v1 requirements: 39 total
+- Mapped to phases: 39
 - Unmapped: 0
 
 ---
 *Requirements defined: 2026-06-10*
-*Last updated: 2026-07-02 after Phase 3.5 paper-style lifted EDMD planning insertion*
+*Last updated: 2026-07-03 after Phase 4.5 PPO/RL reference adapter planning*

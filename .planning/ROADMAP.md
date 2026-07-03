@@ -316,6 +316,14 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 
 **Boundary:** PPO is a high-level policy layer. It must not bypass Koopman+MPC to send direct 8D PWM in this phase.
 
+**Phase 4.5 plan artifacts:**
+- `.planning/phases/04.5-ppo-rl-reference-adapter-integration/04.5-SPEC.md`
+- `.planning/phases/04.5-ppo-rl-reference-adapter-integration/04.5-PLAN.md`
+
+**Planning status:** Planned on 2026-07-03.
+
+**Planning decision:** Follow the control expert review: do not connect PPO by merely flipping `play_eval.py` to `controller_mode=koopman_mpc`. The first implementation must introduce an adapter that converts PPO's current 4D output into a bounded 5D Koopman reference/correction. Use `direct_state` as the default Koopman backend; keep `paper_lifted_edmd` research-only until its depth mismatch is diagnosed.
+
 ## Phase 5: LLM Low-Frequency Planning And Tuning Interface
 
 **Goal:** Add a low-frequency LLM supervisor that analyzes task intent, logs and controller metrics, then proposes reference plans or safe tuning suggestions without entering the real-time control loop.
