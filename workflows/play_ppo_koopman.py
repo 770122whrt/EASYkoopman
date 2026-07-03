@@ -18,6 +18,7 @@ if PROJECT_ROOT not in sys.path:
 from isaaclab_app import AppLauncher
 
 import cli_args
+from discover_ppo_checkpoints import discover_ppo_checkpoints
 
 
 parser = argparse.ArgumentParser(description="Run PPO/RL through a guarded Koopman MPC reference adapter.")
@@ -74,6 +75,41 @@ cli_args.add_rsl_rl_args(parser)
 AppLauncher.add_app_launcher_args(parser)
 args_cli = parser.parse_args()
 
+
+def preflight_policy_mode(args_cli):
+    if args_cli.policy_mode == "stub":
+        return None, {"checkpoint_found": False, "paths": []}
+    if args_cli.policy_mode == "training_smoke":
+        print(
+            "training_smoke is a training-entrypoint verification path. Run workflows/train.py with a small "
+            "--max_iterations value, then rerun this workflow with --policy_mode checkpoint.",
+            file=sys.stderr,
+        )
+        raise SystemExit(2)
+    if args_cli.play_checkpoint:
+        checkpoint_path = args_cli.play_checkpoint
+        return checkpoint_path, {
+            "checkpoint_found": True,
+            "paths": [checkpoint_path],
+            "selected_checkpoint": checkpoint_path,
+        }
+
+    discovery = discover_ppo_checkpoints()
+    if discovery["paths"]:
+        discovery["selected_checkpoint"] = discovery["paths"][0]
+        return discovery["paths"][0], discovery
+    if args_cli.allow_stub_fallback:
+        return None, discovery
+    print(
+        "No PPO checkpoint found before Isaac app startup. Use --policy_mode stub, pass --play_checkpoint, "
+        "or add --allow_stub_fallback.",
+        file=sys.stderr,
+    )
+    raise SystemExit(2)
+
+
+PREFLIGHT_CHECKPOINT_PATH, PREFLIGHT_CHECKPOINT_INFO = preflight_policy_mode(args_cli)
+
 app_launcher = AppLauncher(args_cli)
 simulation_app = app_launcher.app
 log_stage("Isaac app started; importing post-app modules")
@@ -82,7 +118,6 @@ import gymnasium as gym
 import numpy as np
 import torch
 
-from discover_ppo_checkpoints import discover_ppo_checkpoints
 from easyuuv_env import EasyUUVEnvCfg
 from easyuuv_task_registration import register_easyuuv_task
 from isaaclab_compat import RslRlVecEnvWrapper, euler_xyz_from_quat, quat_from_euler_xyz
@@ -249,16 +284,7 @@ def first_solver_diagnostics(env) -> dict:
 
 
 def resolve_checkpoint_path() -> tuple[str | None, dict]:
-    if args_cli.play_checkpoint:
-        return args_cli.play_checkpoint, {"checkpoint_found": True, "paths": [args_cli.play_checkpoint]}
-    discovery = discover_ppo_checkpoints()
-    if discovery["paths"]:
-        return discovery["paths"][0], discovery
-    if args_cli.allow_stub_fallback:
-        return None, discovery
-    raise FileNotFoundError(
-        "No PPO checkpoint found. Use --policy_mode stub, pass --play_checkpoint, or add --allow_stub_fallback."
-    )
+    return PREFLIGHT_CHECKPOINT_PATH, dict(PREFLIGHT_CHECKPOINT_INFO)
 
 
 def prepare_policy(env):

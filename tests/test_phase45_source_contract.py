@@ -15,6 +15,14 @@ def test_ppo_koopman_workflow_preserves_app_launcher_import_order():
     )
 
 
+def test_ppo_koopman_workflow_preflights_checkpoint_before_isaac_app_start():
+    source = (PROJECT_ROOT / "workflows" / "play_ppo_koopman.py").read_text(encoding="utf-8")
+
+    assert "preflight_policy_mode(args_cli)" in source
+    assert source.index("preflight_policy_mode(args_cli)") < source.index("app_launcher = AppLauncher(args_cli)")
+    assert "No PPO checkpoint found before Isaac app startup" in source
+
+
 def test_ppo_koopman_workflow_declares_guarded_adapter_contract():
     source = (PROJECT_ROOT / "workflows" / "play_ppo_koopman.py").read_text(encoding="utf-8")
 
