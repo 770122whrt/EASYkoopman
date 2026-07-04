@@ -1,7 +1,7 @@
 # Project State: EASYkoopman
 
 **Updated:** 2026-07-03
-**Current focus:** Phase 4.5 - PPO/RL Reference Adapter Integration
+**Current focus:** Phase 4.6 PPO checkpoint evidence gate, then Phase 5 Koopman-MPC PPO retraining
 
 ## Project Reference
 
@@ -37,6 +37,9 @@ See: `.planning/PROJECT.md`
 | 2026-06-30 | 插入 Phase 2.5 做 Koopman prediction quality gate | 防止在模型只拟合训练数据时过早接 MPC |
 | 2026-07-01 | Phase 2.5 升级为 Offline Koopman Model Qualification Gate | recommendations 文档要求 paper-style lifted EDMD、baseline comparison、normalization、gate report 和 held-out test |
 | 2026-06-30 | 多环境数据不是第一优先级 | 当前 logger 主要记录单 env；先用多轨迹、多次运行和不同初始条件覆盖数据多样性 |
+| 2026-07-03 | Koopman-MPC 需要自己的 PPO checkpoint | 旧 PPO checkpoint 是 legacy controller 下的策略，低层控制器变更后 MDP 已经变化 |
+| 2026-07-03 | 不手写 PPO 算法，复用 RSL-RL PPO | 需要改变训练闭环和证据记录，不需要重写成熟 PPO 实现 |
+| 2026-07-03 | Phase 5 改为 Koopman-MPC PPO retraining，LLM 后移 | 先训练新控制链路下的 PPO，再让 LLM 做低频规划或调参 |
 
 ## Blockers And Risks
 
@@ -50,15 +53,14 @@ See: `.planning/PROJECT.md`
 
 ## Next Action
 
-执行 Phase 2.5:
+执行 PPO 阶段的新主线:
 
-1. 增加 log-level train/validation/test split manifest，禁止 row-level split。
-2. 新增 paper-style lifted-space EDMD candidate，同时保留 direct-state predictor baseline。
-3. 增加 persistence 和 simple linear baselines。
-4. 增加 normalization-aware ridge/lifting candidate sweep。
-5. 增加 multi-horizon held-out evaluation 和 rollout divergence 指标。
-6. 增加 selected model manifest 和 gate report，作为 Phase 3 MPC 的输入 gate。
-7. 在服务器采集并验证 step、sine、irregular 长日志。
+1. 完成 Phase 4.6：修复 PPO/RSL-RL train、checkpoint generation、checkpoint discovery 和 legacy checkpoint loading。
+2. 用 Phase 4.6 证明旧 checkpoint 只能作为 `legacy_ppo_baseline` 或 `old_checkpoint_adapter_smoke`。
+3. 进入 Phase 5：训练 `retrained_ppo_koopman_mpc`，也就是 Koopman-MPC 闭环下自己的 PPO checkpoint。
+4. Phase 5 第一版继续复用 RSL-RL PPO，保持 9D observation 和 4D action。
+5. Phase 5 必须证明训练 loop 中存在 `policy_output_4d -> heuristic_reference_delta_v0 -> _koopman_reference_5d refresh -> env.step(action_4d)`。
+6. LLM 阶段后移到 Phase 6，只做低频任务规划/调参，不进入实时控制。
 
 ## 2026-07-01 Phase 2.5 Local Implementation Note
 
@@ -398,4 +400,126 @@ Current boundary:
 Phase 4.5 proves the adapter/control chain can run in Isaac with stub policy.
 It does not prove PPO performance because no PPO checkpoint exists on the server.
 Fallback and latency remain known direct_state Koopman+MPC limitations for the next optimization phase.
+```
+
+## 2026-07-03 Phase 4.6 Planning Note
+
+Phase 4.6 planning is now created in:
+
+- `.planning/phases/04.6-ppo-training-entrypoint-and-checkpoint-evidence-gate/04.6-SPEC.md`
+- `.planning/phases/04.6-ppo-training-entrypoint-and-checkpoint-evidence-gate/04.6-PLAN.md`
+- `docs/phase4_6_ppo_training_checkpoint_gate.md`
+
+Locked Phase 4.6 decisions:
+
+1. Phase 4.6 is a PPO training/checkpoint evidence gate, not a PPO performance phase.
+2. PPO observation remains 9D and PPO action remains 4D.
+3. `--max_iterations 1` is only a training entrypoint smoke because current `save_interval=50` may not write a checkpoint.
+4. Checkpoint generation must use `save_interval=1`, explicit final save or enough iterations to trigger saving.
+5. `legacy_ppo_baseline` is a `result_bucket`, not a `ppo_evidence_level`; current evidence levels remain `stub_only`, `checkpoint_smoke`, `training_entrypoint_only` and `retrained_policy_smoke`.
+6. Old checkpoints routed through Koopman+MPC are labeled `old_checkpoint_adapter_smoke`, not semantically migrated policies.
+7. A true Koopman-MPC retraining claim requires `policy_output_4d -> heuristic_reference_delta_v0 -> _koopman_reference_5d refresh -> env.step(policy_output_4d)` inside training; this is Phase 5's main implementation target.
+8. Reward defaults to `reward_profile=legacy_easyuuv_v0`; reward changes are out of Phase 4.6 unless versioned separately.
+9. Checkpoint discovery must output `selected_checkpoint` and `selected_rule`.
+10. Legacy PPO baseline requires a summary sidecar if the legacy JSONL does not contain all evidence fields.
+11. Results must be separated into `legacy_ppo_baseline`, `old_checkpoint_adapter_smoke` and the Phase 5 target bucket `retrained_ppo_koopman_mpc`.
+12. No Phase 4.6 summary may claim PPO convergence, superiority or completion of Koopman-MPC-specific PPO training.
+
+Current next action:
+
+```text
+Execute Phase 4.6 Wave 1:
+  migrate workflows/train.py to Isaac Lab 2.2.1 compatibility,
+  run a one-env one-iteration PPO training entrypoint smoke on agentic-AUV,
+  then run a separate checkpoint generation smoke with an explicit save policy.
+
+After Phase 4.6:
+  execute Phase 5 to train the Koopman-MPC-specific PPO checkpoint.
+```
+
+## 2026-07-03 Phase 5 PPO Strategy Planning Note
+
+Phase 5 planning is now created in:
+
+- `.planning/phases/05-koopman-mpc-ppo-retraining/05-SPEC.md`
+- `.planning/phases/05-koopman-mpc-ppo-retraining/05-PLAN.md`
+- `docs/phase5_koopman_mpc_ppo_training_strategy.md`
+
+Locked Phase 5 decisions:
+
+1. Koopman-MPC needs its own PPO checkpoint trained under the new low-level control path.
+2. Same USD asset does not mean the old PPO checkpoint remains valid, because the controller-induced transition dynamics changed.
+3. RSL-RL remains the PPO implementation. We are not hand-writing PPO.
+4. First pass keeps EasyUUV PPO observation at 9D and action at 4D.
+5. First pass keeps `reward_profile=legacy_easyuuv_v0`.
+6. First pass uses `direct_state` Koopman+MPC, not `paper_lifted_edmd`.
+7. The training path must refresh the 5D Koopman reference through `heuristic_reference_delta_v0` before every environment step.
+8. `controller_mode=koopman_mpc` alone is not a valid PPO retraining integration.
+9. Initial evidence level is `ppo_evidence_level=retrained_policy_smoke`.
+10. Phase 5 may prove a retrained checkpoint can be generated and loaded, but it must not claim convergence or superiority without later long evaluation.
+
+Phase order is now:
+
+```text
+Phase 4.6:
+  restore PPO/RSL-RL checkpoint evidence
+
+Phase 5:
+  train Koopman-MPC-specific PPO
+
+Phase 6:
+  add low-frequency LLM planning/tuning
+```
+
+## 2026-07-04 Phase 4.6 Local Implementation Note
+
+Phase 4.6 local implementation is now written on `isaaclab2-migration`.
+
+Implemented locally:
+
+- Isaac Lab 2 compatible `workflows/train.py`;
+- `--save_interval` checkpoint smoke override;
+- Phase 4.6 training summary writer;
+- deterministic checkpoint discovery with `selected_checkpoint` and `selected_rule`;
+- Isaac Lab 2 compatible `workflows/play_eval.py` legacy PPO baseline path;
+- Phase 4.6 legacy PPO sidecar summary;
+- Isaac Lab 2 compatible `workflows/gen_policy.py`;
+- old-checkpoint adapter metadata in `workflows/play_ppo_koopman.py`;
+- local source-contract tests in `tests/test_phase46_source_contract.py`.
+
+Verified locally:
+
+```text
+targeted Phase 4.6 tests: passed
+compileall: passed
+full pytest: 100 passed
+git diff --check: passed with CRLF warnings only
+```
+
+Server verification completed on `agentic-AUV`:
+
+```text
+server pytest: 102 passed
+server compileall: passed
+training entrypoint smoke: passed
+checkpoint generation smoke: passed
+checkpoint discovery: checkpoint_found=true
+selected_checkpoint: /root/IsaacLab/logs/rsl_rl/easyuuv/2026-07-04_12-01-58/model_0.pt
+legacy PPO baseline smoke: 2 validated samples
+old-checkpoint adapter smoke: 2 validated samples
+```
+
+Server fixes made during verification:
+
+```text
+parse_env_cfg now uses the Isaac Lab 2.2 device= signature.
+play_eval.py now skips policy export unless --export_policy is passed.
+```
+
+Current next action:
+
+```text
+Start Phase 5:
+  train the Koopman-MPC-specific PPO checkpoint with heuristic_reference_delta_v0
+  inside the training loop before env.step(action_4d).
 ```

@@ -91,7 +91,7 @@ Phase 4 therefore freezes a controller-only baseline before Phase 4.5 adds PPO. 
 **Out of scope:**
 
 - PPO training or inference - Phase 4.5 owns PPO/RL reconnection.
-- LLM planning or tuning - Phase 5 owns LLM supervision.
+- LLM planning or tuning - Phase 6 owns LLM supervision after Koopman-MPC PPO retraining.
 - Online Kalman/RLS adaptation - Phase 6 owns online model adaptation.
 - Changing thruster, hydrodynamics or USD assets - Phase 4 evaluates existing behavior.
 - Replacing the MPC solver - Phase 4 may tune command-line weights for experiments only if explicitly recorded.

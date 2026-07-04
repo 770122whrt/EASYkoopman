@@ -70,6 +70,7 @@ parser.add_argument("--adapter_rpy_delta_scale", type=float, default=0.35, help=
 parser.add_argument("--adapter_depth_delta_scale", type=float, default=0.5, help="Adapter depth delta scale.")
 parser.add_argument("--adapter_depth_min", type=float, default=-3.0, help="Minimum adapted depth reference.")
 parser.add_argument("--adapter_depth_max", type=float, default=3.0, help="Maximum adapted depth reference.")
+parser.add_argument("--result_bucket", type=str, default=None, help="Evidence result bucket label.")
 
 cli_args.add_rsl_rl_args(parser)
 AppLauncher.add_app_launcher_args(parser)
@@ -88,16 +89,11 @@ def preflight_policy_mode(args_cli):
         raise SystemExit(2)
     if args_cli.play_checkpoint:
         checkpoint_path = args_cli.play_checkpoint
-        return checkpoint_path, {
-            "checkpoint_found": True,
-            "paths": [checkpoint_path],
-            "selected_checkpoint": checkpoint_path,
-        }
+        return checkpoint_path, discover_ppo_checkpoints(explicit_checkpoint=checkpoint_path)
 
     discovery = discover_ppo_checkpoints()
-    if discovery["paths"]:
-        discovery["selected_checkpoint"] = discovery["paths"][0]
-        return discovery["paths"][0], discovery
+    if discovery["selected_checkpoint"]:
+        return discovery["selected_checkpoint"], discovery
     if args_cli.allow_stub_fallback:
         return None, discovery
     print(
@@ -287,6 +283,14 @@ def resolve_checkpoint_path() -> tuple[str | None, dict]:
     return PREFLIGHT_CHECKPOINT_PATH, dict(PREFLIGHT_CHECKPOINT_INFO)
 
 
+def resolve_result_bucket(policy_mode_used: str) -> str:
+    if args_cli.result_bucket:
+        return args_cli.result_bucket
+    if policy_mode_used == "checkpoint":
+        return "old_checkpoint_adapter_smoke"
+    return "stub_policy_adapter_smoke"
+
+
 def prepare_policy(env):
     if args_cli.policy_mode == "stub":
         return env, StubPolicy(), "stub", "stub_only", {"checkpoint_found": False, "paths": []}
@@ -396,8 +400,11 @@ def main():
             sample.update(
                 {
                     "policy_mode": policy_mode_used,
+                    "result_bucket": resolve_result_bucket(policy_mode_used),
                     "checkpoint_found": bool(checkpoint_info.get("checkpoint_found")),
                     "checkpoint_path": checkpoint_info.get("selected_checkpoint"),
+                    "selected_checkpoint": checkpoint_info.get("selected_checkpoint"),
+                    "selected_rule": checkpoint_info.get("selected_rule"),
                     "policy_output": adapter_output.diagnostics.get("raw_policy_output", None)
                     or policy_action.detach().cpu().reshape(-1).tolist(),
                     "policy_output_clipped": adapter_output.policy_output_4d_clipped,

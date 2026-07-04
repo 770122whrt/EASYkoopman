@@ -21,7 +21,7 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 
 **Original next step after Phase 3.5:** Phase 4 evaluation, documentation and Isaac Sim runbook. This would compare legacy control, direct-state Koopman+MPC and paper-style lifted EDMD Koopman+MPC before adding higher-level intelligence.
 
-**Updated next coding target:** Phase 4.5 PPO/RL reference adapter, after preserving enough Phase 4 smoke/evaluation evidence to avoid mixing controller defects with policy defects. The roadmap now makes PPO integration explicit before the LLM tuning layer.
+**Updated next coding target:** Phase 4.6 PPO training entrypoint and checkpoint evidence gate, followed by Phase 5 Koopman-MPC PPO retraining. Phase 4.5 proved the adapter/control chain with a stub policy, but no PPO checkpoint existed on the server. Phase 4.6 restores checkpoint evidence; Phase 5 trains the PPO policy that actually belongs to the Koopman-MPC closed loop. LLM integration moves after that.
 
 ## Phase 1: Baseline Data And Controller Boundary
 
@@ -322,9 +322,123 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 
 **Planning status:** Planned on 2026-07-03.
 
+**Completion status:** Complete on 2026-07-04.
+
+**Completion evidence:**
+- Local pytest: `100 passed`.
+- Local compileall: passed.
+- Local diff hygiene: `git diff --check` passed with CRLF warnings only.
+- Server pytest: `102 passed`.
+- Server compileall: passed.
+- Server training entrypoint smoke: passed.
+- Server checkpoint generation smoke: produced `/root/IsaacLab/logs/rsl_rl/easyuuv/2026-07-04_12-01-58/model_0.pt`.
+- Server checkpoint discovery: `checkpoint_found=true`, `selected_rule=latest_mtime_model_pt`.
+- Server legacy PPO baseline smoke: `OK: 2 samples`, `controller_modes=legacy/Ssurface`.
+- Server old-checkpoint adapter smoke: `OK: 2 PPO/Koopman samples`, `adapter_modes=heuristic_reference_delta_v0`, `backend_used=direct_state`.
+
+**Phase 4.6 result boundary:** PPO/RSL-RL checkpoint evidence is restored under Isaac Lab 2.2.1. The generated one-iteration checkpoint is only checkpoint smoke evidence; it does not prove PPO convergence or Koopman-MPC PPO performance. Phase 5 must train the Koopman-MPC-specific PPO policy.
+
 **Planning decision:** Follow the control expert review and Phase 4.5 adapter review: do not connect PPO by merely flipping `play_eval.py` to `controller_mode=koopman_mpc`. The first implementation must introduce `heuristic_reference_delta_v0`, an adapter that treats PPO's current 4D output as a bounded reference delta under an explicit assumption, then converts it into a 5D Koopman reference/correction. Use `direct_state` as the default Koopman backend; keep `paper_lifted_edmd` research-only until its depth mismatch is diagnosed. Checkpoint inference is a guarded smoke under this adapter assumption, not a performance or semantic-equivalence claim.
 
-## Phase 5: LLM Low-Frequency Planning And Tuning Interface
+**Completion status:** Complete on 2026-07-03.
+
+**Completion evidence:**
+- Local tests: `python -m pytest -q` -> 92 passed.
+- Local compile: `python -m compileall __init__.py easyuuv_env.py koopman workflows tests` -> passed.
+- Server tests: `/opt/conda/envs/isaaclab/bin/python -m pytest -q` -> 92 passed.
+- Server compile: passed.
+- Server Isaac stub smoke: `stub policy -> heuristic_reference_delta_v0 -> direct_state Koopman+MPC -> 8D PWM` completed with 350 validated samples.
+- Checkpoint discovery: `checkpoint_found=false`, `count=0`.
+- Missing checkpoint mode exits before Isaac startup with exit code 2 and a clear message.
+
+**Phase 4.5 result boundary:** Adapter plumbing is verified with a stub policy. PPO performance is not verified because no PPO checkpoint exists on the server.
+
+## Phase 4.6: PPO Training Entrypoint And Checkpoint Evidence Gate
+
+**Goal:** Restore the PPO/RSL-RL training, checkpoint generation, checkpoint discovery and checkpoint loading workflow under Isaac Lab 2.2.1, while keeping all PPO claims evidence-labeled and separated from Koopman+MPC performance claims. This phase is the evidence bridge into Phase 5; it is not a substitute for training a Koopman-MPC-specific PPO policy.
+
+**Execution:** Hybrid. Local work writes source-contract tests, migrates train/eval/export entrypoints and updates docs; server Isaac is required for the short training smoke, checkpoint creation and checkpoint loading.
+
+**Requirement coverage:** COMPAT-04, RL-03, RL-04, MPC-05, EVAL-03
+
+**Canonical refs:**
+- `.planning/phases/04.6-ppo-training-entrypoint-and-checkpoint-evidence-gate/04.6-SPEC.md`
+- `.planning/phases/04.6-ppo-training-entrypoint-and-checkpoint-evidence-gate/04.6-PLAN.md`
+- `docs/phase4_6_ppo_training_checkpoint_gate.md`
+- `workflows/train.py` - RSL-RL PPO training entrypoint to migrate.
+- `workflows/play_eval.py` and `workflows/gen_policy.py` - checkpoint loading/export paths.
+- `workflows/discover_ppo_checkpoints.py` - checkpoint discovery gate.
+- `workflows/play_ppo_koopman.py` - guarded old-checkpoint adapter smoke path.
+- `agents/rsl_rl_ppo_cfg.py` - PPO runner configuration.
+- `easyuuv_env.py` - 9D observation, 4D action, legacy controller and Koopman-MPC controller path.
+
+**Deliverables:**
+- Isaac Lab 2.2.1 compatible PPO training entrypoint smoke command.
+- Separate checkpoint generation smoke using `save_interval=1`, explicit final save or enough iterations to trigger saving.
+- Checkpoint discovery report with `selected_checkpoint` and `selected_rule`.
+- Legacy PPO baseline smoke using `legacy/Ssurface`.
+- Legacy PPO baseline summary sidecar with `result_bucket=legacy_ppo_baseline` and `ppo_evidence_level=checkpoint_smoke`.
+- Old-checkpoint adapter smoke through `heuristic_reference_delta_v0` only when a checkpoint exists.
+- Phase 5 Koopman-MPC PPO retraining handoff contract proving adapter reference refresh must be in the training loop before any retrained-policy claim.
+- Summary that separates `legacy_ppo_baseline`, `old_checkpoint_adapter_smoke` and `retrained_ppo_koopman_mpc`.
+
+**Verification:**
+- Local: source-contract tests cover AppLauncher order, Isaac Lab 2 import paths, checkpoint discovery behavior and evidence-level labels.
+- Local: `python -m pytest -q`, compileall and `git diff --check` pass.
+- Server: `workflows/train.py --num_envs 1 --max_iterations 1 --headless` starts as `training_entrypoint_only`; this does not require checkpoint generation.
+- Server: checkpoint generation uses an explicit save policy and produces at least one `model_*.pt`.
+- Server: checkpoint discovery reports `checkpoint_found=true`, `selected_checkpoint` and `selected_rule` after successful checkpoint generation.
+- Server: generated checkpoint loads through legacy PPO eval/export.
+- Server: optional old-checkpoint adapter smoke logs `ppo_evidence_level=checkpoint_smoke` and `result_bucket=old_checkpoint_adapter_smoke`.
+
+**Boundary:** Phase 4.6 restores checkpoint evidence. It does not claim PPO convergence, PPO superiority over legacy, lossless migration of old PPO semantics to Koopman+MPC, or completion of the required Koopman-MPC-specific PPO training. That training is Phase 5.
+
+**Phase 4.6 plan artifacts:**
+- `.planning/phases/04.6-ppo-training-entrypoint-and-checkpoint-evidence-gate/04.6-SPEC.md`
+- `.planning/phases/04.6-ppo-training-entrypoint-and-checkpoint-evidence-gate/04.6-PLAN.md`
+- `docs/phase4_6_ppo_training_checkpoint_gate.md`
+
+**Planning status:** Planned on 2026-07-03.
+
+## Phase 5: Koopman-MPC PPO Retraining And Evaluation
+
+**Goal:** Train a new PPO policy whose training-time transition dynamics include `heuristic_reference_delta_v0` and the Koopman-MPC low-level controller. This is the required PPO for the Koopman-MPC architecture; old EASYUUV PPO checkpoints remain baselines or smoke tests only.
+
+**Execution:** Hybrid. Local work defines the training wrapper, evidence schema, config profile and source-contract tests. Server Isaac is required for every real training run and policy evaluation.
+
+**Requirement coverage:** RL-01, RL-02, RL-03, RL-04, MPC-05, EVAL-03
+
+**Canonical refs:**
+- `.planning/phases/05-koopman-mpc-ppo-retraining/05-SPEC.md`
+- `.planning/phases/05-koopman-mpc-ppo-retraining/05-PLAN.md`
+- `docs/phase5_koopman_mpc_ppo_training_strategy.md`
+- `workflows/train.py` - restored RSL-RL training baseline from Phase 4.6.
+- `workflows/play_ppo_koopman.py` - Phase 4.5 inference adapter path.
+- `koopman/policy_adapter.py` - `heuristic_reference_delta_v0`.
+- `easyuuv_env.py` - 9D observation, 4D action and Koopman-MPC controller path.
+- `agents/rsl_rl_ppo_cfg.py` - PPO runner defaults to reuse rather than rewriting PPO.
+
+**Deliverables:**
+- Koopman-MPC PPO training wrapper or environment hook where each policy action refreshes the 5D Koopman reference before `env.step`.
+- Dedicated training command, for example `workflows/train_ppo_koopman.py`, that uses RSL-RL PPO and does not hand-roll PPO.
+- Training summary that labels `result_bucket=retrained_ppo_koopman_mpc`, `ppo_evidence_level=retrained_policy_smoke` for short smoke or stronger labels only after later evidence exists.
+- Checkpoint output and discovery path for the newly trained Koopman-MPC PPO checkpoint.
+- Evaluation command comparing `legacy_ppo_baseline`, pure `koopman_mpc`, old-checkpoint adapter smoke and retrained Koopman-MPC PPO.
+- Logging of action clipping, adapter reference, fallback rate, solver latency, PWM bounds and reward profile.
+- Clear reward-profile versioning. The first pass should keep `legacy_easyuuv_v0` unless a new reward is deliberately versioned.
+
+**Verification:**
+- Local: source-contract test proves `policy_output_4d -> heuristic_reference_delta_v0 -> _koopman_reference_5d refresh -> env.step(action_4d)` is the training path.
+- Local: PPO observation remains 9D and action remains 4D unless a later spec changes them.
+- Local: scripts compile without requiring Isaac imports before `AppLauncher`.
+- Server: one-env short training smoke starts under Isaac Lab 2.2.1 and writes a checkpoint under the Koopman-MPC PPO result bucket.
+- Server: checkpoint discovery reports the retrained checkpoint with `selected_checkpoint` and deterministic `selected_rule`.
+- Server: short evaluation loads the retrained checkpoint and runs `PPO -> adapter -> Koopman+MPC -> PWM` with bounded PWM.
+- Server: summary compares fallback/latency/action statistics against Phase 4.5 stub and Phase 4.6 legacy PPO baseline.
+
+**Boundary:** Phase 5 trains and smokes the required Koopman-MPC-specific PPO policy. It may report early training/evaluation evidence, but it still must not claim superiority, convergence or deployability until longer matched evaluations prove those claims.
+
+## Phase 6: LLM Low-Frequency Planning And Tuning Interface
 
 **Goal:** Add a low-frequency LLM supervisor that analyzes task intent, logs and controller metrics, then proposes reference plans or safe tuning suggestions without entering the real-time control loop.
 
@@ -335,7 +449,7 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 **Canonical refs:**
 - `docs/koopman_mpc_migration_plan.md` - layered EasyUUV interpretation: PPO high-level policy, low-level controller, LLM tuning outside real-time control.
 - External EasyUUV deployment repository - hardware-side LLM configuration pattern (`enable_LLM`, API endpoint, prompt file and main process).
-- Phase 4/4.5 logs - metrics consumed by the LLM supervisor.
+- Phase 4/4.5/4.6/5 logs - metrics consumed by the LLM supervisor.
 
 **Deliverables:**
 - LLM interface contract for reading experiment summaries and proposing bounded tuning changes.
@@ -346,12 +460,12 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 
 **Verification:**
 - Local: schema validation rejects direct PWM commands, real-time loop calls and unsafe parameter ranges.
-- Local: dry-run recommendation can be generated from saved Phase 4/4.5 logs.
+- Local: dry-run recommendation can be generated from saved Phase 4/4.5/4.6/5 logs.
 - Server: optional approved-tuning smoke produces comparable logs without increasing fallback rate beyond the accepted threshold.
 
 **Boundary:** LLM is a low-frequency supervisor. It may propose task plans, references or tuning parameters, but it must not directly control `env.step()`, PPO actions or 8D PWM.
 
-## Phase 6: Online Adaptation And Sim2Real Readiness
+## Phase 7: Online Adaptation And Sim2Real Readiness
 
 **Goal:** Prepare the controller for model drift and eventual real-world data adaptation.
 
@@ -365,7 +479,7 @@ This roadmap separates local development from Isaac Sim/Lab validation because t
 - Kalman or RLS online update design.
 - Real log replay format.
 - 6-DOF/8D PWM expansion plan.
-- Integration notes for how online adaptation interacts with the Phase 5 LLM tuning supervisor.
+- Integration notes for how online adaptation interacts with the Phase 6 LLM tuning supervisor.
 
 **Verification:**
 - Online update can be replayed offline without destabilizing the saved model.
