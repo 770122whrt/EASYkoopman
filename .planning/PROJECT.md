@@ -2,13 +2,51 @@
 
 ## What This Is
 
-EASYkoopman is an EasyUUV/Isaac research project for learning and controlling underwater-vehicle dynamics with Koopman models, model-predictive control and a higher-level PPO policy.
+EASYkoopman is an EasyUUV/Isaac research project for learning and controlling underwater-vehicle dynamics with Koopman models, model-predictive control and bounded higher-level supervisors.
 
-Milestone v1.0 established the system on one EasyUUV configuration. It preserves the original thruster and hydrodynamic plant while adding data collection, offline Koopman identification, bounded MPC, PPO reference adaptation, checkpoint provenance and matched evaluation.
+Milestone v1.0 established the system on one EasyUUV configuration. Milestone v2.0 extends that evidence chain to multiple vehicle parameterizations and 4/6/8-thruster topologies, then adds environment-context estimation, guarded online Koopman updates and an auditable low-frequency Agent Supervisor.
 
 ## Core Value
 
 Build control experiments whose model, checkpoint, controller path and evaluation evidence are explicit enough to reproduce, compare and reject safely.
+
+## Current Milestone: v2.0 Multi-Configuration Koopman Transfer and Environment-Aware Control
+
+**Goal:** Demonstrate whether one configuration-aware Koopman control architecture can transfer across the eight supported EasyUUV 2.0 configurations, adapt safely to environmental change and expose bounded decisions to an Agent Supervisor.
+
+**Target features:**
+
+- Qualified EasyUUV 2.0 configuration catalog with explicit thruster topology and controllable-degree-of-freedom metadata.
+- Versioned cross-configuration data and control contract using fixed 4D virtual control before TAM allocation.
+- Single-platform, pooled and conditional Koopman identification with held-out-configuration gates.
+- Configuration-aware Koopman-MPC with masks, fallback and matched closed-loop evaluation.
+- Environment-context estimation and rollback-protected RLS/KF online updates.
+- Low-frequency Agent Supervisor that cannot directly command PWM or bypass safety gates.
+
+## Requirements
+
+### Validated
+
+- ✓ A reproducible single-configuration JSONL → Koopman model → selected manifest → bounded MPC chain exists — v1.0.
+- ✓ Legacy/S-Surface remains available as a matched baseline and fallback — v1.0.
+- ✓ PPO integration, checkpoint provenance and evidence-level separation exist — v1.0.
+
+### Active
+
+- [ ] Import and qualify the eight CLI-supported EasyUUV 2.0 configurations without rewriting v1.0 evidence.
+- [ ] Establish a topology-independent Koopman/data/control contract for 4, 6 and 8 thrusters.
+- [ ] Measure held-out-configuration Koopman prediction and closed-loop transfer against explicit baselines.
+- [ ] Estimate environment context and allow only bounded, reversible online model updates.
+- [ ] Evaluate a low-frequency Agent Supervisor against no-supervisor and rule-supervisor baselines.
+- [ ] Produce server-verifiable evidence with clear smoke, training, matched-evaluation and promotion levels.
+
+### Out of Scope
+
+- Sim2Real or hardware-success claims — v2.0 remains simulation research unless a later milestone adds hardware evidence.
+- Eight distinct vehicle appearance/CAD assets — current configurations share one USD appearance and differ in dynamics or thruster topology.
+- Direct PWM generation by PPO, Agent or LLM — all high-level decisions remain above bounded low-level control.
+- End-to-end LLM control or an unrestricted autonomous agent — Phase 11 exposes only allow-listed low-frequency decisions.
+- Immediate PPO retraining during Phase 6 intake — qualification precedes learning and controller integration.
 
 ## Current State
 
@@ -52,9 +90,9 @@ The final Phase 5.4 selector returned `no_selection`. v1.0 therefore remains a r
 - No LLM runtime, Sim2Real, hardware deployment or broad 6-DOF claim exists.
 - Several historical phases lack standard GSD verification artifacts; see the milestone audit.
 
-## Next Milestone Status
+## Milestone Transition
 
-No next milestone has been created. The user has identified multi-configuration AUV involvement as the likely next direction, but its scope, requirements and roadmap are intentionally left undefined by this closeout.
+v1.0 is frozen at tag `v1.0`. v2.0 continues phase numbering at Phase 6 and treats the received `easyuuv_v2-main/` tree as a provenance-preserving simulator snapshot. Integration changes, archived server evidence and planning documents remain separate commits and push boundaries.
 
 ## Constraints That Remain Valid
 
@@ -64,6 +102,10 @@ No next milestone has been created. The user has identified multi-configuration 
 - PPO or a future LLM cannot silently bypass the low-level controller to command PWM.
 - Model and checkpoint selection must be provenance-checked and fail closed.
 - Claims must distinguish smoke, stable training, matched evaluation and performance promotion.
+- Cross-configuration control uses `virtual_control_4 = [roll, pitch, yaw, depth]`; padded PWM is diagnostic data, not the default learned-control meaning.
+- `uuv4*` yaw underactuation must be represented explicitly and cannot be scored as a feasible yaw-tracking target.
+- Online model updates require bounded parameters, non-finite rejection, a frozen prior and rollback.
+- Local work owns Isaac-free contracts and tests; server work owns Isaac physics rollout and matched evaluation.
 
 ## Key Decisions
 
@@ -80,6 +122,27 @@ No next milestone has been created. The user has identified multi-configuration 
 | Add checkpoint provenance/evidence levels | Prevent relabeling and unsupported claims | Good |
 | Close Phase 5.4 with `no_selection` | Preserve a valid negative result | Good |
 | Defer online adaptation and LLM | Finish the core control evidence first | Still valid |
+| Continue v2.0 at Phase 6 | Preserve the v1.0 historical phase identity | Pending |
+| Use fixed 4D virtual control before TAM allocation | Give 4/6/8-thruster platforms one controller-facing meaning | Pending |
+| Treat `uuv4*` yaw as explicitly unavailable | Avoid impossible tracking claims on underactuated configurations | Pending |
+| Restrict Agent to an allow-listed low-frequency supervisor | Preserve deterministic low-level control and fail-closed behavior | Pending |
+
+## Evolution
+
+This document evolves at phase transitions and milestone boundaries.
+
+**After each phase transition:**
+
+1. Move verified active requirements to Validated with the phase reference.
+2. Move invalidated requirements to Out of Scope with the reason.
+3. Record new requirements and decisions without rewriting frozen v1.0 conclusions.
+4. Re-check that the project description and core value still match the evidence.
+
+**After each milestone:**
+
+1. Audit every requirement against implementation and verification artifacts.
+2. Re-check the core value and all explicit exclusions.
+3. Update context, constraints and decision outcomes from measured results.
 
 ## Canonical Records
 
@@ -92,4 +155,4 @@ No next milestone has been created. The user has identified multi-configuration 
 
 ---
 
-*Last updated: 2026-08-09 after v1.0 milestone close*
+*Last updated: 2026-08-09 at v2.0 milestone initialization*

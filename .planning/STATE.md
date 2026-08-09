@@ -1,9 +1,24 @@
+---
+gsd_state_version: 1.0
+milestone: v2.0
+milestone_name: Multi-Configuration Koopman Transfer and Environment-Aware Control
+status: planning
+last_updated: "2026-08-09T07:16:37.892Z"
+last_activity: 2026-08-09
+progress:
+  total_phases: 0
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
+  percent: 0
+---
+
 # Project State: EASYkoopman
 
 **Updated:** 2026-08-09
-**Current focus:** Milestone v1.0 closed; awaiting user-led definition of the next milestone
-**Active milestone:** none
-**Branch:** `isaaclab2-migration`
+**Current focus:** Define and plan Phase 6 intake/qualification for the v2.0 multi-configuration milestone
+**Active milestone:** `v2.0 Multi-Configuration Koopman Transfer and Environment-Aware Control`
+**Branch:** `v2.0-multi-configuration`
 
 ## Project Reference
 
@@ -11,16 +26,22 @@ See `.planning/PROJECT.md`.
 
 **Core value:** Build control experiments whose model, checkpoint, controller path and evaluation evidence are explicit enough to reproduce, compare and reject safely.
 
-## Milestone Status
+## Current Position
 
 ```text
-v1.0 Koopman-UUV Single-Configuration Control
-status = closed
-scope = Phase 1 through Phase 5.4
-closure = research baseline with accepted gaps
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-08-09 — Milestone v2.0 started
 ```
 
-Canonical closeout records:
+## Milestone Goal
+
+Qualify the eight supported EasyUUV 2.0 configurations, establish a topology-independent Koopman control/data contract, then evaluate cross-configuration transfer, guarded environment adaptation and a bounded Agent Supervisor.
+
+## Inherited v1.0 Baseline
+
+v1.0 remains frozen at tag `v1.0`, covering Phase 1 through Phase 5.4. Its accepted closeout records are:
 
 - `.planning/reports/MILESTONE_SUMMARY-v1.0.md`
 - `.planning/milestones/v1.0-ROADMAP.md`
@@ -29,7 +50,7 @@ Canonical closeout records:
 - `.planning/MILESTONES.md`
 - `.planning/RETROSPECTIVE.md`
 
-## Verified At Close
+Verified at v1.0 close:
 
 ```text
 python -m pytest -q --basetemp .pytest-milestone-v1
@@ -50,7 +71,7 @@ Server evidence accumulated during v1.0 includes:
 - Phase 5.1 stable-training candidate;
 - Phase 5.2 one-factor, Phase 5.3 cross-combination and Phase 5.4 Pareto experiments.
 
-## Frozen v1.0 Conclusions
+Frozen conclusions carried into v2.0:
 
 - The single-configuration end-to-end control/retraining/evaluation chain runs.
 - `direct_state` is the engineering Koopman backend for v1.0.
@@ -61,21 +82,35 @@ Server evidence accumulated during v1.0 includes:
 - Adapter/reference semantics and `no_cost_improvement` fallback are stronger hypotheses than further broad reward/MPC micro-tuning.
 - No online Koopman learning or LLM runtime is present.
 
-## Deferred Items Accepted At Close
+## Locked v2.0 Decisions
 
-| Category | Item | Status |
-|---|---|---|
-| control | Diagnose or replace `heuristic_reference_delta_v0` | deferred |
-| MPC | Add candidate/fallback cost-margin and prediction-error diagnostics | deferred |
-| performance | Find a profile that passes all matched promotion gates | deferred |
-| model | Diagnose paper-lifted depth mismatch | deferred |
-| planning | Define configuration identity and multi-AUV scope | deferred to a future milestone |
-| adaptation | Online Koopman KF/RLS | deferred |
-| agent | Low-frequency LLM planning/tuning | deferred |
-| deployment | Sim2Real and hardware validation | deferred |
-| documentation | Missing formal verification artifacts for nine phase directories | accepted technical debt |
-| artifacts | About 104 MB of raw server results remain local and outside the Git tag | accepted technical debt |
+| Decision | State |
+|---|---|
+| Phase numbering | Continue at Phase 6; do not restore Phase 5.5/5.6. |
+| New simulator source | Import `easyuuv_v2-main/` as an isolated received snapshot before integration changes. |
+| Supported configurations | `base`, `long_body`, `heavy_moderate`, `asymmetric`, `uuv6`, `uuv6_angled`, `uuv4`, `uuv4_angled`. |
+| Cross-configuration control | `virtual_control_4 = [roll, pitch, yaw, depth]` before TAM allocation. |
+| Underactuation | `uuv4*` yaw is explicitly unavailable and excluded from feasible yaw tracking. |
+| Online adaptation | RLS/KF only behind bounds, non-finite rejection, frozen prior and rollback. |
+| Agent boundary | Low-frequency allow-listed supervisor; no direct PWM or real-time `env.step()` loop. |
+| Evidence | Local contract tests and server Isaac evidence remain separate and level-labelled. |
+| Promotion | `no_selection` is a valid outcome when no candidate passes every gate. |
+
+## Git Delivery Boundaries
+
+1. New EasyUUV 2.0 simulator snapshot.
+2. v1.0 server experiment evidence plus an explicit manifest.
+3. v2.0 PROJECT, REQUIREMENTS, ROADMAP, STATE, Phase 6 SPEC/PLAN and supporting design documents.
+
+The design-review commit remains local until the clean delivery history is assembled. No remote force-push is planned.
+
+## Open Planning Work
+
+- Define v2.0 requirement IDs and one-to-one phase traceability.
+- Create the Phase 6 falsifiable specification.
+- Research Phase 6 integration details and create checker-approved execution plans.
+- Update `docs/Agentic_AUV_next_steps_plan.md` to match the canonical roadmap and push boundaries.
 
 ## Next Action
 
-None is active. The user will create and scope the next milestone separately. This closeout must not be interpreted as approval of a specific multi-configuration architecture or roadmap.
+Create and approve the v2.0 requirements/roadmap, then run Phase 6 spec and plan workflows. Do not modify the untracked simulator snapshot or experiment evidence during planning.
