@@ -15,7 +15,7 @@ v1.0 的阶段名称、结论和证据已冻结，不在本活动 roadmap 中重
 
 | Phase | Name | Requirements | Depends on | Status |
 |---|---|---|---|---|
-| 6 | EasyUUV 2.0 Intake and Multi-Configuration Qualification | QUAL-01..08 | v1.0 frozen baseline | Ready for specification and planning |
+| 6 | EasyUUV 2.0 Intake and Multi-Configuration Qualification | QUAL-01..08 | v1.0 frozen baseline | Planned — ready for execution |
 | 7 | Cross-Configuration Koopman Data and Control Contract | CONT-01..05 | Phase 6 | Pending |
 | 8 | Multi-Configuration Koopman Identification and OOD Gate | KID-01..05 | Phase 7 | Pending |
 | 9 | Configuration-Aware Koopman-MPC Integration | MPC2-01..04 | Phase 8 | Pending |
@@ -31,7 +31,7 @@ v1.0 的阶段名称、结论和证据已冻结，不在本活动 roadmap 中重
 
 **Depends on:** Frozen v1.0 baseline and `docs/Agentic_AUV_v2_milestone_design.md`
 
-**Requirements:** QUAL-01, QUAL-02, QUAL-03, QUAL-04, QUAL-05, QUAL-06, QUAL-07, QUAL-08
+**Requirements**: QUAL-01, QUAL-02, QUAL-03, QUAL-04, QUAL-05, QUAL-06, QUAL-07, QUAL-08
 
 **Success Criteria**:
 1. Git 历史能区分收到的 `easyuuv_v2-main/` 快照与所有后续集成修改，且 v1.0 tag/归档未改变。
@@ -40,11 +40,29 @@ v1.0 的阶段名称、结论和证据已冻结，不在本活动 roadmap 中重
 4. 所有资格测试拒绝非有限输出或越界 PWM/virtual control，并保留原因可审计的结果文件。
 5. 现有 Isaac-free v1 回归继续通过，Phase 6 同时交付 runbook、SUMMARY 和 VERIFICATION。
 
-**Plans:** 0 plans
+**Plans:** 4 plans
 
 Plans:
 
-- [ ] TBD — run `$gsd-plan-phase 6` after Phase 6 SPEC is locked.
+**Wave 1**
+
+- [ ] 06-01-PLAN.md — verify the isolated received snapshot, normalize the package to `easyuuv_nc`, and establish packaging/asset/v1-isolation contracts.
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 06-02-PLAN.md — TDD the canonical eight-configuration catalog, pure TAM report, control masks and declared-control ranks.
+- [ ] 06-03-PLAN.md — TDD the strict, versioned qualification artifact schema and validator without an Isaac runtime dependency.
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [ ] 06-04-PLAN.md — connect the catalog and validator to the Isaac runner/runbook, run local regressions, then stop at the blocking eight-configuration server checkpoint.
+
+**Cross-cutting constraints:**
+
+- The received simulator snapshot, v1.0 `source/results` evidence and v2.0 planning/integration remain independently auditable commit and push boundaries.
+- Local tests may establish only `local_contract` evidence; only actual Isaac server runs may establish `server_isaac_smoke` evidence.
+- Phase 6 does not change the v1 Koopman `state=11`, `reference=5`, `control=PWM_8` semantics and does not claim Phase 7+ transfer behavior.
+- Missing, partial, non-finite, out-of-bounds or topology-inconsistent server evidence keeps Phase 6 open; no mock artifact may satisfy the checkpoint.
 
 ### Phase 7: Cross-Configuration Koopman Data and Control Contract
 
@@ -52,7 +70,7 @@ Plans:
 
 **Depends on:** Phase 6
 
-**Requirements:** CONT-01, CONT-02, CONT-03, CONT-04, CONT-05
+**Requirements**: CONT-01, CONT-02, CONT-03, CONT-04, CONT-05
 
 **Success Criteria**:
 1. schema v2 对 REQUIREMENTS 中列出的状态、控制、PWM、mask、wrench、context 和 provenance 字段进行版本化验证。
@@ -72,7 +90,7 @@ Plans:
 
 **Depends on:** Phase 7
 
-**Requirements:** KID-01, KID-02, KID-03, KID-04, KID-05
+**Requirements**: KID-01, KID-02, KID-03, KID-04, KID-05
 
 **Success Criteria**:
 1. 所有 train/validation/test manifest 按 configuration 和 episode 分组，验证器拒绝 row-level leakage。
@@ -92,7 +110,7 @@ Plans:
 
 **Depends on:** Phase 8
 
-**Requirements:** MPC2-01, MPC2-02, MPC2-03, MPC2-04
+**Requirements**: MPC2-01, MPC2-02, MPC2-03, MPC2-04
 
 **Success Criteria**:
 1. MPC 输出有界 4D virtual control，且每个构型使用自身 TAM 产生正确数量的推进器命令。
@@ -112,7 +130,7 @@ Plans:
 
 **Depends on:** Phase 9
 
-**Requirements:** ADAPT-01, ADAPT-02, ADAPT-03, ADAPT-04, ADAPT-05
+**Requirements**: ADAPT-01, ADAPT-02, ADAPT-03, ADAPT-04, ADAPT-05
 
 **Success Criteria**:
 1. oracle-context 结果先于 estimated-context 声明生成，并作为可达到上界单独报告。
@@ -133,7 +151,7 @@ Plans:
 
 **Depends on:** Phase 10
 
-**Requirements:** AGENT-01, AGENT-02, AGENT-03, AGENT-04
+**Requirements**: AGENT-01, AGENT-02, AGENT-03, AGENT-04
 
 **Success Criteria**:
 1. Agent API 只暴露已准入模型选择、online-update enablement、有界 reference/MPC 配置和 safety fallback。
@@ -153,7 +171,7 @@ Plans:
 
 **Depends on:** Phase 11
 
-**Requirements:** EVAL-01, EVAL-02, EVAL-03, EVAL-04, EVAL-05
+**Requirements**: EVAL-01, EVAL-02, EVAL-03, EVAL-04, EVAL-05
 
 **Success Criteria**:
 1. 最终 manifest 固定 scenario、configuration、shift、seed 与 episode count，覆盖四类目标条件。
