@@ -1,7 +1,7 @@
 # Project State: EASYkoopman
 
-**Updated:** 2026-07-03
-**Current focus:** Phase 4.6 PPO checkpoint evidence gate, then Phase 5 Koopman-MPC PPO retraining
+**Updated:** 2026-08-09
+**Current focus:** Phase 5.5 interface semantics and fallback diagnosis
 
 ## Project Reference
 
@@ -40,6 +40,9 @@ See: `.planning/PROJECT.md`
 | 2026-07-03 | Koopman-MPC 需要自己的 PPO checkpoint | 旧 PPO checkpoint 是 legacy controller 下的策略，低层控制器变更后 MDP 已经变化 |
 | 2026-07-03 | 不手写 PPO 算法，复用 RSL-RL PPO | 需要改变训练闭环和证据记录，不需要重写成熟 PPO 实现 |
 | 2026-07-03 | Phase 5 改为 Koopman-MPC PPO retraining，LLM 后移 | 先训练新控制链路下的 PPO，再让 LLM 做低频规划或调参 |
+| 2026-07-04 | Phase 5 adapter 必须位于 RSL-RL `env.step(action_4d)` 路径 | `OnPolicyRunner.learn()` 拥有 rollout loop，外层脚本调用 adapter 不能证明训练闭环成立 |
+| 2026-07-04 | Phase 5 增加 checkpoint provenance gate | 防止 Phase 4.6 legacy checkpoint 被误标为 `retrained_ppo_koopman_mpc` |
+| 2026-07-04 | Phase 5 限定为短训闭环 smoke | reward redesign、长训练、超参搜索和性能排名后移到 Phase 5.x |
 
 ## Blockers And Risks
 
@@ -53,14 +56,31 @@ See: `.planning/PROJECT.md`
 
 ## Next Action
 
-执行 PPO 阶段的新主线:
+执行 Phase 5.5 新主线：
 
-1. 完成 Phase 4.6：修复 PPO/RSL-RL train、checkpoint generation、checkpoint discovery 和 legacy checkpoint loading。
-2. 用 Phase 4.6 证明旧 checkpoint 只能作为 `legacy_ppo_baseline` 或 `old_checkpoint_adapter_smoke`。
-3. 进入 Phase 5：训练 `retrained_ppo_koopman_mpc`，也就是 Koopman-MPC 闭环下自己的 PPO checkpoint。
-4. Phase 5 第一版继续复用 RSL-RL PPO，保持 9D observation 和 4D action。
-5. Phase 5 必须证明训练 loop 中存在 `policy_output_4d -> heuristic_reference_delta_v0 -> _koopman_reference_5d refresh -> env.step(action_4d)`。
-6. LLM 阶段后移到 Phase 6，只做低频任务规划/调参，不进入实时控制。
+1. 冻结 Phase 5.4 的 `NO_SELECTION` 结论和代表性 PPO checkpoints。
+2. 增加 adapter reference-delta 与 MPC cost-improvement 诊断字段。
+3. 在固定 checkpoint 下执行 bounded adapter-scale sweep，避免训练随机性污染归因。
+4. 区分 `timeout`、`no_cost_improvement`、prediction mismatch 和 actuator-bound fallback。
+5. 根据证据决定保留 `heuristic_reference_delta_v0`，还是进入 Phase 5.6 `native_reference_delta_v1`。
+6. LLM 后置为 Phase 9 可选 supervisor，不进入实时控制。
+
+## 2026-08-09 Phase 5.4 Closeout And Roadmap Realignment
+
+Verified completed work:
+
+- Phase 5.4 ran 11/11 sentinels and 11/11 candidates on `agentic-AUV`.
+- Every candidate completed matched step/sine/irregular evaluation.
+- Final result was `selection_status=no_selection`; no reward/MPC-only profile passed the promotion gates.
+- Mean/max latency stayed inside the declared gates for the formal candidates, so latency is not the primary current bottleneck.
+- The strongest remaining hypotheses are PPO-to-reference semantics and `no_cost_improvement` fallback behavior.
+
+Frozen decisions:
+
+- Do not continue broad reward/MPC micro-tuning without new diagnostic evidence.
+- Phase 5.5 diagnoses the current adapter and fallback contract before Phase 5.6 changes action semantics.
+- Cross-platform evaluation precedes online Koopman adaptation.
+- LLM is a post-core, low-frequency supervisor and cannot command PPO actions or PWM.
 
 ## 2026-07-01 Phase 2.5 Local Implementation Note
 
@@ -79,7 +99,7 @@ Implemented:
 - gate report generation;
 - server runbook at `docs/phase2_5_koopman_gate_runbook.md`.
 
-Current next action:
+Historical Phase 2.5 next action (completed):
 
 1. Package/upload this branch to the Isaac server.
 2. Collect or provide validated `step`, `sine` and `irregular` long JSONL logs.
@@ -522,4 +542,306 @@ Current next action:
 Start Phase 5:
   train the Koopman-MPC-specific PPO checkpoint with heuristic_reference_delta_v0
   inside the training loop before env.step(action_4d).
+```
+
+## 2026-07-04 Phase 5 Detailed Planning Update
+
+Phase 5 detailed planning has been tightened after a control/RL review.
+
+Updated artifacts:
+
+- `.planning/phases/05-koopman-mpc-ppo-retraining/05-SPEC.md`
+- `.planning/phases/05-koopman-mpc-ppo-retraining/05-PLAN.md`
+- `docs/phase5_koopman_mpc_ppo_training_strategy.md`
+- `.planning/ROADMAP.md`
+
+Hard gates added:
+
+1. Adapter refresh must be on the RSL-RL rollout `env.step(action_4d)` path. A wrapper or env hook is acceptable; a script-level call outside `OnPolicyRunner.learn()` is not.
+2. `retrained_policy_smoke` requires checkpoint provenance. The checkpoint must come from a Phase 5 training summary with `result_bucket=retrained_ppo_koopman_mpc`, `controller_path=koopman_mpc/direct_state`, `adapter_mode=heuristic_reference_delta_v0` and `checkpoint_provenance=phase5_train_koopman_mpc`.
+3. Phase 5 is smoke-only. The first reward remains `legacy_easyuuv_v0`; long training, reward redesign, hyperparameter search and performance ranking move to Phase 5.x.
+
+Implementation direction:
+
+```text
+gym.make(...)
+  -> Phase5KoopmanReferenceWrapper.step(action_4d)
+       -> adapt_policy_reference(...)
+       -> refresh _koopman_reference_5d
+       -> underlying env.step(action_4d)
+  -> RslRlVecEnvWrapper(...)
+  -> OnPolicyRunner.learn(...)
+```
+
+Fallback direction if the Gym wrapper breaks Isaac Lab expectations:
+
+```text
+EasyUUVEnv._pre_physics_step(...)
+  -> explicit Phase 5 adapter hook
+  -> refresh _koopman_reference_5d
+  -> existing Koopman-MPC controller path
+```
+
+Current next action:
+
+```text
+Implement Phase 5 Wave 1:
+  add adapter-in-training-loop source contract tests,
+  then implement the smallest RSL-RL-compatible wrapper or env hook.
+```
+
+## 2026-07-04 Phase 5 Local Repair Note
+
+Phase 5 review must-fixes have been repaired locally.
+
+Implemented:
+
+- `Phase5KoopmanReferenceWrapper` in `koopman/ppo_training_adapter.py`.
+- Phase 5 training entrypoint in `workflows/train_ppo_koopman.py`.
+- Phase 5 checkpoint provenance validator in `workflows/validate_phase5_checkpoint_provenance.py`.
+- `play_ppo_koopman.py` provenance preflight for `retrained_policy_smoke`.
+- `validate_ppo_koopman_log.py` provenance requirements for retrained-policy logs.
+- Phase 5 source-contract and provenance tests.
+
+Local verification:
+
+```text
+python -m pytest -q -> 110 passed
+python -m compileall __init__.py easyuuv_env.py koopman workflows tests -> passed
+git diff --check -> passed with CRLF warnings only
+```
+
+Current next action:
+
+```text
+Upload/sync to agentic-AUV and run Phase 5 server smoke:
+  train_ppo_koopman.py with --num_envs 1,
+  validate_phase5_checkpoint_provenance.py,
+  play_ppo_koopman.py with --ppo_evidence_level retrained_policy_smoke.
+```
+
+## 2026-07-04 Phase 5 Server Completion Note
+
+Phase 5 has passed the server smoke gate on `agentic-AUV`.
+
+Server artifacts:
+
+- `/root/EASYkoopman/source/results/koopman_phase5/training_smoke_summary.json`
+- `/root/EASYkoopman/source/results/koopman_phase5/retrained_ppo_koopman_step.jsonl`
+- `/root/EASYkoopman/source/results/koopman_phase5/server_smoke_summary.json`
+- `/root/IsaacLab/logs/rsl_rl/easyuuv_koopman_mpc/2026-07-04_23-23-45/model_0.pt`
+
+Local copies:
+
+- `source/results/koopman_phase5/training_smoke_summary.json`
+- `source/results/koopman_phase5/retrained_ppo_koopman_step.jsonl`
+- `source/results/koopman_phase5/server_smoke_summary.json`
+
+Verification:
+
+```text
+server pytest: 110 passed
+server compileall: passed
+training smoke: passed
+checkpoint provenance validator: passed
+retrained checkpoint eval smoke: passed
+PPO/Koopman log validator: OK, 2 samples
+```
+
+Key metrics:
+
+```text
+adapter_refresh_count: 24
+adapter_refresh_before_env_step: true
+checkpoint_provenance_valid: true
+fallback_rate: 0.0
+latency_ms_mean: 11.496730614453554
+latency_ms_max: 11.539035476744175
+pwm_bounds: [0.6499999761581421, 1.0]
+policy_action_clip_rate_max during eval: 0.0
+```
+
+Current boundary:
+
+```text
+Phase 5 proves early retrained-policy smoke evidence only.
+It does not prove PPO convergence, performance superiority, deployability or final reward design.
+```
+
+Historical next action at Phase 5 closeout (superseded by the 2026-08-09 state at the top of this file):
+
+```text
+Open Phase 5.x for stable training and bounded reward/controller diagnosis.
+The alternative of moving directly to LLM was not selected.
+```
+
+## 2026-07-04 Phase 5.1 Stable-Training Planning Note
+
+The user selected the stable-training-first path:
+
+```text
+First prove stable PPO training under Koopman-MPC.
+After stability is proven, inspect and improve each bottleneck separately.
+```
+
+Created planning artifacts:
+
+- `.planning/phases/05.1-koopman-mpc-ppo-stability-training/05.1-CONTEXT.md`
+- `.planning/phases/05.1-koopman-mpc-ppo-stability-training/05.1-SPEC.md`
+- `.planning/phases/05.1-koopman-mpc-ppo-stability-training/05.1-PLAN.md`
+- `docs/phase5_1_koopman_mpc_ppo_stability_training.md`
+
+Locked Phase 5.1 decisions:
+
+1. Phase 5.1 is a stability gate, not a performance-ranking phase.
+2. The first stability proof keeps RSL-RL PPO, 9D observation, 4D action, `heuristic_reference_delta_v0` and `direct_state` Koopman+MPC.
+3. The first stability proof keeps `reward_profile=legacy_easyuuv_v0`; reward redesign starts only after stable training evidence exists.
+4. The server ladder is `50-iteration sentinel -> 200-iteration stability candidate -> matched step/sine/irregular evaluation`.
+5. Stability summaries must record checkpoint provenance, non-finite counts, action clipping, fallback rate, solver latency and PWM bounds.
+6. Warning thresholds route follow-up work; they do not automatically prove failure.
+7. LLM remains deferred after PPO stability and bounded control evidence. The canonical roadmap now places it at optional Phase 9, after interface diagnosis, cross-platform evaluation, online adaptation and core matched experiments.
+
+Current next action:
+
+```text
+Implement Phase 5.1 local stability summary and validator,
+then run the server sentinel and stability candidate on agentic-AUV.
+```
+
+## 2026-07-05 Phase 5.1 Gap Review Incorporation Note
+
+The gap review in `docs/phase5_1_stability_plan_gap_review_for_agents.md` was incorporated into Phase 5.1 documentation.
+
+Review conclusion:
+
+```text
+PASS_WITH_MUST_FIXES_BEFORE_EXECUTION
+```
+
+The plan direction remains correct, but server execution is blocked until the following code contracts exist:
+
+1. `stability_sentinel`, `stability_candidate` and `matched_stability_eval` are accepted by evidence-level validation and CLI choices.
+2. Phase 5.1 provenance labels exist: `phase5_1_stability_sentinel` and `phase5_1_stability_candidate`.
+3. Phase 5 smoke checkpoints cannot be relabeled as Phase 5.1 stability checkpoints.
+4. Training-health summaries separate training-loop metrics from matched-evaluation metrics.
+5. Stability validation hard-fails missing checkpoints, NaN/Inf, PWM bounds violations and missing adapter refresh.
+6. A selected checkpoint manifest is written to `source/results/koopman_phase5_1/selected_ppo_checkpoint_manifest.json`.
+7. `matched_stability_eval` requires a validated Phase 5.1 stability-candidate checkpoint before Isaac startup.
+
+Current next action:
+
+```text
+Implement the Phase 5.1 P0 documentation-defined code gates locally before any server sentinel run.
+```
+
+## 2026-07-05 Phase 5.1 Server Completion And Phase 5.2 Planning Note
+
+Phase 5.1 has now passed the stability-candidate evidence gate on `agentic-AUV`.
+
+Server and local evidence:
+
+- sentinel training completed with `checkpoint_provenance=phase5_1_stability_sentinel`;
+- 200-iteration stability candidate completed with `checkpoint_provenance=phase5_1_stability_candidate`;
+- selected checkpoint: `/root/IsaacLab/logs/rsl_rl/easyuuv_koopman_mpc/2026-07-05_00-28-00/model_199.pt`;
+- matched step, sine and irregular evaluation logs validated;
+- selected manifest: `source/results/koopman_phase5_1/selected_ppo_checkpoint_manifest.json`;
+- matched summary: `source/results/koopman_phase5_1/matched_eval_summary.json`.
+
+Phase 5.1 result boundary:
+
+```text
+We have stable-training candidate evidence.
+We do not yet have PPO convergence, deployability or broad superiority evidence.
+```
+
+Observed bottlenecks:
+
+```text
+PWM saturation:
+  step=0.2757, sine=0.4664, irregular=0.3746
+
+fallback:
+  step=0.1343, sine=0.0314, irregular=0.0971
+
+action clipping:
+  sine has the highest mean clip rate at 0.2364
+```
+
+Phase 5.2 planning artifacts were drafted for review:
+
+- `.planning/phases/05.2-reward-adapter-mpc-health-optimization/05.2-SPEC.md`
+- `.planning/phases/05.2-reward-adapter-mpc-health-optimization/05.2-PLAN.md`
+- `docs/phase5_2_reward_adapter_mpc_health_optimization.md`
+
+Locked direction for review:
+
+```text
+Do one-factor health optimization before longer training:
+  baseline re-run
+  reward_v1_only
+  adapter_soft_v1_only
+  mpc_health_v1_only
+
+Do not combine reward, adapter and MPC changes until single-axis results are reviewed.
+```
+
+Current next action:
+
+```text
+User reviews Phase 5.2 reward weights, adapter scales, MPC health profile,
+promotion threshold and whether combined profile is allowed in Phase 5.2.
+After approval, implement Phase 5.2 local code and then run server ablation.
+```
+
+## 2026-07-05 Phase 5.2 Review Incorporation Note
+
+The review in `docs/phase5_2_reward_adapter_mpc_health_optimization_review.md` has been incorporated into the Phase 5.2 SPEC/PLAN.
+
+Updated decisions:
+
+```text
+baseline_rerun:
+  mandatory
+
+reward_v1_only:
+  w_fallback = 0.30
+  w_pwm_sat = 0.20
+  latency penalty thresholded above latency_ref_ms
+
+adapter_soft_v1_only:
+  rpy_delta_scale = 0.30
+  depth_delta_scale = 0.40
+
+adapter_scale_soft_v2:
+  rpy_delta_scale = 0.25
+  depth_delta_scale = 0.30
+  reserved as stronger backup, not initial matrix
+
+mpc_health_v1_only:
+  mpc_delta_pwm_limit = 0.35
+  mpc_control_weight = 0.03
+  mpc_smoothness_weight = 0.10
+
+mpc_delta_limit_probe_v1:
+  mpc_delta_pwm_limit = 0.25
+  optional probe after weights-only MPC review
+
+combined profile:
+  deferred to Phase 5.2b or Phase 5.3
+```
+
+Candidate promotion now requires:
+
+```text
+20 percent relative improvement
+plus minimum absolute improvement
+plus fallback/depth/attitude regression guards
+plus complete matched step/sine/irregular evaluation
+```
+
+Current next action:
+
+```text
+Implement Phase 5.2 local code according to the review-incorporated SPEC/PLAN,
+then sync to agentic-AUV for baseline_rerun and one-factor ablation.
 ```

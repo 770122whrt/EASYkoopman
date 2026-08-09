@@ -4,6 +4,8 @@
 
 This repository contains code implementation for simulator of the paper "EasyUUV: An LLM-Enhanced Universal and Lightweight Sim-to-Real Reinforcement Learning Framework for UUV Attitude Control".
 
+> **EASYkoopman migration status:** This branch extends the upstream EasyUUV simulator with offline Koopman identification, bounded Koopman-MPC control, a PPO-to-reference adapter, Koopman-MPC-conditioned PPO training and evidence-gated evaluation. The validated server environment is Isaac Sim 5.0 + Isaac Lab 2.2.1; the upstream Isaac Lab 1.0 instructions below are retained for historical reference. New contributors should start with [`docs/Agentic_AUV_project_handover.md`](docs/Agentic_AUV_project_handover.md) and [`.planning/ROADMAP.md`](.planning/ROADMAP.md).
+
 The hardware deployment code repository refers to [**HERE**](https://github.com/360ZMEM/EasyUUV-UUV-Deploy)
 
 ![intro](README.assets/intro.png)
