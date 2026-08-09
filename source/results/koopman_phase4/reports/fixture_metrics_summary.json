@@ -1,0 +1,29 @@
+{
+  "eligible_for_phase45_baseline": true,
+  "run_count": 1,
+  "runs": [
+    {
+      "attitude_angle_rmse": 0.0,
+      "backend_used": "legacy",
+      "controller_mode": "legacy/Ssurface",
+      "depth_rmse": 1.4800971251914519,
+      "fallback_rate": 0.0,
+      "latency_budget_violation_rate": 0.0,
+      "log_path": "tests\\fixtures\\koopman_step_small.jsonl",
+      "max_delta_pwm_l2": 0.020000000000000018,
+      "max_latency_ms": 0.0,
+      "mean_delta_pwm_l2": 0.02,
+      "mean_latency_ms": 0.0,
+      "mean_pwm_abs": 0.10750000000000001,
+      "mean_pwm_l2": 0.43000000000000005,
+      "nonfinite_count": 0,
+      "pwm_bounded": true,
+      "pwm_max": 0.0,
+      "pwm_min": -0.23,
+      "pwm_saturation_rate": 0.0,
+      "sample_count": 4,
+      "status_counts": {},
+      "trajectory_type": "step"
+    }
+  ]
+}

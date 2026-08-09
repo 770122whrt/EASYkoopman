@@ -1,0 +1,17 @@
+{
+  "sample_count": 2,
+  "checkpoint": "/root/IsaacLab/logs/rsl_rl/easyuuv_koopman_mpc/2026-07-04_23-23-45/model_0.pt",
+  "result_bucket": "retrained_ppo_koopman_mpc",
+  "ppo_evidence_level": "retrained_policy_smoke",
+  "checkpoint_provenance_valid": true,
+  "adapter_mode": "heuristic_reference_delta_v0",
+  "controller_path": "koopman_mpc/direct_state",
+  "backend_used": "direct_state",
+  "policy_action_clip_rate_max": 0.0,
+  "fallback_rate": 0.0,
+  "latency_ms_mean": 11.496730614453554,
+  "latency_ms_max": 11.539035476744175,
+  "pwm_min": 0.6499999761581421,
+  "pwm_max": 1.0,
+  "allowed_claim": "early retrained-policy smoke evidence only"
+}

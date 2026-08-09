@@ -1,0 +1,64 @@
+{
+  "runs": [
+    {
+      "sample_count": 350,
+      "fallback_count": 66,
+      "fallback_rate": 0.18857142857142858,
+      "fallback_reason_counts": {
+        "no_cost_improvement": 17,
+        "timeout": 49
+      },
+      "latency_ms_mean": 11.831710764339991,
+      "latency_ms_max": 12.842653319239616,
+      "policy_action_clip_rate_mean": 0.5378571428571428,
+      "policy_action_clip_rate_max": 0.75,
+      "pwm_saturation_threshold": 0.99,
+      "pwm_saturation_rate": 0.16785714285714284,
+      "pwm_abs_mean": 0.5970327476772945,
+      "pwm_abs_max": 1.0,
+      "depth_rmse": 0.4862547496457602,
+      "attitude_rmse": 0.7942264748796561,
+      "path": "source/results/koopman_phase5_3/cross_adapter_soft_mpc_health_step.jsonl"
+    },
+    {
+      "sample_count": 350,
+      "fallback_count": 135,
+      "fallback_rate": 0.38571428571428573,
+      "fallback_reason_counts": {
+        "no_cost_improvement": 6,
+        "timeout": 129
+      },
+      "latency_ms_mean": 12.088636540408645,
+      "latency_ms_max": 12.5105706974864,
+      "policy_action_clip_rate_mean": 0.39357142857142857,
+      "policy_action_clip_rate_max": 0.75,
+      "pwm_saturation_threshold": 0.99,
+      "pwm_saturation_rate": 0.12107142857142857,
+      "pwm_abs_mean": 0.6494655196922166,
+      "pwm_abs_max": 1.0,
+      "depth_rmse": 0.48518925696454906,
+      "attitude_rmse": 0.8060250552735531,
+      "path": "source/results/koopman_phase5_3/cross_adapter_soft_mpc_health_sine.jsonl"
+    },
+    {
+      "sample_count": 350,
+      "fallback_count": 85,
+      "fallback_rate": 0.24285714285714285,
+      "fallback_reason_counts": {
+        "no_cost_improvement": 30,
+        "timeout": 55
+      },
+      "latency_ms_mean": 11.826298657272543,
+      "latency_ms_max": 12.46451772749424,
+      "policy_action_clip_rate_mean": 0.4735714285714286,
+      "policy_action_clip_rate_max": 0.75,
+      "pwm_saturation_threshold": 0.99,
+      "pwm_saturation_rate": 0.3392857142857143,
+      "pwm_abs_mean": 0.8038608364521392,
+      "pwm_abs_max": 1.0,
+      "depth_rmse": 0.5351214097915216,
+      "attitude_rmse": 0.7305799939286157,
+      "path": "source/results/koopman_phase5_3/cross_adapter_soft_mpc_health_irregular.jsonl"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "runs": [
+    {
+      "sample_count": 350,
+      "fallback_count": 36,
+      "fallback_rate": 0.10285714285714286,
+      "fallback_reason_counts": {
+        "no_cost_improvement": 1,
+        "timeout": 35
+      },
+      "latency_ms_mean": 11.713295547025544,
+      "latency_ms_max": 12.677744030952454,
+      "policy_action_clip_rate_mean": 0.0,
+      "policy_action_clip_rate_max": 0.0,
+      "pwm_saturation_threshold": 0.99,
+      "pwm_saturation_rate": 0.4882142857142857,
+      "pwm_abs_mean": 0.7434868137344185,
+      "pwm_abs_max": 1.0,
+      "depth_rmse": 3.2337077322963124,
+      "attitude_rmse": 0.5846750699210705,
+      "path": "source/results/koopman_phase5_3/cross_reward_v1_adapter_soft_step.jsonl"
+    },
+    {
+      "sample_count": 350,
+      "fallback_count": 56,
+      "fallback_rate": 0.16,
+      "fallback_reason_counts": {
+        "no_cost_improvement": 25,
+        "timeout": 31
+      },
+      "latency_ms_mean": 11.798005966203553,
+      "latency_ms_max": 13.663077726960182,
+      "policy_action_clip_rate_mean": 0.0,
+      "policy_action_clip_rate_max": 0.0,
+      "pwm_saturation_threshold": 0.99,
+      "pwm_saturation_rate": 0.38392857142857145,
+      "pwm_abs_mean": 0.6800847457075558,
+      "pwm_abs_max": 1.0,
+      "depth_rmse": 1.3546349645080942,
+      "attitude_rmse": 0.8430872193894156,
+      "path": "source/results/koopman_phase5_3/cross_reward_v1_adapter_soft_sine.jsonl"
+    },
+    {
+      "sample_count": 350,
+      "fallback_count": 67,
+      "fallback_rate": 0.19142857142857142,
+      "fallback_reason_counts": {
+        "no_cost_improvement": 25,
+        "timeout": 42
+      },
+      "latency_ms_mean": 11.789628089006458,
+      "latency_ms_max": 14.707782305777073,
+      "policy_action_clip_rate_mean": 0.0,
+      "policy_action_clip_rate_max": 0.0,
+      "pwm_saturation_threshold": 0.99,
+      "pwm_saturation_rate": 0.25214285714285717,
+      "pwm_abs_mean": 0.5325016331691296,
+      "pwm_abs_max": 1.0,
+      "depth_rmse": 0.6745013551138539,
+      "attitude_rmse": 0.8258922841199503,
+      "path": "source/results/koopman_phase5_3/cross_reward_v1_adapter_soft_irregular.jsonl"
+    }
+  ]
+}

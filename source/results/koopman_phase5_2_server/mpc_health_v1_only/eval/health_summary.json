@@ -1,0 +1,64 @@
+{
+  "runs": [
+    {
+      "sample_count": 350,
+      "fallback_count": 36,
+      "fallback_rate": 0.10285714285714286,
+      "fallback_reason_counts": {
+        "no_cost_improvement": 23,
+        "timeout": 13
+      },
+      "latency_ms_mean": 11.686590361808028,
+      "latency_ms_max": 13.131389394402504,
+      "policy_action_clip_rate_mean": 0.5235714285714286,
+      "policy_action_clip_rate_max": 0.75,
+      "pwm_saturation_threshold": 0.99,
+      "pwm_saturation_rate": 0.45821428571428574,
+      "pwm_abs_mean": 0.7795612752618534,
+      "pwm_abs_max": 1.0,
+      "depth_rmse": 2.2726033121993328,
+      "attitude_rmse": 0.6924803646916001,
+      "path": "source/results/koopman_phase5_2/mpc_health_v1_only/eval/ppo_step.jsonl"
+    },
+    {
+      "sample_count": 350,
+      "fallback_count": 42,
+      "fallback_rate": 0.12,
+      "fallback_reason_counts": {
+        "no_cost_improvement": 26,
+        "timeout": 16
+      },
+      "latency_ms_mean": 11.785896928714854,
+      "latency_ms_max": 13.999463990330696,
+      "policy_action_clip_rate_mean": 0.4828571428571429,
+      "policy_action_clip_rate_max": 0.75,
+      "pwm_saturation_threshold": 0.99,
+      "pwm_saturation_rate": 0.43107142857142855,
+      "pwm_abs_mean": 0.7536300450784287,
+      "pwm_abs_max": 1.0,
+      "depth_rmse": 2.1314054637402027,
+      "attitude_rmse": 0.7053252844724974,
+      "path": "source/results/koopman_phase5_2/mpc_health_v1_only/eval/ppo_sine.jsonl"
+    },
+    {
+      "sample_count": 350,
+      "fallback_count": 82,
+      "fallback_rate": 0.2342857142857143,
+      "fallback_reason_counts": {
+        "no_cost_improvement": 8,
+        "timeout": 74
+      },
+      "latency_ms_mean": 11.764972920396499,
+      "latency_ms_max": 12.437984347343445,
+      "policy_action_clip_rate_mean": 0.47928571428571426,
+      "policy_action_clip_rate_max": 0.75,
+      "pwm_saturation_threshold": 0.99,
+      "pwm_saturation_rate": 0.23,
+      "pwm_abs_mean": 0.5387234306696004,
+      "pwm_abs_max": 1.0,
+      "depth_rmse": 1.7677810293335987,
+      "attitude_rmse": 0.7035248592271921,
+      "path": "source/results/koopman_phase5_2/mpc_health_v1_only/eval/ppo_irregular.jsonl"
+    }
+  ]
+}

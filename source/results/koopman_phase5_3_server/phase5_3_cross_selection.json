@@ -1,0 +1,129 @@
+{
+  "selection_status": "no_selection",
+  "selected_profile_id": null,
+  "best_non_promoted_profile_id": "cross_reward_v1_mpc_health",
+  "scores": [
+    {
+      "profile_id": "cross_reward_v1_adapter_soft",
+      "reward_profile": "koopman_mpc_stability_v1",
+      "adapter_profile": "adapter_scale_soft_v1",
+      "mpc_profile": "mpc_default_v0",
+      "changed_axis": "reward_adapter",
+      "risk_level": "medium",
+      "candidate_metrics": {
+        "pwm_saturation_rate_mean": 0.3747619047619048,
+        "fallback_rate_mean": 0.15142857142857144,
+        "policy_action_clip_rate_mean": 0.0,
+        "depth_rmse_mean": 1.7542813506394204,
+        "attitude_rmse_mean": 0.7512181911434789,
+        "latency_ms_mean": 11.766976534078518
+      },
+      "comparison_baseline": "reward_v1_only",
+      "health_floor": "baseline_rerun",
+      "improvements": {
+        "pwm_saturation_rate_mean": -0.10909116532081924,
+        "fallback_rate_mean": -0.21336996336996353,
+        "policy_action_clip_rate_mean": 1.0,
+        "depth_rmse_mean": -0.8742322122216029,
+        "attitude_rmse_mean": -0.01051680272192484
+      },
+      "health_score": -0.051299464986751524,
+      "promotion_gate_passed": false,
+      "failure_reasons": [
+        "pwm_saturation_rate_mean did not improve enough versus reward_v1_only",
+        "fallback_rate_mean regressed by more than 0.02 versus reward_v1_only"
+      ],
+      "health_floor_relation": {
+        "pwm_saturation_rate_mean": "worse",
+        "fallback_rate_mean": "better",
+        "policy_action_clip_rate_mean": "better",
+        "depth_rmse_mean": "worse",
+        "attitude_rmse_mean": "better",
+        "latency_ms_mean": "better"
+      },
+      "health_floor_label": "no_promotion"
+    },
+    {
+      "profile_id": "cross_reward_v1_mpc_health",
+      "reward_profile": "koopman_mpc_stability_v1",
+      "adapter_profile": "heuristic_reference_delta_v0_default",
+      "mpc_profile": "mpc_health_v1",
+      "changed_axis": "reward_mpc",
+      "risk_level": "high",
+      "candidate_metrics": {
+        "pwm_saturation_rate_mean": 0.11916666666666666,
+        "fallback_rate_mean": 0.3104761904761905,
+        "policy_action_clip_rate_mean": 0.04,
+        "depth_rmse_mean": 0.7173172937182418,
+        "attitude_rmse_mean": 0.7353789005002688,
+        "latency_ms_mean": 11.869201826907341
+      },
+      "comparison_baseline": "reward_v1_only",
+      "health_floor": "baseline_rerun",
+      "improvements": {
+        "pwm_saturation_rate_mean": 0.6473315576600572,
+        "fallback_rate_mean": -1.0,
+        "policy_action_clip_rate_mean": 0.7128499641062455,
+        "depth_rmse_mean": 0.23363536995914339,
+        "attitude_rmse_mean": 0.010789749125277344
+      },
+      "health_score": 0.18457550902362266,
+      "promotion_gate_passed": false,
+      "failure_reasons": [
+        "fallback_rate_mean regressed by more than 0.02 versus reward_v1_only"
+      ],
+      "health_floor_relation": {
+        "pwm_saturation_rate_mean": "better",
+        "fallback_rate_mean": "worse",
+        "policy_action_clip_rate_mean": "better",
+        "depth_rmse_mean": "better",
+        "attitude_rmse_mean": "better",
+        "latency_ms_mean": "better"
+      },
+      "health_floor_label": "no_promotion"
+    },
+    {
+      "profile_id": "cross_adapter_soft_mpc_health",
+      "reward_profile": "legacy_easyuuv_v0",
+      "adapter_profile": "adapter_scale_soft_v1",
+      "mpc_profile": "mpc_health_v1",
+      "changed_axis": "adapter_mpc",
+      "risk_level": "high",
+      "candidate_metrics": {
+        "pwm_saturation_rate_mean": 0.2094047619047619,
+        "fallback_rate_mean": 0.2723809523809524,
+        "policy_action_clip_rate_mean": 0.4683333333333333,
+        "depth_rmse_mean": 0.5021884721339437,
+        "attitude_rmse_mean": 0.7769438413606083,
+        "latency_ms_mean": 11.915548654007061
+      },
+      "comparison_baseline": "reward_v1_only",
+      "health_floor": "baseline_rerun",
+      "improvements": {
+        "pwm_saturation_rate_mean": 0.38027593399005055,
+        "fallback_rate_mean": -1.0,
+        "policy_action_clip_rate_mean": -1.0,
+        "depth_rmse_mean": 0.46347385455775253,
+        "attitude_rmse_mean": -0.04512219714905622
+      },
+      "health_score": -0.19773466860633995,
+      "promotion_gate_passed": false,
+      "failure_reasons": [
+        "fallback_rate_mean regressed by more than 0.02 versus reward_v1_only"
+      ],
+      "health_floor_relation": {
+        "pwm_saturation_rate_mean": "better",
+        "fallback_rate_mean": "worse",
+        "policy_action_clip_rate_mean": "worse",
+        "depth_rmse_mean": "better",
+        "attitude_rmse_mean": "better",
+        "latency_ms_mean": "worse"
+      },
+      "health_floor_label": "no_promotion"
+    }
+  ],
+  "allowed_claims": [],
+  "disallowed_claims": [
+    "No Phase 5.3 cross combination passed the multi-metric promotion gate."
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "baselines": {
+    "persistence": {
+      "model_class": "persistence",
+      "status": "fail",
+      "validation_metrics": {
+        "attitude_angle_rmse": 0.002990852648598891,
+        "depth_rmse": 0.0029404456396562666,
+        "diverged": true,
+        "divergence_rate@20": 0.0,
+        "divergence_rate@5": 0.0,
+        "divergence_rate@60": 0.0,
+        "max_error": 4.020940780639648,
+        "multi_step_horizon": 60,
+        "multi_step_horizon@20": 20,
+        "multi_step_horizon@5": 5,
+        "multi_step_horizon@60": 60,
+        "multi_step_rmse": 0.4368572266908946,
+        "multi_step_rmse@20": 0.1136448686013989,
+        "multi_step_rmse@5": 0.042843511267357824,
+        "multi_step_rmse@60": 0.4368572266908946,
+        "nonfinite_count": 0,
+        "one_step_rmse": 0.0423395273854912,
+        "sample_count": 1400,
+        "velocity_rmse": 0.05727476100936092
+      }
+    },
+    "simple_linear": {
+      "model_class": "simple_linear",
+      "status": "fail",
+      "validation_metrics": {
+        "attitude_angle_rmse": 0.05095188371453934,
+        "depth_rmse": 0.04249722244430156,
+        "diverged": true,
+        "divergence_rate@20": 0.0,
+        "divergence_rate@5": 0.0,
+        "divergence_rate@60": 0.6,
+        "max_error": 411386.88967191236,
+        "multi_step_horizon": 60,
+        "multi_step_horizon@20": 20,
+        "multi_step_horizon@5": 5,
+        "multi_step_horizon@60": 60,
+        "multi_step_rmse": 27066.162929656064,
+        "multi_step_rmse@20": 0.5779894743482727,
+        "multi_step_rmse@5": 0.010371878815936299,
+        "multi_step_rmse@60": 27066.162929656064,
+        "nonfinite_count": 0,
+        "one_step_rmse": 1.4424704048435066,
+        "sample_count": 1400,
+        "velocity_rmse": 1.9526993480715384
+      }
+    }
+  },
+  "control_dim": 8,
+  "dt": 0.016666666666666607,
+  "gate_status": "pass",
+  "known_limitations": [],
+  "lifting_config": {
+    "include_bias": true,
+    "include_error": true,
+    "include_quadratic": true,
+    "include_reference": true,
+    "reference_dim": 5,
+    "state_dim": 11
+  },
+  "metrics": {
+    "test": {
+      "attitude_angle_rmse": 0.15620697760949642,
+      "depth_rmse": 0.052292975784647956,
+      "diverged": false,
+      "divergence_rate@20": 0.0,
+      "divergence_rate@5": 0.0,
+      "divergence_rate@60": 0.0,
+      "max_error": 3.819513037855012,
+      "multi_step_horizon": 60,
+      "multi_step_horizon@20": 20,
+      "multi_step_horizon@5": 5,
+      "multi_step_horizon@60": 60,
+      "multi_step_rmse": 0.642603831639681,
+      "multi_step_rmse@20": 0.5243264020346085,
+      "multi_step_rmse@5": 0.22047430236134263,
+      "multi_step_rmse@60": 0.642603831639681,
+      "nonfinite_count": 0,
+      "one_step_rmse": 1.4539878941574806,
+      "sample_count": 1400,
+      "velocity_rmse": 1.965484206754244
+    },
+    "validation": {
+      "attitude_angle_rmse": 0.07056021799423334,
+      "depth_rmse": 0.016639178324390182,
+      "diverged": false,
+      "divergence_rate@20": 0.0,
+      "divergence_rate@5": 0.0,
+      "divergence_rate@60": 0.0,
+      "max_error": 3.847379013321046,
+      "multi_step_horizon": 60,
+      "multi_step_horizon@20": 20,
+      "multi_step_horizon@5": 5,
+      "multi_step_horizon@60": 60,
+      "multi_step_rmse": 0.38105235778151036,
+      "multi_step_rmse@20": 0.004858678056258761,
+      "multi_step_rmse@5": 0.005646884124930067,
+      "multi_step_rmse@60": 0.38105235778151036,
+      "nonfinite_count": 0,
+      "one_step_rmse": 1.154768834939807,
+      "sample_count": 1400,
+      "velocity_rmse": 1.5627526057292267
+    }
+  },
+  "model_class": "direct_state",
+  "model_path": "source/results/koopman_phase2_5_verify_20260701_231802/sweep/models/direct_state_selected_quadratic_ridge_0p0001_norm_off.json",
+  "normalizer_path": null,
+  "reference_dim": 5,
+  "ridge": 0.0001,
+  "selected_candidate_id": "direct_state_selected_quadratic_ridge_0p0001_norm_off",
+  "state_dim": 11,
+  "sweep_results_path": "source/results/koopman_phase2_5_verify_20260701_231802/sweep/sweep_results.json",
+  "test_logs": [
+    "source/results/koopman_phase1/koopman_irregular_long.jsonl"
+  ],
+  "train_logs": [
+    "source/results/koopman_phase1/koopman_step_long.jsonl"
+  ],
+  "validation_logs": [
+    "source/results/koopman_phase1/koopman_sine_long.jsonl"
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "average_latency_ms": 10.84470234811306,
+  "backend_is_paper_style_lifted_edmd": true,
+  "backend_reason": "selected manifest model_class is paper_lifted_edmd",
+  "backend_used": "paper_lifted_edmd",
+  "command_bounded": true,
+  "fallback_count": 24,
+  "fallback_rate": 0.24,
+  "first_commands": [
+    [
+      0.35,
+      0.35,
+      0.35,
+      0.35,
+      0.35,
+      0.35,
+      0.35,
+      0.35
+    ],
+    [
+      0.7,
+      0.7,
+      0.7,
+      0.7,
+      0.7,
+      0.7,
+      0.7,
+      0.7
+    ],
+    [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.65
+    ],
+    [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.65,
+      1.0,
+      1.0,
+      0.65
+    ]
+  ],
+  "horizon": 5,
+  "known_limitations": [
+    "paper_lifted_edmd is a paper-aligned comparison backend, not yet the primary selected controller backend",
+    "Phase 3.5 must run offline MPC replay and Isaac smoke before Phase 4 performance claims",
+    "Online adaptation remains deferred"
+  ],
+  "latency_budget_met": false,
+  "manifest_path": "source/results/koopman_phase3_5/paper_lifted_manifest.json",
+  "max_latency_ms": 76.12791378051043,
+  "mean_tracking_cost": 1.429863136278229,
+  "pwm_max": 1.0,
+  "pwm_min": -0.35,
+  "sample_count": 100
+}

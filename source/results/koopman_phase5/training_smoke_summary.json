@@ -1,0 +1,40 @@
+{
+  "checkpoint_found": true,
+  "checkpoint_path": "/root/IsaacLab/logs/rsl_rl/easyuuv_koopman_mpc/2026-07-04_23-23-45/model_0.pt",
+  "selected_checkpoint": "/root/IsaacLab/logs/rsl_rl/easyuuv_koopman_mpc/2026-07-04_23-23-45/model_0.pt",
+  "selected_rule": "latest_mtime_model_pt",
+  "checkpoint_provenance": "phase5_train_koopman_mpc",
+  "training_iterations": 1,
+  "save_interval": 1,
+  "num_envs": 1,
+  "result_bucket": "retrained_ppo_koopman_mpc",
+  "ppo_evidence_level": "retrained_policy_smoke",
+  "reward_profile": "legacy_easyuuv_v0",
+  "controller_path": "koopman_mpc/direct_state",
+  "adapter_mode": "heuristic_reference_delta_v0",
+  "koopman_backend": "direct_state",
+  "koopman_manifest_path": "/root/EASYkoopman/source/results/koopman_phase2_5_verify_20260701_231802/selected_model_manifest.json",
+  "observation_dim": 9,
+  "action_dim": 4,
+  "pwm_dim": 8,
+  "log_dir": "/root/IsaacLab/logs/rsl_rl/easyuuv_koopman_mpc/2026-07-04_23-23-45",
+  "source_git_commit": "c69448b1c97aaaef5d6d17636879f5d17b0c5175",
+  "source_git_dirty": true,
+  "source_checkpoint_mtime": 1783178631.11359,
+  "allowed_claims": [
+    "RSL-RL PPO can train inside the Koopman-MPC closed-loop path",
+    "A retrained checkpoint can be generated and loaded for smoke evaluation"
+  ],
+  "disallowed_claims": [
+    "PPO convergence is proven",
+    "PPO+Koopman-MPC superiority is proven",
+    "old PPO semantics are losslessly migrated"
+  ],
+  "adapter_refresh_path": "Phase5KoopmanReferenceWrapper.step",
+  "adapter_refresh_count": 24,
+  "adapter_refresh_before_env_step": true,
+  "base_reference_source": "env_goal_quat_plus_zero_depth",
+  "depth_reference_source": "zero_depth_default",
+  "base_reference_goal_match_max_error": 0.0,
+  "policy_action_clip_rate": 0.5
+}
