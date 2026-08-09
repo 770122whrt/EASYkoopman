@@ -1,8 +1,8 @@
 # Milestone v1.0 - Koopman-UUV Single-Configuration Control
 
-**状态：** 已关闭，作为单构型研究基线保留  
-**周期：** 2026-06-10 至 2026-08-09  
-**生成日期：** 2026-08-09  
+**状态：** 已关闭，作为单构型研究基线保留
+**周期：** 2026-06-10 至 2026-08-09
+**生成日期：** 2026-08-09
 **用途：** 项目回顾、团队交接和后续多构型 AUV 工作的事实基线
 
 ---
@@ -161,7 +161,7 @@ latency max gate = passed for all formal candidates
 
 - **功能链路：** 已完成并通过本地测试与多次服务器 Isaac 实验。
 - **本地回归：** `175 passed`，`compileall` 通过。
-- **正式 phase verification：** 6/14 个阶段目录具有 `VERIFICATION.md`。
+- **正式 phase verification：** 5/14 个阶段目录具有 `VERIFICATION.md`。
 - **完整性能晋级：** 未达到；Phase 5.4 明确为 `no_selection`。
 - **多构型适用性：** 未验证；v1.0 只覆盖当前 EasyUUV 单构型。
 

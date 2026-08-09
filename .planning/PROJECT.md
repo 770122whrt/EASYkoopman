@@ -2,66 +2,94 @@
 
 ## What This Is
 
-EASYkoopman 是基于 EasyUUV Isaac Sim/Lab 仿真环境的控制器迁移项目。项目目标是在保留 EasyUUV 现有 AUV 资产、推进器模型、水动力模型和评估脚本的基础上，将底层控制器从 `Ssurface`/`PID` 逐步替换为 Koopman 模型预测控制（Koopman Model Predictive Control, Koopman+MPC）。
+EASYkoopman is an EasyUUV/Isaac research project for learning and controlling underwater-vehicle dynamics with Koopman models, model-predictive control and a higher-level PPO policy.
 
-该项目首先服务于研究和仿真验证：在 Isaac Sim/Lab 中构建可复现的姿态与深度控制闭环，再为后续 Sim2Real 和真实 UUV 部署保留接口。
+Milestone v1.0 established the system on one EasyUUV configuration. It preserves the original thruster and hydrodynamic plant while adding data collection, offline Koopman identification, bounded MPC, PPO reference adaptation, checkpoint provenance and matched evaluation.
 
 ## Core Value
 
-在不破坏 EasyUUV 原始仿真基线的前提下，建立一个可验证、可迭代的 Koopman+MPC 控制闭环。
+Build control experiments whose model, checkpoint, controller path and evaluation evidence are explicit enough to reproduce, compare and reject safely.
 
-## Requirements
+## Current State
 
-### Validated
+**Shipped research milestone:** `v1.0 Koopman-UUV Single-Configuration Control`
 
-- EasyUUV 当前代码已提供 Isaac Lab `DirectRLEnv` 环境、8 推进器布局、浮力/阻力水动力计算和 RSL-RL 训练/评估脚本。
-- 当前控制链路已经分层：4D action 进入 `_pid_control()`，再转为 8D PWM，最后由 `_compute_dynamics()` 转换成作用于刚体的 force/torque。
+The implemented chain is:
 
-### Active
+```text
+observation_9d
+  -> RSL-RL PPO
+  -> action_4d
+  -> heuristic_reference_delta_v0
+  -> reference_5d
+  -> direct_state Koopman + bounded MPC
+  -> PWM_8d
+  -> EasyUUV Isaac physics
+```
 
-- [ ] 保留原始 `Ssurface`/`PID` 行为作为回归基线。
-- [ ] 建立控制器边界，使 legacy controller 和 Koopman+MPC controller 可以在同一环境内切换。
-- [ ] 建立仿真数据采集格式，记录 Koopman 辨识需要的状态、参考、控制量和下一步状态。
-- [ ] 实现离线扩展动态模态分解（Extended Dynamic Mode Decomposition, EDMD）训练流程。
-- [ ] 实现 Koopman+MPC 闭环控制，优先覆盖姿态和深度控制。
-- [ ] 复用现有 step、sine、irregular 三类评估脚本，对比 legacy controller 与 Koopman+MPC。
-- [ ] 整理 Isaac Sim/Lab 运行、验证和后续 Sim2Real 扩展文档。
+Validated in v1.0:
 
-### Out of Scope
+- Isaac Sim 5.0 + Isaac Lab 2.2.1 direct and PPO-integrated workflows;
+- step/sine/irregular JSONL data collection;
+- offline direct-state and paper-style lifted EDMD model tooling;
+- selected-model manifest and prediction-quality gate;
+- bounded 8D PWM Koopman-MPC with timeout/fallback diagnostics;
+- controller-only matched evaluation;
+- PPO adapter, retraining path and checkpoint provenance;
+- stability, one-factor, cross-combination and 11-profile Pareto experiments;
+- 175 local tests passing at milestone close.
 
-- 原生 Isaac Sim app 重写 - 第一阶段保留 Isaac Lab 任务形态，避免同时迁移仿真框架和控制器。
-- 真实硬件部署 - 当前先在仿真中建立闭环和数据管线。
-- LLM 直接控制推进器 - EasyUUV 论文中 LLM 是低频调参器，不能替代实时控制器。
-- 一开始实现完整 6-DOF 全空间 MPC - 先覆盖姿态与深度，降低模型维度和求解压力。
-- 大规模重构训练框架 - PPO 训练和 RSL-RL workflow 保持可运行，后续按阶段接入。
+The final Phase 5.4 selector returned `no_selection`. v1.0 therefore remains a reproducible research baseline rather than a performance-superiority or deployment release.
 
-## Context
+## Known Limitations
 
-- EasyUUV 源代码位于本目录，核心环境文件是 `easyuuv_env.py`。
-- README 说明项目基于 Isaac Sim/Lab，原始测试环境为 Isaac Sim 4.0.0 和 Isaac Lab 1.0.0。目标本机 Isaac Sim/Lab 版本待确认。
-- `_pid_control()` 是当前 4D action 到 8D PWM 的控制分配入口。
-- `_compute_dynamics()` 包含推进器死区、多项式推力映射、推进器几何、浮力和阻力模型，应尽量保留。
-- `workflows/play_controller.py` 已经提供不依赖 PPO 的直接控制入口，适合作为 Koopman+MPC 的第一版闭环验证脚本。
-- `workflows/play_eval.py`、`workflows/play_eval_step.py`、`workflows/play_eval_task2.py` 已提供 sine、step、irregular 信号评估轨迹。
+- Legacy/S-Surface remains the strongest nominal controller baseline.
+- `heuristic_reference_delta_v0` is an explicit engineering assumption, not a lossless action-semantics migration.
+- `no_cost_improvement` fallback needs cost-margin and prediction-error diagnosis.
+- `paper_lifted_edmd` has large depth error and is research-only.
+- Koopman models are trained offline and remain fixed online.
+- Evidence covers one EasyUUV configuration only.
+- No LLM runtime, Sim2Real, hardware deployment or broad 6-DOF claim exists.
+- Several historical phases lack standard GSD verification artifacts; see the milestone audit.
 
-## Constraints
+## Next Milestone Status
 
-- **Workspace**: 所有规划和文档产物必须写在 `E:\code for project\Agentic AUV\EasyUUV` 下。
-- **GitHub**: 远程目标为 `https://github.com/770122whrt/EASYkoopman.git`，初次发布允许覆盖 `main` 分支。
-- **Compatibility**: 保留 Isaac Lab `DirectRLEnv` 环境形态，不在第一阶段改成原生 Isaac Sim standalone app。
-- **Control Rate**: 当前仿真配置为 `dt=1/120`，`decimation=2`，控制闭环约 60 Hz。MPC 求解必须以该频率作为第一版预算。
-- **Safety**: 控制输出最终必须限制到 8D PWM 的 `[-1, 1]`，并复用原有推进器推力模型。
-- **Verification**: 每个阶段必须保留 legacy baseline，并给出可运行的回归或离线验证路径。
+No next milestone has been created. The user has identified multi-configuration AUV involvement as the likely next direction, but its scope, requirements and roadmap are intentionally left undefined by this closeout.
+
+## Constraints That Remain Valid
+
+- Isaac-dependent validation runs on the server; local development must retain Isaac-free tests where possible.
+- PWM commands must stay in `[-1, 1]` and pass through the existing thruster/hydrodynamic plant.
+- Legacy control must remain available as a matched baseline and fallback.
+- PPO or a future LLM cannot silently bypass the low-level controller to command PWM.
+- Model and checkpoint selection must be provenance-checked and fail closed.
+- Claims must distinguish smoke, stable training, matched evaluation and performance promotion.
 
 ## Key Decisions
 
 | Decision | Rationale | Outcome |
-|----------|-----------|---------|
-| 先保留 Isaac Lab 环境，不重写仿真框架 | 同时迁移仿真和控制器会放大不确定性 | Pending |
-| Koopman+MPC 第一版替换控制器层，而不是替换水动力层 | `_compute_dynamics()` 已包含经过项目验证的推进器和水动力逻辑 | Pending |
-| 第一版 MPC 优化 4D 虚拟控制量，后续再扩展到 8D PWM 或 6D wrench | 降低求解维度，方便复用现有 action 语义 | Pending |
-| 先做数据采集和基线验证，再实现 EDMD/MPC | 没有可靠数据和 baseline 时闭环调试不可解释 | Pending |
-| LLM 后续只作为调参或分析层，不进入实时控制环 | 控制闭环需要确定性和低延迟 | Pending |
+|---|---|---|
+| Preserve Isaac Lab `DirectRLEnv` and EasyUUV physics | Limit simultaneous migration and algorithm risk | Good |
+| Build the data seam before EDMD/MPC | Identification needs reproducible transitions | Good |
+| Split datasets by log, not row | Avoid temporal leakage | Good |
+| Use selected manifests at runtime | Prevent stale or unsupported models entering control | Good |
+| Keep direct-state engineering and paper-lifted comparison distinct | Avoid overstating paper alignment | Good |
+| Optimize model-consistent 8D PWM in the first MPC | Match the identified control input | Good |
+| Put PPO above Koopman-MPC through a versioned adapter | Preserve layered control architecture | Revisit adapter semantics |
+| Reuse RSL-RL PPO | Focus effort on MDP and controller integration | Good |
+| Add checkpoint provenance/evidence levels | Prevent relabeling and unsupported claims | Good |
+| Close Phase 5.4 with `no_selection` | Preserve a valid negative result | Good |
+| Defer online adaptation and LLM | Finish the core control evidence first | Still valid |
+
+## Canonical Records
+
+- `.planning/reports/MILESTONE_SUMMARY-v1.0.md`
+- `.planning/milestones/v1.0-ROADMAP.md`
+- `.planning/milestones/v1.0-REQUIREMENTS.md`
+- `.planning/milestones/v1.0-MILESTONE-AUDIT.md`
+- `docs/Agentic_AUV_project_handover.md`
+- `docs/project_parameters_and_work_summary_2026_07_05.md`
 
 ---
-*Last updated: 2026-06-10 after GSD project initialization*
+
+*Last updated: 2026-08-09 after v1.0 milestone close*
