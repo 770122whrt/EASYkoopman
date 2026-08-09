@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Multi-Configuration Koopman Transfer and Environment-Aware Control
-status: planned
-last_updated: "2026-08-09T08:01:45.745Z"
-last_activity: 2026-08-09 -- Phase 6 planning complete
+status: in_progress
+last_updated: "2026-08-09T08:58:02.000Z"
+last_activity: 2026-08-09 -- 06-01 package intake complete
 progress:
   total_phases: 7
   completed_phases: 0
   total_plans: 4
-  completed_plans: 0
-  percent: 0
+  completed_plans: 1
+  percent: 25
 ---
 
 # Project State: EASYkoopman
@@ -29,9 +29,9 @@ See `.planning/PROJECT.md`.
 ## Current Position
 
 Phase: 6 — EasyUUV 2.0 Intake and Multi-Configuration Qualification
-Plan: 4 plans — 06-01 through 06-04
-Status: Ready to execute
-Last activity: 2026-08-09 -- Phase 6 planning complete
+Plan: 06-01 complete — 1 of 4 plans
+Status: In progress — Wave 1 complete
+Last activity: 2026-08-09 -- canonical package/provenance contract verified locally
 
 ## Milestone Goal
 
@@ -100,7 +100,7 @@ Frozen conclusions carried into v2.0:
 2. v1.0 server experiment evidence plus an explicit manifest.
 3. v2.0 PROJECT, REQUIREMENTS, ROADMAP, STATE, Phase 6 SPEC/PLAN and supporting design documents.
 
-The design-review commit remains local until the clean delivery history is assembled. No remote force-push is planned.
+All three boundaries are visible on `origin/v2.0-multi-configuration`: simulator snapshot `7ba2499`, v1 evidence `7147379`, and planning head `c8b9c70`. Phase execution commits remain later local commits; no remote force-push was used.
 
 ## Planning Result
 
@@ -108,7 +108,8 @@ The design-review commit remains local until the clean delivery history is assem
 - Research and pattern mapping are complete.
 - Four execution plans cover 8/8 QUAL requirements and 14/14 locked D-ID decisions.
 - Wave 1 establishes package/provenance; Wave 2 runs catalog and validator TDD in parallel; Wave 3 blocks on actual eight-configuration Isaac evidence.
+- Plan 06-01 completed with canonical `easyuuv_nc` packaging, package-confined USD lookup, a local `.venv` workflow and 21 passing package/v1 source-contract tests.
 
 ## Next Action
 
-Assemble the three isolated delivery pushes, then execute `06-01-PLAN.md`. Preserve the simulator snapshot, v1 experiment evidence and v2 planning as separate auditable boundaries.
+Execute Wave 2 plans `06-02-PLAN.md` and `06-03-PLAN.md`. Preserve local-contract versus server-Isaac evidence labels; do not begin Phase 7 before Phase 6 server verification.

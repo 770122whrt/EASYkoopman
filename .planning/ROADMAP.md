@@ -15,7 +15,7 @@ v1.0 的阶段名称、结论和证据已冻结，不在本活动 roadmap 中重
 
 | Phase | Name | Requirements | Depends on | Status |
 |---|---|---|---|---|
-| 6 | EasyUUV 2.0 Intake and Multi-Configuration Qualification | QUAL-01..08 | v1.0 frozen baseline | Planned — ready for execution |
+| 6 | EasyUUV 2.0 Intake and Multi-Configuration Qualification | QUAL-01..08 | v1.0 frozen baseline | In progress — 1/4 plans complete |
 | 7 | Cross-Configuration Koopman Data and Control Contract | CONT-01..05 | Phase 6 | Pending |
 | 8 | Multi-Configuration Koopman Identification and OOD Gate | KID-01..05 | Phase 7 | Pending |
 | 9 | Configuration-Aware Koopman-MPC Integration | MPC2-01..04 | Phase 8 | Pending |
@@ -46,7 +46,7 @@ Plans:
 
 **Wave 1**
 
-- [ ] 06-01-PLAN.md — verify the isolated received snapshot, normalize the package to `easyuuv_nc`, and establish packaging/asset/v1-isolation contracts.
+- [x] 06-01-PLAN.md — verified the isolated snapshot and established canonical `easyuuv_nc` packaging, asset and v1-isolation contracts (`f2e660e`, `8b8c7e0`, `d916a12`).
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
