@@ -1,0 +1,5 @@
+received_path: easyuuv_v2-main
+canonical_path: easyuuv_nc
+snapshot_commit: 7ba24993663e1603f5d10c7bd624c8d0f203ed8d
+snapshot_kind: received-unmodified
+integration_change: directory-normalization
