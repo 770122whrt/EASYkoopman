@@ -3,20 +3,19 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Multi-Configuration Koopman Transfer and Environment-Aware Control
 status: planning
-last_updated: "2026-08-09T07:16:37.892Z"
-last_activity: 2026-08-09
+last_updated: "2026-08-09T07:23:27.510Z"
+last_activity: 2026-08-09 — v2.0 roadmap approved; Phase 6 ready for specification and planning
 progress:
-  total_phases: 0
+  total_phases: 7
   completed_phases: 0
   total_plans: 0
   completed_plans: 0
-  percent: 0
 ---
 
 # Project State: EASYkoopman
 
 **Updated:** 2026-08-09
-**Current focus:** Define and plan Phase 6 intake/qualification for the v2.0 multi-configuration milestone
+**Current focus:** Phase 6 — EasyUUV 2.0 Intake and Multi-Configuration Qualification
 **Active milestone:** `v2.0 Multi-Configuration Koopman Transfer and Environment-Aware Control`
 **Branch:** `v2.0-multi-configuration`
 
@@ -28,12 +27,10 @@ See `.planning/PROJECT.md`.
 
 ## Current Position
 
-```text
-Phase: Not started (defining requirements)
+Phase: 6 — EasyUUV 2.0 Intake and Multi-Configuration Qualification
 Plan: —
-Status: Defining requirements
-Last activity: 2026-08-09 — Milestone v2.0 started
-```
+Status: Ready for specification and planning
+Last activity: 2026-08-09 — v2.0 roadmap approved
 
 ## Milestone Goal
 
@@ -106,11 +103,10 @@ The design-review commit remains local until the clean delivery history is assem
 
 ## Open Planning Work
 
-- Define v2.0 requirement IDs and one-to-one phase traceability.
 - Create the Phase 6 falsifiable specification.
 - Research Phase 6 integration details and create checker-approved execution plans.
 - Update `docs/Agentic_AUV_next_steps_plan.md` to match the canonical roadmap and push boundaries.
 
 ## Next Action
 
-Create and approve the v2.0 requirements/roadmap, then run Phase 6 spec and plan workflows. Do not modify the untracked simulator snapshot or experiment evidence during planning.
+Run the Phase 6 spec and plan workflows. Do not modify the untracked simulator snapshot or experiment evidence during planning.
