@@ -1,0 +1,60 @@
+# V1 Phase 2 Task B scaffold: Extreme Manifold Survival Flip360.
+#
+# Purpose:
+# - Operable Flip360 smoke/probe config with SO(3) P0 fixes and allocator
+#   priority enabled.
+# - Depth is evaluated by V1 barrier diagnostics, not by legacy total MSE.
+# - Official V1 evaluation uses deterministic safe-core reset:
+#   surface-relative depth is depth_v1 = z_world - 3.0, and starting_depth=2.0
+#   maps to depth_v1=-1.0, the center of the default safe core [-1.3, -0.7].
+
+train:
+  task: EasyUUV-Direct-Parametric-v1
+  num_envs: 1
+  seed: 2201
+
+paths:
+  results_root: .results/v1_task_b_flip360_barrier
+  artifacts_root: .results/v1_task_b_flip360_barrier_artifacts
+
+env:
+  tune_gains: true
+  identity_init: false
+  enable_pe: true
+  enable_deadzone: true
+  enable_param_lpf: true
+
+  attitude_error_mode: so3
+  action_lim_vec: [0.6, 0.6, 0.3, 1.0]
+  geo_zeta1: 0.50
+  geo_zeta2: 0.5
+  geo_residual_scale: 0.0
+  geo_error_mode: axis_angle
+  geo_damping_outside_sigmoid: true
+  geo_zeta2_outside: 0.15
+  geo_flip_continuity: true
+  geo_flip_softening: 0.3
+
+  alloc_priority_mode: depth
+  alloc_priority_floor: 0.0
+
+  reference_mode: flip360_sine
+  ref_sine_amp: [3.1415926, 3.1415926, 0.0]
+  ref_sine_freq: [0.05, 0.05, 0.0]
+  deterministic_reference: true
+
+  eval_mode: true
+  goal_spawn_radius: 0.0
+  init_guidance_rate: 0.0
+  starting_depth: 2.0
+  max_auv_z: 7.0
+
+  disturbance_cfg:
+    mode: jonswap
+    base_vel: [0.08, 0.0, 0.03]
+    jonswap_hs: 0.8
+    jonswap_fp: 0.14
+    jonswap_gamma: 3.3
+    jonswap_depth: 30.0
+    jonswap_direction: 0.0
+    jonswap_seed: 2201

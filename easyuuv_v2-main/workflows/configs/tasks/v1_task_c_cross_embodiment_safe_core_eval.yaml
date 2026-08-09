@@ -1,0 +1,58 @@
+# V1 Phase 2b Task C safe-core evaluation scaffold.
+#
+# Purpose:
+# - Formalize the second layer of Task C evaluation after the Phase 2 closure.
+# - Pair with v1_task_c_cross_embodiment_blind.yaml so cross-embodiment results
+#   are always reported under both:
+#     1) blind-random initial reset
+#     2) deterministic safe-core reset
+# - The target embodiment is still selected through CLI.
+
+train:
+  task: EasyUUV-Direct-Parametric-v1
+  num_envs: 1
+  seed: 3211
+
+paths:
+  results_root: .results/v1_task_c_cross_embodiment_safe_core_eval
+  artifacts_root: .results/v1_task_c_cross_embodiment_safe_core_eval_artifacts
+
+env:
+  tune_gains: true
+  identity_init: false
+  enable_pe: true
+  enable_deadzone: true
+  enable_param_lpf: true
+
+  attitude_error_mode: so3
+  action_lim_vec: [0.6, 0.6, 0.3, 1.0]
+  geo_zeta1: 0.8
+  geo_zeta2: 0.5
+  geo_residual_scale: 0.0
+  geo_error_mode: axis_angle
+  geo_damping_outside_sigmoid: true
+  geo_zeta2_outside: 0.15
+  geo_flip_continuity: true
+  geo_flip_softening: 0.2
+
+  reference_mode: sine_sweep
+  ref_sine_amp: [0.30, 0.30, 0.20]
+  ref_sine_freq: [0.08, 0.11, 0.06]
+  deterministic_reference: true
+
+  # surface_z=3.0 -> depth_v1=-1.0, the center of the default safe core.
+  eval_mode: true
+  goal_spawn_radius: 0.0
+  init_guidance_rate: 0.0
+  starting_depth: 2.0
+  max_auv_z: 7.0
+
+  disturbance_cfg:
+    mode: jonswap
+    base_vel: [0.06, 0.0, 0.02]
+    jonswap_hs: 0.6
+    jonswap_fp: 0.12
+    jonswap_gamma: 3.3
+    jonswap_depth: 30.0
+    jonswap_direction: 0.0
+    jonswap_seed: 3211

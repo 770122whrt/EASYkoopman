@@ -1,0 +1,82 @@
+# V1 Task A: Long-Horizon Auto-Trim Marathon (boundary-decoupled variant).
+#
+# Purpose:
+# - Phase 7-pre link-level fix (user-approved) for the Task A long-horizon
+#   contract blockers #1/#2/#5.
+# - #1 (link-level): x/y world-frame translation is UNACTUATED (num_actions=4
+#   only drives yaw/pitch/roll/depth). A base_vel current pushes the body past
+#   max_auv_x=7 in ~140s, forcing an auto-reset that severs long-horizon
+#   integrators. We DECOUPLE position from termination via per-axis boundary
+#   gating (use_boundary_x/y=false) while KEEPING the z depth-barrier safety net
+#   (use_boundary_z=true). Semantics: Task A validates attitude auto-trim;
+#   position drift of an underactuated body is not an episode failure.
+# - #2/#5 (single-episode contract): cap_episode_length=false and
+#   episode_length_before_reset=null guarantee no internal auto-reset within the
+#   marathon horizon, so depth integrator / gain-tuner LPF / PE / sim_time and
+#   wrapper Lyapunov/baseline windows stay continuous. Drive with
+#   --total_steps >= 30000 (>=500s @60Hz) from the CLI.
+# - Legacy control kept intact: workflows/configs/v1_task_a_auto_trim_marathon.yaml.
+#
+# online_allowed=false. This is an evaluation-side scaffold; no retrain.
+
+train:
+  task: EasyUUV-Direct-Parametric-v1
+  num_envs: 1
+  seed: 1201
+
+paths:
+  results_root: .results/v1_task_a_marathon_boundary_decoupled
+  artifacts_root: .results/v1_task_a_marathon_boundary_decoupled_artifacts
+
+env:
+  # Long-horizon semantics: keep the controller, EMA, and integrators alive.
+  cap_episode_length: false
+  episode_length_s: 360.0
+  episode_length_before_reset: null
+
+  tune_gains: true
+  identity_init: false
+  enable_pe: true
+  enable_deadzone: true
+  enable_param_lpf: true
+
+  attitude_error_mode: so3
+  action_lim_vec: [0.6, 0.6, 0.3, 1.0]
+  geo_zeta1: 0.8
+  geo_zeta2: 0.5
+  geo_residual_scale: 0.0
+  geo_error_mode: axis_angle
+  geo_damping_outside_sigmoid: true
+  geo_zeta2_outside: 0.15
+  geo_flip_continuity: true
+  geo_flip_softening: 0.2
+
+  reference_mode: sine_sweep
+  ref_sine_amp: [0.18, 0.18, 0.10]
+  ref_sine_freq: [0.025, 0.033, 0.021]
+  deterministic_reference: true
+
+  # Phase 2b official Task A reset contract:
+  # surface_z=3.0 -> depth_v1=-1.0, the center of the default safe core.
+  eval_mode: true
+  goal_spawn_radius: 0.0
+  init_guidance_rate: 0.0
+  starting_depth: 2.0
+
+  # Phase 7-pre link-level boundary decoupling (blocker #1):
+  # keep the z depth-barrier safety net, release the unactuated x/y translation.
+  use_boundaries: true
+  use_boundary_x: false
+  use_boundary_y: false
+  use_boundary_z: true
+  max_auv_z: 7.0
+
+  disturbance_cfg:
+    mode: jonswap
+    base_vel: [0.05, 0.0, 0.02]
+    jonswap_hs: 0.45
+    jonswap_fp: 0.12
+    jonswap_gamma: 3.3
+    jonswap_depth: 30.0
+    jonswap_direction: 0.0
+    jonswap_seed: 1201
