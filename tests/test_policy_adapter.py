@@ -81,3 +81,28 @@ def test_invalid_ppo_evidence_level_is_rejected():
             [0.0, 1.0, 0.0, 0.0, 0.0],
             ppo_evidence_level="performance_claim",
         )
+
+
+@pytest.mark.parametrize(
+    "evidence_level",
+    [
+        "stability_sentinel",
+        "stability_candidate",
+        "matched_stability_eval",
+        "phase5_2_health_sentinel",
+        "phase5_2_health_candidate",
+        "phase5_2_matched_eval",
+        "phase5_3_cross_sentinel",
+        "phase5_3_cross_candidate",
+        "phase5_3_cross_extended",
+        "phase5_3_cross_matched_eval",
+    ],
+)
+def test_phase5_plus_evidence_levels_are_accepted(evidence_level: str):
+    output = adapt_policy_reference(
+        [0.0, 0.0, 0.0, 0.0],
+        [0.0, 1.0, 0.0, 0.0, 0.0],
+        ppo_evidence_level=evidence_level,
+    )
+
+    assert output.diagnostics["ppo_evidence_level"] == evidence_level

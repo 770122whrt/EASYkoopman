@@ -42,6 +42,8 @@ except ImportError:
 
 from koopman.mpc import MPCBounds, MPCConfig, MPCWeights
 from koopman.mpc_controller import KoopmanMPCController
+from koopman.phase5_2_profiles import LEGACY_REWARD_PROFILE, PHASE5_2_REWARD_PROFILE
+from koopman.phase5_2_reward import Phase52RewardConfig, compute_phase52_reward_components
 from koopman.runtime import load_koopman_runtime
 
 class EasyUUVEnvWindow(BaseEnvWindow):
@@ -110,6 +112,15 @@ class EasyUUVEnvCfg(DirectRLEnvCfg):
     rew_scale_ang_vel = 0.0
     rew_scale_lin_vel = 0.0
     rew_scale_actions = 0.00
+    reward_profile = LEGACY_REWARD_PROFILE
+    phase5_2_pwm_soft_limit = 0.90
+    phase5_2_latency_ref_ms = 20.0
+    phase5_2_latency_clip = 3.0
+    phase5_2_w_fallback = 0.30
+    phase5_2_w_pwm_sat = 0.20
+    phase5_2_w_latency = 0.05
+    phase5_2_w_action = 0.01
+    phase5_2_w_delta_action = 0.02
 
     # dynamics
     com_to_cob_offset = [0.0, 0.0, 0.01] # in meters, add this (xyz) to COM to get COB location
@@ -167,7 +178,9 @@ class EasyUUVEnv(DirectRLEnv):
         self._goal_pos_w = self._default_env_origins # just for visualizations at the moment
         self._step_count = 0
         self._last_pwm_8d = torch.zeros(self.num_envs, 8, device=self.device)
+        self._last_action_delta_4d = torch.zeros(self.num_envs, self.cfg.num_actions, device=self.device)
         self._last_koopman_mpc_diagnostics = [{} for _ in range(self.num_envs)]
+        self._last_phase5_2_reward_components = {}
         
         # Get thruster configurations
         self.thruster_com_offsets, self.thruster_quats = get_thruster_com_and_orientations(self.device)
@@ -314,10 +327,26 @@ class EasyUUVEnv(DirectRLEnv):
         observations = {"policy": obs}
         return observations
 
+    def _phase5_2_solver_health_tensors(self) -> tuple[torch.Tensor, torch.Tensor]:
+        fallback_used = torch.zeros(self.num_envs, dtype=torch.float32, device=self.device)
+        latency_ms = torch.zeros(self.num_envs, dtype=torch.float32, device=self.device)
+        for env_index, diagnostics in enumerate(self._last_koopman_mpc_diagnostics):
+            if not isinstance(diagnostics, dict):
+                continue
+            fallback_used[env_index] = 1.0 if diagnostics.get("fallback_used", False) else 0.0
+            latency_ms[env_index] = float(diagnostics.get("latency_ms", 0.0) or 0.0)
+        return fallback_used, latency_ms
+
+    def _record_phase5_2_reward_components(self, components: dict[str, torch.Tensor]) -> None:
+        self._last_phase5_2_reward_components = {
+            field_name: values.detach().cpu().reshape(-1).tolist()
+            for field_name, values in components.items()
+        }
+
     def _get_rewards(self) -> torch.Tensor:
         offsets_from_origin = quat_apply(quat_conjugate(self._robot.data.root_quat_w), self._default_env_origins - self._robot.data.root_pos_w)
 
-        total_reward = _compute_rewards(
+        legacy_reward = _compute_rewards(
             self.cfg.rew_scale_pos,
             self.cfg.rew_scale_ang,
             self.cfg.rew_scale_lin_vel,
@@ -333,6 +362,26 @@ class EasyUUVEnv(DirectRLEnv):
             self._completed_envs,
             self._actions
         )
+
+        reward_profile = getattr(self.cfg, "reward_profile", LEGACY_REWARD_PROFILE)
+        if reward_profile == LEGACY_REWARD_PROFILE:
+            total_reward = legacy_reward
+            self._last_phase5_2_reward_components = {}
+        elif reward_profile == PHASE5_2_REWARD_PROFILE:
+            fallback_used, latency_ms = self._phase5_2_solver_health_tensors()
+            components = compute_phase52_reward_components(
+                legacy_reward=legacy_reward,
+                actions=self._actions,
+                action_delta=self._last_action_delta_4d,
+                pwm=self._last_pwm_8d,
+                fallback_used=fallback_used,
+                latency_ms=latency_ms,
+                config=Phase52RewardConfig.from_env_cfg(self.cfg),
+            )
+            self._record_phase5_2_reward_components(components)
+            total_reward = components["total_reward"]
+        else:
+            raise ValueError(f"Unknown reward_profile: {reward_profile}")
 
         ang_mse = math_utils.quat_error_magnitude(self._goal[:,:], self._robot.data.root_quat_w[:,:])
         self.log_MSE += torch.pow(ang_mse,2)
@@ -378,6 +427,7 @@ class EasyUUVEnv(DirectRLEnv):
 
 
         self._step_count = 0
+        self._last_action_delta_4d[env_ids] = 0.0
         
         # Apply domain randomization
         self._reset_domain(env_ids)
@@ -478,7 +528,8 @@ class EasyUUVEnv(DirectRLEnv):
         thruster_forces = torch.zeros((self.num_envs, 8, 3), device=self.device, dtype=torch.float)
         thruster_torques = torch.zeros((self.num_envs, 8, 3), device=self.device, dtype=torch.float)
 
-        legacy_pwm = self._pid_control(actions, actions - self.old_actions, self.actions_i) # motorValues (num_envs, 8)
+        action_delta = actions - self.old_actions
+        legacy_pwm = self._pid_control(actions, action_delta, self.actions_i) # motorValues (num_envs, 8)
         if self.cfg.controller_mode == 'legacy':
             motorValues = legacy_pwm
             self._last_koopman_mpc_diagnostics = [{} for _ in range(self.num_envs)]
@@ -500,6 +551,7 @@ class EasyUUVEnv(DirectRLEnv):
             self._last_koopman_mpc_diagnostics = diagnostics
         else:
             raise ValueError(f"Unknown controller_mode: {self.cfg.controller_mode}")
+        self._last_action_delta_4d = action_delta.clone()
         self.old_actions = actions.clone()
         self._last_pwm_8d = motorValues.clone()
         # motorValues = torch.clone(actions) # at this point these are PWM commands between -1 and 1

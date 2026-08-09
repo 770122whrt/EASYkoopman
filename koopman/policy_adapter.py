@@ -14,6 +14,20 @@ VALID_PPO_EVIDENCE_LEVELS = (
     "checkpoint_smoke",
     "training_entrypoint_only",
     "retrained_policy_smoke",
+    "stability_sentinel",
+    "stability_candidate",
+    "matched_stability_eval",
+    "phase5_2_health_sentinel",
+    "phase5_2_health_candidate",
+    "phase5_2_matched_eval",
+    "phase5_3_cross_sentinel",
+    "phase5_3_cross_candidate",
+    "phase5_3_cross_extended",
+    "phase5_3_cross_matched_eval",
+    "phase5_4_pareto_sentinel",
+    "phase5_4_pareto_candidate",
+    "phase5_4_pareto_refinement",
+    "phase5_4_pareto_matched_eval",
 )
 
 

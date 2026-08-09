@@ -19,6 +19,35 @@ from isaaclab_app import AppLauncher
 
 import cli_args
 from discover_ppo_checkpoints import discover_ppo_checkpoints
+from koopman.phase5_2_profiles import (
+    ADAPTER_PROFILE_IDS,
+    CHANGED_AXIS_IDS,
+    MPC_PROFILE_IDS,
+    PHASE52_PROFILE_IDS,
+    PHASE5_2_MATCHED_EVIDENCE_LEVEL,
+    adapter_profile_values,
+    mpc_profile_values,
+    resolve_phase52_profile,
+)
+from koopman.phase5_3_profiles import (
+    PHASE53_PROFILE_IDS,
+    PHASE5_3_CHANGED_AXIS_IDS,
+    PHASE5_3_MATCHED_EVIDENCE_LEVEL,
+    resolve_phase53_profile,
+)
+from koopman.phase5_4_profiles import (
+    PHASE54_PROFILE_IDS,
+    PHASE5_4_CHANGED_AXIS_IDS,
+    PHASE5_4_MATCHED_EVIDENCE_LEVEL,
+    effective_mpc_values,
+    effective_reward_config,
+    resolve_phase54_profile,
+)
+from validate_phase5_1_checkpoint_provenance import validate_phase5_1_checkpoint_provenance
+from validate_phase5_2_checkpoint_provenance import validate_phase5_2_checkpoint_provenance
+from validate_phase5_3_checkpoint_provenance import validate_phase5_3_checkpoint_provenance
+from validate_phase5_4_checkpoint_provenance import validate_phase5_4_checkpoint_provenance
+from validate_phase5_checkpoint_provenance import validate_phase5_checkpoint_provenance
 
 
 parser = argparse.ArgumentParser(description="Run PPO/RL through a guarded Koopman MPC reference adapter.")
@@ -71,6 +100,42 @@ parser.add_argument("--adapter_depth_delta_scale", type=float, default=0.5, help
 parser.add_argument("--adapter_depth_min", type=float, default=-3.0, help="Minimum adapted depth reference.")
 parser.add_argument("--adapter_depth_max", type=float, default=3.0, help="Maximum adapted depth reference.")
 parser.add_argument("--result_bucket", type=str, default=None, help="Evidence result bucket label.")
+parser.add_argument("--profile_id", choices=PHASE52_PROFILE_IDS + PHASE53_PROFILE_IDS + PHASE54_PROFILE_IDS, default="baseline_rerun")
+parser.add_argument("--reward_profile", type=str, default=None)
+parser.add_argument("--adapter_profile", choices=ADAPTER_PROFILE_IDS, default=None)
+parser.add_argument("--mpc_profile", choices=MPC_PROFILE_IDS, default=None)
+parser.add_argument("--changed_axis", choices=CHANGED_AXIS_IDS + PHASE5_3_CHANGED_AXIS_IDS + PHASE5_4_CHANGED_AXIS_IDS, default=None)
+parser.add_argument(
+    "--ppo_evidence_level",
+    choices=(
+        "stub_only",
+        "checkpoint_smoke",
+        "training_entrypoint_only",
+        "retrained_policy_smoke",
+        "stability_sentinel",
+        "stability_candidate",
+        "matched_stability_eval",
+        "phase5_2_health_sentinel",
+        "phase5_2_health_candidate",
+        "phase5_2_matched_eval",
+        "phase5_3_cross_sentinel",
+        "phase5_3_cross_candidate",
+        "phase5_3_cross_extended",
+        "phase5_3_cross_matched_eval",
+        "phase5_4_pareto_sentinel",
+        "phase5_4_pareto_candidate",
+        "phase5_4_pareto_refinement",
+        "phase5_4_pareto_matched_eval",
+    ),
+    default=None,
+    help="Evidence label. retrained/matched evidence requires checkpoint provenance.",
+)
+parser.add_argument(
+    "--source_training_summary_path",
+    type=str,
+    default=None,
+    help="Phase 5 training summary JSON used to validate retrained checkpoint provenance.",
+)
 
 cli_args.add_rsl_rl_args(parser)
 AppLauncher.add_app_launcher_args(parser)
@@ -106,6 +171,149 @@ def preflight_policy_mode(args_cli):
 
 PREFLIGHT_CHECKPOINT_PATH, PREFLIGHT_CHECKPOINT_INFO = preflight_policy_mode(args_cli)
 
+
+def resolve_preflight_evidence_level(args_cli, checkpoint_path: str | None) -> str:
+    if args_cli.ppo_evidence_level is not None:
+        return args_cli.ppo_evidence_level
+    if args_cli.result_bucket == "retrained_ppo_koopman_mpc":
+        return "retrained_policy_smoke"
+    if args_cli.policy_mode == "stub" or checkpoint_path is None:
+        return "stub_only"
+    return "checkpoint_smoke"
+
+
+def preflight_phase5_provenance(args_cli, checkpoint_path: str | None) -> dict:
+    evidence_level = resolve_preflight_evidence_level(args_cli, checkpoint_path)
+    args_cli._resolved_ppo_evidence_level = evidence_level
+    wants_retrained_bucket = args_cli.result_bucket == "retrained_ppo_koopman_mpc"
+    wants_phase5_smoke_evidence = evidence_level == "retrained_policy_smoke"
+    wants_phase5_1_matched_evidence = evidence_level == "matched_stability_eval"
+    wants_phase5_2_matched_evidence = evidence_level == PHASE5_2_MATCHED_EVIDENCE_LEVEL
+    wants_phase5_3_matched_evidence = evidence_level == PHASE5_3_MATCHED_EVIDENCE_LEVEL
+    wants_phase5_4_matched_evidence = evidence_level == PHASE5_4_MATCHED_EVIDENCE_LEVEL
+    wants_guarded_retrained_evidence = (
+        wants_phase5_smoke_evidence
+        or wants_phase5_1_matched_evidence
+        or wants_phase5_2_matched_evidence
+        or wants_phase5_3_matched_evidence
+        or wants_phase5_4_matched_evidence
+    )
+
+    if wants_retrained_bucket and not wants_guarded_retrained_evidence:
+        print(
+            "result_bucket=retrained_ppo_koopman_mpc requires --ppo_evidence_level retrained_policy_smoke "
+            "or matched_stability_eval or phase5_2_matched_eval or phase5_3_cross_matched_eval "
+            "or phase5_4_pareto_matched_eval.",
+            file=sys.stderr,
+        )
+        raise SystemExit(2)
+    if wants_guarded_retrained_evidence and not wants_retrained_bucket:
+        print(
+            "retrained PPO evidence requires --result_bucket retrained_ppo_koopman_mpc.",
+            file=sys.stderr,
+        )
+        raise SystemExit(2)
+    if not wants_guarded_retrained_evidence:
+        return {"checkpoint_provenance_valid": False}
+
+    if args_cli.policy_mode != "checkpoint" or checkpoint_path is None:
+        print("retrained PPO evidence requires --policy_mode checkpoint and a selected checkpoint.", file=sys.stderr)
+        raise SystemExit(2)
+    if not args_cli.source_training_summary_path:
+        print("retrained PPO evidence requires --source_training_summary_path.", file=sys.stderr)
+        raise SystemExit(2)
+    try:
+        if wants_phase5_1_matched_evidence:
+            return validate_phase5_1_checkpoint_provenance(
+                checkpoint_path,
+                args_cli.source_training_summary_path,
+                expected_evidence_level="matched_stability_eval",
+            )
+        if wants_phase5_2_matched_evidence:
+            return validate_phase5_2_checkpoint_provenance(
+                checkpoint_path,
+                args_cli.source_training_summary_path,
+                expected_evidence_level=PHASE5_2_MATCHED_EVIDENCE_LEVEL,
+            )
+        if wants_phase5_3_matched_evidence:
+            return validate_phase5_3_checkpoint_provenance(
+                checkpoint_path,
+                args_cli.source_training_summary_path,
+                expected_evidence_level=PHASE5_3_MATCHED_EVIDENCE_LEVEL,
+            )
+        if wants_phase5_4_matched_evidence:
+            return validate_phase5_4_checkpoint_provenance(
+                checkpoint_path,
+                args_cli.source_training_summary_path,
+                expected_evidence_level=PHASE5_4_MATCHED_EVIDENCE_LEVEL,
+            )
+        return validate_phase5_checkpoint_provenance(checkpoint_path, args_cli.source_training_summary_path)
+    except ValueError as exc:
+        print(f"Checkpoint provenance failed before Isaac startup: {exc}", file=sys.stderr)
+        raise SystemExit(2) from exc
+
+
+PREFLIGHT_PHASE5_PROVENANCE_INFO = preflight_phase5_provenance(args_cli, PREFLIGHT_CHECKPOINT_PATH)
+
+
+def resolve_eval_profile():
+    profile = getattr(args_cli, "_phase_profile", None)
+    if profile is not None:
+        return profile
+    if PREFLIGHT_PHASE5_PROVENANCE_INFO.get("source_profile_id"):
+        profile_id = PREFLIGHT_PHASE5_PROVENANCE_INFO["source_profile_id"]
+        if profile_id in PHASE54_PROFILE_IDS:
+            profile = resolve_phase54_profile(
+                profile_id=profile_id,
+                reward_profile=PREFLIGHT_PHASE5_PROVENANCE_INFO["source_reward_profile"],
+                adapter_profile=PREFLIGHT_PHASE5_PROVENANCE_INFO["source_adapter_profile"],
+                mpc_profile=PREFLIGHT_PHASE5_PROVENANCE_INFO["source_mpc_profile"],
+                changed_axis=PREFLIGHT_PHASE5_PROVENANCE_INFO["source_changed_axis"],
+            )
+        elif profile_id in PHASE53_PROFILE_IDS:
+            profile = resolve_phase53_profile(
+                profile_id=profile_id,
+                reward_profile=PREFLIGHT_PHASE5_PROVENANCE_INFO["source_reward_profile"],
+                adapter_profile=PREFLIGHT_PHASE5_PROVENANCE_INFO["source_adapter_profile"],
+                mpc_profile=PREFLIGHT_PHASE5_PROVENANCE_INFO["source_mpc_profile"],
+                changed_axis=PREFLIGHT_PHASE5_PROVENANCE_INFO["source_changed_axis"],
+            )
+        else:
+            profile = resolve_phase52_profile(
+                profile_id=profile_id,
+                reward_profile=PREFLIGHT_PHASE5_PROVENANCE_INFO["source_reward_profile"],
+                adapter_profile=PREFLIGHT_PHASE5_PROVENANCE_INFO["source_adapter_profile"],
+                mpc_profile=PREFLIGHT_PHASE5_PROVENANCE_INFO["source_mpc_profile"],
+                changed_axis=PREFLIGHT_PHASE5_PROVENANCE_INFO["source_changed_axis"],
+            )
+    else:
+        if args_cli.profile_id in PHASE54_PROFILE_IDS:
+            profile = resolve_phase54_profile(
+                profile_id=args_cli.profile_id,
+                reward_profile=args_cli.reward_profile,
+                adapter_profile=args_cli.adapter_profile,
+                mpc_profile=args_cli.mpc_profile,
+                changed_axis=args_cli.changed_axis,
+            )
+        elif args_cli.profile_id in PHASE53_PROFILE_IDS:
+            profile = resolve_phase53_profile(
+                profile_id=args_cli.profile_id,
+                reward_profile=args_cli.reward_profile,
+                adapter_profile=args_cli.adapter_profile,
+                mpc_profile=args_cli.mpc_profile,
+                changed_axis=args_cli.changed_axis,
+            )
+        else:
+            profile = resolve_phase52_profile(
+                profile_id=args_cli.profile_id,
+                reward_profile=args_cli.reward_profile,
+                adapter_profile=args_cli.adapter_profile,
+                mpc_profile=args_cli.mpc_profile,
+                changed_axis=args_cli.changed_axis,
+            )
+    args_cli._phase_profile = profile
+    return profile
+
 app_launcher = AppLauncher(args_cli)
 simulation_app = app_launcher.app
 log_stage("Isaac app started; importing post-app modules")
@@ -129,6 +337,20 @@ SUPPORTED_EVIDENCE_LEVELS = (
     "checkpoint_smoke",
     "training_entrypoint_only",
     "retrained_policy_smoke",
+    "stability_sentinel",
+    "stability_candidate",
+    "matched_stability_eval",
+    "phase5_2_health_sentinel",
+    "phase5_2_health_candidate",
+    "phase5_2_matched_eval",
+    "phase5_3_cross_sentinel",
+    "phase5_3_cross_candidate",
+    "phase5_3_cross_extended",
+    "phase5_3_cross_matched_eval",
+    "phase5_4_pareto_sentinel",
+    "phase5_4_pareto_candidate",
+    "phase5_4_pareto_refinement",
+    "phase5_4_pareto_matched_eval",
 )
 
 log_stage("Registering EasyUUV task")
@@ -236,6 +458,13 @@ def build_env_cfg():
 
 def configure_env_cfg(env_cfg):
     controller_mode = args_cli.controller_mode
+    profile = resolve_eval_profile()
+    if profile.profile_id in PHASE54_PROFILE_IDS:
+        mpc_values = effective_mpc_values(profile)
+        reward_config = effective_reward_config(profile)
+    else:
+        mpc_values = mpc_profile_values(profile.mpc_profile)
+        reward_config = None
     env_cfg.domain_randomization.use_custom_randomization = False
     env_cfg.volume = 0.0187613
     env_cfg.use_boundaries = False
@@ -245,16 +474,26 @@ def configure_env_cfg(env_cfg):
     env_cfg.eval_mode = True
     env_cfg.controller_mode = controller_mode
     env_cfg.control_method = "Ssurface"
+    env_cfg.reward_profile = profile.reward_profile
+    if reward_config is not None:
+        env_cfg.phase5_2_w_fallback = reward_config.w_fallback
+        env_cfg.phase5_2_w_pwm_sat = reward_config.w_pwm_sat
+        env_cfg.phase5_2_w_action = reward_config.w_action
+        env_cfg.phase5_2_w_delta_action = reward_config.w_delta_action
+        env_cfg.phase5_2_w_latency = reward_config.w_latency
+        env_cfg.phase5_2_pwm_soft_limit = reward_config.pwm_soft_limit
+        env_cfg.phase5_2_latency_ref_ms = reward_config.latency_ref_ms
+        env_cfg.phase5_2_latency_clip = reward_config.latency_clip
     env_cfg.s_ratio = 4
     env_cfg.self_adapt = True
     env_cfg.koopman_manifest_path = args_cli.koopman_manifest_path
-    env_cfg.mpc_horizon = args_cli.mpc_horizon
-    env_cfg.mpc_timeout_ms = args_cli.mpc_timeout_ms
-    env_cfg.mpc_delta_pwm_limit = args_cli.mpc_delta_pwm_limit
-    env_cfg.mpc_depth_weight = args_cli.mpc_depth_weight
-    env_cfg.mpc_attitude_weight = args_cli.mpc_attitude_weight
-    env_cfg.mpc_control_weight = args_cli.mpc_control_weight
-    env_cfg.mpc_smoothness_weight = args_cli.mpc_smoothness_weight
+    env_cfg.mpc_horizon = getattr(mpc_values, "horizon", args_cli.mpc_horizon)
+    env_cfg.mpc_timeout_ms = getattr(mpc_values, "timeout_ms", args_cli.mpc_timeout_ms)
+    env_cfg.mpc_delta_pwm_limit = mpc_values.delta_pwm_limit
+    env_cfg.mpc_depth_weight = mpc_values.depth_weight
+    env_cfg.mpc_attitude_weight = mpc_values.attitude_weight
+    env_cfg.mpc_control_weight = mpc_values.control_weight
+    env_cfg.mpc_smoothness_weight = mpc_values.smoothness_weight
 
 
 def verify_koopman_manifest_contract(manifest_path: str) -> None:
@@ -292,8 +531,9 @@ def resolve_result_bucket(policy_mode_used: str) -> str:
 
 
 def prepare_policy(env):
+    resolved_evidence_level = getattr(args_cli, "_resolved_ppo_evidence_level", None)
     if args_cli.policy_mode == "stub":
-        return env, StubPolicy(), "stub", "stub_only", {"checkpoint_found": False, "paths": []}
+        return env, StubPolicy(), "stub", resolved_evidence_level or "stub_only", {"checkpoint_found": False, "paths": []}
     if args_cli.policy_mode == "training_smoke":
         raise SystemExit(
             "training_smoke is a training-entrypoint verification path. Run workflows/train.py with a small "
@@ -313,19 +553,57 @@ def prepare_policy(env):
     runner.load(checkpoint_path)
     policy = runner.get_inference_policy(device=wrapped_env.unwrapped.device)
     discovery["selected_checkpoint"] = checkpoint_path
-    return wrapped_env, policy, "checkpoint", "checkpoint_smoke", discovery
+    return wrapped_env, policy, "checkpoint", resolved_evidence_level or "checkpoint_smoke", discovery
+
+
+def phase5_provenance_log_fields() -> dict:
+    if not PREFLIGHT_PHASE5_PROVENANCE_INFO.get("checkpoint_provenance_valid"):
+        return {}
+    return {
+        "checkpoint_provenance_valid": True,
+        "checkpoint_provenance": PREFLIGHT_PHASE5_PROVENANCE_INFO["checkpoint_provenance"],
+        "source_training_summary_path": PREFLIGHT_PHASE5_PROVENANCE_INFO["source_training_summary_path"],
+        "source_result_bucket": PREFLIGHT_PHASE5_PROVENANCE_INFO["source_result_bucket"],
+        "source_controller_path": PREFLIGHT_PHASE5_PROVENANCE_INFO["source_controller_path"],
+        "source_adapter_mode": PREFLIGHT_PHASE5_PROVENANCE_INFO["source_adapter_mode"],
+        "source_koopman_backend": PREFLIGHT_PHASE5_PROVENANCE_INFO["source_koopman_backend"],
+        "source_reward_profile": PREFLIGHT_PHASE5_PROVENANCE_INFO["source_reward_profile"],
+        "source_profile_id": PREFLIGHT_PHASE5_PROVENANCE_INFO.get("source_profile_id"),
+        "source_adapter_profile": PREFLIGHT_PHASE5_PROVENANCE_INFO.get("source_adapter_profile"),
+        "source_mpc_profile": PREFLIGHT_PHASE5_PROVENANCE_INFO.get("source_mpc_profile"),
+        "source_changed_axis": PREFLIGHT_PHASE5_PROVENANCE_INFO.get("source_changed_axis"),
+        "source_phase5_4_track": PREFLIGHT_PHASE5_PROVENANCE_INFO.get("source_phase5_4_track"),
+        "source_sweep_round": PREFLIGHT_PHASE5_PROVENANCE_INFO.get("source_sweep_round"),
+        "source_parent_profile_id": PREFLIGHT_PHASE5_PROVENANCE_INFO.get("source_parent_profile_id"),
+        "source_parameter_distance_from_parent": PREFLIGHT_PHASE5_PROVENANCE_INFO.get(
+            "source_parameter_distance_from_parent"
+        ),
+        "source_changed_parameter_count": PREFLIGHT_PHASE5_PROVENANCE_INFO.get("source_changed_parameter_count"),
+        "source_parameter_step_count": PREFLIGHT_PHASE5_PROVENANCE_INFO.get("source_parameter_step_count"),
+        "source_protected_strengths": PREFLIGHT_PHASE5_PROVENANCE_INFO.get("source_protected_strengths"),
+        "source_baseline_manifest": PREFLIGHT_PHASE5_PROVENANCE_INFO.get("source_baseline_manifest"),
+        "source_phase5_2_summary_path": PREFLIGHT_PHASE5_PROVENANCE_INFO.get("source_phase5_2_summary_path"),
+        "source_phase5_3_summary_path": PREFLIGHT_PHASE5_PROVENANCE_INFO.get("source_phase5_3_summary_path"),
+        "source_risk_level": PREFLIGHT_PHASE5_PROVENANCE_INFO.get("source_risk_level"),
+        "source_training_ladder_stage": PREFLIGHT_PHASE5_PROVENANCE_INFO.get("source_training_ladder_stage"),
+        "source_log_dir": PREFLIGHT_PHASE5_PROVENANCE_INFO.get("source_log_dir"),
+        "source_git_commit": PREFLIGHT_PHASE5_PROVENANCE_INFO["source_git_commit"],
+        "source_git_dirty": PREFLIGHT_PHASE5_PROVENANCE_INFO["source_git_dirty"],
+        "source_checkpoint_mtime": PREFLIGHT_PHASE5_PROVENANCE_INFO["source_checkpoint_mtime"],
+    }
 
 
 def build_adapter_config() -> PolicyAdapterConfig:
+    adapter_values = adapter_profile_values(resolve_eval_profile().adapter_profile)
     return PolicyAdapterConfig(
-        policy_action_limit=args_cli.adapter_policy_action_limit,
+        policy_action_limit=adapter_values.policy_action_limit,
         rpy_delta_scale=(
-            args_cli.adapter_rpy_delta_scale,
-            args_cli.adapter_rpy_delta_scale,
-            args_cli.adapter_rpy_delta_scale,
+            adapter_values.rpy_delta_scale,
+            adapter_values.rpy_delta_scale,
+            adapter_values.rpy_delta_scale,
         ),
-        depth_delta_scale=args_cli.adapter_depth_delta_scale,
-        depth_bounds=(args_cli.adapter_depth_min, args_cli.adapter_depth_max),
+        depth_delta_scale=adapter_values.depth_delta_scale,
+        depth_bounds=(adapter_values.depth_min, adapter_values.depth_max),
     )
 
 
@@ -351,6 +629,7 @@ def main():
         goal_list = goal_list[: args_cli.max_goals]
 
     adapter_config = build_adapter_config()
+    profile = resolve_eval_profile()
     obs = get_policy_obs(env)
     action_iter = 0
     action_ix = 0
@@ -413,6 +692,18 @@ def main():
                     "adapter_mode": adapter_output.adapter_mode,
                     "action_semantics": adapter_output.diagnostics["action_semantics"],
                     "ppo_evidence_level": ppo_evidence_level,
+                    "controller_path": "koopman_mpc/direct_state",
+                    "profile_id": profile.profile_id,
+                    "phase5_4_track": getattr(profile, "track", "not_applicable"),
+                    "reward_profile": profile.reward_profile,
+                    "adapter_profile": profile.adapter_profile,
+                    "mpc_profile": profile.mpc_profile,
+                    "changed_axis": profile.changed_axis,
+                    "sweep_round": getattr(profile, "sweep_round", "not_applicable"),
+                    "parent_profile_id": getattr(profile, "parent_profile_id", "not_applicable"),
+                    "parameter_distance_from_parent": getattr(profile, "parameter_distance_from_parent", 0.0),
+                    "changed_parameter_count": getattr(profile, "changed_parameter_count", 0),
+                    "parameter_step_count": getattr(profile, "parameter_step_count", {}),
                     "adapter_quat_convention": adapter_output.diagnostics["adapter_quat_convention"],
                     "base_reference_goal_match_max_error": adapter_output.diagnostics[
                         "base_reference_goal_match_max_error"
@@ -423,6 +714,7 @@ def main():
                     "solver_diagnostics": solver_diagnostics,
                 }
             )
+            sample.update(phase5_provenance_log_fields())
             validate_ppo_koopman_sample(sample)
             logger.write(sample)
 

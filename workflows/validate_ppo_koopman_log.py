@@ -19,6 +19,32 @@ from koopman.policy_adapter import (
     ADAPTER_QUAT_CONVENTION,
     VALID_PPO_EVIDENCE_LEVELS,
 )
+from koopman.phase5_2_profiles import (
+    PHASE5_2_CANDIDATE_CHECKPOINT_PROVENANCE,
+    PHASE5_2_MATCHED_EVIDENCE_LEVEL,
+    resolve_phase52_profile,
+)
+from koopman.phase5_3_profiles import (
+    PHASE5_3_CANDIDATE_CHECKPOINT_PROVENANCE,
+    PHASE5_3_EXTENDED_CHECKPOINT_PROVENANCE,
+    PHASE5_3_MATCHED_EVIDENCE_LEVEL,
+    resolve_phase53_profile,
+)
+from koopman.phase5_4_profiles import (
+    PHASE5_4_CANDIDATE_CHECKPOINT_PROVENANCE,
+    PHASE5_4_MATCHED_EVIDENCE_LEVEL,
+    PHASE5_4_REFINEMENT_CHECKPOINT_PROVENANCE,
+    resolve_phase54_profile,
+)
+from koopman.ppo_training_adapter import (
+    PHASE5_CHECKPOINT_PROVENANCE,
+    PHASE5_1_CANDIDATE_CHECKPOINT_PROVENANCE,
+    PHASE5_1_MATCHED_EVIDENCE_LEVEL,
+    PHASE5_CONTROLLER_PATH,
+    PHASE5_EVIDENCE_LEVEL,
+    PHASE5_REWARD_PROFILE,
+    PHASE5_RESULT_BUCKET,
+)
 from koopman_data import validate_koopman_sample, validate_koopman_sequence
 
 
@@ -111,6 +137,111 @@ def validate_ppo_koopman_sample(sample: dict[str, Any]) -> None:
     for field_name in ("adapter_diagnostics", "solver_diagnostics"):
         if not isinstance(sample[field_name], dict):
             raise ValueError(f"{field_name} must be a dictionary")
+
+    guarded_evidence_levels = (
+        PHASE5_EVIDENCE_LEVEL,
+        PHASE5_1_MATCHED_EVIDENCE_LEVEL,
+        PHASE5_2_MATCHED_EVIDENCE_LEVEL,
+        PHASE5_3_MATCHED_EVIDENCE_LEVEL,
+        PHASE5_4_MATCHED_EVIDENCE_LEVEL,
+    )
+    if sample["ppo_evidence_level"] in guarded_evidence_levels:
+        required_phase5_fields = (
+            "result_bucket",
+            "checkpoint_provenance",
+            "checkpoint_provenance_valid",
+            "source_training_summary_path",
+            "controller_path",
+            "reward_profile",
+        )
+        if sample["ppo_evidence_level"] in (
+            PHASE5_2_MATCHED_EVIDENCE_LEVEL,
+            PHASE5_3_MATCHED_EVIDENCE_LEVEL,
+            PHASE5_4_MATCHED_EVIDENCE_LEVEL,
+        ):
+            required_phase5_fields = required_phase5_fields + (
+                "profile_id",
+                "adapter_profile",
+                "mpc_profile",
+                "changed_axis",
+            )
+        if sample["ppo_evidence_level"] == PHASE5_4_MATCHED_EVIDENCE_LEVEL:
+            required_phase5_fields = required_phase5_fields + (
+                "phase5_4_track",
+                "sweep_round",
+                "parent_profile_id",
+                "parameter_distance_from_parent",
+                "changed_parameter_count",
+                "parameter_step_count",
+            )
+        missing = [field for field in required_phase5_fields if field not in sample]
+        if missing:
+            raise ValueError(f"Missing Phase 5 retrained-policy provenance fields: {missing}")
+        if sample["ppo_evidence_level"] == PHASE5_1_MATCHED_EVIDENCE_LEVEL:
+            expected_provenance = PHASE5_1_CANDIDATE_CHECKPOINT_PROVENANCE
+            expected_reward_profile = PHASE5_REWARD_PROFILE
+        elif sample["ppo_evidence_level"] == PHASE5_2_MATCHED_EVIDENCE_LEVEL:
+            expected_provenance = PHASE5_2_CANDIDATE_CHECKPOINT_PROVENANCE
+            profile = resolve_phase52_profile(
+                profile_id=str(sample["profile_id"]),
+                reward_profile=str(sample["reward_profile"]),
+                adapter_profile=str(sample["adapter_profile"]),
+                mpc_profile=str(sample["mpc_profile"]),
+                changed_axis=str(sample["changed_axis"]),
+            )
+            expected_reward_profile = profile.reward_profile
+        elif sample["ppo_evidence_level"] == PHASE5_3_MATCHED_EVIDENCE_LEVEL:
+            expected_provenance = (
+                PHASE5_3_CANDIDATE_CHECKPOINT_PROVENANCE,
+                PHASE5_3_EXTENDED_CHECKPOINT_PROVENANCE,
+            )
+            profile = resolve_phase53_profile(
+                profile_id=str(sample["profile_id"]),
+                reward_profile=str(sample["reward_profile"]),
+                adapter_profile=str(sample["adapter_profile"]),
+                mpc_profile=str(sample["mpc_profile"]),
+                changed_axis=str(sample["changed_axis"]),
+            )
+            expected_reward_profile = profile.reward_profile
+        elif sample["ppo_evidence_level"] == PHASE5_4_MATCHED_EVIDENCE_LEVEL:
+            expected_provenance = (
+                PHASE5_4_CANDIDATE_CHECKPOINT_PROVENANCE,
+                PHASE5_4_REFINEMENT_CHECKPOINT_PROVENANCE,
+            )
+            profile = resolve_phase54_profile(
+                profile_id=str(sample["profile_id"]),
+                reward_profile=str(sample["reward_profile"]),
+                adapter_profile=str(sample["adapter_profile"]),
+                mpc_profile=str(sample["mpc_profile"]),
+                changed_axis=str(sample["changed_axis"]),
+            )
+            expected_reward_profile = profile.reward_profile
+            if sample["phase5_4_track"] != profile.track:
+                raise ValueError("phase5_4_track does not match the Phase 5.4 profile contract")
+            if sample["sweep_round"] != profile.sweep_round:
+                raise ValueError("sweep_round does not match the Phase 5.4 profile contract")
+            if sample["parent_profile_id"] != profile.parent_profile_id:
+                raise ValueError("parent_profile_id does not match the Phase 5.4 profile contract")
+        else:
+            expected_provenance = PHASE5_CHECKPOINT_PROVENANCE
+            expected_reward_profile = PHASE5_REWARD_PROFILE
+        expected_values = {
+            "result_bucket": PHASE5_RESULT_BUCKET,
+            "checkpoint_provenance": expected_provenance,
+            "checkpoint_provenance_valid": True,
+            "controller_path": PHASE5_CONTROLLER_PATH,
+            "reward_profile": expected_reward_profile,
+        }
+        for field_name, expected in expected_values.items():
+            if isinstance(expected, tuple):
+                if sample[field_name] not in expected:
+                    raise ValueError(f"{field_name} must be one of {list(expected)!r} for {sample['ppo_evidence_level']}")
+            elif sample[field_name] != expected:
+                raise ValueError(f"{field_name} must be {expected!r} for {PHASE5_EVIDENCE_LEVEL}")
+        if not isinstance(sample["source_training_summary_path"], str) or not sample[
+            "source_training_summary_path"
+        ].strip():
+            raise ValueError("source_training_summary_path must be a non-empty string")
 
 
 def load_ppo_koopman_samples(path: str | Path) -> list[dict[str, Any]]:
