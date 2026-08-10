@@ -432,6 +432,26 @@ def test_bundle_preparation_script_binds_tested_head_to_bundle_and_sidecar():
     assert "bundle_ref_mismatch" in script
 
 
+def test_all_server_runner_commands_use_isaaclab_launcher_and_absolute_paths():
+    project_root = Path(__file__).resolve().parents[1]
+    runbook = (project_root / "docs" / "phase6_easyuuv_v2_qualification_runbook.md").read_text(
+        encoding="utf-8"
+    )
+    server_script = (
+        project_root / "scripts" / "phase6_server_qualification.sh"
+    ).read_text(encoding="utf-8")
+    launcher_command = (
+        "/root/IsaacLab/isaaclab.sh -p -u "
+        "/root/EASYkoopman-phase6-v2/workflows/qualify_easyuuv_v2.py"
+    )
+
+    assert runbook.count(launcher_command) == 8
+    assert "python -u workflows/qualify_easyuuv_v2.py" not in runbook
+    assert 'ISAACLAB_PY="/root/IsaacLab/isaaclab.sh"' in server_script
+    assert '"$ISAACLAB_PY" -p -u "$RUNNER"' in server_script
+    assert '--result-root "$RESULT_ROOT"' in server_script
+
+
 @pytest.mark.parametrize("raw", ("5.0", "5.0.0.0", "5.0.0.0+linux-x86_64"))
 def test_isaac_sim_distribution_is_normalized_to_semantic_baseline(raw: str):
     assert normalize_isaac_sim_version(raw) == "5.0"

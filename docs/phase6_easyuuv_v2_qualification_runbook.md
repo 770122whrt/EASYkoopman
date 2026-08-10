@@ -101,28 +101,28 @@ the process exits nonzero. Bash `PIPESTATUS[0]` records the runner exit rather
 than the `tee` exit.
 
 ```bash
-python -u workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration base --steps 64 --seed 0 --num-envs 1 --headless --output-json source/results/koopman_phase6/rows/base.json 2>&1 | tee source/results/koopman_phase6/logs/base.log
+/root/IsaacLab/isaaclab.sh -p -u /root/EASYkoopman-phase6-v2/workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration base --steps 64 --seed 0 --num-envs 1 --headless --result-root /root/EASYkoopman-phase6-v2/source/results/koopman_phase6 --output-json /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/base.json 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/logs/base.log
 printf '%s\n' "${PIPESTATUS[0]}" > source/results/koopman_phase6/exit_codes/base.txt
 
-python -u workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration long_body --steps 8 --seed 0 --num-envs 1 --headless --output-json source/results/koopman_phase6/rows/long_body.json 2>&1 | tee source/results/koopman_phase6/logs/long_body.log
+/root/IsaacLab/isaaclab.sh -p -u /root/EASYkoopman-phase6-v2/workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration long_body --steps 8 --seed 0 --num-envs 1 --headless --result-root /root/EASYkoopman-phase6-v2/source/results/koopman_phase6 --output-json /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/long_body.json 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/logs/long_body.log
 printf '%s\n' "${PIPESTATUS[0]}" > source/results/koopman_phase6/exit_codes/long_body.txt
 
-python -u workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration heavy_moderate --steps 8 --seed 0 --num-envs 1 --headless --output-json source/results/koopman_phase6/rows/heavy_moderate.json 2>&1 | tee source/results/koopman_phase6/logs/heavy_moderate.log
+/root/IsaacLab/isaaclab.sh -p -u /root/EASYkoopman-phase6-v2/workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration heavy_moderate --steps 8 --seed 0 --num-envs 1 --headless --result-root /root/EASYkoopman-phase6-v2/source/results/koopman_phase6 --output-json /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/heavy_moderate.json 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/logs/heavy_moderate.log
 printf '%s\n' "${PIPESTATUS[0]}" > source/results/koopman_phase6/exit_codes/heavy_moderate.txt
 
-python -u workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration asymmetric --steps 8 --seed 0 --num-envs 1 --headless --output-json source/results/koopman_phase6/rows/asymmetric.json 2>&1 | tee source/results/koopman_phase6/logs/asymmetric.log
+/root/IsaacLab/isaaclab.sh -p -u /root/EASYkoopman-phase6-v2/workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration asymmetric --steps 8 --seed 0 --num-envs 1 --headless --result-root /root/EASYkoopman-phase6-v2/source/results/koopman_phase6 --output-json /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/asymmetric.json 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/logs/asymmetric.log
 printf '%s\n' "${PIPESTATUS[0]}" > source/results/koopman_phase6/exit_codes/asymmetric.txt
 
-python -u workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration uuv6 --steps 8 --seed 0 --num-envs 1 --headless --output-json source/results/koopman_phase6/rows/uuv6.json 2>&1 | tee source/results/koopman_phase6/logs/uuv6.log
+/root/IsaacLab/isaaclab.sh -p -u /root/EASYkoopman-phase6-v2/workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration uuv6 --steps 8 --seed 0 --num-envs 1 --headless --result-root /root/EASYkoopman-phase6-v2/source/results/koopman_phase6 --output-json /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/uuv6.json 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/logs/uuv6.log
 printf '%s\n' "${PIPESTATUS[0]}" > source/results/koopman_phase6/exit_codes/uuv6.txt
 
-python -u workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration uuv6_angled --steps 8 --seed 0 --num-envs 1 --headless --output-json source/results/koopman_phase6/rows/uuv6_angled.json 2>&1 | tee source/results/koopman_phase6/logs/uuv6_angled.log
+/root/IsaacLab/isaaclab.sh -p -u /root/EASYkoopman-phase6-v2/workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration uuv6_angled --steps 8 --seed 0 --num-envs 1 --headless --result-root /root/EASYkoopman-phase6-v2/source/results/koopman_phase6 --output-json /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/uuv6_angled.json 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/logs/uuv6_angled.log
 printf '%s\n' "${PIPESTATUS[0]}" > source/results/koopman_phase6/exit_codes/uuv6_angled.txt
 
-python -u workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration uuv4 --steps 8 --seed 0 --num-envs 1 --headless --output-json source/results/koopman_phase6/rows/uuv4.json 2>&1 | tee source/results/koopman_phase6/logs/uuv4.log
+/root/IsaacLab/isaaclab.sh -p -u /root/EASYkoopman-phase6-v2/workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration uuv4 --steps 8 --seed 0 --num-envs 1 --headless --result-root /root/EASYkoopman-phase6-v2/source/results/koopman_phase6 --output-json /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/uuv4.json 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/logs/uuv4.log
 printf '%s\n' "${PIPESTATUS[0]}" > source/results/koopman_phase6/exit_codes/uuv4.txt
 
-python -u workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration uuv4_angled --steps 8 --seed 0 --num-envs 1 --headless --output-json source/results/koopman_phase6/rows/uuv4_angled.json 2>&1 | tee source/results/koopman_phase6/logs/uuv4_angled.log
+/root/IsaacLab/isaaclab.sh -p -u /root/EASYkoopman-phase6-v2/workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration uuv4_angled --steps 8 --seed 0 --num-envs 1 --headless --result-root /root/EASYkoopman-phase6-v2/source/results/koopman_phase6 --output-json /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/uuv4_angled.json 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/logs/uuv4_angled.log
 printf '%s\n' "${PIPESTATUS[0]}" > source/results/koopman_phase6/exit_codes/uuv4_angled.txt
 ```
 
