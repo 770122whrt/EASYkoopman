@@ -2,7 +2,8 @@
 param(
     [string]$RepositoryRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")),
     [string]$Branch = "v2.0-multi-configuration",
-    [string]$TransferDirectory = ".pytest-tmp/phase6-transfer"
+    [string]$TransferDirectory = ".pytest-tmp/phase6-transfer",
+    [string]$CanonicalEvidenceDirectory = "source/results/koopman_phase6"
 )
 
 $ErrorActionPreference = "Stop"
@@ -36,6 +37,11 @@ try {
     $branchCommit = Invoke-Git rev-parse "$Branch^{commit}"
     if ($head -ne $branchCommit) {
         throw "tested_head_not_branch_tip:head=$head;branch=$branchCommit"
+    }
+
+    $canonicalEvidence = Join-Path $repository $CanonicalEvidenceDirectory
+    if (Test-Path -LiteralPath $canonicalEvidence) {
+        throw "canonical_evidence_already_exists:$canonicalEvidence"
     }
 
     $transferRoot = Join-Path $repository $TransferDirectory

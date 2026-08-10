@@ -11,6 +11,11 @@ readonly MERGER="$PROJECT_ROOT/workflows/merge_easyuuv_v2_qualification.py"
 readonly VALIDATOR="$PROJECT_ROOT/workflows/validate_easyuuv_v2_qualification.py"
 readonly TASK_PROBE="$PROJECT_ROOT/scripts/phase6_probe_gym_tasks.py"
 
+# The repository intentionally contains source, not platform-specific generated
+# bytecode.  Keep the server checkout stable across the probe and eight separate
+# Python processes so the tracked-source provenance gate remains meaningful.
+export PYTHONDONTWRITEBYTECODE=1
+
 die() {
     printf 'ERROR: %s\n' "$1" >&2
     exit 1
