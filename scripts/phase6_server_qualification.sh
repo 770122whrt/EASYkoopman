@@ -10,11 +10,15 @@ readonly RUNNER="$PROJECT_ROOT/workflows/qualify_easyuuv_v2.py"
 readonly MERGER="$PROJECT_ROOT/workflows/merge_easyuuv_v2_qualification.py"
 readonly VALIDATOR="$PROJECT_ROOT/workflows/validate_easyuuv_v2_qualification.py"
 readonly TASK_PROBE="$PROJECT_ROOT/scripts/phase6_probe_gym_tasks.py"
+readonly PIPELINE_GATE="$PROJECT_ROOT/scripts/phase6_pipeline_gate.sh"
 
 # The repository intentionally contains source, not platform-specific generated
 # bytecode.  Keep the server checkout stable across the probe and eight separate
 # Python processes so the tracked-source provenance gate remains meaningful.
 export PYTHONDONTWRITEBYTECODE=1
+
+# shellcheck source=scripts/phase6_pipeline_gate.sh
+source "$PIPELINE_GATE"
 
 die() {
     printf 'ERROR: %s\n' "$1" >&2
@@ -40,7 +44,11 @@ isaaclab_tracked_status="$(git -C "$ISAACLAB_ROOT" status --porcelain=v1 --untra
     'from importlib.metadata import version; assert ".".join(version("isaacsim").split(".")[:2]) == "5.0"'
 "$ISAACLAB_PY" -p -m pip install -e "$PROJECT_ROOT" --no-deps
 
-mkdir -p "$RESULT_ROOT/rows" "$RESULT_ROOT/logs" "$RESULT_ROOT/exit_codes"
+mkdir -p \
+    "$RESULT_ROOT/rows" \
+    "$RESULT_ROOT/logs" \
+    "$RESULT_ROOT/exit_codes" \
+    "$RESULT_ROOT/log_exit_codes"
 printf '%s\n' "$expected_commit" > "$RESULT_ROOT/source_commit.txt"
 printf '%s\n' "$isaaclab_tag" > "$RESULT_ROOT/isaaclab_repo_tag.txt"
 printf '%s\n' "$isaaclab_commit" > "$RESULT_ROOT/isaaclab_repo_commit.txt"
@@ -54,6 +62,8 @@ run_one() {
     local configuration="$1"
     local steps="$2"
     local runner_status
+    local log_status
+    local -a pipeline_status
     set +e
     "$ISAACLAB_PY" -p -u "$RUNNER" \
         --task EasyUUV-Direct-v1 \
@@ -65,10 +75,12 @@ run_one() {
         --result-root "$RESULT_ROOT" \
         --output-json "$RESULT_ROOT/rows/$configuration.json" \
         2>&1 | tee "$RESULT_ROOT/logs/$configuration.log"
-    runner_status="${PIPESTATUS[0]}"
+    pipeline_status=("${PIPESTATUS[@]}")
     set -e
-    printf '%s\n' "$runner_status" > "$RESULT_ROOT/exit_codes/$configuration.txt"
-    if [[ "$runner_status" -ne 0 ]]; then
+    runner_status="${pipeline_status[0]:-125}"
+    log_status="${pipeline_status[1]:-125}"
+    if ! phase6_record_pipeline_status \
+        "$RESULT_ROOT" "$configuration" "$runner_status" "$log_status"; then
         any_failed=1
     fi
     return 0

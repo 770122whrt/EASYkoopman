@@ -81,8 +81,10 @@ sidecar, clones once, requires exact server HEAD and a completely clean clone,
 then delegates to the committed qualification script. That script rechecks
 tracked source state, pins Isaac Sim 5.0 and exact IsaacLab `v2.2.1`, installs
 through `/root/IsaacLab/isaaclab.sh -p`, proves all four Gym registrations after
-AppLauncher, runs all eight processes, blocks merge on any exit-code file, then
-merges, validates and hashes. Any failed gate stops all later stages.
+AppLauncher, runs all eight processes, and records both the runner and `tee` exit
+status under `exit_codes/` and `log_exit_codes/`. A failed runner or failed log
+capture blocks merge; only then may the script validate and hash the aggregate.
+Any failed gate stops all later stages.
 
 ## Server Eight-Configuration Smoke
 

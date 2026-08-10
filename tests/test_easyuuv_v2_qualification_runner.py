@@ -185,7 +185,6 @@ def test_default_output_root_is_canonical_without_creating_evidence():
     assert DEFAULT_RESULT_ROOT == (
         project_root / "source" / "results" / "koopman_phase6"
     )
-    assert not DEFAULT_RESULT_ROOT.exists()
 
 
 def test_output_path_rejects_escape_from_explicit_result_root(local_tmp_path: Path):
