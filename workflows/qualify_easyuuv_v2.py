@@ -296,6 +296,26 @@ def _empty_row(configuration: str, seed: int) -> dict[str, Any]:
     }
 
 
+def _preflight_failure_payload(
+    args: argparse.Namespace, reason: str
+) -> dict[str, Any]:
+    """Build evidence that is explicitly ineligible for exact-eight merging."""
+    row = _empty_row(args.configuration, args.seed)
+    _record_failure(row, reason)
+    return {
+        "artifact_kind": "preflight_failure",
+        "eligible_for_merge": False,
+        "schema_version": QUALIFICATION_SCHEMA_VERSION,
+        "evidence_level": "server_preflight_failure",
+        "expected_isaac_sim": EXPECTED_ISAAC_SIM_VERSION,
+        "expected_isaac_lab": EXPECTED_ISAAC_LAB_VERSION,
+        "actual_isaac_sim": "",
+        "actual_isaac_lab": "",
+        "task_id": args.task,
+        "results": [row],
+    }
+
+
 def _record_failure(row: dict[str, Any], reason: str) -> None:
     row["status"] = "fail"
     row["reason_codes"].append(reason.split(":", 1)[0])
@@ -435,11 +455,19 @@ def run_isaac_qualification(args: argparse.Namespace) -> tuple[dict[str, Any], i
 def main(argv: list[str] | None = None) -> int:
     parser = build_argument_parser()
     args = parser.parse_args(argv)
+    output: Path | None = None
     try:
         output = resolve_output_path(args.output_json, args.result_root)
         payload, exit_code = run_isaac_qualification(args)
         _atomic_write_json(output, payload)
     except (OSError, RuntimeError, ValueError) as exc:
+        if output is not None:
+            try:
+                _atomic_write_json(
+                    output, _preflight_failure_payload(args, str(exc) or type(exc).__name__)
+                )
+            except (OSError, RuntimeError, ValueError) as write_exc:
+                print(f"ERROR: preflight_evidence_write_failed:{write_exc}", file=sys.stderr)
         print(f"ERROR: {exc}", file=sys.stderr)
         return 1
     print(f"qualification_row={output}")

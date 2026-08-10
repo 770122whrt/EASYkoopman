@@ -296,6 +296,45 @@ def test_environment_close_failure_still_closes_simulator_and_marks_payload():
     ]
 
 
+def test_preflight_failure_writes_distinct_machine_readable_evidence(
+    local_tmp_path: Path, monkeypatch, capsys
+):
+    result_root = local_tmp_path / "results"
+    output = result_root / "rows" / "base.json"
+
+    def fail_preflight(args):
+        raise RuntimeError("runtime_version_provenance_unavailable")
+
+    monkeypatch.setattr(
+        qualification_runner, "run_isaac_qualification", fail_preflight
+    )
+
+    exit_code = qualification_runner.main(
+        [
+            "--configuration",
+            "base",
+            "--steps",
+            "64",
+            "--output-json",
+            str(output),
+            "--result-root",
+            str(result_root),
+        ]
+    )
+    payload = json.loads(output.read_text(encoding="utf-8"))
+
+    assert exit_code == 1
+    assert payload["artifact_kind"] == "preflight_failure"
+    assert payload["eligible_for_merge"] is False
+    assert payload["evidence_level"] == "server_preflight_failure"
+    assert payload["results"][0]["configuration"] == "base"
+    assert payload["results"][0]["status"] == "fail"
+    assert payload["results"][0]["reason_codes"] == [
+        "runtime_version_provenance_unavailable"
+    ]
+    assert "ERROR: runtime_version_provenance_unavailable" in capsys.readouterr().err
+
+
 def test_runtime_provenance_uses_installed_sim_and_exact_isaaclab_release_tag():
     provenance = build_runtime_provenance(
         isaac_sim_distribution="5.0.0.0",
