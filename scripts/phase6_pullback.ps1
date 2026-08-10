@@ -44,6 +44,27 @@ if (-not $PythonExecutable) {
 $transferRoot = Join-Path $repository $TransferDirectory
 $expectedCommitPath = Join-Path $transferRoot "expected-source-commit.txt"
 $expectedCommit = Read-CommitFile $expectedCommitPath "expected_source_commit"
+
+$localHeadOutput = @(& git -C $repository rev-parse HEAD 2>&1)
+if ($LASTEXITCODE -ne 0) {
+    throw "local_head_probe_failed:$LASTEXITCODE"
+}
+$localHead = ($localHeadOutput -join "`n").Trim()
+if ($localHead -ne $expectedCommit) {
+    throw "local_head_mismatch:expected=$expectedCommit;actual=$localHead"
+}
+
+$trackedStatusOutput = @(
+    & git -C $repository status --porcelain=v1 --untracked-files=no 2>&1
+)
+if ($LASTEXITCODE -ne 0) {
+    throw "local_status_probe_failed:$LASTEXITCODE"
+}
+$trackedStatus = ($trackedStatusOutput -join "`n").Trim()
+if ($trackedStatus) {
+    throw "tracked_worktree_dirty"
+}
+
 $stagingName = "phase6-pullback-$([Guid]::NewGuid().ToString('N'))"
 $stagingRoot = Join-Path (Join-Path $repository ".pytest-tmp") $stagingName
 if (Test-Path -LiteralPath $stagingRoot) {

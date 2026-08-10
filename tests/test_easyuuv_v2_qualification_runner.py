@@ -807,6 +807,116 @@ def test_pullback_stages_then_checks_native_exits_hash_and_commits_before_promot
     assert script.index("validator_failed") < script.index("Move-Item")
 
 
+def _init_pullback_test_repository(path: Path) -> str:
+    path.mkdir()
+    subprocess.run(["git", "init", "-b", "v2.0-multi-configuration"], cwd=path, check=True)
+    (path / "tracked.txt").write_text("tested\n", encoding="utf-8")
+    subprocess.run(["git", "add", "tracked.txt"], cwd=path, check=True)
+    subprocess.run(
+        [
+            "git",
+            "-c",
+            "user.name=Phase6 Test",
+            "-c",
+            "user.email=phase6@example.invalid",
+            "commit",
+            "-m",
+            "tested source",
+        ],
+        cwd=path,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    return subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=path,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+
+
+def _run_pullback_preflight(
+    project_root: Path, repository: Path, expected_commit: str, marker: Path
+) -> subprocess.CompletedProcess[str]:
+    transfer = repository / ".transfer"
+    transfer.mkdir()
+    (transfer / "expected-source-commit.txt").write_text(
+        expected_commit + "\n", encoding="utf-8"
+    )
+    fake_bin = repository / "fake-bin"
+    fake_bin.mkdir()
+    environment = os.environ.copy()
+    environment["PHASE6_FAKE_SCP_MARKER"] = str(marker)
+    environment["PATH"] = os.pathsep.join((str(fake_bin), environment["PATH"]))
+    if sys.platform == "win32":
+        (fake_bin / "scp.cmd").write_text(
+            "@echo off\r\necho called>\"%PHASE6_FAKE_SCP_MARKER%\"\r\nexit /b 99\r\n",
+            encoding="utf-8",
+        )
+    else:
+        fake_scp = fake_bin / "scp"
+        fake_scp.write_text(
+            "#!/usr/bin/env bash\nprintf '%s\\n' called > \"$PHASE6_FAKE_SCP_MARKER\"\nexit 99\n",
+            encoding="utf-8",
+            newline="\n",
+        )
+        fake_scp.chmod(0o755)
+    powershell = shutil.which("powershell.exe") or shutil.which("pwsh")
+    if powershell is None:
+        pytest.skip("PowerShell unavailable")
+    return subprocess.run(
+        [
+            powershell,
+            "-NoProfile",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-File",
+            str(project_root / "scripts" / "phase6_pullback.ps1"),
+            "-RepositoryRoot",
+            str(repository),
+            "-TransferDirectory",
+            ".transfer",
+            "-CanonicalEvidenceDirectory",
+            "canonical-evidence",
+            "-Remote",
+            "must-not-be-contacted",
+        ],
+        check=False,
+        capture_output=True,
+        text=True,
+        env=environment,
+    )
+
+
+def test_pullback_rejects_local_head_sidecar_mismatch_before_scp(local_tmp_path: Path):
+    project_root = Path(__file__).resolve().parents[1]
+    repository = local_tmp_path / "head-mismatch-repo"
+    _init_pullback_test_repository(repository)
+    marker = local_tmp_path / "scp-head-mismatch-called.txt"
+
+    completed = _run_pullback_preflight(project_root, repository, "0" * 40, marker)
+
+    assert completed.returncode != 0
+    assert "local_head_mismatch" in completed.stdout + completed.stderr
+    assert not marker.exists()
+
+
+def test_pullback_rejects_tracked_drift_before_scp(local_tmp_path: Path):
+    project_root = Path(__file__).resolve().parents[1]
+    repository = local_tmp_path / "tracked-drift-repo"
+    head = _init_pullback_test_repository(repository)
+    (repository / "tracked.txt").write_text("changed\n", encoding="utf-8")
+    marker = local_tmp_path / "scp-tracked-drift-called.txt"
+
+    completed = _run_pullback_preflight(project_root, repository, head, marker)
+
+    assert completed.returncode != 0
+    assert "tracked_worktree_dirty" in completed.stdout + completed.stderr
+    assert not marker.exists()
+
+
 @pytest.mark.parametrize("raw", ("5.0", "5.0.0.0", "5.0.0.0+linux-x86_64"))
 def test_isaac_sim_distribution_is_normalized_to_semantic_baseline(raw: str):
     assert normalize_isaac_sim_version(raw) == "5.0"
