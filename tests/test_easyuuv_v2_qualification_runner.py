@@ -82,6 +82,12 @@ def _single_row_payload(
         "expected_isaac_lab": EXPECTED_ISAAC_LAB_VERSION,
         "actual_isaac_sim": actual_isaac_sim,
         "actual_isaac_lab": actual_isaac_lab,
+        "runtime_provenance": {
+            "isaac_sim_distribution": "5.0.0.0",
+            "isaac_lab_distribution": "0.45.9",
+            "isaac_lab_repo_commit": "c" * 40,
+            "isaac_lab_repo_tag": "v2.2.1",
+        },
         "task_id": EXPECTED_TASK_ID,
         "source_commit": source_commit,
         "results": [_row(configuration)],
@@ -121,6 +127,23 @@ def test_runner_help_contract_is_available_without_isaac_imports():
     ):
         assert option in help_text
     assert tuple(parser._option_string_actions["--configuration"].choices) == SUPPORTED_EMBODIMENTS
+
+
+@pytest.mark.parametrize(("option", "value"), (("--steps", "0"), ("--num-envs", "-1")))
+def test_runner_rejects_nonpositive_execution_counts(option: str, value: str):
+    arguments = [
+        "--configuration",
+        "base",
+        "--steps",
+        "8",
+        "--output-json",
+        "base.json",
+        option,
+        value,
+    ]
+
+    with pytest.raises(SystemExit):
+        build_argument_parser().parse_args(arguments)
 
 
 def test_deterministic_excitation_cycles_signed_channels_and_is_bounded():
@@ -196,6 +219,16 @@ def test_actual_telemetry_summary_uses_real_values_and_counts_shape_mismatch():
         "nonfinite_count": 0,
         "dimension_mismatch_count": 1,
     }
+
+
+def test_actual_telemetry_summary_counts_nonfinite_values():
+    summary = summarize_actual_telemetry(
+        pid_value=[[0.0, float("nan"), 0.0, 0.0]],
+        motor_values=[[0.0] * 7 + [float("inf")]],
+        expected_motor_length=8,
+    )
+
+    assert summary["nonfinite_count"] == 2
 
 
 def test_runtime_provenance_uses_installed_sim_and_exact_isaaclab_release_tag():
@@ -310,4 +343,26 @@ def test_merge_rejects_more_than_one_result_per_input(local_tmp_path: Path):
     inputs[0].write_text(json.dumps(payload), encoding="utf-8")
 
     with pytest.raises(ValueError, match="single_result_required"):
+        merge_qualification_results(inputs, local_tmp_path / "qualification.json")
+
+
+def test_merge_requires_runtime_provenance_even_when_all_rows_omit_it(local_tmp_path: Path):
+    inputs = _write_all_rows(local_tmp_path)
+    for path in inputs:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        del payload["runtime_provenance"]
+        path.write_text(json.dumps(payload), encoding="utf-8")
+
+    with pytest.raises(ValueError, match="metadata_missing:runtime_provenance"):
+        merge_qualification_results(inputs, local_tmp_path / "qualification.json")
+
+
+def test_merge_rejects_consistently_forged_runtime_release_tag(local_tmp_path: Path):
+    inputs = _write_all_rows(local_tmp_path)
+    for path in inputs:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        payload["runtime_provenance"]["isaac_lab_repo_tag"] = "v2.3.0"
+        path.write_text(json.dumps(payload), encoding="utf-8")
+
+    with pytest.raises(ValueError, match="runtime_provenance_invalid"):
         merge_qualification_results(inputs, local_tmp_path / "qualification.json")
