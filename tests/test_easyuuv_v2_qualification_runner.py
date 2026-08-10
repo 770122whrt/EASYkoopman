@@ -591,12 +591,17 @@ def test_server_evidence_chain_has_no_tracked_bytecode_and_disables_writes():
     server_script = (
         project_root / "scripts" / "phase6_server_qualification.sh"
     ).read_text(encoding="utf-8")
+    install_helper = (
+        project_root / "scripts" / "phase6_offline_install.sh"
+    ).read_text(encoding="utf-8")
 
     assert tracked_bytecode == []
     assert "export PYTHONDONTWRITEBYTECODE=1" in server_script
     assert server_script.index("export PYTHONDONTWRITEBYTECODE=1") < (
-        server_script.index('"$ISAACLAB_PY" -p -m pip install')
+        server_script.index('source "$OFFLINE_INSTALL_HELPER"')
     )
+    assert '"$isaaclab_python" -p -m pip install' in install_helper
+    assert "--no-deps --no-build-isolation --no-index" in install_helper
 
 
 def test_all_server_runner_commands_use_isaaclab_launcher_and_absolute_paths():
