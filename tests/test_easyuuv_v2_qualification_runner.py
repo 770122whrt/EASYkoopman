@@ -485,14 +485,79 @@ def test_bundle_preparation_script_binds_tested_head_to_bundle_and_sidecar():
         / "phase6_prepare_bundle.ps1"
     ).read_text(encoding="utf-8")
 
-    assert "--porcelain=v1" in script
-    assert "--untracked-files=no" in script
+    assert "status --porcelain=v1" in script
+    assert "--untracked-files=no" not in script
     assert "rev-parse" in script
     assert '"$Branch^{commit}"' in script
     assert "bundle" in script
     assert "list-heads" in script
     assert "expected-source-commit.txt" in script
     assert "bundle_ref_mismatch" in script
+
+
+def test_bundle_preparation_rejects_untracked_source_before_transfer(
+    local_tmp_path: Path,
+):
+    project_root = Path(__file__).resolve().parents[1]
+    repository = local_tmp_path / "prepare-untracked-repo"
+    _init_pullback_test_repository(repository)
+    (repository / ".gitignore").write_text(".pytest-tmp/\n", encoding="utf-8")
+    scripts = repository / "scripts"
+    scripts.mkdir()
+    (scripts / "phase6_server_bootstrap.sh").write_text(
+        "#!/usr/bin/env bash\nexit 0\n", encoding="utf-8", newline="\n"
+    )
+    subprocess.run(
+        ["git", "add", ".gitignore", "scripts/phase6_server_bootstrap.sh"],
+        cwd=repository,
+        check=True,
+    )
+    subprocess.run(
+        [
+            "git",
+            "-c",
+            "user.name=Phase6 Test",
+            "-c",
+            "user.email=phase6@example.invalid",
+            "commit",
+            "-m",
+            "bundle inputs",
+        ],
+        cwd=repository,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    (repository / "local-config.yaml").write_text("unsafe: true\n", encoding="utf-8")
+    powershell = shutil.which("powershell.exe") or shutil.which("pwsh")
+    if powershell is None:
+        pytest.skip("PowerShell unavailable")
+
+    completed = subprocess.run(
+        [
+            powershell,
+            "-NoProfile",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-File",
+            str(project_root / "scripts" / "phase6_prepare_bundle.ps1"),
+            "-RepositoryRoot",
+            str(repository),
+            "-Branch",
+            "v2.0-multi-configuration",
+            "-TransferDirectory",
+            ".pytest-tmp/phase6-transfer",
+            "-CanonicalEvidenceDirectory",
+            "canonical-evidence",
+        ],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert completed.returncode != 0
+    assert "worktree_dirty" in completed.stdout + completed.stderr
+    assert not (repository / ".pytest-tmp" / "phase6-transfer").exists()
 
 
 def test_bundle_preparation_rejects_preexisting_canonical_evidence():

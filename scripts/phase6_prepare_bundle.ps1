@@ -28,9 +28,9 @@ try {
         throw "branch_mismatch:expected=$Branch;actual=$currentBranch"
     }
 
-    $trackedStatus = Invoke-Git status --porcelain=v1 --untracked-files=no
-    if ($trackedStatus) {
-        throw "tracked_worktree_dirty"
+    $worktreeStatus = Invoke-Git status --porcelain=v1
+    if ($worktreeStatus) {
+        throw "worktree_dirty"
     }
 
     $head = Invoke-Git rev-parse HEAD
