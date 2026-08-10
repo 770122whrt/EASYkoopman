@@ -547,9 +547,9 @@ def test_server_bootstrap_and_execution_are_fail_closed_before_merge():
     assert "set -Eeuo pipefail" in qualification
     assert "tracked_source_drift" in qualification
     assert qualification.index("tracked_source_drift") < qualification.index(
-        'mkdir -p "$RESULT_ROOT/rows"'
+        "mkdir -p"
     )
-    assert "PIPESTATUS[0]" in qualification
+    assert 'pipeline_status=("${PIPESTATUS[@]}")' in qualification
     assert "runner_failure_blocks_merge" in qualification
     assert qualification.index("runner_failure_blocks_merge") < qualification.index(
         '"$ISAACLAB_PY" -p "$MERGER"'
