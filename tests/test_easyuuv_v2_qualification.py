@@ -5,6 +5,8 @@ from __future__ import annotations
 from copy import deepcopy
 import json
 from pathlib import Path
+import shutil
+import tempfile
 
 import pytest
 
@@ -38,6 +40,18 @@ EXPECTED_TOPOLOGY = {
     "uuv4": {"thruster_count": 4, "control_mask": (1, 1, 0, 1), "declared_control_rank": 3},
     "uuv4_angled": {"thruster_count": 4, "control_mask": (1, 1, 0, 1), "declared_control_rank": 3},
 }
+
+
+@pytest.fixture
+def local_tmp_path() -> Path:
+    """Keep scratch files inside the repository on restricted Windows runners."""
+    scratch_root = Path(__file__).resolve().parents[1] / ".pytest-tmp"
+    scratch_root.mkdir(exist_ok=True)
+    path = Path(tempfile.mkdtemp(prefix="qualification-", dir=scratch_root))
+    try:
+        yield path
+    finally:
+        shutil.rmtree(path, ignore_errors=True)
 
 
 def _valid_row(name: str, *, server: bool = True) -> dict:
@@ -319,24 +333,24 @@ def test_missing_row_required_field_is_rejected():
 
 
 @pytest.mark.parametrize("token", ["NaN", "Infinity", "-Infinity"])
-def test_strict_json_loader_rejects_nonfinite_constants(tmp_path: Path, token: str):
-    path = tmp_path / "qualification.json"
+def test_strict_json_loader_rejects_nonfinite_constants(local_tmp_path: Path, token: str):
+    path = local_tmp_path / "qualification.json"
     path.write_text('{"bad": ' + token + "}", encoding="utf-8")
 
     with pytest.raises(ValueError, match=f"nonfinite_json_constant:{token}"):
         load_qualification_payload(path)
 
 
-def test_loader_rejects_malformed_json(tmp_path: Path):
-    path = tmp_path / "qualification.json"
+def test_loader_rejects_malformed_json(local_tmp_path: Path):
+    path = local_tmp_path / "qualification.json"
     path.write_text("{not-json", encoding="utf-8")
 
     with pytest.raises(ValueError, match="invalid_json"):
         load_qualification_payload(path)
 
 
-def test_loader_rejects_oversize_artifact(tmp_path: Path):
-    path = tmp_path / "qualification.json"
+def test_loader_rejects_oversize_artifact(local_tmp_path: Path):
+    path = local_tmp_path / "qualification.json"
     with path.open("wb") as handle:
         handle.truncate(MAX_ARTIFACT_BYTES + 1)
 
@@ -344,15 +358,15 @@ def test_loader_rejects_oversize_artifact(tmp_path: Path):
         load_qualification_payload(path)
 
 
-def test_loader_rejects_non_file_and_missing_paths(tmp_path: Path):
+def test_loader_rejects_non_file_and_missing_paths(local_tmp_path: Path):
     with pytest.raises(ValueError, match="artifact_not_regular_file"):
-        load_qualification_payload(tmp_path)
+        load_qualification_payload(local_tmp_path)
     with pytest.raises(ValueError, match="artifact_not_found"):
-        load_qualification_payload(tmp_path / "missing.json")
+        load_qualification_payload(local_tmp_path / "missing.json")
 
 
-def test_file_validator_and_cli_return_pass_for_valid_server_artifact(tmp_path: Path, capsys):
-    path = _write_json(tmp_path / "qualification.json", valid_server_payload())
+def test_file_validator_and_cli_return_pass_for_valid_server_artifact(local_tmp_path: Path, capsys):
+    path = _write_json(local_tmp_path / "qualification.json", valid_server_payload())
 
     result = validate_qualification_file(path, expected_topology=EXPECTED_TOPOLOGY)
     assert result["qualification_gate"] == "server_pass"
@@ -360,15 +374,15 @@ def test_file_validator_and_cli_return_pass_for_valid_server_artifact(tmp_path: 
     assert json.loads(capsys.readouterr().out)["qualification_gate"] == "server_pass"
 
 
-def test_cli_returns_one_and_stderr_reason_for_local_as_server(tmp_path: Path, capsys):
-    path = _write_json(tmp_path / "qualification.json", valid_catalog_payload())
+def test_cli_returns_one_and_stderr_reason_for_local_as_server(local_tmp_path: Path, capsys):
+    path = _write_json(local_tmp_path / "qualification.json", valid_catalog_payload())
 
     assert main([str(path)]) == 1
     assert "ERROR: server_evidence_required" in capsys.readouterr().err
 
 
-def test_cli_returns_one_for_textual_nan(tmp_path: Path, capsys):
-    path = tmp_path / "qualification.json"
+def test_cli_returns_one_for_textual_nan(local_tmp_path: Path, capsys):
+    path = local_tmp_path / "qualification.json"
     path.write_text('{"bad": NaN}', encoding="utf-8")
 
     assert main([str(path)]) == 1
