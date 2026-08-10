@@ -6,6 +6,7 @@ from copy import deepcopy
 import json
 from pathlib import Path
 import shutil
+import subprocess
 import tempfile
 
 import pytest
@@ -430,6 +431,45 @@ def test_bundle_preparation_script_binds_tested_head_to_bundle_and_sidecar():
     assert "list-heads" in script
     assert "expected-source-commit.txt" in script
     assert "bundle_ref_mismatch" in script
+
+
+def test_bundle_preparation_rejects_preexisting_canonical_evidence():
+    script = (
+        Path(__file__).resolve().parents[1]
+        / "scripts"
+        / "phase6_prepare_bundle.ps1"
+    ).read_text(encoding="utf-8")
+
+    assert "CanonicalEvidenceDirectory" in script
+    assert "canonical_evidence_already_exists" in script
+    assert script.index("canonical_evidence_already_exists") < script.index(
+        "bundle create"
+    )
+
+
+def test_server_evidence_chain_has_no_tracked_bytecode_and_disables_writes():
+    project_root = Path(__file__).resolve().parents[1]
+    tracked = subprocess.run(
+        ["git", "ls-files"],
+        cwd=project_root,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.splitlines()
+    tracked_bytecode = [
+        path
+        for path in tracked
+        if "/__pycache__/" in f"/{path}" and path.endswith(".pyc")
+    ]
+    server_script = (
+        project_root / "scripts" / "phase6_server_qualification.sh"
+    ).read_text(encoding="utf-8")
+
+    assert tracked_bytecode == []
+    assert "export PYTHONDONTWRITEBYTECODE=1" in server_script
+    assert server_script.index("export PYTHONDONTWRITEBYTECODE=1") < (
+        server_script.index('"$ISAACLAB_PY" -p -m pip install')
+    )
 
 
 def test_all_server_runner_commands_use_isaaclab_launcher_and_absolute_paths():
