@@ -511,6 +511,27 @@ def test_server_bootstrap_and_execution_are_fail_closed_before_merge():
     assert "sha256sum" in qualification
 
 
+def test_pullback_stages_then_checks_native_exits_hash_and_commits_before_promotion():
+    script = (
+        Path(__file__).resolve().parents[1]
+        / "scripts"
+        / "phase6_pullback.ps1"
+    ).read_text(encoding="utf-8")
+
+    assert "[Guid]::NewGuid()" in script
+    assert "staging_directory_already_exists" in script
+    assert "scp_failed" in script
+    assert "$LASTEXITCODE" in script
+    assert "^[0-9a-f]{64}" in script
+    assert "sha256_mismatch" in script
+    assert "source_commit_mismatch" in script
+    assert "--expected-source-commit-file" in script
+    assert "--expected-isaaclab-commit-file" in script
+    assert "validator_failed" in script
+    assert script.index("sha256_mismatch") < script.index("Move-Item")
+    assert script.index("validator_failed") < script.index("Move-Item")
+
+
 @pytest.mark.parametrize("raw", ("5.0", "5.0.0.0", "5.0.0.0+linux-x86_64"))
 def test_isaac_sim_distribution_is_normalized_to_semantic_baseline(raw: str):
     assert normalize_isaac_sim_version(raw) == "5.0"

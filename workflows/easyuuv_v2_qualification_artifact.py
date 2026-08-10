@@ -324,11 +324,29 @@ def validate_qualification_payload(
     *,
     catalog_only: bool = False,
     expected_topology: Mapping[str, Mapping[str, Any]] | None = None,
+    expected_source_commit: str | None = None,
+    expected_isaaclab_repo_commit: str | None = None,
 ) -> dict[str, Any]:
     """Validate one parsed qualification payload and return a deterministic gate summary."""
     if not isinstance(payload, dict):
         _fail("root_not_object")
     _validate_top_level(payload, catalog_only=catalog_only)
+    if expected_source_commit is not None:
+        if not _SOURCE_COMMIT_PATTERN.fullmatch(expected_source_commit):
+            _fail("expected_source_commit_invalid")
+        if payload["source_commit"] != expected_source_commit:
+            _fail("source_commit_mismatch")
+    if expected_isaaclab_repo_commit is not None:
+        if not _SOURCE_COMMIT_PATTERN.fullmatch(expected_isaaclab_repo_commit):
+            _fail("expected_isaaclab_repo_commit_invalid")
+        provenance = payload.get("runtime_provenance")
+        actual_lab_commit = (
+            provenance.get("isaac_lab_repo_commit")
+            if isinstance(provenance, Mapping)
+            else None
+        )
+        if actual_lab_commit != expected_isaaclab_repo_commit:
+            _fail("isaaclab_repo_commit_mismatch")
     topology = _normalize_expected_topology(expected_topology)
     expected_names = tuple(topology)
     rows = _index_rows(payload["results"], expected_names)
@@ -359,6 +377,8 @@ def validate_qualification_file(
     *,
     catalog_only: bool = False,
     expected_topology: Mapping[str, Mapping[str, Any]] | None = None,
+    expected_source_commit: str | None = None,
+    expected_isaaclab_repo_commit: str | None = None,
 ) -> dict[str, Any]:
     """Load and validate one qualification file through the public file API."""
     payload = load_qualification_payload(path)
@@ -366,4 +386,6 @@ def validate_qualification_file(
         payload,
         catalog_only=catalog_only,
         expected_topology=expected_topology,
+        expected_source_commit=expected_source_commit,
+        expected_isaaclab_repo_commit=expected_isaaclab_repo_commit,
     )

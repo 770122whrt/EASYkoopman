@@ -177,6 +177,43 @@ def test_server_artifact_rejects_invalid_runtime_provenance(
         validate_qualification_payload(payload, expected_topology=EXPECTED_TOPOLOGY)
 
 
+def test_server_artifact_can_be_bound_to_external_source_and_isaaclab_commits():
+    payload = valid_server_payload()
+
+    result = validate_qualification_payload(
+        payload,
+        expected_topology=EXPECTED_TOPOLOGY,
+        expected_source_commit="a" * 40,
+        expected_isaaclab_repo_commit="c" * 40,
+    )
+
+    assert result["qualification_gate"] == "server_pass"
+
+
+@pytest.mark.parametrize(
+    ("argument", "value", "reason"),
+    (
+        ("expected_source_commit", "b" * 40, "source_commit_mismatch"),
+        (
+            "expected_isaaclab_repo_commit",
+            "d" * 40,
+            "isaaclab_repo_commit_mismatch",
+        ),
+    ),
+)
+def test_server_artifact_rejects_external_commit_binding_mismatch(
+    argument: str, value: str, reason: str
+):
+    payload = valid_server_payload()
+
+    with pytest.raises(ValueError, match=reason):
+        validate_qualification_payload(
+            payload,
+            expected_topology=EXPECTED_TOPOLOGY,
+            **{argument: value},
+        )
+
+
 @pytest.mark.parametrize("mutation", ["missing", "extra"])
 def test_configuration_set_mismatch_is_rejected(mutation: str):
     payload = valid_server_payload()
@@ -451,6 +488,28 @@ def test_file_validator_and_cli_return_pass_for_valid_server_artifact(local_tmp_
     result = validate_qualification_file(path, expected_topology=EXPECTED_TOPOLOGY)
     assert result["qualification_gate"] == "server_pass"
     assert main([str(path), "--json"]) == 0
+    assert json.loads(capsys.readouterr().out)["qualification_gate"] == "server_pass"
+
+
+def test_cli_binds_artifact_to_external_commit_sidecars(local_tmp_path: Path, capsys):
+    artifact = _write_json(
+        local_tmp_path / "qualification.json", valid_server_payload()
+    )
+    source_commit = local_tmp_path / "expected-source-commit.txt"
+    isaaclab_commit = local_tmp_path / "isaaclab_repo_commit.txt"
+    source_commit.write_text("a" * 40 + "\n", encoding="utf-8")
+    isaaclab_commit.write_text("c" * 40 + "\n", encoding="utf-8")
+
+    assert main(
+        [
+            str(artifact),
+            "--json",
+            "--expected-source-commit-file",
+            str(source_commit),
+            "--expected-isaaclab-commit-file",
+            str(isaaclab_commit),
+        ]
+    ) == 0
     assert json.loads(capsys.readouterr().out)["qualification_gate"] == "server_pass"
 
 

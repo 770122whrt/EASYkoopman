@@ -128,19 +128,20 @@ source/runtime provenance, and a strict server-mode validator pass before it
 atomically replaces the final file.
 
 ```bash
-python workflows/merge_easyuuv_v2_qualification.py \
-  --input source/results/koopman_phase6/rows/base.json \
-  --input source/results/koopman_phase6/rows/long_body.json \
-  --input source/results/koopman_phase6/rows/heavy_moderate.json \
-  --input source/results/koopman_phase6/rows/asymmetric.json \
-  --input source/results/koopman_phase6/rows/uuv6.json \
-  --input source/results/koopman_phase6/rows/uuv6_angled.json \
-  --input source/results/koopman_phase6/rows/uuv4.json \
-  --input source/results/koopman_phase6/rows/uuv4_angled.json \
-  --output source/results/koopman_phase6/qualification.json 2>&1 | tee source/results/koopman_phase6/merge.log
+/root/IsaacLab/isaaclab.sh -p /root/EASYkoopman-phase6-v2/workflows/merge_easyuuv_v2_qualification.py \
+  --input /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/base.json \
+  --input /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/long_body.json \
+  --input /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/heavy_moderate.json \
+  --input /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/asymmetric.json \
+  --input /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/uuv6.json \
+  --input /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/uuv6_angled.json \
+  --input /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/uuv4.json \
+  --input /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/uuv4_angled.json \
+  --result-root /root/EASYkoopman-phase6-v2/source/results/koopman_phase6 \
+  --output /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/qualification.json 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/merge.log
 
-python workflows/validate_easyuuv_v2_qualification.py source/results/koopman_phase6/qualification.json --json 2>&1 | tee source/results/koopman_phase6/validator.json
-sha256sum source/results/koopman_phase6/qualification.json | tee source/results/koopman_phase6/qualification.sha256
+/root/IsaacLab/isaaclab.sh -p /root/EASYkoopman-phase6-v2/workflows/validate_easyuuv_v2_qualification.py /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/qualification.json --json --expected-source-commit-file /root/expected-source-commit.txt --expected-isaaclab-commit-file /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/isaaclab_repo_commit.txt 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/validator.json
+sha256sum /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/qualification.json | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/qualification.sha256
 ```
 
 The validator must exit 0 and report `server_pass` with a configuration count of
@@ -148,19 +149,19 @@ The validator must exit 0 and report `server_pass` with a configuration count of
 
 ## Pullback and Hash
 
-From local Windows PowerShell, copy the complete evidence directory, not only the
-passing aggregate:
+From local Windows PowerShell, use the fail-closed pullback helper:
 
 ```powershell
-scp -r agentic-AUV:/root/EASYkoopman-phase6-v2/source/results/koopman_phase6 source/results/
-Get-FileHash -Algorithm SHA256 source\results\koopman_phase6\qualification.json
-Get-Content source\results\koopman_phase6\qualification.sha256
-.\.venv\Scripts\python.exe workflows\validate_easyuuv_v2_qualification.py source\results\koopman_phase6\qualification.json --json
+.\scripts\phase6_pullback.ps1
 ```
 
-The local SHA-256 must equal the server `qualification.sha256` value. Record both
-the source commit and artifact SHA-256 in Phase 6 server evidence before closing
-the phase.
+The helper allocates a never-reused staging directory, checks native `scp` and
+validator exit codes, parses the single server SHA-256 line, computes and compares
+the local SHA-256, checks pulled `source_commit.txt` against the locally tested
+sidecar, binds the public strict validator to both source and IsaacLab commits,
+and only then promotes the staged directory to `source/results/koopman_phase6`.
+It refuses to overwrite an existing canonical evidence directory. Record the
+source commit and equal artifact SHA-256 in Phase 6 evidence before closing.
 
 ## Failure Handling
 

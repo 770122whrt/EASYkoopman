@@ -24,10 +24,35 @@ def main(argv: list[str] | None = None) -> int:
         help="Validate local catalog evidence without claiming an Isaac server pass.",
     )
     parser.add_argument("--json", action="store_true", help="Print deterministic JSON output.")
+    parser.add_argument(
+        "--expected-source-commit-file",
+        type=Path,
+        help="Bind server evidence to the locally transferred tested-HEAD sidecar.",
+    )
+    parser.add_argument(
+        "--expected-isaaclab-commit-file",
+        type=Path,
+        help="Bind runtime provenance to the pulled server IsaacLab commit record.",
+    )
     args = parser.parse_args(argv)
 
     try:
-        result = validate_qualification_file(args.path, catalog_only=args.catalog_only)
+        expected_source_commit = (
+            args.expected_source_commit_file.read_text(encoding="utf-8").strip()
+            if args.expected_source_commit_file
+            else None
+        )
+        expected_isaaclab_commit = (
+            args.expected_isaaclab_commit_file.read_text(encoding="utf-8").strip()
+            if args.expected_isaaclab_commit_file
+            else None
+        )
+        result = validate_qualification_file(
+            args.path,
+            catalog_only=args.catalog_only,
+            expected_source_commit=expected_source_commit,
+            expected_isaaclab_repo_commit=expected_isaaclab_commit,
+        )
     except (OSError, ValueError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 1
