@@ -86,6 +86,12 @@ def valid_server_payload() -> dict:
         "expected_isaac_lab": "2.2.1",
         "actual_isaac_sim": "5.0",
         "actual_isaac_lab": "2.2.1",
+        "runtime_provenance": {
+            "isaac_sim_distribution": "5.0.0.0",
+            "isaac_lab_distribution": "0.45.9",
+            "isaac_lab_repo_commit": "c" * 40,
+            "isaac_lab_repo_tag": "v2.2.1",
+        },
         "task_id": "EasyUUV-Direct-v1",
         "source_commit": "a" * 40,
         "results": [_valid_row(name) for name in PUBLIC_CONFIGURATIONS],
@@ -131,6 +137,44 @@ def test_valid_catalog_only_artifact_has_distinct_local_gate():
     assert result["qualification_gate"] == "local_contract_pass"
     assert result["evidence_level"] == "local_contract"
     assert result["actual_versions"] == {"isaac_sim": "", "isaac_lab": ""}
+
+
+def test_catalog_only_artifact_does_not_require_runtime_provenance():
+    payload = valid_catalog_payload()
+    del payload["runtime_provenance"]
+
+    result = validate_qualification_payload(
+        payload, catalog_only=True, expected_topology=EXPECTED_TOPOLOGY
+    )
+
+    assert result["qualification_gate"] == "local_contract_pass"
+
+
+def test_server_artifact_requires_runtime_provenance():
+    payload = valid_server_payload()
+    del payload["runtime_provenance"]
+
+    with pytest.raises(ValueError, match="runtime_provenance_missing"):
+        validate_qualification_payload(payload, expected_topology=EXPECTED_TOPOLOGY)
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    (
+        ("isaac_sim_distribution", "6.0.0.0"),
+        ("isaac_lab_distribution", ""),
+        ("isaac_lab_repo_commit", "ABC"),
+        ("isaac_lab_repo_tag", "v2.3.0"),
+    ),
+)
+def test_server_artifact_rejects_invalid_runtime_provenance(
+    field: str, value: object
+):
+    payload = valid_server_payload()
+    payload["runtime_provenance"][field] = value
+
+    with pytest.raises(ValueError, match="runtime_provenance_invalid"):
+        validate_qualification_payload(payload, expected_topology=EXPECTED_TOPOLOGY)
 
 
 @pytest.mark.parametrize("mutation", ["missing", "extra"])

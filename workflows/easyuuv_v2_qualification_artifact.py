@@ -56,6 +56,13 @@ ROW_REQUIRED_FIELDS = (
 
 CONTROL_VALUE_FIELDS = ("action_min", "action_max", "motor_min", "motor_max")
 _SOURCE_COMMIT_PATTERN = re.compile(r"^[0-9a-f]{40}$")
+_RUNTIME_PROVENANCE_FIELDS = {
+    "isaac_sim_distribution",
+    "isaac_lab_distribution",
+    "isaac_lab_repo_commit",
+    "isaac_lab_repo_tag",
+}
+_SIM_DISTRIBUTION_PATTERN = re.compile(r"^(\d+)\.(\d+)(?:\.|$)")
 
 
 def _fail(reason: str, detail: str | None = None) -> None:
@@ -137,6 +144,34 @@ def _require_finite_control(row: Mapping[str, Any], field: str, configuration: s
     return numeric
 
 
+def _validate_runtime_provenance(payload: Mapping[str, Any]) -> None:
+    if "runtime_provenance" not in payload:
+        _fail("runtime_provenance_missing")
+    provenance = payload["runtime_provenance"]
+    if not isinstance(provenance, Mapping) or set(provenance) != _RUNTIME_PROVENANCE_FIELDS:
+        _fail("runtime_provenance_invalid", "fields")
+    if any(
+        not isinstance(provenance[field], str) or not provenance[field].strip()
+        for field in _RUNTIME_PROVENANCE_FIELDS
+    ):
+        _fail("runtime_provenance_invalid", "values")
+
+    sim_match = _SIM_DISTRIBUTION_PATTERN.match(
+        provenance["isaac_sim_distribution"].strip()
+    )
+    normalized_sim = (
+        f"{sim_match.group(1)}.{sim_match.group(2)}" if sim_match else ""
+    )
+    if normalized_sim != payload["actual_isaac_sim"]:
+        _fail("runtime_provenance_invalid", "isaac_sim_distribution")
+    if provenance["isaac_lab_repo_tag"].strip() != f"v{payload['actual_isaac_lab']}":
+        _fail("runtime_provenance_invalid", "isaac_lab_repo_tag")
+    if not _SOURCE_COMMIT_PATTERN.fullmatch(
+        provenance["isaac_lab_repo_commit"].strip()
+    ):
+        _fail("runtime_provenance_invalid", "isaac_lab_repo_commit")
+
+
 def _normalize_expected_topology(
     expected_topology: Mapping[str, Mapping[str, Any]] | None,
 ) -> dict[str, dict[str, Any]]:
@@ -184,6 +219,7 @@ def _validate_top_level(payload: Mapping[str, Any], *, catalog_only: bool) -> No
         actual_lab = _require_nonempty_version(payload, "actual_isaac_lab", "actual_version_missing")
         if actual_sim != expected_sim or actual_lab != expected_lab:
             _fail("actual_version_mismatch")
+        _validate_runtime_provenance(payload)
 
     if not isinstance(payload["results"], list):
         _fail("results_not_list")
