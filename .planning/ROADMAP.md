@@ -15,7 +15,7 @@ v1.0 的阶段名称、结论和证据已冻结，不在本活动 roadmap 中重
 
 | Phase | Name | Requirements | Depends on | Status |
 |---|---|---|---|---|
-| 6 | EasyUUV 2.0 Intake and Multi-Configuration Qualification | QUAL-01..08 | v1.0 frozen baseline | In progress — 1/4 plans complete |
+| 6 | EasyUUV 2.0 Intake and Multi-Configuration Qualification | QUAL-01..08 | v1.0 frozen baseline | In progress — 3/4 plans complete |
 | 7 | Cross-Configuration Koopman Data and Control Contract | CONT-01..05 | Phase 6 | Pending |
 | 8 | Multi-Configuration Koopman Identification and OOD Gate | KID-01..05 | Phase 7 | Pending |
 | 9 | Configuration-Aware Koopman-MPC Integration | MPC2-01..04 | Phase 8 | Pending |
@@ -51,7 +51,7 @@ Plans:
 **Wave 2** *(blocked on Wave 1 completion)*
 
 - [x] 06-02-PLAN.md — established the canonical eight-configuration catalog, pure TAM report, control masks/ranks and snapshot-backed zero-drift proof (`9237e3c`, `fcd804a`, `0dc2dc1`, `06dcd5e`).
-- [x] 06-03-PLAN.md — established the strict versioned qualification artifact schema, validator and deterministic Isaac-free CLI (`2c3cf47`, `985f630`, `0779cda`, `5b4bc6c`).
+- [x] 06-03-PLAN.md — established the strict versioned qualification artifact schema, validator and deterministic Isaac-free CLI, then closed provenance/type/range bypasses found by independent audit (`2c3cf47`, `985f630`, `0779cda`, `b85fbbc`, `ffa2e26`).
 
 **Wave 3** *(blocked on Wave 2 completion)*
 

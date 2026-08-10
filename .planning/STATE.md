@@ -3,8 +3,8 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Multi-Configuration Koopman Transfer and Environment-Aware Control
 status: in_progress
-last_updated: "2026-08-10T08:13:45.721Z"
-last_activity: 2026-08-10 -- Wave 2 catalog and qualification validator complete
+last_updated: "2026-08-10T08:22:41.447Z"
+last_activity: 2026-08-10 -- Wave 2 complete with independent validator audit fixes
 progress:
   total_phases: 7
   completed_phases: 0
@@ -110,8 +110,9 @@ All three boundaries are visible on `origin/v2.0-multi-configuration`: simulator
 - Wave 1 establishes package/provenance; Wave 2 runs catalog and validator TDD in parallel; Wave 3 blocks on actual eight-configuration Isaac evidence.
 - Plan 06-01 completed with canonical `easyuuv_nc` packaging, package-confined USD lookup, a local `.venv` workflow and 21 passing package/v1 source-contract tests.
 - Plan 06-02 completed with one exact eight-name catalog, an Isaac-free 8/6/4-thruster TAM report, explicit `uuv4*` yaw underactuation and snapshot-backed zero-drift proof.
-- Plan 06-03 completed with a strict versioned artifact schema, exact-set/topology/safety/evidence gates and a deterministic CLI; its mutation suite passes 50/50 twice.
-- Wave 2 integration passes 79 tests across the catalog, artifact validator and existing v1 source contracts; compileall and `pip check` are clean, and importing the gate loads no Omni modules.
+- Plan 06-03 completed with a strict versioned artifact schema, exact-set/topology/safety/evidence gates and a deterministic CLI; independent audit added fixed-baseline, strict-mask-type and ordered-extrema gates, bringing the mutation suite to 55 passes.
+- Wave 2 integration passes 84 tests across the catalog, artifact validator and existing v1 source contracts; compileall and `pip check` are clean, and importing the gate loads no Omni modules.
+- A pure JSON artifact cannot authenticate where it was produced. The `server_pass` result proves schema/content conformance only until Plan 06-04 anchors it to the actual server runner, command log, pullback hash and blocking human checkpoint.
 
 ## Next Action
 
