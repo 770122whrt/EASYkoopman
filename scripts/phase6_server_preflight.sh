@@ -32,3 +32,18 @@ phase6_require_preflight_value() {
         return 1
     fi
 }
+
+phase6_require_preflight_observation() {
+    local result_root="$1"
+    local check_name="$2"
+    local expected_description="$3"
+    local actual="$4"
+    local command_status="$5"
+
+    if [[ "$command_status" -ne 0 || -z "$actual" ]]; then
+        phase6_record_preflight_failure \
+            "$result_root" "$check_name" "$expected_description" \
+            "$actual" "$command_status"
+        return 1
+    fi
+}

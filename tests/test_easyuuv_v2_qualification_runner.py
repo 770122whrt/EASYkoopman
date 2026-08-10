@@ -678,6 +678,72 @@ def test_server_version_preflight_persists_expected_actual_and_command_status(
     assert "phase6_require_preflight_value" in qualification
 
 
+def test_server_editable_install_is_offline_and_persists_command_failure(
+    local_tmp_path: Path,
+):
+    project_root = Path(__file__).resolve().parents[1]
+    preflight_helper = project_root / "scripts" / "phase6_server_preflight.sh"
+    install_helper = project_root / "scripts" / "phase6_offline_install.sh"
+    qualification = (
+        project_root / "scripts" / "phase6_server_qualification.sh"
+    ).read_text(encoding="utf-8")
+    result_root = local_tmp_path / "offline-install-evidence"
+    fake_launcher = local_tmp_path / "fake-isaaclab.sh"
+    calls = local_tmp_path / "fake-launcher-calls.txt"
+    fake_launcher.write_text(
+        "#!/usr/bin/env bash\n"
+        "printf '%s\\n' \"$*\" >> \"$PHASE6_FAKE_CALLS\"\n"
+        "if [[ \"$*\" == *'importlib.metadata'* ]]; then\n"
+        "  printf '%s\\n' 'PHASE6_ACTUAL_SETUPTOOLS=75.8.0'\n"
+        "  exit 0\n"
+        "fi\n"
+        "exit 7\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    fake_launcher.chmod(0o755)
+    if sys.platform == "win32":
+        git_executable = Path(shutil.which("git") or "")
+        bash = git_executable.parent.parent / "bin" / "bash.exe"
+    else:
+        bash = Path(shutil.which("bash") or "")
+    if not bash.is_file():
+        pytest.skip("bash executable unavailable")
+
+    assert install_helper.is_file()
+    environment = os.environ.copy()
+    environment["PHASE6_FAKE_CALLS"] = str(calls)
+    completed = subprocess.run(
+        [
+            str(bash),
+            "-c",
+            (
+                f"source '{preflight_helper.as_posix()}'; "
+                f"source '{install_helper.as_posix()}'; "
+                f"phase6_prepare_offline_python_env '{result_root.as_posix()}' "
+                f"'{fake_launcher.as_posix()}' '{project_root.as_posix()}'"
+            ),
+        ],
+        check=False,
+        capture_output=True,
+        text=True,
+        env=environment,
+    )
+
+    assert completed.returncode == 1
+    assert (result_root / "setuptools_version.txt").read_text().strip() == "75.8.0"
+    failure = (result_root / "preflight_failure.txt").read_text(encoding="utf-8")
+    assert "check=editable_install" in failure
+    assert "expected=0" in failure
+    assert "actual=7" in failure
+    assert "command_status=7" in failure
+    install_call = calls.read_text(encoding="utf-8").splitlines()[-1]
+    assert "-p -m pip install -e" in install_call
+    assert "--no-deps --no-build-isolation --no-index" in install_call
+    assert 'source "$OFFLINE_INSTALL_HELPER"' in qualification
+    assert "phase6_prepare_offline_python_env" in qualification
+
+
 def test_server_pipeline_gate_blocks_successful_runner_when_log_capture_fails(
     local_tmp_path: Path,
 ):

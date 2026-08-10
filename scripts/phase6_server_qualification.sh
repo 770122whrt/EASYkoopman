@@ -13,6 +13,7 @@ readonly VALIDATOR="$PROJECT_ROOT/workflows/validate_easyuuv_v2_qualification.py
 readonly TASK_PROBE="$PROJECT_ROOT/scripts/phase6_probe_gym_tasks.py"
 readonly PIPELINE_GATE="$PROJECT_ROOT/scripts/phase6_pipeline_gate.sh"
 readonly PREFLIGHT_HELPER="$PROJECT_ROOT/scripts/phase6_server_preflight.sh"
+readonly OFFLINE_INSTALL_HELPER="$PROJECT_ROOT/scripts/phase6_offline_install.sh"
 
 # The repository intentionally contains source, not platform-specific generated
 # bytecode.  Keep the server checkout stable across the probe and eight separate
@@ -23,6 +24,8 @@ export PYTHONDONTWRITEBYTECODE=1
 source "$PIPELINE_GATE"
 # shellcheck source=scripts/phase6_server_preflight.sh
 source "$PREFLIGHT_HELPER"
+# shellcheck source=scripts/phase6_offline_install.sh
+source "$OFFLINE_INSTALL_HELPER"
 
 die() {
     printf 'ERROR: %s\n' "$1" >&2
@@ -62,7 +65,7 @@ actual_isaac_sim="$(sed -n 's/^PHASE6_ACTUAL_ISAAC_SIM=//p' \
 phase6_require_preflight_value \
     "$PREFLIGHT_ROOT" "isaac_sim_version" "5.0" \
     "$actual_isaac_sim" "$isaac_sim_status"
-"$ISAACLAB_PY" -p -m pip install -e "$PROJECT_ROOT" --no-deps
+phase6_prepare_offline_python_env "$PREFLIGHT_ROOT" "$ISAACLAB_PY" "$PROJECT_ROOT"
 
 mkdir -p \
     "$RESULT_ROOT/rows" \
