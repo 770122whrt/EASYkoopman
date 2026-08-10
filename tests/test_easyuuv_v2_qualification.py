@@ -172,6 +172,14 @@ def test_wrong_topology_field_is_rejected(field: str, value: object, reason: str
         validate_qualification_payload(payload, expected_topology=EXPECTED_TOPOLOGY)
 
 
+def test_boolean_control_mask_cannot_impersonate_integer_topology():
+    payload = valid_server_payload()
+    _row(payload, "base")["control_mask"] = [True, True, True, True]
+
+    with pytest.raises(ValueError, match="control_mask_mismatch"):
+        validate_qualification_payload(payload, expected_topology=EXPECTED_TOPOLOGY)
+
+
 @pytest.mark.parametrize(
     ("field", "value", "reason"),
     (
@@ -284,6 +292,24 @@ def test_artifact_requires_expected_versions(field: str):
     payload[field] = ""
 
     with pytest.raises(ValueError, match="expected_version_missing"):
+        validate_qualification_payload(payload, expected_topology=EXPECTED_TOPOLOGY)
+
+
+@pytest.mark.parametrize(
+    ("expected_field", "bad_version"),
+    (("expected_isaac_sim", "6.0"), ("expected_isaac_lab", "3.0")),
+)
+def test_artifact_expected_versions_are_pinned_to_server_baseline(
+    expected_field: str, bad_version: str
+):
+    payload = valid_server_payload()
+    payload[expected_field] = bad_version
+    if expected_field == "expected_isaac_sim":
+        payload["actual_isaac_sim"] = bad_version
+    else:
+        payload["actual_isaac_lab"] = bad_version
+
+    with pytest.raises(ValueError, match="expected_version_mismatch"):
         validate_qualification_payload(payload, expected_topology=EXPECTED_TOPOLOGY)
 
 
