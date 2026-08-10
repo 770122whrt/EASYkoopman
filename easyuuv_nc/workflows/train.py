@@ -51,6 +51,8 @@ PARENT_OF_NC = EASYUUV_NC_DIR.parent                    # .../easyuuv_stdw (or s
 if str(PARENT_OF_NC) not in sys.path:
     sys.path.insert(0, str(PARENT_OF_NC))
 
+from easyuuv_nc.embodiments import SUPPORTED_EMBODIMENTS  # noqa: E402
+
 
 # ---------------------------------------------------------------------------
 # CLI
@@ -131,7 +133,7 @@ parser.add_argument(
     "--embodiment",
     type=str,
     default="base",
-    choices=["base", "long_body", "heavy_moderate", "asymmetric", "uuv6", "uuv4", "uuv6_angled", "uuv4_angled"],
+    choices=SUPPORTED_EMBODIMENTS,
     help="训练时切换 embodiment；base 保持默认旧路径，其余在 gym.make 后调用 env.apply_embodiment_config。",
 )
 

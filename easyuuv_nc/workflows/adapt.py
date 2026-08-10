@@ -59,6 +59,8 @@ if str(PARENT_OF_NC) not in sys.path:
 if str(EASYUUV_NC_DIR) not in sys.path:
     sys.path.insert(0, str(EASYUUV_NC_DIR))
 
+from easyuuv_nc.embodiments import SUPPORTED_EMBODIMENTS  # noqa: E402
+
 from easyuuv_nc.stdw_integration.metrics import (  # noqa: E402
     DEFAULT_DEPTH_LOWER_LIMIT,
     DEFAULT_DEPTH_REFERENCE_FRAME,
@@ -848,7 +850,7 @@ parser.add_argument(
     "--embodiment",
     type=str,
     default="base",
-    choices=["base", "long_body", "heavy_moderate", "asymmetric", "uuv6", "uuv4", "uuv6_angled", "uuv4_angled"],
+    choices=SUPPORTED_EMBODIMENTS,
 )
 parser.add_argument(
     "--pid_multipliers",

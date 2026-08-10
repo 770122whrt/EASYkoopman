@@ -50,7 +50,8 @@ from omni.isaac.lab.utils.math import quat_apply, quat_conjugate
 from .rigid_body_hydrodynamics import HydrodynamicForceModels
 from .boundary_effects import BoundaryEffectModels
 from .thruster_dynamics import DynamicsFirstOrder, ConversionFunctionBasic, get_thruster_com_and_orientations
-from .thrust_allocation import (
+from ..embodiments import EMBODIMENT_CONFIGS
+from ..thrust_allocation import (
     ThrusterLayout,
     allocate,
     build_wrench_matrix,
@@ -452,130 +453,7 @@ class EasyUUVEnvCfg(DirectRLEnvCfg):
                      [0.3 * 0.01/ PID_PWM_value, 0.12 * 0.01/ PID_PWM_value, 0 / PID_PWM_value], # z-axis rotation, Yaw
                      [0.06 * 0.01/ PID_PWM_value, 0.05 * 0.01/ PID_PWM_value, 0 / PID_PWM_value]]
 
-    # Embodiment configurations for cross-embodiment generalization experiments
-    # 四种机型的物理参数配置
-    embodiment_configs = {
-        "base": {
-            "mass": 2.2701e+01,
-            "inertia_tensors": [0.37, 0.97, 1.19],
-            "com_to_cob_offset": [0.0, 0.0, 0.01],
-            "dyn_time_constant": 0.05,
-            "drag_multiplier": 1.0,
-        },
-        "long_body": {
-            "mass": 2.2701e+01,
-            "inertia_tensors": [0.1, 2.5, 2.5],  # Roll 转动惯量减小，Pitch/Yaw 增大
-            "com_to_cob_offset": [0.0, 0.0, 0.01],
-            "dyn_time_constant": 0.05,
-            "drag_multiplier": 1.0,
-            "thruster_com_offset_scale": 1.2,  # 增大推进器力臂
-        },
-        "heavy_duty": {
-            "mass": 2.2701e+01 * 5,  # 质量增加 5 倍
-            "inertia_tensors": [0.37 * 5, 0.97 * 5, 1.19 * 5],  # 转动惯量按比例增加
-            "com_to_cob_offset": [0.0, 0.0, 0.01],
-            "dyn_time_constant": 0.2,  # 增大时间常数，模拟更重的响应
-            "drag_multiplier": 5.0,  # 阻尼系数增加 5 倍
-        },
-        "heavy_moderate": {
-            "mass": 2.2701e+01 * 2,  # 质量增加 2 倍
-            "inertia_tensors": [0.37 * 2, 0.97 * 2, 1.19 * 2],  # 转动惯量按比例增加
-            "com_to_cob_offset": [0.0, 0.0, 0.01],
-            "dyn_time_constant": 0.1,  # 时间常数 ×2
-            "drag_multiplier": 2.0,  # 阻尼系数增加 2 倍
-        },
-        "asymmetric": {
-            "mass": 2.2701e+01,
-            "inertia_tensors": [0.37, 0.97, 1.19],
-            "com_to_cob_offset": [0.05, 0.05, 0.01],  # X 和 Y 轴增加随机偏移
-            "dyn_time_constant": 0.05,
-            "drag_multiplier": 1.0,
-        },
-        # ---- 真·物理 embodiment（config 驱动 TAM，opt-in）----
-        # 这四类机型带 "thrust_allocation" 字段：推进器数量/布局/朝向/分配矩阵都不同，
-        # apply_embodiment_config 会据此重建 thruster_quats/com_offsets/dim-N 缓冲，
-        # 并在 _pid_control 走 config B⁺/WLS 分配（见 thrust_allocation.py）。
-        # 质量/体积为 PAPER_ADDENDUM §2.2 设计值（ρ_body≈990，净浮力 +0.7%）；
-        # inertia 按 mass 比例从 base 缩放（设计值，实测由动力学识别回填）。
-        # specs 行 = [x, y, z, roll, pitch, yaw]（com->thruster 偏移 + rpy 朝向），
-        # 与 workflows/tools/diagnose_uuv_roll_tam.py 的权威布局一致。
-        "uuv6": {
-            "mass": 29.70,
-            "inertia_tensors": [0.37 * 29.70 / 22.701, 0.97 * 29.70 / 22.701, 1.19 * 29.70 / 22.701],
-            "com_to_cob_offset": [0.0, 0.0, 0.01],
-            "dyn_time_constant": 0.05,
-            "drag_multiplier": 1.0,
-            "volume": 0.030000,
-            "thrust_allocation": {
-                "mode": "pinv",
-                "controllable_dofs": ["heave", "roll", "pitch", "yaw"],
-                "specs": [
-                    [0.129, 0.21, 0.03, 0.0, -1.5708, 0.0],
-                    [0.129, -0.21, 0.03, 0.0, -1.5708, 0.0],
-                    [-0.129, 0.21, 0.03, 0.0, -1.5708, 0.0],
-                    [-0.129, -0.21, 0.03, 0.0, -1.5708, 0.0],
-                    [0.0, 0.16125, -0.02, 0.0, 0.0, 0.0],
-                    [0.0, -0.16125, -0.02, 0.0, 0.0, 0.0],
-                ],
-            },
-        },
-        "uuv4": {
-            "mass": 21.78,
-            "inertia_tensors": [0.37 * 21.78 / 22.701, 0.97 * 21.78 / 22.701, 1.19 * 21.78 / 22.701],
-            "com_to_cob_offset": [0.0, 0.0, 0.01],
-            "dyn_time_constant": 0.05,
-            "drag_multiplier": 1.0,
-            "volume": 0.022000,
-            "thrust_allocation": {
-                "mode": "wls",
-                "controllable_dofs": ["heave", "roll", "pitch"],  # 欠驱动：无 yaw
-                "specs": [
-                    [0.129, 0.21, 0.03, 0.0, -1.5708, 0.0],
-                    [0.129, -0.21, 0.03, 0.0, -1.5708, 0.0],
-                    [-0.129, 0.21, 0.03, 0.0, -1.5708, 0.0],
-                    [-0.129, -0.21, 0.03, 0.0, -1.5708, 0.0],
-                ],
-            },
-        },
-        "uuv6_angled": {
-            "mass": 31.68,
-            "inertia_tensors": [0.37 * 31.68 / 22.701, 0.97 * 31.68 / 22.701, 1.19 * 31.68 / 22.701],
-            "com_to_cob_offset": [0.0, 0.0, 0.01],
-            "dyn_time_constant": 0.05,
-            "drag_multiplier": 1.0,
-            "volume": 0.032000,
-            "thrust_allocation": {
-                "mode": "pinv",
-                "controllable_dofs": ["heave", "roll", "pitch", "yaw"],
-                "specs": [
-                    [0.129, 0.21, 0.03, 0.139626, -1.5708, 0.0],
-                    [0.129, -0.21, 0.03, -0.139626, -1.5708, 0.0],
-                    [-0.129, 0.21, 0.03, 0.139626, -1.5708, 0.0],
-                    [-0.129, -0.21, 0.03, -0.139626, -1.5708, 0.0],
-                    [0.0, 0.16125, -0.02, 0.0, 0.174533, 0.0],
-                    [0.0, -0.16125, -0.02, 0.0, 0.174533, 0.0],
-                ],
-            },
-        },
-        "uuv4_angled": {
-            "mass": 23.76,
-            "inertia_tensors": [0.37 * 23.76 / 22.701, 0.97 * 23.76 / 22.701, 1.19 * 23.76 / 22.701],
-            "com_to_cob_offset": [0.0, 0.0, 0.01],
-            "dyn_time_constant": 0.05,
-            "drag_multiplier": 1.0,
-            "volume": 0.024000,
-            "thrust_allocation": {
-                "mode": "wls",
-                "controllable_dofs": ["heave", "roll", "pitch"],  # 欠驱动：无 yaw
-                "specs": [
-                    [0.129, 0.21, 0.03, 0.139626, -1.5708, 0.0],
-                    [0.129, -0.21, 0.03, -0.139626, -1.5708, 0.0],
-                    [-0.129, 0.21, 0.03, 0.139626, -1.5708, 0.0],
-                    [-0.129, -0.21, 0.03, -0.139626, -1.5708, 0.0],
-                ],
-            },
-        },
-    }
+    embodiment_configs = EMBODIMENT_CONFIGS
 
 
 class EasyUUVEnv(DirectRLEnv):
