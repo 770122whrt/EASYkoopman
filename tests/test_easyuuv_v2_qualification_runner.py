@@ -264,6 +264,38 @@ def test_nonfinite_telemetry_failure_row_is_strict_json_and_reloadable(
         assert reloaded["results"][0][field] == 0.0
 
 
+def test_environment_close_failure_still_closes_simulator_and_marks_payload():
+    close_runtime = getattr(qualification_runner, "_close_runtime", None)
+    record_cleanup = getattr(
+        qualification_runner, "_record_cleanup_failures", None
+    )
+    assert callable(close_runtime)
+    assert callable(record_cleanup)
+    events: list[str] = []
+
+    class FailingEnvironment:
+        def close(self) -> None:
+            events.append("environment")
+            raise RuntimeError("environment close exploded")
+
+    class SimulationApp:
+        def close(self) -> None:
+            events.append("simulation_app")
+
+    payload = _single_row_payload("base")
+
+    failures = close_runtime(FailingEnvironment(), SimulationApp())
+    exit_code = record_cleanup(payload, failures, exit_code=0)
+
+    assert events == ["environment", "simulation_app"]
+    assert failures == ["environment_close_failed"]
+    assert exit_code == 1
+    assert payload["results"][0]["status"] == "fail"
+    assert payload["results"][0]["reason_codes"] == [
+        "environment_close_failed"
+    ]
+
+
 def test_runtime_provenance_uses_installed_sim_and_exact_isaaclab_release_tag():
     provenance = build_runtime_provenance(
         isaac_sim_distribution="5.0.0.0",

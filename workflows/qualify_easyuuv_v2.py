@@ -301,6 +301,35 @@ def _record_failure(row: dict[str, Any], reason: str) -> None:
     row["reason_codes"].append(reason.split(":", 1)[0])
 
 
+def _close_runtime(env: Any, simulation_app: Any) -> list[str]:
+    """Close both runtime layers and return stable, serializable reason codes."""
+    failures: list[str] = []
+    try:
+        if env is not None:
+            env.close()
+    except Exception:
+        failures.append("environment_close_failed")
+    finally:
+        try:
+            simulation_app.close()
+        except Exception:
+            failures.append("simulation_app_close_failed")
+    return failures
+
+
+def _record_cleanup_failures(
+    payload: dict[str, Any], failures: Iterable[str], *, exit_code: int
+) -> int:
+    reasons = list(failures)
+    if not reasons:
+        return exit_code
+    results = payload.get("results")
+    if isinstance(results, list) and len(results) == 1 and isinstance(results[0], dict):
+        for reason in reasons:
+            _record_failure(results[0], reason)
+    return 1
+
+
 def _merge_step_summary(
     row: dict[str, Any], summary: dict[str, int | float], *, first_step: bool
 ) -> None:
@@ -322,6 +351,8 @@ def run_isaac_qualification(args: argparse.Namespace) -> tuple[dict[str, Any], i
     app_launcher = AppLauncher({"headless": bool(args.headless)})
     simulation_app = app_launcher.app
     env = None
+    payload: dict[str, Any] | None = None
+    exit_code = 1
     try:
         import gymnasium as gym
         import isaaclab
@@ -384,11 +415,21 @@ def run_isaac_qualification(args: argparse.Namespace) -> tuple[dict[str, Any], i
             "source_commit": source_commit,
             "results": [row],
         }
-        return payload, 0 if row["status"] == "pass" else 1
+        exit_code = 0 if row["status"] == "pass" else 1
     finally:
-        if env is not None:
-            env.close()
-        simulation_app.close()
+        cleanup_failures = _close_runtime(env, simulation_app)
+        if cleanup_failures:
+            print(
+                "ERROR: runtime_cleanup_failed:" + ",".join(cleanup_failures),
+                file=sys.stderr,
+            )
+            if payload is not None:
+                exit_code = _record_cleanup_failures(
+                    payload, cleanup_failures, exit_code=exit_code
+                )
+    if payload is None:  # An earlier exception normally propagates through finally.
+        raise RuntimeError("qualification_payload_unavailable")
+    return payload, exit_code
 
 
 def main(argv: list[str] | None = None) -> int:
