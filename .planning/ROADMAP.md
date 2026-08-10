@@ -50,8 +50,8 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 06-02-PLAN.md — TDD the canonical eight-configuration catalog, pure TAM report, control masks and declared-control ranks.
-- [ ] 06-03-PLAN.md — TDD the strict, versioned qualification artifact schema and validator without an Isaac runtime dependency.
+- [x] 06-02-PLAN.md — established the canonical eight-configuration catalog, pure TAM report, control masks/ranks and snapshot-backed zero-drift proof (`9237e3c`, `fcd804a`, `0dc2dc1`, `06dcd5e`).
+- [x] 06-03-PLAN.md — established the strict versioned qualification artifact schema, validator and deterministic Isaac-free CLI (`2c3cf47`, `985f630`, `0779cda`, `5b4bc6c`).
 
 **Wave 3** *(blocked on Wave 2 completion)*
 

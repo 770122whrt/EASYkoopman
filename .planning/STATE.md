@@ -3,19 +3,19 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Multi-Configuration Koopman Transfer and Environment-Aware Control
 status: in_progress
-last_updated: "2026-08-09T08:58:02.000Z"
-last_activity: 2026-08-09 -- 06-01 package intake complete
+last_updated: "2026-08-10T08:13:45.721Z"
+last_activity: 2026-08-10 -- Wave 2 catalog and qualification validator complete
 progress:
   total_phases: 7
   completed_phases: 0
   total_plans: 4
-  completed_plans: 1
-  percent: 25
+  completed_plans: 3
+  percent: 75
 ---
 
 # Project State: EASYkoopman
 
-**Updated:** 2026-08-09
+**Updated:** 2026-08-10
 **Current focus:** Phase 6 — EasyUUV 2.0 Intake and Multi-Configuration Qualification
 **Active milestone:** `v2.0 Multi-Configuration Koopman Transfer and Environment-Aware Control`
 **Branch:** `v2.0-multi-configuration`
@@ -29,9 +29,9 @@ See `.planning/PROJECT.md`.
 ## Current Position
 
 Phase: 6 — EasyUUV 2.0 Intake and Multi-Configuration Qualification
-Plan: 06-01 complete — 1 of 4 plans
-Status: In progress — Wave 1 complete
-Last activity: 2026-08-09 -- canonical package/provenance contract verified locally
+Plan: 06-03 complete — 3 of 4 plans
+Status: In progress — Wave 2 complete; server checkpoint remains
+Last activity: 2026-08-10 -- canonical catalog/TAM and strict qualification artifact gate verified locally
 
 ## Milestone Goal
 
@@ -109,7 +109,10 @@ All three boundaries are visible on `origin/v2.0-multi-configuration`: simulator
 - Four execution plans cover 8/8 QUAL requirements and 14/14 locked D-ID decisions.
 - Wave 1 establishes package/provenance; Wave 2 runs catalog and validator TDD in parallel; Wave 3 blocks on actual eight-configuration Isaac evidence.
 - Plan 06-01 completed with canonical `easyuuv_nc` packaging, package-confined USD lookup, a local `.venv` workflow and 21 passing package/v1 source-contract tests.
+- Plan 06-02 completed with one exact eight-name catalog, an Isaac-free 8/6/4-thruster TAM report, explicit `uuv4*` yaw underactuation and snapshot-backed zero-drift proof.
+- Plan 06-03 completed with a strict versioned artifact schema, exact-set/topology/safety/evidence gates and a deterministic CLI; its mutation suite passes 50/50 twice.
+- Wave 2 integration passes 79 tests across the catalog, artifact validator and existing v1 source contracts; compileall and `pip check` are clean, and importing the gate loads no Omni modules.
 
 ## Next Action
 
-Execute Wave 2 plans `06-02-PLAN.md` and `06-03-PLAN.md`. Preserve local-contract versus server-Isaac evidence labels; do not begin Phase 7 before Phase 6 server verification.
+Execute `06-04-PLAN.md`: connect the catalog and validator to the Isaac runner/runbook, run the full local regression, then stop at the blocking eight-configuration server checkpoint. Preserve local-contract versus server-Isaac evidence labels; do not begin Phase 7 before Phase 6 server verification.
