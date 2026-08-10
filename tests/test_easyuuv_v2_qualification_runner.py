@@ -570,6 +570,52 @@ def test_server_bootstrap_and_execution_are_fail_closed_before_merge():
     assert "sha256sum" in qualification
 
 
+def test_server_version_preflight_persists_expected_actual_and_command_status(
+    local_tmp_path: Path,
+):
+    project_root = Path(__file__).resolve().parents[1]
+    helper = project_root / "scripts" / "phase6_server_preflight.sh"
+    qualification = (
+        project_root / "scripts" / "phase6_server_qualification.sh"
+    ).read_text(encoding="utf-8")
+    result_root = local_tmp_path / "preflight-evidence"
+    if sys.platform == "win32":
+        git_executable = Path(shutil.which("git") or "")
+        bash = git_executable.parent.parent / "bin" / "bash.exe"
+    else:
+        bash = Path(shutil.which("bash") or "")
+    if not bash.is_file():
+        pytest.skip("bash executable unavailable")
+
+    assert helper.is_file()
+    completed = subprocess.run(
+        [
+            str(bash),
+            "-c",
+            (
+                f"source '{helper.as_posix()}'; "
+                f"phase6_require_preflight_value '{result_root.as_posix()}' "
+                "isaaclab_repo_tag v2.2.1 v2.3.0 0"
+            ),
+        ],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert completed.returncode == 1
+    failure = (result_root / "preflight_failure.txt").read_text(encoding="utf-8")
+    assert "check=isaaclab_repo_tag" in failure
+    assert "expected=v2.2.1" in failure
+    assert "actual=v2.3.0" in failure
+    assert "command_status=0" in failure
+    assert "expected=v2.2.1;actual=v2.3.0;command_status=0" in completed.stderr
+    assert qualification.index('mkdir -p "$PREFLIGHT_ROOT" "$RESULT_ROOT/logs"') < (
+        qualification.index("isaaclab_tag_status")
+    )
+    assert "phase6_require_preflight_value" in qualification
+
+
 def test_server_pipeline_gate_blocks_successful_runner_when_log_capture_fails(
     local_tmp_path: Path,
 ):

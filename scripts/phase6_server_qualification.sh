@@ -4,6 +4,7 @@ set -Eeuo pipefail
 readonly EXPECTED_COMMIT_FILE="${1:?expected source commit sidecar required}"
 readonly PROJECT_ROOT="/root/EASYkoopman-phase6-v2"
 readonly RESULT_ROOT="$PROJECT_ROOT/source/results/koopman_phase6"
+readonly PREFLIGHT_ROOT="$RESULT_ROOT"
 readonly ISAACLAB_ROOT="/root/IsaacLab"
 readonly ISAACLAB_PY="/root/IsaacLab/isaaclab.sh"
 readonly RUNNER="$PROJECT_ROOT/workflows/qualify_easyuuv_v2.py"
@@ -11,6 +12,7 @@ readonly MERGER="$PROJECT_ROOT/workflows/merge_easyuuv_v2_qualification.py"
 readonly VALIDATOR="$PROJECT_ROOT/workflows/validate_easyuuv_v2_qualification.py"
 readonly TASK_PROBE="$PROJECT_ROOT/scripts/phase6_probe_gym_tasks.py"
 readonly PIPELINE_GATE="$PROJECT_ROOT/scripts/phase6_pipeline_gate.sh"
+readonly PREFLIGHT_HELPER="$PROJECT_ROOT/scripts/phase6_server_preflight.sh"
 
 # The repository intentionally contains source, not platform-specific generated
 # bytecode.  Keep the server checkout stable across the probe and eight separate
@@ -19,6 +21,8 @@ export PYTHONDONTWRITEBYTECODE=1
 
 # shellcheck source=scripts/phase6_pipeline_gate.sh
 source "$PIPELINE_GATE"
+# shellcheck source=scripts/phase6_server_preflight.sh
+source "$PREFLIGHT_HELPER"
 
 die() {
     printf 'ERROR: %s\n' "$1" >&2
@@ -33,15 +37,31 @@ tracked_status="$(git -C "$PROJECT_ROOT" status --porcelain=v1 --untracked-files
 [[ -z "$tracked_status" ]] || die "tracked_source_drift"
 
 [[ -x "$ISAACLAB_PY" ]] || die "isaaclab_launcher_missing"
-isaaclab_tag="$(git -C "$ISAACLAB_ROOT" describe --tags --exact-match HEAD)"
-[[ "$isaaclab_tag" == "v2.2.1" ]] || die "isaaclab_release_mismatch"
+mkdir -p "$PREFLIGHT_ROOT" "$RESULT_ROOT/logs"
+set +e
+isaaclab_tag="$(git -C "$ISAACLAB_ROOT" describe --tags --exact-match HEAD \
+    2> "$RESULT_ROOT/logs/isaaclab_repo_tag.log")"
+isaaclab_tag_status=$?
+set -e
+phase6_require_preflight_value \
+    "$PREFLIGHT_ROOT" "isaaclab_repo_tag" "v2.2.1" \
+    "$isaaclab_tag" "$isaaclab_tag_status"
 isaaclab_commit="$(git -C "$ISAACLAB_ROOT" rev-parse HEAD)"
 [[ "$isaaclab_commit" =~ ^[0-9a-f]{40}$ ]] || die "isaaclab_commit_invalid"
 isaaclab_tracked_status="$(git -C "$ISAACLAB_ROOT" status --porcelain=v1 --untracked-files=no)"
 [[ -z "$isaaclab_tracked_status" ]] || die "isaaclab_tracked_source_drift"
 
+set +e
 "$ISAACLAB_PY" -p -c \
-    'from importlib.metadata import version; assert ".".join(version("isaacsim").split(".")[:2]) == "5.0"'
+    'from importlib.metadata import version; print("PHASE6_ACTUAL_ISAAC_SIM=" + ".".join(version("isaacsim").split(".")[:2]))' \
+    > "$RESULT_ROOT/logs/isaac_sim_version.log" 2>&1
+isaac_sim_status=$?
+set -e
+actual_isaac_sim="$(sed -n 's/^PHASE6_ACTUAL_ISAAC_SIM=//p' \
+    "$RESULT_ROOT/logs/isaac_sim_version.log" | tail -n 1 | tr -d '\r')"
+phase6_require_preflight_value \
+    "$PREFLIGHT_ROOT" "isaac_sim_version" "5.0" \
+    "$actual_isaac_sim" "$isaac_sim_status"
 "$ISAACLAB_PY" -p -m pip install -e "$PROJECT_ROOT" --no-deps
 
 mkdir -p \
