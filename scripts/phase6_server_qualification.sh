@@ -4,8 +4,10 @@ PROJECT_ROOT="/root/EASYkoopman-phase6-v2"
 RESULT_ROOT="$PROJECT_ROOT/source/results/koopman_phase6"
 ISAACLAB_PY="/root/IsaacLab/isaaclab.sh"
 RUNNER="$PROJECT_ROOT/workflows/qualify_easyuuv_v2.py"
+TASK_PROBE="$PROJECT_ROOT/scripts/phase6_probe_gym_tasks.py"
 
 mkdir -p "$RESULT_ROOT/rows" "$RESULT_ROOT/logs" "$RESULT_ROOT/exit_codes"
+"$ISAACLAB_PY" -p "$TASK_PROBE" 2>&1 | tee "$RESULT_ROOT/gym_tasks.log"
 
 run_one() {
     local configuration="$1"

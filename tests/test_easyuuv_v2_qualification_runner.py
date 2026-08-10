@@ -452,6 +452,32 @@ def test_all_server_runner_commands_use_isaaclab_launcher_and_absolute_paths():
     assert '--result-root "$RESULT_ROOT"' in server_script
 
 
+def test_server_probe_starts_app_before_resolving_all_four_gym_task_ids():
+    project_root = Path(__file__).resolve().parents[1]
+    probe = (project_root / "scripts" / "phase6_probe_gym_tasks.py").read_text(
+        encoding="utf-8"
+    )
+    server_script = (
+        project_root / "scripts" / "phase6_server_qualification.sh"
+    ).read_text(encoding="utf-8")
+    expected_ids = (
+        "EasyUUV-Direct-v1",
+        "EasyUUV-Direct-Parametric-v1",
+        "EasyUUV-Direct-Parametric-SatObs-v1",
+        "EasyUUV-Direct-Parametric-Wide256-v1",
+    )
+
+    assert probe.index("simulation_app = app_launcher.app") < probe.index(
+        "import gymnasium as gym"
+    )
+    assert probe.index("simulation_app = app_launcher.app") < probe.index(
+        "import easyuuv_nc"
+    )
+    assert "gym.spec(task_id)" in probe
+    assert all(task_id in probe for task_id in expected_ids)
+    assert '"$ISAACLAB_PY" -p "$TASK_PROBE"' in server_script
+
+
 @pytest.mark.parametrize("raw", ("5.0", "5.0.0.0", "5.0.0.0+linux-x86_64"))
 def test_isaac_sim_distribution_is_normalized_to_semantic_baseline(raw: str):
     assert normalize_isaac_sim_version(raw) == "5.0"
