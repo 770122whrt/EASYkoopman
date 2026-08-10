@@ -387,3 +387,15 @@ def test_cli_returns_one_for_textual_nan(local_tmp_path: Path, capsys):
 
     assert main([str(path)]) == 1
     assert "nonfinite_json_constant:NaN" in capsys.readouterr().err
+
+
+def test_cli_json_output_is_byte_identical_for_same_artifact(local_tmp_path: Path, capsys):
+    path = _write_json(local_tmp_path / "qualification.json", valid_server_payload())
+
+    assert main([str(path), "--json"]) == 0
+    first = capsys.readouterr()
+    assert main([str(path), "--json"]) == 0
+    second = capsys.readouterr()
+
+    assert first.out.encode("utf-8") == second.out.encode("utf-8")
+    assert first.err == second.err == ""
