@@ -22,8 +22,10 @@ from workflows.easyuuv_v2_qualification_artifact import (
 from workflows.merge_easyuuv_v2_qualification import merge_qualification_results
 from workflows.qualify_easyuuv_v2 import (
     DEFAULT_RESULT_ROOT,
+    build_runtime_provenance,
     build_argument_parser,
     deterministic_excitation,
+    normalize_isaac_sim_version,
     resolve_output_path,
     summarize_actual_telemetry,
 )
@@ -194,6 +196,45 @@ def test_actual_telemetry_summary_uses_real_values_and_counts_shape_mismatch():
         "nonfinite_count": 0,
         "dimension_mismatch_count": 1,
     }
+
+
+def test_runtime_provenance_uses_installed_sim_and_exact_isaaclab_release_tag():
+    provenance = build_runtime_provenance(
+        isaac_sim_distribution="5.0.0.0",
+        isaac_lab_distribution="0.45.9",
+        isaac_lab_repo_commit="c" * 40,
+        isaac_lab_repo_tag="v2.2.1",
+    )
+
+    assert provenance == {
+        "actual_isaac_sim": "5.0",
+        "actual_isaac_lab": "2.2.1",
+        "runtime_provenance": {
+            "isaac_sim_distribution": "5.0.0.0",
+            "isaac_lab_distribution": "0.45.9",
+            "isaac_lab_repo_commit": "c" * 40,
+            "isaac_lab_repo_tag": "v2.2.1",
+        },
+    }
+
+
+@pytest.mark.parametrize("raw", ("5.0", "5.0.0.0", "5.0.0.0+linux-x86_64"))
+def test_isaac_sim_distribution_is_normalized_to_semantic_baseline(raw: str):
+    assert normalize_isaac_sim_version(raw) == "5.0"
+
+
+@pytest.mark.parametrize(
+    "bad_tag",
+    ("2.2", "release-2.2.1", "v2.2.1-dirty", "v2.3.0", ""),
+)
+def test_runtime_provenance_rejects_nonbaseline_or_inexact_isaaclab_tag(bad_tag: str):
+    with pytest.raises(RuntimeError, match="isaac_lab_release_provenance_invalid"):
+        build_runtime_provenance(
+            isaac_sim_distribution="5.0.0.0",
+            isaac_lab_distribution="0.45.9",
+            isaac_lab_repo_commit="c" * 40,
+            isaac_lab_repo_tag=bad_tag,
+        )
 
 
 def test_merge_valid_eight_rows_is_deterministic_and_strict(local_tmp_path: Path):
