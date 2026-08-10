@@ -29,7 +29,7 @@ On Windows PowerShell:
 .\.venv\Scripts\python.exe -c "import easyuuv_nc; from easyuuv_nc.package_paths import EMBODIMENT_USD_PATH; assert EMBODIMENT_USD_PATH.is_file(); print(easyuuv_nc.__file__); print(EMBODIMENT_USD_PATH)"
 .\.venv\Scripts\python.exe -m pytest -q tests\test_easyuuv_v2_package.py tests\test_easyuuv_v2_catalog.py tests\test_easyuuv_v2_qualification.py tests\test_easyuuv_v2_qualification_runner.py
 .\.venv\Scripts\python.exe -m pytest --collect-only -q
-.\.venv\Scripts\python.exe -m pytest -q --basetemp .pytest-phase6
+.\.venv\Scripts\python.exe -m pytest -q --basetemp .pytest-tmp/phase6-full-suite
 .\.venv\Scripts\python.exe -m compileall __init__.py easyuuv_env.py koopman workflows tests easyuuv_nc
 git diff --check
 git diff v1.0 -- .planning/milestones .planning/reports koopman/model.py koopman/mpc.py

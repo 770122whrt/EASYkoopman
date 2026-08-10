@@ -495,6 +495,18 @@ def test_all_server_runner_commands_use_isaaclab_launcher_and_absolute_paths():
     assert '--result-root "$RESULT_ROOT"' in server_script
 
 
+def test_local_full_suite_uses_ignored_phase6_basetemp():
+    project_root = Path(__file__).resolve().parents[1]
+    runbook = (
+        project_root / "docs" / "phase6_easyuuv_v2_qualification_runbook.md"
+    ).read_text(encoding="utf-8")
+    gitignore = (project_root / ".gitignore").read_text(encoding="utf-8")
+
+    assert ".pytest-tmp/" in gitignore
+    assert "--basetemp .pytest-tmp/phase6-full-suite" in runbook
+    assert "--basetemp .pytest-phase6" not in runbook
+
+
 def test_server_probe_starts_app_before_resolving_all_four_gym_task_ids():
     project_root = Path(__file__).resolve().parents[1]
     probe = (project_root / "scripts" / "phase6_probe_gym_tasks.py").read_text(
