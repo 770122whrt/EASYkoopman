@@ -10,6 +10,8 @@ import tempfile
 
 import pytest
 
+import workflows.qualify_easyuuv_v2 as qualification_runner
+
 from easyuuv_nc.embodiments import SUPPORTED_EMBODIMENTS, qualification_record
 from workflows.easyuuv_v2_qualification_artifact import (
     EXPECTED_ISAAC_LAB_VERSION,
@@ -280,6 +282,50 @@ def test_runtime_provenance_uses_installed_sim_and_exact_isaaclab_release_tag():
             "isaac_lab_repo_tag": "v2.2.1",
         },
     }
+
+
+def test_source_commit_rejects_tracked_worktree_changes(monkeypatch):
+    def fake_git_output(repository: Path, *arguments: str) -> str:
+        if arguments == ("status", "--porcelain=v1", "--untracked-files=no"):
+            return " M workflows/qualify_easyuuv_v2.py"
+        if arguments == ("rev-parse", "HEAD"):
+            return "a" * 40
+        raise AssertionError(arguments)
+
+    monkeypatch.setattr(qualification_runner, "_git_output", fake_git_output)
+
+    with pytest.raises(RuntimeError, match="source_worktree_tracked_dirty"):
+        qualification_runner._repository_commit()
+
+
+def test_source_commit_accepts_clean_tracked_tree(monkeypatch):
+    def fake_git_output(repository: Path, *arguments: str) -> str:
+        if arguments == ("status", "--porcelain=v1", "--untracked-files=no"):
+            return ""
+        if arguments == ("rev-parse", "HEAD"):
+            return "a" * 40
+        raise AssertionError(arguments)
+
+    monkeypatch.setattr(qualification_runner, "_git_output", fake_git_output)
+
+    assert qualification_runner._repository_commit() == "a" * 40
+
+
+def test_bundle_preparation_script_binds_tested_head_to_bundle_and_sidecar():
+    script = (
+        Path(__file__).resolve().parents[1]
+        / "scripts"
+        / "phase6_prepare_bundle.ps1"
+    ).read_text(encoding="utf-8")
+
+    assert "--porcelain=v1" in script
+    assert "--untracked-files=no" in script
+    assert "rev-parse" in script
+    assert '"$Branch^{commit}"' in script
+    assert "bundle" in script
+    assert "list-heads" in script
+    assert "expected-source-commit.txt" in script
+    assert "bundle_ref_mismatch" in script
 
 
 @pytest.mark.parametrize("raw", ("5.0", "5.0.0.0", "5.0.0.0+linux-x86_64"))

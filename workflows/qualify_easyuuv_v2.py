@@ -237,9 +237,14 @@ def detect_runtime_provenance(isaaclab_module_file: str | Path) -> dict[str, Any
 
 def _repository_commit() -> str:
     try:
+        tracked_status = _git_output(
+            PROJECT_ROOT, "status", "--porcelain=v1", "--untracked-files=no"
+        )
         commit = _git_output(PROJECT_ROOT, "rev-parse", "HEAD")
     except subprocess.CalledProcessError as exc:
         raise RuntimeError("source_commit_unavailable") from exc
+    if tracked_status:
+        raise RuntimeError("source_worktree_tracked_dirty")
     if not _GIT_COMMIT_RE.fullmatch(commit):
         raise RuntimeError("source_commit_invalid")
     return commit
