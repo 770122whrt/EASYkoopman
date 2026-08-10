@@ -473,8 +473,12 @@ def test_server_probe_starts_app_before_resolving_all_four_gym_task_ids():
     assert probe.index("simulation_app = app_launcher.app") < probe.index(
         "import easyuuv_nc"
     )
+    assert probe.index("sys.path.insert") < probe.index(
+        "from isaaclab_app import AppLauncher"
+    )
     assert "gym.spec(task_id)" in probe
     assert all(task_id in probe for task_id in expected_ids)
+    assert "EMBODIMENT_USD_PATH.is_file()" in probe
     assert '"$ISAACLAB_PY" -p "$TASK_PROBE"' in server_script
 
 
