@@ -200,6 +200,39 @@ def test_output_path_creates_confined_parent(local_tmp_path: Path):
     assert resolved.is_relative_to(result_root.resolve())
 
 
+def test_output_path_rejects_symlinked_parent_component(
+    local_tmp_path: Path, monkeypatch
+):
+    result_root = local_tmp_path / "allowed"
+    output = result_root / "rows" / "base.json"
+    output.parent.mkdir(parents=True)
+    original_is_symlink = Path.is_symlink
+
+    def fake_is_symlink(path: Path) -> bool:
+        return path == output.parent or original_is_symlink(path)
+
+    monkeypatch.setattr(Path, "is_symlink", fake_is_symlink)
+
+    with pytest.raises(ValueError, match="output_symlink_component"):
+        resolve_output_path(output, result_root)
+
+
+def test_atomic_writer_revalidates_confinement_immediately_before_write(
+    local_tmp_path: Path, monkeypatch
+):
+    result_root = local_tmp_path / "allowed"
+    output = resolve_output_path(result_root / "rows" / "base.json", result_root)
+    original_is_symlink = Path.is_symlink
+
+    def fake_is_symlink(path: Path) -> bool:
+        return path == output.parent or original_is_symlink(path)
+
+    monkeypatch.setattr(Path, "is_symlink", fake_is_symlink)
+
+    with pytest.raises(ValueError, match="output_symlink_component"):
+        _atomic_write_json(output, {"status": "fail"}, result_root=result_root)
+
+
 def test_actual_telemetry_is_required():
     with pytest.raises(RuntimeError, match="missing_actual_telemetry"):
         summarize_actual_telemetry(

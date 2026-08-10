@@ -83,13 +83,39 @@ def deterministic_excitation(
 
 def resolve_output_path(output_path: str | Path, result_root: str | Path) -> Path:
     """Resolve and create a result path only when it stays below ``result_root``."""
-    root = Path(result_root).expanduser().resolve()
+    root = Path(os.path.abspath(Path(result_root).expanduser()))
     root.mkdir(parents=True, exist_ok=True)
-    output = Path(output_path).expanduser().resolve()
-    if output == root or not output.is_relative_to(root):
-        raise ValueError(f"output_outside_result_root:{output}")
+    output = Path(os.path.abspath(Path(output_path).expanduser()))
+    _revalidate_confined_output(output, root)
     output.parent.mkdir(parents=True, exist_ok=True)
-    return output
+    return _revalidate_confined_output(output, root)
+
+
+def _revalidate_confined_output(
+    output_path: str | Path, result_root: str | Path
+) -> Path:
+    """Reject escapes and existing symlink components at the write boundary."""
+    lexical_root = Path(os.path.abspath(Path(result_root).expanduser()))
+    lexical_output = Path(os.path.abspath(Path(output_path).expanduser()))
+    resolved_root = lexical_root.resolve()
+    resolved_output = lexical_output.resolve()
+    if (
+        lexical_output == lexical_root
+        or not lexical_output.is_relative_to(lexical_root)
+        or resolved_output == resolved_root
+        or not resolved_output.is_relative_to(resolved_root)
+    ):
+        raise ValueError(f"output_outside_result_root:{resolved_output}")
+
+    relative_parent = lexical_output.parent.relative_to(lexical_root)
+    component = lexical_root
+    for part in relative_parent.parts:
+        component = component / part
+        if component.exists() and component.is_symlink():
+            raise ValueError(f"output_symlink_component:{component}")
+    if lexical_root.is_symlink():
+        raise ValueError(f"output_symlink_component:{lexical_root}")
+    return resolved_output
 
 
 def _as_rows(value: Any, *, field: str) -> list[list[float]]:
@@ -250,7 +276,14 @@ def _repository_commit() -> str:
     return commit
 
 
-def _atomic_write_json(path: Path, payload: dict[str, Any]) -> None:
+def _atomic_write_json(
+    path: Path,
+    payload: dict[str, Any],
+    *,
+    result_root: str | Path | None = None,
+) -> None:
+    if result_root is not None:
+        path = _revalidate_confined_output(path, result_root)
     temporary_path: Path | None = None
     try:
         with tempfile.NamedTemporaryFile(
@@ -459,12 +492,14 @@ def main(argv: list[str] | None = None) -> int:
     try:
         output = resolve_output_path(args.output_json, args.result_root)
         payload, exit_code = run_isaac_qualification(args)
-        _atomic_write_json(output, payload)
+        _atomic_write_json(output, payload, result_root=args.result_root)
     except (OSError, RuntimeError, ValueError) as exc:
         if output is not None:
             try:
                 _atomic_write_json(
-                    output, _preflight_failure_payload(args, str(exc) or type(exc).__name__)
+                    output,
+                    _preflight_failure_payload(args, str(exc) or type(exc).__name__),
+                    result_root=args.result_root,
                 )
             except (OSError, RuntimeError, ValueError) as write_exc:
                 print(f"ERROR: preflight_evidence_write_failed:{write_exc}", file=sys.stderr)
