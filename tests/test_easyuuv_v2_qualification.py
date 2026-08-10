@@ -234,6 +234,16 @@ def test_control_beyond_tolerance_is_rejected(field: str):
         validate_qualification_payload(payload, expected_topology=EXPECTED_TOPOLOGY)
 
 
+@pytest.mark.parametrize("prefix", ["action", "motor"])
+def test_inverted_control_extrema_are_rejected(prefix: str):
+    payload = valid_server_payload()
+    _row(payload, "base")[f"{prefix}_min"] = 0.75
+    _row(payload, "base")[f"{prefix}_max"] = -0.75
+
+    with pytest.raises(ValueError, match="control_range_inverted"):
+        validate_qualification_payload(payload, expected_topology=EXPECTED_TOPOLOGY)
+
+
 def test_motor_dimension_mismatch_is_rejected():
     payload = valid_server_payload()
     _row(payload, "uuv6")["motor_vector_length"] = 8
