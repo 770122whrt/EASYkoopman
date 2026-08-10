@@ -60,7 +60,7 @@ import traceback
 from rsl_rl.runners import OnPolicyRunner
 
 from discover_ppo_checkpoints import discover_ppo_checkpoints
-from easyuuv_task_registration import register_easyuuv_task
+from easyuuv_task_registration import register_gym_tasks
 from isaaclab_compat import RslRlOnPolicyRunnerCfg, RslRlVecEnvWrapper, get_checkpoint_path, parse_env_cfg
 
 try:
@@ -132,7 +132,7 @@ def write_phase46_training_summary(log_dir: str, agent_cfg: RslRlOnPolicyRunnerC
 
 def main() -> None:
     print("[EASYUUV][TRAIN] Entering main()", flush=True)
-    register_easyuuv_task()
+    register_gym_tasks()
     env_cfg = parse_env_config(args_cli.num_envs)
     configure_phase46_legacy_env(env_cfg)
     agent_cfg: RslRlOnPolicyRunnerCfg = cli_args.parse_rsl_rl_cfg(args_cli.task, args_cli)

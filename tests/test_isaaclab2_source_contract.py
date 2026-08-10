@@ -25,8 +25,8 @@ def test_direct_controller_starts_app_before_task_registration():
 
     assert "from isaaclab_app import AppLauncher" in source
     assert "simulation_app = app_launcher.app" in source
-    assert "register_easyuuv_task()" in source
-    assert source.index("simulation_app = app_launcher.app") < source.index("register_easyuuv_task()")
+    assert "register_gym_tasks()" in source
+    assert source.index("simulation_app = app_launcher.app") < source.index("register_gym_tasks()")
 
 
 def test_direct_controller_does_not_duplicate_applauncher_cli_flags():
@@ -87,16 +87,16 @@ def test_task_registration_uses_callable_entrypoint():
 
     assert 'id="EasyUUV-Direct-v1"' in source
     assert "entry_point=EasyUUVEnv" in source
-    assert "register_easyuuv_task" in source
+    assert "register_gym_tasks" in source
     assert "EasyUUV-Isaac-Simulation" not in source
 
 
 def test_package_import_does_not_register_task_before_app_startup():
     source = read_source("__init__.py")
 
-    assert "def register_easyuuv_task(" in source
-    assert "easyuuv_task_registration import register_easyuuv_task as" in source
-    assert "\nregister_easyuuv_task()\n" not in source
+    assert "def register_gym_tasks(" in source
+    assert "easyuuv_task_registration import register_gym_tasks as" in source
+    assert "\nregister_gym_tasks()\n" not in source
 
 
 def test_core_direct_path_uses_compat_layer_instead_of_old_namespace():

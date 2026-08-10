@@ -323,7 +323,7 @@ import numpy as np
 import torch
 
 from easyuuv_env import EasyUUVEnvCfg
-from easyuuv_task_registration import register_easyuuv_task
+from easyuuv_task_registration import register_gym_tasks
 from isaaclab_compat import RslRlVecEnvWrapper, euler_xyz_from_quat, quat_from_euler_xyz
 from koopman.policy_adapter import ADAPTER_MODE, PolicyAdapterConfig, adapt_policy_reference
 from koopman_data import KoopmanDataLogger, build_koopman_sample
@@ -354,7 +354,7 @@ SUPPORTED_EVIDENCE_LEVELS = (
 )
 
 log_stage("Registering EasyUUV task")
-register_easyuuv_task()
+register_gym_tasks()
 log_stage("EasyUUV task registered")
 strftime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 

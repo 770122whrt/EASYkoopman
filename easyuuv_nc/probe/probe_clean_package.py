@@ -1,7 +1,7 @@
 """干净包名验证探针（无 bootstrap hack）。
 
 验证 easyuuv_nc 作为独立包名时，能否：
-Isaac 启动 -> import easyuuv_nc (触发 gym.register, 普通 entry_point)
+Isaac 启动 -> 显式 register_gym_tasks (普通 entry_point)
 -> gym.spec -> parse_env_cfg -> gym.make -> reset -> step -> 干净关闭。
 
 与 probe_subfolder_bootstrap.py 的关键区别：
@@ -41,8 +41,9 @@ def main() -> int:
     app_launcher = AppLauncher(args_cli)
     simulation_app = app_launcher.app
 
-    # 关键：仅普通 import，触发 easyuuv_nc/__init__.py 里的 gym.register，无任何 hack。
-    import easyuuv_nc  # noqa: F401
+    # 关键：AppLauncher 后显式、幂等注册，无任何 package import 副作用。
+    import easyuuv_nc
+    easyuuv_nc.register_gym_tasks()
     print(f"[NCPROBE] import easyuuv_nc ok: {easyuuv_nc.__file__}")
 
     import gymnasium as gym  # noqa: E402

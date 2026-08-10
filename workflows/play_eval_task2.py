@@ -44,6 +44,9 @@ import wandb
 import numpy as np
 import math
 
+from easyuuv_task_registration import register_gym_tasks
+register_gym_tasks()
+
 from rsl_rl.runners import OnPolicyRunner
 
 import omni.isaac.lab_tasks  # noqa: F401

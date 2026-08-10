@@ -1223,8 +1223,9 @@ args_cli = parser.parse_args()
 app_launcher = AppLauncher(args_cli)
 simulation_app = app_launcher.app
 
-# 干净包名：``import easyuuv_nc`` 即触发 gym.register（entry_point=easyuuv_nc.env:EasyUUVEnv）。
-import easyuuv_nc  # noqa: E402,F401
+# 干净包名：AppLauncher 后显式、幂等注册（entry_point=easyuuv_nc.env:EasyUUVEnv）。
+from easyuuv_nc import register_gym_tasks  # noqa: E402
+register_gym_tasks()
 
 # ---------------------------------------------------------------------------
 # Lab-side imports (after AppLauncher).

@@ -33,7 +33,7 @@ simulation_app = app_launcher.app
 import gymnasium as gym
 from rsl_rl.runners import OnPolicyRunner
 
-from easyuuv_task_registration import register_easyuuv_task
+from easyuuv_task_registration import register_gym_tasks
 from isaaclab_compat import (
     RslRlOnPolicyRunnerCfg,
     RslRlVecEnvWrapper,
@@ -54,7 +54,7 @@ def parse_env_config(num_envs: int):
 
 
 def main() -> None:
-    register_easyuuv_task()
+    register_gym_tasks()
     env_cfg = parse_env_config(args_cli.num_envs)
     agent_cfg: RslRlOnPolicyRunnerCfg = cli_args.parse_rsl_rl_cfg(args_cli.task, args_cli)
 

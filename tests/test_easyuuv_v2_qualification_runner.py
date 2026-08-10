@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from copy import deepcopy
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -135,6 +136,64 @@ def test_runner_help_contract_is_available_without_isaac_imports():
     ):
         assert option in help_text
     assert tuple(parser._option_string_actions["--configuration"].choices) == SUPPORTED_EMBODIMENTS
+
+
+def test_importing_qualification_runner_is_stdlib_only():
+    project_root = Path(__file__).resolve().parents[1]
+    environment = os.environ.copy()
+    existing_pythonpath = environment.get("PYTHONPATH")
+    environment["PYTHONPATH"] = os.pathsep.join(
+        part for part in (str(project_root), existing_pythonpath) if part
+    )
+    probe = subprocess.run(
+        [
+            sys.executable,
+            "-c",
+            (
+                "import sys; import workflows.qualify_easyuuv_v2; "
+                "blocked = sorted(name for name in sys.modules if "
+                "name == 'torch' or name.startswith('torch.') or "
+                "name == 'gymnasium' or name.startswith('gymnasium.') or "
+                "name == 'omni' or name.startswith('omni.') or "
+                "name == 'easyuuv_nc.env' or name.startswith('easyuuv_nc.env.')); "
+                "assert not blocked, blocked"
+            ),
+        ],
+        cwd=project_root,
+        env=environment,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert probe.returncode == 0, probe.stderr
+
+
+def test_all_app_started_gym_consumers_register_explicitly_after_launcher():
+    project_root = Path(__file__).resolve().parents[1]
+    consumers = (
+        "scripts/phase6_probe_gym_tasks.py",
+        "workflows/qualify_easyuuv_v2.py",
+        "workflows/gen_policy.py",
+        "workflows/play_controller.py",
+        "workflows/play_eval.py",
+        "workflows/play_eval_step.py",
+        "workflows/play_eval_task2.py",
+        "workflows/play_ppo_koopman.py",
+        "workflows/train.py",
+        "workflows/train_ppo_koopman.py",
+        "easyuuv_nc/probe/probe_clean_package.py",
+        "easyuuv_nc/probe/probe_subfolder_bootstrap.py",
+        "easyuuv_nc/workflows/train.py",
+        "easyuuv_nc/workflows/adapt.py",
+    )
+
+    for relative_path in consumers:
+        source = (project_root / relative_path).read_text(encoding="utf-8")
+        assert "register_gym_tasks()" in source, relative_path
+        assert source.index("simulation_app = app_launcher.app") < source.index(
+            "register_gym_tasks()"
+        ), relative_path
 
 
 @pytest.mark.parametrize(("option", "value"), (("--steps", "0"), ("--num-envs", "-1")))
@@ -526,7 +585,10 @@ def test_server_probe_starts_app_before_resolving_all_four_gym_task_ids():
         "import gymnasium as gym"
     )
     assert probe.index("simulation_app = app_launcher.app") < probe.index(
-        "import easyuuv_nc"
+        "from easyuuv_nc import register_gym_tasks"
+    )
+    assert probe.index("simulation_app = app_launcher.app") < probe.index(
+        "register_gym_tasks()"
     )
     assert probe.index("sys.path.insert") < probe.index(
         "from isaaclab_app import AppLauncher"

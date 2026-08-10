@@ -52,7 +52,7 @@ import numpy as np
 import torch
 from rsl_rl.runners import OnPolicyRunner
 
-from easyuuv_task_registration import register_easyuuv_task
+from easyuuv_task_registration import register_gym_tasks
 from isaaclab_compat import (
     RslRlOnPolicyRunnerCfg,
     RslRlVecEnvWrapper,
@@ -229,7 +229,7 @@ def write_phase46_legacy_summary(
 
 
 def main() -> None:
-    register_easyuuv_task()
+    register_gym_tasks()
     env_cfg = parse_env_config(args_cli.num_envs)
     configure_legacy_eval_env(env_cfg)
     agent_cfg: RslRlOnPolicyRunnerCfg = cli_args.parse_rsl_rl_cfg(args_cli.task, args_cli)

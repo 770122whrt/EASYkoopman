@@ -69,7 +69,7 @@ try:
 except ImportError:
     wandb = None
 
-from easyuuv_task_registration import register_easyuuv_task
+from easyuuv_task_registration import register_gym_tasks
 from easyuuv_env import EasyUUVEnvCfg
 from isaaclab_compat import (
     euler_xyz_from_quat,
@@ -83,7 +83,7 @@ from koopman_logging import record_koopman_step, reference_vector, state_vector_
 
 
 log_stage("Registering EasyUUV task")
-register_easyuuv_task()
+register_gym_tasks()
 log_stage("EasyUUV task registered")
 strftime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 

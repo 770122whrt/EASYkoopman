@@ -162,8 +162,9 @@ from omni.isaac.lab.envs import ManagerBasedRLEnvCfg  # noqa: E402
 from omni.isaac.lab.utils.dict import print_dict  # noqa: E402
 from omni.isaac.lab.utils.io import dump_pickle, dump_yaml  # noqa: E402
 
-# 干净包名：import 即注册 gym 环境（无 bootstrap hack）。
-import easyuuv_nc  # noqa: F401, E402
+# 干净包名：AppLauncher 后显式注册 gym 环境（无 bootstrap hack）。
+from easyuuv_nc import register_gym_tasks  # noqa: E402
+register_gym_tasks()
 from omni.isaac.lab_tasks.utils import get_checkpoint_path, parse_env_cfg  # noqa: E402
 from omni.isaac.lab_tasks.utils.wrappers.rsl_rl import (  # noqa: E402
     RslRlOnPolicyRunnerCfg,

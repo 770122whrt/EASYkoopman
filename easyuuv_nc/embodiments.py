@@ -5,9 +5,6 @@ from __future__ import annotations
 from collections.abc import Mapping
 from typing import Any
 
-from .thrust_allocation import declared_control_rank
-
-
 CONTROL_CHANNELS = ("roll", "pitch", "yaw", "depth")
 """Qualification channel order shared by all public configurations."""
 
@@ -25,6 +22,19 @@ SUPPORTED_EMBODIMENTS = (
 
 INTERNAL_EMBODIMENTS = ("heavy_duty",)
 """Preset names intentionally excluded from public CLI selection."""
+
+DECLARED_CONTROL_RANKS = {
+    "base": 4,
+    "long_body": 4,
+    "heavy_duty": 4,
+    "heavy_moderate": 4,
+    "asymmetric": 4,
+    "uuv6": 4,
+    "uuv6_angled": 4,
+    "uuv4": 3,
+    "uuv4_angled": 3,
+}
+"""Static topology contract, cross-checked against Torch allocation tests."""
 
 
 EMBODIMENT_CONFIGS: dict[str, dict[str, Any]] = {
@@ -175,5 +185,5 @@ def qualification_record(name: str) -> dict[str, Any]:
         "allocation_mode": allocation_mode,
         "control_channels": tuple(CONTROL_CHANNELS),
         "control_mask": tuple(control_mask),
-        "declared_control_rank": declared_control_rank(config),
+        "declared_control_rank": DECLARED_CONTROL_RANKS[name],
     }

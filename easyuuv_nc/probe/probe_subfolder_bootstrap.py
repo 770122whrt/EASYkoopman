@@ -77,6 +77,9 @@ def main() -> int:
     simulation_app = app_launcher.app
 
     _bootstrap_local_lab_tasks_package()
+    from easyuuv_task_registration import register_gym_tasks
+
+    register_gym_tasks()
 
     injected = sys.modules.get("omni.isaac.lab_tasks")
     print(f"[PROBE] injected omni.isaac.lab_tasks.__file__ = "

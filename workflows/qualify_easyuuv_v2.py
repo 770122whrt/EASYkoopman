@@ -411,8 +411,10 @@ def run_isaac_qualification(args: argparse.Namespace) -> tuple[dict[str, Any], i
         import isaaclab
         import torch
 
-        import easyuuv_nc  # noqa: F401
+        from easyuuv_nc import register_gym_tasks
         from easyuuv_nc.env.easyuuv_env import EasyUUVEnvCfg
+
+        register_gym_tasks()
 
         provenance = detect_runtime_provenance(isaaclab.__file__)
         source_commit = _repository_commit()

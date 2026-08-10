@@ -11,7 +11,7 @@ def test_ppo_koopman_workflow_preserves_app_launcher_import_order():
     assert "app_launcher = AppLauncher(args_cli)" in source
     assert source.index("app_launcher = AppLauncher(args_cli)") < source.index("import gymnasium as gym")
     assert source.index("app_launcher = AppLauncher(args_cli)") < source.index(
-        "from easyuuv_task_registration import register_easyuuv_task"
+        "from easyuuv_task_registration import register_gym_tasks"
     )
 
 

@@ -24,8 +24,10 @@ simulation_app = app_launcher.app
 try:
     import gymnasium as gym
 
-    import easyuuv_nc  # noqa: F401
+    from easyuuv_nc import register_gym_tasks
     from easyuuv_nc.package_paths import EMBODIMENT_USD_PATH
+
+    register_gym_tasks()
 
     assert EMBODIMENT_USD_PATH.is_file()
     print(f"embodiment_usd={EMBODIMENT_USD_PATH}")
