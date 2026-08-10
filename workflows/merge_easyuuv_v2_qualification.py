@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 import sys
 import tempfile
+from collections.abc import Mapping
 from typing import Any, Iterable
 
 
@@ -20,7 +21,11 @@ from workflows.easyuuv_v2_qualification_artifact import (
     load_qualification_payload,
     validate_qualification_payload,
 )
-from workflows.qualify_easyuuv_v2 import DEFAULT_RESULT_ROOT, resolve_output_path
+from workflows.qualify_easyuuv_v2 import (
+    DEFAULT_RESULT_ROOT,
+    build_runtime_provenance,
+    resolve_output_path,
+)
 
 
 _VERSION_FIELDS = ("actual_isaac_sim", "actual_isaac_lab")
@@ -59,6 +64,13 @@ def _atomic_write_json(path: Path, payload: dict[str, Any]) -> None:
 
 def _single_result(path: str | Path) -> tuple[dict[str, Any], dict[str, Any]]:
     payload = load_qualification_payload(path)
+    missing_metadata = [
+        field
+        for field in (*_SHARED_METADATA_FIELDS, *_VERSION_FIELDS)
+        if field not in payload
+    ]
+    if missing_metadata:
+        raise ValueError("metadata_missing:" + ",".join(sorted(missing_metadata)))
     results = payload.get("results")
     if not isinstance(results, list) or len(results) != 1:
         raise ValueError(f"single_result_required:{path}")
@@ -69,6 +81,35 @@ def _single_result(path: str | Path) -> tuple[dict[str, Any], dict[str, Any]]:
     if not isinstance(configuration, str) or not configuration:
         raise ValueError(f"configuration_name_invalid:{path}")
     return payload, row
+
+
+def _validate_runtime_provenance(payload: dict[str, Any]) -> None:
+    provenance = payload["runtime_provenance"]
+    required = (
+        "isaac_sim_distribution",
+        "isaac_lab_distribution",
+        "isaac_lab_repo_commit",
+        "isaac_lab_repo_tag",
+    )
+    if not isinstance(provenance, Mapping) or any(
+        field not in provenance for field in required
+    ):
+        raise ValueError("runtime_provenance_invalid")
+    try:
+        derived = build_runtime_provenance(
+            isaac_sim_distribution=provenance["isaac_sim_distribution"],
+            isaac_lab_distribution=provenance["isaac_lab_distribution"],
+            isaac_lab_repo_commit=provenance["isaac_lab_repo_commit"],
+            isaac_lab_repo_tag=provenance["isaac_lab_repo_tag"],
+        )
+    except (RuntimeError, TypeError, ValueError) as exc:
+        raise ValueError("runtime_provenance_invalid") from exc
+    if (
+        derived["actual_isaac_sim"] != payload["actual_isaac_sim"]
+        or derived["actual_isaac_lab"] != payload["actual_isaac_lab"]
+        or derived["runtime_provenance"] != provenance
+    ):
+        raise ValueError("runtime_provenance_invalid")
 
 
 def merge_qualification_results(
@@ -107,6 +148,7 @@ def merge_qualification_results(
             for field in _SHARED_METADATA_FIELDS
         ):
             raise ValueError("metadata_disagreement")
+    _validate_runtime_provenance(reference)
 
     merged = {
         field: reference.get(field)
