@@ -54,15 +54,15 @@ if ($localHead -ne $expectedCommit) {
     throw "local_head_mismatch:expected=$expectedCommit;actual=$localHead"
 }
 
-$trackedStatusOutput = @(
-    & git -C $repository status --porcelain=v1 --untracked-files=no 2>&1
+$worktreeStatusOutput = @(
+    & git -C $repository status --porcelain=v1 2>&1
 )
 if ($LASTEXITCODE -ne 0) {
     throw "local_status_probe_failed:$LASTEXITCODE"
 }
-$trackedStatus = ($trackedStatusOutput -join "`n").Trim()
-if ($trackedStatus) {
-    throw "tracked_worktree_dirty"
+$worktreeStatus = ($worktreeStatusOutput -join "`n").Trim()
+if ($worktreeStatus) {
+    throw "worktree_dirty"
 }
 
 $stagingName = "phase6-pullback-$([Guid]::NewGuid().ToString('N'))"

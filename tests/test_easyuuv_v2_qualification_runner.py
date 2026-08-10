@@ -868,6 +868,8 @@ def test_pullback_stages_then_checks_native_exits_hash_and_commits_before_promot
     assert "--expected-isaaclab-commit-file" in script
     assert "--expected-isaaclab-tag-file" in script
     assert "validator_failed" in script
+    assert "status --porcelain=v1" in script
+    assert "--untracked-files=no" not in script
     assert script.index("sha256_mismatch") < script.index("Move-Item")
     assert script.index("validator_failed") < script.index("Move-Item")
 
@@ -876,7 +878,8 @@ def _init_pullback_test_repository(path: Path) -> str:
     path.mkdir()
     subprocess.run(["git", "init", "-b", "v2.0-multi-configuration"], cwd=path, check=True)
     (path / "tracked.txt").write_text("tested\n", encoding="utf-8")
-    subprocess.run(["git", "add", "tracked.txt"], cwd=path, check=True)
+    (path / ".gitignore").write_text(".transfer/\n", encoding="utf-8")
+    subprocess.run(["git", "add", "tracked.txt", ".gitignore"], cwd=path, check=True)
     subprocess.run(
         [
             "git",
@@ -978,7 +981,21 @@ def test_pullback_rejects_tracked_drift_before_scp(local_tmp_path: Path):
     completed = _run_pullback_preflight(project_root, repository, head, marker)
 
     assert completed.returncode != 0
-    assert "tracked_worktree_dirty" in completed.stdout + completed.stderr
+    assert "worktree_dirty" in completed.stdout + completed.stderr
+    assert not marker.exists()
+
+
+def test_pullback_rejects_untracked_source_before_scp(local_tmp_path: Path):
+    project_root = Path(__file__).resolve().parents[1]
+    repository = local_tmp_path / "untracked-source-repo"
+    head = _init_pullback_test_repository(repository)
+    (repository / "local-config.yaml").write_text("unsafe: true\n", encoding="utf-8")
+    marker = local_tmp_path / "scp-untracked-source-called.txt"
+
+    completed = _run_pullback_preflight(project_root, repository, head, marker)
+
+    assert completed.returncode != 0
+    assert "worktree_dirty" in completed.stdout + completed.stderr
     assert not marker.exists()
 
 
