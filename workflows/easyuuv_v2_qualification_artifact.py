@@ -258,8 +258,13 @@ def _validate_row(
         if steps_completed < minimum_steps:
             _fail("insufficient_steps", f"{configuration}:{steps_completed}<{minimum_steps}")
 
-    for field in CONTROL_VALUE_FIELDS:
-        _require_finite_control(row, field, configuration)
+    control_values = {
+        field: _require_finite_control(row, field, configuration)
+        for field in CONTROL_VALUE_FIELDS
+    }
+    for prefix in ("action", "motor"):
+        if control_values[f"{prefix}_min"] > control_values[f"{prefix}_max"]:
+            _fail("control_range_inverted", f"{configuration}:{prefix}")
 
     motor_length = _require_int(row, "motor_vector_length", configuration)
     if motor_length != thruster_count:
