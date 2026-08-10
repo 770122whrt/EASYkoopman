@@ -14,6 +14,8 @@ QUALIFICATION_SCHEMA_VERSION = "easyuuv-v2-qualification-v1"
 SERVER_EVIDENCE_LEVEL = "server_isaac_smoke"
 LOCAL_EVIDENCE_LEVEL = "local_contract"
 EXPECTED_TASK_ID = "EasyUUV-Direct-v1"
+EXPECTED_ISAAC_SIM_VERSION = "5.0"
+EXPECTED_ISAAC_LAB_VERSION = "2.2.1"
 CONTROL_CHANNELS = ("roll", "pitch", "yaw", "depth")
 CONTROL_BOUND = 1.0
 BOUND_TOLERANCE = 1e-6
@@ -172,6 +174,11 @@ def _validate_top_level(payload: Mapping[str, Any], *, catalog_only: bool) -> No
 
     expected_sim = _require_nonempty_version(payload, "expected_isaac_sim", "expected_version_missing")
     expected_lab = _require_nonempty_version(payload, "expected_isaac_lab", "expected_version_missing")
+    if (
+        expected_sim != EXPECTED_ISAAC_SIM_VERSION
+        or expected_lab != EXPECTED_ISAAC_LAB_VERSION
+    ):
+        _fail("expected_version_mismatch")
     if not catalog_only:
         actual_sim = _require_nonempty_version(payload, "actual_isaac_sim", "actual_version_missing")
         actual_lab = _require_nonempty_version(payload, "actual_isaac_lab", "actual_version_missing")
@@ -230,7 +237,12 @@ def _validate_row(
         _fail("thruster_count_mismatch", configuration)
     if row["control_channels"] != list(CONTROL_CHANNELS):
         _fail("control_channels_mismatch", configuration)
-    if row["control_mask"] != list(expected["control_mask"]):
+    control_mask = row["control_mask"]
+    if (
+        not isinstance(control_mask, list)
+        or any(type(value) is not int for value in control_mask)
+        or control_mask != list(expected["control_mask"])
+    ):
         _fail("control_mask_mismatch", configuration)
     rank = _require_int(row, "declared_control_rank", configuration)
     if rank != expected["declared_control_rank"]:
@@ -314,4 +326,3 @@ def validate_qualification_file(
         catalog_only=catalog_only,
         expected_topology=expected_topology,
     )
-
