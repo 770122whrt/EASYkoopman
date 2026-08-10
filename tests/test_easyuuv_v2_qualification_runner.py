@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import tempfile
 
 import pytest
@@ -556,6 +557,47 @@ def test_server_bootstrap_and_execution_are_fail_closed_before_merge():
     )
     assert '"$ISAACLAB_PY" -p "$VALIDATOR"' in qualification
     assert "sha256sum" in qualification
+
+
+def test_server_pipeline_gate_blocks_successful_runner_when_log_capture_fails(
+    local_tmp_path: Path,
+):
+    project_root = Path(__file__).resolve().parents[1]
+    helper = project_root / "scripts" / "phase6_pipeline_gate.sh"
+    server_script = (
+        project_root / "scripts" / "phase6_server_qualification.sh"
+    ).read_text(encoding="utf-8")
+    result_root = local_tmp_path / "pipeline-evidence"
+    (result_root / "exit_codes").mkdir(parents=True)
+    (result_root / "log_exit_codes").mkdir()
+    if sys.platform == "win32":
+        git_executable = Path(shutil.which("git") or "")
+        bash = git_executable.parent.parent / "bin" / "bash.exe"
+    else:
+        bash = Path(shutil.which("bash") or "")
+    if not bash.is_file():
+        pytest.skip("bash executable unavailable")
+
+    completed = subprocess.run(
+        [
+            str(bash),
+            "-c",
+            (
+                f"source '{helper.as_posix()}'; "
+                f"phase6_record_pipeline_status '{result_root.as_posix()}' base 0 1"
+            ),
+        ],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert completed.returncode == 1
+    assert (result_root / "exit_codes" / "base.txt").read_text().strip() == "0"
+    assert (result_root / "log_exit_codes" / "base.txt").read_text().strip() == "1"
+    assert "log_capture_failed:base:1" in completed.stderr
+    assert 'pipeline_status=("${PIPESTATUS[@]}")' in server_script
+    assert "phase6_record_pipeline_status" in server_script
 
 
 def test_pullback_stages_then_checks_native_exits_hash_and_commits_before_promotion():
