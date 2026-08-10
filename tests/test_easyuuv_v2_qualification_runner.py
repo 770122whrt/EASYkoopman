@@ -478,6 +478,39 @@ def test_server_probe_starts_app_before_resolving_all_four_gym_task_ids():
     assert '"$ISAACLAB_PY" -p "$TASK_PROBE"' in server_script
 
 
+def test_server_bootstrap_and_execution_are_fail_closed_before_merge():
+    project_root = Path(__file__).resolve().parents[1]
+    bootstrap = (
+        project_root / "scripts" / "phase6_server_bootstrap.sh"
+    ).read_text(encoding="utf-8")
+    qualification = (
+        project_root / "scripts" / "phase6_server_qualification.sh"
+    ).read_text(encoding="utf-8")
+
+    assert "set -Eeuo pipefail" in bootstrap
+    assert "target_directory_already_exists" in bootstrap
+    assert "^[0-9a-f]{40}$" in bootstrap
+    assert "bundle list-heads" in bootstrap
+    assert "bundle_ref_mismatch" in bootstrap
+    assert "server_head_mismatch" in bootstrap
+    assert "status --porcelain" in bootstrap
+    assert "server_clone_not_clean" in bootstrap
+    assert 'exec bash "$TARGET_ROOT/scripts/phase6_server_qualification.sh"' in bootstrap
+
+    assert "set -Eeuo pipefail" in qualification
+    assert "tracked_source_drift" in qualification
+    assert qualification.index("tracked_source_drift") < qualification.index(
+        'mkdir -p "$RESULT_ROOT/rows"'
+    )
+    assert "PIPESTATUS[0]" in qualification
+    assert "runner_failure_blocks_merge" in qualification
+    assert qualification.index("runner_failure_blocks_merge") < qualification.index(
+        '"$ISAACLAB_PY" -p "$MERGER"'
+    )
+    assert '"$ISAACLAB_PY" -p "$VALIDATOR"' in qualification
+    assert "sha256sum" in qualification
+
+
 @pytest.mark.parametrize("raw", ("5.0", "5.0.0.0", "5.0.0.0+linux-x86_64"))
 def test_isaac_sim_distribution_is_normalized_to_semantic_baseline(raw: str):
     assert normalize_isaac_sim_version(raw) == "5.0"

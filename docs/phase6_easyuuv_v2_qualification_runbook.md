@@ -49,81 +49,73 @@ file into `source/results/koopman_phase6` and do not call it physics evidence.
 After all local gates pass, create the offline delivery bundle and verify it:
 
 ```powershell
-git status --short
-git rev-parse HEAD
-git bundle create EasyUUV-phase6-v2.bundle v2.0-multi-configuration
-git bundle verify EasyUUV-phase6-v2.bundle
-scp .\EasyUUV-phase6-v2.bundle agentic-AUV:/root/EasyUUV-phase6-v2.bundle
+.\scripts\phase6_prepare_bundle.ps1
+scp .\.pytest-tmp\phase6-transfer\EasyUUV-phase6-v2.bundle agentic-AUV:/root/EasyUUV-phase6-v2.bundle
+if ($LASTEXITCODE -ne 0) { throw "bundle_scp_failed:$LASTEXITCODE" }
+scp .\.pytest-tmp\phase6-transfer\expected-source-commit.txt agentic-AUV:/root/expected-source-commit.txt
+if ($LASTEXITCODE -ne 0) { throw "commit_sidecar_scp_failed:$LASTEXITCODE" }
+scp .\.pytest-tmp\phase6-transfer\phase6_server_bootstrap.sh agentic-AUV:/root/phase6_server_bootstrap.sh
+if ($LASTEXITCODE -ne 0) { throw "bootstrap_scp_failed:$LASTEXITCODE" }
 ```
 
-The commit printed here is the expected server source commit. Do not create or
-transfer the bundle until the local regression section has passed.
+The helper rejects tracked source drift and proves current branch tip = tested
+HEAD = bundle branch ref = `expected-source-commit.txt`. It extracts the server
+bootstrap from that exact Git commit, rather than copying a potentially modified
+working-tree script. Do not create or transfer this directory until every local
+regression gate has passed.
 
 ## Server Setup
 
 Power on the unchanged `agentic-AUV` server only after local preflight passes.
 The existing `/root/EASYkoopman` directory is read-only historical v1 state for
 this phase. Use the isolated `/root/EASYkoopman-phase6-v2` checkout. The following
-safe check intentionally stops if that isolated path already exists; inspect it
-instead of deleting it.
+bootstrap intentionally stops if that isolated path already exists; inspect it
+instead of deleting it. Run exactly one entry point:
 
 ```bash
-test ! -e /root/EASYkoopman-phase6-v2
-git bundle verify /root/EasyUUV-phase6-v2.bundle
-git clone --branch v2.0-multi-configuration /root/EasyUUV-phase6-v2.bundle /root/EASYkoopman-phase6-v2
-cd /root/EASYkoopman-phase6-v2
-git status --short
-git rev-parse HEAD
-source /opt/conda/etc/profile.d/conda.sh
-conda activate isaaclab
-test "$(python -c 'from importlib.metadata import version; print(".".join(version("isaacsim").split(".")[:2]))')" = "5.0"
-test "$(git -C /root/IsaacLab describe --tags --exact-match HEAD)" = "v2.2.1"
-git -C /root/IsaacLab rev-parse HEAD
-python -c 'from importlib.metadata import version; print("isaacsim_distribution="+version("isaacsim")); print("isaaclab_distribution="+version("isaaclab"))'
-python -m pip install -e . --no-deps
-python -c 'import easyuuv_nc; from easyuuv_nc.package_paths import EMBODIMENT_USD_PATH; assert EMBODIMENT_USD_PATH.is_file(); print(easyuuv_nc.__file__); print(EMBODIMENT_USD_PATH)'
-mkdir -p source/results/koopman_phase6/rows source/results/koopman_phase6/logs source/results/koopman_phase6/exit_codes
-git rev-parse HEAD | tee source/results/koopman_phase6/source_commit.txt
-git -C /root/IsaacLab describe --tags --exact-match HEAD | tee source/results/koopman_phase6/isaaclab_repo_tag.txt
-git -C /root/IsaacLab rev-parse HEAD | tee source/results/koopman_phase6/isaaclab_repo_commit.txt
+bash /root/phase6_server_bootstrap.sh
 ```
 
-The two `test` commands are blocking version gates. A missing exact tag, a dirty
-or non-release ref, or a Sim version other than 5.0 stops qualification. The
-runner separately records the installed `isaaclab` distribution version (known
-to differ from the semantic IsaacLab release), exact repository tag and commit.
+Both scripts use `set -Eeuo pipefail`. The bootstrap verifies the bundle ref and
+sidecar, clones once, requires exact server HEAD and a completely clean clone,
+then delegates to the committed qualification script. That script rechecks
+tracked source state, pins Isaac Sim 5.0 and exact IsaacLab `v2.2.1`, installs
+through `/root/IsaacLab/isaaclab.sh -p`, proves all four Gym registrations after
+AppLauncher, runs all eight processes, blocks merge on any exit-code file, then
+merges, validates and hashes. Any failed gate stops all later stages.
 
 ## Server Eight-Configuration Smoke
 
-Remain in `/root/EASYkoopman-phase6-v2` with the `isaaclab` environment active.
-Each invocation is a separate Isaac process. Preserve the JSON and log even when
-the process exits nonzero. Bash `PIPESTATUS[0]` records the runner exit rather
-than the `tee` exit.
+The bootstrap above executes this exact matrix through the committed helper.
+The explicit commands below are an auditable reference, not an alternate manual
+workflow. Each invocation is a separate Isaac process. The helper preserves JSON,
+log and `PIPESTATUS[0]` for every configuration and refuses to merge if any is
+nonzero.
 
 ```bash
 /root/IsaacLab/isaaclab.sh -p -u /root/EASYkoopman-phase6-v2/workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration base --steps 64 --seed 0 --num-envs 1 --headless --result-root /root/EASYkoopman-phase6-v2/source/results/koopman_phase6 --output-json /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/base.json 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/logs/base.log
-printf '%s\n' "${PIPESTATUS[0]}" > source/results/koopman_phase6/exit_codes/base.txt
+printf '%s\n' "${PIPESTATUS[0]}" > /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/exit_codes/base.txt
 
 /root/IsaacLab/isaaclab.sh -p -u /root/EASYkoopman-phase6-v2/workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration long_body --steps 8 --seed 0 --num-envs 1 --headless --result-root /root/EASYkoopman-phase6-v2/source/results/koopman_phase6 --output-json /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/long_body.json 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/logs/long_body.log
-printf '%s\n' "${PIPESTATUS[0]}" > source/results/koopman_phase6/exit_codes/long_body.txt
+printf '%s\n' "${PIPESTATUS[0]}" > /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/exit_codes/long_body.txt
 
 /root/IsaacLab/isaaclab.sh -p -u /root/EASYkoopman-phase6-v2/workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration heavy_moderate --steps 8 --seed 0 --num-envs 1 --headless --result-root /root/EASYkoopman-phase6-v2/source/results/koopman_phase6 --output-json /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/heavy_moderate.json 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/logs/heavy_moderate.log
-printf '%s\n' "${PIPESTATUS[0]}" > source/results/koopman_phase6/exit_codes/heavy_moderate.txt
+printf '%s\n' "${PIPESTATUS[0]}" > /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/exit_codes/heavy_moderate.txt
 
 /root/IsaacLab/isaaclab.sh -p -u /root/EASYkoopman-phase6-v2/workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration asymmetric --steps 8 --seed 0 --num-envs 1 --headless --result-root /root/EASYkoopman-phase6-v2/source/results/koopman_phase6 --output-json /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/asymmetric.json 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/logs/asymmetric.log
-printf '%s\n' "${PIPESTATUS[0]}" > source/results/koopman_phase6/exit_codes/asymmetric.txt
+printf '%s\n' "${PIPESTATUS[0]}" > /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/exit_codes/asymmetric.txt
 
 /root/IsaacLab/isaaclab.sh -p -u /root/EASYkoopman-phase6-v2/workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration uuv6 --steps 8 --seed 0 --num-envs 1 --headless --result-root /root/EASYkoopman-phase6-v2/source/results/koopman_phase6 --output-json /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/uuv6.json 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/logs/uuv6.log
-printf '%s\n' "${PIPESTATUS[0]}" > source/results/koopman_phase6/exit_codes/uuv6.txt
+printf '%s\n' "${PIPESTATUS[0]}" > /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/exit_codes/uuv6.txt
 
 /root/IsaacLab/isaaclab.sh -p -u /root/EASYkoopman-phase6-v2/workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration uuv6_angled --steps 8 --seed 0 --num-envs 1 --headless --result-root /root/EASYkoopman-phase6-v2/source/results/koopman_phase6 --output-json /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/uuv6_angled.json 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/logs/uuv6_angled.log
-printf '%s\n' "${PIPESTATUS[0]}" > source/results/koopman_phase6/exit_codes/uuv6_angled.txt
+printf '%s\n' "${PIPESTATUS[0]}" > /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/exit_codes/uuv6_angled.txt
 
 /root/IsaacLab/isaaclab.sh -p -u /root/EASYkoopman-phase6-v2/workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration uuv4 --steps 8 --seed 0 --num-envs 1 --headless --result-root /root/EASYkoopman-phase6-v2/source/results/koopman_phase6 --output-json /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/uuv4.json 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/logs/uuv4.log
-printf '%s\n' "${PIPESTATUS[0]}" > source/results/koopman_phase6/exit_codes/uuv4.txt
+printf '%s\n' "${PIPESTATUS[0]}" > /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/exit_codes/uuv4.txt
 
 /root/IsaacLab/isaaclab.sh -p -u /root/EASYkoopman-phase6-v2/workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration uuv4_angled --steps 8 --seed 0 --num-envs 1 --headless --result-root /root/EASYkoopman-phase6-v2/source/results/koopman_phase6 --output-json /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/uuv4_angled.json 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/logs/uuv4_angled.log
-printf '%s\n' "${PIPESTATUS[0]}" > source/results/koopman_phase6/exit_codes/uuv4_angled.txt
+printf '%s\n' "${PIPESTATUS[0]}" > /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/exit_codes/uuv4_angled.txt
 ```
 
 Do not continue to merge until all eight exit-code files contain `0`. The

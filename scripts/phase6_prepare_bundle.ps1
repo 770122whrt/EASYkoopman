@@ -2,7 +2,7 @@
 param(
     [string]$RepositoryRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")),
     [string]$Branch = "v2.0-multi-configuration",
-    [string]$TransferDirectory = ".phase6-transfer"
+    [string]$TransferDirectory = ".pytest-tmp/phase6-transfer"
 )
 
 $ErrorActionPreference = "Stop"
@@ -45,6 +45,7 @@ try {
     $null = New-Item -ItemType Directory -Path $transferRoot
     $bundlePath = Join-Path $transferRoot "EasyUUV-phase6-v2.bundle"
     $sidecarPath = Join-Path $transferRoot "expected-source-commit.txt"
+    $bootstrapPath = Join-Path $transferRoot "phase6_server_bootstrap.sh"
 
     $null = Invoke-Git bundle create $bundlePath $Branch
     $null = Invoke-Git bundle verify $bundlePath
@@ -55,9 +56,17 @@ try {
     }
 
     [IO.File]::WriteAllText($sidecarPath, "$head`n", [Text.UTF8Encoding]::new($false))
+    $bootstrapSpec = "${head}:scripts/phase6_server_bootstrap.sh"
+    $bootstrapContent = Invoke-Git show $bootstrapSpec
+    [IO.File]::WriteAllText(
+        $bootstrapPath,
+        ($bootstrapContent -replace "`r`n", "`n") + "`n",
+        [Text.UTF8Encoding]::new($false)
+    )
     Write-Output "tested_head=$head"
     Write-Output "bundle_path=$bundlePath"
     Write-Output "expected_commit_sidecar=$sidecarPath"
+    Write-Output "server_bootstrap=$bootstrapPath"
 }
 finally {
     Set-Location -LiteralPath $previousLocation
