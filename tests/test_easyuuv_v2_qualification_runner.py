@@ -22,6 +22,10 @@ from workflows.easyuuv_v2_qualification_artifact import (
 from workflows.merge_easyuuv_v2_qualification import merge_qualification_results
 from workflows.qualify_easyuuv_v2 import (
     DEFAULT_RESULT_ROOT,
+    _atomic_write_json,
+    _empty_row,
+    _merge_step_summary,
+    _record_failure,
     build_runtime_provenance,
     build_argument_parser,
     deterministic_excitation,
@@ -229,6 +233,33 @@ def test_actual_telemetry_summary_counts_nonfinite_values():
     )
 
     assert summary["nonfinite_count"] == 2
+
+
+def test_nonfinite_telemetry_failure_row_is_strict_json_and_reloadable(
+    local_tmp_path: Path,
+):
+    summary = summarize_actual_telemetry(
+        pid_value=[[float("nan"), float("inf"), float("-inf"), float("nan")]],
+        motor_values=[[float("inf")] * 8],
+        expected_motor_length=8,
+    )
+    row = _empty_row("base", seed=0)
+    _merge_step_summary(row, summary, first_step=True)
+    _record_failure(row, "nonfinite_actual_telemetry")
+    payload = _single_row_payload("base")
+    payload["results"] = [row]
+    output = local_tmp_path / "base-failed.json"
+
+    _atomic_write_json(output, payload)
+    reloaded = json.loads(output.read_text(encoding="utf-8"))
+
+    assert reloaded["results"][0]["status"] == "fail"
+    assert reloaded["results"][0]["reason_codes"] == [
+        "nonfinite_actual_telemetry"
+    ]
+    assert reloaded["results"][0]["nonfinite_count"] == 12
+    for field in ("action_min", "action_max", "motor_min", "motor_max"):
+        assert reloaded["results"][0][field] == 0.0
 
 
 def test_runtime_provenance_uses_installed_sim_and_exact_isaaclab_release_tag():

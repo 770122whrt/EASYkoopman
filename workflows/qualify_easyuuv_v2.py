@@ -119,7 +119,13 @@ def _as_rows(value: Any, *, field: str) -> list[list[float]]:
 def summarize_actual_telemetry(
     *, pid_value: Any, motor_values: Any, expected_motor_length: int
 ) -> dict[str, int | float]:
-    """Summarize actual post-step PID and clipped motor telemetry."""
+    """Summarize actual post-step PID and clipped motor telemetry.
+
+    Extrema intentionally ignore non-finite samples.  When a channel group has
+    no finite sample, both extrema use the finite ``0.0`` sentinel so the
+    already-failed row remains strict-JSON evidence; ``nonfinite_count`` is the
+    authoritative failure signal.
+    """
     pid_rows = _as_rows(pid_value, field="_last_pid_value")
     motor_rows = _as_rows(
         motor_values, field="_last_motor_values_clipped"
@@ -139,11 +145,19 @@ def summarize_actual_telemetry(
     )
     lengths = {len(row) for row in motor_rows}
     motor_vector_length = next(iter(lengths)) if len(lengths) == 1 else -1
+    finite_pid = [value for value in pid_flat if math.isfinite(value)]
+    finite_motor = [value for value in motor_flat if math.isfinite(value)]
+
+    def finite_extrema(values: list[float]) -> tuple[float, float]:
+        return (min(values), max(values)) if values else (0.0, 0.0)
+
+    action_min, action_max = finite_extrema(finite_pid)
+    motor_min, motor_max = finite_extrema(finite_motor)
     return {
-        "action_min": min(pid_flat),
-        "action_max": max(pid_flat),
-        "motor_min": min(motor_flat),
-        "motor_max": max(motor_flat),
+        "action_min": action_min,
+        "action_max": action_max,
+        "motor_min": motor_min,
+        "motor_max": motor_max,
         "motor_vector_length": motor_vector_length,
         "nonfinite_count": int(nonfinite_count),
         "dimension_mismatch_count": int(mismatch_count),
