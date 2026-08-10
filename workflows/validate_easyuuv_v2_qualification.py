@@ -34,6 +34,11 @@ def main(argv: list[str] | None = None) -> int:
         type=Path,
         help="Bind runtime provenance to the pulled server IsaacLab commit record.",
     )
+    parser.add_argument(
+        "--expected-isaaclab-tag-file",
+        type=Path,
+        help="Bind runtime provenance to the pulled server IsaacLab tag record.",
+    )
     args = parser.parse_args(argv)
 
     try:
@@ -47,11 +52,17 @@ def main(argv: list[str] | None = None) -> int:
             if args.expected_isaaclab_commit_file
             else None
         )
+        expected_isaaclab_tag = (
+            args.expected_isaaclab_tag_file.read_text(encoding="utf-8").strip()
+            if args.expected_isaaclab_tag_file
+            else None
+        )
         result = validate_qualification_file(
             args.path,
             catalog_only=args.catalog_only,
             expected_source_commit=expected_source_commit,
             expected_isaaclab_repo_commit=expected_isaaclab_commit,
+            expected_isaaclab_repo_tag=expected_isaaclab_tag,
         )
     except (OSError, ValueError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)

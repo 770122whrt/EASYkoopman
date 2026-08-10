@@ -56,6 +56,7 @@ ROW_REQUIRED_FIELDS = (
 
 CONTROL_VALUE_FIELDS = ("action_min", "action_max", "motor_min", "motor_max")
 _SOURCE_COMMIT_PATTERN = re.compile(r"^[0-9a-f]{40}$")
+_ISAACLAB_TAG_PATTERN = re.compile(r"^v\d+\.\d+\.\d+$")
 _RUNTIME_PROVENANCE_FIELDS = {
     "isaac_sim_distribution",
     "isaac_lab_distribution",
@@ -326,6 +327,7 @@ def validate_qualification_payload(
     expected_topology: Mapping[str, Mapping[str, Any]] | None = None,
     expected_source_commit: str | None = None,
     expected_isaaclab_repo_commit: str | None = None,
+    expected_isaaclab_repo_tag: str | None = None,
 ) -> dict[str, Any]:
     """Validate one parsed qualification payload and return a deterministic gate summary."""
     if not isinstance(payload, dict):
@@ -347,6 +349,17 @@ def validate_qualification_payload(
         )
         if actual_lab_commit != expected_isaaclab_repo_commit:
             _fail("isaaclab_repo_commit_mismatch")
+    if expected_isaaclab_repo_tag is not None:
+        if not _ISAACLAB_TAG_PATTERN.fullmatch(expected_isaaclab_repo_tag):
+            _fail("expected_isaaclab_repo_tag_invalid")
+        provenance = payload.get("runtime_provenance")
+        actual_lab_tag = (
+            provenance.get("isaac_lab_repo_tag")
+            if isinstance(provenance, Mapping)
+            else None
+        )
+        if actual_lab_tag != expected_isaaclab_repo_tag:
+            _fail("isaaclab_repo_tag_mismatch")
     topology = _normalize_expected_topology(expected_topology)
     expected_names = tuple(topology)
     rows = _index_rows(payload["results"], expected_names)
@@ -379,6 +392,7 @@ def validate_qualification_file(
     expected_topology: Mapping[str, Mapping[str, Any]] | None = None,
     expected_source_commit: str | None = None,
     expected_isaaclab_repo_commit: str | None = None,
+    expected_isaaclab_repo_tag: str | None = None,
 ) -> dict[str, Any]:
     """Load and validate one qualification file through the public file API."""
     payload = load_qualification_payload(path)
@@ -388,4 +402,5 @@ def validate_qualification_file(
         expected_topology=expected_topology,
         expected_source_commit=expected_source_commit,
         expected_isaaclab_repo_commit=expected_isaaclab_repo_commit,
+        expected_isaaclab_repo_tag=expected_isaaclab_repo_tag,
     )

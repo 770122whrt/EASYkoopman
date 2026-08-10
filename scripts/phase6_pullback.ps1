@@ -24,6 +24,19 @@ function Read-CommitFile {
     return $value
 }
 
+function Read-IsaacLabTagFile {
+    param([string]$Path)
+
+    if (-not (Test-Path -LiteralPath $Path -PathType Leaf)) {
+        throw "isaaclab_repo_tag_missing:$Path"
+    }
+    $value = (Get-Content -Raw -LiteralPath $Path).Trim()
+    if ($value -notmatch '^v\d+\.\d+\.\d+$') {
+        throw "isaaclab_repo_tag_invalid"
+    }
+    return $value
+}
+
 $repository = (Resolve-Path -LiteralPath $RepositoryRoot).Path
 if (-not $PythonExecutable) {
     $PythonExecutable = Join-Path $repository ".venv/Scripts/python.exe"
@@ -52,6 +65,7 @@ $qualificationPath = Join-Path $stagedEvidence "qualification.json"
 $serverHashPath = Join-Path $stagedEvidence "qualification.sha256"
 $sourceCommitPath = Join-Path $stagedEvidence "source_commit.txt"
 $isaacLabCommitPath = Join-Path $stagedEvidence "isaaclab_repo_commit.txt"
+$isaacLabTagPath = Join-Path $stagedEvidence "isaaclab_repo_tag.txt"
 
 $hashLines = @(Get-Content -LiteralPath $serverHashPath)
 if ($hashLines.Count -ne 1 -or $hashLines[0] -notmatch '^[0-9a-f]{64}\s+') {
@@ -68,12 +82,14 @@ if ($pulledSourceCommit -ne $expectedCommit) {
     throw "source_commit_mismatch:expected=$expectedCommit;pulled=$pulledSourceCommit"
 }
 $null = Read-CommitFile $isaacLabCommitPath "isaaclab_repo_commit"
+$null = Read-IsaacLabTagFile $isaacLabTagPath
 
 $validator = Join-Path $repository "workflows/validate_easyuuv_v2_qualification.py"
 $validatorOutput = @(
     & $PythonExecutable $validator $qualificationPath --json `
         --expected-source-commit-file $expectedCommitPath `
-        --expected-isaaclab-commit-file $isaacLabCommitPath 2>&1
+        --expected-isaaclab-commit-file $isaacLabCommitPath `
+        --expected-isaaclab-tag-file $isaacLabTagPath 2>&1
 )
 $validatorExitCode = $LASTEXITCODE
 $validatorText = ($validatorOutput -join "`n") + "`n"

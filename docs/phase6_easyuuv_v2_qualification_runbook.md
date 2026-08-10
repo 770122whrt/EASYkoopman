@@ -140,7 +140,7 @@ atomically replaces the final file.
   --result-root /root/EASYkoopman-phase6-v2/source/results/koopman_phase6 \
   --output /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/qualification.json 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/merge.log
 
-/root/IsaacLab/isaaclab.sh -p /root/EASYkoopman-phase6-v2/workflows/validate_easyuuv_v2_qualification.py /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/qualification.json --json --expected-source-commit-file /root/expected-source-commit.txt --expected-isaaclab-commit-file /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/isaaclab_repo_commit.txt 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/validator.json
+/root/IsaacLab/isaaclab.sh -p /root/EASYkoopman-phase6-v2/workflows/validate_easyuuv_v2_qualification.py /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/qualification.json --json --expected-source-commit-file /root/expected-source-commit.txt --expected-isaaclab-commit-file /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/isaaclab_repo_commit.txt --expected-isaaclab-tag-file /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/isaaclab_repo_tag.txt 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/validator.json
 sha256sum /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/qualification.json | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/qualification.sha256
 ```
 

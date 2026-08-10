@@ -100,6 +100,7 @@ fi
 "$ISAACLAB_PY" -p "$VALIDATOR" "$RESULT_ROOT/qualification.json" --json \
     --expected-source-commit-file "$EXPECTED_COMMIT_FILE" \
     --expected-isaaclab-commit-file "$RESULT_ROOT/isaaclab_repo_commit.txt" \
+    --expected-isaaclab-tag-file "$RESULT_ROOT/isaaclab_repo_tag.txt" \
     2>&1 | tee "$RESULT_ROOT/validator.json"
 sha256sum "$RESULT_ROOT/qualification.json" \
     | tee "$RESULT_ROOT/qualification.sha256"

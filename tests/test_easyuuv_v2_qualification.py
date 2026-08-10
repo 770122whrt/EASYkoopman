@@ -185,6 +185,7 @@ def test_server_artifact_can_be_bound_to_external_source_and_isaaclab_commits():
         expected_topology=EXPECTED_TOPOLOGY,
         expected_source_commit="a" * 40,
         expected_isaaclab_repo_commit="c" * 40,
+        expected_isaaclab_repo_tag="v2.2.1",
     )
 
     assert result["qualification_gate"] == "server_pass"
@@ -198,6 +199,11 @@ def test_server_artifact_can_be_bound_to_external_source_and_isaaclab_commits():
             "expected_isaaclab_repo_commit",
             "d" * 40,
             "isaaclab_repo_commit_mismatch",
+        ),
+        (
+            "expected_isaaclab_repo_tag",
+            "v2.3.0",
+            "isaaclab_repo_tag_mismatch",
         ),
     ),
 )
@@ -497,8 +503,10 @@ def test_cli_binds_artifact_to_external_commit_sidecars(local_tmp_path: Path, ca
     )
     source_commit = local_tmp_path / "expected-source-commit.txt"
     isaaclab_commit = local_tmp_path / "isaaclab_repo_commit.txt"
+    isaaclab_tag = local_tmp_path / "isaaclab_repo_tag.txt"
     source_commit.write_text("a" * 40 + "\n", encoding="utf-8")
     isaaclab_commit.write_text("c" * 40 + "\n", encoding="utf-8")
+    isaaclab_tag.write_text("v2.2.1\n", encoding="utf-8")
 
     assert main(
         [
@@ -508,6 +516,8 @@ def test_cli_binds_artifact_to_external_commit_sidecars(local_tmp_path: Path, ca
             str(source_commit),
             "--expected-isaaclab-commit-file",
             str(isaaclab_commit),
+            "--expected-isaaclab-tag-file",
+            str(isaaclab_tag),
         ]
     ) == 0
     assert json.loads(capsys.readouterr().out)["qualification_gate"] == "server_pass"

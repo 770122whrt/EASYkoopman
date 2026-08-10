@@ -527,6 +527,7 @@ def test_pullback_stages_then_checks_native_exits_hash_and_commits_before_promot
     assert "source_commit_mismatch" in script
     assert "--expected-source-commit-file" in script
     assert "--expected-isaaclab-commit-file" in script
+    assert "--expected-isaaclab-tag-file" in script
     assert "validator_failed" in script
     assert script.index("sha256_mismatch") < script.index("Move-Item")
     assert script.index("validator_failed") < script.index("Move-Item")
