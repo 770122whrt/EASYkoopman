@@ -83,8 +83,7 @@ It does not train or select a multi-configuration Koopman model, evaluate held-o
 
 - `easyuuv_nc/embodiments.py` — canonical public catalog and platform/topology metadata.
 - `easyuuv_nc/thrust_allocation.py` — canonical channel order, TAM construction, control-to-wrench mapping and allocation behavior.
-- `easyuuv_nc/env/easyuuv_env.py` — active configuration application, `_last_pid_value`, motor telemetry, actuator dynamics, fluid/context and actual force/torque computation seams.
-- `easyuuv_nc/env/easyuuv_env_cfg.py` — state/reference/action and runtime configuration definitions where applicable.
+- `easyuuv_nc/env/easyuuv_env.py` — `EasyUUVEnvCfg`、active configuration application、state/reference/action、motor telemetry、actuator dynamics、fluid/context 与实际 force/torque 的当前定义位置；Phase 7 不为整理路径而顺手拆分该文件。
 - `.planning/phases/06-easyuuv-2-0-intake-and-multi-configuration-qualification/06-QUALIFICATION-RUNBOOK.md` — proven offline server transfer/execution/pullback pattern to reuse without weakening provenance.
 - `scripts/phase6_prepare_bundle.ps1`, `scripts/phase6_server_bootstrap.sh`, `scripts/phase6_server_qualification.sh`, `scripts/phase6_pullback.ps1` — fail-closed evidence-chain patterns, not files to copy blindly.
 
