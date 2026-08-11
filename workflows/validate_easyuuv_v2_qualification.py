@@ -35,9 +35,24 @@ def main(argv: list[str] | None = None) -> int:
         help="Bind runtime provenance to the pulled server IsaacLab commit record.",
     )
     parser.add_argument(
-        "--expected-isaaclab-tag-file",
+        "--expected-isaaclab-release-file",
         type=Path,
-        help="Bind runtime provenance to the pulled server IsaacLab tag record.",
+        help="Bind runtime provenance to the pulled IsaacLab release tag record.",
+    )
+    parser.add_argument(
+        "--expected-isaaclab-release-commit-file",
+        type=Path,
+        help="Bind runtime provenance to the official IsaacLab release commit.",
+    )
+    parser.add_argument(
+        "--expected-isaaclab-patch-sha256-file",
+        type=Path,
+        help="Bind runtime provenance to the unchanged server patch hash.",
+    )
+    parser.add_argument(
+        "--expected-isaaclab-dirty-files-file",
+        type=Path,
+        help="Bind runtime provenance to the exact allowed server dirty files.",
     )
     args = parser.parse_args(argv)
 
@@ -52,9 +67,34 @@ def main(argv: list[str] | None = None) -> int:
             if args.expected_isaaclab_commit_file
             else None
         )
-        expected_isaaclab_tag = (
-            args.expected_isaaclab_tag_file.read_text(encoding="utf-8").strip()
-            if args.expected_isaaclab_tag_file
+        expected_isaaclab_release = (
+            args.expected_isaaclab_release_file.read_text(encoding="utf-8").strip()
+            if args.expected_isaaclab_release_file
+            else None
+        )
+        expected_isaaclab_release_commit = (
+            args.expected_isaaclab_release_commit_file.read_text(
+                encoding="utf-8"
+            ).strip()
+            if args.expected_isaaclab_release_commit_file
+            else None
+        )
+        expected_isaaclab_patch_sha256 = (
+            args.expected_isaaclab_patch_sha256_file.read_text(
+                encoding="utf-8"
+            ).strip()
+            if args.expected_isaaclab_patch_sha256_file
+            else None
+        )
+        expected_isaaclab_dirty_files = (
+            tuple(
+                line.strip()
+                for line in args.expected_isaaclab_dirty_files_file.read_text(
+                    encoding="utf-8"
+                ).splitlines()
+                if line.strip()
+            )
+            if args.expected_isaaclab_dirty_files_file
             else None
         )
         result = validate_qualification_file(
@@ -62,7 +102,10 @@ def main(argv: list[str] | None = None) -> int:
             catalog_only=args.catalog_only,
             expected_source_commit=expected_source_commit,
             expected_isaaclab_repo_commit=expected_isaaclab_commit,
-            expected_isaaclab_repo_tag=expected_isaaclab_tag,
+            expected_isaaclab_release_tag=expected_isaaclab_release,
+            expected_isaaclab_release_commit=expected_isaaclab_release_commit,
+            expected_isaaclab_patch_sha256=expected_isaaclab_patch_sha256,
+            expected_isaaclab_dirty_files=expected_isaaclab_dirty_files,
         )
     except (OSError, ValueError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)

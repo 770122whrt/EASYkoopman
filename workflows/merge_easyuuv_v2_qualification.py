@@ -88,8 +88,13 @@ def _validate_runtime_provenance(payload: dict[str, Any]) -> None:
     required = (
         "isaac_sim_distribution",
         "isaac_lab_distribution",
+        "isaac_lab_version_file",
+        "isaac_lab_release_tag",
+        "isaac_lab_release_commit",
         "isaac_lab_repo_commit",
-        "isaac_lab_repo_tag",
+        "isaac_lab_repo_parent_commit",
+        "isaac_lab_repo_patch_sha256",
+        "isaac_lab_repo_dirty_files",
     )
     if not isinstance(provenance, Mapping) or any(
         field not in provenance for field in required
@@ -99,8 +104,19 @@ def _validate_runtime_provenance(payload: dict[str, Any]) -> None:
         derived = build_runtime_provenance(
             isaac_sim_distribution=provenance["isaac_sim_distribution"],
             isaac_lab_distribution=provenance["isaac_lab_distribution"],
+            isaac_lab_version_file=provenance["isaac_lab_version_file"],
+            isaac_lab_release_tag=provenance["isaac_lab_release_tag"],
+            isaac_lab_release_commit=provenance["isaac_lab_release_commit"],
             isaac_lab_repo_commit=provenance["isaac_lab_repo_commit"],
-            isaac_lab_repo_tag=provenance["isaac_lab_repo_tag"],
+            isaac_lab_repo_parent_commit=provenance[
+                "isaac_lab_repo_parent_commit"
+            ],
+            isaac_lab_repo_patch_sha256=provenance[
+                "isaac_lab_repo_patch_sha256"
+            ],
+            isaac_lab_repo_dirty_files=provenance[
+                "isaac_lab_repo_dirty_files"
+            ],
         )
     except (RuntimeError, TypeError, ValueError) as exc:
         raise ValueError("runtime_provenance_invalid") from exc

@@ -79,12 +79,29 @@ bash /root/phase6_server_bootstrap.sh
 Both scripts use `set -Eeuo pipefail`. The bootstrap verifies the bundle ref and
 sidecar, clones once, requires exact server HEAD and a completely clean clone,
 then delegates to the committed qualification script. That script rechecks
-tracked source state, pins Isaac Sim 5.0 and exact IsaacLab `v2.2.1`, installs
-through `/root/IsaacLab/isaaclab.sh -p`, proves all four Gym registrations after
-AppLauncher, runs all eight processes, and records both the runner and `tee` exit
-status under `exit_codes/` and `log_exit_codes/`. A failed runner or failed log
-capture blocks merge; only then may the script validate and hash the aggregate.
-Any failed gate stops all later stages.
+tracked source state, activates the existing `isaaclab` Conda environment, and
+then uses `/root/IsaacLab/isaaclab.sh -p` for every Python process. It pins Isaac
+Sim `5.0` and the unchanged server's exact IsaacLab state:
+
+- `VERSION=2.2.1` and release tag identity `v2.2.1`;
+- official release commit
+  `0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20`;
+- server HEAD `c91a125c73c8b574878419a9583afc0b63b99f0a`, whose commit-object
+  parent is that release commit and whose only code change is the official
+  ground-plane visibility fix;
+- exactly two pre-existing setup-file proxy rewrites and binary-diff SHA-256
+  `d056adb8bb64fe7c9c34fffbd2478ef04155df8b60b071da942280952f829079`;
+- no staged or untracked IsaacLab files.
+
+The upstream release and post-release commit are independently inspectable at
+<https://github.com/isaac-sim/IsaacLab/releases/tag/v2.2.1> and
+<https://github.com/isaac-sim/IsaacLab/commit/c91a125c73c8b574878419a9583afc0b63b99f0a>.
+The script does not create a tag, clean the repository, edit the Conda
+environment, or modify `/root/IsaacLab`. It proves all four Gym registrations
+after AppLauncher, runs all eight processes, and records both the runner and
+`tee` exit status under `exit_codes/` and `log_exit_codes/`. A failed runner or
+failed log capture blocks merge; only then may the script validate and hash the
+aggregate. Any failed gate stops all later stages.
 
 ## Server Eight-Configuration Smoke
 
@@ -93,6 +110,13 @@ The explicit commands below are an auditable reference, not an alternate manual
 workflow. Each invocation is a separate Isaac process. The helper preserves JSON,
 log and `PIPESTATUS[0]` for every configuration and refuses to merge if any is
 nonzero.
+
+The machine helper first runs:
+
+```bash
+source /opt/conda/etc/profile.d/conda.sh
+conda activate isaaclab
+```
 
 ```bash
 /root/IsaacLab/isaaclab.sh -p -u /root/EASYkoopman-phase6-v2/workflows/qualify_easyuuv_v2.py --task EasyUUV-Direct-v1 --configuration base --steps 64 --seed 0 --num-envs 1 --headless --result-root /root/EASYkoopman-phase6-v2/source/results/koopman_phase6 --output-json /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/rows/base.json 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/logs/base.log
@@ -142,7 +166,7 @@ atomically replaces the final file.
   --result-root /root/EASYkoopman-phase6-v2/source/results/koopman_phase6 \
   --output /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/qualification.json 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/merge.log
 
-/root/IsaacLab/isaaclab.sh -p /root/EASYkoopman-phase6-v2/workflows/validate_easyuuv_v2_qualification.py /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/qualification.json --json --expected-source-commit-file /root/expected-source-commit.txt --expected-isaaclab-commit-file /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/isaaclab_repo_commit.txt --expected-isaaclab-tag-file /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/isaaclab_repo_tag.txt 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/validator.json
+/root/IsaacLab/isaaclab.sh -p /root/EASYkoopman-phase6-v2/workflows/validate_easyuuv_v2_qualification.py /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/qualification.json --json --expected-source-commit-file /root/expected-source-commit.txt --expected-isaaclab-commit-file /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/isaaclab_repo_commit.txt --expected-isaaclab-release-file /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/isaaclab_release_tag.txt --expected-isaaclab-release-commit-file /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/isaaclab_release_commit.txt --expected-isaaclab-patch-sha256-file /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/isaaclab_repo_patch.sha256 --expected-isaaclab-dirty-files-file /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/isaaclab_repo_dirty_files.txt 2>&1 | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/validator.json
 sha256sum /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/qualification.json | tee /root/EASYkoopman-phase6-v2/source/results/koopman_phase6/qualification.sha256
 ```
 
@@ -171,8 +195,9 @@ source commit and equal artifact SHA-256 in Phase 6 evidence before closing.
   validator output as failure evidence.
 - Never omit a failed row, rename another row to replace it, edit values to pass,
   or merge fewer than the exact eight public configurations.
-- Report Isaac Sim distribution drift, IsaacLab distribution drift, missing exact
-  `v2.2.1` release provenance, dirty refs and repository commit drift explicitly.
+- Report Isaac Sim distribution drift, Conda activation drift, IsaacLab
+  distribution/VERSION drift, release-parent drift, repository HEAD drift,
+  proxy-patch hash drift, or any extra staged/untracked file explicitly.
 - The same unchanged command may be retried once for an infrastructure-only
   interruption. A code, parameter or environment change requires a new local
   commit, a new fully tested Git bundle and a new eight-process run.

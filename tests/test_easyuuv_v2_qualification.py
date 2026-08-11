@@ -11,6 +11,11 @@ import tempfile
 import pytest
 
 from workflows.easyuuv_v2_qualification_artifact import (
+    EXPECTED_ISAAC_LAB_DIRTY_FILES,
+    EXPECTED_ISAAC_LAB_PATCH_SHA256,
+    EXPECTED_ISAAC_LAB_RELEASE_COMMIT,
+    EXPECTED_ISAAC_LAB_RELEASE_TAG,
+    EXPECTED_ISAAC_LAB_REPO_COMMIT,
     MAX_ARTIFACT_BYTES,
     load_qualification_payload,
     validate_qualification_file,
@@ -89,8 +94,13 @@ def valid_server_payload() -> dict:
         "runtime_provenance": {
             "isaac_sim_distribution": "5.0.0.0",
             "isaac_lab_distribution": "0.45.9",
-            "isaac_lab_repo_commit": "c" * 40,
-            "isaac_lab_repo_tag": "v2.2.1",
+            "isaac_lab_version_file": "2.2.1",
+            "isaac_lab_release_tag": EXPECTED_ISAAC_LAB_RELEASE_TAG,
+            "isaac_lab_release_commit": EXPECTED_ISAAC_LAB_RELEASE_COMMIT,
+            "isaac_lab_repo_commit": EXPECTED_ISAAC_LAB_REPO_COMMIT,
+            "isaac_lab_repo_parent_commit": EXPECTED_ISAAC_LAB_RELEASE_COMMIT,
+            "isaac_lab_repo_patch_sha256": EXPECTED_ISAAC_LAB_PATCH_SHA256,
+            "isaac_lab_repo_dirty_files": list(EXPECTED_ISAAC_LAB_DIRTY_FILES),
         },
         "task_id": "EasyUUV-Direct-v1",
         "source_commit": "a" * 40,
@@ -163,8 +173,13 @@ def test_server_artifact_requires_runtime_provenance():
     (
         ("isaac_sim_distribution", "6.0.0.0"),
         ("isaac_lab_distribution", ""),
+        ("isaac_lab_version_file", "2.3.0"),
+        ("isaac_lab_release_commit", "d" * 40),
         ("isaac_lab_repo_commit", "ABC"),
-        ("isaac_lab_repo_tag", "v2.3.0"),
+        ("isaac_lab_release_tag", "v2.3.0"),
+        ("isaac_lab_repo_parent_commit", "d" * 40),
+        ("isaac_lab_repo_patch_sha256", "e" * 64),
+        ("isaac_lab_repo_dirty_files", ["unexpected.py"]),
     ),
 )
 def test_server_artifact_rejects_invalid_runtime_provenance(
@@ -184,8 +199,11 @@ def test_server_artifact_can_be_bound_to_external_source_and_isaaclab_commits():
         payload,
         expected_topology=EXPECTED_TOPOLOGY,
         expected_source_commit="a" * 40,
-        expected_isaaclab_repo_commit="c" * 40,
-        expected_isaaclab_repo_tag="v2.2.1",
+        expected_isaaclab_repo_commit=EXPECTED_ISAAC_LAB_REPO_COMMIT,
+        expected_isaaclab_release_tag=EXPECTED_ISAAC_LAB_RELEASE_TAG,
+        expected_isaaclab_release_commit=EXPECTED_ISAAC_LAB_RELEASE_COMMIT,
+        expected_isaaclab_patch_sha256=EXPECTED_ISAAC_LAB_PATCH_SHA256,
+        expected_isaaclab_dirty_files=EXPECTED_ISAAC_LAB_DIRTY_FILES,
     )
 
     assert result["qualification_gate"] == "server_pass"
@@ -201,9 +219,19 @@ def test_server_artifact_can_be_bound_to_external_source_and_isaaclab_commits():
             "isaaclab_repo_commit_mismatch",
         ),
         (
-            "expected_isaaclab_repo_tag",
+            "expected_isaaclab_release_tag",
             "v2.3.0",
-            "isaaclab_repo_tag_mismatch",
+            "isaaclab_release_tag_mismatch",
+        ),
+        (
+            "expected_isaaclab_release_commit",
+            "d" * 40,
+            "isaaclab_release_commit_mismatch",
+        ),
+        (
+            "expected_isaaclab_patch_sha256",
+            "e" * 64,
+            "isaaclab_patch_sha256_mismatch",
         ),
     ),
 )
@@ -503,10 +531,22 @@ def test_cli_binds_artifact_to_external_commit_sidecars(local_tmp_path: Path, ca
     )
     source_commit = local_tmp_path / "expected-source-commit.txt"
     isaaclab_commit = local_tmp_path / "isaaclab_repo_commit.txt"
-    isaaclab_tag = local_tmp_path / "isaaclab_repo_tag.txt"
+    isaaclab_release = local_tmp_path / "isaaclab_release_tag.txt"
+    isaaclab_release_commit = local_tmp_path / "isaaclab_release_commit.txt"
+    isaaclab_patch_sha256 = local_tmp_path / "isaaclab_repo_patch.sha256"
+    isaaclab_dirty_files = local_tmp_path / "isaaclab_repo_dirty_files.txt"
     source_commit.write_text("a" * 40 + "\n", encoding="utf-8")
-    isaaclab_commit.write_text("c" * 40 + "\n", encoding="utf-8")
-    isaaclab_tag.write_text("v2.2.1\n", encoding="utf-8")
+    isaaclab_commit.write_text(EXPECTED_ISAAC_LAB_REPO_COMMIT + "\n", encoding="utf-8")
+    isaaclab_release.write_text(EXPECTED_ISAAC_LAB_RELEASE_TAG + "\n", encoding="utf-8")
+    isaaclab_release_commit.write_text(
+        EXPECTED_ISAAC_LAB_RELEASE_COMMIT + "\n", encoding="utf-8"
+    )
+    isaaclab_patch_sha256.write_text(
+        EXPECTED_ISAAC_LAB_PATCH_SHA256 + "\n", encoding="utf-8"
+    )
+    isaaclab_dirty_files.write_text(
+        "\n".join(EXPECTED_ISAAC_LAB_DIRTY_FILES) + "\n", encoding="utf-8"
+    )
 
     assert main(
         [
@@ -516,8 +556,14 @@ def test_cli_binds_artifact_to_external_commit_sidecars(local_tmp_path: Path, ca
             str(source_commit),
             "--expected-isaaclab-commit-file",
             str(isaaclab_commit),
-            "--expected-isaaclab-tag-file",
-            str(isaaclab_tag),
+            "--expected-isaaclab-release-file",
+            str(isaaclab_release),
+            "--expected-isaaclab-release-commit-file",
+            str(isaaclab_release_commit),
+            "--expected-isaaclab-patch-sha256-file",
+            str(isaaclab_patch_sha256),
+            "--expected-isaaclab-dirty-files-file",
+            str(isaaclab_dirty_files),
         ]
     ) == 0
     assert json.loads(capsys.readouterr().out)["qualification_gate"] == "server_pass"

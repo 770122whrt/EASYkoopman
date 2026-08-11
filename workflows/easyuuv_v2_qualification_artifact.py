@@ -16,6 +16,17 @@ LOCAL_EVIDENCE_LEVEL = "local_contract"
 EXPECTED_TASK_ID = "EasyUUV-Direct-v1"
 EXPECTED_ISAAC_SIM_VERSION = "5.0"
 EXPECTED_ISAAC_LAB_VERSION = "2.2.1"
+EXPECTED_ISAAC_LAB_DISTRIBUTION = "0.45.9"
+EXPECTED_ISAAC_LAB_RELEASE_TAG = "v2.2.1"
+EXPECTED_ISAAC_LAB_RELEASE_COMMIT = "0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20"
+EXPECTED_ISAAC_LAB_REPO_COMMIT = "c91a125c73c8b574878419a9583afc0b63b99f0a"
+EXPECTED_ISAAC_LAB_PATCH_SHA256 = (
+    "d056adb8bb64fe7c9c34fffbd2478ef04155df8b60b071da942280952f829079"
+)
+EXPECTED_ISAAC_LAB_DIRTY_FILES = (
+    "source/isaaclab_mimic/setup.py",
+    "source/isaaclab_rl/setup.py",
+)
 CONTROL_CHANNELS = ("roll", "pitch", "yaw", "depth")
 CONTROL_BOUND = 1.0
 BOUND_TOLERANCE = 1e-6
@@ -57,11 +68,17 @@ ROW_REQUIRED_FIELDS = (
 CONTROL_VALUE_FIELDS = ("action_min", "action_max", "motor_min", "motor_max")
 _SOURCE_COMMIT_PATTERN = re.compile(r"^[0-9a-f]{40}$")
 _ISAACLAB_TAG_PATTERN = re.compile(r"^v\d+\.\d+\.\d+$")
+_SHA256_PATTERN = re.compile(r"^[0-9a-f]{64}$")
 _RUNTIME_PROVENANCE_FIELDS = {
     "isaac_sim_distribution",
     "isaac_lab_distribution",
+    "isaac_lab_version_file",
+    "isaac_lab_release_tag",
+    "isaac_lab_release_commit",
     "isaac_lab_repo_commit",
-    "isaac_lab_repo_tag",
+    "isaac_lab_repo_parent_commit",
+    "isaac_lab_repo_patch_sha256",
+    "isaac_lab_repo_dirty_files",
 }
 _SIM_DISTRIBUTION_PATTERN = re.compile(r"^(\d+)\.(\d+)(?:\.|$)")
 
@@ -151,11 +168,19 @@ def _validate_runtime_provenance(payload: Mapping[str, Any]) -> None:
     provenance = payload["runtime_provenance"]
     if not isinstance(provenance, Mapping) or set(provenance) != _RUNTIME_PROVENANCE_FIELDS:
         _fail("runtime_provenance_invalid", "fields")
+    string_fields = _RUNTIME_PROVENANCE_FIELDS - {"isaac_lab_repo_dirty_files"}
     if any(
         not isinstance(provenance[field], str) or not provenance[field].strip()
-        for field in _RUNTIME_PROVENANCE_FIELDS
+        for field in string_fields
     ):
         _fail("runtime_provenance_invalid", "values")
+    dirty_files = provenance["isaac_lab_repo_dirty_files"]
+    if (
+        not isinstance(dirty_files, list)
+        or any(not isinstance(value, str) or not value for value in dirty_files)
+        or dirty_files != list(EXPECTED_ISAAC_LAB_DIRTY_FILES)
+    ):
+        _fail("runtime_provenance_invalid", "isaac_lab_repo_dirty_files")
 
     sim_match = _SIM_DISTRIBUTION_PATTERN.match(
         provenance["isaac_sim_distribution"].strip()
@@ -165,12 +190,20 @@ def _validate_runtime_provenance(payload: Mapping[str, Any]) -> None:
     )
     if normalized_sim != payload["actual_isaac_sim"]:
         _fail("runtime_provenance_invalid", "isaac_sim_distribution")
-    if provenance["isaac_lab_repo_tag"].strip() != f"v{payload['actual_isaac_lab']}":
-        _fail("runtime_provenance_invalid", "isaac_lab_repo_tag")
-    if not _SOURCE_COMMIT_PATTERN.fullmatch(
-        provenance["isaac_lab_repo_commit"].strip()
-    ):
-        _fail("runtime_provenance_invalid", "isaac_lab_repo_commit")
+    exact_values = {
+        "isaac_lab_distribution": EXPECTED_ISAAC_LAB_DISTRIBUTION,
+        "isaac_lab_version_file": payload["actual_isaac_lab"],
+        "isaac_lab_release_tag": EXPECTED_ISAAC_LAB_RELEASE_TAG,
+        "isaac_lab_release_commit": EXPECTED_ISAAC_LAB_RELEASE_COMMIT,
+        "isaac_lab_repo_commit": EXPECTED_ISAAC_LAB_REPO_COMMIT,
+        "isaac_lab_repo_parent_commit": EXPECTED_ISAAC_LAB_RELEASE_COMMIT,
+        "isaac_lab_repo_patch_sha256": EXPECTED_ISAAC_LAB_PATCH_SHA256,
+    }
+    for field, expected in exact_values.items():
+        if provenance[field].strip() != expected:
+            _fail("runtime_provenance_invalid", field)
+    if provenance["isaac_lab_release_tag"].strip() != f"v{payload['actual_isaac_lab']}":
+        _fail("runtime_provenance_invalid", "isaac_lab_release_tag")
 
 
 def _normalize_expected_topology(
@@ -327,7 +360,10 @@ def validate_qualification_payload(
     expected_topology: Mapping[str, Mapping[str, Any]] | None = None,
     expected_source_commit: str | None = None,
     expected_isaaclab_repo_commit: str | None = None,
-    expected_isaaclab_repo_tag: str | None = None,
+    expected_isaaclab_release_tag: str | None = None,
+    expected_isaaclab_release_commit: str | None = None,
+    expected_isaaclab_patch_sha256: str | None = None,
+    expected_isaaclab_dirty_files: tuple[str, ...] | None = None,
 ) -> dict[str, Any]:
     """Validate one parsed qualification payload and return a deterministic gate summary."""
     if not isinstance(payload, dict):
@@ -349,17 +385,48 @@ def validate_qualification_payload(
         )
         if actual_lab_commit != expected_isaaclab_repo_commit:
             _fail("isaaclab_repo_commit_mismatch")
-    if expected_isaaclab_repo_tag is not None:
-        if not _ISAACLAB_TAG_PATTERN.fullmatch(expected_isaaclab_repo_tag):
-            _fail("expected_isaaclab_repo_tag_invalid")
+    if expected_isaaclab_release_tag is not None:
+        if not _ISAACLAB_TAG_PATTERN.fullmatch(expected_isaaclab_release_tag):
+            _fail("expected_isaaclab_release_tag_invalid")
         provenance = payload.get("runtime_provenance")
         actual_lab_tag = (
-            provenance.get("isaac_lab_repo_tag")
+            provenance.get("isaac_lab_release_tag")
             if isinstance(provenance, Mapping)
             else None
         )
-        if actual_lab_tag != expected_isaaclab_repo_tag:
-            _fail("isaaclab_repo_tag_mismatch")
+        if actual_lab_tag != expected_isaaclab_release_tag:
+            _fail("isaaclab_release_tag_mismatch")
+    if expected_isaaclab_release_commit is not None:
+        if not _SOURCE_COMMIT_PATTERN.fullmatch(expected_isaaclab_release_commit):
+            _fail("expected_isaaclab_release_commit_invalid")
+        provenance = payload.get("runtime_provenance")
+        actual_release_commit = (
+            provenance.get("isaac_lab_release_commit")
+            if isinstance(provenance, Mapping)
+            else None
+        )
+        if actual_release_commit != expected_isaaclab_release_commit:
+            _fail("isaaclab_release_commit_mismatch")
+    if expected_isaaclab_patch_sha256 is not None:
+        if not _SHA256_PATTERN.fullmatch(expected_isaaclab_patch_sha256):
+            _fail("expected_isaaclab_patch_sha256_invalid")
+        provenance = payload.get("runtime_provenance")
+        actual_patch_sha256 = (
+            provenance.get("isaac_lab_repo_patch_sha256")
+            if isinstance(provenance, Mapping)
+            else None
+        )
+        if actual_patch_sha256 != expected_isaaclab_patch_sha256:
+            _fail("isaaclab_patch_sha256_mismatch")
+    if expected_isaaclab_dirty_files is not None:
+        provenance = payload.get("runtime_provenance")
+        actual_dirty_files = (
+            provenance.get("isaac_lab_repo_dirty_files")
+            if isinstance(provenance, Mapping)
+            else None
+        )
+        if actual_dirty_files != list(expected_isaaclab_dirty_files):
+            _fail("isaaclab_dirty_files_mismatch")
     topology = _normalize_expected_topology(expected_topology)
     expected_names = tuple(topology)
     rows = _index_rows(payload["results"], expected_names)
@@ -392,7 +459,10 @@ def validate_qualification_file(
     expected_topology: Mapping[str, Mapping[str, Any]] | None = None,
     expected_source_commit: str | None = None,
     expected_isaaclab_repo_commit: str | None = None,
-    expected_isaaclab_repo_tag: str | None = None,
+    expected_isaaclab_release_tag: str | None = None,
+    expected_isaaclab_release_commit: str | None = None,
+    expected_isaaclab_patch_sha256: str | None = None,
+    expected_isaaclab_dirty_files: tuple[str, ...] | None = None,
 ) -> dict[str, Any]:
     """Load and validate one qualification file through the public file API."""
     payload = load_qualification_payload(path)
@@ -402,5 +472,8 @@ def validate_qualification_file(
         expected_topology=expected_topology,
         expected_source_commit=expected_source_commit,
         expected_isaaclab_repo_commit=expected_isaaclab_repo_commit,
-        expected_isaaclab_repo_tag=expected_isaaclab_repo_tag,
+        expected_isaaclab_release_tag=expected_isaaclab_release_tag,
+        expected_isaaclab_release_commit=expected_isaaclab_release_commit,
+        expected_isaaclab_patch_sha256=expected_isaaclab_patch_sha256,
+        expected_isaaclab_dirty_files=expected_isaaclab_dirty_files,
     )

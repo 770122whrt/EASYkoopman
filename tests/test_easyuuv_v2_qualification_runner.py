@@ -18,6 +18,11 @@ import workflows.qualify_easyuuv_v2 as qualification_runner
 
 from easyuuv_nc.embodiments import SUPPORTED_EMBODIMENTS, qualification_record
 from workflows.easyuuv_v2_qualification_artifact import (
+    EXPECTED_ISAAC_LAB_DIRTY_FILES,
+    EXPECTED_ISAAC_LAB_PATCH_SHA256,
+    EXPECTED_ISAAC_LAB_RELEASE_COMMIT,
+    EXPECTED_ISAAC_LAB_RELEASE_TAG,
+    EXPECTED_ISAAC_LAB_REPO_COMMIT,
     EXPECTED_ISAAC_LAB_VERSION,
     EXPECTED_ISAAC_SIM_VERSION,
     EXPECTED_TASK_ID,
@@ -51,6 +56,33 @@ SERVER_ISAACLAB_DIRTY_FILES = (
     "source/isaaclab_mimic/setup.py",
     "source/isaaclab_rl/setup.py",
 )
+
+
+def test_server_shell_and_python_runtime_locks_are_identical() -> None:
+    """Prevent the machine preflight and strict artifact validator from drifting."""
+    script = (
+        Path(__file__).resolve().parents[1]
+        / "scripts"
+        / "phase6_server_qualification.sh"
+    ).read_text(encoding="utf-8")
+
+    expected_assignments = {
+        "EXPECTED_ISAACLAB_VERSION": EXPECTED_ISAAC_LAB_VERSION,
+        "EXPECTED_ISAACLAB_RELEASE_TAG": EXPECTED_ISAAC_LAB_RELEASE_TAG,
+        "EXPECTED_ISAACLAB_RELEASE_COMMIT": EXPECTED_ISAAC_LAB_RELEASE_COMMIT,
+        "EXPECTED_ISAACLAB_REPO_COMMIT": EXPECTED_ISAAC_LAB_REPO_COMMIT,
+        "EXPECTED_ISAACLAB_PATCH_SHA256": EXPECTED_ISAAC_LAB_PATCH_SHA256,
+    }
+    for name, value in expected_assignments.items():
+        assert f'readonly {name}="{value}"' in script
+    for dirty_file in EXPECTED_ISAAC_LAB_DIRTY_FILES:
+        assert f'    "{dirty_file}"' in script
+
+    assert SERVER_ISAACLAB_RELEASE_TAG == EXPECTED_ISAAC_LAB_RELEASE_TAG
+    assert SERVER_ISAACLAB_RELEASE_COMMIT == EXPECTED_ISAAC_LAB_RELEASE_COMMIT
+    assert SERVER_ISAACLAB_REPO_COMMIT == EXPECTED_ISAAC_LAB_REPO_COMMIT
+    assert SERVER_ISAACLAB_PATCH_SHA256 == EXPECTED_ISAAC_LAB_PATCH_SHA256
+    assert SERVER_ISAACLAB_DIRTY_FILES == EXPECTED_ISAAC_LAB_DIRTY_FILES
 
 
 @pytest.fixture
@@ -755,7 +787,7 @@ def test_server_version_preflight_persists_expected_actual_and_command_status(
             (
                 f"source '{helper.as_posix()}'; "
                 f"phase6_require_preflight_value '{result_root.as_posix()}' "
-                "isaaclab_repo_tag v2.2.1 v2.3.0 0"
+                "isaaclab_version_file 2.2.1 2.3.0 0"
             ),
         ],
         check=False,
@@ -765,15 +797,16 @@ def test_server_version_preflight_persists_expected_actual_and_command_status(
 
     assert completed.returncode == 1
     failure = (result_root / "preflight_failure.txt").read_text(encoding="utf-8")
-    assert "check=isaaclab_repo_tag" in failure
-    assert "expected=v2.2.1" in failure
-    assert "actual=v2.3.0" in failure
+    assert "check=isaaclab_version_file" in failure
+    assert "expected=2.2.1" in failure
+    assert "actual=2.3.0" in failure
     assert "command_status=0" in failure
-    assert "expected=v2.2.1;actual=v2.3.0;command_status=0" in completed.stderr
+    assert "expected=2.2.1;actual=2.3.0;command_status=0" in completed.stderr
     assert qualification.index('mkdir -p "$PREFLIGHT_ROOT" "$RESULT_ROOT/logs"') < (
-        qualification.index("isaaclab_tag_status")
+        qualification.index("phase6_capture_locked_isaaclab_state")
     )
     assert "phase6_require_preflight_value" in qualification
+    assert "git describe --tags" not in qualification
 
 
 def test_server_conda_preflight_activates_locked_python_in_current_shell(
@@ -812,8 +845,24 @@ def test_server_conda_preflight_activates_locked_python_in_current_shell(
     if not bash.is_file():
         pytest.skip("bash executable unavailable")
 
+    if sys.platform == "win32":
+        bash_fake_bin = subprocess.run(
+            [str(bash), "-lc", f"cygpath -u '{fake_bin.as_posix()}'"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip().splitlines()[-1]
+        bash_fake_python = subprocess.run(
+            [str(bash), "-lc", f"cygpath -u '{fake_python.as_posix()}'"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip().splitlines()[-1]
+    else:
+        bash_fake_bin = fake_bin.as_posix()
+        bash_fake_python = fake_python.as_posix()
     environment = os.environ.copy()
-    environment["PHASE6_FAKE_CONDA_BIN"] = str(fake_bin)
+    environment["PHASE6_FAKE_CONDA_BIN"] = bash_fake_bin
     completed = subprocess.run(
         [
             str(bash),
@@ -821,7 +870,7 @@ def test_server_conda_preflight_activates_locked_python_in_current_shell(
             (
                 f"set -e; source '{helper.as_posix()}'; "
                 f"phase6_activate_conda_env '{result_root.as_posix()}' "
-                f"'{fake_conda.as_posix()}' isaaclab '{fake_python.as_posix()}'; "
+                f"'{fake_conda.as_posix()}' isaaclab '{bash_fake_python}'; "
                 "command -v python"
             ),
         ],
@@ -832,10 +881,8 @@ def test_server_conda_preflight_activates_locked_python_in_current_shell(
     )
 
     assert completed.returncode == 0, completed.stderr
-    assert completed.stdout.strip().splitlines()[-1] == fake_python.as_posix()
-    assert (result_root / "python_executable.txt").read_text().strip() == (
-        fake_python.as_posix()
-    )
+    assert completed.stdout.strip().splitlines()[-1] == bash_fake_python
+    assert (result_root / "python_executable.txt").read_text().strip() == bash_fake_python
     assert (result_root / "conda_environment.txt").read_text().strip() == "isaaclab"
     assert qualification.index("phase6_activate_conda_env") < qualification.index(
         '"$ISAACLAB_PY" -p'
@@ -1083,7 +1130,14 @@ def test_pullback_stages_then_checks_native_exits_hash_and_commits_before_promot
     assert "source_commit_mismatch" in script
     assert "--expected-source-commit-file" in script
     assert "--expected-isaaclab-commit-file" in script
-    assert "--expected-isaaclab-tag-file" in script
+    assert "--expected-isaaclab-release-file" in script
+    assert "--expected-isaaclab-release-commit-file" in script
+    assert "--expected-isaaclab-patch-sha256-file" in script
+    assert "--expected-isaaclab-dirty-files-file" in script
+    assert "isaaclab_repo_diff.patch" in script
+    assert "Get-FileHash -Algorithm SHA256" in script
+    assert "isaaclab_patch_sha256_mismatch" in script
+    assert "isaaclab_release_parent_mismatch" in script
     assert "validator_failed" in script
     assert "status --porcelain=v1" in script
     assert "--untracked-files=no" not in script
@@ -1230,8 +1284,13 @@ def test_runtime_provenance_rejects_nonbaseline_or_inexact_isaaclab_tag(bad_tag:
         build_runtime_provenance(
             isaac_sim_distribution="5.0.0.0",
             isaac_lab_distribution="0.45.9",
-            isaac_lab_repo_commit="c" * 40,
-            isaac_lab_repo_tag=bad_tag,
+            isaac_lab_version_file="2.2.1",
+            isaac_lab_release_tag=bad_tag,
+            isaac_lab_release_commit=SERVER_ISAACLAB_RELEASE_COMMIT,
+            isaac_lab_repo_commit=SERVER_ISAACLAB_REPO_COMMIT,
+            isaac_lab_repo_parent_commit=SERVER_ISAACLAB_RELEASE_COMMIT,
+            isaac_lab_repo_patch_sha256=SERVER_ISAACLAB_PATCH_SHA256,
+            isaac_lab_repo_dirty_files=SERVER_ISAACLAB_DIRTY_FILES,
         )
 
 
@@ -1326,7 +1385,7 @@ def test_merge_rejects_consistently_forged_runtime_release_tag(local_tmp_path: P
     inputs = _write_all_rows(local_tmp_path)
     for path in inputs:
         payload = json.loads(path.read_text(encoding="utf-8"))
-        payload["runtime_provenance"]["isaac_lab_repo_tag"] = "v2.3.0"
+        payload["runtime_provenance"]["isaac_lab_release_tag"] = "v2.3.0"
         path.write_text(json.dumps(payload), encoding="utf-8")
 
     with pytest.raises(ValueError, match="runtime_provenance_invalid"):

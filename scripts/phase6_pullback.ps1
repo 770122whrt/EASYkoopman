@@ -24,15 +24,28 @@ function Read-CommitFile {
     return $value
 }
 
-function Read-IsaacLabTagFile {
+function Read-IsaacLabReleaseFile {
     param([string]$Path)
 
     if (-not (Test-Path -LiteralPath $Path -PathType Leaf)) {
-        throw "isaaclab_repo_tag_missing:$Path"
+        throw "isaaclab_release_tag_missing:$Path"
     }
     $value = (Get-Content -Raw -LiteralPath $Path).Trim()
     if ($value -notmatch '^v\d+\.\d+\.\d+$') {
-        throw "isaaclab_repo_tag_invalid"
+        throw "isaaclab_release_tag_invalid"
+    }
+    return $value
+}
+
+function Read-Sha256File {
+    param([string]$Path, [string]$Label)
+
+    if (-not (Test-Path -LiteralPath $Path -PathType Leaf)) {
+        throw "${Label}_missing:$Path"
+    }
+    $value = (Get-Content -Raw -LiteralPath $Path).Trim()
+    if ($value -notmatch '^[0-9a-f]{64}$') {
+        throw "${Label}_invalid"
     }
     return $value
 }
@@ -86,7 +99,12 @@ $qualificationPath = Join-Path $stagedEvidence "qualification.json"
 $serverHashPath = Join-Path $stagedEvidence "qualification.sha256"
 $sourceCommitPath = Join-Path $stagedEvidence "source_commit.txt"
 $isaacLabCommitPath = Join-Path $stagedEvidence "isaaclab_repo_commit.txt"
-$isaacLabTagPath = Join-Path $stagedEvidence "isaaclab_repo_tag.txt"
+$isaacLabReleasePath = Join-Path $stagedEvidence "isaaclab_release_tag.txt"
+$isaacLabReleaseCommitPath = Join-Path $stagedEvidence "isaaclab_release_commit.txt"
+$isaacLabParentCommitPath = Join-Path $stagedEvidence "isaaclab_repo_parent_commit.txt"
+$isaacLabPatchHashPath = Join-Path $stagedEvidence "isaaclab_repo_patch.sha256"
+$isaacLabPatchPath = Join-Path $stagedEvidence "logs/isaaclab_repo_diff.patch"
+$isaacLabDirtyFilesPath = Join-Path $stagedEvidence "isaaclab_repo_dirty_files.txt"
 
 $hashLines = @(Get-Content -LiteralPath $serverHashPath)
 if ($hashLines.Count -ne 1 -or $hashLines[0] -notmatch '^[0-9a-f]{64}\s+') {
@@ -103,14 +121,35 @@ if ($pulledSourceCommit -ne $expectedCommit) {
     throw "source_commit_mismatch:expected=$expectedCommit;pulled=$pulledSourceCommit"
 }
 $null = Read-CommitFile $isaacLabCommitPath "isaaclab_repo_commit"
-$null = Read-IsaacLabTagFile $isaacLabTagPath
+$releaseCommit = Read-CommitFile $isaacLabReleaseCommitPath "isaaclab_release_commit"
+$parentCommit = Read-CommitFile $isaacLabParentCommitPath "isaaclab_repo_parent_commit"
+if ($releaseCommit -ne $parentCommit) {
+    throw "isaaclab_release_parent_mismatch"
+}
+$null = Read-IsaacLabReleaseFile $isaacLabReleasePath
+$expectedPatchHash = Read-Sha256File $isaacLabPatchHashPath "isaaclab_patch_sha256"
+if (-not (Test-Path -LiteralPath $isaacLabPatchPath -PathType Leaf)) {
+    throw "isaaclab_patch_file_missing:$isaacLabPatchPath"
+}
+$pulledPatchHash = (
+    Get-FileHash -Algorithm SHA256 -LiteralPath $isaacLabPatchPath
+).Hash.ToLowerInvariant()
+if ($pulledPatchHash -ne $expectedPatchHash) {
+    throw "isaaclab_patch_sha256_mismatch:expected=$expectedPatchHash;actual=$pulledPatchHash"
+}
+if (-not (Test-Path -LiteralPath $isaacLabDirtyFilesPath -PathType Leaf)) {
+    throw "isaaclab_dirty_files_missing:$isaacLabDirtyFilesPath"
+}
 
 $validator = Join-Path $repository "workflows/validate_easyuuv_v2_qualification.py"
 $validatorOutput = @(
     & $PythonExecutable $validator $qualificationPath --json `
         --expected-source-commit-file $expectedCommitPath `
         --expected-isaaclab-commit-file $isaacLabCommitPath `
-        --expected-isaaclab-tag-file $isaacLabTagPath 2>&1
+        --expected-isaaclab-release-file $isaacLabReleasePath `
+        --expected-isaaclab-release-commit-file $isaacLabReleaseCommitPath `
+        --expected-isaaclab-patch-sha256-file $isaacLabPatchHashPath `
+        --expected-isaaclab-dirty-files-file $isaacLabDirtyFilesPath 2>&1
 )
 $validatorExitCode = $LASTEXITCODE
 $validatorText = ($validatorOutput -join "`n") + "`n"

@@ -7,6 +7,7 @@ only after :class:`AppLauncher` starts inside :func:`run_isaac_qualification`.
 from __future__ import annotations
 
 import argparse
+import hashlib
 from importlib import metadata
 import json
 import math
@@ -25,6 +26,12 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from easyuuv_nc.embodiments import SUPPORTED_EMBODIMENTS, qualification_record
 from workflows.easyuuv_v2_qualification_artifact import (
+    EXPECTED_ISAAC_LAB_DIRTY_FILES,
+    EXPECTED_ISAAC_LAB_DISTRIBUTION,
+    EXPECTED_ISAAC_LAB_PATCH_SHA256,
+    EXPECTED_ISAAC_LAB_RELEASE_COMMIT,
+    EXPECTED_ISAAC_LAB_RELEASE_TAG,
+    EXPECTED_ISAAC_LAB_REPO_COMMIT,
     EXPECTED_ISAAC_LAB_VERSION,
     EXPECTED_ISAAC_SIM_VERSION,
     QUALIFICATION_SCHEMA_VERSION,
@@ -202,15 +209,29 @@ def build_runtime_provenance(
     *,
     isaac_sim_distribution: str,
     isaac_lab_distribution: str,
+    isaac_lab_version_file: str,
+    isaac_lab_release_tag: str,
+    isaac_lab_release_commit: str,
     isaac_lab_repo_commit: str,
-    isaac_lab_repo_tag: str,
+    isaac_lab_repo_parent_commit: str,
+    isaac_lab_repo_patch_sha256: str,
+    isaac_lab_repo_dirty_files: Iterable[str],
 ) -> dict[str, Any]:
-    """Build version fields only from installed metadata and exact Git provenance."""
-    tag_match = _LAB_RELEASE_TAG_RE.fullmatch(str(isaac_lab_repo_tag).strip())
+    """Build version fields from the locked unchanged-server runtime state."""
+    release_tag = str(isaac_lab_release_tag).strip()
+    tag_match = _LAB_RELEASE_TAG_RE.fullmatch(release_tag)
     lab_release = tag_match.group(1) if tag_match else ""
+    dirty_files = tuple(str(value) for value in isaac_lab_repo_dirty_files)
     if (
         lab_release != EXPECTED_ISAAC_LAB_VERSION
-        or not _GIT_COMMIT_RE.fullmatch(str(isaac_lab_repo_commit))
+        or str(isaac_lab_distribution) != EXPECTED_ISAAC_LAB_DISTRIBUTION
+        or str(isaac_lab_version_file).strip() != EXPECTED_ISAAC_LAB_VERSION
+        or release_tag != EXPECTED_ISAAC_LAB_RELEASE_TAG
+        or str(isaac_lab_release_commit) != EXPECTED_ISAAC_LAB_RELEASE_COMMIT
+        or str(isaac_lab_repo_commit) != EXPECTED_ISAAC_LAB_REPO_COMMIT
+        or str(isaac_lab_repo_parent_commit) != EXPECTED_ISAAC_LAB_RELEASE_COMMIT
+        or str(isaac_lab_repo_patch_sha256) != EXPECTED_ISAAC_LAB_PATCH_SHA256
+        or dirty_files != EXPECTED_ISAAC_LAB_DIRTY_FILES
     ):
         raise RuntimeError("isaac_lab_release_provenance_invalid")
     return {
@@ -219,8 +240,13 @@ def build_runtime_provenance(
         "runtime_provenance": {
             "isaac_sim_distribution": str(isaac_sim_distribution),
             "isaac_lab_distribution": str(isaac_lab_distribution),
+            "isaac_lab_version_file": str(isaac_lab_version_file).strip(),
+            "isaac_lab_release_tag": release_tag,
+            "isaac_lab_release_commit": str(isaac_lab_release_commit),
             "isaac_lab_repo_commit": str(isaac_lab_repo_commit),
-            "isaac_lab_repo_tag": str(isaac_lab_repo_tag).strip(),
+            "isaac_lab_repo_parent_commit": str(isaac_lab_repo_parent_commit),
+            "isaac_lab_repo_patch_sha256": str(isaac_lab_repo_patch_sha256),
+            "isaac_lab_repo_dirty_files": list(dirty_files),
         },
     }
 
@@ -236,6 +262,16 @@ def _git_output(repository: Path, *arguments: str) -> str:
     return completed.stdout.strip()
 
 
+def _git_bytes(repository: Path, *arguments: str) -> bytes:
+    completed = subprocess.run(
+        ["git", "-C", str(repository), *arguments],
+        check=True,
+        capture_output=True,
+        shell=False,
+    )
+    return completed.stdout
+
+
 def _find_isaaclab_root(module_file: str | Path) -> Path:
     for candidate in (Path(module_file).resolve(), *Path(module_file).resolve().parents):
         if candidate.is_dir() and (candidate / ".git").exists():
@@ -244,20 +280,55 @@ def _find_isaaclab_root(module_file: str | Path) -> Path:
 
 
 def detect_runtime_provenance(isaaclab_module_file: str | Path) -> dict[str, Any]:
-    """Read installed distributions and require an exact IsaacLab release tag."""
+    """Read and bind the exact unchanged-server IsaacLab repository state."""
     lab_root = _find_isaaclab_root(isaaclab_module_file)
     try:
         commit = _git_output(lab_root, "rev-parse", "HEAD")
-        tag = _git_output(lab_root, "describe", "--tags", "--exact-match", "HEAD")
+        commit_object = _git_output(lab_root, "cat-file", "-p", "HEAD")
+        parents = [
+            line.split(maxsplit=1)[1]
+            for line in commit_object.splitlines()
+            if line.startswith("parent ")
+        ]
+        if len(parents) != 1:
+            raise RuntimeError("isaac_lab_release_provenance_invalid")
+        staged = _git_output(lab_root, "diff", "--cached", "--name-only")
+        untracked = _git_output(
+            lab_root,
+            "status",
+            "--porcelain=v1",
+            "--untracked-files=all",
+        )
+        untracked = "\n".join(
+            line[3:] for line in untracked.splitlines() if line.startswith("?? ")
+        )
+        if staged or untracked:
+            raise RuntimeError("isaac_lab_release_provenance_invalid")
+        dirty_files = tuple(
+            _git_output(lab_root, "diff", "--name-only").splitlines()
+        )
+        patch_sha256 = hashlib.sha256(
+            _git_bytes(lab_root, "diff", "--binary")
+        ).hexdigest()
+        version_file = (lab_root / "VERSION").read_text(encoding="utf-8").strip()
         sim_distribution = metadata.version("isaacsim")
         lab_distribution = metadata.version("isaaclab")
-    except (subprocess.CalledProcessError, metadata.PackageNotFoundError) as exc:
+    except (
+        OSError,
+        subprocess.CalledProcessError,
+        metadata.PackageNotFoundError,
+    ) as exc:
         raise RuntimeError("runtime_version_provenance_unavailable") from exc
     return build_runtime_provenance(
         isaac_sim_distribution=sim_distribution,
         isaac_lab_distribution=lab_distribution,
+        isaac_lab_version_file=version_file,
+        isaac_lab_release_tag=EXPECTED_ISAAC_LAB_RELEASE_TAG,
+        isaac_lab_release_commit=EXPECTED_ISAAC_LAB_RELEASE_COMMIT,
         isaac_lab_repo_commit=commit,
-        isaac_lab_repo_tag=tag,
+        isaac_lab_repo_parent_commit=parents[0],
+        isaac_lab_repo_patch_sha256=patch_sha256,
+        isaac_lab_repo_dirty_files=dirty_files,
     )
 
 

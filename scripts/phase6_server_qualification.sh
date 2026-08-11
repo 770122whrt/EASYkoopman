@@ -14,6 +14,18 @@ readonly TASK_PROBE="$PROJECT_ROOT/scripts/phase6_probe_gym_tasks.py"
 readonly PIPELINE_GATE="$PROJECT_ROOT/scripts/phase6_pipeline_gate.sh"
 readonly PREFLIGHT_HELPER="$PROJECT_ROOT/scripts/phase6_server_preflight.sh"
 readonly OFFLINE_INSTALL_HELPER="$PROJECT_ROOT/scripts/phase6_offline_install.sh"
+readonly CONDA_SH="/opt/conda/etc/profile.d/conda.sh"
+readonly CONDA_ENVIRONMENT="isaaclab"
+readonly CONDA_PYTHON="/opt/conda/envs/isaaclab/bin/python"
+readonly EXPECTED_ISAACLAB_VERSION="2.2.1"
+readonly EXPECTED_ISAACLAB_RELEASE_TAG="v2.2.1"
+readonly EXPECTED_ISAACLAB_RELEASE_COMMIT="0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20"
+readonly EXPECTED_ISAACLAB_REPO_COMMIT="c91a125c73c8b574878419a9583afc0b63b99f0a"
+readonly EXPECTED_ISAACLAB_PATCH_SHA256="d056adb8bb64fe7c9c34fffbd2478ef04155df8b60b071da942280952f829079"
+readonly -a EXPECTED_ISAACLAB_DIRTY_FILES=(
+    "source/isaaclab_mimic/setup.py"
+    "source/isaaclab_rl/setup.py"
+)
 
 # The repository intentionally contains source, not platform-specific generated
 # bytecode.  Keep the server checkout stable across the probe and eight separate
@@ -40,20 +52,16 @@ tracked_status="$(git -C "$PROJECT_ROOT" status --porcelain=v1 --untracked-files
 [[ -z "$tracked_status" ]] || die "tracked_source_drift"
 
 [[ -x "$ISAACLAB_PY" ]] || die "isaaclab_launcher_missing"
+[[ -f "$CONDA_SH" ]] || die "conda_activation_script_missing"
 mkdir -p "$PREFLIGHT_ROOT" "$RESULT_ROOT/logs"
-set +e
-isaaclab_tag="$(git -C "$ISAACLAB_ROOT" describe --tags --exact-match HEAD \
-    2> "$RESULT_ROOT/logs/isaaclab_repo_tag.log")"
-isaaclab_tag_status=$?
-set -e
-phase6_require_preflight_value \
-    "$PREFLIGHT_ROOT" "isaaclab_repo_tag" "v2.2.1" \
-    "$isaaclab_tag" "$isaaclab_tag_status"
-isaaclab_commit="$(git -C "$ISAACLAB_ROOT" rev-parse HEAD)"
-[[ "$isaaclab_commit" =~ ^[0-9a-f]{40}$ ]] || die "isaaclab_commit_invalid"
-isaaclab_tracked_status="$(git -C "$ISAACLAB_ROOT" status --porcelain=v1 --untracked-files=no)"
-[[ -z "$isaaclab_tracked_status" ]] || die "isaaclab_tracked_source_drift"
-
+phase6_activate_conda_env \
+    "$PREFLIGHT_ROOT" "$CONDA_SH" "$CONDA_ENVIRONMENT" "$CONDA_PYTHON"
+phase6_capture_locked_isaaclab_state \
+    "$PREFLIGHT_ROOT" "$ISAACLAB_ROOT" \
+    "$EXPECTED_ISAACLAB_VERSION" "$EXPECTED_ISAACLAB_RELEASE_TAG" \
+    "$EXPECTED_ISAACLAB_RELEASE_COMMIT" "$EXPECTED_ISAACLAB_REPO_COMMIT" \
+    "$EXPECTED_ISAACLAB_PATCH_SHA256" \
+    "${EXPECTED_ISAACLAB_DIRTY_FILES[@]}"
 set +e
 "$ISAACLAB_PY" -p -c \
     'from importlib.metadata import version; print("PHASE6_ACTUAL_ISAAC_SIM=" + ".".join(version("isaacsim").split(".")[:2]))' \
@@ -73,8 +81,6 @@ mkdir -p \
     "$RESULT_ROOT/exit_codes" \
     "$RESULT_ROOT/log_exit_codes"
 printf '%s\n' "$expected_commit" > "$RESULT_ROOT/source_commit.txt"
-printf '%s\n' "$isaaclab_tag" > "$RESULT_ROOT/isaaclab_repo_tag.txt"
-printf '%s\n' "$isaaclab_commit" > "$RESULT_ROOT/isaaclab_repo_commit.txt"
 "$ISAACLAB_PY" -p -c \
     'from importlib.metadata import version; print("isaacsim_distribution=" + version("isaacsim")); print("isaaclab_distribution=" + version("isaaclab"))' \
     | tee "$RESULT_ROOT/runtime_distributions.txt"
@@ -140,7 +146,10 @@ fi
 "$ISAACLAB_PY" -p "$VALIDATOR" "$RESULT_ROOT/qualification.json" --json \
     --expected-source-commit-file "$EXPECTED_COMMIT_FILE" \
     --expected-isaaclab-commit-file "$RESULT_ROOT/isaaclab_repo_commit.txt" \
-    --expected-isaaclab-tag-file "$RESULT_ROOT/isaaclab_repo_tag.txt" \
+    --expected-isaaclab-release-file "$RESULT_ROOT/isaaclab_release_tag.txt" \
+    --expected-isaaclab-release-commit-file "$RESULT_ROOT/isaaclab_release_commit.txt" \
+    --expected-isaaclab-patch-sha256-file "$RESULT_ROOT/isaaclab_repo_patch.sha256" \
+    --expected-isaaclab-dirty-files-file "$RESULT_ROOT/isaaclab_repo_dirty_files.txt" \
     2>&1 | tee "$RESULT_ROOT/validator.json"
 sha256sum "$RESULT_ROOT/qualification.json" \
     | tee "$RESULT_ROOT/qualification.sha256"
