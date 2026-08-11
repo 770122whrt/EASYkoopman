@@ -762,6 +762,107 @@ def test_server_bootstrap_and_execution_are_fail_closed_before_merge():
     assert "sha256sum" in qualification
 
 
+def test_server_bootstrap_verifies_complete_bundle_from_nonrepository_directory(
+    local_tmp_path: Path,
+):
+    project_root = Path(__file__).resolve().parents[1]
+    source = local_tmp_path / "bootstrap-source"
+    source.mkdir()
+    subprocess.run(
+        ["git", "init", "-b", "v2.0-multi-configuration"],
+        cwd=source,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    scripts = source / "scripts"
+    scripts.mkdir()
+    qualification = scripts / "phase6_server_qualification.sh"
+    qualification.write_text(
+        "#!/usr/bin/env bash\n"
+        "set -e\n"
+        "touch \"$(dirname \"$0\")/../qualification-called.txt\"\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    subprocess.run(
+        ["git", "add", "scripts/phase6_server_qualification.sh"],
+        cwd=source,
+        check=True,
+    )
+    subprocess.run(
+        [
+            "git",
+            "-c",
+            "user.name=Phase6 Test",
+            "-c",
+            "user.email=phase6@example.invalid",
+            "commit",
+            "-m",
+            "bootstrap source",
+        ],
+        cwd=source,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    head = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=source,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    bundle = local_tmp_path / "complete.bundle"
+    subprocess.run(
+        ["git", "bundle", "create", str(bundle), "v2.0-multi-configuration"],
+        cwd=source,
+        check=True,
+    )
+    sidecar = local_tmp_path / "expected-source-commit.txt"
+    sidecar.write_text(head + "\n", encoding="utf-8")
+    target = local_tmp_path / "isolated-target"
+    bootstrap = local_tmp_path / "phase6_server_bootstrap.sh"
+    bootstrap_text = (
+        project_root / "scripts" / "phase6_server_bootstrap.sh"
+    ).read_text(encoding="utf-8")
+    replacements = {
+        '/root/EasyUUV-phase6-v2.bundle': bundle.as_posix(),
+        '/root/expected-source-commit.txt': sidecar.as_posix(),
+        '/root/EASYkoopman-phase6-v2': target.as_posix(),
+    }
+    for original, replacement in replacements.items():
+        bootstrap_text = bootstrap_text.replace(original, replacement)
+    bootstrap.write_text(bootstrap_text, encoding="utf-8", newline="\n")
+
+    if sys.platform == "win32":
+        git_executable = Path(shutil.which("git") or "")
+        bash = git_executable.parent.parent / "bin" / "bash.exe"
+    else:
+        bash = Path(shutil.which("bash") or "")
+    if not bash.is_file():
+        pytest.skip("bash executable unavailable")
+    launch_directory = local_tmp_path / "not-a-repository"
+    launch_directory.mkdir()
+    temporary_directory = local_tmp_path / "bootstrap-temporary"
+    temporary_directory.mkdir()
+    environment = os.environ.copy()
+    environment["GIT_CEILING_DIRECTORIES"] = local_tmp_path.as_posix()
+    environment["TMPDIR"] = temporary_directory.as_posix()
+    completed = subprocess.run(
+        [str(bash), str(bootstrap)],
+        cwd=launch_directory,
+        check=False,
+        capture_output=True,
+        text=True,
+        env=environment,
+    )
+
+    assert completed.returncode == 0, completed.stderr
+    assert (target / "qualification-called.txt").is_file()
+    assert list(temporary_directory.iterdir()) == []
+
+
 def test_server_version_preflight_persists_expected_actual_and_command_status(
     local_tmp_path: Path,
 ):

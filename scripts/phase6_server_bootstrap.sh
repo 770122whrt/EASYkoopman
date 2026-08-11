@@ -18,7 +18,17 @@ die() {
 expected_commit="$(tr -d '\r\n' < "$EXPECTED_COMMIT_FILE")"
 [[ "$expected_commit" =~ ^[0-9a-f]{40}$ ]] || die "expected_commit_invalid"
 
-git bundle verify "$BUNDLE_PATH"
+verify_repository="$(mktemp -d "${TMPDIR:-/tmp}/phase6-bundle-verify.XXXXXX")"
+cleanup_verify_repository() {
+    if [[ -n "${verify_repository:-}" && -d "$verify_repository" ]]; then
+        rm -rf -- "$verify_repository"
+    fi
+}
+trap cleanup_verify_repository EXIT
+git init --bare "$verify_repository" > /dev/null
+git -C "$verify_repository" bundle verify "$BUNDLE_PATH"
+cleanup_verify_repository
+trap - EXIT
 bundle_head="$(git bundle list-heads "$BUNDLE_PATH" "refs/heads/$BRANCH")"
 read -r bundle_commit bundle_ref extra <<< "$bundle_head"
 [[ -z "${extra:-}" ]] || die "bundle_ref_mismatch"
