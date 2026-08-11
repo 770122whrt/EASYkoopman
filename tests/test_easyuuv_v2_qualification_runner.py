@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -37,6 +38,18 @@ from workflows.qualify_easyuuv_v2 import (
     normalize_isaac_sim_version,
     resolve_output_path,
     summarize_actual_telemetry,
+)
+
+
+SERVER_ISAACLAB_RELEASE_TAG = "v2.2.1"
+SERVER_ISAACLAB_RELEASE_COMMIT = "0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20"
+SERVER_ISAACLAB_REPO_COMMIT = "c91a125c73c8b574878419a9583afc0b63b99f0a"
+SERVER_ISAACLAB_PATCH_SHA256 = (
+    "d056adb8bb64fe7c9c34fffbd2478ef04155df8b60b071da942280952f829079"
+)
+SERVER_ISAACLAB_DIRTY_FILES = (
+    "source/isaaclab_mimic/setup.py",
+    "source/isaaclab_rl/setup.py",
 )
 
 
@@ -94,8 +107,13 @@ def _single_row_payload(
         "runtime_provenance": {
             "isaac_sim_distribution": "5.0.0.0",
             "isaac_lab_distribution": "0.45.9",
-            "isaac_lab_repo_commit": "c" * 40,
-            "isaac_lab_repo_tag": "v2.2.1",
+            "isaac_lab_version_file": "2.2.1",
+            "isaac_lab_release_tag": SERVER_ISAACLAB_RELEASE_TAG,
+            "isaac_lab_release_commit": SERVER_ISAACLAB_RELEASE_COMMIT,
+            "isaac_lab_repo_commit": SERVER_ISAACLAB_REPO_COMMIT,
+            "isaac_lab_repo_parent_commit": SERVER_ISAACLAB_RELEASE_COMMIT,
+            "isaac_lab_repo_patch_sha256": SERVER_ISAACLAB_PATCH_SHA256,
+            "isaac_lab_repo_dirty_files": list(SERVER_ISAACLAB_DIRTY_FILES),
         },
         "task_id": EXPECTED_TASK_ID,
         "source_commit": source_commit,
@@ -431,12 +449,17 @@ def test_preflight_failure_writes_distinct_machine_readable_evidence(
     assert "ERROR: runtime_version_provenance_unavailable" in capsys.readouterr().err
 
 
-def test_runtime_provenance_uses_installed_sim_and_exact_isaaclab_release_tag():
+def test_runtime_provenance_records_locked_post_release_server_state():
     provenance = build_runtime_provenance(
         isaac_sim_distribution="5.0.0.0",
         isaac_lab_distribution="0.45.9",
-        isaac_lab_repo_commit="c" * 40,
-        isaac_lab_repo_tag="v2.2.1",
+        isaac_lab_version_file="2.2.1",
+        isaac_lab_release_tag=SERVER_ISAACLAB_RELEASE_TAG,
+        isaac_lab_release_commit=SERVER_ISAACLAB_RELEASE_COMMIT,
+        isaac_lab_repo_commit=SERVER_ISAACLAB_REPO_COMMIT,
+        isaac_lab_repo_parent_commit=SERVER_ISAACLAB_RELEASE_COMMIT,
+        isaac_lab_repo_patch_sha256=SERVER_ISAACLAB_PATCH_SHA256,
+        isaac_lab_repo_dirty_files=SERVER_ISAACLAB_DIRTY_FILES,
     )
 
     assert provenance == {
@@ -445,8 +468,13 @@ def test_runtime_provenance_uses_installed_sim_and_exact_isaaclab_release_tag():
         "runtime_provenance": {
             "isaac_sim_distribution": "5.0.0.0",
             "isaac_lab_distribution": "0.45.9",
-            "isaac_lab_repo_commit": "c" * 40,
-            "isaac_lab_repo_tag": "v2.2.1",
+            "isaac_lab_version_file": "2.2.1",
+            "isaac_lab_release_tag": SERVER_ISAACLAB_RELEASE_TAG,
+            "isaac_lab_release_commit": SERVER_ISAACLAB_RELEASE_COMMIT,
+            "isaac_lab_repo_commit": SERVER_ISAACLAB_REPO_COMMIT,
+            "isaac_lab_repo_parent_commit": SERVER_ISAACLAB_RELEASE_COMMIT,
+            "isaac_lab_repo_patch_sha256": SERVER_ISAACLAB_PATCH_SHA256,
+            "isaac_lab_repo_dirty_files": list(SERVER_ISAACLAB_DIRTY_FILES),
         },
     }
 
@@ -746,6 +774,190 @@ def test_server_version_preflight_persists_expected_actual_and_command_status(
         qualification.index("isaaclab_tag_status")
     )
     assert "phase6_require_preflight_value" in qualification
+
+
+def test_server_conda_preflight_activates_locked_python_in_current_shell(
+    local_tmp_path: Path,
+):
+    project_root = Path(__file__).resolve().parents[1]
+    helper = project_root / "scripts" / "phase6_server_preflight.sh"
+    qualification = (
+        project_root / "scripts" / "phase6_server_qualification.sh"
+    ).read_text(encoding="utf-8")
+    result_root = local_tmp_path / "conda-evidence"
+    fake_env = local_tmp_path / "conda" / "envs" / "isaaclab"
+    fake_bin = fake_env / "bin"
+    fake_bin.mkdir(parents=True)
+    fake_python = fake_bin / "python"
+    fake_python.write_text(
+        "#!/usr/bin/env bash\nprintf '%s\\n' 'Python 3.11.test'\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    fake_python.chmod(0o755)
+    fake_conda = local_tmp_path / "conda.sh"
+    fake_conda.write_text(
+        "conda() {\n"
+        "  [[ \"$1\" == activate && \"$2\" == isaaclab ]] || return 9\n"
+        "  export PATH=\"$PHASE6_FAKE_CONDA_BIN:$PATH\"\n"
+        "}\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    if sys.platform == "win32":
+        git_executable = Path(shutil.which("git") or "")
+        bash = git_executable.parent.parent / "bin" / "bash.exe"
+    else:
+        bash = Path(shutil.which("bash") or "")
+    if not bash.is_file():
+        pytest.skip("bash executable unavailable")
+
+    environment = os.environ.copy()
+    environment["PHASE6_FAKE_CONDA_BIN"] = str(fake_bin)
+    completed = subprocess.run(
+        [
+            str(bash),
+            "-c",
+            (
+                f"set -e; source '{helper.as_posix()}'; "
+                f"phase6_activate_conda_env '{result_root.as_posix()}' "
+                f"'{fake_conda.as_posix()}' isaaclab '{fake_python.as_posix()}'; "
+                "command -v python"
+            ),
+        ],
+        check=False,
+        capture_output=True,
+        text=True,
+        env=environment,
+    )
+
+    assert completed.returncode == 0, completed.stderr
+    assert completed.stdout.strip().splitlines()[-1] == fake_python.as_posix()
+    assert (result_root / "python_executable.txt").read_text().strip() == (
+        fake_python.as_posix()
+    )
+    assert (result_root / "conda_environment.txt").read_text().strip() == "isaaclab"
+    assert qualification.index("phase6_activate_conda_env") < qualification.index(
+        '"$ISAACLAB_PY" -p'
+    )
+
+
+def test_server_provenance_helper_accepts_only_locked_release_descendant_and_patch(
+    local_tmp_path: Path,
+):
+    project_root = Path(__file__).resolve().parents[1]
+    helper = project_root / "scripts" / "phase6_server_preflight.sh"
+    repository = local_tmp_path / "isaaclab"
+    repository.mkdir()
+    subprocess.run(["git", "init", "-b", "main"], cwd=repository, check=True)
+    (repository / "VERSION").write_text("2.2.1\n", encoding="utf-8")
+    first = repository / SERVER_ISAACLAB_DIRTY_FILES[0]
+    second = repository / SERVER_ISAACLAB_DIRTY_FILES[1]
+    first.parent.mkdir(parents=True)
+    second.parent.mkdir(parents=True)
+    first.write_text("url=https://github.com/one\n", encoding="utf-8")
+    second.write_text("url=https://github.com/two\n", encoding="utf-8")
+    subprocess.run(["git", "add", "."], cwd=repository, check=True)
+    subprocess.run(
+        [
+            "git",
+            "-c",
+            "user.name=Phase6 Test",
+            "-c",
+            "user.email=phase6@example.invalid",
+            "commit",
+            "-m",
+            "release",
+        ],
+        cwd=repository,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    release_commit = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=repository,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    marker = repository / "official-fix.txt"
+    marker.write_text("one commit after release\n", encoding="utf-8")
+    subprocess.run(["git", "add", marker.name], cwd=repository, check=True)
+    subprocess.run(
+        [
+            "git",
+            "-c",
+            "user.name=Phase6 Test",
+            "-c",
+            "user.email=phase6@example.invalid",
+            "commit",
+            "-m",
+            "official fix",
+        ],
+        cwd=repository,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    head = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=repository,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    first.write_text("url=https://gh-proxy.com/https://github.com/one\n", encoding="utf-8")
+    second.write_text("url=https://gh-proxy.com/https://github.com/two\n", encoding="utf-8")
+    patch = subprocess.run(
+        ["git", "diff", "--binary"],
+        cwd=repository,
+        check=True,
+        capture_output=True,
+    ).stdout
+    patch_sha256 = hashlib.sha256(patch).hexdigest()
+    result_root = local_tmp_path / "provenance-evidence"
+    if sys.platform == "win32":
+        git_executable = Path(shutil.which("git") or "")
+        bash = git_executable.parent.parent / "bin" / "bash.exe"
+    else:
+        bash = Path(shutil.which("bash") or "")
+    if not bash.is_file():
+        pytest.skip("bash executable unavailable")
+
+    command = (
+        f"source '{helper.as_posix()}'; "
+        f"phase6_capture_locked_isaaclab_state '{result_root.as_posix()}' "
+        f"'{repository.as_posix()}' 2.2.1 v2.2.1 {release_commit} {head} "
+        f"{patch_sha256} '{SERVER_ISAACLAB_DIRTY_FILES[0]}' "
+        f"'{SERVER_ISAACLAB_DIRTY_FILES[1]}'"
+    )
+    completed = subprocess.run(
+        [str(bash), "-c", command],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert completed.returncode == 0, completed.stderr
+    assert (result_root / "isaaclab_release_tag.txt").read_text().strip() == "v2.2.1"
+    assert (result_root / "isaaclab_release_commit.txt").read_text().strip() == release_commit
+    assert (result_root / "isaaclab_repo_commit.txt").read_text().strip() == head
+    assert (result_root / "isaaclab_repo_parent_commit.txt").read_text().strip() == release_commit
+    assert (result_root / "isaaclab_repo_patch.sha256").read_text().strip() == patch_sha256
+    assert (result_root / "isaaclab_repo_dirty_files.txt").read_text().splitlines() == list(
+        SERVER_ISAACLAB_DIRTY_FILES
+    )
+
+    (repository / "unexpected.txt").write_text("untracked\n", encoding="utf-8")
+    rejected = subprocess.run(
+        [str(bash), "-c", command],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert rejected.returncode == 1
+    assert "isaaclab_untracked_files" in rejected.stderr
 
 
 def test_server_editable_install_is_offline_and_persists_command_failure(
