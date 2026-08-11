@@ -3,20 +3,20 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Multi-Configuration Koopman Transfer and Environment-Aware Control
 status: in_progress
-last_updated: "2026-08-10T08:22:41.447Z"
-last_activity: 2026-08-10 -- Wave 2 complete with independent validator audit fixes
+last_updated: "2026-08-11T22:56:53+08:00"
+last_activity: 2026-08-11 -- Phase 6 real-server qualification and evidence verification complete
 progress:
   total_phases: 7
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 4
-  completed_plans: 3
-  percent: 75
+  completed_plans: 4
+  percent: 100
 ---
 
 # Project State: EASYkoopman
 
-**Updated:** 2026-08-10
-**Current focus:** Phase 6 — EasyUUV 2.0 Intake and Multi-Configuration Qualification
+**Updated:** 2026-08-11
+**Current focus:** Phase 7 — Cross-Configuration Koopman Data and Control Contract (planning next)
 **Active milestone:** `v2.0 Multi-Configuration Koopman Transfer and Environment-Aware Control`
 **Branch:** `v2.0-multi-configuration`
 
@@ -29,9 +29,9 @@ See `.planning/PROJECT.md`.
 ## Current Position
 
 Phase: 6 — EasyUUV 2.0 Intake and Multi-Configuration Qualification
-Plan: 06-03 complete — 3 of 4 plans
-Status: In progress — Wave 2 complete; server checkpoint remains
-Last activity: 2026-08-10 -- canonical catalog/TAM and strict qualification artifact gate verified locally
+Plan: 06-04 complete — 4 of 4 plans
+Status: Complete — QUAL-01..08 verified; Phase 7 planning unblocked
+Last activity: 2026-08-11 -- eight real-server configurations passed strict artifact/hash pullback gates
 
 ## Milestone Goal
 
@@ -111,9 +111,12 @@ All three boundaries are visible on `origin/v2.0-multi-configuration`: simulator
 - Plan 06-01 completed with canonical `easyuuv_nc` packaging, package-confined USD lookup, a local `.venv` workflow and 21 passing package/v1 source-contract tests.
 - Plan 06-02 completed with one exact eight-name catalog, an Isaac-free 8/6/4-thruster TAM report, explicit `uuv4*` yaw underactuation and snapshot-backed zero-drift proof.
 - Plan 06-03 completed with a strict versioned artifact schema, exact-set/topology/safety/evidence gates and a deterministic CLI; independent audit added fixed-baseline, strict-mask-type and ordered-extrema gates, bringing the mutation suite to 55 passes.
-- Wave 2 integration passes 84 tests across the catalog, artifact validator and existing v1 source contracts; compileall and `pip check` are clean, and importing the gate loads no Omni modules.
-- A pure JSON artifact cannot authenticate where it was produced. The `server_pass` result proves schema/content conformance only until Plan 06-04 anchors it to the actual server runner, command log, pullback hash and blocking human checkpoint.
+- Plan 06-04 completed the deterministic Isaac runner, exact-eight merger, offline bundle/bootstrap, semantic process/log/row gates, strict provenance validator and staged pullback chain.
+- The tested source commit `e24f76a` ran on the isolated server path `/root/EASYkoopman-phase6-v2`; `base` completed 64 steps and the other seven public configurations completed 8 steps each.
+- The actual Isaac Sim 5.0 / Isaac Lab 2.2.1 artifact passed as `server_isaac_smoke` with 8/8 configurations, zero non-finite values, zero dimension mismatches and SHA-256 `6cb83fcb63fc7bd33ffcfa678d09f3e128fcf6f6380ee3b948541814421a1a92`.
+- The 64-file server evidence package is isolated in commit `7670f66`; Phase 6 SUMMARY, SERVER-EVIDENCE and VERIFICATION provide the planning handoff.
+- Phase 6 qualifies simulator/configuration behavior only. Koopman transfer, MPC integration, environment adaptation and Agent effectiveness remain Phase 7–12 work.
 
 ## Next Action
 
-Execute `06-04-PLAN.md`: connect the catalog and validator to the Isaac runner/runbook, run the full local regression, then stop at the blocking eight-configuration server checkpoint. Preserve local-contract versus server-Isaac evidence labels; do not begin Phase 7 before Phase 6 server verification.
+Plan Phase 7: define schema v2 and the Koopman Bridge around fixed `virtual_control_4 = [roll, pitch, yaw, depth]`, including explicit topology masks, PWM diagnostics and v1 compatibility. Do not claim Koopman performance from the Phase 6 smoke artifact.

@@ -3,6 +3,7 @@
 **Created:** 2026-08-09
 **Ambiguity score:** 0.08 (gate: ≤ 0.20)
 **Requirements:** 8 locked
+**Completion:** Verified 2026-08-11; QUAL-01..08 passed with real server evidence.
 
 ## Goal
 
@@ -95,15 +96,15 @@
 
 ## Acceptance Criteria
 
-- [ ] received snapshot commit 与后续 Phase 6 integration commits 可由 Git 文件列表清楚区分。
-- [ ] `easyuuv_nc` 的安装/import/gym/asset runbook 在目标服务器 probe 中通过。
-- [ ] supported catalog 精确包含八个公开构型，`heavy_duty` 仅标记为 internal。
-- [ ] 8/6/4 推进器数量、4D mask 和 declared-control rank 与 Requirement 4 的期望完全一致。
-- [ ] base 至少完成 64 steps，其余七种各至少完成 8 steps，八个结果均唯一存在。
-- [ ] 八构型 artifact 中没有 NaN、Inf、越界控制或推进器维度不匹配。
-- [ ] 本地 `pytest` 退出 0 且测试数不少于 175，`compileall` 退出 0。
-- [ ] runbook、machine-readable artifact、SUMMARY 和 VERIFICATION 均存在并覆盖 QUAL-01..08。
-- [ ] `git diff v1.0` 未显示对 v1.0 tag 或 canonical archived planning records 的回写。
+- [x] received snapshot commit 与后续 Phase 6 integration commits 可由 Git 文件列表清楚区分。
+- [x] `easyuuv_nc` 的安装/import/gym/asset runbook 在目标服务器 probe 中通过。
+- [x] supported catalog 精确包含八个公开构型，`heavy_duty` 仅标记为 internal。
+- [x] 8/6/4 推进器数量、4D mask 和 declared-control rank 与 Requirement 4 的期望完全一致。
+- [x] base 至少完成 64 steps，其余七种各至少完成 8 steps，八个结果均唯一存在。
+- [x] 八构型 artifact 中没有 NaN、Inf、越界控制或推进器维度不匹配。
+- [x] 本地 `pytest` 退出 0 且测试数不少于 175，`compileall` 退出 0。
+- [x] runbook、machine-readable artifact、SUMMARY 和 VERIFICATION 均存在并覆盖 QUAL-01..08。
+- [x] `git diff v1.0` 未显示对 v1.0 tag 或 canonical archived planning records 的回写。
 
 ## Ambiguity Report
 

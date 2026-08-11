@@ -8,14 +8,14 @@
 
 ### EasyUUV 2.0 Intake and Qualification
 
-- [ ] **QUAL-01**: A researcher can identify the exact received `easyuuv_v2-main/` simulator snapshot separately from all later integration changes in Git history.
-- [ ] **QUAL-02**: A researcher can enumerate exactly `base`, `long_body`, `heavy_moderate`, `asymmetric`, `uuv6`, `uuv6_angled`, `uuv4` and `uuv4_angled` through one supported configuration catalog.
-- [ ] **QUAL-03**: A server operator can install and import the simulator through one documented `easyuuv_nc` package, entry-point and asset-resolution contract.
-- [ ] **QUAL-04**: A qualification report records each supported configuration's expected thruster count, TAM rank and controllable-degree-of-freedom mask, including explicit yaw underactuation for `uuv4*`.
-- [ ] **QUAL-05**: A server operator can run a minimum Isaac rollout for `base` and a defined smoke test for each of the other seven supported configurations.
-- [ ] **QUAL-06**: Qualification rejects any rollout that produces a non-finite value or a PWM/virtual-control command outside its declared bound.
-- [ ] **QUAL-07**: A researcher can run the existing Isaac-free v1 regression suite after intake without modifying the `v1.0` tag or archived v1.0 planning records.
-- [ ] **QUAL-08**: Phase 6 produces a server runbook, machine-readable qualification artifact, SUMMARY and VERIFICATION before Phase 7 begins.
+- [x] **QUAL-01**: A researcher can identify the exact received `easyuuv_v2-main/` simulator snapshot separately from all later integration changes in Git history.
+- [x] **QUAL-02**: A researcher can enumerate exactly `base`, `long_body`, `heavy_moderate`, `asymmetric`, `uuv6`, `uuv6_angled`, `uuv4` and `uuv4_angled` through one supported configuration catalog.
+- [x] **QUAL-03**: A server operator can install and import the simulator through one documented `easyuuv_nc` package, entry-point and asset-resolution contract.
+- [x] **QUAL-04**: A qualification report records each supported configuration's expected thruster count, TAM rank and controllable-degree-of-freedom mask, including explicit yaw underactuation for `uuv4*`.
+- [x] **QUAL-05**: A server operator can run a minimum Isaac rollout for `base` and a defined smoke test for each of the other seven supported configurations.
+- [x] **QUAL-06**: Qualification rejects any rollout that produces a non-finite value or a PWM/virtual-control command outside its declared bound.
+- [x] **QUAL-07**: A researcher can run the existing Isaac-free v1 regression suite after intake without modifying the `v1.0` tag or archived v1.0 planning records.
+- [x] **QUAL-08**: Phase 6 produces a server runbook, machine-readable qualification artifact, SUMMARY and VERIFICATION before Phase 7 begins.
 
 ### Cross-Configuration Data and Control Contract
 
@@ -90,14 +90,14 @@
 
 | Requirement | Phase | Status |
 |---|---|---|
-| QUAL-01 | Phase 6 | Pending |
-| QUAL-02 | Phase 6 | Pending |
-| QUAL-03 | Phase 6 | Pending |
-| QUAL-04 | Phase 6 | Pending |
-| QUAL-05 | Phase 6 | Pending |
-| QUAL-06 | Phase 6 | Pending |
-| QUAL-07 | Phase 6 | Pending |
-| QUAL-08 | Phase 6 | Pending |
+| QUAL-01 | Phase 6 | Complete |
+| QUAL-02 | Phase 6 | Complete |
+| QUAL-03 | Phase 6 | Complete |
+| QUAL-04 | Phase 6 | Complete |
+| QUAL-05 | Phase 6 | Complete |
+| QUAL-06 | Phase 6 | Complete |
+| QUAL-07 | Phase 6 | Complete |
+| QUAL-08 | Phase 6 | Complete |
 | CONT-01 | Phase 7 | Pending |
 | CONT-02 | Phase 7 | Pending |
 | CONT-03 | Phase 7 | Pending |

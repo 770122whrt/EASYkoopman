@@ -15,8 +15,8 @@ v1.0 的阶段名称、结论和证据已冻结，不在本活动 roadmap 中重
 
 | Phase | Name | Requirements | Depends on | Status |
 |---|---|---|---|---|
-| 6 | EasyUUV 2.0 Intake and Multi-Configuration Qualification | QUAL-01..08 | v1.0 frozen baseline | In progress — 3/4 plans complete |
-| 7 | Cross-Configuration Koopman Data and Control Contract | CONT-01..05 | Phase 6 | Pending |
+| 6 | EasyUUV 2.0 Intake and Multi-Configuration Qualification | QUAL-01..08 | v1.0 frozen baseline | Complete — 4/4 plans verified |
+| 7 | Cross-Configuration Koopman Data and Control Contract | CONT-01..05 | Phase 6 | Ready to plan |
 | 8 | Multi-Configuration Koopman Identification and OOD Gate | KID-01..05 | Phase 7 | Pending |
 | 9 | Configuration-Aware Koopman-MPC Integration | MPC2-01..04 | Phase 8 | Pending |
 | 10 | Environment Awareness and Online Koopman Update | ADAPT-01..05 | Phase 9 | Pending |
@@ -55,7 +55,7 @@ Plans:
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 06-04-PLAN.md — connect the catalog and validator to the Isaac runner/runbook, run local regressions, then stop at the blocking eight-configuration server checkpoint.
+- [x] 06-04-PLAN.md — connected the catalog/validator to a fail-closed Isaac runner and offline server evidence chain; real eight-configuration smoke, strict pullback validation and artifact hash all passed (`e24f76a`, evidence `7670f66`).
 
 **Cross-cutting constraints:**
 
@@ -82,7 +82,7 @@ Plans:
 
 Plans:
 
-- [ ] TBD — plan after Phase 6 qualification is verified.
+- [ ] TBD — Phase 6 is verified; plan the schema v2 and Koopman Bridge contract next.
 
 ### Phase 8: Multi-Configuration Koopman Identification and OOD Gate
 

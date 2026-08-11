@@ -30,10 +30,11 @@ Build control experiments whose model, checkpoint, controller path and evaluatio
 - ✓ A reproducible single-configuration JSONL → Koopman model → selected manifest → bounded MPC chain exists — v1.0.
 - ✓ Legacy/S-Surface remains available as a matched baseline and fallback — v1.0.
 - ✓ PPO integration, checkpoint provenance and evidence-level separation exist — v1.0.
+- ✓ The eight CLI-supported EasyUUV 2.0 configurations have a provenance-bound package/catalog/topology contract and real Isaac server smoke evidence — Phase 6.
 
 ### Active
 
-- [ ] Import and qualify the eight CLI-supported EasyUUV 2.0 configurations without rewriting v1.0 evidence.
+- [x] Import and qualify the eight CLI-supported EasyUUV 2.0 configurations without rewriting v1.0 evidence.
 - [ ] Establish a topology-independent Koopman/data/control contract for 4, 6 and 8 thrusters.
 - [ ] Measure held-out-configuration Koopman prediction and closed-loop transfer against explicit baselines.
 - [ ] Estimate environment context and allow only bounded, reversible online model updates.
@@ -86,7 +87,7 @@ The final Phase 5.4 selector returned `no_selection`. v1.0 therefore remains a r
 - `no_cost_improvement` fallback needs cost-margin and prediction-error diagnosis.
 - `paper_lifted_edmd` has large depth error and is research-only.
 - Koopman models are trained offline and remain fixed online.
-- Evidence covers one EasyUUV configuration only.
+- Koopman performance evidence still covers the v1.0 single configuration; Phase 6 adds eight-configuration simulator qualification, not Koopman transfer evidence.
 - No LLM runtime, Sim2Real, hardware deployment or broad 6-DOF claim exists.
 - Several historical phases lack standard GSD verification artifacts; see the milestone audit.
 
@@ -122,9 +123,9 @@ v1.0 is frozen at tag `v1.0`. v2.0 continues phase numbering at Phase 6 and trea
 | Add checkpoint provenance/evidence levels | Prevent relabeling and unsupported claims | Good |
 | Close Phase 5.4 with `no_selection` | Preserve a valid negative result | Good |
 | Defer online adaptation and LLM | Finish the core control evidence first | Still valid |
-| Continue v2.0 at Phase 6 | Preserve the v1.0 historical phase identity | Pending |
-| Use fixed 4D virtual control before TAM allocation | Give 4/6/8-thruster platforms one controller-facing meaning | Pending |
-| Treat `uuv4*` yaw as explicitly unavailable | Avoid impossible tracking claims on underactuated configurations | Pending |
+| Continue v2.0 at Phase 6 | Preserve the v1.0 historical phase identity | Good — Phase 6 verified |
+| Use fixed 4D virtual control before TAM allocation | Give 4/6/8-thruster platforms one controller-facing meaning | Contract qualified; Phase 7 integration pending |
+| Treat `uuv4*` yaw as explicitly unavailable | Avoid impossible tracking claims on underactuated configurations | Good — rank/mask and server smoke verified |
 | Restrict Agent to an allow-listed low-frequency supervisor | Preserve deterministic low-level control and fail-closed behavior | Pending |
 
 ## Evolution
@@ -155,4 +156,4 @@ This document evolves at phase transitions and milestone boundaries.
 
 ---
 
-*Last updated: 2026-08-09 at v2.0 milestone initialization*
+*Last updated: 2026-08-11 after Phase 6 verification*
