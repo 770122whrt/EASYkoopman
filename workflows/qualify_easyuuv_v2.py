@@ -554,6 +554,11 @@ def run_isaac_qualification(args: argparse.Namespace) -> tuple[dict[str, Any], i
                     raise RuntimeError("motor_dimension_mismatch")
             row["status"] = "pass"
         except Exception as exc:
+            print(
+                f"ERROR: environment_execution_failed:{type(exc).__name__}:{exc}",
+                file=sys.stderr,
+                flush=True,
+            )
             _record_failure(row, str(exc) or type(exc).__name__)
 
         payload = {

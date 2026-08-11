@@ -109,6 +109,9 @@ class EasyUUVEnvCfg(DirectRLEnvCfg):
     cap_episode_length = True
     episode_length_s = 3.0
     episode_length_before_reset = None
+    action_space = 4
+    observation_space = 9
+    state_space = 0
     num_actions = 4 # 若不考虑原位约束则dim=4(yaw,pitch,roll,depth)，引入原位之后是5(vel)
     num_observations = 9 # 后续可能要修改
     num_states = 0
@@ -2546,6 +2549,8 @@ def _compute_rewards(
 # =============================================================================
 @configclass
 class EasyUUVParametricEnvCfg(EasyUUVEnvCfg):
+    action_space = 8
+    observation_space = 12
     num_actions = 8
     # A3：观测拼接 root_ang_vel_b (3 维)，从 9 增到 12。
     num_observations = 12
@@ -2572,6 +2577,7 @@ class EasyUUVParametricEnvCfg(EasyUUVEnvCfg):
 class EasyUUVParametricSatObsEnvCfg(EasyUUVParametricEnvCfg):
     """Phase 2b / Phase 3 smoke config for the allocator-feedback observation branch."""
 
+    observation_space = 16
     num_observations = 16
     obs_include_ang_vel = True
     obs_include_allocator_feedback = True

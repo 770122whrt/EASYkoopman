@@ -481,6 +481,22 @@ def test_phase6_runtime_registration_modules_use_isaaclab2_compatibility_layer()
         assert "from isaaclab_compat import" in source, relative_path
         assert "omni.isaac.lab" not in source, relative_path
 
+    environment_source = (
+        project_root / "easyuuv_nc" / "env" / "easyuuv_env.py"
+    ).read_text(encoding="utf-8")
+    base_cfg, parametric_cfg = environment_source.split(
+        "class EasyUUVParametricEnvCfg", maxsplit=1
+    )
+    parametric_cfg, saturated_cfg = parametric_cfg.split(
+        "class EasyUUVParametricSatObsEnvCfg", maxsplit=1
+    )
+    assert "action_space = 4" in base_cfg
+    assert "observation_space = 9" in base_cfg
+    assert "state_space = 0" in base_cfg
+    assert "action_space = 8" in parametric_cfg
+    assert "observation_space = 12" in parametric_cfg
+    assert "observation_space = 16" in saturated_cfg
+
 
 def test_preflight_failure_writes_distinct_machine_readable_evidence(
     local_tmp_path: Path, monkeypatch, capsys
