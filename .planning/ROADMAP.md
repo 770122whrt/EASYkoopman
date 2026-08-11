@@ -16,7 +16,7 @@ v1.0 的阶段名称、结论和证据已冻结，不在本活动 roadmap 中重
 | Phase | Name | Requirements | Depends on | Status |
 |---|---|---|---|---|
 | 6 | EasyUUV 2.0 Intake and Multi-Configuration Qualification | QUAL-01..08 | v1.0 frozen baseline | Complete — 4/4 plans verified |
-| 7 | Cross-Configuration Koopman Data and Control Contract | CONT-01..05 | Phase 6 | Ready to plan |
+| 7 | Cross-Configuration Koopman Data and Control Contract | CONT-01..05 | Phase 6 | Planned — 0/4 plans complete |
 | 8 | Multi-Configuration Koopman Identification and OOD Gate | KID-01..05 | Phase 7 | Pending |
 | 9 | Configuration-Aware Koopman-MPC Integration | MPC2-01..04 | Phase 8 | Pending |
 | 10 | Environment Awareness and Online Koopman Update | ADAPT-01..05 | Phase 9 | Pending |
@@ -78,11 +78,30 @@ Plans:
 3. Padded PWM 只能用于诊断、饱和与能耗分析，无法被静默当作跨构型模型输入。
 4. oracle 与 estimated environment context 在数据与 API 中保持分离，v1 日志仅通过显式 compatibility adapter 读取。
 
-**Plans:** 0 plans
+**Plans:** 4 plans
 
 Plans:
 
-- [ ] TBD — Phase 6 is verified; plan the schema v2 and Koopman Bridge contract next.
+**Wave 1**
+
+- [ ] 07-01-PLAN.md — establish the pure schema v2 transition/episode/manifest contract, strict validator CLI and local mutation gates.
+
+**Wave 2** *(blocked on Wave 1 completion; plans may run in parallel)*
+
+- [ ] 07-02-PLAN.md — add physically correct EasyUUV runtime telemetry and the atomic schema-v2 Koopman Bridge, including explicit `uuv4*` yaw masking before TAM.
+- [ ] 07-03-PLAN.md — add immutable `U=virtual_control_4` DatasetV2/diagnostics and an explicit non-promoting v1 compatibility view.
+
+**Wave 3** *(blocked on both Wave 2 plans)*
+
+- [ ] 07-04-PLAN.md — pass the complete local preflight, then produce and independently pull back fail-closed real-server schema/Bridge evidence for `base`, `uuv6` and `uuv4`.
+
+**Cross-cutting constraints:**
+
+- Existing v1 logger/dataset/model/MPC defaults remain `U=PWM_8`; Phase 7 adds versioned v2 interfaces and does not perform the Phase 8/9 model/controller migration.
+- `raw_action_4`, post-mask/pre-TAM `virtual_control_4`, padded diagnostic PWM and post-actuator thruster-only `applied_wrench_6` remain distinct fields with distinct capture points.
+- Local fixtures and mocked Bridge tests are `local_contract` only. Phase completion requires actual Isaac Sim 5.0 / Isaac Lab 2.2.1 evidence for one 8-, 6- and 4-thruster representative.
+- Planning/implementation and pulled-back `source/results/koopman_phase7` evidence remain separate commits; no planning test may pre-create a canonical success artifact.
+- Completing Phase 7 proves the data/control contract is connected to the simulator; it does not prove cross-configuration Koopman prediction or control effectiveness.
 
 ### Phase 8: Multi-Configuration Koopman Identification and OOD Gate
 

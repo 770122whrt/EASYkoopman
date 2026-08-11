@@ -465,17 +465,17 @@ class V1CompatibilityView:
 
 除 A1 外，implementation recommendation 均由锁定文档、当前源码或 Phase 6 artifacts 支持；没有需要用户在计划前补充的产品决定。[VERIFIED: sources throughout]
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **`easyuuv_nc/env/easyuuv_env_cfg.py` canonical ref 不存在**  
    - What we know: `EasyUUVEnvCfg` 实际定义在 `easyuuv_nc/env/easyuuv_env.py:95`。[VERIFIED: repository lookup 2026-08-11]  
    - What's unclear: CONTEXT 的该文件引用是预期未来拆分还是陈旧路径。  
-   - Recommendation: planner/implementation 以当前真实文件为准，不为 Phase 7 顺手拆 cfg 文件；在 plan canonical refs 修正路径，避免契约漂移。
+   - **Resolution adopted:** planner/implementation 以当前真实 `easyuuv_nc/env/easyuuv_env.py` 为准，不为 Phase 7 顺手拆 cfg 文件；`07-CONTEXT.md` 的 canonical ref 已修正。
 
 2. **estimated available=true 的未来字段 allowlist**  
    - What we know: Phase 7 不实现 estimator，默认 `available=false` 足够验收。[VERIFIED: `07-SPEC.md:67-73,100-102`]  
    - What's unclear: Phase 10 最终估计器 method/version/source signals。  
-   - Recommendation: schema 保留 typed envelope，不在 Phase 7 发明 estimator method；validator 对 unavailable 路径严格，对 available 路径只验证 provenance 结构和禁止 simulator-ground-truth source。
+   - **Resolution adopted:** schema 保留 typed envelope，不在 Phase 7 发明 estimator method；Phase 7 默认写 `available=false`，validator 对 unavailable 路径严格，对未来 available 路径只验证 provenance 结构并禁止 simulator-ground-truth source。
 
 ## Sources
 

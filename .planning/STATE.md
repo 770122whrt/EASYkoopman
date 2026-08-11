@@ -3,20 +3,20 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Multi-Configuration Koopman Transfer and Environment-Aware Control
 status: in_progress
-last_updated: "2026-08-11T22:56:53+08:00"
-last_activity: 2026-08-11 -- Phase 6 real-server qualification and evidence verification complete
+last_updated: "2026-08-12T00:05:08+08:00"
+last_activity: 2026-08-12 -- Phase 7 SPEC, research, pattern map and four execution plans passed independent plan checking
 progress:
   total_phases: 7
   completed_phases: 1
-  total_plans: 4
+  total_plans: 8
   completed_plans: 4
-  percent: 100
+  percent: 50
 ---
 
 # Project State: EASYkoopman
 
-**Updated:** 2026-08-11
-**Current focus:** Phase 7 — Cross-Configuration Koopman Data and Control Contract (planning next)
+**Updated:** 2026-08-12
+**Current focus:** Phase 7 — Cross-Configuration Koopman Data and Control Contract (07-01 ready to execute)
 **Active milestone:** `v2.0 Multi-Configuration Koopman Transfer and Environment-Aware Control`
 **Branch:** `v2.0-multi-configuration`
 
@@ -28,10 +28,10 @@ See `.planning/PROJECT.md`.
 
 ## Current Position
 
-Phase: 6 — EasyUUV 2.0 Intake and Multi-Configuration Qualification
-Plan: 06-04 complete — 4 of 4 plans
-Status: Complete — QUAL-01..08 verified; Phase 7 planning unblocked
-Last activity: 2026-08-11 -- eight real-server configurations passed strict artifact/hash pullback gates
+Phase: 7 — Cross-Configuration Koopman Data and Control Contract
+Plan: 07-01 ready — 0 of 4 Phase 7 plans complete
+Status: Planned — CONT-01..05 remain pending until local implementation and real three-topology server evidence pass
+Last activity: 2026-08-12 -- Phase 7 ambiguity gate, research, pattern mapping and three-round plan checking complete
 
 ## Milestone Goal
 
@@ -116,7 +116,12 @@ All three boundaries are visible on `origin/v2.0-multi-configuration`: simulator
 - The actual Isaac Sim 5.0 / Isaac Lab 2.2.1 artifact passed as `server_isaac_smoke` with 8/8 configurations, zero non-finite values, zero dimension mismatches and SHA-256 `6cb83fcb63fc7bd33ffcfa678d09f3e128fcf6f6380ee3b948541814421a1a92`.
 - The 64-file server evidence package is isolated in commit `7670f66`; Phase 6 SUMMARY, SERVER-EVIDENCE and VERIFICATION provide the planning handoff.
 - Phase 6 qualifies simulator/configuration behavior only. Koopman transfer, MPC integration, environment adaptation and Agent effectiveness remain Phase 7–12 work.
+- Phase 7 SPEC ambiguity is `0.14`; it locks schema v2 field semantics, additive v1 isolation, actual post-actuator wrench, oracle/estimated context separation and a three-topology server completion gate.
+- Phase 7 research and pattern mapping identify the exact control/dynamics capture points: explicit catalog-derived yaw mask before TAM, actual thruster wrench before environmental forces, and same-step fluid/efficiency caches.
+- Four plans cover CONT-01..05 and D-01..16 with dependency graph `07-01 -> {07-02,07-03} -> 07-04`.
+- Independent plan checking converged from five blocking findings to zero remaining issues. It corrected the per-episode fixture boundary, real Phase 6 script path, aggregate validator, executable full local preflight and resolved research questions.
+- Phase 7 planning does not mark any CONT requirement complete and does not create or claim server evidence. Existing v1 `U=PWM_8` model/MPC defaults remain frozen.
 
 ## Next Action
 
-Plan Phase 7: define schema v2 and the Koopman Bridge around fixed `virtual_control_4 = [roll, pitch, yaw, depth]`, including explicit topology masks, PWM diagnostics and v1 compatibility. Do not claim Koopman performance from the Phase 6 smoke artifact.
+Execute `07-01-PLAN.md`: establish the pure schema v2 transition/episode/manifest contract and strict local validator through TDD. Do not connect to the server until 07-01..03 and the complete 07-04 local preflight are committed and green.
