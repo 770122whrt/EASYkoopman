@@ -1,0 +1,56 @@
+{
+  "actual_isaac_lab": "2.2.1",
+  "actual_isaac_sim": "5.0",
+  "evidence_level": "server_isaac_smoke",
+  "expected_isaac_lab": "2.2.1",
+  "expected_isaac_sim": "5.0",
+  "results": [
+    {
+      "action_max": 0.09960281848907471,
+      "action_min": -0.09960281848907471,
+      "configuration": "long_body",
+      "control_channels": [
+        "roll",
+        "pitch",
+        "yaw",
+        "depth"
+      ],
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "declared_control_rank": 4,
+      "dimension_mismatch_count": 0,
+      "environment_created": true,
+      "motor_max": 0.09960281848907471,
+      "motor_min": -0.09960281848907471,
+      "motor_vector_length": 8,
+      "nonfinite_count": 0,
+      "reason_codes": [],
+      "reset_passed": true,
+      "seed": 0,
+      "status": "pass",
+      "steps_completed": 8,
+      "thruster_count": 8
+    }
+  ],
+  "runtime_provenance": {
+    "isaac_lab_distribution": "0.45.9",
+    "isaac_lab_release_commit": "0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20",
+    "isaac_lab_release_tag": "v2.2.1",
+    "isaac_lab_repo_commit": "c91a125c73c8b574878419a9583afc0b63b99f0a",
+    "isaac_lab_repo_dirty_files": [
+      "source/isaaclab_mimic/setup.py",
+      "source/isaaclab_rl/setup.py"
+    ],
+    "isaac_lab_repo_parent_commit": "0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20",
+    "isaac_lab_repo_patch_sha256": "d056adb8bb64fe7c9c34fffbd2478ef04155df8b60b071da942280952f829079",
+    "isaac_lab_version_file": "2.2.1",
+    "isaac_sim_distribution": "5.0.0.0"
+  },
+  "schema_version": "easyuuv-v2-qualification-v1",
+  "source_commit": "e24f76a0d5c047eeb16c6acf20fdd01bd20c264b",
+  "task_id": "EasyUUV-Direct-v1"
+}
