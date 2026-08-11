@@ -481,6 +481,12 @@ def test_phase6_runtime_registration_modules_use_isaaclab2_compatibility_layer()
         assert "from isaaclab_compat import" in source, relative_path
         assert "omni.isaac.lab" not in source, relative_path
 
+    asset_source = (
+        project_root / "easyuuv_nc" / "env" / "assets" / "warpauv.py"
+    ).read_text(encoding="utf-8")
+    assert "ArticulationRootPropertiesCfg" in asset_source
+    assert "articulation_enabled=False" in asset_source
+
     environment_source = (
         project_root / "easyuuv_nc" / "env" / "easyuuv_env.py"
     ).read_text(encoding="utf-8")
