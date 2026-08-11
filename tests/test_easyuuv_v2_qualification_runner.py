@@ -1417,6 +1417,7 @@ def test_pullback_stages_then_checks_native_exits_hash_and_commits_before_promot
     assert "isaaclab_release_parent_mismatch" in script
     assert "validator_failed" in script
     assert "status --porcelain=v1" in script
+    assert "core.excludesFile=" in script
     assert "--untracked-files=no" not in script
     assert script.index("sha256_mismatch") < script.index("Move-Item")
     assert script.index("validator_failed") < script.index("Move-Item")

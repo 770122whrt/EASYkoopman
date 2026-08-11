@@ -68,7 +68,8 @@ if ($localHead -ne $expectedCommit) {
 }
 
 $worktreeStatusOutput = @(
-    & git -C $repository status --porcelain=v1 2>&1
+    & git -c "core.excludesFile=" -C $repository `
+        status --porcelain=v1 2>&1
 )
 if ($LASTEXITCODE -ne 0) {
     throw "local_status_probe_failed:$LASTEXITCODE"
