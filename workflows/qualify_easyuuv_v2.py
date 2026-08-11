@@ -441,6 +441,32 @@ def _close_runtime(env: Any, simulation_app: Any) -> list[str]:
     return failures
 
 
+def _close_environment(env: Any) -> list[str]:
+    """Close Gym without letting Kit shutdown preempt artifact persistence."""
+    if env is None:
+        return []
+    try:
+        env.close()
+    except Exception:
+        return ["environment_close_failed"]
+    return []
+
+
+def _persist_before_simulation_shutdown(
+    output: Path,
+    payload: dict[str, Any],
+    result_root: Path,
+    simulation_app: Any,
+) -> None:
+    """Persist and flush the row before Isaac Sim may terminate the process."""
+    _atomic_write_json(output, payload, result_root=result_root)
+    row = payload["results"][0]
+    print(f"qualification_row={output}", flush=True)
+    print(f"configuration={row['configuration']}", flush=True)
+    print(f"status={row['status']}", flush=True)
+    simulation_app.close()
+
+
 def _record_cleanup_failures(
     payload: dict[str, Any], failures: Iterable[str], *, exit_code: int
 ) -> int:
@@ -477,6 +503,7 @@ def run_isaac_qualification(args: argparse.Namespace) -> tuple[dict[str, Any], i
     env = None
     payload: dict[str, Any] | None = None
     exit_code = 1
+    preflight_error: Exception | None = None
     try:
         import gymnasium as gym
         import isaaclab
@@ -542,8 +569,12 @@ def run_isaac_qualification(args: argparse.Namespace) -> tuple[dict[str, Any], i
             "results": [row],
         }
         exit_code = 0 if row["status"] == "pass" else 1
+    except Exception as exc:
+        preflight_error = exc
+        payload = _preflight_failure_payload(args, str(exc) or type(exc).__name__)
+        exit_code = 1
     finally:
-        cleanup_failures = _close_runtime(env, simulation_app)
+        cleanup_failures = _close_environment(env)
         if cleanup_failures:
             print(
                 "ERROR: runtime_cleanup_failed:" + ",".join(cleanup_failures),
@@ -553,8 +584,19 @@ def run_isaac_qualification(args: argparse.Namespace) -> tuple[dict[str, Any], i
                 exit_code = _record_cleanup_failures(
                     payload, cleanup_failures, exit_code=exit_code
                 )
+        if payload is not None:
+            output = resolve_output_path(args.output_json, args.result_root)
+            if preflight_error is not None:
+                print(f"ERROR: {preflight_error}", file=sys.stderr, flush=True)
+            _persist_before_simulation_shutdown(
+                output, payload, args.result_root, simulation_app
+            )
+        else:
+            simulation_app.close()
     if payload is None:  # An earlier exception normally propagates through finally.
         raise RuntimeError("qualification_payload_unavailable")
+    if preflight_error is not None:
+        raise RuntimeError(str(preflight_error)) from preflight_error
     return payload, exit_code
 
 
@@ -565,7 +607,8 @@ def main(argv: list[str] | None = None) -> int:
     try:
         output = resolve_output_path(args.output_json, args.result_root)
         payload, exit_code = run_isaac_qualification(args)
-        _atomic_write_json(output, payload, result_root=args.result_root)
+        if not output.is_file():
+            _atomic_write_json(output, payload, result_root=args.result_root)
     except (OSError, RuntimeError, ValueError) as exc:
         if output is not None:
             try:

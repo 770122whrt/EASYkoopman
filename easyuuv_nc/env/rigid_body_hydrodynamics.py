@@ -8,7 +8,7 @@ Authors: Ethan Fahnestock and Levi "Veevee" Cai (cail@mit.edu)
 
 from dataclasses import dataclass
 from typing import Tuple
-from omni.isaac.lab.utils.math import quat_conjugate, quat_inv, quat_apply, convert_quat
+from isaaclab_compat import convert_quat, quat_apply, quat_conjugate, quat_inv
 import numpy as np 
 import torch 
 

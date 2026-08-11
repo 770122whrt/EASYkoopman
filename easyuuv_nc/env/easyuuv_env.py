@@ -30,23 +30,35 @@ from typing import Mapping, Tuple
 
 from .assets.warpauv import WARPAUV_CFG
 
-import omni.isaac.lab.sim as sim_utils
-from omni.isaac.lab.assets import RigidObject, RigidObjectCfg
-from omni.isaac.lab.envs import DirectRLEnv, DirectRLEnvCfg
-from omni.isaac.lab.scene import InteractiveSceneCfg
-from omni.isaac.lab.envs.ui import BaseEnvWindow
-from omni.isaac.lab.sim import SimulationCfg
-from omni.isaac.lab.sim.spawners.from_files import GroundPlaneCfg, spawn_ground_plane
-from omni.isaac.lab.utils import configclass
-from omni.isaac.lab.utils.math import sample_uniform, normalize
-from omni.isaac.lab.markers import CUBOID_MARKER_CFG, VisualizationMarkers, RED_ARROW_X_MARKER_CFG, GREEN_ARROW_X_MARKER_CFG, BLUE_ARROW_X_MARKER_CFG
-from omni.isaac.lab.utils.math import quat_apply, quat_conjugate, quat_from_angle_axis, quat_mul
-import omni.isaac.lab.utils.math as math_utils
+from isaaclab_compat import (
+    BLUE_ARROW_X_MARKER_CFG,
+    CUBOID_MARKER_CFG,
+    GREEN_ARROW_X_MARKER_CFG,
+    RED_ARROW_X_MARKER_CFG,
+    BaseEnvWindow,
+    DirectRLEnv,
+    DirectRLEnvCfg,
+    GroundPlaneCfg,
+    InteractiveSceneCfg,
+    RigidObject,
+    RigidObjectCfg,
+    SimulationCfg,
+    VisualizationMarkers,
+    configclass,
+    math_utils,
+    normalize,
+    quat_apply,
+    quat_conjugate,
+    quat_from_angle_axis,
+    quat_mul,
+    sample_uniform,
+    sim_utils,
+    spawn_ground_plane,
+)
 
 ##
 # Hydrodynamic model
 ##
-from omni.isaac.lab.utils.math import quat_apply, quat_conjugate
 from .rigid_body_hydrodynamics import HydrodynamicForceModels
 from .boundary_effects import BoundaryEffectModels
 from .thruster_dynamics import DynamicsFirstOrder, ConversionFunctionBasic, get_thruster_com_and_orientations

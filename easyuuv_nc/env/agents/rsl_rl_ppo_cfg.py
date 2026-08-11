@@ -3,12 +3,11 @@
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
-from omni.isaac.lab.utils import configclass
-
-from omni.isaac.lab_tasks.utils.wrappers.rsl_rl import (
+from isaaclab_compat import (
     RslRlOnPolicyRunnerCfg,
     RslRlPpoActorCriticCfg,
     RslRlPpoAlgorithmCfg,
+    configclass,
 )
 
 
@@ -93,4 +92,3 @@ class EasyUUVParametricWide256PPORunnerCfg(EasyUUVParametricPPORunnerCfg):
         critic_hidden_dims=[256, 256],
         activation="elu",
     )
-

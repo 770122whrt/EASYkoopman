@@ -1,6 +1,4 @@
-import omni.isaac.lab.sim as sim_utils
-
-from omni.isaac.lab.assets import RigidObjectCfg
+from isaaclab_compat import RigidObjectCfg, sim_utils
 
 from easyuuv_nc.package_paths import EMBODIMENT_USD_PATH
 

@@ -79,12 +79,14 @@ mkdir -p \
     "$RESULT_ROOT/rows" \
     "$RESULT_ROOT/logs" \
     "$RESULT_ROOT/exit_codes" \
-    "$RESULT_ROOT/log_exit_codes"
+    "$RESULT_ROOT/log_exit_codes" \
+    "$RESULT_ROOT/artifact_gate_codes"
 printf '%s\n' "$expected_commit" > "$RESULT_ROOT/source_commit.txt"
 "$ISAACLAB_PY" -p -c \
     'from importlib.metadata import version; print("isaacsim_distribution=" + version("isaacsim")); print("isaaclab_distribution=" + version("isaaclab"))' \
     | tee "$RESULT_ROOT/runtime_distributions.txt"
 "$ISAACLAB_PY" -p "$TASK_PROBE" 2>&1 | tee "$RESULT_ROOT/gym_tasks.log"
+phase6_require_gym_probe_log "$RESULT_ROOT/gym_tasks.log"
 
 any_failed=0
 run_one() {
@@ -110,6 +112,10 @@ run_one() {
     log_status="${pipeline_status[1]:-125}"
     if ! phase6_record_pipeline_status \
         "$RESULT_ROOT" "$configuration" "$runner_status" "$log_status"; then
+        any_failed=1
+    fi
+    if ! phase6_require_runner_artifact \
+        "$RESULT_ROOT" "$configuration" "$CONDA_PYTHON"; then
         any_failed=1
     fi
     return 0

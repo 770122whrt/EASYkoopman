@@ -21,6 +21,7 @@ TASK_IDS = (
 
 app_launcher = AppLauncher({"headless": True})
 simulation_app = app_launcher.app
+probe_error: BaseException | None = None
 try:
     import gymnasium as gym
 
@@ -30,10 +31,19 @@ try:
     register_gym_tasks()
 
     assert EMBODIMENT_USD_PATH.is_file()
-    print(f"embodiment_usd={EMBODIMENT_USD_PATH}")
+    print(f"embodiment_usd={EMBODIMENT_USD_PATH}", flush=True)
 
     for task_id in TASK_IDS:
         specification = gym.spec(task_id)
-        print(f"gym_task_id={task_id};entry_point={specification.entry_point}")
+        print(
+            f"gym_task_id={task_id};entry_point={specification.entry_point}",
+            flush=True,
+        )
+except BaseException as exc:
+    probe_error = exc
+    print(f"ERROR: gym_probe_failed:{type(exc).__name__}:{exc}", flush=True)
 finally:
     simulation_app.close()
+
+if probe_error is not None:
+    raise probe_error

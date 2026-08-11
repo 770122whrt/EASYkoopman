@@ -442,6 +442,46 @@ def test_environment_close_failure_still_closes_simulator_and_marks_payload():
     ]
 
 
+def test_runner_persists_artifact_before_simulation_shutdown_can_exit_process(
+    local_tmp_path: Path,
+):
+    persist = getattr(
+        qualification_runner, "_persist_before_simulation_shutdown", None
+    )
+    assert callable(persist)
+    result_root = local_tmp_path / "results"
+    output = result_root / "rows" / "base.json"
+    output.parent.mkdir(parents=True)
+    payload = _single_row_payload("base")
+
+    class ProcessExitingSimulationApp:
+        def close(self) -> None:
+            raise SystemExit(0)
+
+    with pytest.raises(SystemExit) as caught:
+        persist(output, payload, result_root, ProcessExitingSimulationApp())
+
+    assert caught.value.code == 0
+    assert json.loads(output.read_text(encoding="utf-8")) == payload
+
+
+def test_phase6_runtime_registration_modules_use_isaaclab2_compatibility_layer():
+    project_root = Path(__file__).resolve().parents[1]
+    runtime_modules = (
+        "easyuuv_nc/env/easyuuv_env.py",
+        "easyuuv_nc/env/assets/warpauv.py",
+        "easyuuv_nc/env/agents/rsl_rl_ppo_cfg.py",
+        "easyuuv_nc/env/boundary_effects.py",
+        "easyuuv_nc/env/rigid_body_hydrodynamics.py",
+        "easyuuv_nc/env/thruster_dynamics.py",
+    )
+
+    for relative_path in runtime_modules:
+        source = (project_root / relative_path).read_text(encoding="utf-8")
+        assert "from isaaclab_compat import" in source, relative_path
+        assert "omni.isaac.lab" not in source, relative_path
+
+
 def test_preflight_failure_writes_distinct_machine_readable_evidence(
     local_tmp_path: Path, monkeypatch, capsys
 ):
@@ -1213,6 +1253,120 @@ def test_server_pipeline_gate_blocks_successful_runner_when_log_capture_fails(
     assert "log_capture_failed:base:1" in completed.stderr
     assert 'pipeline_status=("${PIPESTATUS[@]}")' in server_script
     assert "phase6_record_pipeline_status" in server_script
+
+
+def test_server_pipeline_gate_rejects_missing_or_failed_runner_artifact(
+    local_tmp_path: Path,
+):
+    project_root = Path(__file__).resolve().parents[1]
+    helper = project_root / "scripts" / "phase6_pipeline_gate.sh"
+    server_script = (
+        project_root / "scripts" / "phase6_server_qualification.sh"
+    ).read_text(encoding="utf-8")
+    result_root = local_tmp_path / "artifact-evidence"
+    rows = result_root / "rows"
+    rows.mkdir(parents=True)
+    (result_root / "artifact_gate_codes").mkdir()
+    row_path = rows / "base.json"
+    row_path.write_text(json.dumps(_single_row_payload("base")), encoding="utf-8")
+    if sys.platform == "win32":
+        git_executable = Path(shutil.which("git") or "")
+        bash = git_executable.parent.parent / "bin" / "bash.exe"
+    else:
+        bash = Path(shutil.which("bash") or "")
+    if not bash.is_file():
+        pytest.skip("bash executable unavailable")
+    command = (
+        f"source '{helper.as_posix()}'; "
+        f"phase6_require_runner_artifact '{result_root.as_posix()}' base "
+        f"'{Path(sys.executable).as_posix()}'"
+    )
+
+    passed = subprocess.run(
+        [str(bash), "-c", command],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert passed.returncode == 0, passed.stderr
+    assert (result_root / "artifact_gate_codes" / "base.txt").read_text().strip() == "0"
+
+    failed_payload = _single_row_payload("base")
+    failed_payload["results"][0]["status"] = "fail"
+    row_path.write_text(json.dumps(failed_payload), encoding="utf-8")
+    failed = subprocess.run(
+        [str(bash), "-c", command],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert failed.returncode == 1
+    assert "runner_artifact_invalid:base" in failed.stderr
+    assert (result_root / "artifact_gate_codes" / "base.txt").read_text().strip() == "1"
+
+    row_path.unlink()
+    missing = subprocess.run(
+        [str(bash), "-c", command],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert missing.returncode == 1
+    assert "runner_artifact_missing:base" in missing.stderr
+    assert "phase6_require_runner_artifact" in server_script
+
+
+def test_server_pipeline_gate_requires_complete_gym_probe_log(local_tmp_path: Path):
+    project_root = Path(__file__).resolve().parents[1]
+    helper = project_root / "scripts" / "phase6_pipeline_gate.sh"
+    server_script = (
+        project_root / "scripts" / "phase6_server_qualification.sh"
+    ).read_text(encoding="utf-8")
+    probe_log = local_tmp_path / "gym_tasks.log"
+    task_ids = (
+        "EasyUUV-Direct-v1",
+        "EasyUUV-Direct-Parametric-v1",
+        "EasyUUV-Direct-Parametric-SatObs-v1",
+        "EasyUUV-Direct-Parametric-Wide256-v1",
+    )
+    probe_log.write_text(
+        "embodiment_usd=/tmp/embodiment.usd\n"
+        + "".join(
+            f"gym_task_id={task_id};entry_point=easyuuv_nc.env:EasyUUVEnv\n"
+            for task_id in task_ids
+        ),
+        encoding="utf-8",
+    )
+    if sys.platform == "win32":
+        git_executable = Path(shutil.which("git") or "")
+        bash = git_executable.parent.parent / "bin" / "bash.exe"
+    else:
+        bash = Path(shutil.which("bash") or "")
+    if not bash.is_file():
+        pytest.skip("bash executable unavailable")
+    command = (
+        f"source '{helper.as_posix()}'; "
+        f"phase6_require_gym_probe_log '{probe_log.as_posix()}'"
+    )
+
+    passed = subprocess.run(
+        [str(bash), "-c", command],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert passed.returncode == 0, passed.stderr
+
+    probe_log.write_text("embodiment_usd=/tmp/embodiment.usd\n", encoding="utf-8")
+    failed = subprocess.run(
+        [str(bash), "-c", command],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert failed.returncode == 1
+    assert "gym_probe_record_invalid:EasyUUV-Direct-v1" in failed.stderr
+    assert "phase6_require_gym_probe_log" in server_script
 
 
 def test_pullback_stages_then_checks_native_exits_hash_and_commits_before_promotion():

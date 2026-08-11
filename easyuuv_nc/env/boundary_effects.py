@@ -24,7 +24,7 @@
     - With all flags False the returned wrench is exactly zero -> zero behaviour
       change (default ``off``).
 
-  This module is pure torch (only quat ops from omni.isaac.lab.utils.math) so it
+  This module is pure torch (only quaternion ops from the compatibility layer) so it
   can be unit-tested offline with a math stub.
 
   Authors: STDW/meta extensions 2026-06.
@@ -37,7 +37,7 @@ from typing import Dict, Tuple
 
 import torch
 
-from omni.isaac.lab.utils.math import quat_apply, quat_conjugate
+from isaaclab_compat import quat_apply, quat_conjugate
 
 
 _MODE_PRESETS: Dict[str, Tuple[str, ...]] = {

@@ -98,18 +98,26 @@ The upstream release and post-release commit are independently inspectable at
 <https://github.com/isaac-sim/IsaacLab/commit/c91a125c73c8b574878419a9583afc0b63b99f0a>.
 The script does not create a tag, clean the repository, edit the Conda
 environment, or modify `/root/IsaacLab`. It proves all four Gym registrations
-after AppLauncher, runs all eight processes, and records both the runner and
-`tee` exit status under `exit_codes/` and `log_exit_codes/`. A failed runner or
-failed log capture blocks merge; only then may the script validate and hash the
-aggregate. Any failed gate stops all later stages.
+after AppLauncher, runs all eight processes, and records the native runner,
+`tee`, and semantic row gates under `exit_codes/`, `log_exit_codes/`, and
+`artifact_gate_codes/`. On this Isaac Sim 5.0 runtime, Kit shutdown can terminate
+the interpreter with status zero, so the runner atomically persists and flushes
+its row before `SimulationApp.close()`. The machine helper therefore never
+accepts the process status alone: each expected row must exist, identify the
+requested configuration, carry `server_isaac_smoke`, and report `status=pass`.
+The Gym probe is likewise accepted only when its captured log contains the USD
+record and exactly one record for each of the four public task IDs. A failed
+runner, log capture, Gym probe, or semantic row gate blocks merge; only then may
+the script validate and hash the aggregate. Any failed gate stops all later
+stages.
 
 ## Server Eight-Configuration Smoke
 
 The bootstrap above executes this exact matrix through the committed helper.
 The explicit commands below are an auditable reference, not an alternate manual
-workflow. Each invocation is a separate Isaac process. The helper preserves JSON,
-log and `PIPESTATUS[0]` for every configuration and refuses to merge if any is
-nonzero.
+workflow. Each invocation is a separate Isaac process. The helper preserves the
+JSON row, log, both pipeline statuses, and semantic artifact-gate status for
+every configuration and refuses to merge if any gate fails.
 
 The machine helper first runs:
 
