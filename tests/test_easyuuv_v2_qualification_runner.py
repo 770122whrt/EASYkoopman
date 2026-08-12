@@ -58,6 +58,61 @@ SERVER_ISAACLAB_DIRTY_FILES = (
 )
 
 
+def _windows_git_root() -> Path | None:
+    if sys.platform != "win32":
+        return None
+    completed = subprocess.run(
+        ["git", "--exec-path"],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if completed.returncode != 0 or not completed.stdout.strip():
+        return None
+    exec_path = Path(completed.stdout.strip())
+    if len(exec_path.parents) < 3:
+        return None
+    return exec_path.parents[2]
+
+
+def _git_bash_executable() -> Path:
+    git_root = _windows_git_root()
+    if git_root is not None:
+        return git_root / "bin" / "bash.exe"
+    return Path(shutil.which("bash") or "")
+
+
+def _git_bash_environment(
+    base_environment: dict[str, str] | None = None,
+    *,
+    priority_paths: tuple[Path, ...] = (),
+) -> dict[str, str]:
+    """Build an isolated Bash PATH while keeping explicit test doubles first."""
+    environment = dict(os.environ if base_environment is None else base_environment)
+    existing_path = environment.get("PATH", "")
+    path_parts = [str(path) for path in priority_paths]
+    git_root = _windows_git_root()
+    if git_root is not None:
+        path_parts.extend(
+            (
+                str(git_root / "usr" / "bin"),
+                str(git_root / "mingw64" / "bin"),
+            )
+        )
+    if existing_path:
+        path_parts.extend(existing_path.split(os.pathsep))
+
+    deduplicated: list[str] = []
+    seen: set[str] = set()
+    for path_part in path_parts:
+        normalized = os.path.normcase(os.path.normpath(path_part))
+        if path_part and normalized not in seen:
+            seen.add(normalized)
+            deduplicated.append(path_part)
+    environment["PATH"] = os.pathsep.join(deduplicated)
+    return environment
+
+
 def test_server_shell_and_python_runtime_locks_are_identical() -> None:
     """Prevent the machine preflight and strict artifact validator from drifting."""
     script = (
@@ -948,11 +1003,7 @@ def test_server_bootstrap_verifies_complete_bundle_from_nonrepository_directory(
         bootstrap_text = bootstrap_text.replace(original, replacement)
     bootstrap.write_text(bootstrap_text, encoding="utf-8", newline="\n")
 
-    if sys.platform == "win32":
-        git_executable = Path(shutil.which("git") or "")
-        bash = git_executable.parent.parent / "bin" / "bash.exe"
-    else:
-        bash = Path(shutil.which("bash") or "")
+    bash = _git_bash_executable()
     if not bash.is_file():
         pytest.skip("bash executable unavailable")
     launch_directory = local_tmp_path / "not-a-repository"
@@ -962,6 +1013,7 @@ def test_server_bootstrap_verifies_complete_bundle_from_nonrepository_directory(
     environment = os.environ.copy()
     environment["GIT_CEILING_DIRECTORIES"] = local_tmp_path.as_posix()
     environment["TMPDIR"] = temporary_directory.as_posix()
+    environment = _git_bash_environment(environment)
     completed = subprocess.run(
         [str(bash), str(bootstrap)],
         cwd=launch_directory,
@@ -1051,11 +1103,7 @@ def test_server_conda_preflight_activates_locked_python_in_current_shell(
         encoding="utf-8",
         newline="\n",
     )
-    if sys.platform == "win32":
-        git_executable = Path(shutil.which("git") or "")
-        bash = git_executable.parent.parent / "bin" / "bash.exe"
-    else:
-        bash = Path(shutil.which("bash") or "")
+    bash = _git_bash_executable()
     if not bash.is_file():
         pytest.skip("bash executable unavailable")
 
@@ -1065,18 +1113,21 @@ def test_server_conda_preflight_activates_locked_python_in_current_shell(
             check=True,
             capture_output=True,
             text=True,
+            env=_git_bash_environment(),
         ).stdout.strip().splitlines()[-1]
         bash_fake_python = subprocess.run(
             [str(bash), "-lc", f"cygpath -u '{fake_python.as_posix()}'"],
             check=True,
             capture_output=True,
             text=True,
+            env=_git_bash_environment(),
         ).stdout.strip().splitlines()[-1]
     else:
         bash_fake_bin = fake_bin.as_posix()
         bash_fake_python = fake_python.as_posix()
     environment = os.environ.copy()
     environment["PHASE6_FAKE_CONDA_BIN"] = bash_fake_bin
+    environment = _git_bash_environment(environment)
     completed = subprocess.run(
         [
             str(bash),
@@ -1178,11 +1229,7 @@ def test_server_provenance_helper_accepts_only_locked_release_descendant_and_pat
     ).stdout
     patch_sha256 = hashlib.sha256(patch).hexdigest()
     result_root = local_tmp_path / "provenance-evidence"
-    if sys.platform == "win32":
-        git_executable = Path(shutil.which("git") or "")
-        bash = git_executable.parent.parent / "bin" / "bash.exe"
-    else:
-        bash = Path(shutil.which("bash") or "")
+    bash = _git_bash_executable()
     if not bash.is_file():
         pytest.skip("bash executable unavailable")
 
@@ -1198,6 +1245,7 @@ def test_server_provenance_helper_accepts_only_locked_release_descendant_and_pat
         check=False,
         capture_output=True,
         text=True,
+        env=_git_bash_environment(),
     )
 
     assert completed.returncode == 0, completed.stderr
@@ -1256,6 +1304,7 @@ def test_server_editable_install_is_offline_and_persists_command_failure(
     assert install_helper.is_file()
     environment = os.environ.copy()
     environment["PHASE6_FAKE_CALLS"] = str(calls)
+    environment = _git_bash_environment(environment)
     completed = subprocess.run(
         [
             str(bash),
@@ -1342,11 +1391,7 @@ def test_server_pipeline_gate_rejects_missing_or_failed_runner_artifact(
     (result_root / "artifact_gate_codes").mkdir()
     row_path = rows / "base.json"
     row_path.write_text(json.dumps(_single_row_payload("base")), encoding="utf-8")
-    if sys.platform == "win32":
-        git_executable = Path(shutil.which("git") or "")
-        bash = git_executable.parent.parent / "bin" / "bash.exe"
-    else:
-        bash = Path(shutil.which("bash") or "")
+    bash = _git_bash_executable()
     if not bash.is_file():
         pytest.skip("bash executable unavailable")
     command = (
@@ -1360,6 +1405,7 @@ def test_server_pipeline_gate_rejects_missing_or_failed_runner_artifact(
         check=False,
         capture_output=True,
         text=True,
+        env=_git_bash_environment(),
     )
     assert passed.returncode == 0, passed.stderr
     assert (result_root / "artifact_gate_codes" / "base.txt").read_text().strip() == "0"
@@ -1372,6 +1418,7 @@ def test_server_pipeline_gate_rejects_missing_or_failed_runner_artifact(
         check=False,
         capture_output=True,
         text=True,
+        env=_git_bash_environment(),
     )
     assert failed.returncode == 1
     assert "runner_artifact_invalid:base" in failed.stderr
@@ -1410,11 +1457,7 @@ def test_server_pipeline_gate_requires_complete_gym_probe_log(local_tmp_path: Pa
         ),
         encoding="utf-8",
     )
-    if sys.platform == "win32":
-        git_executable = Path(shutil.which("git") or "")
-        bash = git_executable.parent.parent / "bin" / "bash.exe"
-    else:
-        bash = Path(shutil.which("bash") or "")
+    bash = _git_bash_executable()
     if not bash.is_file():
         pytest.skip("bash executable unavailable")
     command = (
