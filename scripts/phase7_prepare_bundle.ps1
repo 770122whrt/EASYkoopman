@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-    [string]$RepositoryRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")),
+    [string]$RepositoryRoot = "",
     [string]$Branch = "v2.0-multi-configuration",
     [string]$TransferDirectory = ".pytest-tmp/phase7-transfer",
     [string]$CanonicalEvidenceDirectory = "source/results/koopman_phase7",
@@ -10,6 +10,13 @@ param(
 
 $ErrorActionPreference = "Stop"
 Set-StrictMode -Version Latest
+
+$phase7ScriptPath = $PSCommandPath
+if (-not $phase7ScriptPath) { $phase7ScriptPath = $MyInvocation.MyCommand.Path }
+if (-not $RepositoryRoot) {
+    if (-not $phase7ScriptPath) { throw "script_path_unavailable" }
+    $RepositoryRoot = Join-Path (Split-Path -Parent $phase7ScriptPath) ".."
+}
 
 function Invoke-Git {
     param([Parameter(ValueFromRemainingArguments = $true)][string[]]$Arguments)

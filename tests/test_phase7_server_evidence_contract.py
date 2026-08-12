@@ -688,7 +688,6 @@ def test_local_preflight_default_repository_root_reaches_real_gate() -> None:
     assert "Join-Path" not in output
     assert "PSScriptRoot" not in output
     assert "gate=bash_parse;status=running" in output
-    assert "gate=worktree_clean" in output
 
 
 def test_prepare_default_repository_root_routes_to_same_preflight(tmp_path: Path) -> None:

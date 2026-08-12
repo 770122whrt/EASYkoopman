@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-    [string]$RepositoryRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")),
+    [string]$RepositoryRoot = "",
     [string]$Remote = "agentic-AUV",
     [string]$RemoteEvidenceRoot = "/root/EASYkoopman-phase7-v2/source/results/koopman_phase7",
     [string]$TransferDirectory = ".pytest-tmp/phase7-transfer",
@@ -10,6 +10,13 @@ param(
 
 $ErrorActionPreference = "Stop"
 Set-StrictMode -Version Latest
+
+$phase7ScriptPath = $PSCommandPath
+if (-not $phase7ScriptPath) { $phase7ScriptPath = $MyInvocation.MyCommand.Path }
+if (-not $RepositoryRoot) {
+    if (-not $phase7ScriptPath) { throw "script_path_unavailable" }
+    $RepositoryRoot = Join-Path (Split-Path -Parent $phase7ScriptPath) ".."
+}
 
 function Read-Exact {
     param([string]$Path, [string]$Label, [string]$Pattern)

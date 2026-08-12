@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-    [string]$RepositoryRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")),
+    [string]$RepositoryRoot = "",
     [string]$PythonExecutable = "",
     [int]$MinimumCollectedTests = 532,
     [switch]$SkipTestsForContract
@@ -8,6 +8,13 @@ param(
 
 $ErrorActionPreference = "Stop"
 Set-StrictMode -Version Latest
+
+$phase7ScriptPath = $PSCommandPath
+if (-not $phase7ScriptPath) { $phase7ScriptPath = $MyInvocation.MyCommand.Path }
+if (-not $RepositoryRoot) {
+    if (-not $phase7ScriptPath) { throw "script_path_unavailable" }
+    $RepositoryRoot = Join-Path (Split-Path -Parent $phase7ScriptPath) ".."
+}
 
 function Fail-Gate {
     param([string]$Name, [string]$Detail = "")
