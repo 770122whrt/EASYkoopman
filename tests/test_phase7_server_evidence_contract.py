@@ -657,6 +657,85 @@ def test_preflight_uses_git_bash_when_path_starts_with_fake(
     assert str(fake_directory) not in output
 
 
+@pytest.mark.skipif(os.name != "nt", reason="PowerShell native stderr contract")
+@pytest.mark.parametrize(
+    ("mode", "expected_returncode", "expected_marker"),
+    [
+        ("warning", 0, "gate=protected_diff;status=pass"),
+        ("protected", 1, "gate=protected_diff;status=fail"),
+        ("nonzero", 1, "gate=git_command;status=fail"),
+    ],
+)
+def test_preflight_git_wrapper_separates_stdout_stderr_and_exit_status(
+    tmp_path: Path,
+    mode: str,
+    expected_returncode: int,
+    expected_marker: str,
+) -> None:
+    fake_bin = tmp_path / "fake-git"
+    fake_bin.mkdir()
+    git_exec_path = _git(PROJECT_ROOT, "--exec-path")
+    fake_git = fake_bin / "git.cmd"
+    fake_git.write_text(
+        "@echo off\r\n"
+        "if \"%1\"==\"--exec-path\" (\r\n"
+        f"  echo {git_exec_path}\r\n"
+        "  exit /b 0\r\n"
+        ")\r\n"
+        "if \"%1 %2 %3\"==\"diff --name-only v1.0\" (\r\n"
+        "  if \"%PHASE7_FAKE_GIT_MODE%\"==\"warning\" (\r\n"
+        "    echo global_ignore_permission_warning 1>&2\r\n"
+        "    exit /b 0\r\n"
+        "  )\r\n"
+        "  if \"%PHASE7_FAKE_GIT_MODE%\"==\"protected\" (\r\n"
+        "    echo koopman/model.py\r\n"
+        "    exit /b 0\r\n"
+        "  )\r\n"
+        "  echo simulated_git_failure 1>&2\r\n"
+        "  exit /b 7\r\n"
+        ")\r\n"
+        "if \"%1 %2\"==\"rev-parse HEAD\" (\r\n"
+        "  echo aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\n"
+        ")\r\n"
+        "exit /b 0\r\n",
+        encoding="utf-8",
+    )
+    environment = dict(os.environ)
+    environment["PHASE7_FAKE_GIT_MODE"] = mode
+    environment["PATH"] = str(fake_bin) + os.pathsep + environment["PATH"]
+
+    result = _run(
+        [
+            _powershell(),
+            "-NoProfile",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-File",
+            str(LOCAL_PREFLIGHT.relative_to(PROJECT_ROOT)),
+            "-SkipTestsForContract",
+        ],
+        cwd=PROJECT_ROOT,
+        env=environment,
+    )
+
+    output = result.stdout + result.stderr
+    assert result.returncode == expected_returncode, output
+    assert expected_marker in output
+    if mode == "warning":
+        assert "global_ignore_permission_warning" in output
+        assert "gate=protected_diff;status=fail" not in output
+
+
+def test_phase7_git_wrappers_never_merge_stderr_into_semantic_stdout() -> None:
+    for script in (LOCAL_PREFLIGHT, PREPARE_BUNDLE, PULLBACK):
+        git_lines = [
+            line
+            for line in script.read_text(encoding="utf-8").splitlines()
+            if "git" in line.lower()
+        ]
+        assert all("2>&1" not in line for line in git_lines), script
+
+
 @pytest.mark.parametrize(
     "required_gate",
     [
