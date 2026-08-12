@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import ast
 from copy import deepcopy
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -24,6 +25,12 @@ from workflows.collect_koopman_v2_identification import (
     collect_policy_entries,
     deterministic_policy_action,
     resolve_output_path,
+    write_episode_success_logs,
+)
+from workflows.audit_koopman_v2_pilot import audit_pilot_collection
+from test_phase8_protocol_evidence import (
+    _canonical_bytes as _fixture_canonical_bytes,
+    _write_fixture as _write_evidence_fixture,
 )
 
 
@@ -108,6 +115,121 @@ def _commit_all(repository: Path, message: str) -> str:
     _git(repository, "add", ".")
     _git(repository, "commit", "-m", message)
     return _git(repository, "rev-parse", "HEAD")
+
+
+def _write_exact_inventory(evidence: Path, status: Path) -> None:
+    lines = []
+    for path in sorted(item for item in evidence.rglob("*") if item.is_file()):
+        relative = path.relative_to(evidence).as_posix()
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        lines.append(f"{digest}  ./{relative}\n")
+    (status / "all_files.sha256").write_text("".join(lines), encoding="utf-8")
+
+
+def _rewrite_fixture_source_commit(evidence: Path, source_commit: str) -> None:
+    for episode in sorted((evidence / "episodes").glob("*.jsonl")):
+        rows = [json.loads(line) for line in episode.read_text(encoding="utf-8").splitlines()]
+        for row in rows:
+            row["episode_provenance"]["source_commit"] = source_commit
+        episode.write_bytes(b"".join(_fixture_canonical_bytes(row) for row in rows))
+        manifest = evidence / "manifests" / f"{episode.stem}.manifest.json"
+        payload = json.loads(manifest.read_text(encoding="utf-8"))
+        payload["transition_sha256"] = hashlib.sha256(episode.read_bytes()).hexdigest()
+        payload["episode_invariants"]["source_commit"] = source_commit
+        manifest.write_bytes(_fixture_canonical_bytes(payload))
+
+
+def _write_fake_scp(directory: Path) -> None:
+    directory.mkdir()
+    if os.name == "nt":
+        (directory / "scp.cmd").write_text(
+            "@echo off\n"
+            "if \"%PHASE8_FAKE_SCP_FAIL%\"==\"1\" exit /b 23\n"
+            "echo %~2 | findstr /C:\"status\" >nul\n"
+            "if errorlevel 1 (\n"
+            "  robocopy \"%PHASE8_FAKE_EVIDENCE%\" \"%~3\\koopman_phase8_pilot\" /E /NFL /NDL /NJH /NJS >nul\n"
+            ") else (\n"
+            "  robocopy \"%PHASE8_FAKE_STATUS%\" \"%~3\\koopman_phase8_pilot_status\" /E /NFL /NDL /NJH /NJS >nul\n"
+            ")\n"
+            "if %ERRORLEVEL% LSS 8 exit /b 0\n"
+            "exit /b %ERRORLEVEL%\n",
+            encoding="utf-8",
+        )
+    else:
+        script = directory / "scp"
+        script.write_text(
+            "#!/usr/bin/env bash\n"
+            "[[ ${PHASE8_FAKE_SCP_FAIL:-0} != 1 ]] || exit 23\n"
+            "source=$PHASE8_FAKE_EVIDENCE\n"
+            "leaf=koopman_phase8_pilot\n"
+            "[[ $2 != *status* ]] || { source=$PHASE8_FAKE_STATUS; leaf=koopman_phase8_pilot_status; }\n"
+            "cp -R \"$source\" \"$3/$leaf\"\n",
+            encoding="utf-8",
+        )
+        script.chmod(0o755)
+
+
+def _pullback_fixture(tmp_path: Path, *, canonical_exists: bool = False) -> tuple[Path, Path, Path, str]:
+    repository = _init_temp_repo(tmp_path)
+    (repository / "workflows").mkdir()
+    (repository / "koopman").mkdir()
+    (repository / "source" / "results").mkdir(parents=True)
+    shutil.copy2(PULLBACK, repository / "scripts" / PULLBACK.name)
+    shutil.copy2(
+        PROJECT_ROOT / "workflows" / "validate_phase8_evidence.py",
+        repository / "workflows" / "validate_phase8_evidence.py",
+    )
+    shutil.copy2(
+        PROJECT_ROOT / "koopman" / "evidence_v2.py",
+        repository / "koopman" / "evidence_v2.py",
+    )
+    (repository / "koopman" / "__init__.py").write_text("", encoding="utf-8")
+    (repository / ".gitignore").write_text(".pytest-tmp/\n", encoding="utf-8")
+    if canonical_exists:
+        canonical = repository / "source" / "results" / "koopman_phase8_pilot"
+        canonical.mkdir()
+        (canonical / "sentinel.txt").write_text("keep\n", encoding="utf-8")
+    source_commit = _commit_all(repository, "pullback fixture")
+    transfer = repository / ".pytest-tmp" / "phase8-pilot-transfer"
+    transfer.mkdir(parents=True)
+    (transfer / "expected-source-commit.txt").write_text(
+        f"{source_commit}\n", encoding="utf-8"
+    )
+
+    evidence = tmp_path / "remote" / "koopman_phase8_pilot"
+    evidence.parent.mkdir()
+    _write_evidence_fixture(evidence)
+    _rewrite_fixture_source_commit(evidence, source_commit)
+    audit_pilot_collection(evidence, require_server=True)
+
+    status = tmp_path / "remote" / "koopman_phase8_pilot_status"
+    status.mkdir()
+    for configuration in EXPECTED_CONFIGURATIONS:
+        (status / f"{configuration}.native_status").write_text("0\n", encoding="utf-8")
+        (status / f"{configuration}.tee_status").write_text("0\n", encoding="utf-8")
+        (status / f"{configuration}.semantic_status").write_text("pass\n", encoding="utf-8")
+    sidecars = {
+        "source_commit.txt": source_commit,
+        "isaac_sim_version.txt": "5.0",
+        "isaaclab_version.txt": "2.2.1",
+        "isaaclab_release_tag.txt": "v2.2.1",
+        "isaaclab_release_commit.txt": "0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20",
+        "isaaclab_repo_commit.txt": "c91a125c73c8b574878419a9583afc0b63b99f0a",
+        "isaaclab_repo_parent_commit.txt": "0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20",
+        "isaaclab_repo_patch.sha256": "d056adb8bb64fe7c9c34fffbd2478ef04155df8b60b071da942280952f829079",
+        "isaaclab_repo_dirty_files.txt": (
+            "source/isaaclab_mimic/setup.py\nsource/isaaclab_rl/setup.py"
+        ),
+    }
+    for name, value in sidecars.items():
+        (status / name).write_bytes(f"{value}\n".encode("utf-8"))
+    envelope = evidence / "pilot_envelope.json"
+    envelope_hash = hashlib.sha256(envelope.read_bytes()).hexdigest()
+    (status / "pilot_envelope.sha256").write_text(
+        f"{envelope_hash}  {envelope.as_posix()}\n", encoding="utf-8"
+    )
+    _write_exact_inventory(evidence, status)
+    return repository, evidence, status, source_commit
 
 
 def test_collector_parser_is_policy_driven_and_has_no_episode_mutation_flags():
@@ -274,6 +396,28 @@ def test_collection_failure_never_finalizes_failed_or_later_episode():
         )
     assert len(loggers) == 1
     assert loggers[0].finalized is False
+
+
+def test_success_logs_are_one_fresh_log_per_policy_episode(tmp_path: Path):
+    policy = load_pilot_collection_policy(POLICY_PATH)
+    entries = [entry for entry in policy["entries"] if entry["configuration"] == "base"]
+    root = tmp_path / "pilot"
+    results = [
+        {"episode_id": entry["episode_id"], "record_count": entry["transition_count"]}
+        for entry in entries
+    ]
+
+    paths = write_episode_success_logs(root, entries, results)
+
+    assert len(paths) == 2
+    for entry, path in zip(entries, paths, strict=True):
+        assert path == root / "logs" / f"{entry['episode_id']}.log"
+        text = path.read_text(encoding="utf-8")
+        assert f"episode_id={entry['episode_id']}" in text
+        assert "semantic_status=pass" in text
+        assert "record_count=128" in text
+    with pytest.raises(ValueError, match="artifact_exists"):
+        write_episode_success_logs(root, entries, results)
 
 
 def test_output_paths_are_confined_fresh_and_noncolliding(tmp_path: Path):
@@ -495,7 +639,9 @@ def test_server_run_locks_offline_runtime_exact_eight_and_process_statuses():
         assert required in source
     for configuration in EXPECTED_CONFIGURATIONS:
         assert f"run_one {configuration}" in source
-    assert source.index("runner_failure_blocks_audit") < source.index("audit_koopman_v2_pilot.py")
+    assert source.index("runner_failure_blocks_audit") < source.index(
+        '"$ISAACLAB_PY" -p "$AUDITOR"'
+    )
     assert "source/results/koopman_phase8_pilot" in source
     assert "/root/EASYkoopman-phase8-pilot-v2" in source
 
@@ -537,6 +683,118 @@ def test_pullback_orders_status_scp_hash_source_runtime_validator_before_atomic_
     assert source.index("validate_phase8_evidence.py") < source.index("Move-Item")
 
 
+@pytest.mark.parametrize(
+    ("mutation", "expected_error"),
+    [
+        ("source", "source_commit_mismatch"),
+        ("runtime", "isaaclab_provenance_mismatch"),
+        ("native", "native_status_invalid"),
+        ("tee", "tee_status_invalid"),
+        ("semantic", "semantic_status_invalid"),
+        ("scp", "scp_failed:status:23"),
+        ("inventory", "inventory_hash_mismatch"),
+        ("hash", "sha256_mismatch"),
+        ("validator", "validator_failed"),
+        ("promotion", "canonical_evidence_already_exists"),
+    ],
+)
+def test_pullback_dynamic_mutations_fail_before_atomic_promotion(
+    tmp_path: Path, mutation: str, expected_error: str
+):
+    repository, evidence, status, _ = _pullback_fixture(
+        tmp_path, canonical_exists=mutation == "promotion"
+    )
+    if mutation == "source":
+        (status / "source_commit.txt").write_text(f"{'b' * 40}\n", encoding="utf-8")
+    elif mutation == "runtime":
+        (status / "isaaclab_release_commit.txt").write_text(
+            f"{'b' * 40}\n", encoding="utf-8"
+        )
+    elif mutation in {"native", "tee"}:
+        (status / f"base.{mutation}_status").write_text("7\n", encoding="utf-8")
+    elif mutation == "semantic":
+        (status / "base.semantic_status").write_text("fail\n", encoding="utf-8")
+    elif mutation == "inventory":
+        log = next((evidence / "logs").glob("*.log"))
+        log.write_text(log.read_text(encoding="utf-8") + "tampered\n", encoding="utf-8")
+    elif mutation == "hash":
+        (status / "pilot_envelope.sha256").write_text(
+            f"{'0' * 64}  pilot_envelope.json\n", encoding="utf-8"
+        )
+    elif mutation == "validator":
+        log = next((evidence / "logs").glob("*.log"))
+        log.write_text(log.read_text(encoding="utf-8") + "tampered\n", encoding="utf-8")
+        _write_exact_inventory(evidence, status)
+
+    fake_bin = tmp_path / "fake-bin"
+    _write_fake_scp(fake_bin)
+    environment = dict(os.environ)
+    environment["PATH"] = str(fake_bin) + os.pathsep + environment.get("PATH", "")
+    environment["PHASE8_FAKE_EVIDENCE"] = str(evidence)
+    environment["PHASE8_FAKE_STATUS"] = str(status)
+    environment["PHASE8_FAKE_SCP_FAIL"] = "1" if mutation == "scp" else "0"
+    result = _run(
+        [
+            _powershell(),
+            "-NoProfile",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-File",
+            str(repository / "scripts" / PULLBACK.name),
+            "-RepositoryRoot",
+            str(repository),
+            "-PythonExecutable",
+            sys.executable,
+        ],
+        cwd=repository,
+        env=environment,
+    )
+
+    output = result.stdout + result.stderr
+    assert result.returncode != 0, output
+    assert expected_error in output
+    canonical = repository / "source" / "results" / "koopman_phase8_pilot"
+    if mutation == "promotion":
+        assert (canonical / "sentinel.txt").read_text(encoding="utf-8") == "keep\n"
+    else:
+        assert not canonical.exists()
+
+
+def test_pullback_dynamic_happy_path_validates_then_promotes_once(tmp_path: Path):
+    repository, evidence, status, source_commit = _pullback_fixture(tmp_path)
+    fake_bin = tmp_path / "fake-bin"
+    _write_fake_scp(fake_bin)
+    environment = dict(os.environ)
+    environment["PATH"] = str(fake_bin) + os.pathsep + environment.get("PATH", "")
+    environment["PHASE8_FAKE_EVIDENCE"] = str(evidence)
+    environment["PHASE8_FAKE_STATUS"] = str(status)
+    environment["PHASE8_FAKE_SCP_FAIL"] = "0"
+    result = _run(
+        [
+            _powershell(),
+            "-NoProfile",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-File",
+            str(repository / "scripts" / PULLBACK.name),
+            "-RepositoryRoot",
+            str(repository),
+            "-PythonExecutable",
+            sys.executable,
+        ],
+        cwd=repository,
+        env=environment,
+    )
+
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "validation_gate=phase8_external_evidence_valid" in result.stdout
+    assert "qualification_level=server_isaac_identification_pilot" in result.stdout
+    assert f"source_commit={source_commit}" in result.stdout
+    canonical = repository / "source" / "results" / "koopman_phase8_pilot"
+    assert (canonical / "pilot_envelope.json").is_file()
+    assert not (canonical / "all_files.sha256").exists()
+
+
 def test_runbook_has_exact_operator_sequence_agent_responsibility_and_claim_boundary():
     text = RUNBOOK.read_text(encoding="utf-8")
     for heading in (
@@ -564,4 +822,3 @@ def test_runbook_has_exact_operator_sequence_agent_responsibility_and_claim_boun
         "does not prove MPC",
     ):
         assert required in text
-
