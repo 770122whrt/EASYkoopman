@@ -1,179 +1,245 @@
 # Phase 8: Multi-Configuration Koopman Identification and OOD Gate — Specification
 
 **Created:** 2026-08-13
-**Ambiguity score:** 0.08 (gate: ≤0.20)
+**Revised:** 2026-08-13 after knowledge-alignment review
+**Ambiguity score:** 0.12 (gate: ≤0.20)
 **Requirements:** 5 locked (`KID-01`..`KID-05`)
 
 ## Goal
 
-在严格绑定真实 Isaac schema-v2 数据、按 configuration 与完整 episode 隔离且不允许测试集反向调参的条件下，对 persistence、simple linear、per-configuration Koopman、pooled Koopman、physical-context conditional Koopman 与 per-configuration expert upper bound 进行同清单比较；用八个 held-out-configuration 外层折的 one-step、multi-step、full-rollout 与 SO(3) 指标，决定是否存在可进入 Phase 9 的跨构型 Koopman 模型，否则生成可审计的 `no_selection`。
+在不改变 Phase 7 数据/控制语义和 v1 `PWM_8` 路径的前提下，建立一条可审计的 v2 Koopman 识别链：先用独立 pilot 判断数据量、激励覆盖、候选 horizon 和物理条件特征是否足以支持正式实验；再冻结主实验协议，以完整 configuration 和完整 episode 为隔离单位，对 persistence、simple linear、per-configuration、pooled、conditional 与 expert upper-bound 角色进行同清单比较。最终只依据八个 held-out-configuration 外层折的预测证据选择可进入 Phase 9 的 pooled/conditional 候选；若证据不足或任何硬门失败，则输出 `no_selection`。
 
-## Background
+## Knowledge Alignment: What Each Name Means
 
-Phase 7 已建立并在真实 Isaac Sim 5.0 / Isaac Lab 2.2.1 服务器上验证 schema v2、原子 `KoopmanBridgeV2` 与 `KoopmanDatasetV2`。当前 v2 模型数据含 `state_11`、`reference_5`、post-mask/pre-TAM `virtual_control_4`、PWM/wrench diagnostics、platform/environment context 和 episode provenance；`KoopmanDatasetV2.U` 的唯一默认语义是 4D `[roll,pitch,yaw,depth]`。
+Phase 8 中的名称不是“六种 Koopman 算法”。它们分为三类：
 
-Phase 7 的服务器 artifact 仅有 `base`、`uuv6`、`uuv4` 各 8 条连续 transition，共 24 条，证据等级为 `server_isaac_smoke`。它证明真实数据/控制合同已接通，不具备 configuration/episode train-validation-test 切分能力，也不具备模型识别或 OOD 性能证明能力。该 artifact 可继续作为 schema/Bridge 回归输入，但不得被重新命名为 Phase 8 identification dataset 或用于模型 promotion。
+| 类别 | 名称 | 含义 | 是否 Koopman | 是否可被选入 Phase 9 |
+|---|---|---|---|---|
+| 基线 | `persistence` | 假设下一状态等于当前状态，用来判断学习是否真的有增益 | 否 | 否 |
+| 基线 | `simple_linear_v2` | 直接在线性状态/控制空间拟合一步动力学，不做 Koopman lifting | 否 | 否 |
+| Koopman 训练制度 | `per_configuration_koopman_v2` | 每个已见构型单独训练，用来判断单构型数据是否可学 | 是 | 否 |
+| Koopman 训练制度 | `pooled_koopman_v2` | 多个训练构型共享一个模型，不显式输入构型物理描述 | 是 | 是 |
+| Koopman 训练制度 | `conditional_koopman_v2` | 多个训练构型共享模型，并输入部署时可获得的物理平台描述 | 是 | 是 |
+| 评估角色 | `per_configuration_expert_upper_bound_v2` | 在被测构型自己的预声明 fit/validation episode 上训练，回答“有本构型数据时最多能学到什么” | 复用 per-configuration Koopman 实现 | 否 |
 
-现有 `koopman/model.py`、`koopman/lifted_edmd.py`、`koopman/splits.py`、`koopman/evaluation.py` 和 `koopman/selection.py` 属于 v1 单构型链：默认控制仍为 `PWM_8`，模型显式接收 `reference_5`，split 只隔离日志路径，姿态评估仍包含不适用于四元数的分量 RMSE，selector 也没有跨构型外层折、物理平台条件输入或八构型等权聚合。Phase 8 必须增加 v2 专用识别/评估路径，不得原地改变这些已验证 v1 默认值。
+Phase 8 首先实现一个新增且版本化的 v2 Koopman backend，再用上述 per-configuration、pooled、conditional 三种训练制度组织它。现有 `direct_state` 与 `paper_lifted_edmd` 属于 v1/既有研究链；除非 Phase 8 research 在主实验冻结前给出明确必要性、独立成本和无泄漏方案，否则不得把它们与所有训练制度做笛卡尔积，避免没有研究问题支撑的模型数量膨胀。
 
-## Locked Scientific Semantics
+`leave-one-configuration-out`（LOCO）表示八次外层实验：每次完整留下一个机器人构型作为“从未见过”的测试构型，其余七个构型才能用于 pooled/conditional 模型的训练与内部验证。八个构型轮流被留下，因此产生八个外层折。它验证的是跨构型预测泛化，不是闭环控制效果。
 
-### State and control
+## Evidence Already Established
 
-- `state_11` 的顺序保持为 `[depth_z, quat_w, quat_x, quat_y, quat_z, lin_vel_b_x, lin_vel_b_y, lin_vel_b_z, ang_vel_b_x, ang_vel_b_y, ang_vel_b_z]`。
-- 所有 Phase 8 可准入模型的控制输入固定为 post-mask/pre-TAM `virtual_control_4 = [roll,pitch,yaw,depth]`。
-- `motor_pwm_padded_8`、`thruster_mask_8`、`applied_wrench_6`、saturation 和 energy 只能进入诊断与结果解释，不得进入可准入模型的训练输入。
-- `reference_5` 保留用于 episode/scenario 分层、误差解释和将来 Phase 9 控制任务，但不进入 Phase 8 可准入动力学模型。若以后研究 reference-conditioned predictor，必须使用独立模型版本、独立声明和独立阶段，不得静默改变本阶段输入合同。
+- Phase 7 已在真实 Isaac Sim 5.0 / Isaac Lab 2.2.1 上验证 schema v2、原子 `KoopmanBridgeV2` 与 `KoopmanDatasetV2`。
+- `KoopmanDatasetV2.U` 的冻结语义是 post-mask/pre-TAM `virtual_control_4 = [roll,pitch,yaw,depth]`；padded PWM 与 post-actuator wrench 是独立 diagnostics。
+- Phase 7 server artifact 只有 `base`、`uuv6`、`uuv4` 各 8 条连续 transition，共 24 条，等级为 `server_isaac_smoke`。它证明接口与采集链可运行，不证明数据充分、Koopman 可识别、跨构型泛化或 MPC 有效。
+- Phase 7 smoke 只可作 schema/Bridge 回归证据；不得重新标记成 Phase 8 pilot、identification dataset 或 promotion evidence。
+- 现有 `koopman/model.py`、`koopman/lifted_edmd.py`、`koopman/splits.py`、`koopman/evaluation.py` 与 `koopman/selection.py` 是 v1 单构型/PWM_8 链。Phase 8 使用 additive v2 模块，不原地改变 v1 默认维度或历史结论。
+
+## Scientific Status: Fact, Design Choice, Hypothesis, Deferred Value
+
+| 类型 | Phase 8 中的内容 |
+|---|---|
+| 已证事实 | schema-v2 字段与 `virtual_control_4` 已接通真实 simulator；八个公开构型已在 Phase 6 qualified；三种代表拓扑已在 Phase 7 产生真实 transition。 |
+| 锁定设计 | exact-eight LOCO；configuration/episode 隔离；SO(3) geodesic；v1/v2 隔离；`no_selection`；固定名义环境；主候选只从 pooled/conditional 中选择。 |
+| 待检验假设 | pooled 模型能跨构型泛化；physical-context conditional 比 pooled 更好；`state_11 + virtual_control_4` 足以作为可部署 plant predictor；加入 reference 的诊断模型是否只是在利用控制器/任务相关信息。 |
+| pilot 后冻结 | 主实验 episode 数、episode 长度、seed/scenario 矩阵、具体 horizon、v2 lifting/hyperparameter 网格、物理条件特征向量、归一化规则、promotion margin 与 divergence/projection 阈值。 |
+
+任何“待检验假设”都不能在报告中写成已知事实；任何“pilot 后冻结”的值都不能在看到主实验 outer-test 结果后修改。
+
+## Two-Stage Experimental Contract
+
+### Stage A — Identification pilot
+
+Pilot 的唯一目的，是为正式主实验选择一个足够且可执行的数据/评估协议，而不是产生最终 OOD 结论。
+
+- pilot protocol 在采集前固定 exact-eight configuration 清单、独立 episode/seed/scenario ID、激励边界、最小运行健康门、data-adequacy 诊断和停止/扩充规则，并产生不可变 hash。
+- pilot 必须覆盖全部八构型，但规模可以小于主实验；具体规模由 plan/research 给出并在 pilot 采集前冻结，而不是由本 SPEC 凭空猜测。
+- adequacy report 至少检查：严格 schema/连续性；有限值；每个可控通道的激励幅度与变化；状态/控制覆盖；回归矩阵 rank、奇异值或 condition diagnostics；随着数据增多的 validation/rollout 误差趋势；`uuv4*` yaw mask 一致性；逐构型失败原因。
+- pilot 可以比较少量预声明 backend/feature/horizon 候选以决定主协议，但不得读取或创建主实验 outer-test episode，也不得参与最终 selection/promotion。
+- pilot 结束后必须形成 `protocol_decision.json`：列出保留/拒绝的候选、证据、限制、最终主实验所需规模与阈值。若 adequacy 仍不足，结果是 `pilot_insufficient`，Phase 8 停在 checkpoint，而不是继续收集一个未经证明的固定规模。
+
+### Stage B — Frozen main identification and OOD evaluation
+
+- 只有经审核的 `protocol_decision.json` 才能生成 `collection_protocol.json`、`split_manifest.json`、`candidate_grid.json`、`metric_protocol.json` 与 `promotion_gate.json`。
+- 这些文件及其 SHA-256 必须早于主数据采集、candidate fitting 和 outer-test evaluation；任一后改都要求新 experiment ID，从 Stage B 重新开始，旧结果保留且不得覆盖。
+- main dataset 使用与 pilot 完全不同的 episode/seed IDs；pilot rows 不得并入 main fit/validation/test。
+- 每个构型必须有预先分配且数量充分的完整 fit、validation、test episodes。具体数量、长度、seed/scenario 和 horizon 由冻结主协议给出；validator 检查协议本身的一致性、对称性与完整性，而不是依赖本 SPEC 中未经验证的常数。
+- 主实验 inner validation 只读取当前外层折的七个训练构型；被留下的构型在 outer-test 打开前对 pooled/conditional 的拟合、归一化、特征选择和 hyperparameter 选择完全不可见。
+
+## Locked Modeling Semantics
+
+### State, control and diagnostics
+
+- `state_11` 顺序固定为 `[depth_z, quat_w, quat_x, quat_y, quat_z, lin_vel_b_x, lin_vel_b_y, lin_vel_b_z, ang_vel_b_x, ang_vel_b_y, ang_vel_b_z]`。
+- 所有 selection-eligible v2 plant predictors 的控制输入固定为 post-mask/pre-TAM `virtual_control_4`。
+- `motor_pwm_padded_8`、`thruster_mask_8`、`applied_wrench_6`、saturation 与 energy 保留用于覆盖、执行链、饱和和误差归因，不得静默成为 selection-eligible 模型输入。
+- measured `applied_wrench_6` 是动作经过 TAM、执行器动态和 efficiency 后的结果。若未来 MPC 在规划未来控制时没有另一个可验证的 actuator/wrench predictor，它就不是直接可用的未来输入；因此本阶段不把 measured wrench 当作主模型 oracle。
+- `uuv4*` 的 virtual yaw 必须保持为零；yaw underactuation 作为拓扑事实和诊断报告，但不可作为可实现控制目标评分。
+
+### Reference hypothesis
+
+“主模型不使用 `reference_5`”是可部署 plant-model 的设计假设，不是已被证明的自然规律：理想 Markov dynamics 在给定当前状态和实际控制后不需要目标 reference，但实际日志可能因 PID 内部状态、观测缺失或闭环采样而让 reference 带来预测信息。
+
+- primary selection 路径固定使用 `state_11 + virtual_control_4`；conditional 再增加冻结的 platform context。
+- protocol 可以预声明一个 `reference_conditioned_diagnostic_v2` 消融，检验 reference 是否暴露缺失状态或闭环数据偏差。
+- 该 diagnostic 必须有独立 model ID、输入 schema、结果与声明；不得参与 pooled/conditional promotion，也不得在看到 outer-test 结果后临时加入。
+- 若它显著优于 primary，正确结论是“当前 plant state/control contract 可能不充分，需要后续独立建模决策”，而不是静默把 reference 塞回主模型。
 
 ### Platform and environment context
 
-- persistence、simple linear、per-configuration 与 pooled 模型只使用 `state_11` 与 `virtual_control_4`。
-- conditional Koopman 额外使用由权威 catalog/runtime 事实构成的固定长度物理平台描述，包括质量、体积、惯量、COM/COB 偏置、阻力倍率、推进器动力学时间常数、推进器数、控制 rank/mask 和 catalog-derived topology/TAM descriptor。
-- configuration 名称和 one-hot identity 只保留在 provenance/报告中，不能作为 conditional 模型唯一或直接的可准入输入。条件特征的归一化统计只能由当前外层折的训练构型计算。
-- Phase 8 固定名义环境。`environment_context_oracle` 与 `environment_context_estimated` 均不得进入可准入模型输入；oracle 只能用于验证本阶段数据确实处于声明的固定环境。环境条件建模属于 Phase 10。
+- persistence、simple linear、per-configuration 与 pooled 只使用 `state_11` 和 `virtual_control_4`。
+- conditional 额外使用部署时可由 catalog/runtime 获得、与配置名称无关、能描述物理差异的固定长度 platform features。
+- 具体 feature vector 必须由 research 与 pilot 的可用性、无泄漏性、尺度和消融结果决定，并在 Stage B 前冻结。候选可来自质量/惯量/浮力几何、推进器拓扑/TAM、mask/rank 与动力学参数，但本 SPEC 不把未经验证的完整列表写成事实。
+- configuration name/one-hot identity 只用于 provenance 与分组，不能冒充能对未见构型泛化的物理条件输入。
+- feature normalization 只能由当前外层折的训练构型计算。
+- Phase 8 固定名义环境；oracle/estimated environment context 均不进入 selection-eligible 输入。跨环境建模与估计属于 Phase 10。
 
-### OOD unit of evidence
+## Locked OOD and Evaluation Semantics
 
-- OOD 的基本隔离单位是完整 configuration；时间泄漏的基本隔离单位是完整 episode。
-- Phase 8 使用 exact-eight leave-one-configuration-out 外层评估：八个公开构型各恰好作为一次完全未见的 test configuration。
-- 在任一外层折中，pooled/conditional 模型不得读取 held-out configuration 的任何 fit/validation/test row、归一化统计或 identity-derived feature。
-- per-configuration expert upper bound 可使用 held-out configuration 预先声明的 fit/validation episodes，但只能作为可学性上界，永远不能参与跨构型模型选择。
+- OOD 隔离单位是完整 configuration；时间隔离单位是完整 episode。
+- exact-eight LOCO 产生八个外层折，每个公开构型恰好作为一次完全未见的 test configuration。
+- pooled/conditional 在任一折中不得读取 held-out configuration 的任何 row、统计量、特征选择结果或 identity-derived feature。
+- per-configuration expert upper bound 可以使用 held-out configuration 预先声明的 fit/validation episodes，但仅用于测量“有本构型数据时的可学性上界”；它与 held-out test episodes 仍隔离，且永不 selection-eligible。
+- one-step、multi-step 和 full-episode open-loop rollout 均须报告。具体 finite horizon 在 pilot 后、主实验拟合前冻结；`5/20/60` 仅是历史候选，不是无需证据的定律。
+- multi-step window 不跨 episode；open-loop rollout 只在起点使用真实状态，之后使用模型预测与该 episode 已记录的 `virtual_control_4`，不能以中间真值重置冒充 rollout。
+- aggregate 同时报告逐构型、八构型等权 macro 与 worst-configuration；row-weighted global 只能作为 diagnostic。
+- 正式姿态误差使用 sign-invariant SO(3) geodesic radians：`2 * acos(clamp(abs(dot(normalize(q), normalize(q_hat))), 0, 1))`。四元数分量 RMSE 只能明确标记为 diagnostic。
+- truth quaternion 必须有限且可归一化；预测 quaternion 非有限或小于冻结 epsilon 时 reason-coded fail。有效但非单位预测可在下一 rollout step 前投影回单位球，但需记录 correction norm，超过冻结上限即 divergence。
 
 ## Requirements
 
 ### KID-01 — Configuration/episode-isolated identification dataset and split
 
-Phase 8 必须形成与 Phase 7 smoke 分离的真实 Isaac identification dataset、collection manifest、episode inventory 与 exact-eight outer-fold split manifest，并在任何模型拟合前完成哈希冻结。
+- **Current:** Phase 7 只有 3 个 configuration、各 1 个 8-transition smoke episode；现有 v1 split 不理解 configuration、episode role 或 outer fold。
+- **Target:** 先形成 exact-eight pilot 与 `protocol_decision.json`，再按冻结的 Stage B protocol 采集与 smoke/pilot 分离的真实 Isaac main identification dataset、episode inventory 和 exact-eight outer-fold split manifest。完整 episode 不跨 role；任何拟合前冻结 inventory/split hash。
+- **Acceptance:** validator 拒绝 row-level random split、episode 跨 role、缺失/重复/额外构型、role/hash 后改、smoke/pilot relabel、held-out row/normalization/feature leakage；数据未达到冻结 protocol 时返回 `data_insufficient`，不补行、不重分配 test role。
 
-- **Current:** Phase 7 只有 3 个 configuration、每个 1 个 8-transition episode；`KoopmanDatasetV2` 只负责加载一个严格 episode pair；v1 `SplitManifest` 只检查日志路径重叠，不理解 configuration、episode role 或 outer fold。
-- **Target:** identification dataset 精确覆盖 `base`、`long_body`、`heavy_moderate`、`asymmetric`、`uuv6`、`uuv6_angled`、`uuv4`、`uuv4_angled`。每个构型至少包含 6 个完整 episode、至少 3 个 seed、至少 2 类预先声明的有界激励/参考 scenario；每个 episode 至少 128 条连续有效 transition。每个构型在采集前被固定分配至少 3 个 `fit`、1 个 `validation`、2 个 `test` episode，且所有构型使用同一 collection matrix。若任一 episode、seed、scenario、transition count、配置或 hash 缺失，dataset 状态必须为 `data_insufficient`，不能通过补行或重新分配测试角色继续。
-- **Acceptance:** strict dataset/split validator 证明 exact-eight 覆盖、每构型最小 episode/seed/scenario/transition 数量、完整 episode 不跨 role、八个外层折各恰好 hold out 一个构型、训练输入不含 held-out 构型 row；mutation tests 对 row-level random split、同一 episode 跨 split、缺失/重复/额外构型、角色后改、短 episode、Phase 7 smoke relabel、stale hash 与 held-out normalization leakage 返回稳定 reason code 和非零退出状态。
+### KID-02 — Comparable model-role matrix under one frozen protocol
 
-### KID-02 — Comparable model-family matrix under one frozen protocol
-
-所有模型族必须共享同一 dataset inventory、outer-fold split、候选网格、训练预算、horizon 集和 gate manifest；模型类别不能在看到 outer-test 结果后增加、删除或改变输入语义。
-
-- **Current:** v1 sweep 仅比较 PWM_8 direct-state/paper-lifted 候选与 persistence/simple-linear，并在日志级 validation/test 上排序；没有 v2 per-configuration、pooled、physical-context conditional 或 expert upper-bound 矩阵。
-- **Target:** 每个外层折至少产生六类可区分结果：`persistence`、`simple_linear_v2`、`per_configuration_koopman_v2`、`pooled_koopman_v2`、`conditional_koopman_v2`、`per_configuration_expert_upper_bound_v2`。除模型类别天然不适用的输入外，所有可比候选使用相同 `state_11`、`virtual_control_4`、episode roles、训练/验证预算和 frozen candidate-grid manifest。只有 pooled 与 conditional 是跨构型 selection-eligible；per-configuration 与 expert 只用于解释 in-distribution 可学性和 OOD gap。所有 v2 模型使用新增版本/loader/runtime，v1 `PWM_8` model/MPC 默认合同保持不变。
-- **Acceptance:** machine-readable matrix 对每个 outer fold 和每个模型族恰好记录一个成功或 reason-coded 失败结果，并绑定相同 dataset/split/grid hashes；validator 拒绝遗漏模型族、使用不同 split、把 expert 标为 eligible、把 reference/PWM/wrench/oracle context 作为可准入输入、使用 configuration one-hot 冒充 physical conditional、在 test 后修改候选网格，以及任何 v1 model/MPC 默认维度漂移。
+- **Current:** v1 只提供 PWM_8 单构型研究链，没有 v2 LOCO 训练制度与可比矩阵。
+- **Target:** 同一 dataset/split/grid/budget/metric/gate 下区分 persistence、simple linear、per-configuration Koopman、pooled Koopman、conditional Koopman 与 expert upper-bound 六个角色；Koopman 角色默认共享一个 additive v2 backend。只有 pooled/conditional selection-eligible。
+- **Acceptance:** 每 outer fold/角色恰好有成功或 reason-coded failure，并绑定相同 hashes；validator 拒绝遗漏角色、不同 split/budget、expert promotion、configuration one-hot 冒充 physical conditioning、静默加入 reference/PWM/wrench/oracle 或 v1 默认维度漂移。
 
 ### KID-03 — Held-out one-step, multi-step and rollout evaluation
 
-每个可比较模型必须在相同的 held-out episode 与记录控制序列上生成 one-step、固定 horizon multi-step 和 full-episode open-loop rollout 结果，并同时报告逐构型、八构型等权 macro 与 worst-configuration 指标。
-
-- **Current:** v1 evaluation 主要报告整体 RMSE 和固定日志 rollout，可能按 row count 加权；它不会禁止跨 episode rollout，也不会生成 exact-eight OOD fold aggregation。
-- **Target:** horizon 集在 candidate fitting 前固定为 `1, 5, 20, 60, full_episode`。multi-step window 不得跨 episode；rollout 从真实 episode 起始状态出发，逐步使用该 episode 已记录的 `virtual_control_4`，不能重置为真实中间状态。报告至少包含 depth RMSE、body linear-velocity RMSE、body angular-velocity RMSE、SO(3) geodesic mean/RMSE/max、non-finite count、invalid-quaternion count、rollout divergence count/rate、每构型 transition/episode count，以及每构型等权的 macro 与 worst-configuration 汇总。row-weighted global 指标可以作为诊断，但不能单独用于 promotion。
-- **Acceptance:** evaluation validator 证明每个 outer fold 的模型、episode、control sequence 与 horizon 一致；测试拒绝跨 episode window、真值 teacher-forcing 冒充 rollout、缺构型、仅 row-weighted aggregate、把不可行 `uuv4*` yaw 当成可实现评分目标、非有限预测和遗漏 worst-configuration 结果。
+- **Current:** v1 evaluation 没有 exact-eight OOD aggregation，也不充分防止跨 episode rollout 或 row-count 权重掩盖弱构型。
+- **Target:** 在冻结 horizon 协议下，对相同 held-out episodes/control sequences 报告 one-step、multi-step、full rollout；至少含 depth、body linear/angular velocity、SO(3)、non-finite、invalid quaternion、divergence 与样本清单，并给出 per-configuration、equal-weight macro、worst-configuration。
+- **Acceptance:** validator 拒绝跨 episode window、teacher forcing 冒充 rollout、遗漏构型/horizon/worst result、只给 row-weighted aggregate、把 `uuv4*` yaw 当作可实现目标、非有限预测或 source/control/hash 不一致。
 
 ### KID-04 — Quaternion-correct SO(3) orientation metric
 
-姿态预测的正式误差必须是四元数归一化、符号不变的 SO(3) geodesic angle；原始 quaternion-component RMSE 不能再被命名为 angle/orientation RMSE 或进入 promotion gate。
-
-- **Current:** v2 状态使用 wxyz 四元数，但 v1 evaluation 的 `attitude_angle_rmse` 来自分量 slice RMSE，不能处理 `q` 与 `-q` 表示同一旋转的事实，也没有统一的零范数/非单位预测门。
-- **Target:** 对 truth 与 prediction 使用 `2 * acos(clamp(abs(dot(normalize(q), normalize(q_hat))), 0, 1))`，单位为 radians；truth quaternion 必须有限且可归一化，预测 quaternion 若非有限或范数小于冻结 epsilon 则该 rollout reason-coded fail。允许在 rollout 下一步前把有效非单位预测投影回单位球，但必须记录 projection correction norm，超过冻结上限时判定发散。quaternion-component RMSE 仅可作为明确命名的 diagnostic。
-- **Acceptance:** 单元/性质测试证明 `q` 与 `-q` 误差为零，0°/90°/180° 旋转得到正确弧度，dot clamp 数值稳定，零范数/NaN/Inf/过大 projection 被拒绝；报告 schema 和 selector 不包含把 quaternion component RMSE 当作 orientation gate 的字段或别名。
+- **Current:** v1 的 `attitude_angle_rmse` 来自 quaternion component slice，不是合法旋转角误差。
+- **Target:** v2 正式姿态指标只使用归一化、符号不变的 SO(3) geodesic radians，并显式处理零范数、NaN/Inf 与 projection correction。
+- **Acceptance:** unit/property tests 证明 `q`/`-q` 误差为零，0°/90°/180° 正确，clamp 数值稳定，零范数/非有限/超限 projection 被拒绝；selector 不接受 component RMSE 的 angle/orientation 别名。
 
 ### KID-05 — Provenance-checked selection or explicit no-selection
 
-Phase 8 必须在 outer-test 打开前冻结 machine-readable promotion gate，并只从完整通过全部硬门的 pooled/conditional 候选中选择；任何证据、模型或逐构型保护门失败都必须输出 `no_selection`。
+- **Current:** v1 selector 不绑定 exact-eight dataset、LOCO folds、physical feature contract、SO(3) metrics 或 test-before-retune 边界。
+- **Target:** pilot 后、main candidate fitting 前冻结 promotion gate 和具体 margins。只有完成八折、通过 baseline improvement、per-configuration/worst-config、SO(3)、finite/quaternion/divergence 与 provenance 硬门的 pooled/conditional 才可选择；conditional superiority 只在达到预声明相对 pooled margin 时成立。
+- **Acceptance:** manifest 绑定 source/runtime、pilot decision、dataset inventory、collection/split/grid/metric/gate、model/result/report hashes。post-test retune、缺 fold、阈值后改、expert promotion、test episode refit、stale artifact 或伪造 selected 均被拒绝；失败时必须 `no_selection` 且无可加载 selected-model path。
 
-- **Current:** v1 selector 可记录 held-out logs 和 negative result，但不绑定 Phase 8 dataset inventory、exact-eight folds、physical-context feature contract、candidate grid、SO(3) report 或 test-before-retune 边界。
-- **Target:** gate manifest 在任何候选拟合前冻结并记录正的 baseline-improvement margin、允许的逐构型最大 regression、SO(3) 与 motion primary metric 集、divergence/invalid hard limits、conditional-versus-pooled claim margin 和所有 aggregation rules。候选至少必须：完成八个 outer folds；在 frozen primary OOD macro metrics 上按声明正 margin 优于 persistence 与 simple linear；不突破任一逐构型 regression/worst-config 门；产生零 non-finite、零 invalid quaternion 和零未声明 divergence；若选择 conditional，还必须按正 margin 优于 pooled。test fold 结果出现后不得扩展网格或重新拟合 fold candidate。通过后可按已选 family/hyperparameters 在八构型 `fit+validation` episodes 上生成一个 Phase 9 candidate refit，但不得使用 test episodes；若失败，selection manifest 必须为 `no_selection` 且不得提供可被 Phase 9 runtime 加载的 selected-model path。
-- **Acceptance:** strict selector/manifest validator 绑定 tested source commit、server dataset inventory SHA-256、collection/split/gate/grid hashes、model/config/training seed、Python/numerical dependency versions、逐 fold model/result hashes、final refit hash（若有）和 report hash；mutation tests 拒绝 post-test retune、缺 fold、平均值掩盖逐构型失败、expert promotion、threshold 后改、test episode refit、stale model、hash/source/runtime disagreement、伪造 `selected` 和失败时残留 selected-model path。
+## Evidence Levels and Claim Boundaries
+
+| Evidence level | 能证明 | 不能证明 |
+|---|---|---|
+| `local_contract` | schema、split、metric、model/selector 逻辑和 mutation gates | Isaac 可运行、数据充分、OOD 性能 |
+| `server_isaac_identification_pilot` | exact-eight pilot 在真实 simulator 运行并产生 adequacy evidence | 最终训练集充分、模型可选 |
+| `server_isaac_identification_dataset` | 冻结 Stage B 协议下的 exact-eight main dataset 完整且 provenance 通过 | Koopman 一定优于 baseline、MPC 有效 |
+| `offline_koopman_ood_evaluation` | frozen data/splits/grid/gates 上的八折预测结果 | 闭环控制、环境适应、Agent 效果 |
+| `koopman_selection` / `no_selection` | 候选是否满足 Phase 8 promotion gate | Phase 9 闭环性能或硬件有效性 |
+
+低等级 artifact 不能重命名或补字段后满足更高等级。Phase 8 不得声称 MPC、闭环 tracking/stability、环境迁移、在线适应、Agentic 或 Sim2Real 效果。
 
 ## Contract-Drift and Failure Defenses
 
 | Failure mode | Required disposition |
 |---|---|
-| Phase 7 的 24 行 smoke 被用于训练或重新标为 dataset evidence | `evidence_level_mismatch` / `data_insufficient`，Phase 8 不得关闭 |
-| 同一 episode 的相邻 row 被拆到 train/test | split validator 非零失败 |
-| held-out 构型参与归一化、feature selection 或 hyperparameter tuning | leakage reason code，整折无资格 |
-| conditional 只记住 configuration one-hot | 不具备 selection eligibility |
-| `reference_5`、PWM、wrench 或 oracle environment 静默成为输入 | model-contract validator 非零失败 |
-| 四元数分量 RMSE 被命名为 orientation angle | metric-schema validator 非零失败 |
-| candidate grid/gate 在 outer-test 后改变 | provenance/hash mismatch，必须 `no_selection` |
-| 只报告 row-weighted average，隐藏弱构型 | aggregate artifact 无资格 |
-| expert upper bound 或 per-config model 被选为跨构型模型 | selector 非零失败 |
-| Phase 9 MPC/闭环结果被混入本阶段预测证明 | claim-boundary failure；留给 Phase 9 |
-| 无模型通过却仍输出模型路径 | manifest validator 非零失败 |
+| Phase 7 smoke 或 Phase 8 pilot 被用于 main fit/test/promotion | `evidence_level_mismatch` / `dataset_role_forbidden` |
+| 本 SPEC 直接把 episode 数、长度、horizon、feature list 或 margins 当成已知最佳值 | planning/spec audit failure；必须由 pilot decision 冻结 |
+| 同一 episode 的 rows 被拆到不同 role | split validator 非零失败 |
+| held-out 构型参与 normalization、feature selection 或 hyperparameter tuning | leakage reason code；整 fold 无资格 |
+| reference diagnostic 被写成主模型或参与 promotion | model-role/selection validator 非零失败 |
+| PWM、measured wrench、environment oracle 静默成为 selection 输入 | model-contract validator 非零失败 |
+| conditional 只使用 configuration one-hot | conditional candidate 无 selection 资格 |
+| candidate grid/gate 在 outer-test 后改变 | hash mismatch；experiment 无资格并输出 `no_selection` |
+| quaternion component RMSE 被命名为 orientation angle | metric-schema validator 非零失败 |
+| 只报告 row-weighted average | aggregate 无资格 |
+| expert/per-config 被选为跨构型模型 | selector 非零失败 |
+| 无候选通过仍输出模型路径 | manifest validator 非零失败 |
 
 ## Boundaries
 
 **In scope:**
 
-- exact-eight、multi-episode、真实 Isaac schema-v2 identification dataset 的采集合同、质量门、inventory、hash、runbook 与 staged pullback。
-- configuration/episode-aware collection manifest、episode roles、exact-eight outer-fold split 与 leakage validator。
-- additive v2 persistence/linear/per-config/pooled/conditional/expert 模型和统一候选矩阵。
-- physical platform conditioning contract；训练折专属 normalization 与 feature provenance。
-- one-step、`5/20/60` multi-step、full-episode rollout、SO(3) geodesic、逐构型/macro/worst-config 报告。
-- frozen gate、模型/结果/数据 provenance、selected manifest 或显式 `no_selection`。
-- 若 gate 通过，生成一个不使用 test episodes 的 Phase 9 candidate refit；若不通过，不生成可加载 selected path。
-- Phase 8 SUMMARY、server-data evidence record 与 goal-backward VERIFICATION，逐项映射 `KID-01`..`KID-05`。
+- exact-eight identification pilot、data-adequacy report、protocol decision 与 human/research freeze checkpoint。
+- frozen Stage B main dataset collection contract、server runbook、inventory/hash 和 staged pullback。
+- configuration/episode-aware split、exact-eight LOCO、leakage validators。
+- 一个 additive v2 Koopman backend 及 per-configuration/pooled/conditional regimes；persistence、simple linear 与 expert evaluation roles。
+- 可选但预声明、non-promoting 的 reference-conditioned diagnostic ablation。
+- physical platform conditioning contract 与 fold-local normalization。
+- one-step/multi-step/full rollout、SO(3)、per-config/equal-macro/worst evaluation。
+- provenance-checked selected manifest 或 `no_selection`；通过时生成不含 test episodes 的 Phase 9 refit。
 
 **Out of scope:**
 
-- 4D Koopman-MPC 优化、TAM 分配、闭环 tracking/stability 和 Legacy/S-Surface matched control comparison — Phase 9 负责。
-- 使用 oracle 或 estimated environment context 训练跨环境模型、估计环境或在线更新 — Phase 10 负责。
-- RLS/KF、frozen prior、rollback、adaptation recovery curve — Phase 10 负责。
-- PPO retraining、Agent Supervisor、LLM 决策或实时 `env.step()` agent participation — Phase 11 负责。
-- nominal/OOD/environment/combined-shift 最终论文矩阵 — Phase 12 负责。
-- reference-conditioned dynamics、PWM-input v2 model 或 applied-wrench-input model — 不属于本阶段 locked model family；未来如需研究必须独立版本化。
-- 修改 v1 `KoopmanDataset.U=PWM_8`、`KoopmanModel.control_dim=8`、v1 runtime/MPC/selection 语义或改写冻结的 v1/Phase 6/Phase 7 evidence。
-- 硬件、Sim2Real、八套独立 CAD/USD 外观或真实海试声明。
+- 4D Koopman-MPC、TAM closed-loop、Legacy/S-Surface matched control comparison — Phase 9。
+- oracle/estimated environment modeling、RLS/KF online update — Phase 10。
+- PPO/Agent Supervisor/LLM runtime — Phase 11。
+- final nominal/OOD/environment/combined-shift paper matrix — Phase 12。
+- 把 reference、PWM 或 measured wrench 静默升级为主模型输入；若 pilot 证明 state/control contract 不充分，必须新增显式 design checkpoint/版本，而不是在本阶段暗改。
+- 修改 v1 `KoopmanDataset.U=PWM_8`、`KoopmanModel.control_dim=8`、v1 MPC/selection 或冻结 evidence。
+- 硬件、Sim2Real、独立 CAD/USD 外观或真实海试结论。
 
 ## Constraints
 
-- 数据源必须是 strict schema v2 episode/manifest pair；v1 compatibility view 和 Phase 7 smoke 均无 Phase 8 training/promotion eligibility。
-- collection manifest、episode roles、outer folds、candidate grid、metric schema 和 gate thresholds 必须在对应结果产生前冻结并哈希绑定；任何后改都需要新实验 ID 和从头重跑，不能覆盖旧结果。
-- 本地负责纯 Python/NumPy 模型、split/evaluation/selector 合同和测试；Isaac 服务器负责八构型 identification rollout。离线拟合可在本地或服务器执行，但必须记录精确环境和数据 hash，二者不能改变证据等级。
-- 服务器数据证据使用与 `server_isaac_smoke` 不同的明确等级（例如 `server_isaac_identification_dataset`）；离线 OOD 结果使用独立 evaluation evidence level。低证据层不能满足高证据层。
-- `uuv4*` 的 virtual yaw 必须保持为零；其 yaw 不参与可行控制覆盖或可实现目标评分，但 yaw underactuation 事实必须出现在逐构型报告中。
-- 所有模型输入、预测、归一化统计和指标必须有限；silent clipping、silent quaternion replacement、silent row drop 和 silent episode repair 均被禁止。
-- 所有八构型在 macro aggregate 中等权；episode/row 更多的构型不能获得更高聚合权重。
-- planning、实现、服务器 raw dataset/pullback、offline model evaluation/selection 与 planning closeout 保持独立可审计提交；本地测试不得预创建 canonical `source/results/koopman_phase8` 成功目录。
-- v1.0 tag、`.planning/milestones`、`.planning/reports`、canonical v1 results、Phase 6/7 evidence 与 `koopman/model.py`、`koopman/mpc.py` 的 v1 默认语义保持冻结。
+- pilot/main 使用不同 experiment、episode、seed IDs 和 canonical directories；测试不得预创建成功 evidence 目录。
+- pilot protocol 必须先于 pilot collection；main protocol/gates 必须先于 main collection/fitting；所有时间关系由 manifest hash、source commit 和 immutable inventory 验证。
+- Stage B 数值由 pilot decision 冻结。冻结后任何变更创建新 experiment version，不覆盖旧数据或结果。
+- local code/tests/bundle 在请求服务器执行前全部通过；服务器按隔离目录运行，GitHub 网络不可用时使用离线 bundle；pullback 后本地再次验证 hash/inventory/semantics。
+- 模型输入、预测、统计和指标必须有限；禁止 silent clipping、silent quaternion replacement、silent row drop、silent episode repair。
+- 八构型 macro 等权；更多 rows/episodes 不改变构型权重。
+- planning、local implementation、pilot evidence、main dataset evidence、offline evaluation/selection 和 closeout 分离提交。
+- v1.0 tag、milestone reports、Phase 6/7 canonical evidence 与 v1 model/MPC semantics 保持冻结。
 
 ## Acceptance Criteria
 
-- [ ] Phase 8 dataset 精确覆盖八个公开构型；每构型至少 6 个完整 episode、3 个 seed、2 类预声明 scenario，每 episode 至少 128 条连续 strict-v2 transition，并通过独立 server inventory/pullback hash 验证。
-- [ ] collection/split validator 证明每构型至少 `3 fit / 1 validation / 2 test` episode，完整 episode 不跨 role，exact-eight outer folds 各恰好 hold out 一个 configuration，且任何 held-out row/normalization/identity feature 不进入训练。
-- [ ] Phase 7 smoke、v1 log/adapter 和任何 local mock 均不能满足 Phase 8 dataset/promotion evidence level。
-- [ ] persistence、simple linear、per-configuration、pooled、physical-context conditional 和 expert upper-bound 六类结果在同一 frozen split/grid/gate 下完整生成或 reason-coded fail。
-- [ ] 所有 selection-eligible 模型仅使用 `state_11`、`virtual_control_4`，conditional 额外只使用训练折物理 platform features；reference、PWM、wrench、oracle/estimated environment 和 configuration one-hot 不进入可准入输入。
-- [ ] 每个模型/outer fold 报告 one-step、5/20/60-step 和 full-episode rollout，且 window 不跨 episode、rollout 不使用中间真值重置。
-- [ ] 正式姿态指标是 sign-invariant SO(3) geodesic radians；`q/-q`、90°/180°、零范数、NaN/Inf 和 projection-limit 测试全部通过。
-- [ ] 报告包含逐构型、八构型等权 macro 和 worst-configuration 的 depth、linear/angular velocity、SO(3)、divergence 与样本清单；仅 row-weighted aggregate 无资格。
-- [ ] gate/grid/metric/split hashes 早于 candidate fitting 固定；outer-test 后改阈值、改网格或重新调参被 validator 拒绝。
-- [ ] selector 只允许完整通过 baseline-improvement、worst-config、SO(3)、finite/quaternion/divergence 与 provenance 门的 pooled/conditional candidate；expert/per-config 永不具备 selection eligibility。
-- [ ] 通过时 selected manifest 绑定完整 dataset/split/gate/grid/model/result provenance，并只用八构型 `fit+validation` 生成 Phase 9 refit；失败时明确输出 `no_selection` 且不存在可加载 selected-model path。
-- [ ] v1 `U=PWM_8` model/MPC 默认合同、冻结历史/evidence 和 Phase 7 canonical artifact 无差异；Phase 8 不产生任何 MPC/闭环、环境适应或 Agent 效果声明。
-- [ ] Phase 8 runbook、machine-readable dataset/evaluation artifacts、SUMMARY 和 VERIFICATION 存在，并对 `KID-01`..`KID-05` 分别给出 PASS/FAIL；真实 server dataset 或完整 OOD gate 缺失时不得关闭 Phase 8。
+- [ ] `KID-01`..`KID-05` 均由至少一个执行 plan 和 machine-verifiable artifact 覆盖。
+- [ ] exact-eight pilot protocol、真实 server pilot evidence 和 adequacy report 存在；pilot rows 不具备 main training/test/promotion eligibility。
+- [ ] `protocol_decision.json` 在 main collection 前冻结 episode/seed/scenario/length、horizons、platform features、candidate grid、metric thresholds 与 promotion margins；证据不足时停止为 `pilot_insufficient`。
+- [ ] main dataset 精确覆盖八构型并满足冻结 protocol；完整 episode 不跨 fit/validation/test，outer folds 各 hold out 一个 configuration，held-out data/statistics/features 不进入训练选择。
+- [ ] persistence、simple linear、per-configuration、pooled、conditional、expert 六个角色在同一 manifest 下完整成功或 reason-coded fail；一个 v2 backend 不被无依据扩展成组合爆炸。
+- [ ] primary candidates 只使用 `state_11 + virtual_control_4`，conditional 只增加冻结的 physical platform features；reference diagnostic 独立且 non-promoting；PWM/wrench/environment/one-hot 不静默进入 selection。
+- [ ] frozen horizons 上报告 one-step、multi-step、full rollout；不跨 episode、不用中间真值重置，并报告 per-config/equal-macro/worst。
+- [ ] SO(3) geodesic、`q/-q`、0°/90°/180°、零范数、NaN/Inf 与 projection-limit tests 全部通过。
+- [ ] candidate grid、metrics、gates 在 main fitting/outer-test 前冻结；post-test retune 或 hash disagreement 使 experiment 无资格。
+- [ ] 只有 pooled/conditional 可被选择；通过时 Phase 9 refit 只用八构型 fit+validation，失败时明确 `no_selection` 且无 selected path。
+- [ ] v1 PWM_8 contracts 与 Phase 6/7 evidence 无差异；Phase 8 不产生闭环、环境适应、Agent 或 Sim2Real 声明。
+- [ ] Phase 8 SUMMARY、server evidence records、selection/no-selection artifact 与 goal-backward VERIFICATION 分别给出 KID-01..05 的 PASS/FAIL；缺 pilot、main dataset 或完整 OOD gate 时不得关闭 Phase 8。
 
 ## Ambiguity Report
 
 | Dimension | Score | Min | Status | Notes |
 |---|---:|---:|---|---|
-| Goal Clarity | 0.95 | 0.75 | PASS | 目标被限定为真实 v2 数据上的 held-out-configuration prediction gate，不包含 MPC/闭环效果。 |
-| Boundary Clarity | 0.94 | 0.70 | PASS | 与 Phase 7 数据合同、Phase 9 MPC、Phase 10 context/adaptation、Phase 11 Agent 和 Phase 12 最终矩阵逐项隔离。 |
-| Constraint Clarity | 0.87 | 0.65 | PASS | exact-eight、多 episode 最低规模、输入禁区、八折隔离、horizon、SO(3)、证据等级和提交边界均已锁定。 |
-| Acceptance Criteria | 0.90 | 0.70 | PASS | dataset、split、模型矩阵、指标、selector、provenance 与 negative result 均有 machine-verifiable PASS/FAIL 条件。 |
-| **Ambiguity** | **0.08** | **≤0.20** | **PASS** | 加权 clarity=0.9215，满足规格生成门。 |
+| Goal Clarity | 0.94 | 0.75 | PASS | 目标仅为 v2 identification 与 held-out-configuration prediction gate。 |
+| Boundary Clarity | 0.95 | 0.70 | PASS | Phase 7 data contract、Phase 9 MPC、Phase 10 environment、Phase 11 Agent 与 Phase 12 final matrix 分离。 |
+| Constraint Clarity | 0.82 | 0.65 | PASS | 未猜测实验常数，但冻结时点、决策 artifact、泄漏边界和失败行为确定。 |
+| Acceptance Criteria | 0.87 | 0.70 | PASS | pilot checkpoint、main protocol、LOCO、metrics、selection 与 negative outcome 均可验证。 |
+| **Ambiguity** | **0.12** | **≤0.20** | **PASS** | 未知数值由显式 pilot→freeze 决策程序管理，而非留作执行时自由发挥。 |
 
 ## Interview Log
 
-本规格采用已批准设计加自动收口路径。用户先要求解释 Phase 8 最难的技术点、成因和解决方式；在数据激励、reference 语义、物理构型描述、SO(3)、闭环辨识偏差和 split leakage 得到逐项说明后，用户明确要求撰写 Phase 8 SPEC 与 PLAN，并强调防止契约漂移。因此无需重复询问 WHAT/WHY；未决定的代码结构与数值实现细节留给 research/plan，但会影响研究结论的输入、证据和门均已在本规格冻结。
+用户指出原规格推进过快，特别询问“为何有多种 Koopman”“LOCO 是什么”“为什么主模型不用 reference/PWM/wrench/environment oracle”。本次修订据此纠正：基线、训练制度与评估角色不再混称 Koopman 类型；reference exclusion 被标记为可部署 plant-model 假设并增加独立 diagnostic 位置；PWM/wrench/oracle 的排除给出运行时可用性与阶段隔离原因；未经 pilot 证明的实验数值不再伪装成事实。
 
-| Round | Perspective | Question summary | Decision locked |
-|---|---|---|---|
-| 1 | Researcher | Phase 7 已证明什么，为什么不能直接训练？ | 24-row exact-three artifact 只保留 smoke 身份；Phase 8 另采 exact-eight multi-episode dataset。 |
-| 2 | Simplifier | Phase 8 最小但有效的研究主张是什么？ | 只验证 held-out-configuration prediction；不迁移 MPC、不声明闭环收益。 |
-| 3 | Boundary Keeper | 主模型应接收哪些输入？ | `state_11 + virtual_control_4`；conditional 额外接收物理 platform features；reference/PWM/wrench/environment/one-hot identity 不可准入。 |
-| 4 | Failure Analyst | 哪些错误最容易制造虚假迁移结论？ | row/episode leakage、held-out normalization、test 后调参、row-weighted average、expert promotion、quaternion component RMSE 和 evidence relabel。 |
-| 5 | Seed Closer | 如何判定跨构型模型可进入 Phase 9？ | 八折完整通过 frozen baseline/worst-config/SO(3)/finite/provenance 门才 selected，否则 `no_selection`。 |
-| 6 | Compatibility Keeper | 如何避免 v2 识别破坏 v1？ | 新增 v2 model/eval/runtime；冻结 v1 PWM_8 model/MPC/selection 默认语义与历史 evidence。 |
+| Round | Perspective | Decision locked |
+|---|---|---|
+| 1 | Knowledge alignment | persistence/linear 是 baseline；per-config/pooled/conditional 是同一 v2 backend 的训练制度；expert 是 non-promoting evaluation role。 |
+| 2 | OOD semantics | exact-eight LOCO = 八次完整构型留一；完整 episode 是时间隔离单位。 |
+| 3 | Input semantics | primary 使用 state+实际 virtual control；reference 只允许预声明 diagnostic；PWM/wrench/oracle 为 diagnostic/non-primary。 |
+| 4 | Scientific caution | episode 数、长度、horizon、features 与 margins 先经 exact-eight pilot，再冻结 main protocol。 |
+| 5 | Claim boundary | Phase 8 证明 prediction/OOD gate，不证明 MPC、闭环、环境适应或 Agentic 效果。 |
+| 6 | Negative outcome | `pilot_insufficient` 与 `no_selection` 都是合法且必须保留的研究结果。 |
 
 ---
 
 *Phase: 08-multi-configuration-koopman-identification-and-ood-gate*
-*Spec created: 2026-08-13*
-*Next step: user review, then Phase 8 research/context/pattern mapping and executable plan creation*
+*Spec revised: 2026-08-13*
+*Next step: independent SPEC audit; only after pass, create executable Phase 8 plans*
