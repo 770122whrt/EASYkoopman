@@ -97,6 +97,57 @@ def local_tmp_path() -> Path:
         shutil.rmtree(path, ignore_errors=True)
 
 
+def test_windows_git_bash_environment_pins_coreutils_after_priority_paths(
+    local_tmp_path: Path,
+) -> None:
+    """Keep Git coreutils stable without shadowing explicit negative-test tools."""
+    if sys.platform != "win32":
+        pytest.skip("Windows Git Bash environment contract")
+
+    git_exec_path = Path(
+        subprocess.run(
+            ["git", "--exec-path"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
+    )
+    git_root = git_exec_path.parents[2]
+    git_usr_bin = git_root / "usr" / "bin"
+    git_mingw_bin = git_root / "mingw64" / "bin"
+    priority_bin = local_tmp_path / "fake-bin"
+    priority_bin.mkdir()
+    ambient_bin = local_tmp_path / "ambient-bin"
+    ambient_bin.mkdir()
+    controlled_environment = os.environ.copy()
+    controlled_environment["PATH"] = str(ambient_bin)
+
+    environment = _git_bash_environment(
+        controlled_environment,
+        priority_paths=(priority_bin,),
+    )
+
+    path_parts = environment["PATH"].split(os.pathsep)
+    assert path_parts[:3] == [
+        str(priority_bin),
+        str(git_usr_bin),
+        str(git_mingw_bin),
+    ]
+    completed = subprocess.run(
+        [
+            str(git_root / "bin" / "bash.exe"),
+            "-c",
+            "command -v mkdir && command -v tr && command -v grep",
+        ],
+        check=False,
+        capture_output=True,
+        text=True,
+        env=environment,
+    )
+    assert completed.returncode == 0, completed.stderr
+    assert len(completed.stdout.strip().splitlines()) == 3
+
+
 def _row(configuration: str) -> dict:
     topology = qualification_record(configuration)
     steps = 64 if configuration == "base" else 8
