@@ -54,7 +54,12 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def validate_sha256_inventory(root: Path, inventory: Path) -> dict[str, object]:
+def validate_sha256_inventory(
+    root: Path,
+    inventory: Path,
+    *,
+    allow_local_pullback_verdict: bool = False,
+) -> dict[str, object]:
     """Validate a relative, exact inventory that intentionally excludes itself."""
 
     try:
@@ -91,12 +96,23 @@ def validate_sha256_inventory(root: Path, inventory: Path) -> dict[str, object]:
             _fail(f"inventory_duplicate_path:{normalized}")
         entries[normalized] = expected_hash
 
+    allowed_unlisted: set[str] = set()
+    if allow_local_pullback_verdict:
+        verdict = resolved_root / "pullback_validator.json"
+        if verdict.is_symlink() or not verdict.is_file():
+            _fail("local_pullback_verdict_invalid")
+        allowed_unlisted.add("pullback_validator.json")
+
     actual_files: set[str] = set()
     for candidate in resolved_root.rglob("*"):
         relative = candidate.relative_to(resolved_root)
         if candidate.is_symlink():
             _fail(f"inventory_path_invalid:{relative.as_posix()}")
-        if candidate.is_file() and candidate.resolve() != resolved_inventory:
+        if (
+            candidate.is_file()
+            and candidate.resolve() != resolved_inventory
+            and relative.as_posix() not in allowed_unlisted
+        ):
             actual_files.add(relative.as_posix())
     listed_files = set(entries)
     if listed_files != actual_files:
@@ -122,6 +138,7 @@ def build_argument_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, required=True)
     parser.add_argument("--inventory", type=Path, required=True)
+    parser.add_argument("--allow-local-pullback-verdict", action="store_true")
     parser.add_argument("--json", action="store_true")
     return parser
 
@@ -129,7 +146,11 @@ def build_argument_parser() -> argparse.ArgumentParser:
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_argument_parser().parse_args(argv)
     try:
-        result = validate_sha256_inventory(args.root, args.inventory)
+        result = validate_sha256_inventory(
+            args.root,
+            args.inventory,
+            allow_local_pullback_verdict=args.allow_local_pullback_verdict,
+        )
     except EvidenceInventoryError as error:
         print(f"inventory_validation_failed:{error}", file=sys.stderr)
         return 1

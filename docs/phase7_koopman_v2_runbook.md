@@ -122,6 +122,17 @@ itself. The server validates that exact inventory after writing it, and the
 pullback validates it again before reading provenance or promoting evidence.
 The locally derived `pullback_validator.json` is created only after the remote
 inventory has passed and is therefore not part of the server-authored inventory.
+To revalidate the promoted canonical directory, use the one narrowly scoped
+allowance for that local verdict:
+
+```powershell
+.venv\Scripts\python.exe workflows\evidence_inventory.py `
+  --root source\results\koopman_phase7 `
+  --inventory source\results\koopman_phase7\all_files.sha256 `
+  --allow-local-pullback-verdict --json
+```
+
+The default remains exact and rejects that file or any other unlisted byte.
 
 ## Pullback
 
