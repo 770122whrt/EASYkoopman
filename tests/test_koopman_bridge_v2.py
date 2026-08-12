@@ -25,7 +25,7 @@ from easyuuv_nc.thrust_allocation import (
     dof_weight_vector,
 )
 from koopman.schema_v2 import validate_episode_v2, validate_transition_v2
-from workflows.koopman_bridge_v2 import KoopmanBridgeV2
+from workflows.koopman_bridge_v2 import KoopmanBridgeV2, build_koopman_transition_v2
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -356,6 +356,49 @@ def test_bridge_writes_only_after_strict_validation() -> None:
     recorder = Recorder()
     transition = _bridge(env).step_and_record(torch.zeros((2, 4)), logger=recorder)
     assert recorder.rows == [transition]
+
+
+def test_named_transition_builder_calls_strict_schema_validator(monkeypatch) -> None:
+    import workflows.koopman_bridge_v2 as bridge_module
+
+    calls: list[dict] = []
+
+    def strict_validator(payload: dict) -> None:
+        calls.append(payload)
+
+    monkeypatch.setattr(bridge_module, "validate_transition_v2", strict_validator)
+    payload = {"sentinel": "complete-transition"}
+    built = build_koopman_transition_v2(payload)
+    assert calls == [payload]
+    assert built == payload
+    assert built is not payload
+
+
+def test_named_transition_builder_does_not_return_invalid_payload(monkeypatch) -> None:
+    import workflows.koopman_bridge_v2 as bridge_module
+
+    def reject(_payload: dict) -> None:
+        raise ValueError("schema_contract_rejected")
+
+    monkeypatch.setattr(bridge_module, "validate_transition_v2", reject)
+    with pytest.raises(ValueError, match="schema_contract_rejected"):
+        build_koopman_transition_v2({"sentinel": "invalid"})
+
+
+def test_step_and_record_routes_through_named_transition_builder(monkeypatch) -> None:
+    import workflows.koopman_bridge_v2 as bridge_module
+
+    calls: list[dict] = []
+    original = bridge_module.build_koopman_transition_v2
+
+    def recording_builder(payload: dict) -> dict:
+        calls.append(payload)
+        return original(payload)
+
+    monkeypatch.setattr(bridge_module, "build_koopman_transition_v2", recording_builder)
+    transition = _bridge(_FakeBatchedEnv()).step_and_record(torch.zeros((2, 4)))
+    assert len(calls) == 1
+    assert transition == calls[0]
 
 
 @pytest.mark.parametrize(
