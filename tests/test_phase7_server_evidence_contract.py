@@ -14,6 +14,7 @@ import textwrap
 import pytest
 
 from koopman.schema_v2 import validate_episode_artifact_v2
+import workflows.collect_koopman_v2_smoke as collector
 from workflows.collect_koopman_v2_smoke import (
     MINIMUM_TRANSITIONS,
     TOPOLOGY_CONFIGURATIONS,
@@ -375,6 +376,60 @@ def test_output_path_rejects_symlink_components(tmp_path: Path) -> None:
         pytest.skip("symlink creation unavailable")
     with pytest.raises(ValueError, match="output_symlink_component"):
         resolve_output_path(link / "episode.jsonl", root)
+
+
+def test_repository_commit_allows_only_explicit_in_repo_result_root(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    repository = _init_temp_repo(tmp_path)
+    result_root = repository / "source" / "results" / "koopman_phase7"
+    (result_root / "logs").mkdir(parents=True)
+    (result_root / "logs" / "base.log").write_text("evidence\n", encoding="utf-8")
+    monkeypatch.setattr(collector, "PROJECT_ROOT", repository)
+    assert collector._repository_commit(result_root) == _git(repository, "rev-parse", "HEAD")
+
+    (repository / "untracked_source.py").write_text("drift\n", encoding="utf-8")
+    with pytest.raises(RuntimeError, match="source_worktree_untracked_dirty"):
+        collector._repository_commit(result_root)
+    (repository / "untracked_source.py").unlink()
+
+    (repository / "tracked.txt").write_text("tracked drift\n", encoding="utf-8")
+    with pytest.raises(RuntimeError, match="source_worktree_tracked_dirty"):
+        collector._repository_commit(result_root)
+
+
+def test_main_turns_unexpected_system_exit_into_strict_failure_evidence(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    result_root = tmp_path / "results"
+    failure = result_root / "failures" / "base.failure.json"
+
+    def _unexpected_exit(_: argparse.Namespace) -> int:
+        raise SystemExit(0)
+
+    monkeypatch.setattr(collector, "run_isaac_collection", _unexpected_exit)
+    status = collector.main(
+        [
+            "--configuration",
+            "base",
+            "--steps",
+            "8",
+            "--episode-id",
+            "unexpected-exit",
+            "--result-root",
+            str(result_root),
+            "--output-jsonl",
+            str(result_root / "episodes" / "base.jsonl"),
+            "--output-manifest",
+            str(result_root / "manifests" / "base.manifest.json"),
+            "--failure-json",
+            str(failure),
+        ]
+    )
+    assert status != 0
+    payload = json.loads(failure.read_text(encoding="utf-8"))
+    assert payload["eligible_for_merge"] is False
+    assert payload["reason"] == "unexpected_system_exit:0"
 
 
 def test_local_exact_three_merge_remains_local_contract(tmp_path: Path) -> None:
