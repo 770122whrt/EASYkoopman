@@ -3,20 +3,20 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Multi-Configuration Koopman Transfer and Environment-Aware Control
 status: executing
-last_updated: "2026-08-12T15:00:00+08:00"
-last_activity: 2026-08-12 -- Phase 7 exact-three real-server evidence passed and CONT-01..05 were goal-backward verified
+last_updated: "2026-08-13T23:00:00+08:00"
+last_activity: 2026-08-13 -- Phase 8 SPEC was independently audited and five execution plans were verified for execution readiness
 progress:
   total_phases: 7
   completed_phases: 2
-  total_plans: 8
+  total_plans: 13
   completed_plans: 8
-  percent: 100
+  percent: 62
 ---
 
 # Project State: EASYkoopman
 
-**Updated:** 2026-08-12
-**Current focus:** Phase 8 — Multi-Configuration Koopman Identification and OOD Gate planning
+**Updated:** 2026-08-13
+**Current focus:** Phase 8 — execute 08-01 evidence/protocol/pilot foundation
 **Active milestone:** `v2.0 Multi-Configuration Koopman Transfer and Environment-Aware Control`
 **Branch:** `v2.0-multi-configuration`
 
@@ -28,10 +28,10 @@ See `.planning/PROJECT.md`.
 
 ## Current Position
 
-Phase: 8 (Multi-Configuration Koopman Identification and OOD Gate) — READY TO PLAN
-Plan: 0 plans drafted
-Status: Phase 7 complete — all 4 plans and CONT-01..05 verified
-Last activity: 2026-08-12 -- tested source `a36689a` produced 3×8 real Isaac transitions; aggregate `2f07a683...8463` and the exact 44-file server inventory passed staged pullback and independent validation
+Phase: 8 (Multi-Configuration Koopman Identification and OOD Gate) — READY TO EXECUTE
+Plan: 5 plans drafted, 0/5 executed
+Status: Phase 8 SPEC and plans independently audited; begin Wave 1 at 08-01
+Last activity: 2026-08-13 -- Phase 8 knowledge alignment separated baselines/regimes/expert, sealed exact-eight LOCO model decisions, froze external evidence vocabulary and planned pilot/main/evaluation/selection isolation
 
 ## Milestone Goal
 
@@ -130,7 +130,13 @@ All three boundaries are visible on `origin/v2.0-multi-configuration`: simulator
 - All three native/tee/semantic gates passed. `uuv4` recorded two nonzero raw-yaw probes and zero virtual-yaw leaks, confirming the catalog mask before TAM in the real runtime chain.
 - The aggregate passed server and pullback validators with `warnings=[]`, source/runtime provenance matched, SHA-256 `2f07a6835f0b32fe0277fd819394580f261b6028dc3d07520e70b124e0758463`, and all 44 server-authored files passed the self-excluding relative-path inventory validator on server and pullback.
 - Server evidence is isolated in commit `1c0a6ca`; `07-SERVER-EVIDENCE.md`, `07-04-SUMMARY.md` and `07-VERIFICATION.md` close CONT-01..05 without claiming Koopman prediction, OOD transfer or MPC effectiveness.
+- Phase 8 SPEC now distinguishes persistence/simple-linear baselines, per-configuration/pooled/conditional regimes and the non-promoting expert role; its ambiguity score is `0.10`.
+- An independent contract audit corrected transductive pilot leakage: pilot is collection-health-only, while every model-affecting decision is pre-registered or fold-local over exactly seven source configurations.
+- Five plans cover KID-01..05 and D-01..23 in dependency order `08-01 -> 08-02 -> 08-03 -> 08-04 -> 08-05`, with one explicit D-23 user protocol approval before main-server collection.
+- Phase 8 evidence uses external `qualification_level` envelopes without extending or relabelling the frozen Phase 7 transition `evidence_level` enum.
+- Evaluation and terminal selection/no-selection use separate immutable roots; a selected final refit reruns the registered inner algorithm on all eight fit+validation roles only, while refit failure atomically yields `no_selection` with no model path.
+- Planning does not mark any KID requirement complete and creates no pilot, dataset, evaluation or selection success artifact. Phase 8 will close only after an independent goal-backward `08-VERIFICATION.md` passes KID-01..05.
 
 ## Next Action
 
-Plan Phase 8 against the completed schema-v2/DatasetV2 boundary: define configuration/episode-level splits, comparable baseline/shared/conditional model families, held-out-configuration metrics and a fail-closed `no_selection` OOD gate. Do not migrate MPC or claim control performance in Phase 8 planning.
+Execute `08-01-PLAN.md`: implement the additive Phase 8 evidence/protocol contract and exact-eight collection-health-only pilot chain with strict local TDD/preflight before any SSH request. Do not fit a model, create main roles or claim OOD/control performance in Wave 1.

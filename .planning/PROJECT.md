@@ -18,7 +18,7 @@ Build control experiments whose model, checkpoint, controller path and evaluatio
 
 - Qualified EasyUUV 2.0 configuration catalog with explicit thruster topology and controllable-degree-of-freedom metadata.
 - Versioned cross-configuration data and control contract using fixed 4D virtual control before TAM allocation.
-- Single-platform, pooled and conditional Koopman identification with held-out-configuration gates.
+- Per-configuration, pooled and physically conditioned regimes of one v2 controlled-EDMD backend, compared with explicit baselines and held-out-configuration gates.
 - Configuration-aware Koopman-MPC with masks, fallback and matched closed-loop evaluation.
 - Environment-context estimation and rollback-protected RLS/KF online updates.
 - Low-frequency Agent Supervisor that cannot directly command PWM or bypass safety gates.
@@ -35,7 +35,7 @@ Build control experiments whose model, checkpoint, controller path and evaluatio
 ### Active
 
 - [x] Import and qualify the eight CLI-supported EasyUUV 2.0 configurations without rewriting v1.0 evidence.
-- [ ] Establish a topology-independent Koopman/data/control contract for 4, 6 and 8 thrusters.
+- [x] Establish a topology-independent Koopman/data/control contract for 4, 6 and 8 thrusters — Phase 7.
 - [ ] Measure held-out-configuration Koopman prediction and closed-loop transfer against explicit baselines.
 - [ ] Estimate environment context and allow only bounded, reversible online model updates.
 - [ ] Evaluate a low-frequency Agent Supervisor against no-supervisor and rule-supervisor baselines.
@@ -87,7 +87,7 @@ The final Phase 5.4 selector returned `no_selection`. v1.0 therefore remains a r
 - `no_cost_improvement` fallback needs cost-margin and prediction-error diagnosis.
 - `paper_lifted_edmd` has large depth error and is research-only.
 - Koopman models are trained offline and remain fixed online.
-- Koopman performance evidence still covers the v1.0 single configuration; Phase 6 adds eight-configuration simulator qualification, not Koopman transfer evidence.
+- Koopman performance evidence still covers the v1.0 single configuration; Phase 6 qualified eight simulator configurations and Phase 7 connected the 4D data/control contract on representative 8/6/4-thruster servers, but neither proves Koopman prediction transfer.
 - No LLM runtime, Sim2Real, hardware deployment or broad 6-DOF claim exists.
 - Several historical phases lack standard GSD verification artifacts; see the milestone audit.
 
@@ -124,7 +124,7 @@ v1.0 is frozen at tag `v1.0`. v2.0 continues phase numbering at Phase 6 and trea
 | Close Phase 5.4 with `no_selection` | Preserve a valid negative result | Good |
 | Defer online adaptation and LLM | Finish the core control evidence first | Still valid |
 | Continue v2.0 at Phase 6 | Preserve the v1.0 historical phase identity | Good — Phase 6 verified |
-| Use fixed 4D virtual control before TAM allocation | Give 4/6/8-thruster platforms one controller-facing meaning | Contract qualified; Phase 7 integration pending |
+| Use fixed 4D virtual control before TAM allocation | Give 4/6/8-thruster platforms one controller-facing meaning | Good — Phase 7 schema/Bridge/server evidence verified |
 | Treat `uuv4*` yaw as explicitly unavailable | Avoid impossible tracking claims on underactuated configurations | Good — rank/mask and server smoke verified |
 | Restrict Agent to an allow-listed low-frequency supervisor | Preserve deterministic low-level control and fail-closed behavior | Pending |
 
@@ -156,4 +156,4 @@ This document evolves at phase transitions and milestone boundaries.
 
 ---
 
-*Last updated: 2026-08-11 after Phase 6 verification*
+*Last updated: 2026-08-13 after Phase 8 planning and independent contract review*

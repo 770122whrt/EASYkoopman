@@ -17,7 +17,7 @@ v1.0 的阶段名称、结论和证据已冻结，不在本活动 roadmap 中重
 |---|---|---|---|---|
 | 6 | EasyUUV 2.0 Intake and Multi-Configuration Qualification | QUAL-01..08 | v1.0 frozen baseline | Complete — 4/4 plans verified |
 | 7 | Cross-Configuration Koopman Data and Control Contract | CONT-01..05 | Phase 6 | Complete — 4/4 plans verified |
-| 8 | Multi-Configuration Koopman Identification and OOD Gate | KID-01..05 | Phase 7 | Ready for planning |
+| 8 | Multi-Configuration Koopman Identification and OOD Gate | KID-01..05 | Phase 7 | Planned — 0/5 plans complete |
 | 9 | Configuration-Aware Koopman-MPC Integration | MPC2-01..04 | Phase 8 | Pending |
 | 10 | Environment Awareness and Online Koopman Update | ADAPT-01..05 | Phase 9 | Pending |
 | 11 | Low-Frequency Agent Supervisor | AGENT-01..04 | Phase 10 | Pending |
@@ -105,23 +105,50 @@ Plans:
 
 ### Phase 8: Multi-Configuration Koopman Identification and OOD Gate
 
-**Goal:** 在按 configuration/episode 隔离的数据上比较单构型、共享与条件化 Koopman，并用 held-out configuration 预测门决定是否存在可用的跨构型模型。
+**Goal:** 在按 configuration/episode 隔离的数据上，以同一 controlled-EDMD v2 backend 比较 persistence/simple-linear baselines、per-configuration/pooled/conditional regimes 和 non-promoting expert，并用 exact-eight held-out-configuration 预测门决定是否存在可进入 Phase 9 的 pooled/conditional 模型。
 
 **Depends on:** Phase 7
 
 **Requirements**: KID-01, KID-02, KID-03, KID-04, KID-05
 
 **Success Criteria**:
-1. 所有 train/validation/test manifest 按 configuration 和 episode 分组，验证器拒绝 row-level leakage。
-2. persistence、linear、per-configuration、pooled、conditional 和 expert upper-bound 模型使用同一 split manifest 比较。
-3. 报告包含 one-step、multi-step、rollout 与 SO(3) geodesic 姿态指标，并给出逐构型和聚合结果。
-4. 选择 manifest 记录数据/模型 provenance，并在无人通过全部门时输出 `no_selection`。
+1. Pilot 只判断 exact-eight 采集链/schema/runtime/safety/coverage 是否健康，不参与模型、feature、horizon、threshold 或主实验预算选择。
+2. 所有 fit/validation/test manifest 按 configuration 和完整 episode 分组；exact-eight LOCO 每折只用七个 source configurations 做模型相关决策，验证器拒绝 row-level 或 held-out trajectory leakage。
+3. persistence、simple-linear、per-configuration、pooled、conditional 和 expert 角色使用同一 split/analysis policy；只有 pooled/conditional 允许进入 selector。
+4. 报告包含 one-step、5/20/60-step、full rollout 与 SO(3) geodesic 姿态指标，并给出逐构型、equal-config macro 和 worst-configuration 结果。
+5. 选择 envelope 绑定数据/模型/protocol/runtime provenance；通过时 final refit 只用八构型 fit+validation 重新选择设置并拟合，失败时输出无 model path 的 `no_selection`。
 
-**Plans:** 0 plans
+**Plans:** 5 plans
 
 Plans:
 
-- [ ] TBD — plan after schema v2 is verified.
+**Wave 1**
+
+- [ ] 08-01-PLAN.md — establish the external Phase 8 evidence envelope, pre-collection protocol schemas and exact-eight collection-health-only pilot through a locally gated server chain.
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 08-02-PLAN.md — implement exact main inventory, configuration/episode role views, LOCO split manifests, opened-file leakage audits and fold-local physical platform descriptors.
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [ ] 08-03-PLAN.md — implement one controlled-EDMD v2 backend, true baselines, six evaluation roles, episode-safe rollout and quaternion-correct/configuration-balanced metrics through TDD.
+
+**Wave 4** *(blocked on Wave 3 completion; includes D-23 user decision and server checkpoint)*
+
+- [ ] 08-04-PLAN.md — present and freeze exact main role/action and analysis policies, then collect and independently pull back the real exact-eight 96-episode identification dataset.
+
+**Wave 5** *(blocked on Wave 4 completion)*
+
+- [ ] 08-05-PLAN.md — run the one frozen exact-eight LOCO evaluation, atomically emit separate selection/no-selection evidence, perform test-free final refit when eligible and close only after independent goal-backward verification.
+
+**Cross-cutting constraints:**
+
+- Pilot is collection-health-only; model-affecting choices are pre-registered or selected inside each outer fold from seven source configurations only.
+- Phase 8 transition rows keep the frozen Phase 7 `evidence_level`; new pilot/dataset/evaluation/selection names live only in a validated external `qualification_level` envelope.
+- Main selection inputs are `state_11 + virtual_control_4`, with optional fold-fitted physical platform context. Reference, PWM, measured wrench and environment oracle remain diagnostic/non-promoting.
+- Planning, local implementation, pilot evidence, main server dataset, offline evaluation, terminal selection/no-selection and closeout remain separate commits and immutable roots.
+- Phase 8 proves or rejects held-out-configuration prediction transfer only; MPC/closed-loop, environment adaptation, Agentic and hardware claims remain Phase 9+.
 
 ### Phase 9: Configuration-Aware Koopman-MPC Integration
 
