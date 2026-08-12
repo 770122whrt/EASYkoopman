@@ -62,7 +62,7 @@ from isaaclab_compat import (
 from .rigid_body_hydrodynamics import HydrodynamicForceModels
 from .boundary_effects import BoundaryEffectModels
 from .thruster_dynamics import DynamicsFirstOrder, ConversionFunctionBasic, get_thruster_com_and_orientations
-from ..embodiments import EMBODIMENT_CONFIGS
+from ..embodiments import EMBODIMENT_CONFIGS, qualification_record
 from ..thrust_allocation import (
     ThrusterLayout,
     allocate,
@@ -736,6 +736,53 @@ class EasyUUVEnv(DirectRLEnv):
         self._embodiment_type = "base"
         self._drag_multiplier = 1.0
         self._drag_multiplier_per_env = torch.ones(self.num_envs, device=self.device)
+        self._initialize_koopman_telemetry_buffers("base")
+
+    def _initialize_koopman_telemetry_buffers(self, embodiment_type: str) -> None:
+        """Initialize read-only Koopman runtime truth for one active topology."""
+        topology = qualification_record(embodiment_type)
+        self._control_mask_4 = torch.tensor(
+            topology["control_mask"], device=self.device, dtype=torch.float32
+        ).reshape(1, 4).repeat(self.num_envs, 1)
+        self._last_raw_action_4 = torch.zeros((self.num_envs, 4), device=self.device)
+        self._last_virtual_control_4 = torch.zeros((self.num_envs, 4), device=self.device)
+        self._last_motor_values_clipped = torch.zeros(
+            (self.num_envs, int(topology["thruster_count"])), device=self.device
+        )
+        self._last_applied_wrench_6 = torch.zeros((self.num_envs, 6), device=self.device)
+        self._last_fluid_velocity_w = torch.zeros((self.num_envs, 3), device=self.device)
+        self._last_thruster_efficiency_n = torch.zeros(
+            (self.num_envs, int(topology["thruster_count"])), device=self.device
+        )
+        self._koopman_telemetry_step_token = torch.full(
+            (self.num_envs,), -1, device=self.device, dtype=torch.long
+        )
+        self._koopman_telemetry_valid = torch.zeros(
+            self.num_envs, device=self.device, dtype=torch.bool
+        )
+
+    def get_koopman_telemetry_snapshot(self) -> dict:
+        """Return detached copies of the latest same-dynamics-call telemetry."""
+        return {
+            "configuration": str(self._embodiment_type),
+            "raw_action_4": self._last_raw_action_4.detach().clone(),
+            "virtual_control_4": self._last_virtual_control_4.detach().clone(),
+            "motor_pwm_n": self._last_motor_values_clipped.detach().clone(),
+            "applied_wrench_6": self._last_applied_wrench_6.detach().clone(),
+            "fluid_velocity_world_3": self._last_fluid_velocity_w.detach().clone(),
+            "thruster_efficiency_n": self._last_thruster_efficiency_n.detach().clone(),
+            "control_mask_4": self._control_mask_4.detach().clone(),
+            "mass_kg": self.masses.detach().clone(),
+            "inertia_diagonal_kg_m2": self.inertia_tensors.detach().clone(),
+            "com_to_cob_offset_m": self.com_to_cob_offsets.detach().clone(),
+            "volume_m3": self.volumes.detach().clone(),
+            "drag_multiplier": self._drag_multiplier_per_env.detach().clone(),
+            "thruster_dynamics_time_constant_s": self.thruster_dynamics.tau.detach().clone(),
+            "water_density_kg_m3": float(self.cfg.water_rho),
+            "dynamic_viscosity_pa_s": float(self.cfg.water_beta),
+            "step_token": self._koopman_telemetry_step_token.detach().clone(),
+            "valid": self._koopman_telemetry_valid.detach().clone(),
+        }
 
     def apply_control_profile(self, control_profile: str) -> None:
         """Apply a control profile for cascade/direct PWM experiments."""
@@ -1077,6 +1124,7 @@ class EasyUUVEnv(DirectRLEnv):
                            f"Available types: {list(self.cfg.embodiment_configs.keys())}")
 
         config = self.cfg.embodiment_configs[embodiment_type]
+        topology = qualification_record(embodiment_type)
         self._embodiment_type = embodiment_type
 
         # Apply mass
@@ -1125,6 +1173,10 @@ class EasyUUVEnv(DirectRLEnv):
 
         # Reinitialize thruster dynamics with new time constant + thruster count
         self.thruster_dynamics = DynamicsFirstOrder(self.num_envs, self._num_thrusters, self.cfg.dyn_time_constant, self.device)
+        self._initialize_koopman_telemetry_buffers(embodiment_type)
+        self._control_mask_4 = torch.tensor(
+            topology["control_mask"], device=self.device, dtype=torch.float32
+        ).reshape(1, 4).repeat(self.num_envs, 1)
 
         # Apply drag multiplier for heavy-duty case
         self._drag_multiplier = config.get("drag_multiplier", 1.0)
@@ -1436,6 +1488,7 @@ class EasyUUVEnv(DirectRLEnv):
         self._prev_prev_action[:] = self._prev_action
         self._prev_action[:] = self._actions
 
+        self._last_raw_action_4 = actions[:, :4].detach().clone()
         self._actions[:] = actions
         self._actions[:] = torch.clip(self._actions, -1, 1).to(self.device)
         if self._tune_gains_enabled and self._actions.shape[1] >= 8:
@@ -1649,6 +1702,17 @@ class EasyUUVEnv(DirectRLEnv):
         if env_ids is None:
             env_ids = self._robot._ALL_INDICES
         super()._reset_idx(env_ids)
+        ids = torch.as_tensor(env_ids, device=self.device, dtype=torch.long) if not isinstance(env_ids, torch.Tensor) else env_ids.to(device=self.device, dtype=torch.long)
+
+        if hasattr(self, "_koopman_telemetry_valid"):
+            self._koopman_telemetry_valid[ids] = False
+            self._koopman_telemetry_step_token[ids] = -1
+            self._last_raw_action_4[ids] = 0.0
+            self._last_virtual_control_4[ids] = 0.0
+            self._last_motor_values_clipped[ids] = 0.0
+            self._last_applied_wrench_6[ids] = 0.0
+            self._last_fluid_velocity_w[ids] = 0.0
+            self._last_thruster_efficiency_n[ids] = 0.0
 
         self.obs_noise_buffer[env_ids] = 0.0
         self._prev_action[env_ids] = 0.0
@@ -1670,7 +1734,6 @@ class EasyUUVEnv(DirectRLEnv):
         if hasattr(self, "_last_depth_deadband_gain"):
             self._last_depth_deadband_gain[env_ids] = 1.0
         if hasattr(self, "_torque_pulse_next_t"):
-            ids = torch.as_tensor(env_ids, device=self.device, dtype=torch.long) if not isinstance(env_ids, torch.Tensor) else env_ids
             self._schedule_next_torque_pulse(ids, initial=True)
 
         self._default_root_state[env_ids, :] = self._robot.data.default_root_state[env_ids]
@@ -2146,30 +2209,32 @@ class EasyUUVEnv(DirectRLEnv):
             PID_value[:, 0] = roll_c * k
             PID_value[:, 1] = pitch_c * k
             self._last_alloc_priority_k = k.detach().clone()
+        virtual_control = PID_value * self._control_mask_4
         if self._use_config_alloc:
             # config 驱动分配（真·物理 embodiment）：控制通道 [roll,pitch,yaw,depth] 先乘
             # _alloc_channel_sign=[-1,+1,-1,+1] 对齐旧硬编码混合块的净 wrench 语义，转成期望
             # body wrench，再经 B⁺（全驱）/ WLS（欠驱动屏蔽不可达 DOF）解出 N 推指令。
-            cmd = PID_value * self._alloc_channel_sign            # (N, 4)
+            cmd = virtual_control * self._alloc_channel_sign      # (N, 4)
             wrench = control_channels_to_wrench(cmd)              # (N, 6)
             motorValue = allocate(
                 self._alloc_B, wrench, mode=self._alloc_mode, weight=self._alloc_weight
             )                                                     # (N, N_thrusters)
         else:
-            motorValue[:,0] = -PID_value[:,0] - PID_value[:,1] + PID_value[:,3] # roll, pitch, depth
-            motorValue[:,1] = PID_value[:,0] - PID_value[:,1] + PID_value[:,3]
-            motorValue[:,2] = -PID_value[:,0] + PID_value[:,1] + PID_value[:,3]
-            motorValue[:,3] = PID_value[:,0] + PID_value[:,1] + PID_value[:,3]
-            motorValue[:,4] = PID_value[:,2];
-            motorValue[:,5] = -PID_value[:,2]
-            motorValue[:,6] = -PID_value[:,2]
-            motorValue[:,7] = PID_value[:,2]
+            motorValue[:,0] = -virtual_control[:,0] - virtual_control[:,1] + virtual_control[:,3] # roll, pitch, depth
+            motorValue[:,1] = virtual_control[:,0] - virtual_control[:,1] + virtual_control[:,3]
+            motorValue[:,2] = -virtual_control[:,0] + virtual_control[:,1] + virtual_control[:,3]
+            motorValue[:,3] = virtual_control[:,0] + virtual_control[:,1] + virtual_control[:,3]
+            motorValue[:,4] = virtual_control[:,2];
+            motorValue[:,5] = -virtual_control[:,2]
+            motorValue[:,6] = -virtual_control[:,2]
+            motorValue[:,7] = virtual_control[:,2]
         motor_raw = motorValue.clone()
         motorValue = torch.clip(motorValue, -1, 1).to(self.device) # clip to PWM values
         # Additive telemetry for saturation analysis (no behavioral effect):
         # cache the 4-channel S-surface/PID output, raw vs clipped 8-motor values,
         # and per-env saturation ratio (fraction of motors that hit the PWM rail).
         self._last_pid_value = PID_value.detach().clone()
+        self._last_virtual_control_4 = virtual_control.detach().clone()
         self._last_motor_values_raw = motor_raw.detach().clone()
         self._last_motor_values_clipped = motorValue.detach().clone()
         self._last_motor_saturation_ratio = (motor_raw.detach().abs() > 1.0).float().mean(dim=1)
@@ -2309,6 +2374,7 @@ class EasyUUVEnv(DirectRLEnv):
         # get thruster forces from their speeds using the thruster conversion function 
         motorValues = self.thruster_conversion.convert(motorValues)
         motorValues = motorValues * self.thruster_efficiency_factors
+        self._last_thruster_efficiency_n = self.thruster_efficiency_factors.detach().clone()
 
         # TODO: this could be taken out of the physics step
         thruster_forces[..., 0] = 1.0 # start with forces in the x direction
@@ -2328,12 +2394,14 @@ class EasyUUVEnv(DirectRLEnv):
         # now sum together all the forces/torques on each robot
         thruster_forces = torch.sum(thruster_forces, dim=-2) # sum over the thruster indices
         thruster_torques = torch.sum(thruster_torques, dim=-2) # sum over the thruster indices
+        self._last_applied_wrench_6 = torch.cat((thruster_forces, thruster_torques), dim=-1).detach().clone()
 
         ## Calculate hydrodynamics
         if self._debug: print("gravity magnitude: ", self._gravity_magnitude) 
         buoyancy_forces, buoyancy_torques = self.force_calculation_functions.calculate_buoyancy_forces(self._robot.data.root_quat_w, self.cfg.water_rho, self.volumes, abs(self._gravity_magnitude), self.com_to_cob_offsets)
 
         fluid_vel_w = self.get_current_fluid_velocity()
+        self._last_fluid_velocity_w = fluid_vel_w.detach().clone()
         density_forces, density_torques, viscosity_forces, viscosity_torques = self.force_calculation_functions.calculate_density_and_viscosity_forces(
           self._robot.data.root_quat_w, self._robot.data.root_lin_vel_w, self._robot.data.root_ang_vel_w, self.inertia_tensors, self.inertia_tensors_mean, self.cfg.water_beta, self.cfg.water_rho, self.masses, fluid_vel_w
         )
@@ -2378,6 +2446,9 @@ class EasyUUVEnv(DirectRLEnv):
             self._last_boundary_info = b_info
 
         torques = self._update_runtime_torque_pulse(torques)
+
+        self._koopman_telemetry_step_token += 1
+        self._koopman_telemetry_valid[:] = True
 
         if self._debug: print("final forces", forces)
         if self._debug: print("final torques", torques)
