@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 import ast
+import json
 from pathlib import Path
+import subprocess
+import sys
 from types import SimpleNamespace
 
 import pytest
@@ -421,3 +424,52 @@ def test_bridge_rejects_state_and_reference_dimension_drift_before_step() -> Non
     with pytest.raises(ValueError, match="bridge_reference_shape"):
         _bridge(reference_env).step_and_record(torch.zeros((2, 4)))
     assert reference_env.step_calls == 0
+
+
+@pytest.mark.parametrize(
+    "configuration",
+    ("base", "long_body", "heavy_moderate", "asymmetric", "uuv6", "uuv6_angled"),
+)
+def test_fully_controllable_configurations_retain_prior_allocation_output(
+    configuration: str,
+) -> None:
+    control = torch.tensor([[0.17, -0.29, 0.41, 0.23]])
+    mask = torch.tensor(qualification_record(configuration)["control_mask"])
+    assert mask.tolist() == [1, 1, 1, 1]
+    torch.testing.assert_close(
+        _allocation_for(configuration, control * mask),
+        _allocation_for(configuration, control),
+        rtol=0.0,
+        atol=0.0,
+    )
+
+
+def test_default_off_runtime_truth_is_observational_only_source_contract() -> None:
+    pid_source = _env_method_source("_pid_control")
+    dynamics_source = _env_method_source("_compute_dynamics")
+    assert "self._last_pid_value = PID_value.detach().clone()" in pid_source
+    assert "forces = density_forces + buoyancy_forces + viscosity_forces + thruster_forces" in dynamics_source
+    assert "torques = density_torques + buoyancy_torques + viscosity_torques + thruster_torques" in dynamics_source
+    assert dynamics_source.rstrip().endswith("return forces, torques")
+    assert "_last_applied_wrench_6 +" not in dynamics_source
+    assert "_last_fluid_velocity_w +" not in dynamics_source
+
+
+def test_bridge_cold_import_does_not_load_isaac_or_torch() -> None:
+    script = """
+import json
+import sys
+import workflows.koopman_bridge_v2
+blocked = [name for name in sys.modules if name == 'torch' or name.startswith(('gymnasium', 'omni', 'isaaclab'))]
+print(json.dumps(blocked))
+"""
+    result = subprocess.run(
+        [sys.executable, "-c", script],
+        cwd=PROJECT_ROOT,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        check=False,
+    )
+    assert result.returncode == 0, result.stderr
+    assert json.loads(result.stdout) == []
