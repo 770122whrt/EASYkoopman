@@ -3,20 +3,20 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Multi-Configuration Koopman Transfer and Environment-Aware Control
 status: executing
-last_updated: "2026-08-12T00:24:28.989Z"
-last_activity: 2026-08-12 -- Phase 7 execution started
+last_updated: "2026-08-12T00:47:00+08:00"
+last_activity: 2026-08-12 -- Phase 7 Wave 1 schema v2 plan completed and independently revalidated
 progress:
   total_phases: 7
   completed_phases: 1
   total_plans: 8
-  completed_plans: 4
-  percent: 50
+  completed_plans: 5
+  percent: 63
 ---
 
 # Project State: EASYkoopman
 
 **Updated:** 2026-08-12
-**Current focus:** Phase 7 — Cross-Configuration Koopman Data and Control Contract
+**Current focus:** Phase 7 — Wave 2 runtime Bridge and DatasetV2/v1 compatibility
 **Active milestone:** `v2.0 Multi-Configuration Koopman Transfer and Environment-Aware Control`
 **Branch:** `v2.0-multi-configuration`
 
@@ -29,9 +29,9 @@ See `.planning/PROJECT.md`.
 ## Current Position
 
 Phase: 7 (Cross-Configuration Koopman Data and Control Contract) — EXECUTING
-Plan: 1 of 4
-Status: Executing Phase 7
-Last activity: 2026-08-12 -- Phase 7 execution started
+Plan: 07-01 complete — 1 of 4 Phase 7 plans
+Status: Wave 1 verified — Wave 2 plans 07-02 and 07-03 ready
+Last activity: 2026-08-12 -- 78 schema tests and 179 schema/v1/Phase 6 regressions passed with isolated basetemp
 
 ## Milestone Goal
 
@@ -121,7 +121,9 @@ All three boundaries are visible on `origin/v2.0-multi-configuration`: simulator
 - Four plans cover CONT-01..05 and D-01..16 with dependency graph `07-01 -> {07-02,07-03} -> 07-04`.
 - Independent plan checking converged from five blocking findings to zero remaining issues. It corrected the per-episode fixture boundary, real Phase 6 script path, aggregate validator, executable full local preflight and resolved research questions.
 - Phase 7 planning does not mark any CONT requirement complete and does not create or claim server evidence. Existing v1 `U=PWM_8` model/MPC defaults remain frozen.
+- Plan 07-01 completed strict schema v2 transition/context validation, contiguous episode JSONL/manifest/hash and a pure-Python validator CLI through two explicit RED→GREEN cycles (`aba86e6`→`0bb631c`, `788f451`→`89491fa`).
+- Independent Wave 1 rerun passed 179 tests with `.pytest-tmp/phase7-wave1-root`; the first unisolated rerun exposed only a Windows `%TEMP%` permission error before project code, which the planned repository-local basetemp resolved.
 
 ## Next Action
 
-Execute `07-01-PLAN.md`: establish the pure schema v2 transition/episode/manifest contract and strict local validator through TDD. Do not connect to the server until 07-01..03 and the complete 07-04 local preflight are committed and green.
+Execute Wave 2 plans 07-02 and 07-03: add runtime truth/atomic Bridge and the separate `U=virtual_control_4` DatasetV2/v1 compatibility path. Do not connect to the server until both plans and the complete 07-04 local preflight are committed and green.

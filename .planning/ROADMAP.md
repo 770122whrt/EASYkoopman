@@ -16,7 +16,7 @@ v1.0 的阶段名称、结论和证据已冻结，不在本活动 roadmap 中重
 | Phase | Name | Requirements | Depends on | Status |
 |---|---|---|---|---|
 | 6 | EasyUUV 2.0 Intake and Multi-Configuration Qualification | QUAL-01..08 | v1.0 frozen baseline | Complete — 4/4 plans verified |
-| 7 | Cross-Configuration Koopman Data and Control Contract | CONT-01..05 | Phase 6 | Planned — 0/4 plans complete |
+| 7 | Cross-Configuration Koopman Data and Control Contract | CONT-01..05 | Phase 6 | In Progress — 1/4 plans complete |
 | 8 | Multi-Configuration Koopman Identification and OOD Gate | KID-01..05 | Phase 7 | Pending |
 | 9 | Configuration-Aware Koopman-MPC Integration | MPC2-01..04 | Phase 8 | Pending |
 | 10 | Environment Awareness and Online Koopman Update | ADAPT-01..05 | Phase 9 | Pending |
@@ -78,13 +78,13 @@ Plans:
 3. Padded PWM 只能用于诊断、饱和与能耗分析，无法被静默当作跨构型模型输入。
 4. oracle 与 estimated environment context 在数据与 API 中保持分离，v1 日志仅通过显式 compatibility adapter 读取。
 
-**Plans:** 4 plans
+**Plans:** 1/4 plans executed
 
 Plans:
 
 **Wave 1**
 
-- [ ] 07-01-PLAN.md — establish the pure schema v2 transition/episode/manifest contract, strict validator CLI and local mutation gates.
+- [x] 07-01-PLAN.md — establish the pure schema v2 transition/episode/manifest contract, strict validator CLI and local mutation gates.
 
 **Wave 2** *(blocked on Wave 1 completion; plans may run in parallel)*
 
