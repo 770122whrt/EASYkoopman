@@ -134,3 +134,15 @@ def test_corrupt_v1_still_fails_through_existing_loader(
 
 def test_canonical_v1_fixture_bytes_are_unchanged() -> None:
     assert hashlib.sha256(FIXTURE.read_bytes()).hexdigest() == FIXTURE_SHA256
+
+
+def test_v1_adapter_source_has_no_v2_builder_writer_or_inference_path() -> None:
+    source = (
+        Path(__file__).resolve().parents[1] / "koopman" / "v1_compatibility.py"
+    ).read_text(encoding="utf-8")
+    assert "from koopman_data import load_koopman_samples" in source
+    assert "schema_v2" not in source
+    assert "dataset_v2" not in source
+    assert "build_local_transition_v2" not in source
+    assert "build_koopman_transition_v2" not in source
+    assert "KoopmanEpisodeLoggerV2" not in source
