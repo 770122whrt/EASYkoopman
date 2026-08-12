@@ -10,6 +10,7 @@ $ErrorActionPreference = "Stop"
 Set-StrictMode -Version Latest
 $phase7ExecutionBaseline = "01d60f6f05c965edfbead3238d8203888424237d"
 $phase7RunId = [Guid]::NewGuid().ToString('N')
+$phase7TempRoot = ".pytest-tmp/phase7-preflight-$phase7RunId"
 
 $phase7ScriptPath = $PSCommandPath
 if (-not $phase7ScriptPath) { $phase7ScriptPath = $MyInvocation.MyCommand.Path }
@@ -128,7 +129,7 @@ try {
     if (-not $SkipTestsForContract) {
         Invoke-Gate "targeted_phase7_tests" {
             & $PythonExecutable -m pytest -q `
-                --basetemp ".pytest-tmp/phase7-targeted/$phase7RunId" `
+                --basetemp "$phase7TempRoot/targeted" `
                 tests/test_koopman_schema_v2.py `
                 tests/test_koopman_bridge_v2.py `
                 tests/test_koopman_dataset_v2.py `
@@ -139,7 +140,7 @@ try {
         Write-Output "gate=full_collect_only;status=running"
         $collectOutput = @(
             & $PythonExecutable -m pytest --collect-only -q `
-                --basetemp ".pytest-tmp/phase7-collect/$phase7RunId" 2>&1
+                --basetemp "$phase7TempRoot/collect" 2>&1
         )
         if ($LASTEXITCODE -ne 0) {
             Fail-Gate "full_collect_only" "exit=$LASTEXITCODE"
@@ -157,7 +158,7 @@ try {
 
         Invoke-Gate "full_pytest" {
             & $PythonExecutable -m pytest -q `
-                --basetemp ".pytest-tmp/phase7-full-suite/$phase7RunId"
+                --basetemp "$phase7TempRoot/full-suite"
         }
         Invoke-Gate "compileall" {
             & $PythonExecutable -m compileall -q `

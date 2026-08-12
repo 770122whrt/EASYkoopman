@@ -932,7 +932,8 @@ def test_local_preflight_declares_every_fail_closed_gate(required_gate: str) -> 
     assert "exit 1" in source
     assert "source/results/koopman_phase7" in source
     assert "--untracked-files=all" in source
-    assert ".pytest-tmp/phase7-full-suite" in source
+    assert ".pytest-tmp/phase7-preflight-" in source
+    assert "$phase7TempRoot/full-suite" in source
 
 
 def test_local_preflight_uses_unique_leaf_for_every_pytest_basetemp() -> None:
