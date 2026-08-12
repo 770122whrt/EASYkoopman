@@ -49,6 +49,39 @@ def _copy_local_artifacts(tmp_path: Path) -> tuple[list[Path], dict[str, Path]]:
         manifest.write_bytes(
             (FIXTURE_ROOT / f"{configuration}.manifest.json").read_bytes()
         )
+        original = [
+            json.loads(line)
+            for line in jsonl.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+        records = [deepcopy(original[0])]
+        for step in range(1, MINIMUM_TRANSITIONS):
+            record = deepcopy(original[1])
+            record["state_11"] = deepcopy(records[-1]["next_state_11"])
+            record["next_state_11"] = deepcopy(record["state_11"])
+            record["episode_provenance"]["step_index"] = step
+            record["episode_provenance"]["simulation_time_s"] = 0.02 * step
+            records.append(record)
+        jsonl.write_text(
+            "".join(
+                json.dumps(row, allow_nan=False, separators=(",", ":"), sort_keys=True)
+                + "\n"
+                for row in records
+            ),
+            encoding="utf-8",
+            newline="",
+        )
+        payload = json.loads(manifest.read_text(encoding="utf-8"))
+        payload["transition_sha256"] = _sha256(jsonl)
+        payload["record_count"] = MINIMUM_TRANSITIONS
+        payload["last_step_index"] = MINIMUM_TRANSITIONS - 1
+        payload["last_simulation_time_s"] = 0.02 * (MINIMUM_TRANSITIONS - 1)
+        manifest.write_text(
+            json.dumps(payload, allow_nan=False, separators=(",", ":"), sort_keys=True)
+            + "\n",
+            encoding="utf-8",
+            newline="",
+        )
         log.write_text(f"configuration={configuration}\nsemantic_status=pass\n", encoding="utf-8")
         manifests.append(manifest)
         logs[configuration] = log
@@ -95,6 +128,8 @@ def _promote_fixture_to_server(
         "native_status": 0,
         "tee_status": 0,
         "semantic_status": "pass",
+        "wrench_source": "post_actuator_thruster_only",
+        "context_source": "same_step_oracle_snapshot",
     }
     manifest_path.write_text(
         json.dumps(manifest, allow_nan=False, separators=(",", ":"), sort_keys=True)
