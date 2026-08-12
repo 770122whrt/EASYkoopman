@@ -1207,6 +1207,17 @@ def test_sha256_inventory_is_relative_exact_and_self_excluding(tmp_path: Path) -
     with pytest.raises(EvidenceInventoryError, match="inventory_file_set_mismatch"):
         validate_sha256_inventory(evidence_root, inventory)
 
+    (evidence_root / "unlisted.log").unlink()
+    pullback_verdict = evidence_root / "pullback_validator.json"
+    pullback_verdict.write_text('{"validation_gate":"pass"}\n', encoding="utf-8")
+    with pytest.raises(EvidenceInventoryError, match="inventory_file_set_mismatch"):
+        validate_sha256_inventory(evidence_root, inventory)
+    assert validate_sha256_inventory(
+        evidence_root,
+        inventory,
+        allow_local_pullback_verdict=True,
+    ) == {"file_count": 1, "validation_gate": "sha256_inventory_valid"}
+
 
 def test_server_and_pullback_strictly_validate_relative_file_inventory() -> None:
     server = SERVER_SMOKE.read_text(encoding="utf-8")
