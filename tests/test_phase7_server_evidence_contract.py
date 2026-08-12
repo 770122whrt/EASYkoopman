@@ -556,17 +556,20 @@ def test_phase7_operational_artifacts_exist_and_parse_in_native_shells() -> None
     ):
         assert path.is_file(), f"missing planned operational artifact: {path}"
     for script in (SERVER_BOOTSTRAP, SERVER_SMOKE):
-        result = _run([_bash(), "-n", str(script)], cwd=PROJECT_ROOT)
+        result = _run([_bash(), "-n", script.relative_to(PROJECT_ROOT).as_posix()], cwd=PROJECT_ROOT)
         assert result.returncode == 0, result.stderr
     parser = (
         "$errors=$null; [System.Management.Automation.Language.Parser]::ParseFile("
-        "$args[0],[ref]$null,[ref]$errors) > $null; "
+        "$env:PHASE7_PARSE_TARGET,[ref]$null,[ref]$errors) > $null; "
         "if($errors.Count){$errors | ForEach-Object {Write-Error $_}; exit 1}"
     )
     for script in (LOCAL_PREFLIGHT, PREPARE_BUNDLE, PULLBACK):
+        environment = dict(os.environ)
+        environment["PHASE7_PARSE_TARGET"] = str(script)
         result = _run(
-            [_powershell(), "-NoProfile", "-Command", parser, str(script)],
+            [_powershell(), "-NoProfile", "-Command", parser],
             cwd=PROJECT_ROOT,
+            env=environment,
         )
         assert result.returncode == 0, result.stderr
 
