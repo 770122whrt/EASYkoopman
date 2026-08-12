@@ -736,6 +736,44 @@ def test_phase7_git_wrappers_never_merge_stderr_into_semantic_stdout() -> None:
         assert all("2>&1" not in line for line in git_lines), script
 
 
+def test_protected_diff_uses_frozen_baselines_for_v1_and_phase6_evidence() -> None:
+    source = LOCAL_PREFLIGHT.read_text(encoding="utf-8")
+    phase7_baseline = "01d60f6f05c965edfbead3238d8203888424237d"
+
+    assert f'$phase7ExecutionBaseline = "{phase7_baseline}"' in source
+    assert "cat-file -e \"${phase7ExecutionBaseline}^{commit}\"" in source
+    assert "merge-base --is-ancestor $phase7ExecutionBaseline HEAD" in source
+    assert "diff --name-only v1.0 --" in source
+    assert "koopman/model.py koopman/lifted_edmd.py koopman/mpc.py" in source
+    assert "source/results/koopman_phase6" not in source.split(
+        "diff --name-only v1.0 --", 1
+    )[1].split("diff --name-only $phase7ExecutionBaseline --", 1)[0]
+    assert "diff --name-only $phase7ExecutionBaseline -- source/results/koopman_phase6" in source
+
+    assert _git(PROJECT_ROOT, "cat-file", "-t", phase7_baseline) == "commit"
+    ancestor = _run(
+        ["git", "merge-base", "--is-ancestor", phase7_baseline, "HEAD"],
+        cwd=PROJECT_ROOT,
+    )
+    assert ancestor.returncode == 0, ancestor.stderr
+    assert _git(
+        PROJECT_ROOT,
+        "diff",
+        "--name-only",
+        phase7_baseline,
+        "--",
+        "source/results/koopman_phase6",
+    ) == ""
+    assert _git(
+        PROJECT_ROOT,
+        "diff",
+        "--name-only",
+        "v1.0",
+        "--",
+        "source/results/koopman_phase6",
+    ) != ""
+
+
 @pytest.mark.parametrize(
     "required_gate",
     [
