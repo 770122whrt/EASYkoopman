@@ -512,6 +512,20 @@ def _bash() -> str:
     return executable
 
 
+def _expected_git_bash() -> Path:
+    result = subprocess.run(
+        ["git", "--exec-path"],
+        cwd=PROJECT_ROOT,
+        text=True,
+        capture_output=True,
+        check=True,
+    )
+    exec_path = Path(result.stdout.strip()).resolve()
+    if os.name == "nt":
+        return exec_path.parents[2] / "bin" / "bash.exe"
+    return Path(shutil.which("bash") or "bash")
+
+
 def _run(command: list[str], *, cwd: Path, env: dict[str, str] | None = None) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
         command,
@@ -572,6 +586,54 @@ def test_phase7_operational_artifacts_exist_and_parse_in_native_shells() -> None
             env=environment,
         )
         assert result.returncode == 0, result.stderr
+
+
+@pytest.mark.skipif(os.name != "nt", reason="Windows Git Bash identity contract")
+def test_bash_helper_uses_current_git_install_not_wsl_or_path_fake(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    fake_directory = tmp_path / "fake-path"
+    fake_directory.mkdir()
+    fake_bash = fake_directory / "bash.exe"
+    shutil.copy2(Path(os.environ["SystemRoot"]) / "System32" / "where.exe", fake_bash)
+    monkeypatch.setenv("PATH", str(fake_directory) + os.pathsep + os.environ["PATH"])
+    resolved = Path(_bash()).resolve()
+    expected = _expected_git_bash().resolve()
+    assert expected.is_file()
+    assert resolved == expected
+    assert "system32" not in str(resolved).lower()
+    assert resolved != fake_bash.resolve()
+
+
+@pytest.mark.skipif(os.name != "nt", reason="Windows Git Bash identity contract")
+def test_preflight_uses_git_bash_when_path_starts_with_fake(
+    tmp_path: Path,
+) -> None:
+    fake_directory = tmp_path / "fake-path"
+    fake_directory.mkdir()
+    shutil.copy2(
+        Path(os.environ["SystemRoot"]) / "System32" / "where.exe",
+        fake_directory / "bash.exe",
+    )
+    environment = dict(os.environ)
+    environment["PATH"] = str(fake_directory) + os.pathsep + environment["PATH"]
+    result = _run(
+        [
+            _powershell(),
+            "-NoProfile",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-File",
+            str(LOCAL_PREFLIGHT.relative_to(PROJECT_ROOT)),
+            "-SkipTestsForContract",
+        ],
+        cwd=PROJECT_ROOT,
+        env=environment,
+    )
+    output = result.stdout + result.stderr
+    assert "gate=bash_parse;status=pass" in output
+    assert "E_ACCESSDENIED" not in output
+    assert str(fake_directory) not in output
 
 
 @pytest.mark.parametrize(
