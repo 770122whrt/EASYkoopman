@@ -43,13 +43,13 @@ Phase 8 首先实现一个新增且版本化的 v2 Koopman backend，再用上�
 | 待检验假设 | pooled 模型能跨构型泛化；physical-context conditional 比 pooled 更好；`state_11 + virtual_control_4` 足以作为可部署 plant predictor；加入 reference 的诊断模型是否只是在利用控制器/任务相关信息。 |
 | 分层冻结 | 采集规模与角色先由预注册 collection policy 冻结；horizon、v2 lifting/hyperparameter、物理条件特征、归一化和 promotion margin 由逐 outer-fold、只读七个 source configurations 的 inner decision 冻结。 |
 
-任何“待检验假设”都不能在报告中写成已知事实；任何“pilot 后冻结”的值都不能在看到主实验 outer-test 结果后修改。
+任何“待检验假设”都不能在报告中写成已知事实；预采集协议必须在对应采集前冻结，模型相关值只能由每个 outer fold 的七个 source configurations 按预注册算法决定，并且二者都不能在看到 outer-test 结果后修改。
 
 ## Two-Stage Experimental Contract
 
 ### Stage A — Identification pilot
 
-Pilot 的唯一目的，是为正式主实验选择一个足够且可执行的数据/评估协议，而不是产生最终 OOD 结论。
+Pilot 的唯一目的，是判断预注册的 exact-eight 采集链是否健康并可进入主实验；它不选择主实验的数据预算、分析协议、模型或门限，也不产生最终 OOD 结论。
 
 - 在读取任何 pilot trajectory 前，`pilot_collection_policy.json` 先固定 exact-eight configuration、独立 episode/seed/scenario ID、激励边界、采集规模、schema/runtime/safety/coverage health 门和停止规则，并产生不可变 hash。该规模是预注册的工程预算，不声称为统计最优样本量。
 - exact-eight pilot 只验证采集链健康：严格 schema/连续性、有限值、预声明可控通道是否被激励、状态/控制是否达到预声明安全覆盖、`uuv4*` yaw mask、runtime/log/hash 与逐构型 failure reason。它不得拟合预测模型，不得比较 backend/feature/horizon，不得用 validation/rollout error、regression rank/condition 或 held-out 动力学表现改变模型选择。
@@ -191,7 +191,7 @@ Pilot 的唯一目的，是为正式主实验选择一个足够且可执行的�
 - oracle/estimated environment modeling、RLS/KF online update — Phase 10。
 - PPO/Agent Supervisor/LLM runtime — Phase 11。
 - final nominal/OOD/environment/combined-shift paper matrix — Phase 12。
-- 把 reference、PWM 或 measured wrench 静默升级为主模型输入；若 pilot 证明 state/control contract 不充分，必须新增显式 design checkpoint/版本，而不是在本阶段暗改。
+- 把 reference、PWM 或 measured wrench 静默升级为主模型输入；若 Stage B 的七-source fold evidence 或独立 reference diagnostic 指向 state/control contract 不充分，必须记录限制并进入未来显式 design checkpoint/版本，而不是在本阶段暗改。
 - 修改 v1 `KoopmanDataset.U=PWM_8`、`KoopmanModel.control_dim=8`、v1 MPC/selection 或冻结 evidence。
 - 硬件、Sim2Real、独立 CAD/USD 外观或真实海试结论。
 
