@@ -1140,6 +1140,28 @@ def test_server_smoke_locks_offline_runtime_three_process_and_pipeline_gates() -
     assert "__pycache__" in source and "bytecode_pollution" in source
 
 
+def test_server_smoke_places_every_merge_input_in_aggregate_root() -> None:
+    source = SERVER_SMOKE.read_text(encoding="utf-8")
+    for required in (
+        '--output-jsonl "$RESULT_ROOT/$configuration.jsonl"',
+        '--output-manifest "$RESULT_ROOT/$configuration.manifest.json"',
+        'tee "$RESULT_ROOT/$configuration.log"',
+        '--jsonl "$RESULT_ROOT/$configuration.jsonl"',
+        '--manifest "$RESULT_ROOT/$configuration.manifest.json"',
+        '--manifest "$RESULT_ROOT/manifests/base.manifest.json"',
+    ):
+        if "/manifests/base" in required:
+            assert required not in source
+        else:
+            assert required in source
+    for nested in (
+        '"$RESULT_ROOT/episodes/$configuration.jsonl"',
+        '"$RESULT_ROOT/manifests/$configuration.manifest.json"',
+        '"$RESULT_ROOT/logs/$configuration.log"',
+    ):
+        assert nested not in source
+
+
 def test_server_smoke_reuses_locked_phase6_isaaclab_state_without_git_tag_object() -> None:
     source = SERVER_SMOKE.read_text(encoding="utf-8")
     assert "phase6_server_preflight.sh" in source
