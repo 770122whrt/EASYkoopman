@@ -6,11 +6,14 @@ from copy import deepcopy
 import hashlib
 import importlib
 import json
+import os
 from pathlib import Path
 import shutil
+import subprocess
 import sys
 import tempfile
 
+import numpy as np
 import pytest
 
 from easyuuv_nc.embodiments import SUPPORTED_EMBODIMENTS, qualification_record
@@ -649,3 +652,64 @@ def test_validator_cli_has_no_evidence_upgrade_flag(capsys):
     help_text = capsys.readouterr().out
     assert "--server" not in help_text
     assert "--evidence-level" not in help_text
+
+
+def test_schema_and_cli_cold_imports_are_runtime_framework_free():
+    project_root = Path(__file__).resolve().parents[1]
+    environment = os.environ.copy()
+    existing_pythonpath = environment.get("PYTHONPATH")
+    environment["PYTHONPATH"] = os.pathsep.join(
+        part for part in (str(project_root), existing_pythonpath) if part
+    )
+    probe = subprocess.run(
+        [
+            sys.executable,
+            "-c",
+            (
+                "import sys; import koopman.schema_v2; "
+                "import workflows.validate_koopman_v2; "
+                "blocked=('torch','gymnasium','omni','easyuuv_nc.env'); "
+                "loaded=sorted(name for name in sys.modules if any("
+                "name==item or name.startswith(item+'.') for item in blocked)); "
+                "assert not loaded, loaded"
+            ),
+        ],
+        cwd=project_root,
+        env=environment,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert probe.returncode == 0, probe.stderr
+
+
+def test_v1_pwm8_data_dataset_model_and_mpc_contracts_remain_frozen():
+    from koopman.dataset import load_dataset
+    from koopman.model import KoopmanModel
+    from koopman.mpc import MPCBounds, project_pwm
+    from koopman_data import PWM_DIM, REQUIRED_FIELDS
+
+    assert PWM_DIM == 8
+    assert REQUIRED_FIELDS == (
+        "t",
+        "state",
+        "reference",
+        "action_4d",
+        "pwm_8d",
+        "next_state",
+        "trajectory_type",
+        "controller_mode",
+    )
+    fixture = Path(__file__).resolve().parent / "fixtures" / "koopman_step_small.jsonl"
+    dataset = load_dataset(fixture)
+    assert dataset.U.ndim == 2
+    assert dataset.U.shape[1] == 8
+    assert KoopmanModel.__dataclass_fields__["control_dim"].default == 8
+    assert project_pwm(np.zeros(8), np.zeros(8), MPCBounds()).shape == (8,)
+    with pytest.raises(ValueError, match=r"pwm must have shape \(8,\)"):
+        project_pwm(
+            np.zeros(4),
+            np.zeros(8),
+            MPCBounds(),
+        )
