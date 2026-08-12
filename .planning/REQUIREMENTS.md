@@ -19,11 +19,11 @@
 
 ### Cross-Configuration Data and Control Contract
 
-- [ ] **CONT-01**: A versioned schema v2 records `state_11`, `reference_5`, `raw_action_4`, `virtual_control_4`, `motor_pwm_padded_8`, `thruster_mask_8`, `applied_wrench_6`, platform/environment context, `next_state_11`, configuration identity and episode provenance.
-- [ ] **CONT-02**: Koopman and MPC consumers use `virtual_control_4 = [roll, pitch, yaw, depth]` as the topology-independent control meaning before TAM allocation.
-- [ ] **CONT-03**: Padded PWM is available for diagnostic, saturation and energy analysis but cannot silently become the default cross-configuration learned-control input.
-- [ ] **CONT-04**: Dataset records distinguish oracle environment context from estimated deployable environment context.
-- [ ] **CONT-05**: Existing v1 logs remain readable through an explicit compatibility path without being relabelled as schema v2 or multi-configuration evidence.
+- [x] **CONT-01**: A versioned schema v2 records `state_11`, `reference_5`, `raw_action_4`, `virtual_control_4`, `motor_pwm_padded_8`, `thruster_mask_8`, `applied_wrench_6`, platform/environment context, `next_state_11`, configuration identity and episode provenance.
+- [x] **CONT-02**: Koopman and MPC consumers use `virtual_control_4 = [roll, pitch, yaw, depth]` as the topology-independent control meaning before TAM allocation.
+- [x] **CONT-03**: Padded PWM is available for diagnostic, saturation and energy analysis but cannot silently become the default cross-configuration learned-control input.
+- [x] **CONT-04**: Dataset records distinguish oracle environment context from estimated deployable environment context.
+- [x] **CONT-05**: Existing v1 logs remain readable through an explicit compatibility path without being relabelled as schema v2 or multi-configuration evidence.
 
 ### Multi-Configuration Koopman Identification
 
@@ -98,11 +98,11 @@
 | QUAL-06 | Phase 6 | Complete |
 | QUAL-07 | Phase 6 | Complete |
 | QUAL-08 | Phase 6 | Complete |
-| CONT-01 | Phase 7 | Pending |
-| CONT-02 | Phase 7 | Pending |
-| CONT-03 | Phase 7 | Pending |
-| CONT-04 | Phase 7 | Pending |
-| CONT-05 | Phase 7 | Pending |
+| CONT-01 | Phase 7 | Complete |
+| CONT-02 | Phase 7 | Complete |
+| CONT-03 | Phase 7 | Complete |
+| CONT-04 | Phase 7 | Complete |
+| CONT-05 | Phase 7 | Complete |
 | KID-01 | Phase 8 | Pending |
 | KID-02 | Phase 8 | Pending |
 | KID-03 | Phase 8 | Pending |

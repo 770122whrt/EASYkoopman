@@ -3,20 +3,20 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Multi-Configuration Koopman Transfer and Environment-Aware Control
 status: executing
-last_updated: "2026-08-12T09:29:12+08:00"
-last_activity: 2026-08-12 -- Phase 7 Wave 2 runtime Bridge and dual-version data contracts completed and independently revalidated
+last_updated: "2026-08-12T15:00:00+08:00"
+last_activity: 2026-08-12 -- Phase 7 exact-three real-server evidence passed and CONT-01..05 were goal-backward verified
 progress:
   total_phases: 7
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 8
-  completed_plans: 7
-  percent: 88
+  completed_plans: 8
+  percent: 100
 ---
 
 # Project State: EASYkoopman
 
 **Updated:** 2026-08-12
-**Current focus:** Phase 7 — Wave 3 local evidence chain before server execution
+**Current focus:** Phase 8 — Multi-Configuration Koopman Identification and OOD Gate planning
 **Active milestone:** `v2.0 Multi-Configuration Koopman Transfer and Environment-Aware Control`
 **Branch:** `v2.0-multi-configuration`
 
@@ -28,10 +28,10 @@ See `.planning/PROJECT.md`.
 
 ## Current Position
 
-Phase: 7 (Cross-Configuration Koopman Data and Control Contract) — EXECUTING
-Plan: 07-01 through 07-03 complete — 3 of 4 Phase 7 plans
-Status: Wave 2 verified — 07-04 local preflight ready
-Last activity: 2026-08-12 -- 07-02 passed 208 Bridge/Phase 6 regressions; 07-03 passed 123 schema/data/v1 model-MPC regressions
+Phase: 8 (Multi-Configuration Koopman Identification and OOD Gate) — READY TO PLAN
+Plan: 0 plans drafted
+Status: Phase 7 complete — all 4 plans and CONT-01..05 verified
+Last activity: 2026-08-12 -- tested source `a36689a` produced 3×8 real Isaac transitions; aggregate `2f07a683...8463` and the exact 44-file server inventory passed staged pullback and independent validation
 
 ## Milestone Goal
 
@@ -125,7 +125,12 @@ All three boundaries are visible on `origin/v2.0-multi-configuration`: simulator
 - Independent Wave 1 rerun passed 179 tests with `.pytest-tmp/phase7-wave1-root`; the first unisolated rerun exposed only a Windows `%TEMP%` permission error before project code, which the planned repository-local basetemp resolved.
 - Plan 07-02 added catalog-masked post-PID/pre-TAM virtual control, post-actuator thruster-only wrench, same-call fluid/efficiency telemetry and a one-step/one-token strict Bridge; independent serial rerun passed 208 tests and both mandatory key links.
 - Plan 07-03 added immutable `U=virtual_control_4` DatasetV2 plus named diagnostics and a non-promoting v1 compatibility view; independent rerun passed 123 tests while frozen v1 model/MPC defaults remained 8D.
+- Plan 07-04 added the exact-three collector/merger/validator, full local preflight, offline bundle/bootstrap and staged pullback chain; final pre-transfer gates passed 222 Phase 7 tests and 559 full-suite tests with one Windows-only symlink skip.
+- Tested source `a36689a` ran on the unchanged Isaac server in isolated `/root/EASYkoopman-phase7-v2`; `base`, `uuv6` and `uuv4` each produced 8 contiguous strict schema-v2 transitions.
+- All three native/tee/semantic gates passed. `uuv4` recorded two nonzero raw-yaw probes and zero virtual-yaw leaks, confirming the catalog mask before TAM in the real runtime chain.
+- The aggregate passed server and pullback validators with `warnings=[]`, source/runtime provenance matched, SHA-256 `2f07a6835f0b32fe0277fd819394580f261b6028dc3d07520e70b124e0758463`, and all 44 server-authored files passed the self-excluding relative-path inventory validator on server and pullback.
+- Server evidence is isolated in commit `1c0a6ca`; `07-SERVER-EVIDENCE.md`, `07-04-SUMMARY.md` and `07-VERIFICATION.md` close CONT-01..05 without claiming Koopman prediction, OOD transfer or MPC effectiveness.
 
 ## Next Action
 
-Execute the local portion of 07-04: implement the three-topology server runner, aggregate validator, offline transfer and pullback chain; run the complete local preflight and commit a clean tested HEAD before connecting to the already-started server.
+Plan Phase 8 against the completed schema-v2/DatasetV2 boundary: define configuration/episode-level splits, comparable baseline/shared/conditional model families, held-out-configuration metrics and a fail-closed `no_selection` OOD gate. Do not migrate MPC or claim control performance in Phase 8 planning.

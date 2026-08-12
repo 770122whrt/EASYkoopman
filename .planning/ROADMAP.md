@@ -16,8 +16,8 @@ v1.0 的阶段名称、结论和证据已冻结，不在本活动 roadmap 中重
 | Phase | Name | Requirements | Depends on | Status |
 |---|---|---|---|---|
 | 6 | EasyUUV 2.0 Intake and Multi-Configuration Qualification | QUAL-01..08 | v1.0 frozen baseline | Complete — 4/4 plans verified |
-| 7 | Cross-Configuration Koopman Data and Control Contract | CONT-01..05 | Phase 6 | In Progress — 3/4 plans complete |
-| 8 | Multi-Configuration Koopman Identification and OOD Gate | KID-01..05 | Phase 7 | Pending |
+| 7 | Cross-Configuration Koopman Data and Control Contract | CONT-01..05 | Phase 6 | Complete — 4/4 plans verified |
+| 8 | Multi-Configuration Koopman Identification and OOD Gate | KID-01..05 | Phase 7 | Ready for planning |
 | 9 | Configuration-Aware Koopman-MPC Integration | MPC2-01..04 | Phase 8 | Pending |
 | 10 | Environment Awareness and Online Koopman Update | ADAPT-01..05 | Phase 9 | Pending |
 | 11 | Low-Frequency Agent Supervisor | AGENT-01..04 | Phase 10 | Pending |
@@ -78,7 +78,7 @@ Plans:
 3. Padded PWM 只能用于诊断、饱和与能耗分析，无法被静默当作跨构型模型输入。
 4. oracle 与 estimated environment context 在数据与 API 中保持分离，v1 日志仅通过显式 compatibility adapter 读取。
 
-**Plans:** 3/4 plans executed
+**Plans:** 4/4 plans verified
 
 Plans:
 
@@ -93,7 +93,7 @@ Plans:
 
 **Wave 3** *(blocked on both Wave 2 plans)*
 
-- [ ] 07-04-PLAN.md — pass the complete local preflight, then produce and independently pull back fail-closed real-server schema/Bridge evidence for `base`, `uuv6` and `uuv4`.
+- [x] 07-04-PLAN.md — passed the complete local preflight and produced independently pulled, exact-inventory-verified real-server schema/Bridge evidence for `base`, `uuv6` and `uuv4` (`a36689a`, evidence `1c0a6ca`).
 
 **Cross-cutting constraints:**
 

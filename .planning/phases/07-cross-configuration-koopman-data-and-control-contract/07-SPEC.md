@@ -119,16 +119,16 @@ Koopman Bridge 与后续 v2 consumer 的唯一默认 learned-control 含义必�
 
 ## Acceptance Criteria
 
-- [ ] schema v2 的必需字段、精确版本、shape、有限性、范围、单位/坐标系、构型一致性和 episode 连续性均由 strict validator 覆盖。
-- [ ] 八个公开构型的本地合同全部产生固定 4D virtual control，并产生与 catalog 一致的 8/6/4 PWM 长度、mask 与 rank。
-- [ ] `uuv4` 与 `uuv4_angled` 在非零 raw yaw 输入下记录零 virtual yaw，且该事实进入 validator/verification。
-- [ ] 默认 v2 dataset/training tuple 的 control 维度精确为 4；padded PWM 只能通过 diagnostics/显式实验 feature set 访问。
-- [ ] actual applied wrench 来自执行后的推进器 force/torque，而不是 desired TAM wrench 或含流体外力的 total wrench。
-- [ ] oracle 与 estimated context 在 schema、API 和 provenance 中分离；estimated unavailable 是合法状态，oracle-copy-as-estimate 被拒绝。
-- [ ] canonical v1 fixture 只通过显式 compatibility adapter 读取，并被标记为不具备 v2 cross-configuration training eligibility。
-- [ ] 现有 v1 regression suite、Phase 6 qualification contract 和全仓 Isaac-free suite 继续通过；受保护的 v1 历史与结果无差异。
-- [ ] 真实服务器分别对 `base`、`uuv6`、`uuv4` 产生至少 8 条连续 v2 transition，三份证据均通过 strict validator，且版本、commit、日志与 hash 可复核。
-- [ ] Phase 7 runbook、machine-readable evidence、SUMMARY 与 VERIFICATION 存在，并对 `CONT-01`..`CONT-05` 每项给出明确 PASS/FAIL；缺少服务器证据时 Phase 7 不得标记完成。
+- [x] schema v2 的必需字段、精确版本、shape、有限性、范围、单位/坐标系、构型一致性和 episode 连续性均由 strict validator 覆盖。
+- [x] 八个公开构型的本地合同全部产生固定 4D virtual control，并产生与 catalog 一致的 8/6/4 PWM 长度、mask 与 rank。
+- [x] `uuv4` 与 `uuv4_angled` 在非零 raw yaw 输入下记录零 virtual yaw，且该事实进入 validator/verification。
+- [x] 默认 v2 dataset/training tuple 的 control 维度精确为 4；padded PWM 只能通过 diagnostics/显式实验 feature set 访问。
+- [x] actual applied wrench 来自执行后的推进器 force/torque，而不是 desired TAM wrench 或含流体外力的 total wrench。
+- [x] oracle 与 estimated context 在 schema、API 和 provenance 中分离；estimated unavailable 是合法状态，oracle-copy-as-estimate 被拒绝。
+- [x] canonical v1 fixture 只通过显式 compatibility adapter 读取，并被标记为不具备 v2 cross-configuration training eligibility。
+- [x] 现有 v1 regression suite、Phase 6 qualification contract 和全仓 Isaac-free suite 继续通过；受保护的 v1 历史与结果无差异。
+- [x] 真实服务器分别对 `base`、`uuv6`、`uuv4` 产生至少 8 条连续 v2 transition，三份证据均通过 strict validator，且版本、commit、日志与 hash 可复核。
+- [x] Phase 7 runbook、machine-readable evidence、SUMMARY 与 VERIFICATION 存在，并对 `CONT-01`..`CONT-05` 每项给出明确 PASS/FAIL；缺少服务器证据时 Phase 7 不得标记完成。
 
 ## Ambiguity Report
 
