@@ -4,9 +4,12 @@ import argparse
 from copy import deepcopy
 import hashlib
 import json
+import os
 from pathlib import Path
+import shutil
 import subprocess
 import sys
+import textwrap
 
 import pytest
 
@@ -30,6 +33,12 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 FIXTURE_ROOT = PROJECT_ROOT / "tests" / "fixtures" / "koopman_v2_three_topologies"
 VALIDATOR = PROJECT_ROOT / "workflows" / "validate_koopman_v2.py"
 COLLECTOR = PROJECT_ROOT / "workflows" / "collect_koopman_v2_smoke.py"
+LOCAL_PREFLIGHT = PROJECT_ROOT / "scripts" / "phase7_local_preflight.ps1"
+PREPARE_BUNDLE = PROJECT_ROOT / "scripts" / "phase7_prepare_bundle.ps1"
+SERVER_BOOTSTRAP = PROJECT_ROOT / "scripts" / "phase7_server_bootstrap.sh"
+SERVER_SMOKE = PROJECT_ROOT / "scripts" / "phase7_server_smoke.sh"
+PULLBACK = PROJECT_ROOT / "scripts" / "phase7_pullback.ps1"
+RUNBOOK = PROJECT_ROOT / "docs" / "phase7_koopman_v2_runbook.md"
 SOURCE_COMMIT = "a" * 40
 EXPECTED_CONFIGURATIONS = ("base", "uuv6", "uuv4")
 
@@ -487,3 +496,277 @@ def test_validator_cli_aggregate_mode_is_strict_and_json_reasoned(tmp_path: Path
     )
     assert failed.returncode != 0
     assert "ERROR:" in failed.stderr
+
+
+def _powershell() -> str:
+    executable = shutil.which("powershell.exe") or shutil.which("powershell")
+    if executable is None:
+        pytest.skip("PowerShell unavailable")
+    return executable
+
+
+def _bash() -> str:
+    executable = shutil.which("bash.exe") or shutil.which("bash")
+    if executable is None:
+        pytest.skip("Bash unavailable")
+    return executable
+
+
+def _run(command: list[str], *, cwd: Path, env: dict[str, str] | None = None) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(
+        command,
+        cwd=cwd,
+        env=env,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+
+
+def _git(cwd: Path, *args: str) -> str:
+    result = _run(["git", *args], cwd=cwd)
+    assert result.returncode == 0, result.stderr
+    return result.stdout.strip()
+
+
+def _init_temp_repo(tmp_path: Path) -> Path:
+    repository = tmp_path / "repo"
+    repository.mkdir()
+    _git(repository, "init", "-b", "v2.0-multi-configuration")
+    _git(repository, "config", "user.email", "phase7@example.invalid")
+    _git(repository, "config", "user.name", "Phase 7 Contract")
+    (repository / "scripts").mkdir()
+    return repository
+
+
+def _commit_all(repository: Path, message: str) -> str:
+    _git(repository, "add", ".")
+    _git(repository, "commit", "-m", message)
+    return _git(repository, "rev-parse", "HEAD")
+
+
+def test_phase7_operational_artifacts_exist_and_parse_in_native_shells() -> None:
+    for path in (
+        LOCAL_PREFLIGHT,
+        PREPARE_BUNDLE,
+        SERVER_BOOTSTRAP,
+        SERVER_SMOKE,
+        PULLBACK,
+        RUNBOOK,
+    ):
+        assert path.is_file(), f"missing planned operational artifact: {path}"
+    for script in (SERVER_BOOTSTRAP, SERVER_SMOKE):
+        result = _run([_bash(), "-n", str(script)], cwd=PROJECT_ROOT)
+        assert result.returncode == 0, result.stderr
+    parser = (
+        "$errors=$null; [System.Management.Automation.Language.Parser]::ParseFile("
+        "$args[0],[ref]$null,[ref]$errors) > $null; "
+        "if($errors.Count){$errors | ForEach-Object {Write-Error $_}; exit 1}"
+    )
+    for script in (LOCAL_PREFLIGHT, PREPARE_BUNDLE, PULLBACK):
+        result = _run(
+            [_powershell(), "-NoProfile", "-Command", parser, str(script)],
+            cwd=PROJECT_ROOT,
+        )
+        assert result.returncode == 0, result.stderr
+
+
+@pytest.mark.parametrize(
+    "required_gate",
+    [
+        "targeted_phase7_tests",
+        "full_collect_only",
+        "full_pytest",
+        "compileall",
+        "pip_check",
+        "bash_parse",
+        "powershell_parse",
+        "git_diff_check",
+        "protected_diff",
+        "worktree_clean",
+        "canonical_evidence_absent",
+    ],
+)
+def test_local_preflight_declares_every_fail_closed_gate(required_gate: str) -> None:
+    source = LOCAL_PREFLIGHT.read_text(encoding="utf-8")
+    assert required_gate in source
+    assert "exit 1" in source
+    assert "source/results/koopman_phase7" in source
+    assert "--untracked-files=all" in source
+    assert ".pytest-tmp/phase7-full-suite" in source
+
+
+def test_prepare_invokes_same_preflight_before_any_bundle_command() -> None:
+    source = PREPARE_BUNDLE.read_text(encoding="utf-8")
+    preflight = source.index("phase7_local_preflight.ps1")
+    bundle_create = source.index("bundle create")
+    assert preflight < bundle_create
+    assert "worktree_dirty" in source
+    assert "--untracked-files=all" in source
+    assert "bundle verify" in source
+    assert "bundle list-heads" in source
+    assert "expected-source-commit.txt" in source
+
+
+@pytest.mark.parametrize("dirty_kind", ["tracked", "untracked"])
+def test_prepare_dynamic_dirty_repo_stops_before_transfer(
+    tmp_path: Path, dirty_kind: str
+) -> None:
+    repository = _init_temp_repo(tmp_path)
+    shutil.copy2(PREPARE_BUNDLE, repository / "scripts" / PREPARE_BUNDLE.name)
+    shutil.copy2(LOCAL_PREFLIGHT, repository / "scripts" / LOCAL_PREFLIGHT.name)
+    (repository / "tracked.txt").write_text("clean\n", encoding="utf-8")
+    _commit_all(repository, "fixture")
+    if dirty_kind == "tracked":
+        (repository / "tracked.txt").write_text("dirty\n", encoding="utf-8")
+    else:
+        (repository / "unignored.txt").write_text("dirty\n", encoding="utf-8")
+    result = _run(
+        [
+            _powershell(),
+            "-NoProfile",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-File",
+            str(repository / "scripts" / PREPARE_BUNDLE.name),
+            "-RepositoryRoot",
+            str(repository),
+            "-TransferDirectory",
+            "transfer",
+        ],
+        cwd=repository,
+    )
+    assert result.returncode != 0
+    assert "worktree_dirty" in result.stderr + result.stdout
+    assert not (repository / "transfer").exists()
+
+
+def test_prepare_dynamic_preflight_failure_stops_before_bundle(tmp_path: Path) -> None:
+    repository = _init_temp_repo(tmp_path)
+    shutil.copy2(PREPARE_BUNDLE, repository / "scripts" / PREPARE_BUNDLE.name)
+    (repository / "scripts" / LOCAL_PREFLIGHT.name).write_text(
+        "Write-Error 'targeted_phase7_tests_failed'; exit 17\n", encoding="utf-8"
+    )
+    _commit_all(repository, "fixture")
+    result = _run(
+        [
+            _powershell(),
+            "-NoProfile",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-File",
+            str(repository / "scripts" / PREPARE_BUNDLE.name),
+            "-RepositoryRoot",
+            str(repository),
+            "-TransferDirectory",
+            "transfer",
+        ],
+        cwd=repository,
+    )
+    assert result.returncode != 0
+    assert "local_preflight_failed" in result.stderr + result.stdout
+    assert not (repository / "transfer").exists()
+
+
+def test_server_bootstrap_binds_complete_bundle_sidecar_clean_head_and_fresh_target() -> None:
+    source = SERVER_BOOTSTRAP.read_text(encoding="utf-8")
+    for required in (
+        "set -Eeuo pipefail",
+        "/root/EasyUUV-phase7-v2.bundle",
+        "/root/expected-source-commit.txt",
+        "/root/EASYkoopman-phase7-v2",
+        "target_directory_already_exists",
+        "bundle verify",
+        "bundle list-heads",
+        "server_head_mismatch",
+        "server_clone_not_clean",
+        "--untracked-files=all",
+    ):
+        assert required in source
+
+
+def test_server_smoke_locks_offline_runtime_three_process_and_pipeline_gates() -> None:
+    source = SERVER_SMOKE.read_text(encoding="utf-8")
+    for required in (
+        "set -Eeuo pipefail",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "/root/IsaacLab/isaaclab.sh",
+        '"$ISAACLAB_PY" -p',
+        "5.0",
+        "2.2.1",
+        "setuptools",
+        "--no-deps",
+        "--no-build-isolation",
+        "--no-index",
+        "PIPESTATUS",
+        "native_status",
+        "tee_status",
+        "semantic_status",
+        "run_one base",
+        "run_one uuv6",
+        "run_one uuv4",
+        "runner_failure_blocks_merge",
+        "merge_koopman_v2_evidence.py",
+        "validate_koopman_v2.py",
+        "sha256sum",
+    ):
+        assert required in source
+    assert source.index("runner_failure_blocks_merge") < source.index(
+        "merge_koopman_v2_evidence.py"
+    )
+    assert "pip install -e" in source
+    assert "--no-index" in source
+    assert "__pycache__" in source and "bytecode_pollution" in source
+
+
+def test_pullback_orders_scp_hash_source_runtime_validator_before_promotion() -> None:
+    source = PULLBACK.read_text(encoding="utf-8")
+    for required in (
+        "phase7-pullback-",
+        "scp_failed",
+        "sha256_mismatch",
+        "source_commit_mismatch",
+        "isaaclab_release_tag",
+        "isaaclab_release_commit",
+        "isaaclab_repo_commit",
+        "runtime_version_mismatch",
+        "worktree_dirty",
+        "--untracked-files=all",
+        "workflows/validate_koopman_v2.py",
+        "--aggregate",
+        "validator_failed",
+        "canonical_evidence_already_exists",
+        "Move-Item",
+    ):
+        assert required in source
+    assert source.index("scp") < source.index("sha256_mismatch")
+    assert source.index("sha256_mismatch") < source.index("source_commit_mismatch")
+    assert source.index("source_commit_mismatch") < source.index("--aggregate")
+    assert source.index("--aggregate") < source.index("Move-Item")
+
+
+def test_runbook_has_exact_operator_sequence_and_claim_boundary() -> None:
+    text = RUNBOOK.read_text(encoding="utf-8")
+    for heading in (
+        "## Evidence Levels",
+        "## Local Preflight",
+        "## Offline Bundle",
+        "## Server Bootstrap",
+        "## Server Three-Topology Smoke",
+        "## Merge/Validate/Hash",
+        "## Pullback",
+        "## Failure Handling",
+        "## Claim Boundary",
+    ):
+        assert heading in text
+    for required in (
+        "base",
+        "uuv6",
+        "uuv4",
+        "8 transitions",
+        "/root/EASYkoopman-phase7-v2",
+        "agent connects",
+        "schema/Bridge integration",
+        "does not prove Koopman effect",
+    ):
+        assert required in text
