@@ -87,6 +87,17 @@ if ($LASTEXITCODE -ne 0) { throw "scp_failed:$LASTEXITCODE;staging=$stagingRoot"
 
 $stagedEvidence = Join-Path $stagingRoot "koopman_phase7"
 if (-not (Test-Path -LiteralPath $stagedEvidence -PathType Container)) { throw "staged_evidence_missing" }
+$inventoryValidator = Join-Path $repository "workflows/evidence_inventory.py"
+$inventoryOutput = @(
+    & $PythonExecutable $inventoryValidator `
+        --root $stagedEvidence `
+        --inventory (Join-Path $stagedEvidence "all_files.sha256") `
+        --json 2>&1
+)
+$inventoryExitCode = $LASTEXITCODE
+if ($inventoryExitCode -ne 0) {
+    throw "inventory_validation_failed:$inventoryExitCode;staging=$stagingRoot;$($inventoryOutput -join ';')"
+}
 $aggregate = Join-Path $stagedEvidence "evidence.json"
 $serverHashLine = (Get-Content -Raw -LiteralPath (Join-Path $stagedEvidence "evidence.sha256")).Trim()
 if ($serverHashLine -notmatch '^([0-9a-f]{64})\s+') { throw "server_sha256_invalid" }

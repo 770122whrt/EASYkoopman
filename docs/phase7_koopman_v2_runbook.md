@@ -116,8 +116,12 @@ After all three topology gates pass, the script invokes:
 
 The exact-three merger binds source commit, Isaac versions, runtime provenance,
 episode/manifest/log hashes, and record counts. The validator independently
-reopens all referenced bytes. `sha256sum` writes the aggregate and full file
-inventory hashes.
+reopens all referenced bytes. `sha256sum` writes the aggregate hash and a
+relative-path inventory of every server evidence file except the inventory
+itself. The server validates that exact inventory after writing it, and the
+pullback validates it again before reading provenance or promoting evidence.
+The locally derived `pullback_validator.json` is created only after the remote
+inventory has passed and is therefore not part of the server-authored inventory.
 
 ## Pullback
 

@@ -130,6 +130,7 @@ if [[ "$any_failed" -ne 0 ]]; then
 fi
 
 readonly MERGER="$PROJECT_ROOT/workflows/merge_koopman_v2_evidence.py"
+readonly INVENTORY_VALIDATOR="$PROJECT_ROOT/workflows/evidence_inventory.py"
 
 if find "$PROJECT_ROOT" -type d -name __pycache__ -print -quit | grep -q .; then
     die "bytecode_pollution"
@@ -148,5 +149,10 @@ fi
 "$ISAACLAB_PY" -p "$VALIDATOR" --aggregate "$RESULT_ROOT/evidence.json" --json \
     2>&1 | tee "$RESULT_ROOT/validator.json"
 sha256sum "$RESULT_ROOT/evidence.json" | tee "$RESULT_ROOT/evidence.sha256"
-find "$RESULT_ROOT" -type f -print0 | sort -z | xargs -0 sha256sum \
-    > "$RESULT_ROOT/all_files.sha256"
+(
+    cd "$RESULT_ROOT"
+    find . -type f ! -name all_files.sha256 -print0 | sort -z | xargs -0 sha256sum \
+        > all_files.sha256
+)
+"$ISAACLAB_PY" -p "$INVENTORY_VALIDATOR" \
+    --root "$RESULT_ROOT" --inventory "$RESULT_ROOT/all_files.sha256" --json
