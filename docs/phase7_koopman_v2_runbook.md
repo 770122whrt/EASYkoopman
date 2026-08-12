@@ -84,7 +84,10 @@ the configuration-specific paths and episode id):
   --failure-json source/results/koopman_phase7/failures/base.failure.json
 ```
 
-The server first records actual/expected runtime versions and validates the
+The server first sources `/opt/conda/etc/profile.d/conda.sh`, activates the
+locked `isaaclab` environment, and verifies that `python` resolves to
+`/opt/conda/envs/isaaclab/bin/python` before any `isaaclab.sh -p` command. It
+then records actual/expected runtime versions and validates the
 unchanged Isaac Lab checkout against the Phase 6 lock: `VERSION=2.2.1`, fixed
 repository HEAD and release-parent commit, the exact two dirty files, and the
 binary patch SHA-256. The release tag is a provenance label; the server clone

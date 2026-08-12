@@ -4,8 +4,13 @@ set -Eeuo pipefail
 readonly EXPECTED_COMMIT_FILE="${1:?expected source commit sidecar required}"
 readonly PROJECT_ROOT="/root/EASYkoopman-phase7-v2"
 readonly RESULT_ROOT="$PROJECT_ROOT/source/results/koopman_phase7"
+readonly PREFLIGHT_ROOT="$RESULT_ROOT"
 readonly ISAACLAB_ROOT="/root/IsaacLab"
 readonly ISAACLAB_PY="/root/IsaacLab/isaaclab.sh"
+readonly OFFLINE_INSTALL_HELPER="$PROJECT_ROOT/scripts/phase6_offline_install.sh"
+readonly CONDA_SH="/opt/conda/etc/profile.d/conda.sh"
+readonly CONDA_ENVIRONMENT="isaaclab"
+readonly CONDA_PYTHON="/opt/conda/envs/isaaclab/bin/python"
 readonly RUNNER="$PROJECT_ROOT/workflows/collect_koopman_v2_smoke.py"
 readonly VALIDATOR="$PROJECT_ROOT/workflows/validate_koopman_v2.py"
 readonly EXPECTED_ISAAC_SIM="5.0"
@@ -23,24 +28,14 @@ readonly -a EXPECTED_ISAAC_LAB_DIRTY_FILES=(
 # no Git tag object; release identity is VERSION + parent + exact patch state.
 # shellcheck disable=SC1091
 source "$PROJECT_ROOT/scripts/phase6_server_preflight.sh"
+# shellcheck disable=SC1091
+source "$OFFLINE_INSTALL_HELPER"
 
 export PYTHONDONTWRITEBYTECODE=1
 
 die() {
     printf 'ERROR: %s\n' "$1" >&2
     exit 1
-}
-
-record_preflight_failure() {
-    local check_name="$1"
-    local expected="$2"
-    local actual="$3"
-    local status="$4"
-    mkdir -p "$RESULT_ROOT/logs"
-    printf 'check=%s\nexpected=%s\nactual=%s\ncommand_status=%s\n' \
-        "$check_name" "$expected" "$actual" "$status" \
-        > "$RESULT_ROOT/preflight_failure.txt"
-    die "runtime_version_mismatch:$check_name"
 }
 
 expected_commit="$(tr -d '\r\n' < "$EXPECTED_COMMIT_FILE")"
@@ -51,16 +46,22 @@ status="$(git -C "$PROJECT_ROOT" -c core.excludesFile= status --porcelain=v1 --u
 [[ -z "$status" ]] || die "server_checkout_not_clean"
 [[ ! -e "$RESULT_ROOT" ]] || die "stale_result_reuse"
 [[ -x "$ISAACLAB_PY" ]] || die "isaaclab_launcher_missing"
+[[ -f "$CONDA_SH" ]] || die "conda_activation_script_missing"
 mkdir -p "$RESULT_ROOT"/{episodes,manifests,logs,failures,status}
+phase6_activate_conda_env \
+    "$PREFLIGHT_ROOT" "$CONDA_SH" "$CONDA_ENVIRONMENT" "$CONDA_PYTHON"
 
 set +e
-actual_sim="$($ISAACLAB_PY -p -c \
-    'from importlib.metadata import version; print(".".join(version("isaacsim").split(".")[:2]))' \
-    2>"$RESULT_ROOT/logs/isaac_sim_version.log")"
+"$ISAACLAB_PY" -p -c \
+    'from importlib.metadata import version; print("PHASE6_ACTUAL_ISAAC_SIM=" + ".".join(version("isaacsim").split(".")[:2]))' \
+    > "$RESULT_ROOT/logs/isaac_sim_version.log" 2>&1
 sim_status=$?
 set -e
-[[ "$sim_status" -eq 0 && "$actual_sim" == "$EXPECTED_ISAAC_SIM" ]] \
-    || record_preflight_failure "isaac_sim" "$EXPECTED_ISAAC_SIM" "$actual_sim" "$sim_status"
+actual_sim="$(sed -n 's/^PHASE6_ACTUAL_ISAAC_SIM=//p' \
+    "$RESULT_ROOT/logs/isaac_sim_version.log" | tail -n 1 | tr -d '\r')"
+phase6_require_preflight_value \
+    "$PREFLIGHT_ROOT" "isaac_sim_version" "$EXPECTED_ISAAC_SIM" \
+    "$actual_sim" "$sim_status"
 
 phase6_capture_locked_isaaclab_state \
     "$RESULT_ROOT" \
@@ -73,24 +74,7 @@ phase6_capture_locked_isaaclab_state \
     "${EXPECTED_ISAAC_LAB_DIRTY_FILES[@]}" \
     || die "isaaclab_locked_state_mismatch"
 actual_lab="$(tr -d '\r\n' < "$RESULT_ROOT/isaaclab_version_file.txt")"
-
-set +e
-setuptools_version="$($ISAACLAB_PY -p -c \
-    'from importlib.metadata import version; print(version("setuptools"))' \
-    2>"$RESULT_ROOT/logs/setuptools_version.log")"
-setuptools_status=$?
-set -e
-[[ "$setuptools_status" -eq 0 && -n "$setuptools_version" ]] \
-    || record_preflight_failure "setuptools" "installed" "$setuptools_version" "$setuptools_status"
-
-set +e
-$ISAACLAB_PY -p -m pip install -e "$PROJECT_ROOT" \
-    --no-deps --no-build-isolation --no-index \
-    > "$RESULT_ROOT/logs/editable_install.log" 2>&1
-install_status=$?
-set -e
-[[ "$install_status" -eq 0 ]] \
-    || record_preflight_failure "offline_editable_install" 0 "$install_status" "$install_status"
+phase6_prepare_offline_python_env "$PREFLIGHT_ROOT" "$ISAACLAB_PY" "$PROJECT_ROOT"
 
 printf '%s\n' "$expected_commit" > "$RESULT_ROOT/source_commit.txt"
 printf '%s\n' "$actual_sim" > "$RESULT_ROOT/isaac_sim_version.txt"

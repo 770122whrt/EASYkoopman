@@ -44,6 +44,7 @@ LOCAL_PREFLIGHT = PROJECT_ROOT / "scripts" / "phase7_local_preflight.ps1"
 PREPARE_BUNDLE = PROJECT_ROOT / "scripts" / "phase7_prepare_bundle.ps1"
 SERVER_BOOTSTRAP = PROJECT_ROOT / "scripts" / "phase7_server_bootstrap.sh"
 SERVER_SMOKE = PROJECT_ROOT / "scripts" / "phase7_server_smoke.sh"
+OFFLINE_INSTALL_HELPER = PROJECT_ROOT / "scripts" / "phase6_offline_install.sh"
 PULLBACK = PROJECT_ROOT / "scripts" / "phase7_pullback.ps1"
 RUNBOOK = PROJECT_ROOT / "docs" / "phase7_koopman_v2_runbook.md"
 SOURCE_COMMIT = "a" * 40
@@ -1034,7 +1035,8 @@ def test_server_bootstrap_binds_complete_bundle_sidecar_clean_head_and_fresh_tar
 
 
 def test_server_smoke_locks_offline_runtime_three_process_and_pipeline_gates() -> None:
-    source = SERVER_SMOKE.read_text(encoding="utf-8")
+    server_source = SERVER_SMOKE.read_text(encoding="utf-8")
+    source = server_source + OFFLINE_INSTALL_HELPER.read_text(encoding="utf-8")
     for required in (
         "set -Eeuo pipefail",
         "PYTHONDONTWRITEBYTECODE=1",
@@ -1059,7 +1061,7 @@ def test_server_smoke_locks_offline_runtime_three_process_and_pipeline_gates() -
         "sha256sum",
     ):
         assert required in source
-    assert source.index("runner_failure_blocks_merge") < source.index(
+    assert server_source.index("runner_failure_blocks_merge") < server_source.index(
         "merge_koopman_v2_evidence.py"
     )
     assert "pip install -e" in source
