@@ -32,13 +32,41 @@ function Invoke-Gate {
     Write-Output "gate=$Name;status=pass"
 }
 
+function Invoke-GitCapture {
+    param([Parameter(ValueFromRemainingArguments = $true)][string[]]$Arguments)
+    $stdoutPath = [IO.Path]::GetTempFileName()
+    $stderrPath = [IO.Path]::GetTempFileName()
+    try {
+        $previousErrorActionPreference = $ErrorActionPreference
+        try {
+            $ErrorActionPreference = "Continue"
+            & git @Arguments 1> $stdoutPath 2> $stderrPath
+            $nativeExitCode = $LASTEXITCODE
+        }
+        finally {
+            $ErrorActionPreference = $previousErrorActionPreference
+        }
+        $stdout = [IO.File]::ReadAllText($stdoutPath)
+        $stderr = [IO.File]::ReadAllText($stderrPath)
+        return [pscustomobject]@{
+            ExitCode = $nativeExitCode
+            Stdout = $stdout.Trim()
+            Stderr = $stderr.Trim()
+        }
+    }
+    finally {
+        Remove-Item -LiteralPath $stdoutPath, $stderrPath -Force -ErrorAction SilentlyContinue
+    }
+}
+
 function Invoke-GitText {
     param([Parameter(ValueFromRemainingArguments = $true)][string[]]$Arguments)
-    $output = @(& git @Arguments 2>&1)
-    if ($LASTEXITCODE -ne 0) {
+    $result = Invoke-GitCapture @Arguments
+    if ($result.Stderr) { Write-Warning $result.Stderr }
+    if ($result.ExitCode -ne 0) {
         Fail-Gate "git_command" ($Arguments -join " ")
     }
-    return ($output -join "`n").Trim()
+    return $result.Stdout
 }
 
 function Resolve-Phase7Bash {
@@ -52,9 +80,10 @@ function Resolve-Phase7Bash {
     }
 
     $candidates = [System.Collections.Generic.List[string]]::new()
-    $execOutput = @(& git --exec-path 2>&1)
-    if ($LASTEXITCODE -eq 0) {
-        $execPath = ($execOutput -join "`n").Trim()
+    $execResult = Invoke-GitCapture --exec-path
+    if ($execResult.Stderr) { Write-Warning $execResult.Stderr }
+    if ($execResult.ExitCode -eq 0) {
+        $execPath = $execResult.Stdout
         if ($execPath) {
             $gitRoot = Split-Path -Parent (
                 Split-Path -Parent (Split-Path -Parent $execPath)
@@ -161,7 +190,9 @@ try {
     }
     Write-Output "gate=powershell_parse;status=pass"
 
-    Invoke-Gate "git_diff_check" { & git diff --check }
+    Write-Output "gate=git_diff_check;status=running"
+    $null = Invoke-GitText diff --check
+    Write-Output "gate=git_diff_check;status=pass"
 
     Write-Output "gate=protected_diff;status=running"
     $protected = Invoke-GitText diff --name-only v1.0 -- `
@@ -174,14 +205,8 @@ try {
     Write-Output "gate=protected_diff;status=pass"
 
     Write-Output "gate=worktree_clean;status=running"
-    $status = @(
-        & git -c "core.excludesFile=" status --porcelain=v1 `
-            --untracked-files=all 2>&1
-    )
-    if ($LASTEXITCODE -ne 0) {
-        Fail-Gate "worktree_clean" "status_probe_failed"
-    }
-    $statusText = ($status -join "`n").Trim()
+    $statusText = Invoke-GitText -c "core.excludesFile=" status --porcelain=v1 `
+        --untracked-files=all
     if ($statusText) {
         Fail-Gate "worktree_clean" $statusText
     }

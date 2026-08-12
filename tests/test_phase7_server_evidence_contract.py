@@ -662,8 +662,8 @@ def test_preflight_uses_git_bash_when_path_starts_with_fake(
     ("mode", "expected_returncode", "expected_marker"),
     [
         ("warning", 0, "gate=protected_diff;status=pass"),
-        ("protected", 1, "gate=protected_diff;status=fail"),
-        ("nonzero", 1, "gate=git_command;status=fail"),
+        ("protected", 1, "protected_diff_failed"),
+        ("nonzero", 1, "git_command_failed"),
     ],
 )
 def test_preflight_git_wrapper_separates_stdout_stderr_and_exit_status(
@@ -723,7 +723,7 @@ def test_preflight_git_wrapper_separates_stdout_stderr_and_exit_status(
     assert expected_marker in output
     if mode == "warning":
         assert "global_ignore_permission_warning" in output
-        assert "gate=protected_diff;status=fail" not in output
+        assert "protected_diff_failed" not in output
 
 
 def test_phase7_git_wrappers_never_merge_stderr_into_semantic_stdout() -> None:

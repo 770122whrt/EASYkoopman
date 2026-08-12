@@ -18,20 +18,45 @@ if (-not $RepositoryRoot) {
     $RepositoryRoot = Join-Path (Split-Path -Parent $phase7ScriptPath) ".."
 }
 
+function Invoke-GitCapture {
+    param([Parameter(ValueFromRemainingArguments = $true)][string[]]$Arguments)
+    $stdoutPath = [IO.Path]::GetTempFileName()
+    $stderrPath = [IO.Path]::GetTempFileName()
+    try {
+        $previousErrorActionPreference = $ErrorActionPreference
+        try {
+            $ErrorActionPreference = "Continue"
+            & git @Arguments 1> $stdoutPath 2> $stderrPath
+            $nativeExitCode = $LASTEXITCODE
+        }
+        finally {
+            $ErrorActionPreference = $previousErrorActionPreference
+        }
+        return [pscustomobject]@{
+            ExitCode = $nativeExitCode
+            Stdout = ([IO.File]::ReadAllText($stdoutPath)).Trim()
+            Stderr = ([IO.File]::ReadAllText($stderrPath)).Trim()
+        }
+    }
+    finally {
+        Remove-Item -LiteralPath $stdoutPath, $stderrPath -Force -ErrorAction SilentlyContinue
+    }
+}
+
 function Invoke-Git {
     param([Parameter(ValueFromRemainingArguments = $true)][string[]]$Arguments)
-    $output = @(& git @Arguments 2>&1)
-    if ($LASTEXITCODE -ne 0) { throw "git_failed:$($Arguments -join ' ')" }
-    return ($output -join "`n").Trim()
+    $result = Invoke-GitCapture @Arguments
+    if ($result.Stderr) { Write-Warning $result.Stderr }
+    if ($result.ExitCode -ne 0) { throw "git_failed:$($Arguments -join ' ')" }
+    return $result.Stdout
 }
 
 $repository = (Resolve-Path -LiteralPath $RepositoryRoot).Path
 $previousLocation = Get-Location
 try {
     Set-Location -LiteralPath $repository
-    $status = @(& git -c "core.excludesFile=" status --porcelain=v1 --untracked-files=all 2>&1)
-    if ($LASTEXITCODE -ne 0) { throw "status_probe_failed" }
-    if (($status -join "`n").Trim()) { throw "worktree_dirty" }
+    $status = Invoke-Git -c "core.excludesFile=" status --porcelain=v1 --untracked-files=all
+    if ($status) { throw "worktree_dirty" }
 
     $preflight = Join-Path $repository "scripts/phase7_local_preflight.ps1"
     $preflightArguments = @(

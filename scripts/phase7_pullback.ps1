@@ -26,18 +26,49 @@ function Read-Exact {
     return $value
 }
 
+function Invoke-GitCapture {
+    param([Parameter(ValueFromRemainingArguments = $true)][string[]]$Arguments)
+    $stdoutPath = [IO.Path]::GetTempFileName()
+    $stderrPath = [IO.Path]::GetTempFileName()
+    try {
+        $previousErrorActionPreference = $ErrorActionPreference
+        try {
+            $ErrorActionPreference = "Continue"
+            & git @Arguments 1> $stdoutPath 2> $stderrPath
+            $nativeExitCode = $LASTEXITCODE
+        }
+        finally {
+            $ErrorActionPreference = $previousErrorActionPreference
+        }
+        return [pscustomobject]@{
+            ExitCode = $nativeExitCode
+            Stdout = ([IO.File]::ReadAllText($stdoutPath)).Trim()
+            Stderr = ([IO.File]::ReadAllText($stderrPath)).Trim()
+        }
+    }
+    finally {
+        Remove-Item -LiteralPath $stdoutPath, $stderrPath -Force -ErrorAction SilentlyContinue
+    }
+}
+
+function Invoke-Git {
+    param([Parameter(ValueFromRemainingArguments = $true)][string[]]$Arguments)
+    $result = Invoke-GitCapture @Arguments
+    if ($result.Stderr) { Write-Warning $result.Stderr }
+    if ($result.ExitCode -ne 0) { throw "git_failed:$($Arguments -join ' ')" }
+    return $result.Stdout
+}
+
 $repository = (Resolve-Path -LiteralPath $RepositoryRoot).Path
 if (-not $PythonExecutable) { $PythonExecutable = Join-Path $repository ".venv/Scripts/python.exe" }
 $transferRoot = Join-Path $repository $TransferDirectory
 $sidecar = Join-Path $transferRoot "expected-source-commit.txt"
 $expectedCommit = Read-Exact $sidecar "expected_source_commit" '^[0-9a-f]{40}$'
 
-$localHead = (& git -C $repository rev-parse HEAD 2>&1) -join "`n"
-if ($LASTEXITCODE -ne 0) { throw "local_head_probe_failed" }
-if ($localHead.Trim() -ne $expectedCommit) { throw "local_head_mismatch" }
-$status = @(& git -c "core.excludesFile=" -C $repository status --porcelain=v1 --untracked-files=all 2>&1)
-if ($LASTEXITCODE -ne 0) { throw "local_status_probe_failed" }
-if (($status -join "`n").Trim()) { throw "worktree_dirty" }
+$localHead = Invoke-Git -C $repository rev-parse HEAD
+if ($localHead -ne $expectedCommit) { throw "local_head_mismatch" }
+$status = Invoke-Git -c "core.excludesFile=" -C $repository status --porcelain=v1 --untracked-files=all
+if ($status) { throw "worktree_dirty" }
 
 $stagingRoot = Join-Path (Join-Path $repository ".pytest-tmp") "phase7-pullback-$([Guid]::NewGuid().ToString('N'))"
 if (Test-Path -LiteralPath $stagingRoot) { throw "staging_directory_already_exists" }
