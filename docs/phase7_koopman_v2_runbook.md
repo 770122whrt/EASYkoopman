@@ -23,7 +23,8 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\phase7_local_pre
 ```
 
 This executes targeted Phase 7 tests, full collection with the committed
-minimum, full pytest in `.pytest-tmp/phase7-full-suite`, compileall, pip check,
+minimum, full pytest under a unique leaf of
+`.pytest-tmp/phase7-full-suite`, compileall, pip check,
 native shell parsing, diff/protected-path checks, a tracked plus unignored
 untracked clean-tree check, and the canonical-evidence-absence check. Any
 failure stops the handoff. No file under `source/results/koopman_phase7` exists
