@@ -8,6 +8,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 Set-StrictMode -Version Latest
+$phase7ExecutionBaseline = "01d60f6f05c965edfbead3238d8203888424237d"
 
 $phase7ScriptPath = $PSCommandPath
 if (-not $phase7ScriptPath) { $phase7ScriptPath = $MyInvocation.MyCommand.Path }
@@ -195,12 +196,28 @@ try {
     Write-Output "gate=git_diff_check;status=pass"
 
     Write-Output "gate=protected_diff;status=running"
-    $protected = Invoke-GitText diff --name-only v1.0 -- `
+    $baselineType = Invoke-GitText cat-file -t $phase7ExecutionBaseline
+    if ($baselineType -ne "commit") {
+        Fail-Gate "protected_diff" "phase7_execution_baseline_missing"
+    }
+    $null = Invoke-GitText -Arguments @(
+        "cat-file", "-e", "${phase7ExecutionBaseline}^{commit}"
+    )
+    $ancestorProbe = Invoke-GitCapture merge-base --is-ancestor $phase7ExecutionBaseline HEAD
+    if ($ancestorProbe.Stderr) { Write-Warning $ancestorProbe.Stderr }
+    if ($ancestorProbe.ExitCode -ne 0) {
+        Fail-Gate "protected_diff" "phase7_execution_baseline_not_ancestor"
+    }
+    $v1Protected = Invoke-GitText diff --name-only v1.0 -- `
         .planning/milestones .planning/reports `
         koopman/model.py koopman/lifted_edmd.py koopman/mpc.py `
-        koopman/mpc_controller.py source/results/koopman_phase6
-    if ($protected) {
-        Fail-Gate "protected_diff" $protected
+        koopman/mpc_controller.py
+    if ($v1Protected) {
+        Fail-Gate "protected_diff" $v1Protected
+    }
+    $phase6Protected = Invoke-GitText diff --name-only $phase7ExecutionBaseline -- source/results/koopman_phase6
+    if ($phase6Protected) {
+        Fail-Gate "protected_diff" $phase6Protected
     }
     Write-Output "gate=protected_diff;status=pass"
 

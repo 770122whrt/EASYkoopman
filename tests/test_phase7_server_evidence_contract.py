@@ -682,6 +682,12 @@ def test_preflight_git_wrapper_separates_stdout_stderr_and_exit_status(
         f"  echo {git_exec_path}\r\n"
         "  exit /b 0\r\n"
         ")\r\n"
+        "if \"%1 %2\"==\"cat-file -t\" (\r\n"
+        "  echo commit\r\n"
+        "  exit /b 0\r\n"
+        ")\r\n"
+        "if \"%1 %2\"==\"cat-file -e\" exit /b 0\r\n"
+        "if \"%1 %2\"==\"merge-base --is-ancestor\" exit /b 0\r\n"
         "if \"%1 %2 %3\"==\"diff --name-only v1.0\" (\r\n"
         "  if \"%PHASE7_FAKE_GIT_MODE%\"==\"warning\" (\r\n"
         "    echo global_ignore_permission_warning 1>&2\r\n"
@@ -741,7 +747,7 @@ def test_protected_diff_uses_frozen_baselines_for_v1_and_phase6_evidence() -> No
     phase7_baseline = "01d60f6f05c965edfbead3238d8203888424237d"
 
     assert f'$phase7ExecutionBaseline = "{phase7_baseline}"' in source
-    assert "cat-file -e \"${phase7ExecutionBaseline}^{commit}\"" in source
+    assert '"cat-file", "-e", "${phase7ExecutionBaseline}^{commit}"' in source
     assert "merge-base --is-ancestor $phase7ExecutionBaseline HEAD" in source
     assert "diff --name-only v1.0 --" in source
     assert "koopman/model.py koopman/lifted_edmd.py koopman/mpc.py" in source
