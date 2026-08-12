@@ -41,6 +41,43 @@ function Invoke-GitText {
     return ($output -join "`n").Trim()
 }
 
+function Resolve-Phase7Bash {
+    $isWindowsPlatform = (
+        [System.Environment]::OSVersion.Platform -eq [System.PlatformID]::Win32NT
+    )
+    if (-not $isWindowsPlatform) {
+        $nativeBash = Get-Command bash -ErrorAction SilentlyContinue
+        if (-not $nativeBash) { Fail-Gate "bash_parse" "bash_unavailable" }
+        return $nativeBash.Source
+    }
+
+    $candidates = [System.Collections.Generic.List[string]]::new()
+    $execOutput = @(& git --exec-path 2>&1)
+    if ($LASTEXITCODE -eq 0) {
+        $execPath = ($execOutput -join "`n").Trim()
+        if ($execPath) {
+            $gitRoot = Split-Path -Parent (
+                Split-Path -Parent (Split-Path -Parent $execPath)
+            )
+            $candidates.Add((Join-Path $gitRoot "bin/bash.exe"))
+        }
+    }
+    $gitCommand = Get-Command git -ErrorAction SilentlyContinue
+    if ($gitCommand -and $gitCommand.Source) {
+        $gitRootFromCommand = Split-Path -Parent (Split-Path -Parent $gitCommand.Source)
+        $candidates.Add((Join-Path $gitRootFromCommand "bin/bash.exe"))
+    }
+    foreach ($candidate in $candidates) {
+        if (Test-Path -LiteralPath $candidate -PathType Leaf) {
+            $resolved = (Resolve-Path -LiteralPath $candidate).Path
+            if ($resolved -notmatch '(?i)[\\/]System32[\\/]') {
+                return $resolved
+            }
+        }
+    }
+    Fail-Gate "bash_parse" "git_bash_unavailable"
+}
+
 $repository = (Resolve-Path -LiteralPath $RepositoryRoot).Path
 if (-not $PythonExecutable) {
     $PythonExecutable = Join-Path $repository ".venv/Scripts/python.exe"
@@ -101,11 +138,10 @@ try {
         Write-Output "contract_skip=targeted_phase7_tests,full_collect_only,full_pytest,compileall,pip_check"
     }
 
-    $bash = Get-Command bash -ErrorAction SilentlyContinue
-    if (-not $bash) { Fail-Gate "bash_parse" "bash_unavailable" }
+    $bashPath = Resolve-Phase7Bash
     Invoke-Gate "bash_parse" {
-        & $bash.Source -n scripts/phase7_server_bootstrap.sh
-        if ($LASTEXITCODE -eq 0) { & $bash.Source -n scripts/phase7_server_smoke.sh }
+        & $bashPath -n scripts/phase7_server_bootstrap.sh
+        if ($LASTEXITCODE -eq 0) { & $bashPath -n scripts/phase7_server_smoke.sh }
     }
 
     Write-Output "gate=powershell_parse;status=running"

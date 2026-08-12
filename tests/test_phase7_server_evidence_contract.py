@@ -506,7 +506,28 @@ def _powershell() -> str:
 
 
 def _bash() -> str:
-    executable = shutil.which("bash.exe") or shutil.which("bash")
+    if os.name == "nt":
+        result = subprocess.run(
+            ["git", "--exec-path"],
+            cwd=PROJECT_ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        candidates: list[Path] = []
+        if result.returncode == 0 and result.stdout.strip():
+            exec_path = Path(result.stdout.strip()).resolve()
+            if len(exec_path.parents) >= 3:
+                candidates.append(exec_path.parents[2] / "bin" / "bash.exe")
+        git_executable = shutil.which("git")
+        if git_executable:
+            candidates.append(Path(git_executable).resolve().parent.parent / "bin" / "bash.exe")
+        for candidate in candidates:
+            resolved = candidate.resolve()
+            if resolved.is_file() and "system32" not in str(resolved).lower():
+                return str(resolved)
+        pytest.skip("Git Bash unavailable")
+    executable = shutil.which("bash")
     if executable is None:
         pytest.skip("Bash unavailable")
     return executable
