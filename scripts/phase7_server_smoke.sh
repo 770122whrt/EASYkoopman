@@ -93,10 +93,10 @@ run_one() {
         --steps 8 --seed 0 --scenario phase7-server-smoke \
         --episode-id "$episode_id" --headless \
         --result-root "$RESULT_ROOT" \
-        --output-jsonl "$RESULT_ROOT/episodes/$configuration.jsonl" \
-        --output-manifest "$RESULT_ROOT/manifests/$configuration.manifest.json" \
+        --output-jsonl "$RESULT_ROOT/$configuration.jsonl" \
+        --output-manifest "$RESULT_ROOT/$configuration.manifest.json" \
         --failure-json "$RESULT_ROOT/failures/$configuration.failure.json" \
-        2>&1 | tee "$RESULT_ROOT/logs/$configuration.log"
+        2>&1 | tee "$RESULT_ROOT/$configuration.log"
     pipeline_status=("${PIPESTATUS[@]}")
     set -e
     native_status="${pipeline_status[0]:-125}"
@@ -105,8 +105,8 @@ run_one() {
     if [[ "$native_status" -eq 0 && "$tee_status" -eq 0 ]]; then
         set +e
         "$ISAACLAB_PY" -p "$VALIDATOR" \
-            --jsonl "$RESULT_ROOT/episodes/$configuration.jsonl" \
-            --manifest "$RESULT_ROOT/manifests/$configuration.manifest.json" \
+            --jsonl "$RESULT_ROOT/$configuration.jsonl" \
+            --manifest "$RESULT_ROOT/$configuration.manifest.json" \
             --json > "$RESULT_ROOT/status/$configuration.validator.json" 2>&1
         validator_status=$?
         set -e
@@ -136,12 +136,12 @@ if find "$PROJECT_ROOT" -type d -name __pycache__ -print -quit | grep -q .; then
 fi
 
 "$ISAACLAB_PY" -p "$MERGER" \
-    --manifest "$RESULT_ROOT/manifests/base.manifest.json" \
-    --manifest "$RESULT_ROOT/manifests/uuv6.manifest.json" \
-    --manifest "$RESULT_ROOT/manifests/uuv4.manifest.json" \
-    --log "base=$RESULT_ROOT/logs/base.log" \
-    --log "uuv6=$RESULT_ROOT/logs/uuv6.log" \
-    --log "uuv4=$RESULT_ROOT/logs/uuv4.log" \
+    --manifest "$RESULT_ROOT/base.manifest.json" \
+    --manifest "$RESULT_ROOT/uuv6.manifest.json" \
+    --manifest "$RESULT_ROOT/uuv4.manifest.json" \
+    --log "base=$RESULT_ROOT/base.log" \
+    --log "uuv6=$RESULT_ROOT/uuv6.log" \
+    --log "uuv4=$RESULT_ROOT/uuv4.log" \
     --output "$RESULT_ROOT/evidence.json" --require-server \
     2>&1 | tee "$RESULT_ROOT/merge.log"
 

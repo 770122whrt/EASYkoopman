@@ -80,8 +80,8 @@ the configuration-specific paths and episode id):
   --task EasyUUV-Direct-v1 --configuration base --steps 8 --seed 0 \
   --scenario phase7-server-smoke --episode-id phase7-base-<utc> --headless \
   --result-root source/results/koopman_phase7 \
-  --output-jsonl source/results/koopman_phase7/episodes/base.jsonl \
-  --output-manifest source/results/koopman_phase7/manifests/base.manifest.json \
+  --output-jsonl source/results/koopman_phase7/base.jsonl \
+  --output-manifest source/results/koopman_phase7/base.manifest.json \
   --failure-json source/results/koopman_phase7/failures/base.failure.json
 ```
 
@@ -103,12 +103,12 @@ After all three topology gates pass, the script invokes:
 
 ```bash
 /root/IsaacLab/isaaclab.sh -p workflows/merge_koopman_v2_evidence.py \
-  --manifest source/results/koopman_phase7/manifests/base.manifest.json \
-  --manifest source/results/koopman_phase7/manifests/uuv6.manifest.json \
-  --manifest source/results/koopman_phase7/manifests/uuv4.manifest.json \
-  --log base=source/results/koopman_phase7/logs/base.log \
-  --log uuv6=source/results/koopman_phase7/logs/uuv6.log \
-  --log uuv4=source/results/koopman_phase7/logs/uuv4.log \
+  --manifest source/results/koopman_phase7/base.manifest.json \
+  --manifest source/results/koopman_phase7/uuv6.manifest.json \
+  --manifest source/results/koopman_phase7/uuv4.manifest.json \
+  --log base=source/results/koopman_phase7/base.log \
+  --log uuv6=source/results/koopman_phase7/uuv6.log \
+  --log uuv4=source/results/koopman_phase7/uuv4.log \
   --output source/results/koopman_phase7/evidence.json --require-server
 /root/IsaacLab/isaaclab.sh -p workflows/validate_koopman_v2.py \
   --aggregate source/results/koopman_phase7/evidence.json --json
