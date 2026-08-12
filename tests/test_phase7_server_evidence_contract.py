@@ -1153,6 +1153,74 @@ def test_server_smoke_locks_offline_runtime_three_process_and_pipeline_gates() -
     assert "__pycache__" in source and "bytecode_pollution" in source
 
 
+def test_sha256_inventory_is_relative_exact_and_self_excluding(tmp_path: Path) -> None:
+    from workflows.evidence_inventory import (
+        EvidenceInventoryError,
+        validate_sha256_inventory,
+    )
+
+    evidence_root = tmp_path / "evidence"
+    evidence_root.mkdir()
+    payload = evidence_root / "payload.json"
+    payload.write_bytes(b'{"status":"pass"}\n')
+    inventory = evidence_root / "all_files.sha256"
+    inventory.write_text(
+        f"{_sha256(payload)}  ./payload.json\n",
+        encoding="utf-8",
+        newline="",
+    )
+
+    result = validate_sha256_inventory(evidence_root, inventory)
+    assert result == {"file_count": 1, "validation_gate": "sha256_inventory_valid"}
+
+    inventory.write_text(
+        f"{_sha256(payload)}  ./payload.json\n"
+        f"{_sha256(inventory)}  ./all_files.sha256\n",
+        encoding="utf-8",
+        newline="",
+    )
+    with pytest.raises(EvidenceInventoryError, match="inventory_self_reference"):
+        validate_sha256_inventory(evidence_root, inventory)
+
+    inventory.write_text(
+        f"{'0' * 64}  ./payload.json\n",
+        encoding="utf-8",
+        newline="",
+    )
+    with pytest.raises(EvidenceInventoryError, match="inventory_sha256_mismatch"):
+        validate_sha256_inventory(evidence_root, inventory)
+
+    inventory.write_text(
+        f"{_sha256(payload)}  ../payload.json\n",
+        encoding="utf-8",
+        newline="",
+    )
+    with pytest.raises(EvidenceInventoryError, match="inventory_path_invalid"):
+        validate_sha256_inventory(evidence_root, inventory)
+
+    inventory.write_text(
+        f"{_sha256(payload)}  ./payload.json\n",
+        encoding="utf-8",
+        newline="",
+    )
+    (evidence_root / "unlisted.log").write_text("not inventoried\n", encoding="utf-8")
+    with pytest.raises(EvidenceInventoryError, match="inventory_file_set_mismatch"):
+        validate_sha256_inventory(evidence_root, inventory)
+
+
+def test_server_and_pullback_strictly_validate_relative_file_inventory() -> None:
+    server = SERVER_SMOKE.read_text(encoding="utf-8")
+    pullback = PULLBACK.read_text(encoding="utf-8")
+
+    assert "! -name all_files.sha256" in server
+    assert 'cd "$RESULT_ROOT"' in server
+    assert "workflows/evidence_inventory.py" in server
+    assert "workflows/evidence_inventory.py" in pullback
+    assert "inventory_validation_failed" in pullback
+    assert pullback.index("evidence_inventory.py") < pullback.index("sha256_mismatch")
+    assert pullback.index("evidence_inventory.py") < pullback.index("Move-Item")
+
+
 def test_server_smoke_places_every_merge_input_in_aggregate_root() -> None:
     source = SERVER_SMOKE.read_text(encoding="utf-8")
     for required in (
