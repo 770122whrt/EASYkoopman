@@ -27,6 +27,13 @@ from workflows.merge_koopman_v2_evidence import (
     merge_koopman_v2_evidence,
     validate_aggregate_evidence,
 )
+from workflows.easyuuv_v2_qualification_artifact import (
+    EXPECTED_ISAAC_LAB_DIRTY_FILES,
+    EXPECTED_ISAAC_LAB_PATCH_SHA256,
+    EXPECTED_ISAAC_LAB_RELEASE_COMMIT,
+    EXPECTED_ISAAC_LAB_RELEASE_TAG,
+    EXPECTED_ISAAC_LAB_REPO_COMMIT,
+)
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -45,6 +52,15 @@ EXPECTED_CONFIGURATIONS = ("base", "uuv6", "uuv4")
 
 def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _write_canonical_json(path: Path, payload: object) -> None:
+    path.write_text(
+        json.dumps(payload, allow_nan=False, separators=(",", ":"), sort_keys=True)
+        + "\n",
+        encoding="utf-8",
+        newline="",
+    )
 
 
 def _copy_local_artifacts(tmp_path: Path) -> tuple[list[Path], dict[str, Path]]:
@@ -131,9 +147,12 @@ def _promote_fixture_to_server(
         "artifact_origin": "server_isaac_smoke",
         "actual_isaac_sim": actual_isaac_sim,
         "actual_isaac_lab": actual_isaac_lab,
-        "isaac_lab_release_tag": "v2.2.1",
-        "isaac_lab_release_commit": "b" * 40,
-        "isaac_lab_repo_commit": "b" * 40,
+        "isaac_lab_release_tag": EXPECTED_ISAAC_LAB_RELEASE_TAG,
+        "isaac_lab_release_commit": EXPECTED_ISAAC_LAB_RELEASE_COMMIT,
+        "isaac_lab_repo_commit": EXPECTED_ISAAC_LAB_REPO_COMMIT,
+        "isaac_lab_repo_parent_commit": EXPECTED_ISAAC_LAB_RELEASE_COMMIT,
+        "isaac_lab_repo_patch_sha256": EXPECTED_ISAAC_LAB_PATCH_SHA256,
+        "isaac_lab_repo_dirty_files": list(EXPECTED_ISAAC_LAB_DIRTY_FILES),
         "native_status": 0,
         "tee_status": 0,
         "semantic_status": "pass",
@@ -422,6 +441,59 @@ def test_merge_rejects_source_runtime_log_and_hash_disagreement(
     with pytest.raises(ValueError, match=reason):
         merge_koopman_v2_evidence(manifests, logs, output, require_server=True)
     assert not output.exists()
+
+
+@pytest.mark.parametrize(
+    "field,mutated",
+    [
+        ("isaac_lab_release_tag", "2.2.1"),
+        ("isaac_lab_release_commit", "c" * 40),
+        ("isaac_lab_repo_commit", "d" * 40),
+        ("isaac_lab_repo_parent_commit", "e" * 40),
+        ("isaac_lab_repo_patch_sha256", "f" * 64),
+        ("isaac_lab_repo_dirty_files", list(reversed(EXPECTED_ISAAC_LAB_DIRTY_FILES))),
+    ],
+)
+def test_server_runtime_rejects_well_formed_but_wrong_locked_isaaclab_state(
+    tmp_path: Path, field: str, mutated: object
+) -> None:
+    manifests, logs = _server_inputs(tmp_path)
+    for manifest in manifests:
+        payload = json.loads(manifest.read_text(encoding="utf-8"))
+        payload["runtime_provenance"][field] = mutated
+        _write_canonical_json(manifest, payload)
+    with pytest.raises(ValueError, match="runtime_(version_mismatch|provenance_invalid)"):
+        merge_koopman_v2_evidence(
+            manifests,
+            logs,
+            tmp_path / "evidence.json",
+            require_server=True,
+        )
+
+
+@pytest.mark.parametrize(
+    "field",
+    [
+        "isaac_lab_repo_parent_commit",
+        "isaac_lab_repo_patch_sha256",
+        "isaac_lab_repo_dirty_files",
+    ],
+)
+def test_server_runtime_requires_complete_locked_isaaclab_state(
+    tmp_path: Path, field: str
+) -> None:
+    manifests, logs = _server_inputs(tmp_path)
+    for manifest in manifests:
+        payload = json.loads(manifest.read_text(encoding="utf-8"))
+        payload["runtime_provenance"].pop(field)
+        _write_canonical_json(manifest, payload)
+    with pytest.raises(ValueError, match="runtime_provenance_missing"):
+        merge_koopman_v2_evidence(
+            manifests,
+            logs,
+            tmp_path / "evidence.json",
+            require_server=True,
+        )
 
 
 def test_failed_merge_preserves_existing_output_bytes(tmp_path: Path) -> None:
@@ -995,6 +1067,19 @@ def test_server_smoke_locks_offline_runtime_three_process_and_pipeline_gates() -
     assert "__pycache__" in source and "bytecode_pollution" in source
 
 
+def test_server_smoke_reuses_locked_phase6_isaaclab_state_without_git_tag_object() -> None:
+    source = SERVER_SMOKE.read_text(encoding="utf-8")
+    assert "phase6_server_preflight.sh" in source
+    assert "phase6_capture_locked_isaaclab_state" in source
+    assert EXPECTED_ISAAC_LAB_RELEASE_TAG in source
+    assert EXPECTED_ISAAC_LAB_RELEASE_COMMIT in source
+    assert EXPECTED_ISAAC_LAB_REPO_COMMIT in source
+    assert EXPECTED_ISAAC_LAB_PATCH_SHA256 in source
+    for dirty_file in EXPECTED_ISAAC_LAB_DIRTY_FILES:
+        assert dirty_file in source
+    assert "describe --tags --exact-match" not in source
+
+
 def test_pullback_orders_scp_hash_source_runtime_validator_before_promotion() -> None:
     source = PULLBACK.read_text(encoding="utf-8")
     for required in (
@@ -1005,6 +1090,9 @@ def test_pullback_orders_scp_hash_source_runtime_validator_before_promotion() ->
         "isaaclab_release_tag",
         "isaaclab_release_commit",
         "isaaclab_repo_commit",
+        "isaaclab_repo_parent_commit",
+        "isaaclab_repo_patch",
+        "isaaclab_repo_dirty_files",
         "runtime_version_mismatch",
         "worktree_dirty",
         "--untracked-files=all",
@@ -1019,6 +1107,28 @@ def test_pullback_orders_scp_hash_source_runtime_validator_before_promotion() ->
     assert source.index("sha256_mismatch") < source.index("source_commit_mismatch")
     assert source.index("source_commit_mismatch") < source.index("--aggregate")
     assert source.index("--aggregate") < source.index("Move-Item")
+
+
+def test_pullback_exactly_binds_every_locked_isaaclab_sidecar() -> None:
+    source = PULLBACK.read_text(encoding="utf-8")
+    for expected in (
+        EXPECTED_ISAAC_LAB_RELEASE_TAG,
+        EXPECTED_ISAAC_LAB_RELEASE_COMMIT,
+        EXPECTED_ISAAC_LAB_REPO_COMMIT,
+        EXPECTED_ISAAC_LAB_PATCH_SHA256,
+        *EXPECTED_ISAAC_LAB_DIRTY_FILES,
+    ):
+        assert expected in source
+    for sidecar in (
+        "isaaclab_release_tag.txt",
+        "isaaclab_release_commit.txt",
+        "isaaclab_repo_commit.txt",
+        "isaaclab_repo_parent_commit.txt",
+        "isaaclab_repo_patch.sha256",
+        "isaaclab_repo_dirty_files.txt",
+    ):
+        assert sidecar in source
+    assert "isaaclab_provenance_mismatch" in source
 
 
 def test_runbook_has_exact_operator_sequence_and_claim_boundary() -> None:
