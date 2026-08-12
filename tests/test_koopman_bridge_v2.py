@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import ast
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 import torch
@@ -20,6 +21,8 @@ from easyuuv_nc.thrust_allocation import (
     control_channels_to_wrench,
     dof_weight_vector,
 )
+from koopman.schema_v2 import validate_episode_v2, validate_transition_v2
+from workflows.koopman_bridge_v2 import KoopmanBridgeV2
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -158,3 +161,263 @@ def test_runtime_token_advances_only_after_complete_telemetry() -> None:
     assert source.index("self._last_fluid_velocity_w") < source.index(token)
     assert source.index("self._last_thruster_efficiency_n") < source.index(token)
     assert source.index(token) < source.index(valid)
+
+
+class _FakeRobotData:
+    def __init__(self, batch_size: int) -> None:
+        self.root_pos_w = torch.tensor(
+            [[0.0, 0.0, 2.0 + index] for index in range(batch_size)],
+            dtype=torch.float32,
+        )
+        self.root_quat_w = torch.tensor(
+            [[1.0, 0.0, 0.0, 0.0] for _ in range(batch_size)],
+            dtype=torch.float32,
+        )
+        self.root_lin_vel_b = torch.tensor(
+            [[0.1 + index, 0.2, 0.3] for index in range(batch_size)],
+            dtype=torch.float32,
+        )
+        self.root_ang_vel_b = torch.tensor(
+            [[0.01, 0.02 + index, 0.03] for index in range(batch_size)],
+            dtype=torch.float32,
+        )
+
+
+class _FakeBatchedEnv:
+    def __init__(self, configuration: str = "base", batch_size: int = 2) -> None:
+        topology = qualification_record(configuration)
+        self.unwrapped = self
+        self.num_envs = batch_size
+        self._embodiment_type = configuration
+        self.cfg = SimpleNamespace(
+            starting_depth=4.5,
+            water_rho=997.0,
+            water_beta=0.001306,
+            decimation=1,
+        )
+        self.sim = SimpleNamespace(cfg=SimpleNamespace(dt=0.1))
+        self._robot = SimpleNamespace(data=_FakeRobotData(batch_size))
+        self._goal = torch.tensor(
+            [[1.0, 0.0, 0.0, 0.0] for _ in range(batch_size)],
+            dtype=torch.float32,
+        )
+        self.step_calls = 0
+        self.freeze_token = False
+        self.corrupt: str | None = None
+        self._desired_wrench_6 = torch.full((batch_size, 6), 99.0)
+        self._snapshot = {
+            "configuration": configuration,
+            "raw_action_4": torch.zeros((batch_size, 4)),
+            "virtual_control_4": torch.zeros((batch_size, 4)),
+            "motor_pwm_n": torch.zeros((batch_size, topology["thruster_count"])),
+            "applied_wrench_6": torch.zeros((batch_size, 6)),
+            "fluid_velocity_world_3": torch.tensor(
+                [[0.2 + index, -0.1, 0.05] for index in range(batch_size)]
+            ),
+            "thruster_efficiency_n": torch.stack(
+                [
+                    torch.full((topology["thruster_count"],), 0.9 - 0.1 * index)
+                    for index in range(batch_size)
+                ]
+            ),
+            "control_mask_4": torch.tensor(topology["control_mask"]).repeat(batch_size, 1),
+            "mass_kg": torch.tensor([[20.0 + index] for index in range(batch_size)]),
+            "inertia_diagonal_kg_m2": torch.tensor(
+                [[0.4 + index, 1.0 + index, 1.2 + index] for index in range(batch_size)]
+            ),
+            "com_to_cob_offset_m": torch.tensor(
+                [[0.01 * index, 0.0, 0.01] for index in range(batch_size)]
+            ),
+            "volume_m3": torch.tensor([[0.02 + 0.01 * index] for index in range(batch_size)]),
+            "drag_multiplier": torch.tensor([1.0 + index for index in range(batch_size)]),
+            "thruster_dynamics_time_constant_s": torch.tensor(
+                [0.05 + 0.01 * index for index in range(batch_size)]
+            ),
+            "water_density_kg_m3": 997.0,
+            "dynamic_viscosity_pa_s": 0.001306,
+            "step_token": torch.tensor([5 + index for index in range(batch_size)]),
+            "valid": torch.ones(batch_size, dtype=torch.bool),
+        }
+
+    def get_koopman_telemetry_snapshot(self) -> dict:
+        result = {
+            key: value.detach().clone() if isinstance(value, torch.Tensor) else value
+            for key, value in self._snapshot.items()
+        }
+        if self.corrupt == "missing":
+            result.pop("applied_wrench_6")
+        elif self.corrupt == "wrong_batch":
+            result["motor_pwm_n"] = result["motor_pwm_n"][:1]
+        elif self.corrupt == "nonfinite":
+            result["applied_wrench_6"][1, 0] = float("nan")
+        elif self.corrupt == "configuration":
+            result["configuration"] = "uuv6"
+        elif self.corrupt == "raw_swap":
+            result["raw_action_4"] = result["virtual_control_4"].clone()
+            result["raw_action_4"][1, 0] += 0.2
+        elif self.corrupt == "mask_swap":
+            result["control_mask_4"][1, 2] = 1 - result["control_mask_4"][1, 2]
+        return result
+
+    def step(self, actions: torch.Tensor):
+        self.step_calls += 1
+        topology = qualification_record(self._embodiment_type)
+        actions = torch.as_tensor(actions, dtype=torch.float32)
+        assert actions.shape == (self.num_envs, 4)
+        self._snapshot["raw_action_4"] = actions.clone()
+        self._snapshot["virtual_control_4"] = actions * torch.tensor(
+            topology["control_mask"], dtype=torch.float32
+        )
+        count = topology["thruster_count"]
+        self._snapshot["motor_pwm_n"] = torch.cat(
+            (
+                self._snapshot["virtual_control_4"],
+                torch.zeros((self.num_envs, max(0, count - 4))),
+            ),
+            dim=1,
+        )[:, :count]
+        self._snapshot["applied_wrench_6"] = torch.tensor(
+            [[1.0 + index, 2.0, 3.0, 4.0, 5.0, 6.0] for index in range(self.num_envs)]
+        )
+        if not self.freeze_token:
+            self._snapshot["step_token"] += 1
+        self._snapshot["valid"][:] = True
+        self._robot.data.root_pos_w[:, 2] += 0.1
+        return ({"policy": torch.zeros((self.num_envs, 1))}, None, None, None, {})
+
+
+def _bridge(env: _FakeBatchedEnv, *, env_index: int = 1, configuration: str | None = None):
+    return KoopmanBridgeV2(
+        env=env,
+        env_index=env_index,
+        configuration=configuration or env._embodiment_type,
+        scenario="fake-current",
+        episode_id="episode-007",
+        seed=17,
+        task_id="EasyUUV-Direct-v1",
+        controller_mode="pid",
+        source_commit="1" * 40,
+        evidence_level="local_contract",
+        control_dt_s=0.1,
+    )
+
+
+def test_bridge_one_step_is_atomic_batch_safe_and_strict_v2() -> None:
+    env = _FakeBatchedEnv()
+    bridge = _bridge(env)
+    action_batch = torch.tensor(
+        [[-0.1, 0.2, 0.3, 0.4], [0.4, -0.3, 0.2, 0.1]], dtype=torch.float32
+    )
+
+    transition = bridge.step_and_record(action_batch)
+
+    assert env.step_calls == 1
+    validate_transition_v2(transition)
+    assert transition["state_11"][0] == pytest.approx(3.0)
+    assert transition["next_state_11"][0] == pytest.approx(3.1)
+    assert transition["reference_5"] == [4.5, 1.0, 0.0, 0.0, 0.0]
+    assert transition["raw_action_4"] == pytest.approx(action_batch[1].tolist())
+    assert transition["applied_wrench_6"] == [2.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    assert transition["applied_wrench_6"] != env._desired_wrench_6[1].tolist()
+    assert transition["platform_context"]["mass_kg"] == 21.0
+    assert transition["platform_context"]["inertia_diagonal_kg_m2"] == pytest.approx([1.4, 2.0, 2.2])
+    assert transition["environment_context_oracle"]["values"]["fluid_velocity_world_3"] == pytest.approx([1.2, -0.1, 0.05])
+    assert transition["environment_context_estimated"]["available"] is False
+    assert transition["episode_provenance"]["evidence_level"] == "local_contract"
+
+
+def test_bridge_consecutive_steps_preserve_state_time_and_step_continuity() -> None:
+    env = _FakeBatchedEnv()
+    bridge = _bridge(env)
+    action = torch.zeros((2, 4))
+
+    first = bridge.step_and_record(action)
+    second = bridge.step_and_record(action)
+
+    assert first["next_state_11"] == second["state_11"]
+    assert [row["episode_provenance"]["step_index"] for row in (first, second)] == [0, 1]
+    assert [row["episode_provenance"]["simulation_time_s"] for row in (first, second)] == [0.0, 0.1]
+    validate_episode_v2([first, second])
+
+
+def test_bridge_writes_only_after_strict_validation() -> None:
+    class Recorder:
+        def __init__(self) -> None:
+            self.rows: list[dict] = []
+
+        def write(self, row: dict) -> None:
+            validate_transition_v2(row)
+            self.rows.append(row)
+
+    env = _FakeBatchedEnv()
+    recorder = Recorder()
+    transition = _bridge(env).step_and_record(torch.zeros((2, 4)), logger=recorder)
+    assert recorder.rows == [transition]
+
+
+@pytest.mark.parametrize(
+    ("corrupt", "reason"),
+    (
+        ("missing", "bridge_telemetry_missing"),
+        ("wrong_batch", "bridge_telemetry_shape"),
+        ("nonfinite", "bridge_telemetry_nonfinite"),
+        ("configuration", "bridge_configuration_mismatch"),
+        ("raw_swap", "bridge_raw_action_mismatch"),
+        ("mask_swap", "bridge_control_mask_mismatch"),
+    ),
+)
+def test_bridge_rejects_missing_stale_or_semantically_swapped_telemetry(
+    corrupt: str, reason: str
+) -> None:
+    env = _FakeBatchedEnv()
+    env.corrupt = corrupt
+    with pytest.raises(ValueError, match=reason):
+        _bridge(env).step_and_record(torch.zeros((2, 4)))
+
+
+def test_bridge_rejects_stale_runtime_token() -> None:
+    env = _FakeBatchedEnv()
+    env.freeze_token = True
+    with pytest.raises(ValueError, match="bridge_telemetry_stale"):
+        _bridge(env).step_and_record(torch.zeros((2, 4)))
+
+
+@pytest.mark.parametrize("env_index", (-1, 2))
+def test_bridge_rejects_env_index_escape(env_index: int) -> None:
+    with pytest.raises(ValueError, match="bridge_env_index_out_of_range"):
+        _bridge(_FakeBatchedEnv(), env_index=env_index)
+
+
+@pytest.mark.parametrize(
+    "action",
+    (
+        torch.zeros(4),
+        torch.zeros((1, 4)),
+        torch.zeros((2, 3)),
+        torch.tensor([[0.0, 0.0, 0.0, 0.0], [float("nan"), 0.0, 0.0, 0.0]]),
+    ),
+)
+def test_bridge_requires_exact_finite_action_batch(action: torch.Tensor) -> None:
+    with pytest.raises(ValueError, match="bridge_action_(shape|nonfinite)"):
+        _bridge(_FakeBatchedEnv()).step_and_record(action)
+
+
+def test_bridge_rejects_configuration_mismatch_before_step() -> None:
+    env = _FakeBatchedEnv("base")
+    with pytest.raises(ValueError, match="bridge_configuration_mismatch"):
+        _bridge(env, configuration="uuv6")
+    assert env.step_calls == 0
+
+
+def test_bridge_rejects_state_and_reference_dimension_drift_before_step() -> None:
+    state_env = _FakeBatchedEnv()
+    state_env._robot.data.root_ang_vel_b = torch.zeros((2, 2))
+    with pytest.raises(ValueError, match="bridge_state_shape"):
+        _bridge(state_env).step_and_record(torch.zeros((2, 4)))
+    assert state_env.step_calls == 0
+
+    reference_env = _FakeBatchedEnv()
+    reference_env._goal = torch.zeros((2, 3))
+    with pytest.raises(ValueError, match="bridge_reference_shape"):
+        _bridge(reference_env).step_and_record(torch.zeros((2, 4)))
+    assert reference_env.step_calls == 0
