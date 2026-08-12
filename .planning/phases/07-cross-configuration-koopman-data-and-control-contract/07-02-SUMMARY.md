@@ -13,6 +13,7 @@ provides:
   - post-actuator thruster-only wrench and same-dynamics-call oracle context caches
   - clone-only freshness snapshots with reset invalidation and monotonic runtime tokens
   - batch-safe one-step Koopman Bridge v2 with strict pre-write validation
+  - named build_koopman_transition_v2 key link from Bridge assembly to schema_v2 validation
 affects: [07-03-server-runner, 07-04-real-server-evidence, phase-08-identification]
 
 tech-stack:
@@ -53,8 +54,8 @@ completed: 2026-08-12
 - **Completed:** 2026-08-12T01:05:05Z
 - **Tasks:** 3/3
 - **Files modified:** 3
-- **Bridge suite:** 42 passed
-- **Plan regression matrix:** 204 passed
+- **Bridge suite:** 46 passed after post-verification fix
+- **Plan regression matrix:** 208 passed after post-verification fix
 
 ## Accomplishments
 
@@ -77,6 +78,10 @@ completed: 2026-08-12
    - Bridge suite passed 34 tests; Bridge plus schema-v2 regression passed 112 tests.
 5. **Task 3 - allocation, import and frozen-path regressions:** `39f9b52` (`test`)
    - The complete plan matrix passed 204 tests.
+6. **Post-verification RED - named schema-builder key link:** `7eec9c5` (`test`)
+   - Test syntax compiled, then pytest failed at collection with `ImportError: cannot import name 'build_koopman_transition_v2'`.
+7. **Post-verification GREEN - named schema-builder key link:** `efa0e61` (`fix`)
+   - Bridge suite passed 46 tests and the expanded complete regression matrix passed 208 tests.
 
 ## Files Created/Modified
 
@@ -137,7 +142,18 @@ No HIGH threat assigned to this plan remains unresolved at the local-contract le
 
 ## Deviations from Plan
 
-None - plan executed exactly as written.
+### Post-Verification Contract Fixes
+
+**1. [Rule 1 - Contract bug] Closed the mandatory named schema-builder key link**
+
+- **Found during:** Root plan verification after the original 07-02 summary.
+- **Issue:** `KoopmanBridgeV2.step_and_record` assembled a correct transition and called `validate_transition_v2` directly, but the plan's mandatory `workflows/koopman_bridge_v2.py -> koopman/schema_v2.py` link required the explicit pattern `build_koopman_transition_v2`. Automated key-link verification therefore reported only 1/2 links despite passing behavior tests.
+- **Fix:** Added the thin public `build_koopman_transition_v2(fields)` helper. It deep-copies caller data, invokes the imported strict schema validator and returns only after validation; `step_and_record` routes through it before any logger write.
+- **Files modified:** `workflows/koopman_bridge_v2.py`, `tests/test_koopman_bridge_v2.py`.
+- **RED evidence:** `7eec9c5` - import failed for the missing named symbol after test syntax compiled.
+- **GREEN evidence:** `efa0e61` - symbol/call-path/strict-rejection/no-invalid-write tests pass.
+
+**Total deviations:** 1 post-verification contract fix. **Impact on plan:** no transition field, public Bridge method, failure reason, runtime behavior or evidence boundary changed; the fix makes the planned schema-validation link explicit and machine-verifiable.
 
 ## Issues Encountered
 
@@ -151,12 +167,14 @@ None - plan executed exactly as written.
 | Task 1 runtime telemetry | `f53fa3f` | `7de6ce0` | PASS - six production-semantic absences failed while ten pure topology tests already passed. |
 | Task 2 atomic Bridge | `a320bdb` | `7ecb01b` | PASS - test syntax compiled, then collection failed only because the production Bridge module was absent. |
 | Task 3 regressions | not TDD | `39f9b52` test-only | PASS - task was declared `type=auto` without `tdd=true`. |
+| Post-verification named builder | `7eec9c5` | `efa0e61` | PASS - RED failed for the missing symbol; GREEN validates before return/write and closes the planned key link. |
 
 ## Verification Evidence
 
-- `tests/test_koopman_bridge_v2.py`: **42 passed**.
-- Plan-prescribed Bridge + Phase 6 package/catalog/qualification/runner + v1 source suite: **204 passed**.
+- `tests/test_koopman_bridge_v2.py`: **46 passed** after the post-verification key-link fix.
+- Plan-prescribed Bridge + Phase 6 package/catalog/qualification/runner + v1 source suite: **208 passed** after the post-verification key-link fix (the original matrix was 204/204 before four new contract cases).
 - Bridge + schema-v2 joint regression during Task 2: **112 passed**.
+- `gsd-sdk query verify.key-links 07-02-PLAN.md`: **2/2 verified**, `all_verified=true`.
 - `compileall` for environment, Bridge and Bridge tests: **PASS**.
 - Bridge cold import: **PASS**, without Torch, Gymnasium, Omni or Isaac Lab modules.
 - `git diff --check`: **PASS**.
@@ -184,7 +202,7 @@ None. This plan requires no server connection, credential, dependency or Isaac i
 ## Self-Check: PASSED
 
 - All three declared implementation/test files exist.
-- RED/GREEN/regression commits `f53fa3f`, `7de6ce0`, `a320bdb`, `7ecb01b`, `39f9b52` exist in the required order.
+- RED/GREEN/regression commits `f53fa3f`, `7de6ce0`, `a320bdb`, `7ecb01b`, `39f9b52`, plus post-verification RED/GREEN `7eec9c5`, `efa0e61`, exist in the required order.
 - All 3 tasks and local verification gates passed.
 - No protected archive/model/MPC path, Phase 6 evidence or Phase 7 result directory changed.
 
