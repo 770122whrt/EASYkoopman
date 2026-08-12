@@ -803,6 +803,15 @@ def test_preflight_git_wrapper_separates_stdout_stderr_and_exit_status(
     expected_returncode: int,
     expected_marker: str,
 ) -> None:
+    repository = _init_temp_repo(tmp_path)
+    for script in (
+        LOCAL_PREFLIGHT,
+        PREPARE_BUNDLE,
+        PULLBACK,
+        SERVER_BOOTSTRAP,
+        SERVER_SMOKE,
+    ):
+        shutil.copy2(script, repository / "scripts" / script.name)
     fake_bin = tmp_path / "fake-git"
     fake_bin.mkdir()
     git_exec_path = _git(PROJECT_ROOT, "--exec-path")
@@ -848,10 +857,14 @@ def test_preflight_git_wrapper_separates_stdout_stderr_and_exit_status(
             "-ExecutionPolicy",
             "Bypass",
             "-File",
-            str(LOCAL_PREFLIGHT.relative_to(PROJECT_ROOT)),
+            str(repository / "scripts" / LOCAL_PREFLIGHT.name),
+            "-RepositoryRoot",
+            str(repository),
+            "-PythonExecutable",
+            str(PROJECT_ROOT / ".venv" / "Scripts" / "python.exe"),
             "-SkipTestsForContract",
         ],
-        cwd=PROJECT_ROOT,
+        cwd=repository,
         env=environment,
     )
 
