@@ -34,6 +34,7 @@ from workflows.easyuuv_v2_qualification_artifact import (
     EXPECTED_ISAAC_LAB_RELEASE_COMMIT,
     EXPECTED_ISAAC_LAB_RELEASE_TAG,
     EXPECTED_ISAAC_LAB_REPO_COMMIT,
+    EXPECTED_ISAAC_SIM_VERSION,
 )
 
 
@@ -119,7 +120,7 @@ def _promote_fixture_to_server(
     manifest_path: Path,
     *,
     source_commit: str = SOURCE_COMMIT,
-    actual_isaac_sim: str = "5.0.0",
+    actual_isaac_sim: str = EXPECTED_ISAAC_SIM_VERSION,
     actual_isaac_lab: str = "2.2.1",
 ) -> None:
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
