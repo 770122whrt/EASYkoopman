@@ -943,6 +943,9 @@ def test_local_preflight_uses_unique_leaf_for_every_pytest_basetemp() -> None:
     for leaf in ("targeted", "collect", "full-suite"):
         assert f'$phase7TempRoot/{leaf}' in source
     assert ".pytest-tmp/phase7-targeted/$phase7RunId" not in source
+    create_root = source.index("New-Item -ItemType Directory -Path $phase7TempRoot")
+    first_pytest = source.index("-m pytest")
+    assert create_root < first_pytest
 
 
 def test_prepare_invokes_same_preflight_before_any_bundle_command() -> None:
