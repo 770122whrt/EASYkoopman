@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import ast
 from copy import deepcopy
 import hashlib
 import json
@@ -201,6 +202,55 @@ def test_windows_git_bash_environment_pins_coreutils_after_priority_paths(
     )
     assert completed.returncode == 0, completed.stderr
     assert len(completed.stdout.strip().splitlines()) == 3
+
+
+def test_all_git_bash_subprocesses_use_the_isolated_environment_helper() -> None:
+    """Prevent a new direct Bash call from reintroducing ambient PATH flakiness."""
+    source_path = Path(__file__)
+    tree = ast.parse(source_path.read_text(encoding="utf-8"))
+    direct_call_lines: list[int] = []
+    unisolated_call_lines: list[int] = []
+    manual_resolver_lines: list[int] = []
+
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Assign) and any(
+            isinstance(target, ast.Name) and target.id == "bash"
+            for target in node.targets
+        ):
+            if not (
+                isinstance(node.value, ast.Call)
+                and isinstance(node.value.func, ast.Name)
+                and node.value.func.id == "_git_bash_executable"
+            ):
+                manual_resolver_lines.append(node.lineno)
+        if not (
+            isinstance(node, ast.Call)
+            and isinstance(node.func, ast.Attribute)
+            and isinstance(node.func.value, ast.Name)
+            and node.func.value.id == "subprocess"
+            and node.func.attr == "run"
+            and node.args
+            and isinstance(node.args[0], (ast.List, ast.Tuple))
+            and node.args[0].elts
+        ):
+            continue
+        executable = node.args[0].elts[0]
+        if not (
+            isinstance(executable, ast.Call)
+            and isinstance(executable.func, ast.Name)
+            and executable.func.id == "str"
+            and executable.args
+            and isinstance(executable.args[0], ast.Name)
+            and executable.args[0].id == "bash"
+        ):
+            continue
+        direct_call_lines.append(node.lineno)
+        if not any(keyword.arg == "env" for keyword in node.keywords):
+            unisolated_call_lines.append(node.lineno)
+
+    assert direct_call_lines
+    assert manual_resolver_lines == []
+    assert unisolated_call_lines == []
 
 
 def _row(configuration: str) -> dict:
