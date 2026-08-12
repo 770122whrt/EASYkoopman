@@ -29,6 +29,7 @@ from workflows.easyuuv_v2_qualification_artifact import (
     EXPECTED_ISAAC_LAB_RELEASE_COMMIT,
     EXPECTED_ISAAC_LAB_RELEASE_TAG,
     EXPECTED_ISAAC_LAB_REPO_COMMIT,
+    EXPECTED_ISAAC_SIM_VERSION,
 )
 
 
@@ -186,7 +187,10 @@ def _validate_server_runtime(
         _fail("runtime_provenance_missing", ",".join(sorted(missing)))
     if runtime.get("artifact_origin") != SERVER_EVIDENCE_LEVEL:
         _fail("server_evidence_required")
-    if runtime.get("actual_isaac_sim") != actual_sim or actual_sim != "5.0.0":
+    if (
+        runtime.get("actual_isaac_sim") != actual_sim
+        or actual_sim != EXPECTED_ISAAC_SIM_VERSION
+    ):
         _fail("runtime_version_mismatch", "isaac_sim")
     if runtime.get("actual_isaac_lab") != actual_lab or actual_lab != "2.2.1":
         _fail("runtime_version_mismatch", "isaac_lab")
