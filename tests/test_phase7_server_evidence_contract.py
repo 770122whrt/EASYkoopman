@@ -1080,6 +1080,25 @@ def test_server_smoke_reuses_locked_phase6_isaaclab_state_without_git_tag_object
     assert "describe --tags --exact-match" not in source
 
 
+def test_server_smoke_activates_locked_conda_before_any_isaaclab_python() -> None:
+    source = SERVER_SMOKE.read_text(encoding="utf-8")
+    for required in (
+        "/opt/conda/etc/profile.d/conda.sh",
+        "/opt/conda/envs/isaaclab/bin/python",
+        'CONDA_ENVIRONMENT="isaaclab"',
+        "phase6_activate_conda_env",
+        "phase6_offline_install.sh",
+        "phase6_prepare_offline_python_env",
+        "PHASE6_ACTUAL_ISAAC_SIM=",
+        "phase6_require_preflight_value",
+    ):
+        assert required in source
+    assert source.index("phase6_activate_conda_env") < source.index(
+        '"$ISAACLAB_PY" -p'
+    )
+    assert 'setuptools_version="$($ISAACLAB_PY' not in source
+
+
 def test_pullback_orders_scp_hash_source_runtime_validator_before_promotion() -> None:
     source = PULLBACK.read_text(encoding="utf-8")
     for required in (
