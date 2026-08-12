@@ -1,0 +1,567 @@
+"""Contracts for the exact-policy Phase 8 collector and pilot server chain."""
+
+from __future__ import annotations
+
+import ast
+from copy import deepcopy
+import json
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+
+import pytest
+
+from koopman.protocol_v2 import (
+    PILOT_RAW_ACTION_ABS_MAX,
+    PUBLIC_CONFIGURATIONS,
+    load_pilot_collection_policy,
+)
+import workflows.collect_koopman_v2_identification as collector
+from workflows.collect_koopman_v2_identification import (
+    build_argument_parser,
+    collect_policy_entries,
+    deterministic_policy_action,
+    resolve_output_path,
+)
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+POLICY_PATH = PROJECT_ROOT / "protocols" / "phase8" / "pilot_collection_policy.json"
+COLLECTOR = PROJECT_ROOT / "workflows" / "collect_koopman_v2_identification.py"
+LOCAL_PREFLIGHT = PROJECT_ROOT / "scripts" / "phase8_pilot_local_preflight.ps1"
+PREPARE_BUNDLE = PROJECT_ROOT / "scripts" / "phase8_pilot_prepare_bundle.ps1"
+SERVER_BOOTSTRAP = PROJECT_ROOT / "scripts" / "phase8_pilot_server_bootstrap.sh"
+SERVER_RUN = PROJECT_ROOT / "scripts" / "phase8_pilot_server_run.sh"
+PULLBACK = PROJECT_ROOT / "scripts" / "phase8_pilot_pullback.ps1"
+RUNBOOK = PROJECT_ROOT / "docs" / "phase8_koopman_identification_runbook.md"
+EXPECTED_CONFIGURATIONS = (
+    "base",
+    "long_body",
+    "heavy_moderate",
+    "asymmetric",
+    "uuv6",
+    "uuv6_angled",
+    "uuv4",
+    "uuv4_angled",
+)
+
+
+def _powershell() -> str:
+    executable = shutil.which("powershell.exe") or shutil.which("powershell")
+    if executable is None:
+        pytest.skip("PowerShell unavailable")
+    return executable
+
+
+def _bash() -> str:
+    if os.name == "nt":
+        result = subprocess.run(
+            ["git", "--exec-path"],
+            cwd=PROJECT_ROOT,
+            text=True,
+            capture_output=True,
+            check=True,
+        )
+        exec_path = Path(result.stdout.strip()).resolve()
+        candidate = exec_path.parents[2] / "bin" / "bash.exe"
+        if candidate.is_file():
+            return str(candidate)
+        pytest.skip("Git Bash unavailable")
+    executable = shutil.which("bash")
+    if executable is None:
+        pytest.skip("Bash unavailable")
+    return executable
+
+
+def _run(
+    command: list[str], *, cwd: Path, env: dict[str, str] | None = None
+) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(
+        command,
+        cwd=cwd,
+        env=env,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+
+
+def _git(cwd: Path, *args: str) -> str:
+    result = _run(["git", *args], cwd=cwd)
+    assert result.returncode == 0, result.stderr
+    return result.stdout.strip()
+
+
+def _init_temp_repo(tmp_path: Path) -> Path:
+    repository = tmp_path / "repo"
+    repository.mkdir()
+    _git(repository, "init", "-b", "v2.0-multi-configuration")
+    _git(repository, "config", "user.email", "phase8@example.invalid")
+    _git(repository, "config", "user.name", "Phase 8 Contract")
+    (repository / "scripts").mkdir()
+    return repository
+
+
+def _commit_all(repository: Path, message: str) -> str:
+    _git(repository, "add", ".")
+    _git(repository, "commit", "-m", message)
+    return _git(repository, "rev-parse", "HEAD")
+
+
+def test_collector_parser_is_policy_driven_and_has_no_episode_mutation_flags():
+    parser = build_argument_parser()
+    args = parser.parse_args(
+        [
+            "--policy",
+            str(POLICY_PATH),
+            "--configuration",
+            "uuv4",
+            "--result-root",
+            "results",
+            "--headless",
+        ]
+    )
+    assert args.policy == POLICY_PATH
+    assert args.configuration == "uuv4"
+    assert args.result_root == Path("results")
+    assert args.headless is True
+    assert tuple(PUBLIC_CONFIGURATIONS) == EXPECTED_CONFIGURATIONS
+    help_text = parser.format_help()
+    for forbidden in (
+        "--seed",
+        "--steps",
+        "--episode-id",
+        "--scenario",
+        "--task",
+        "--controller-mode",
+        "--role",
+        "--model",
+    ):
+        assert forbidden not in help_text
+    for invalid in ("unknown", "heavy_duty", "uuv3"):
+        with pytest.raises(SystemExit):
+            parser.parse_args(
+                [
+                    "--policy",
+                    str(POLICY_PATH),
+                    "--configuration",
+                    invalid,
+                    "--result-root",
+                    "results",
+                ]
+            )
+
+
+def test_policy_actions_are_deterministic_bounded_signed_and_seed_specific():
+    policy = load_pilot_collection_policy(POLICY_PATH)
+    by_kind = {entry["policy_kind"]: entry for entry in policy["entries"][:2]}
+    for entry in by_kind.values():
+        first = [deterministic_policy_action(entry, step) for step in range(128)]
+        second = [deterministic_policy_action(deepcopy(entry), step) for step in range(128)]
+        assert first == second
+        assert all(len(action) == 4 for action in first)
+        assert all(
+            abs(value) <= PILOT_RAW_ACTION_ABS_MAX
+            for action in first
+            for value in action
+        )
+        for channel in range(4):
+            assert any(action[channel] > 0.0 for action in first)
+            assert any(action[channel] < 0.0 for action in first)
+    assert [deterministic_policy_action(by_kind["axis_pulse"], step) for step in range(128)] != [
+        deterministic_policy_action(by_kind["bounded_multisine"], step)
+        for step in range(128)
+    ]
+
+
+class _FakeBridge:
+    def __init__(self, entry: dict, *, fail_at: int | None = None) -> None:
+        self.entry = entry
+        self.fail_at = fail_at
+        self.actions: list[tuple[float, ...]] = []
+
+    def step_and_record(self, action: tuple[float, ...]) -> dict:
+        step = len(self.actions)
+        self.actions.append(action)
+        if self.fail_at == step:
+            raise RuntimeError("bridge_telemetry_stale")
+        virtual = list(action)
+        if self.entry["configuration"].startswith("uuv4"):
+            virtual[2] = 0.0
+        return {
+            "raw_action_4": list(action),
+            "virtual_control_4": virtual,
+            "episode_provenance": {
+                "episode_id": self.entry["episode_id"],
+                "step_index": step,
+            },
+        }
+
+
+class _FakeLogger:
+    def __init__(self, entry: dict) -> None:
+        self.entry = entry
+        self.rows: list[dict] = []
+        self.finalized = False
+
+    def write(self, row: dict) -> None:
+        self.rows.append(deepcopy(row))
+
+    def finalize(self) -> dict:
+        self.finalized = True
+        return {"episode_id": self.entry["episode_id"], "record_count": len(self.rows)}
+
+
+def test_collection_resets_and_finalizes_two_independent_policy_episodes():
+    policy = load_pilot_collection_policy(POLICY_PATH)
+    entries = [entry for entry in policy["entries"] if entry["configuration"] == "uuv4"]
+    resets: list[tuple[int, str]] = []
+    bridges: list[_FakeBridge] = []
+    loggers: list[_FakeLogger] = []
+
+    def reset(seed: int, episode_id: str) -> None:
+        resets.append((seed, episode_id))
+
+    def bridge_factory(entry: dict) -> _FakeBridge:
+        bridge = _FakeBridge(entry)
+        bridges.append(bridge)
+        return bridge
+
+    def logger_factory(entry: dict) -> _FakeLogger:
+        logger = _FakeLogger(entry)
+        loggers.append(logger)
+        return logger
+
+    result = collect_policy_entries(
+        entries,
+        reset=reset,
+        bridge_factory=bridge_factory,
+        logger_factory=logger_factory,
+    )
+
+    assert resets == [(entry["seed"], entry["episode_id"]) for entry in entries]
+    assert len(bridges) == len(loggers) == 2
+    assert all(len(bridge.actions) == 128 for bridge in bridges)
+    assert all(logger.finalized and len(logger.rows) == 128 for logger in loggers)
+    assert [item["episode_id"] for item in result] == [entry["episode_id"] for entry in entries]
+    for logger in loggers:
+        yaw_rows = [row for row in logger.rows if row["raw_action_4"][2] != 0.0]
+        assert yaw_rows
+        assert all(row["virtual_control_4"][2] == 0.0 for row in yaw_rows)
+
+
+def test_collection_failure_never_finalizes_failed_or_later_episode():
+    policy = load_pilot_collection_policy(POLICY_PATH)
+    entries = [entry for entry in policy["entries"] if entry["configuration"] == "base"]
+    loggers: list[_FakeLogger] = []
+
+    def bridge_factory(entry: dict) -> _FakeBridge:
+        return _FakeBridge(entry, fail_at=7 if len(loggers) == 0 else None)
+
+    def logger_factory(entry: dict) -> _FakeLogger:
+        logger = _FakeLogger(entry)
+        loggers.append(logger)
+        return logger
+
+    with pytest.raises(RuntimeError, match="bridge_telemetry_stale"):
+        collect_policy_entries(
+            entries,
+            reset=lambda seed, episode_id: None,
+            bridge_factory=bridge_factory,
+            logger_factory=logger_factory,
+        )
+    assert len(loggers) == 1
+    assert loggers[0].finalized is False
+
+
+def test_output_paths_are_confined_fresh_and_noncolliding(tmp_path: Path):
+    root = tmp_path / "pilot"
+    episode = root / "episodes" / "episode.jsonl"
+    assert resolve_output_path(episode, root) == episode.resolve()
+    with pytest.raises(ValueError, match="output_outside_result_root"):
+        resolve_output_path(tmp_path / "escape.jsonl", root)
+    episode.parent.mkdir(parents=True, exist_ok=True)
+    episode.write_text("old\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="artifact_exists"):
+        resolve_output_path(episode, root)
+
+
+def test_collector_launches_app_before_runtime_imports_and_has_no_model_imports():
+    source = COLLECTOR.read_text(encoding="utf-8")
+    app = source.index("from isaaclab_app import AppLauncher")
+    launch = source.index("AppLauncher(", app)
+    assert launch < source.index("import gymnasium", launch)
+    assert launch < source.index("import torch", launch)
+    assert launch < source.index("easyuuv_nc", launch)
+    tree = ast.parse(source)
+    imports = []
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            imports.extend(alias.name for alias in node.names)
+        elif isinstance(node, ast.ImportFrom) and node.module:
+            imports.append(node.module)
+    forbidden = ("koopman.model", "koopman.edmd", "koopman.evaluation", "koopman.loco_v2")
+    assert not any(name == prefix or name.startswith(prefix + ".") for name in imports for prefix in forbidden)
+
+
+def test_phase8_operational_artifacts_exist_and_parse_in_native_shells():
+    for path in (
+        LOCAL_PREFLIGHT,
+        PREPARE_BUNDLE,
+        SERVER_BOOTSTRAP,
+        SERVER_RUN,
+        PULLBACK,
+        RUNBOOK,
+    ):
+        assert path.is_file(), f"missing planned operational artifact: {path}"
+    for script in (SERVER_BOOTSTRAP, SERVER_RUN):
+        result = _run([_bash(), "-n", script.relative_to(PROJECT_ROOT).as_posix()], cwd=PROJECT_ROOT)
+        assert result.returncode == 0, result.stderr
+        assert b"\r\n" not in script.read_bytes()
+    parser = (
+        "$errors=$null; [System.Management.Automation.Language.Parser]::ParseFile("
+        "$env:PHASE8_PARSE_TARGET,[ref]$null,[ref]$errors) > $null; "
+        "if($errors.Count){$errors | ForEach-Object {Write-Error $_}; exit 1}"
+    )
+    for script in (LOCAL_PREFLIGHT, PREPARE_BUNDLE, PULLBACK):
+        environment = dict(os.environ)
+        environment["PHASE8_PARSE_TARGET"] = str(script)
+        result = _run(
+            [_powershell(), "-NoProfile", "-Command", parser],
+            cwd=PROJECT_ROOT,
+            env=environment,
+        )
+        assert result.returncode == 0, result.stderr
+
+
+@pytest.mark.parametrize(
+    "required_gate",
+    [
+        "targeted_phase8_tests",
+        "full_collect_only",
+        "full_pytest",
+        "compileall",
+        "pip_check",
+        "bash_parse",
+        "powershell_parse",
+        "git_diff_check",
+        "protected_diff",
+        "worktree_clean",
+        "canonical_pilot_absent",
+    ],
+)
+def test_local_preflight_declares_every_fail_closed_gate(required_gate: str):
+    source = LOCAL_PREFLIGHT.read_text(encoding="utf-8")
+    assert required_gate in source
+    assert "exit 1" in source
+    assert "source/results/koopman_phase8_pilot" in source
+    assert "--untracked-files=all" in source
+    assert ".pytest-tmp/phase8-pilot-preflight-" in source
+    assert "$phase8TempRoot/full-suite" in source
+    assert "tests/test_phase8_protocol_evidence.py" in source
+    assert "tests/test_phase8_pilot_server_contract.py" in source
+
+
+def test_preflight_protects_v1_phase6_phase7_and_frozen_schema():
+    source = LOCAL_PREFLIGHT.read_text(encoding="utf-8")
+    assert "diff --name-only v1.0 --" in source
+    for protected in (
+        "koopman/model.py",
+        "koopman/lifted_edmd.py",
+        "koopman/mpc.py",
+        "source/results/koopman_phase6",
+        "source/results/koopman_phase7",
+        "koopman/schema_v2.py",
+    ):
+        assert protected in source
+
+
+@pytest.mark.parametrize("dirty_kind", ["tracked", "untracked"])
+def test_prepare_dynamic_dirty_repo_stops_before_transfer(tmp_path: Path, dirty_kind: str):
+    repository = _init_temp_repo(tmp_path)
+    shutil.copy2(PREPARE_BUNDLE, repository / "scripts" / PREPARE_BUNDLE.name)
+    shutil.copy2(LOCAL_PREFLIGHT, repository / "scripts" / LOCAL_PREFLIGHT.name)
+    (repository / "tracked.txt").write_text("clean\n", encoding="utf-8")
+    _commit_all(repository, "fixture")
+    if dirty_kind == "tracked":
+        (repository / "tracked.txt").write_text("dirty\n", encoding="utf-8")
+    else:
+        (repository / "untracked.txt").write_text("dirty\n", encoding="utf-8")
+    result = _run(
+        [
+            _powershell(),
+            "-NoProfile",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-File",
+            str(repository / "scripts" / PREPARE_BUNDLE.name),
+            "-RepositoryRoot",
+            str(repository),
+            "-TransferDirectory",
+            "transfer",
+        ],
+        cwd=repository,
+    )
+    assert result.returncode != 0
+    assert "worktree_dirty" in result.stdout + result.stderr
+    assert not (repository / "transfer").exists()
+
+
+def test_prepare_dynamic_preflight_failure_stops_before_bundle(tmp_path: Path):
+    repository = _init_temp_repo(tmp_path)
+    shutil.copy2(PREPARE_BUNDLE, repository / "scripts" / PREPARE_BUNDLE.name)
+    (repository / "scripts" / LOCAL_PREFLIGHT.name).write_text(
+        "Write-Error 'targeted_phase8_tests_failed'; exit 17\n", encoding="utf-8"
+    )
+    _commit_all(repository, "fixture")
+    result = _run(
+        [
+            _powershell(),
+            "-NoProfile",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-File",
+            str(repository / "scripts" / PREPARE_BUNDLE.name),
+            "-RepositoryRoot",
+            str(repository),
+            "-TransferDirectory",
+            "transfer",
+        ],
+        cwd=repository,
+    )
+    assert result.returncode != 0
+    assert "local_preflight_failed" in result.stdout + result.stderr
+    assert not (repository / "transfer").exists()
+
+
+def test_prepare_binds_preflight_clean_head_bundle_and_sidecar():
+    source = PREPARE_BUNDLE.read_text(encoding="utf-8")
+    assert source.index("phase8_pilot_local_preflight.ps1") < source.index("bundle create")
+    for required in (
+        "worktree_dirty",
+        "--untracked-files=all",
+        "bundle verify",
+        "bundle list-heads",
+        "expected-source-commit.txt",
+        "EasyUUV-phase8-pilot-v2.bundle",
+        "tested_head_not_branch_tip",
+        "canonical_evidence_already_exists",
+    ):
+        assert required in source
+
+
+def test_server_bootstrap_binds_exact_bundle_head_fresh_isolated_target():
+    source = SERVER_BOOTSTRAP.read_text(encoding="utf-8")
+    for required in (
+        "set -Eeuo pipefail",
+        "/root/EasyUUV-phase8-pilot-v2.bundle",
+        "/root/expected-source-commit.txt",
+        "/root/EASYkoopman-phase8-pilot-v2",
+        "target_directory_already_exists",
+        "bundle verify",
+        "bundle list-heads",
+        "server_head_mismatch",
+        "server_clone_not_clean",
+        "phase8_pilot_server_run.sh",
+    ):
+        assert required in source
+
+
+def test_server_run_locks_offline_runtime_exact_eight_and_process_statuses():
+    source = SERVER_RUN.read_text(encoding="utf-8")
+    for required in (
+        "set -Eeuo pipefail",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "/root/IsaacLab/isaaclab.sh",
+        '"$ISAACLAB_PY" -p',
+        "5.0",
+        "2.2.1",
+        "setuptools",
+        "--no-deps",
+        "--no-build-isolation",
+        "--no-index",
+        "PIPESTATUS",
+        "native_status",
+        "tee_status",
+        "semantic_status",
+        "runner_failure_blocks_audit",
+        "audit_koopman_v2_pilot.py",
+        "validate_phase8_evidence.py",
+        "server_isaac_identification_pilot",
+        "sha256sum",
+    ):
+        assert required in source
+    for configuration in EXPECTED_CONFIGURATIONS:
+        assert f"run_one {configuration}" in source
+    assert source.index("runner_failure_blocks_audit") < source.index("audit_koopman_v2_pilot.py")
+    assert "source/results/koopman_phase8_pilot" in source
+    assert "/root/EASYkoopman-phase8-pilot-v2" in source
+
+
+def test_server_run_uses_one_configuration_process_for_two_policy_episodes():
+    source = SERVER_RUN.read_text(encoding="utf-8")
+    assert '--configuration "$configuration"' in source
+    assert '--policy "$POLICY"' in source
+    assert "--seed" not in source
+    assert "--steps" not in source
+    assert "--episode-id" not in source
+    assert "2 episodes" in source or "two policy episodes" in source
+
+
+def test_pullback_orders_status_scp_hash_source_runtime_validator_before_atomic_promotion():
+    source = PULLBACK.read_text(encoding="utf-8")
+    for required in (
+        "phase8-pilot-pullback-",
+        "scp_failed",
+        "native_status",
+        "tee_status",
+        "semantic_status",
+        "sha256_mismatch",
+        "source_commit_mismatch",
+        "runtime_version_mismatch",
+        "worktree_dirty",
+        "--untracked-files=all",
+        "validate_phase8_evidence.py",
+        "server_isaac_identification_pilot",
+        "validator_failed",
+        "canonical_evidence_already_exists",
+        "Move-Item",
+        "source/results/koopman_phase8_pilot",
+    ):
+        assert required in source
+    assert source.index("scp") < source.index("sha256_mismatch")
+    assert source.index("sha256_mismatch") < source.index("source_commit_mismatch")
+    assert source.index("source_commit_mismatch") < source.index("validate_phase8_evidence.py")
+    assert source.index("validate_phase8_evidence.py") < source.index("Move-Item")
+
+
+def test_runbook_has_exact_operator_sequence_agent_responsibility_and_claim_boundary():
+    text = RUNBOOK.read_text(encoding="utf-8")
+    for heading in (
+        "## Evidence Vocabulary",
+        "## Pilot Policy",
+        "## Local Pilot Preflight",
+        "## Offline Bundle",
+        "## Server Exact-Eight Pilot",
+        "## Pilot Health Audit",
+        "## Pullback",
+        "## Failure Handling",
+        "## Main Protocol Checkpoint",
+        "## Claim Boundary",
+    ):
+        assert heading in text
+    for required in (
+        "8 configurations",
+        "2 episodes",
+        "128 transitions",
+        "/root/EASYkoopman-phase8-pilot-v2",
+        "agent performs",
+        "collection health",
+        "does not prove identification",
+        "does not prove OOD",
+        "does not prove MPC",
+    ):
+        assert required in text
+
