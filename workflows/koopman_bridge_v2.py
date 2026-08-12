@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping, Sequence
+from copy import deepcopy
 import math
 from typing import Any
 
@@ -37,6 +38,13 @@ _TELEMETRY_FIELDS = frozenset(
 
 def _fail(reason: str, detail: str | None = None) -> None:
     raise ValueError(reason if not detail else f"{reason}:{detail}")
+
+
+def build_koopman_transition_v2(fields: Mapping[str, Any]) -> dict[str, Any]:
+    """Return an independent transition only after strict schema-v2 validation."""
+    transition = deepcopy(dict(fields))
+    validate_transition_v2(transition)
+    return transition
 
 
 def _plain(value: Any) -> Any:
@@ -436,7 +444,7 @@ class KoopmanBridgeV2:
                 "evidence_level": self.evidence_level,
             },
         }
-        validate_transition_v2(transition)
+        transition = build_koopman_transition_v2(transition)
         if logger is not None:
             writer = getattr(logger, "write", None)
             if not callable(writer):

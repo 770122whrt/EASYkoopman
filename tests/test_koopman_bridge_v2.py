@@ -401,6 +401,28 @@ def test_step_and_record_routes_through_named_transition_builder(monkeypatch) ->
     assert transition == calls[0]
 
 
+def test_step_and_record_does_not_write_when_named_builder_rejects(monkeypatch) -> None:
+    import workflows.koopman_bridge_v2 as bridge_module
+
+    class Recorder:
+        def __init__(self) -> None:
+            self.rows: list[dict] = []
+
+        def write(self, row: dict) -> None:
+            self.rows.append(row)
+
+    def reject(_payload: dict) -> dict:
+        raise ValueError("schema_contract_rejected")
+
+    recorder = Recorder()
+    monkeypatch.setattr(bridge_module, "build_koopman_transition_v2", reject)
+    with pytest.raises(ValueError, match="schema_contract_rejected"):
+        _bridge(_FakeBatchedEnv()).step_and_record(
+            torch.zeros((2, 4)), logger=recorder
+        )
+    assert recorder.rows == []
+
+
 @pytest.mark.parametrize(
     ("corrupt", "reason"),
     (
