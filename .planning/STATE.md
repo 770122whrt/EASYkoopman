@@ -3,20 +3,20 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Multi-Configuration Koopman Transfer and Environment-Aware Control
 status: executing
-last_updated: "2026-08-12T00:47:00+08:00"
-last_activity: 2026-08-12 -- Phase 7 Wave 1 schema v2 plan completed and independently revalidated
+last_updated: "2026-08-12T09:29:12+08:00"
+last_activity: 2026-08-12 -- Phase 7 Wave 2 runtime Bridge and dual-version data contracts completed and independently revalidated
 progress:
   total_phases: 7
   completed_phases: 1
   total_plans: 8
-  completed_plans: 5
-  percent: 63
+  completed_plans: 7
+  percent: 88
 ---
 
 # Project State: EASYkoopman
 
 **Updated:** 2026-08-12
-**Current focus:** Phase 7 — Wave 2 runtime Bridge and DatasetV2/v1 compatibility
+**Current focus:** Phase 7 — Wave 3 local evidence chain before server execution
 **Active milestone:** `v2.0 Multi-Configuration Koopman Transfer and Environment-Aware Control`
 **Branch:** `v2.0-multi-configuration`
 
@@ -29,9 +29,9 @@ See `.planning/PROJECT.md`.
 ## Current Position
 
 Phase: 7 (Cross-Configuration Koopman Data and Control Contract) — EXECUTING
-Plan: 07-01 complete — 1 of 4 Phase 7 plans
-Status: Wave 1 verified — Wave 2 plans 07-02 and 07-03 ready
-Last activity: 2026-08-12 -- 78 schema tests and 179 schema/v1/Phase 6 regressions passed with isolated basetemp
+Plan: 07-01 through 07-03 complete — 3 of 4 Phase 7 plans
+Status: Wave 2 verified — 07-04 local preflight ready
+Last activity: 2026-08-12 -- 07-02 passed 208 Bridge/Phase 6 regressions; 07-03 passed 123 schema/data/v1 model-MPC regressions
 
 ## Milestone Goal
 
@@ -123,7 +123,9 @@ All three boundaries are visible on `origin/v2.0-multi-configuration`: simulator
 - Phase 7 planning does not mark any CONT requirement complete and does not create or claim server evidence. Existing v1 `U=PWM_8` model/MPC defaults remain frozen.
 - Plan 07-01 completed strict schema v2 transition/context validation, contiguous episode JSONL/manifest/hash and a pure-Python validator CLI through two explicit RED→GREEN cycles (`aba86e6`→`0bb631c`, `788f451`→`89491fa`).
 - Independent Wave 1 rerun passed 179 tests with `.pytest-tmp/phase7-wave1-root`; the first unisolated rerun exposed only a Windows `%TEMP%` permission error before project code, which the planned repository-local basetemp resolved.
+- Plan 07-02 added catalog-masked post-PID/pre-TAM virtual control, post-actuator thruster-only wrench, same-call fluid/efficiency telemetry and a one-step/one-token strict Bridge; independent serial rerun passed 208 tests and both mandatory key links.
+- Plan 07-03 added immutable `U=virtual_control_4` DatasetV2 plus named diagnostics and a non-promoting v1 compatibility view; independent rerun passed 123 tests while frozen v1 model/MPC defaults remained 8D.
 
 ## Next Action
 
-Execute Wave 2 plans 07-02 and 07-03: add runtime truth/atomic Bridge and the separate `U=virtual_control_4` DatasetV2/v1 compatibility path. Do not connect to the server until both plans and the complete 07-04 local preflight are committed and green.
+Execute the local portion of 07-04: implement the three-topology server runner, aggregate validator, offline transfer and pullback chain; run the complete local preflight and commit a clean tested HEAD before connecting to the already-started server.

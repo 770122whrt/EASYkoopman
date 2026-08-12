@@ -16,7 +16,7 @@ v1.0 的阶段名称、结论和证据已冻结，不在本活动 roadmap 中重
 | Phase | Name | Requirements | Depends on | Status |
 |---|---|---|---|---|
 | 6 | EasyUUV 2.0 Intake and Multi-Configuration Qualification | QUAL-01..08 | v1.0 frozen baseline | Complete — 4/4 plans verified |
-| 7 | Cross-Configuration Koopman Data and Control Contract | CONT-01..05 | Phase 6 | In Progress — 1/4 plans complete |
+| 7 | Cross-Configuration Koopman Data and Control Contract | CONT-01..05 | Phase 6 | In Progress — 3/4 plans complete |
 | 8 | Multi-Configuration Koopman Identification and OOD Gate | KID-01..05 | Phase 7 | Pending |
 | 9 | Configuration-Aware Koopman-MPC Integration | MPC2-01..04 | Phase 8 | Pending |
 | 10 | Environment Awareness and Online Koopman Update | ADAPT-01..05 | Phase 9 | Pending |
@@ -78,7 +78,7 @@ Plans:
 3. Padded PWM 只能用于诊断、饱和与能耗分析，无法被静默当作跨构型模型输入。
 4. oracle 与 estimated environment context 在数据与 API 中保持分离，v1 日志仅通过显式 compatibility adapter 读取。
 
-**Plans:** 1/4 plans executed
+**Plans:** 3/4 plans executed
 
 Plans:
 
@@ -88,8 +88,8 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion; plans may run in parallel)*
 
-- [ ] 07-02-PLAN.md — add physically correct EasyUUV runtime telemetry and the atomic schema-v2 Koopman Bridge, including explicit `uuv4*` yaw masking before TAM.
-- [ ] 07-03-PLAN.md — add immutable `U=virtual_control_4` DatasetV2/diagnostics and an explicit non-promoting v1 compatibility view.
+- [x] 07-02-PLAN.md — add physically correct EasyUUV runtime telemetry and the atomic schema-v2 Koopman Bridge, including explicit `uuv4*` yaw masking before TAM.
+- [x] 07-03-PLAN.md — add immutable `U=virtual_control_4` DatasetV2/diagnostics and an explicit non-promoting v1 compatibility view.
 
 **Wave 3** *(blocked on both Wave 2 plans)*
 
