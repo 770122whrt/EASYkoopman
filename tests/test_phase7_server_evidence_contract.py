@@ -671,6 +671,74 @@ def test_prepare_dynamic_preflight_failure_stops_before_bundle(tmp_path: Path) -
     assert not (repository / "transfer").exists()
 
 
+def test_local_preflight_default_repository_root_reaches_real_gate() -> None:
+    result = _run(
+        [
+            _powershell(),
+            "-NoProfile",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-File",
+            str(LOCAL_PREFLIGHT.relative_to(PROJECT_ROOT)),
+            "-SkipTestsForContract",
+        ],
+        cwd=PROJECT_ROOT,
+    )
+    output = result.stdout + result.stderr
+    assert "Join-Path" not in output
+    assert "PSScriptRoot" not in output
+    assert "gate=bash_parse;status=running" in output
+    assert "gate=worktree_clean" in output
+
+
+def test_prepare_default_repository_root_routes_to_same_preflight(tmp_path: Path) -> None:
+    repository = _init_temp_repo(tmp_path)
+    shutil.copy2(PREPARE_BUNDLE, repository / "scripts" / PREPARE_BUNDLE.name)
+    (repository / "scripts" / LOCAL_PREFLIGHT.name).write_text(
+        "Write-Output 'default_root_preflight_reached'; exit 17\n", encoding="utf-8"
+    )
+    _commit_all(repository, "fixture")
+    result = _run(
+        [
+            _powershell(),
+            "-NoProfile",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-File",
+            str(Path("scripts") / PREPARE_BUNDLE.name),
+        ],
+        cwd=repository,
+    )
+    output = result.stdout + result.stderr
+    assert result.returncode != 0
+    assert "default_root_preflight_reached" in output
+    assert "local_preflight_failed" in output
+    assert "PSScriptRoot" not in output
+    assert not (repository / ".pytest-tmp" / "phase7-transfer").exists()
+
+
+def test_pullback_default_repository_root_reaches_sidecar_gate() -> None:
+    missing_transfer = ".pytest-tmp/phase7-default-root-missing"
+    assert not (PROJECT_ROOT / missing_transfer).exists()
+    result = _run(
+        [
+            _powershell(),
+            "-NoProfile",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-File",
+            str(PULLBACK.relative_to(PROJECT_ROOT)),
+            "-TransferDirectory",
+            missing_transfer,
+        ],
+        cwd=PROJECT_ROOT,
+    )
+    output = result.stdout + result.stderr
+    assert result.returncode != 0
+    assert "expected_source_commit_missing" in output
+    assert "PSScriptRoot" not in output
+
+
 def test_server_bootstrap_binds_complete_bundle_sidecar_clean_head_and_fresh_target() -> None:
     source = SERVER_BOOTSTRAP.read_text(encoding="utf-8")
     for required in (
