@@ -3,17 +3,28 @@
 from __future__ import annotations
 
 from copy import deepcopy
+import hashlib
 import importlib
+import json
+from pathlib import Path
+import shutil
 import sys
+import tempfile
 
 import pytest
 
 from easyuuv_nc.embodiments import SUPPORTED_EMBODIMENTS, qualification_record
 from koopman.schema_v2 import (
+    KOOPMAN_EPISODE_MANIFEST_V1,
     KOOPMAN_TRANSITION_SCHEMA_V2,
+    KoopmanEpisodeLoggerV2,
     build_local_transition_v2,
+    load_episode_jsonl_v2,
+    validate_episode_artifact_v2,
+    validate_episode_v2,
     validate_transition_v2,
 )
+from workflows.validate_koopman_v2 import main as validate_main
 
 
 PUBLIC_CONFIGURATIONS = (
@@ -136,6 +147,34 @@ def valid_transition(configuration: str = "base", **overrides) -> dict:
 def assert_reason(payload: dict, reason: str) -> None:
     with pytest.raises(ValueError, match=rf"^{reason}(?::|$)"):
         validate_transition_v2(payload)
+
+
+@pytest.fixture
+def local_tmp_path() -> Path:
+    scratch_root = Path(__file__).resolve().parents[1] / ".pytest-tmp"
+    scratch_root.mkdir(exist_ok=True)
+    path = Path(tempfile.mkdtemp(prefix="koopman-schema-v2-", dir=scratch_root))
+    try:
+        yield path
+    finally:
+        shutil.rmtree(path, ignore_errors=True)
+
+
+def valid_episode(configuration: str = "base", count: int = 3) -> list[dict]:
+    rows: list[dict] = []
+    state = valid_transition(configuration)["state_11"]
+    for step in range(count):
+        next_state = list(state)
+        next_state[0] = float(state[0]) + 0.01
+        next_state[1] = float(state[1]) + 0.005
+        row = valid_transition(configuration)
+        row["state_11"] = list(state)
+        row["next_state_11"] = next_state
+        row["episode_provenance"]["step_index"] = step
+        row["episode_provenance"]["simulation_time_s"] = step * 0.02
+        rows.append(row)
+        state = next_state
+    return rows
 
 
 @pytest.mark.parametrize("configuration", PUBLIC_CONFIGURATIONS)
@@ -381,3 +420,232 @@ def test_import_contract_does_not_load_runtime_frameworks(monkeypatch):
         for name in loaded
         for blocked in ("torch", "gymnasium", "omni", "easyuuv_nc.env")
     )
+
+
+def test_contiguous_episode_is_valid_without_mutation():
+    rows = valid_episode()
+    before = deepcopy(rows)
+
+    summary = validate_episode_v2(rows)
+
+    assert rows == before
+    assert summary["record_count"] == 3
+    assert summary["first_step_index"] == 0
+    assert summary["last_step_index"] == 2
+
+
+@pytest.mark.parametrize(
+    ("mutate", "reason"),
+    [
+        (lambda rows: rows.__setitem__(1, deepcopy(rows[0])), "step_duplicate"),
+        (
+            lambda rows: rows[1]["episode_provenance"].__setitem__("step_index", -1),
+            "step_reordered",
+        ),
+        (
+            lambda rows: rows[1]["episode_provenance"].__setitem__("step_index", 2),
+            "step_discontinuity",
+        ),
+        (
+            lambda rows: rows[1]["episode_provenance"].__setitem__(
+                "simulation_time_s", 0.021
+            ),
+            "time_discontinuity",
+        ),
+        (
+            lambda rows: rows[1]["episode_provenance"].__setitem__(
+                "controller_mode", "different-controller"
+            ),
+            "episode_invariant_drift",
+        ),
+        (
+            lambda rows: rows[1]["state_11"].__setitem__(0, 99.0),
+            "state_transition_discontinuity",
+        ),
+        (
+            lambda rows: rows[1]["platform_context"].__setitem__("mass_kg", 25.0),
+            "platform_context_drift",
+        ),
+    ],
+)
+def test_episode_rejects_discontinuity_and_invariant_drift(mutate, reason: str):
+    rows = valid_episode()
+    mutate(rows)
+
+    with pytest.raises(ValueError, match=rf"^{reason}(?::|$)"):
+        validate_episode_v2(rows)
+
+
+def test_numeric_tolerance_cannot_hide_a_missing_step():
+    rows = valid_episode()
+    rows[1]["episode_provenance"]["step_index"] = 2
+
+    with pytest.raises(ValueError, match=r"^step_discontinuity(?::|$)"):
+        validate_episode_v2(rows, numeric_tolerance=100.0)
+
+
+def test_episode_requires_two_or_more_rows():
+    with pytest.raises(ValueError, match=r"^episode_too_short(?::|$)"):
+        validate_episode_v2(valid_episode(count=1))
+
+
+def test_bounded_loader_rejects_duplicate_keys_constants_utf8_and_partials(
+    local_tmp_path: Path,
+):
+    duplicate = local_tmp_path / "duplicate.jsonl"
+    duplicate.write_text('{"x":1,"x":2}\n', encoding="utf-8")
+    with pytest.raises(ValueError, match=r"^duplicate_json_key(?::|$)"):
+        load_episode_jsonl_v2(duplicate)
+
+    nonfinite = local_tmp_path / "nonfinite.jsonl"
+    nonfinite.write_text('{"x":NaN}\n', encoding="utf-8")
+    with pytest.raises(ValueError, match=r"^nonfinite_json_constant(?::|$)"):
+        load_episode_jsonl_v2(nonfinite)
+
+    invalid_utf8 = local_tmp_path / "invalid.jsonl"
+    invalid_utf8.write_bytes(b"\xff\xfe\n")
+    with pytest.raises(ValueError, match=r"^artifact_not_utf8(?::|$)"):
+        load_episode_jsonl_v2(invalid_utf8)
+
+    partial = local_tmp_path / "episode.jsonl.part"
+    partial.write_text("{}\n", encoding="utf-8")
+    with pytest.raises(ValueError, match=r"^partial_artifact_refused(?::|$)"):
+        load_episode_jsonl_v2(partial)
+
+
+def test_bounded_loader_rejects_oversize_file_line_and_line_count(
+    local_tmp_path: Path,
+):
+    path = local_tmp_path / "oversize.jsonl"
+    path.write_bytes(b"x" * 101)
+    with pytest.raises(ValueError, match=r"^artifact_too_large(?::|$)"):
+        load_episode_jsonl_v2(path, max_bytes=100)
+
+    path.write_text("{}" * 30 + "\n", encoding="utf-8")
+    with pytest.raises(ValueError, match=r"^line_too_large(?::|$)"):
+        load_episode_jsonl_v2(path, max_bytes=1000, max_line_bytes=50)
+
+    path.write_text("{}\n{}\n{}\n", encoding="utf-8")
+    with pytest.raises(ValueError, match=r"^line_count_exceeded(?::|$)"):
+        load_episode_jsonl_v2(path, max_lines=2)
+
+
+def test_logger_validates_before_write_and_failed_finalize_keeps_part(
+    local_tmp_path: Path,
+):
+    jsonl_path = local_tmp_path / "episode.jsonl"
+    logger = KoopmanEpisodeLoggerV2(jsonl_path)
+    first = valid_episode(count=1)[0]
+    logger.write(first)
+    part_bytes = logger.part_path.read_bytes()
+
+    invalid = deepcopy(first)
+    invalid["schema_version"] = "v2"
+    with pytest.raises(ValueError, match=r"^schema_version_mismatch(?::|$)"):
+        logger.write(invalid)
+    assert logger.part_path.read_bytes() == part_bytes
+
+    with pytest.raises(ValueError, match=r"^episode_too_short(?::|$)"):
+        logger.finalize()
+    assert logger.part_path.is_file()
+    assert not jsonl_path.exists()
+    assert not logger.manifest_path.exists()
+    logger.close()
+
+
+def test_logger_round_trip_is_deterministic_and_manifest_hashes_exact_bytes(
+    local_tmp_path: Path,
+):
+    rows = valid_episode()
+    outputs: list[tuple[bytes, dict]] = []
+    for directory_name in ("first", "second"):
+        path = local_tmp_path / directory_name / "episode.jsonl"
+        path.parent.mkdir()
+        logger = KoopmanEpisodeLoggerV2(path)
+        for row in rows:
+            logger.write(dict(reversed(list(row.items()))))
+        manifest = logger.finalize()
+        outputs.append((path.read_bytes(), manifest))
+
+        assert not logger.part_path.exists()
+        assert logger.manifest_path.is_file()
+        assert manifest["manifest_version"] == KOOPMAN_EPISODE_MANIFEST_V1
+        assert manifest["transition_schema_version"] == KOOPMAN_TRANSITION_SCHEMA_V2
+        assert manifest["transition_sha256"] == hashlib.sha256(path.read_bytes()).hexdigest()
+        assert manifest["record_count"] == len(rows)
+        assert manifest["evidence_level"] == "local_contract"
+        assert load_episode_jsonl_v2(path) == rows
+        result = validate_episode_artifact_v2(path, logger.manifest_path)
+        assert result["validation_gate"] == "schema_v2_episode_valid"
+
+    assert outputs[0][0] == outputs[1][0]
+    comparable_first = dict(outputs[0][1])
+    comparable_second = dict(outputs[1][1])
+    assert comparable_first == comparable_second
+
+
+def test_manifest_hash_mismatch_is_distinct(local_tmp_path: Path):
+    path = local_tmp_path / "episode.jsonl"
+    logger = KoopmanEpisodeLoggerV2(path)
+    for row in valid_episode():
+        logger.write(row)
+    manifest = logger.finalize()
+    manifest["transition_sha256"] = "0" * 64
+    logger.manifest_path.write_text(
+        json.dumps(manifest, allow_nan=False, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match=r"^manifest_hash_mismatch(?::|$)"):
+        validate_episode_artifact_v2(path, logger.manifest_path)
+
+
+def test_existing_canonical_pair_is_never_reused_or_replaced(local_tmp_path: Path):
+    path = local_tmp_path / "episode.jsonl"
+    logger = KoopmanEpisodeLoggerV2(path)
+    for row in valid_episode():
+        logger.write(row)
+    logger.finalize()
+    original_jsonl = path.read_bytes()
+    original_manifest = logger.manifest_path.read_bytes()
+
+    with pytest.raises(ValueError, match=r"^artifact_exists(?::|$)"):
+        KoopmanEpisodeLoggerV2(path)
+
+    assert path.read_bytes() == original_jsonl
+    assert logger.manifest_path.read_bytes() == original_manifest
+
+
+def test_validator_cli_accepts_only_exact_pair_and_reports_no_server_pass(
+    local_tmp_path: Path, capsys
+):
+    path = local_tmp_path / "episode.jsonl"
+    logger = KoopmanEpisodeLoggerV2(path)
+    for row in valid_episode():
+        logger.write(row)
+    logger.finalize()
+
+    exit_code = validate_main(
+        ["--jsonl", str(path), "--manifest", str(logger.manifest_path), "--json"]
+    )
+    output = json.loads(capsys.readouterr().out)
+
+    assert exit_code == 0
+    assert output["validation_gate"] == "schema_v2_episode_valid"
+    assert output["evidence_level"] == "local_contract"
+    assert "server_pass" not in json.dumps(output)
+
+    logger.manifest_path.write_text("{}\n", encoding="utf-8")
+    assert validate_main(
+        ["--jsonl", str(path), "--manifest", str(logger.manifest_path), "--json"]
+    ) == 1
+    assert "ERROR:" in capsys.readouterr().err
+
+
+def test_validator_cli_has_no_evidence_upgrade_flag(capsys):
+    with pytest.raises(SystemExit) as caught:
+        validate_main(["--help"])
+    assert caught.value.code == 0
+    help_text = capsys.readouterr().out
+    assert "--server" not in help_text
+    assert "--evidence-level" not in help_text
