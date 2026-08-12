@@ -127,6 +127,7 @@ try {
     # bash_parse powershell_parse git_diff_check protected_diff worktree_clean
     # canonical_evidence_absent
     if (-not $SkipTestsForContract) {
+        $null = New-Item -ItemType Directory -Path $phase7TempRoot
         Invoke-Gate "targeted_phase7_tests" {
             & $PythonExecutable -m pytest -q `
                 --basetemp "$phase7TempRoot/targeted" `
