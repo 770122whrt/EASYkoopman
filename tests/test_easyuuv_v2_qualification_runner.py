@@ -1087,11 +1087,7 @@ def test_server_version_preflight_persists_expected_actual_and_command_status(
         project_root / "scripts" / "phase6_server_qualification.sh"
     ).read_text(encoding="utf-8")
     result_root = local_tmp_path / "preflight-evidence"
-    if sys.platform == "win32":
-        git_executable = Path(shutil.which("git") or "")
-        bash = git_executable.parent.parent / "bin" / "bash.exe"
-    else:
-        bash = Path(shutil.which("bash") or "")
+    bash = _git_bash_executable()
     if not bash.is_file():
         pytest.skip("bash executable unavailable")
 
@@ -1109,6 +1105,7 @@ def test_server_version_preflight_persists_expected_actual_and_command_status(
         check=False,
         capture_output=True,
         text=True,
+        env=_git_bash_environment(),
     )
 
     assert completed.returncode == 1
@@ -1235,6 +1232,7 @@ def test_server_provenance_helper_accepts_only_locked_release_descendant_and_pat
         check=True,
         capture_output=True,
         text=True,
+        env=_git_bash_environment(),
     )
     release_commit = subprocess.run(
         ["git", "rev-parse", "HEAD"],
@@ -1314,6 +1312,7 @@ def test_server_provenance_helper_accepts_only_locked_release_descendant_and_pat
         check=False,
         capture_output=True,
         text=True,
+        env=_git_bash_environment(),
     )
     assert rejected.returncode == 1
     assert "isaaclab_untracked_files" in rejected.stderr
@@ -1343,11 +1342,7 @@ def test_server_editable_install_is_offline_and_persists_command_failure(
         newline="\n",
     )
     fake_launcher.chmod(0o755)
-    if sys.platform == "win32":
-        git_executable = Path(shutil.which("git") or "")
-        bash = git_executable.parent.parent / "bin" / "bash.exe"
-    else:
-        bash = Path(shutil.which("bash") or "")
+    bash = _git_bash_executable()
     if not bash.is_file():
         pytest.skip("bash executable unavailable")
 
@@ -1397,11 +1392,7 @@ def test_server_pipeline_gate_blocks_successful_runner_when_log_capture_fails(
     result_root = local_tmp_path / "pipeline-evidence"
     (result_root / "exit_codes").mkdir(parents=True)
     (result_root / "log_exit_codes").mkdir()
-    if sys.platform == "win32":
-        git_executable = Path(shutil.which("git") or "")
-        bash = git_executable.parent.parent / "bin" / "bash.exe"
-    else:
-        bash = Path(shutil.which("bash") or "")
+    bash = _git_bash_executable()
     if not bash.is_file():
         pytest.skip("bash executable unavailable")
 
@@ -1417,6 +1408,7 @@ def test_server_pipeline_gate_blocks_successful_runner_when_log_capture_fails(
         check=False,
         capture_output=True,
         text=True,
+        env=_git_bash_environment(),
     )
 
     assert completed.returncode == 1
@@ -1480,6 +1472,7 @@ def test_server_pipeline_gate_rejects_missing_or_failed_runner_artifact(
         check=False,
         capture_output=True,
         text=True,
+        env=_git_bash_environment(),
     )
     assert missing.returncode == 1
     assert "runner_artifact_missing:base" in missing.stderr
@@ -1520,6 +1513,7 @@ def test_server_pipeline_gate_requires_complete_gym_probe_log(local_tmp_path: Pa
         check=False,
         capture_output=True,
         text=True,
+        env=_git_bash_environment(),
     )
     assert passed.returncode == 0, passed.stderr
 
@@ -1529,6 +1523,7 @@ def test_server_pipeline_gate_requires_complete_gym_probe_log(local_tmp_path: Pa
         check=False,
         capture_output=True,
         text=True,
+        env=_git_bash_environment(),
     )
     assert failed.returncode == 1
     assert "gym_probe_record_invalid:EasyUUV-Direct-v1" in failed.stderr
