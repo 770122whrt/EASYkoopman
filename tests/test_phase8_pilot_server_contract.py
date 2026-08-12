@@ -298,6 +298,78 @@ def test_policy_actions_are_deterministic_bounded_signed_and_seed_specific():
     ]
 
 
+def test_koopman_protocol_layer_contains_no_server_runtime_tokens():
+    source = (PROJECT_ROOT / "koopman" / "protocol_v2.py").read_text(encoding="utf-8")
+
+    assert "isaaclab" not in source.lower()
+    assert "/root/" not in source
+
+
+def test_operational_policy_owns_and_accepts_the_exact_server_runtime_contract():
+    from workflows.validate_phase8_pilot_policy import (
+        EXPECTED_SERVER_RUNTIME_CONTRACT,
+        load_operational_pilot_policy,
+    )
+
+    policy = load_operational_pilot_policy(POLICY_PATH)
+
+    assert policy["runtime_contract"] == EXPECTED_SERVER_RUNTIME_CONTRACT
+    assert EXPECTED_SERVER_RUNTIME_CONTRACT == {
+        "isaac_sim_version": "5.0",
+        "isaac_lab_version": "2.2.1",
+        "python_entrypoint": "/root/IsaacLab/isaaclab.sh -p",
+    }
+
+
+@pytest.mark.parametrize(
+    ("mutation", "reason"),
+    [
+        ("runtime_contract_missing", "pilot_policy_invalid"),
+        ("python_entrypoint_missing", "pilot_policy_invalid"),
+        ("python_entrypoint_drift", "pilot_runtime_contract_mismatch:python_entrypoint"),
+        ("isaac_sim_version_drift", "pilot_runtime_contract_mismatch:isaac_sim_version"),
+        ("isaac_lab_version_drift", "pilot_runtime_contract_mismatch:isaac_lab_version"),
+    ],
+)
+def test_operational_policy_rejects_missing_or_drifted_runtime_contract(
+    mutation: str, reason: str
+):
+    from workflows.validate_phase8_pilot_policy import validate_operational_pilot_policy
+
+    policy = json.loads(POLICY_PATH.read_text(encoding="utf-8"))
+    if mutation == "runtime_contract_missing":
+        policy.pop("runtime_contract")
+    elif mutation == "python_entrypoint_missing":
+        policy["runtime_contract"].pop("python_entrypoint")
+    elif mutation == "python_entrypoint_drift":
+        policy["runtime_contract"]["python_entrypoint"] = "/usr/bin/python3"
+    elif mutation == "isaac_sim_version_drift":
+        policy["runtime_contract"]["isaac_sim_version"] = "5.1"
+    elif mutation == "isaac_lab_version_drift":
+        policy["runtime_contract"]["isaac_lab_version"] = "2.3.0"
+
+    with pytest.raises(ValueError, match=rf"^{reason}(?::|$)"):
+        validate_operational_pilot_policy(policy)
+
+
+def test_pilot_audit_revalidates_operational_runtime_before_writing_evidence(tmp_path: Path):
+    root = tmp_path / "pilot"
+    _write_evidence_fixture(root)
+    policy_path = root / "pilot_collection_policy.json"
+    policy = json.loads(policy_path.read_text(encoding="utf-8"))
+    policy["runtime_contract"]["python_entrypoint"] = "/usr/bin/python3"
+    policy_path.write_bytes(_fixture_canonical_bytes(policy))
+
+    with pytest.raises(
+        ValueError,
+        match=r"^pilot_runtime_contract_mismatch:python_entrypoint(?::|$)",
+    ):
+        audit_pilot_collection(root, require_server=True)
+    assert not (root / "pilot_inventory.json").exists()
+    assert not (root / "pilot_health_decision.json").exists()
+    assert not (root / "pilot_envelope.json").exists()
+
+
 class _FakeBridge:
     def __init__(self, entry: dict, *, fail_at: int | None = None) -> None:
         self.entry = entry
@@ -634,6 +706,9 @@ def test_server_run_locks_offline_runtime_exact_eight_and_process_statuses():
         "audit_koopman_v2_pilot.py",
         "validate_phase8_evidence.py",
         "server_isaac_identification_pilot",
+        "validate_phase8_pilot_policy.py",
+        "pilot_policy_hash_mismatch",
+        'sha256sum "$POLICY"',
         "sha256sum",
     ):
         assert required in source
@@ -642,6 +717,10 @@ def test_server_run_locks_offline_runtime_exact_eight_and_process_statuses():
     assert source.index("runner_failure_blocks_audit") < source.index(
         '"$ISAACLAB_PY" -p "$AUDITOR"'
     )
+    assert source.index('"$CONDA_PYTHON" "$POLICY_VALIDATOR"') < source.index(
+        'cp "$POLICY"'
+    )
+    assert source.index('cp "$POLICY"') < source.index("run_one base")
     assert "source/results/koopman_phase8_pilot" in source
     assert "/root/EASYkoopman-phase8-pilot-v2" in source
 
