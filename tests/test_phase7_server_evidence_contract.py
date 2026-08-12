@@ -935,6 +935,17 @@ def test_local_preflight_declares_every_fail_closed_gate(required_gate: str) -> 
     assert ".pytest-tmp/phase7-full-suite" in source
 
 
+def test_local_preflight_uses_unique_leaf_for_every_pytest_basetemp() -> None:
+    source = LOCAL_PREFLIGHT.read_text(encoding="utf-8")
+    assert "$phase7RunId = [Guid]::NewGuid().ToString('N')" in source
+    for root in (
+        ".pytest-tmp/phase7-targeted",
+        ".pytest-tmp/phase7-collect",
+        ".pytest-tmp/phase7-full-suite",
+    ):
+        assert f'{root}/$phase7RunId' in source
+
+
 def test_prepare_invokes_same_preflight_before_any_bundle_command() -> None:
     source = PREPARE_BUNDLE.read_text(encoding="utf-8")
     preflight = source.index("phase7_local_preflight.ps1")
