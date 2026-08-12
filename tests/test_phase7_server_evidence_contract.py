@@ -382,11 +382,13 @@ def test_repository_commit_allows_only_explicit_in_repo_result_root(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     repository = _init_temp_repo(tmp_path)
+    (repository / "tracked.txt").write_text("clean\n", encoding="utf-8")
+    expected_commit = _commit_all(repository, "fixture")
     result_root = repository / "source" / "results" / "koopman_phase7"
     (result_root / "logs").mkdir(parents=True)
     (result_root / "logs" / "base.log").write_text("evidence\n", encoding="utf-8")
     monkeypatch.setattr(collector, "PROJECT_ROOT", repository)
-    assert collector._repository_commit(result_root) == _git(repository, "rev-parse", "HEAD")
+    assert collector._repository_commit(result_root) == expected_commit
 
     (repository / "untracked_source.py").write_text("drift\n", encoding="utf-8")
     with pytest.raises(RuntimeError, match="source_worktree_untracked_dirty"):

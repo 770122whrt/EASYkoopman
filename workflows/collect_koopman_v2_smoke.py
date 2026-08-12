@@ -263,10 +263,31 @@ def collect_episode_with_bridge(
     return logger.finalize()
 
 
-def _repository_commit() -> str:
+def _repository_commit(allowed_untracked_root: str | Path) -> str:
+    """Bind HEAD while allowing only this run's explicit in-repo evidence root."""
+    project_root = Path(os.path.abspath(PROJECT_ROOT))
+    allowed_root = Path(os.path.abspath(Path(allowed_untracked_root).expanduser()))
+    allowed_is_in_project = (
+        allowed_root != project_root and allowed_root.is_relative_to(project_root)
+    )
+    status = subprocess.run(
+        ["git", "status", "--porcelain=v1", "-z", "--untracked-files=all"],
+        cwd=project_root,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    for entry in status.stdout.split("\0"):
+        if not entry:
+            continue
+        if not entry.startswith("?? "):
+            raise RuntimeError("source_worktree_tracked_dirty")
+        untracked = Path(os.path.abspath(project_root / entry[3:]))
+        if not allowed_is_in_project or not untracked.is_relative_to(allowed_root):
+            raise RuntimeError("source_worktree_untracked_dirty")
     result = subprocess.run(
         ["git", "rev-parse", "HEAD"],
-        cwd=PROJECT_ROOT,
+        cwd=project_root,
         check=True,
         capture_output=True,
         text=True,
@@ -274,15 +295,6 @@ def _repository_commit() -> str:
     commit = result.stdout.strip()
     if not _COMMIT_RE.fullmatch(commit):
         raise RuntimeError("source_commit_invalid")
-    status = subprocess.run(
-        ["git", "status", "--porcelain", "--untracked-files=all"],
-        cwd=PROJECT_ROOT,
-        check=True,
-        capture_output=True,
-        text=True,
-    )
-    if status.stdout.strip():
-        raise RuntimeError("source_worktree_dirty")
     return commit
 
 
@@ -313,7 +325,7 @@ def run_isaac_collection(args: argparse.Namespace) -> int:
         from easyuuv_nc.env.easyuuv_env import EasyUUVEnvCfg
         from workflows.qualify_easyuuv_v2 import detect_runtime_provenance
 
-        source_commit = _repository_commit()
+        source_commit = _repository_commit(args.result_root)
         provenance = detect_runtime_provenance(isaaclab.__file__)
         runtime = dict(provenance["runtime_provenance"])
         runtime.update(
@@ -378,6 +390,7 @@ def run_isaac_collection(args: argparse.Namespace) -> int:
 def main(argv: list[str] | None = None) -> int:
     args = build_argument_parser().parse_args(argv)
     failure_path: Path | None = None
+    reason: str | None = None
     try:
         failure_path = resolve_output_path(args.failure_json, args.result_root)
         args.output_jsonl = resolve_output_path(args.output_jsonl, args.result_root)
@@ -386,17 +399,20 @@ def main(argv: list[str] | None = None) -> int:
             raise ValueError("output_path_collision")
         args.failure_json = failure_path
         return run_isaac_collection(args)
-    except (OSError, RuntimeError, ValueError, subprocess.SubprocessError) as exc:
-        try:
-            if failure_path is not None and not failure_path.exists():
-                _atomic_write_bytes(
-                    failure_path,
-                    _canonical_json_bytes(_failure_payload(args, str(exc))),
-                )
-        except (OSError, ValueError) as write_error:
-            print(f"ERROR: failure_evidence_write_failed:{write_error}", file=sys.stderr)
-        print(f"ERROR: {exc}", file=sys.stderr)
-        return 1
+    except SystemExit as exc:
+        reason = f"unexpected_system_exit:{exc.code}"
+    except Exception as exc:
+        reason = str(exc) or type(exc).__name__
+    try:
+        if failure_path is not None and not failure_path.exists():
+            _atomic_write_bytes(
+                failure_path,
+                _canonical_json_bytes(_failure_payload(args, reason)),
+            )
+    except (OSError, ValueError) as write_error:
+        print(f"ERROR: failure_evidence_write_failed:{write_error}", file=sys.stderr)
+    print(f"ERROR: {reason}", file=sys.stderr)
+    return 1
 
 
 if __name__ == "__main__":
