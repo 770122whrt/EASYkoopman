@@ -84,8 +84,12 @@ the configuration-specific paths and episode id):
   --failure-json source/results/koopman_phase7/failures/base.failure.json
 ```
 
-The server first records actual/expected runtime versions, probes setuptools,
-and performs only an offline editable install using `--no-deps
+The server first records actual/expected runtime versions and validates the
+unchanged Isaac Lab checkout against the Phase 6 lock: `VERSION=2.2.1`, fixed
+repository HEAD and release-parent commit, the exact two dirty files, and the
+binary patch SHA-256. The release tag is a provenance label; the server clone
+does not need to contain a Git tag object. It then probes setuptools and
+performs only an offline editable install using `--no-deps
 --no-build-isolation --no-index`. Python status, tee status, and semantic
 validation status are separate gates. A failed topology prevents merge.
 
@@ -121,7 +125,8 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\phase7_pullback.
 
 Pullback first requires local HEAD equal to the bundle sidecar and a completely
 clean local tree. It copies into a fresh `.pytest-tmp/phase7-pullback-*` staging
-directory, compares remote/local hashes and source/runtime/Lab sidecars, runs
+directory, compares remote/local hashes and exact source/runtime/Lab
+tag/HEAD/parent/patch/dirty-file sidecars, runs
 the tested aggregate validator, and only then moves the staged directory into
 canonical `source/results/koopman_phase7`. Existing canonical evidence is never
 overwritten.

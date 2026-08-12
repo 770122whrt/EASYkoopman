@@ -23,6 +23,13 @@ from koopman.schema_v2 import (
     SERVER_EVIDENCE_LEVEL,
     validate_episode_artifact_v2,
 )
+from workflows.easyuuv_v2_qualification_artifact import (
+    EXPECTED_ISAAC_LAB_DIRTY_FILES,
+    EXPECTED_ISAAC_LAB_PATCH_SHA256,
+    EXPECTED_ISAAC_LAB_RELEASE_COMMIT,
+    EXPECTED_ISAAC_LAB_RELEASE_TAG,
+    EXPECTED_ISAAC_LAB_REPO_COMMIT,
+)
 
 
 AGGREGATE_SCHEMA_VERSION = "easyuuv-koopman-evidence-aggregate-v1"
@@ -59,6 +66,9 @@ _SERVER_RUNTIME_FIELDS = {
     "isaac_lab_release_tag",
     "isaac_lab_release_commit",
     "isaac_lab_repo_commit",
+    "isaac_lab_repo_parent_commit",
+    "isaac_lab_repo_patch_sha256",
+    "isaac_lab_repo_dirty_files",
     "native_status",
     "tee_status",
     "semantic_status",
@@ -180,11 +190,18 @@ def _validate_server_runtime(
         _fail("runtime_version_mismatch", "isaac_sim")
     if runtime.get("actual_isaac_lab") != actual_lab or actual_lab != "2.2.1":
         _fail("runtime_version_mismatch", "isaac_lab")
-    for field in ("isaac_lab_release_commit", "isaac_lab_repo_commit"):
-        if not isinstance(runtime.get(field), str) or not _COMMIT_RE.fullmatch(runtime[field]):
-            _fail("runtime_provenance_invalid", field)
-    if runtime.get("isaac_lab_release_tag") not in {"2.2.1", "v2.2.1"}:
+    if runtime.get("isaac_lab_release_tag") != EXPECTED_ISAAC_LAB_RELEASE_TAG:
         _fail("runtime_version_mismatch", "isaac_lab_release_tag")
+    expected_locked_values = {
+        "isaac_lab_release_commit": EXPECTED_ISAAC_LAB_RELEASE_COMMIT,
+        "isaac_lab_repo_commit": EXPECTED_ISAAC_LAB_REPO_COMMIT,
+        "isaac_lab_repo_parent_commit": EXPECTED_ISAAC_LAB_RELEASE_COMMIT,
+        "isaac_lab_repo_patch_sha256": EXPECTED_ISAAC_LAB_PATCH_SHA256,
+        "isaac_lab_repo_dirty_files": list(EXPECTED_ISAAC_LAB_DIRTY_FILES),
+    }
+    for field, expected in expected_locked_values.items():
+        if runtime.get(field) != expected:
+            _fail("runtime_provenance_invalid", field)
     if runtime.get("native_status") != 0:
         _fail("native_status_failed")
     if runtime.get("tee_status") != 0:

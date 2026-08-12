@@ -13,6 +13,16 @@ readonly EXPECTED_ISAAC_LAB="2.2.1"
 readonly EXPECTED_ISAAC_LAB_RELEASE_TAG="v2.2.1"
 readonly EXPECTED_ISAAC_LAB_RELEASE_COMMIT="0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20"
 readonly EXPECTED_ISAAC_LAB_REPO_COMMIT="c91a125c73c8b574878419a9583afc0b63b99f0a"
+readonly EXPECTED_ISAAC_LAB_PATCH_SHA256="d056adb8bb64fe7c9c34fffbd2478ef04155df8b60b071da942280952f829079"
+readonly -a EXPECTED_ISAAC_LAB_DIRTY_FILES=(
+    "source/isaaclab_mimic/setup.py"
+    "source/isaaclab_rl/setup.py"
+)
+
+# Reuse the Phase 6 unchanged-server validator.  The locked server checkout has
+# no Git tag object; release identity is VERSION + parent + exact patch state.
+# shellcheck disable=SC1091
+source "$PROJECT_ROOT/scripts/phase6_server_preflight.sh"
 
 export PYTHONDONTWRITEBYTECODE=1
 
@@ -52,15 +62,17 @@ set -e
 [[ "$sim_status" -eq 0 && "$actual_sim" == "$EXPECTED_ISAAC_SIM" ]] \
     || record_preflight_failure "isaac_sim" "$EXPECTED_ISAAC_SIM" "$actual_sim" "$sim_status"
 
-actual_lab="$(tr -d '\r\n' < "$ISAACLAB_ROOT/VERSION")"
-[[ "$actual_lab" == "$EXPECTED_ISAAC_LAB" ]] \
-    || record_preflight_failure "isaac_lab" "$EXPECTED_ISAAC_LAB" "$actual_lab" 0
-lab_tag="$(git -C "$ISAACLAB_ROOT" describe --tags --exact-match 2>/dev/null || true)"
-lab_commit="$(git -C "$ISAACLAB_ROOT" rev-parse HEAD)"
-[[ "$lab_tag" == "$EXPECTED_ISAAC_LAB_RELEASE_TAG" ]] \
-    || record_preflight_failure "isaaclab_release_tag" "$EXPECTED_ISAAC_LAB_RELEASE_TAG" "$lab_tag" 0
-[[ "$lab_commit" == "$EXPECTED_ISAAC_LAB_REPO_COMMIT" ]] \
-    || record_preflight_failure "isaaclab_repo_commit" "$EXPECTED_ISAAC_LAB_REPO_COMMIT" "$lab_commit" 0
+phase6_capture_locked_isaaclab_state \
+    "$RESULT_ROOT" \
+    "$ISAACLAB_ROOT" \
+    "$EXPECTED_ISAAC_LAB" \
+    "$EXPECTED_ISAAC_LAB_RELEASE_TAG" \
+    "$EXPECTED_ISAAC_LAB_RELEASE_COMMIT" \
+    "$EXPECTED_ISAAC_LAB_REPO_COMMIT" \
+    "$EXPECTED_ISAAC_LAB_PATCH_SHA256" \
+    "${EXPECTED_ISAAC_LAB_DIRTY_FILES[@]}" \
+    || die "isaaclab_locked_state_mismatch"
+actual_lab="$(tr -d '\r\n' < "$RESULT_ROOT/isaaclab_version_file.txt")"
 
 set +e
 setuptools_version="$($ISAACLAB_PY -p -c \
@@ -83,9 +95,6 @@ set -e
 printf '%s\n' "$expected_commit" > "$RESULT_ROOT/source_commit.txt"
 printf '%s\n' "$actual_sim" > "$RESULT_ROOT/isaac_sim_version.txt"
 printf '%s\n' "$actual_lab" > "$RESULT_ROOT/isaaclab_version.txt"
-printf '%s\n' "$lab_tag" > "$RESULT_ROOT/isaaclab_release_tag.txt"
-printf '%s\n' "$EXPECTED_ISAAC_LAB_RELEASE_COMMIT" > "$RESULT_ROOT/isaaclab_release_commit.txt"
-printf '%s\n' "$lab_commit" > "$RESULT_ROOT/isaaclab_repo_commit.txt"
 
 any_failed=0
 run_one() {

@@ -11,6 +11,15 @@ param(
 $ErrorActionPreference = "Stop"
 Set-StrictMode -Version Latest
 
+$expectedIsaacLabReleaseTag = "v2.2.1"
+$expectedIsaacLabReleaseCommit = "0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20"
+$expectedIsaacLabRepoCommit = "c91a125c73c8b574878419a9583afc0b63b99f0a"
+$expectedIsaacLabPatchSha256 = "d056adb8bb64fe7c9c34fffbd2478ef04155df8b60b071da942280952f829079"
+$expectedIsaacLabDirtyFiles = @(
+    "source/isaaclab_mimic/setup.py",
+    "source/isaaclab_rl/setup.py"
+)
+
 $phase7ScriptPath = $PSCommandPath
 if (-not $phase7ScriptPath) { $phase7ScriptPath = $MyInvocation.MyCommand.Path }
 if (-not $RepositoryRoot) {
@@ -88,12 +97,25 @@ if ($serverHash -ne $localHash) { throw "sha256_mismatch:server=$serverHash;loca
 $pulledCommit = Read-Exact (Join-Path $stagedEvidence "source_commit.txt") "source_commit" '^[0-9a-f]{40}$'
 if ($pulledCommit -ne $expectedCommit) { throw "source_commit_mismatch" }
 $labTag = Read-Exact (Join-Path $stagedEvidence "isaaclab_release_tag.txt") "isaaclab_release_tag" '^v2\.2\.1$'
-$null = Read-Exact (Join-Path $stagedEvidence "isaaclab_release_commit.txt") "isaaclab_release_commit" '^[0-9a-f]{40}$'
-$null = Read-Exact (Join-Path $stagedEvidence "isaaclab_repo_commit.txt") "isaaclab_repo_commit" '^[0-9a-f]{40}$'
+$labReleaseCommit = Read-Exact (Join-Path $stagedEvidence "isaaclab_release_commit.txt") "isaaclab_release_commit" '^[0-9a-f]{40}$'
+$labRepoCommit = Read-Exact (Join-Path $stagedEvidence "isaaclab_repo_commit.txt") "isaaclab_repo_commit" '^[0-9a-f]{40}$'
+$labRepoParentCommit = Read-Exact (Join-Path $stagedEvidence "isaaclab_repo_parent_commit.txt") "isaaclab_repo_parent_commit" '^[0-9a-f]{40}$'
+$labRepoPatchSha256 = Read-Exact (Join-Path $stagedEvidence "isaaclab_repo_patch.sha256") "isaaclab_repo_patch" '^[0-9a-f]{64}$'
+$labRepoDirtyFiles = Read-Exact (Join-Path $stagedEvidence "isaaclab_repo_dirty_files.txt") "isaaclab_repo_dirty_files" '.+'
 $simVersion = Read-Exact (Join-Path $stagedEvidence "isaac_sim_version.txt") "isaac_sim_version" '^5\.0$'
 $labVersion = Read-Exact (Join-Path $stagedEvidence "isaaclab_version.txt") "isaaclab_version" '^2\.2\.1$'
 if ($simVersion -ne "5.0" -or $labVersion -ne "2.2.1" -or $labTag -ne "v2.2.1") {
     throw "runtime_version_mismatch"
+}
+if (
+    $labTag -ne $expectedIsaacLabReleaseTag -or
+    $labReleaseCommit -ne $expectedIsaacLabReleaseCommit -or
+    $labRepoCommit -ne $expectedIsaacLabRepoCommit -or
+    $labRepoParentCommit -ne $expectedIsaacLabReleaseCommit -or
+    $labRepoPatchSha256 -ne $expectedIsaacLabPatchSha256 -or
+    $labRepoDirtyFiles -ne ($expectedIsaacLabDirtyFiles -join "`n")
+) {
+    throw "isaaclab_provenance_mismatch"
 }
 
 $validator = Join-Path $repository "workflows/validate_koopman_v2.py"
