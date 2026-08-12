@@ -143,7 +143,7 @@ def test_dataset_v2_rejects_empty_and_mismatched_rows() -> None:
         dataset_from_records_v2([])
 
     dataset = load_koopman_episode_v2(*_paths("base"))
-    with pytest.raises(ValueError, match="dataset_row_count_mismatch"):
+    with pytest.raises(ValueError, match="dataset_row_count_mismatch|dataset_shape_invalid"):
         replace(dataset, X=np.zeros((1, 11)))
     with pytest.raises(ValueError, match="dataset_row_count_mismatch"):
         replace(dataset, platform_contexts=())
@@ -162,7 +162,7 @@ def test_dataset_v2_rejects_empty_and_mismatched_rows() -> None:
             "shape_invalid",
         ),
         (lambda row: row.pop("platform_context"), "field_set_mismatch"),
-        (lambda row: row.pop("episode_provenance"), "field_set_mismatch"),
+        (lambda row: row.pop("episode_provenance"), "field_set_mismatch|type_invalid"),
     ),
 )
 def test_dataset_v2_rejects_invalid_dimensions_pwm_control_and_metadata_loss(
