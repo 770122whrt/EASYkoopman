@@ -180,8 +180,16 @@ def _pullback_fixture(tmp_path: Path, *, canonical_exists: bool = False) -> tupl
         repository / "workflows" / "validate_phase8_evidence.py",
     )
     shutil.copy2(
+        PROJECT_ROOT / "workflows" / "validate_phase8_pilot_policy.py",
+        repository / "workflows" / "validate_phase8_pilot_policy.py",
+    )
+    shutil.copy2(
         PROJECT_ROOT / "koopman" / "evidence_v2.py",
         repository / "koopman" / "evidence_v2.py",
+    )
+    shutil.copy2(
+        PROJECT_ROOT / "koopman" / "protocol_v2.py",
+        repository / "koopman" / "protocol_v2.py",
     )
     (repository / "koopman" / "__init__.py").write_text("", encoding="utf-8")
     (repository / ".gitignore").write_text(".pytest-tmp/\n", encoding="utf-8")
@@ -748,6 +756,8 @@ def test_pullback_orders_status_scp_hash_source_runtime_validator_before_atomic_
         "runtime_version_mismatch",
         "worktree_dirty",
         "--untracked-files=all",
+        "validate_phase8_pilot_policy.py",
+        "pilot_policy_validator_failed",
         "validate_phase8_evidence.py",
         "server_isaac_identification_pilot",
         "validator_failed",
@@ -758,7 +768,12 @@ def test_pullback_orders_status_scp_hash_source_runtime_validator_before_atomic_
         assert required in source
     assert source.index("scp") < source.index("sha256_mismatch")
     assert source.index("sha256_mismatch") < source.index("source_commit_mismatch")
-    assert source.index("source_commit_mismatch") < source.index("validate_phase8_evidence.py")
+    assert source.index("source_commit_mismatch") < source.index(
+        "validate_phase8_pilot_policy.py"
+    )
+    assert source.index("validate_phase8_pilot_policy.py") < source.index(
+        "validate_phase8_evidence.py"
+    )
     assert source.index("validate_phase8_evidence.py") < source.index("Move-Item")
 
 
@@ -773,6 +788,7 @@ def test_pullback_orders_status_scp_hash_source_runtime_validator_before_atomic_
         ("scp", "scp_failed:status:23"),
         ("inventory", "inventory_hash_mismatch"),
         ("hash", "sha256_mismatch"),
+        ("policy", "pilot_runtime_contract_mismatch:python_entrypoint"),
         ("validator", "validator_failed"),
         ("promotion", "canonical_evidence_already_exists"),
     ],
@@ -800,6 +816,12 @@ def test_pullback_dynamic_mutations_fail_before_atomic_promotion(
         (status / "pilot_envelope.sha256").write_text(
             f"{'0' * 64}  pilot_envelope.json\n", encoding="utf-8"
         )
+    elif mutation == "policy":
+        policy_path = evidence / "pilot_collection_policy.json"
+        policy = json.loads(policy_path.read_text(encoding="utf-8"))
+        policy["runtime_contract"]["python_entrypoint"] = "/usr/bin/python3"
+        policy_path.write_bytes(_fixture_canonical_bytes(policy))
+        _write_exact_inventory(evidence, status)
     elif mutation == "validator":
         log = next((evidence / "logs").glob("*.log"))
         log.write_text(log.read_text(encoding="utf-8") + "tampered\n", encoding="utf-8")
