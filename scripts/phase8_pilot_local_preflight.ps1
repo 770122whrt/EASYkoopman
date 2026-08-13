@@ -166,7 +166,9 @@ try {
     Write-Output "gate=git_diff_check;status=pass"
 
     Write-Output "gate=protected_diff;status=running"
-    $null = Invoke-GitText cat-file -e "${phase8ExecutionBaseline}^{commit}"
+    $null = Invoke-GitText -Arguments @(
+        "cat-file", "-e", "${phase8ExecutionBaseline}^{commit}"
+    )
     $ancestor = Invoke-GitCapture merge-base --is-ancestor $phase8ExecutionBaseline HEAD
     if ($ancestor.Stderr) { Write-Warning $ancestor.Stderr }
     if ($ancestor.ExitCode -ne 0) { Fail-Gate "protected_diff" "phase8_execution_baseline_not_ancestor" }
