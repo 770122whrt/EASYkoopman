@@ -130,7 +130,11 @@ def write_episode_success_logs(
     for entry_value, result_value in zip(entries, results, strict=True):
         entry = dict(entry_value)
         result = dict(result_value)
-        if result.get("episode_id") != entry.get("episode_id"):
+        episode_id = result.get("episode_id")
+        invariants = result.get("episode_invariants")
+        if episode_id is None and isinstance(invariants, Mapping):
+            episode_id = invariants.get("episode_id")
+        if episode_id != entry.get("episode_id"):
             raise ValueError("pilot_health_failed:success_log_episode_id")
         if result.get("record_count") != entry.get("transition_count"):
             raise ValueError("pilot_health_failed:success_log_record_count")
@@ -228,6 +232,16 @@ def _configuration_entries(policy: Mapping[str, Any], configuration: str) -> lis
     return entries
 
 
+def _close_simulation_app(simulation_app: Any, *, collection_failed: bool) -> None:
+    """Close Isaac without allowing its clean exit signal to mask collection state."""
+    try:
+        simulation_app.close()
+    except SystemExit as exc:
+        if collection_failed or exc.code in (None, 0):
+            return
+        raise
+
+
 def run_isaac_collection(args: argparse.Namespace) -> int:
     """Launch one Isaac process and collect both registered episodes."""
     # AppLauncher must start before Gym, Torch, task, or environment imports.
@@ -236,6 +250,7 @@ def run_isaac_collection(args: argparse.Namespace) -> int:
     app_launcher = AppLauncher({"headless": bool(args.headless)})
     simulation_app = app_launcher.app
     env = None
+    collection_failed = False
     try:
         import gymnasium as gym
         import isaaclab
@@ -314,10 +329,13 @@ def run_isaac_collection(args: argparse.Namespace) -> int:
         )
         write_episode_success_logs(args.result_root, entries, results)
         return 0
+    except BaseException:
+        collection_failed = True
+        raise
     finally:
         if env is not None:
             env.close()
-        simulation_app.close()
+        _close_simulation_app(simulation_app, collection_failed=collection_failed)
 
 
 def _failure_payload(args: argparse.Namespace, reason: str) -> dict[str, Any]:
