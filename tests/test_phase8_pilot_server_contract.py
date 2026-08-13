@@ -714,6 +714,47 @@ def test_server_bootstrap_binds_exact_bundle_head_fresh_isolated_target():
         assert required in source
 
 
+def test_server_bootstrap_verifies_bundle_from_an_isolated_git_repository(
+    tmp_path: Path,
+):
+    repository = _init_temp_repo(tmp_path)
+    bundle = tmp_path / "pilot.bundle"
+    (repository / "scripts" / "fixture.txt").write_text("fixture\n", encoding="utf-8")
+    _commit_all(repository, "bundle fixture")
+    branch = _git(repository, "branch", "--show-current")
+    result = _run(["git", "bundle", "create", str(bundle), branch], cwd=repository)
+    assert result.returncode == 0, result.stderr
+
+    non_repository = tmp_path / "remote-root"
+    non_repository.mkdir()
+    remote_environment = dict(os.environ)
+    remote_environment["GIT_CEILING_DIRECTORIES"] = str(tmp_path)
+    direct = _run(
+        ["git", "bundle", "verify", str(bundle)],
+        cwd=non_repository,
+        env=remote_environment,
+    )
+    assert direct.returncode != 0
+    assert "need a repository" in direct.stderr
+
+    verify_repository = tmp_path / "bundle-verify.git"
+    initialized = _run(["git", "init", "--bare", str(verify_repository)], cwd=tmp_path)
+    assert initialized.returncode == 0, initialized.stderr
+    isolated = _run(
+        ["git", "-C", str(verify_repository), "bundle", "verify", str(bundle)],
+        cwd=non_repository,
+        env=remote_environment,
+    )
+    assert isolated.returncode == 0, isolated.stderr
+
+    source = SERVER_BOOTSTRAP.read_text(encoding="utf-8")
+    assert "mktemp -d" in source
+    assert "git init --bare" in source
+    assert 'git -C "$verify_repository" bundle verify "$BUNDLE"' in source
+    assert source.index("git init --bare") < source.index("bundle verify")
+    assert source.index("bundle verify") < source.index("git clone")
+
+
 def test_server_run_locks_offline_runtime_exact_eight_and_process_statuses():
     source = SERVER_RUN.read_text(encoding="utf-8")
     for required in (
