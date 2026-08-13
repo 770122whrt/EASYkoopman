@@ -17,7 +17,16 @@ die() {
 expected_commit="$(tr -d '\r\n' < "$EXPECTED_COMMIT_FILE")"
 [[ "$expected_commit" =~ ^[0-9a-f]{40}$ ]] || die "expected_commit_invalid"
 
-git bundle verify "$BUNDLE" >/dev/null || die "bundle_verify_failed"
+verify_repository="$(mktemp -d "${TMPDIR:-/tmp}/phase8-pilot-bundle-verify.XXXXXX")"
+cleanup_verify_repository() {
+    if [[ -n "${verify_repository:-}" && -d "$verify_repository" ]]; then
+        rm -rf -- "$verify_repository"
+    fi
+}
+trap cleanup_verify_repository EXIT
+git init --bare "$verify_repository" >/dev/null || die "bundle_verify_repository_init_failed"
+git -C "$verify_repository" bundle verify "$BUNDLE" >/dev/null \
+    || die "bundle_verify_failed"
 bundle_head="$(git bundle list-heads "$BUNDLE" "refs/heads/$BRANCH")"
 [[ "$bundle_head" == "$expected_commit refs/heads/$BRANCH" ]] || die "bundle_ref_mismatch"
 git clone --branch "$BRANCH" --single-branch "$BUNDLE" "$TARGET" >/dev/null 2>&1 \
