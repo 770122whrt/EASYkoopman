@@ -161,6 +161,36 @@ if (
     $labRepoDirtyFiles -ne ($expectedIsaacLabDirtyFiles -join "`n")
 ) { throw "isaaclab_provenance_mismatch" }
 
+$policyValidator = Join-Path $repository "workflows/validate_phase8_pilot_policy.py"
+$policy = Join-Path $stagedEvidence "pilot_collection_policy.json"
+$policyValidatorStdout = [IO.Path]::GetTempFileName()
+$policyValidatorStderr = [IO.Path]::GetTempFileName()
+try {
+    $previous = $ErrorActionPreference
+    try {
+        $ErrorActionPreference = "Continue"
+        & $PythonExecutable $policyValidator `
+            --policy $policy `
+            --json 1> $policyValidatorStdout 2> $policyValidatorStderr
+        $policyValidatorExitCode = $LASTEXITCODE
+    }
+    finally { $ErrorActionPreference = $previous }
+    $policyValidatorOutput = [IO.File]::ReadAllText($policyValidatorStdout)
+    $policyValidatorError = [IO.File]::ReadAllText($policyValidatorStderr).Trim()
+}
+finally {
+    Remove-Item -LiteralPath $policyValidatorStdout, $policyValidatorStderr -Force -ErrorAction SilentlyContinue
+}
+if ($policyValidatorExitCode -ne 0) {
+    throw "pilot_policy_validator_failed:$policyValidatorExitCode;staging=$stagingRoot;$policyValidatorError"
+}
+$policyValidatorResult = $policyValidatorOutput | ConvertFrom-Json
+$policyHash = (Get-FileHash -Algorithm SHA256 -LiteralPath $policy).Hash.ToLowerInvariant()
+if (
+    $policyValidatorResult.validation_gate -ne "phase8_pilot_operational_policy_valid" -or
+    $policyValidatorResult.policy_sha256 -ne $policyHash
+) { throw "pilot_policy_validator_result_invalid" }
+
 $validator = Join-Path $repository "workflows/validate_phase8_evidence.py"
 $validatorStdout = [IO.Path]::GetTempFileName()
 $validatorStderr = [IO.Path]::GetTempFileName()

@@ -33,11 +33,6 @@ PILOT_TASK_ID = "EasyUUV-Direct-v1"
 PILOT_CONTROLLER_MODE = "legacy/Ssurface"
 PILOT_ARTIFACT_ORIGIN = "server_isaac_smoke"
 PILOT_TRANSITION_SCHEMA = "easyuuv-koopman-transition-v2"
-PILOT_RUNTIME_CONTRACT = {
-    "isaac_sim_version": "5.0",
-    "isaac_lab_version": "2.2.1",
-    "python_entrypoint": "/root/IsaacLab/isaaclab.sh -p",
-}
 
 _POLICY_FIELDS = frozenset(
     {
@@ -62,7 +57,13 @@ _ENTRY_FIELDS = frozenset(
         "transition_count",
     }
 )
-_RUNTIME_FIELDS = frozenset(PILOT_RUNTIME_CONTRACT)
+_RUNTIME_FIELDS = frozenset(
+    {
+        "isaac_sim_version",
+        "isaac_lab_version",
+        "python_entrypoint",
+    }
+)
 _FORBIDDEN_POLICY_TOKENS = (
     "model",
     "fit",
@@ -156,8 +157,10 @@ def validate_pilot_collection_policy(value: Any) -> None:
     runtime = _require_exact_fields(
         policy["runtime_contract"], _RUNTIME_FIELDS, path="runtime_contract"
     )
-    if dict(runtime) != PILOT_RUNTIME_CONTRACT:
-        _fail("value_mismatch:runtime_contract")
+    for field in sorted(_RUNTIME_FIELDS):
+        value = runtime[field]
+        if not isinstance(value, str) or not value:
+            _fail(f"value_invalid:runtime_contract.{field}")
     entries = policy["entries"]
     if isinstance(entries, (str, bytes)) or not isinstance(entries, Sequence):
         _fail("type_invalid:entries")
@@ -223,4 +226,3 @@ def load_pilot_collection_policy(path: str | Path) -> dict[str, Any]:
     validate_pilot_collection_policy(payload)
     assert isinstance(payload, dict)
     return payload
-

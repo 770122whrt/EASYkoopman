@@ -14,6 +14,7 @@ readonly CONDA_PYTHON="/opt/conda/envs/isaaclab/bin/python"
 readonly RUNNER="$PROJECT_ROOT/workflows/collect_koopman_v2_identification.py"
 readonly AUDITOR="$PROJECT_ROOT/workflows/audit_koopman_v2_pilot.py"
 readonly VALIDATOR="$PROJECT_ROOT/workflows/validate_phase8_evidence.py"
+readonly POLICY_VALIDATOR="$PROJECT_ROOT/workflows/validate_phase8_pilot_policy.py"
 readonly POLICY="$PROJECT_ROOT/protocols/phase8/pilot_collection_policy.json"
 readonly EXPECTED_ISAAC_SIM="5.0"
 readonly EXPECTED_ISAAC_LAB="2.2.1"
@@ -51,8 +52,20 @@ status="$(git -C "$PROJECT_ROOT" -c core.excludesFile= status --porcelain=v1 --u
 [[ -x "$ISAACLAB_PY" ]] || die "isaaclab_launcher_missing"
 [[ -f "$CONDA_SH" ]] || die "conda_activation_script_missing"
 mkdir -p "$RESULT_ROOT"/{episodes,manifests,logs} "$STATUS_ROOT"
-cp "$POLICY" "$RESULT_ROOT/pilot_collection_policy.json"
 phase6_activate_conda_env "$STATUS_ROOT" "$CONDA_SH" "$CONDA_ENVIRONMENT" "$CONDA_PYTHON"
+if ! "$CONDA_PYTHON" "$POLICY_VALIDATOR" --policy "$POLICY" --json \
+    > "$STATUS_ROOT/pilot_policy_validator.json"; then
+    die "pilot_policy_validator_failed"
+fi
+policy_sha256="$(sha256sum "$POLICY" | awk '{print $1}')"
+validated_policy_sha256="$(
+    "$CONDA_PYTHON" -c \
+        'import json,sys; print(json.load(open(sys.argv[1], encoding="utf-8"))["policy_sha256"])' \
+        "$STATUS_ROOT/pilot_policy_validator.json"
+)"
+[[ "$policy_sha256" == "$validated_policy_sha256" ]] || die "pilot_policy_hash_mismatch"
+printf '%s\n' "$policy_sha256" > "$STATUS_ROOT/pilot_policy.sha256"
+cp "$POLICY" "$RESULT_ROOT/pilot_collection_policy.json"
 
 set +e
 "$ISAACLAB_PY" -p -c \

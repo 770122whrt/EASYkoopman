@@ -29,7 +29,6 @@ from koopman.protocol_v2 import (
     PILOT_RAW_ACTION_ABS_MAX,
     PILOT_TASK_ID,
     PUBLIC_CONFIGURATIONS,
-    load_pilot_collection_policy,
 )
 from koopman.schema_v2 import SERVER_EVIDENCE_LEVEL
 from workflows.collect_koopman_v2_smoke import (
@@ -38,6 +37,7 @@ from workflows.collect_koopman_v2_smoke import (
     _canonical_json_bytes,
 )
 from workflows.koopman_bridge_v2 import KoopmanBridgeV2
+from workflows.validate_phase8_pilot_policy import load_operational_pilot_policy
 
 
 DEFAULT_RESULT_ROOT = PROJECT_ROOT / "source" / "results" / "koopman_phase8_pilot"
@@ -245,7 +245,7 @@ def run_isaac_collection(args: argparse.Namespace) -> int:
         from easyuuv_nc.env.easyuuv_env import EasyUUVEnvCfg
         from workflows.qualify_easyuuv_v2 import detect_runtime_provenance
 
-        policy = load_pilot_collection_policy(args.policy)
+        policy = load_operational_pilot_policy(args.policy)
         entries = _configuration_entries(policy, args.configuration)
         status_root = args.result_root.parent / "koopman_phase8_pilot_status"
         source_commit = _repository_commit((args.result_root, status_root))
@@ -333,7 +333,7 @@ def main(argv: list[str] | None = None) -> int:
     args = build_argument_parser().parse_args(argv)
     try:
         args.result_root = Path(os.path.abspath(args.result_root))
-        policy = load_pilot_collection_policy(args.policy)
+        policy = load_operational_pilot_policy(args.policy)
         _configuration_entries(policy, args.configuration)
         args.result_root.mkdir(parents=True, exist_ok=True)
         return run_isaac_collection(args)

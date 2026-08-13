@@ -29,10 +29,10 @@ from koopman.protocol_v2 import (
     PILOT_RAW_ACTION_ABS_MAX,
     PILOT_TASK_ID,
     PUBLIC_CONFIGURATIONS,
-    load_pilot_collection_policy,
 )
 from koopman.schema_v2 import load_episode_jsonl_v2, validate_episode_artifact_v2
 from workflows.merge_koopman_v2_evidence import _validate_server_runtime
+from workflows.validate_phase8_pilot_policy import load_operational_pilot_policy
 
 
 PILOT_INVENTORY_VERSION = "phase8-pilot-inventory-v1"
@@ -147,7 +147,7 @@ def audit_pilot_collection(
         if output.exists():
             _fail("artifact_exists", str(output))
     policy_path = root / "pilot_collection_policy.json"
-    policy = load_pilot_collection_policy(policy_path)
+    policy = load_operational_pilot_policy(policy_path)
     expected_inputs = _expected_input_paths(policy)
     _require_exact_input_set(root, expected_inputs)
     policy_sha256 = file_sha256(policy_path)
