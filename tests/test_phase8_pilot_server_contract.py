@@ -602,6 +602,27 @@ def test_preflight_protects_v1_phase6_phase7_and_frozen_schema():
         assert protected in source
 
 
+def test_preflight_passes_git_cat_file_dash_e_without_powershell_binding_ambiguity():
+    result = _run(
+        [
+            _powershell(),
+            "-NoProfile",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-File",
+            str(LOCAL_PREFLIGHT.relative_to(PROJECT_ROOT)),
+            "-RepositoryRoot",
+            str(PROJECT_ROOT),
+            "-SkipTestsForContract",
+        ],
+        cwd=PROJECT_ROOT,
+    )
+
+    output = result.stdout + result.stderr
+    assert "AmbiguousParameter" not in output
+    assert "gate=protected_diff;status=pass" in output
+
+
 @pytest.mark.parametrize("dirty_kind", ["tracked", "untracked"])
 def test_prepare_dynamic_dirty_repo_stops_before_transfer(tmp_path: Path, dirty_kind: str):
     repository = _init_temp_repo(tmp_path)
