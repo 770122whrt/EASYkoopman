@@ -500,6 +500,41 @@ def test_success_logs_are_one_fresh_log_per_policy_episode(tmp_path: Path):
         write_episode_success_logs(root, entries, results)
 
 
+def test_success_logs_accept_real_server_manifest_result_shape(tmp_path: Path):
+    policy = load_pilot_collection_policy(POLICY_PATH)
+    entries = [entry for entry in policy["entries"] if entry["configuration"] == "base"]
+    results = [
+        {
+            "record_count": entry["transition_count"],
+            "episode_invariants": {"episode_id": entry["episode_id"]},
+        }
+        for entry in entries
+    ]
+
+    paths = write_episode_success_logs(tmp_path / "pilot", entries, results)
+
+    assert [path.name for path in paths] == [
+        f"{entry['episode_id']}.log" for entry in entries
+    ]
+
+
+def test_simulation_close_cannot_mask_collection_failure():
+    class _ExitZeroApp:
+        def close(self) -> None:
+            raise SystemExit(0)
+
+    with pytest.raises(ValueError, match="success_log_episode_id"):
+        try:
+            raise ValueError("pilot_health_failed:success_log_episode_id")
+        except BaseException:
+            collection_failed = True
+            raise
+        finally:
+            collector._close_simulation_app(
+                _ExitZeroApp(), collection_failed=collection_failed
+            )
+
+
 def test_output_paths_are_confined_fresh_and_noncolliding(tmp_path: Path):
     root = tmp_path / "pilot"
     episode = root / "episodes" / "episode.jsonl"
