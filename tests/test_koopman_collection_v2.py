@@ -247,7 +247,9 @@ def test_inventory_accepts_a_confined_relative_collection_root(
     assert inventory.inventory_sha256
 
 
-def test_inventory_rejects_escape_and_symlinked_episode_paths(tmp_path: Path) -> None:
+def test_inventory_rejects_escape_and_symlinked_episode_paths(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
     intents = list(_intents())
     with pytest.raises(ValueError, match="reference_path_invalid"):
         intents[0] = replace(intents[0], transition_path="../escape.jsonl")
@@ -266,11 +268,19 @@ def test_inventory_rejects_escape_and_symlinked_episode_paths(tmp_path: Path) ->
     target = root / intents[0].transition_path
     outside = tmp_path / "outside.jsonl"
     shutil.copyfile(target, outside)
-    target.unlink()
+    probe = tmp_path / "symlink-probe.jsonl"
     try:
+        probe.symlink_to(outside)
+        probe.unlink()
+        target.unlink()
         target.symlink_to(outside)
     except OSError:
-        pytest.skip("symlink creation is unavailable on this Windows host")
+        original_is_symlink = Path.is_symlink
+
+        def _is_symlink(path: Path) -> bool:
+            return path.absolute() == target.absolute() or original_is_symlink(path)
+
+        monkeypatch.setattr(Path, "is_symlink", _is_symlink)
     with pytest.raises(ValueError, match="artifact_not_regular_file"):
         build_dataset_inventory_v2(
             root,
