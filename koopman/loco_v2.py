@@ -29,6 +29,7 @@ from koopman.splits_v2 import (
 
 
 FOLD_PROTOCOL_DECISION_VERSION_V1 = "phase8-fold-protocol-decision-v1"
+FOLD_PROTOCOL_DECISION_FILENAME_V1 = "fold_protocol_decision.json"
 _REFERENCE_NAMESPACE = "diagnostic/reference_conditioned_v2"
 T = TypeVar("T")
 
