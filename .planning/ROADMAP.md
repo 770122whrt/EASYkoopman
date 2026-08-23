@@ -128,7 +128,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 08-02-PLAN.md — implement exact main inventory, configuration/episode role views, LOCO split manifests, opened-file leakage audits and fold-local physical platform descriptors.
+- [x] 08-02-PLAN.md — implement exact main inventory, configuration/episode role views, LOCO split manifests, opened-file leakage audits and fold-local physical platform descriptors.
 
 **Wave 3** *(blocked on Wave 2 completion)*
 

@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Multi-Configuration Koopman Transfer and Environment-Aware Control
 status: executing
-last_updated: "2026-08-23T17:03:56Z"
-last_activity: 2026-08-24 -- Plan 08-01 completed with collection-health-only exact-eight server pilot evidence
+last_updated: "2026-08-23T18:01:08Z"
+last_activity: 2026-08-24 -- Plan 08-02 completed with immutable episode inventory and exact-eight LOCO access isolation
 progress:
   total_phases: 7
   completed_phases: 2
   total_plans: 13
-  completed_plans: 9
-  percent: 69
+  completed_plans: 10
+  percent: 77
 ---
 
 # Project State: EASYkoopman
@@ -29,9 +29,9 @@ See `.planning/PROJECT.md`.
 ## Current Position
 
 Phase: 08 (multi-configuration-koopman-identification-and-ood-gate) — EXECUTING
-Plan: 2 of 5
+Plan: 3 of 5
 Status: Ready to execute
-Last activity: 2026-08-24 -- Plan 08-01 completed; Plan 08-02 is next
+Last activity: 2026-08-24 -- Plan 08-02 completed; Plan 08-03 is next
 
 ## Milestone Goal
 
@@ -140,7 +140,11 @@ All three boundaries are visible on `origin/v2.0-multi-configuration`: simulator
 - Real Isaac Sim 5.0 / Isaac Lab 2.2.1 pilot evidence contains exactly eight configurations, two episodes per configuration and 128 transitions per episode: 16 episodes, 16 manifests, 16 logs and 2048 strict rows.
 - The pulled envelope passed both operational-policy and external-evidence validators with `warnings=[]`; resumed closeout passed 53 Phase 8 server-contract tests and the full suite as `638 passed, 1 skipped`.
 - This is collection-health evidence only. KID-01..05, model quality, LOCO OOD transfer, selection and Koopman-MPC effectiveness remain unproven.
+- Plan 08-02 added a local-contract-only immutable multi-episode inventory, exactly eight seven-source LOCO fold manifests, distinct non-promoting expert views and dynamic opened-byte leakage audits.
+- Physical conditioning is identity-free and fold-local: each normalizer binds the exact seven source configurations, source episode hashes and feature schema hash; no global or held-out statistics are accepted.
+- Independent closeout passed 55 focused tests, 210 Phase 8/schema/pilot tests and the full repository suite as `675 passed, 1 skipped`; both declared key links and protected paths passed.
+- The 8x12 main role protocol remains `pending_d23`. No real main dataset or fitted model exists, so KID-01..05 remain incomplete.
 
 ## Next Action
 
-Execute `08-02-PLAN.md`: implement the immutable multi-episode inventory, exact-eight whole-episode LOCO role views, opened-file leakage audit and fold-local physical platform descriptors. Keep all fixtures `local_contract`; do not create canonical main/evaluation evidence or fit a model in Wave 2.
+Execute `08-03-PLAN.md`: implement the single controlled-EDMD v2 backend, persistence/simple-linear baselines, per-configuration/pooled/conditional/non-promoting expert roles and episode-safe SO(3)-correct metrics. Use only local-contract fixtures and typed seven-source views; do not collect the main server dataset or make OOD/selection claims in Wave 3.
