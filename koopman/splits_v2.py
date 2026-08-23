@@ -601,4 +601,3 @@ def read_loco_split_manifest_v2(
     )
     validate_loco_split_manifest_v2(split, inventory, protocol)
     return split
-

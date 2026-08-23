@@ -258,4 +258,3 @@ print(json.dumps(blocked))
         source = (PROJECT_ROOT / relative_path).read_text(encoding="utf-8")
         assert "platform_features_v2" not in source
         assert "PlatformFeatureNormalizerV2" not in source
-

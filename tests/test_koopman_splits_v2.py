@@ -311,4 +311,3 @@ def test_split_manifest_fresh_write_roundtrip_is_atomic(tmp_path: Path) -> None:
     with pytest.raises(ValueError, match="artifact_exists"):
         write_loco_split_manifest_v2(split, output)
     assert not output.with_name(f"{output.name}.part").exists()
-
