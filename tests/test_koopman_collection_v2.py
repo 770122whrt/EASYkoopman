@@ -232,8 +232,8 @@ def test_inventory_cannot_precede_episode_bytes_and_is_bounded(tmp_path: Path) -
 
 def test_inventory_rejects_escape_and_symlinked_episode_paths(tmp_path: Path) -> None:
     intents = list(_intents())
-    intents[0] = replace(intents[0], transition_path="../escape.jsonl")
     with pytest.raises(ValueError, match="reference_path_invalid"):
+        intents[0] = replace(intents[0], transition_path="../escape.jsonl")
         build_dataset_inventory_v2(
             FIXTURE_ROOT,
             intents,
@@ -247,14 +247,13 @@ def test_inventory_rejects_escape_and_symlinked_episode_paths(tmp_path: Path) ->
     shutil.copytree(FIXTURE_ROOT, root)
     intents = list(load_episode_role_intents_v2(root / "role_intent.json"))
     target = root / intents[0].transition_path
-    link = root / "episodes" / "linked.jsonl"
+    outside = tmp_path / "outside.jsonl"
+    shutil.copyfile(target, outside)
+    target.unlink()
     try:
-        link.symlink_to(target)
+        target.symlink_to(outside)
     except OSError:
         pytest.skip("symlink creation is unavailable on this Windows host")
-    intents[0] = replace(
-        intents[0], transition_path=link.relative_to(root).as_posix()
-    )
     with pytest.raises(ValueError, match="artifact_not_regular_file"):
         build_dataset_inventory_v2(
             root,
@@ -330,4 +329,3 @@ def test_inventory_cli_atomically_writes_only_a_fresh_target(tmp_path: Path) -> 
     assert repeated.returncode != 0
     assert "artifact_exists" in repeated.stderr
     assert not output.with_name(f"{output.name}.part").exists()
-
