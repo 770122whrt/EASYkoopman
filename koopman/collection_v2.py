@@ -382,7 +382,7 @@ def _actual_artifact_paths(root: Path) -> set[str]:
             _fail("artifact_not_regular_file", directory_name)
         for candidate in directory.rglob("*"):
             if candidate.is_file() or candidate.is_symlink():
-                paths.add(candidate.relative_to(resolved_root).as_posix())
+                paths.add(candidate.absolute().relative_to(resolved_root).as_posix())
     return paths
 
 
@@ -778,4 +778,3 @@ def require_main_dataset_qualification_v2(
             "evidence_level_mismatch",
             f"origin={artifact_origin_level};qualification={qualification_level}",
         )
-
