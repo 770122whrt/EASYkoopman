@@ -85,10 +85,19 @@ def _bash() -> str:
 def _run(
     command: list[str], *, cwd: Path, env: dict[str, str] | None = None
 ) -> subprocess.CompletedProcess[str]:
+    child_env = env
+    executable = str(command[0]).replace("\\", "/").lower()
+    if "/windowspowershell/" in executable:
+        child_env = dict(os.environ if env is None else env)
+        # A Python child of PowerShell 7 otherwise inherits the Core-only
+        # module path and can shadow Windows PowerShell's built-in modules.
+        for key in tuple(child_env):
+            if key.lower() == "psmodulepath":
+                child_env.pop(key)
     return subprocess.run(
         command,
         cwd=cwd,
-        env=env,
+        env=child_env,
         text=True,
         capture_output=True,
         check=False,
