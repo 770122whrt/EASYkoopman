@@ -124,7 +124,7 @@ Plans:
 
 **Wave 1**
 
-- [ ] 08-01-PLAN.md — establish the external Phase 8 evidence envelope, pre-collection protocol schemas and exact-eight collection-health-only pilot through a locally gated server chain.
+- [x] 08-01-PLAN.md — establish the external Phase 8 evidence envelope, pre-collection protocol schemas and exact-eight collection-health-only pilot through a locally gated server chain.
 
 **Wave 2** *(blocked on Wave 1 completion)*
 

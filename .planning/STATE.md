@@ -3,19 +3,19 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Multi-Configuration Koopman Transfer and Environment-Aware Control
 status: executing
-last_updated: "2026-08-12T18:22:36.239Z"
-last_activity: 2026-08-12 -- Phase 08 execution started
+last_updated: "2026-08-23T17:03:56Z"
+last_activity: 2026-08-24 -- Plan 08-01 completed with collection-health-only exact-eight server pilot evidence
 progress:
   total_phases: 7
   completed_phases: 2
   total_plans: 13
-  completed_plans: 8
-  percent: 62
+  completed_plans: 9
+  percent: 69
 ---
 
 # Project State: EASYkoopman
 
-**Updated:** 2026-08-13
+**Updated:** 2026-08-24
 **Current focus:** Phase 08 — multi-configuration-koopman-identification-and-ood-gate
 **Active milestone:** `v2.0 Multi-Configuration Koopman Transfer and Environment-Aware Control`
 **Branch:** `v2.0-multi-configuration`
@@ -29,9 +29,9 @@ See `.planning/PROJECT.md`.
 ## Current Position
 
 Phase: 08 (multi-configuration-koopman-identification-and-ood-gate) — EXECUTING
-Plan: 1 of 5
-Status: Executing Phase 08
-Last activity: 2026-08-12 -- Phase 08 execution started
+Plan: 2 of 5
+Status: Ready to execute
+Last activity: 2026-08-24 -- Plan 08-01 completed; Plan 08-02 is next
 
 ## Milestone Goal
 
@@ -135,8 +135,12 @@ All three boundaries are visible on `origin/v2.0-multi-configuration`: simulator
 - Five plans cover KID-01..05 and D-01..23 in dependency order `08-01 -> 08-02 -> 08-03 -> 08-04 -> 08-05`, with one explicit D-23 user protocol approval before main-server collection.
 - Phase 8 evidence uses external `qualification_level` envelopes without extending or relabelling the frozen Phase 7 transition `evidence_level` enum.
 - Evaluation and terminal selection/no-selection use separate immutable roots; a selected final refit reruns the registered inner algorithm on all eight fit+validation roles only, while refit failure atomically yields `no_selection` with no model path.
-- Planning does not mark any KID requirement complete and creates no pilot, dataset, evaluation or selection success artifact. Phase 8 will close only after an independent goal-backward `08-VERIFICATION.md` passes KID-01..05.
+- The approved plan set initially marked no KID requirement complete and created no success artifact. Phase 8 will close only after an independent goal-backward `08-VERIFICATION.md` passes KID-01..05.
+- Plan 08-01 completed the additive Phase 8 evidence/protocol layer and fail-closed local/server/pullback chain without changing the frozen Phase 7 transition evidence enum.
+- Real Isaac Sim 5.0 / Isaac Lab 2.2.1 pilot evidence contains exactly eight configurations, two episodes per configuration and 128 transitions per episode: 16 episodes, 16 manifests, 16 logs and 2048 strict rows.
+- The pulled envelope passed both operational-policy and external-evidence validators with `warnings=[]`; resumed closeout passed 53 Phase 8 server-contract tests and the full suite as `638 passed, 1 skipped`.
+- This is collection-health evidence only. KID-01..05, model quality, LOCO OOD transfer, selection and Koopman-MPC effectiveness remain unproven.
 
 ## Next Action
 
-Execute `08-01-PLAN.md`: implement the additive Phase 8 evidence/protocol contract and exact-eight collection-health-only pilot chain with strict local TDD/preflight before any SSH request. Do not fit a model, create main roles or claim OOD/control performance in Wave 1.
+Execute `08-02-PLAN.md`: implement the immutable multi-episode inventory, exact-eight whole-episode LOCO role views, opened-file leakage audit and fold-local physical platform descriptors. Keep all fixtures `local_contract`; do not create canonical main/evaluation evidence or fit a model in Wave 2.
