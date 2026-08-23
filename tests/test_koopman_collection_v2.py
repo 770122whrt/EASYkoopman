@@ -230,6 +230,23 @@ def test_inventory_cannot_precede_episode_bytes_and_is_bounded(tmp_path: Path) -
         )
 
 
+def test_inventory_accepts_a_confined_relative_collection_root(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.chdir(PROJECT_ROOT)
+    relative_root = FIXTURE_ROOT.relative_to(PROJECT_ROOT)
+    intents = _intents()
+    inventory = build_dataset_inventory_v2(
+        relative_root,
+        intents,
+        role_protocol_sha256=hashlib.sha256(INTENT_PATH.read_bytes()).hexdigest(),
+        runtime_sha256=LOCAL_RUNTIME_SHA256,
+        envelope_sha256=None,
+        qualification_level="local_contract",
+    )
+    assert inventory.inventory_sha256
+
+
 def test_inventory_rejects_escape_and_symlinked_episode_paths(tmp_path: Path) -> None:
     intents = list(_intents())
     with pytest.raises(ValueError, match="reference_path_invalid"):
