@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Multi-Configuration Koopman Transfer and Environment-Aware Control
 status: executing
-last_updated: "2026-08-23T18:01:08Z"
-last_activity: 2026-08-24 -- Plan 08-02 completed with immutable episode inventory and exact-eight LOCO access isolation
+last_updated: "2026-08-23T18:58:00Z"
+last_activity: 2026-08-24 -- Plan 08-03 completed with controlled-EDMD v2, episode-safe SO(3) metrics and sealed seven-source decisions
 progress:
   total_phases: 7
   completed_phases: 2
   total_plans: 13
-  completed_plans: 10
-  percent: 77
+  completed_plans: 11
+  percent: 85
 ---
 
 # Project State: EASYkoopman
@@ -29,9 +29,9 @@ See `.planning/PROJECT.md`.
 ## Current Position
 
 Phase: 08 (multi-configuration-koopman-identification-and-ood-gate) — EXECUTING
-Plan: 3 of 5
+Plan: 4 of 5
 Status: Ready to execute
-Last activity: 2026-08-24 -- Plan 08-02 completed; Plan 08-03 is next
+Last activity: 2026-08-24 -- Plan 08-03 completed; Plan 08-04 is next
 
 ## Milestone Goal
 
@@ -144,7 +144,12 @@ All three boundaries are visible on `origin/v2.0-multi-configuration`: simulator
 - Physical conditioning is identity-free and fold-local: each normalizer binds the exact seven source configurations, source episode hashes and feature schema hash; no global or held-out statistics are accepted.
 - Independent closeout passed 55 focused tests, 210 Phase 8/schema/pilot tests and the full repository suite as `675 passed, 1 skipped`; both declared key links and protected paths passed.
 - The 8x12 main role protocol remains `pending_d23`. No real main dataset or fitted model exists, so KID-01..05 remain incomplete.
+- Plan 08-03 added one additive `ControlledEDMDV2` backend, state_11/control_4 persistence and simple-linear baselines, exact identity/kinematic observable schemas and fold-fitted platform-affine Kronecker conditioning.
+- Recursive evaluation is episode-local at one-step/5/20/60/full horizons; official attitude is sign-invariant normalized SO(3) geodesic radians, with per-configuration, equal-macro and worst-configuration aggregates.
+- Every synthetic fold decision evaluates the frozen 108-candidate local grid from exactly seven source configurations, records every opened episode/statistic and seals before held-out test access; only pooled/conditional result types are eligible.
+- Independent closeout passed 396 broad tests plus one existing skip and the final full suite as `733 passed, 1 skipped`; compileall, standalone diff-check, key links, protected paths and forbidden-root absence passed.
+- Plan 08-03 is `local_contract` only. Its policy fixture is not D-23 approval, no real main/evaluation/selection root exists and KID-01..05 remain incomplete.
 
 ## Next Action
 
-Execute `08-03-PLAN.md`: implement the single controlled-EDMD v2 backend, persistence/simple-linear baselines, per-configuration/pooled/conditional/non-promoting expert roles and episode-safe SO(3)-correct metrics. Use only local-contract fixtures and typed seven-source views; do not collect the main server dataset or make OOD/selection claims in Wave 3.
+Execute `08-04-PLAN.md`: present and freeze the exact main role/action and analysis policies for D-23 user approval, then collect and independently pull back the real exact-eight 96-episode identification dataset only after that decision/checkpoint. Do not treat the 08-03 local fixture as canonical approval.

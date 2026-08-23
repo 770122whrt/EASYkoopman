@@ -132,7 +132,7 @@ Plans:
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 08-03-PLAN.md — implement one controlled-EDMD v2 backend, true baselines, six evaluation roles, episode-safe rollout and quaternion-correct/configuration-balanced metrics through TDD.
+- [x] 08-03-PLAN.md — implement one controlled-EDMD v2 backend, true baselines, six evaluation roles, episode-safe rollout and quaternion-correct/configuration-balanced metrics through TDD.
 
 **Wave 4** *(blocked on Wave 3 completion; includes D-23 user decision and server checkpoint)*
 
