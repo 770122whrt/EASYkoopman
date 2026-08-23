@@ -7,10 +7,12 @@ intent only; post-collection hashes and any modelling result are forbidden.
 from __future__ import annotations
 
 from collections.abc import Mapping, Sequence
+from dataclasses import dataclass, field
 from datetime import datetime, timezone
 import json
 import math
 from pathlib import Path
+from types import MappingProxyType
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
@@ -454,3 +456,362 @@ def main_role_intents_v2(value: Any) -> tuple["EpisodeRoleIntentV2", ...]:
         )
         for entry in value["entries"]
     )
+
+
+ANALYSIS_POLICY_VERSION_V1 = "phase8-analysis-policy-v1"
+_ANALYSIS_POLICY_FIELDS = frozenset(
+    {
+        "analysis_policy_version",
+        "approval_status",
+        "backend",
+        "bootstrap",
+        "data_prefixes",
+        "forbidden_inputs",
+        "forbidden_roles",
+        "gate_template",
+        "horizons",
+        "inner_decision_algorithm",
+        "metric_schema",
+        "normalization_candidates",
+        "observable_candidates",
+        "platform_schema_candidates",
+        "qualification_level",
+        "reference_diagnostic",
+        "ridge_grid",
+    }
+)
+_ANALYSIS_BOOTSTRAP_FIELDS = frozenset({"alpha", "resamples", "seed", "unit"})
+_ANALYSIS_ALGORITHM_FIELDS = frozenset(
+    {"name", "primary_metric", "tie_break_order"}
+)
+_ANALYSIS_METRIC_FIELDS = frozenset(
+    {"aggregation", "official_orientation", "row_weighted", "version"}
+)
+_ANALYSIS_GATE_FIELDS = frozenset(
+    {
+        "conditional_margin_fraction",
+        "divergence_max",
+        "invalid_quaternion_max",
+        "minimum_improvement_fraction",
+        "nonfinite_max",
+        "noninferiority_fraction",
+    }
+)
+_ANALYSIS_REFERENCE_FIELDS = frozenset(
+    {"enabled", "model_id", "namespace", "selection_eligible"}
+)
+_ANALYSIS_FORBIDDEN_INPUTS = (
+    "reference_5",
+    "motor_pwm_padded_8",
+    "thruster_mask_8",
+    "applied_wrench_6",
+    "environment_context_oracle",
+    "environment_context_estimated",
+    "configuration_identity",
+    "heldout_statistics",
+)
+_ANALYSIS_FORBIDDEN_ROLES = (
+    "heldout_expert_upper_bound_v2",
+    "reference_conditioned_diagnostic_v2",
+)
+_ANALYSIS_TIE_BREAK_ORDER = (
+    "source_worst",
+    "source_macro",
+    "data_prefix",
+    "observable_order",
+    "ridge_order",
+    "normalization_order",
+    "platform_schema_order",
+)
+MAX_ANALYSIS_POLICY_BYTES = 512 * 1024
+
+
+def _analysis_fail(reason: str, detail: str | None = None) -> None:
+    raise ValueError(reason if detail is None else f"{reason}:{detail}")
+
+
+def _analysis_exact(
+    value: Any, fields: frozenset[str], path: str
+) -> Mapping[str, Any]:
+    if not isinstance(value, Mapping) or set(value) != fields:
+        _analysis_fail("analysis_policy_field_set_mismatch", path)
+    return value
+
+
+def _analysis_sequence(value: Any, path: str) -> tuple[Any, ...]:
+    if isinstance(value, (str, bytes)) or not isinstance(value, Sequence):
+        _analysis_fail("analysis_policy_type_invalid", path)
+    return tuple(value)
+
+
+def _analysis_number(value: Any, path: str, *, minimum: float = 0.0) -> float:
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        _analysis_fail("analysis_policy_value_invalid", path)
+    number = float(value)
+    if not math.isfinite(number) or number < minimum:
+        _analysis_fail("analysis_policy_value_invalid", path)
+    return number
+
+
+def validate_analysis_policy_v1(value: Any) -> None:
+    """Validate the local-only 08-03 analysis-policy schema/fixture."""
+
+    policy = _analysis_exact(value, _ANALYSIS_POLICY_FIELDS, "policy")
+    expected_scalars = {
+        "analysis_policy_version": ANALYSIS_POLICY_VERSION_V1,
+        "approval_status": "local_fixture_only_not_d23",
+        "backend": "controlled_edmd_v2",
+        "qualification_level": "local_contract",
+    }
+    for name, expected in expected_scalars.items():
+        if policy[name] != expected:
+            _analysis_fail("analysis_policy_value_invalid", name)
+    if _analysis_sequence(policy["data_prefixes"], "data_prefixes") != (2, 4, 6):
+        _analysis_fail("analysis_policy_value_invalid", "data_prefixes")
+    if _analysis_sequence(policy["observable_candidates"], "observable_candidates") != (
+        "identity_v1",
+        "auv_kinematic_v1",
+    ):
+        _analysis_fail("analysis_policy_value_invalid", "observable_candidates")
+    if _analysis_sequence(policy["normalization_candidates"], "normalization_candidates") != (
+        "none",
+        "standard_v1",
+    ):
+        _analysis_fail("analysis_policy_value_invalid", "normalization_candidates")
+    if _analysis_sequence(policy["platform_schema_candidates"], "platform_schema_candidates") != (
+        "none",
+        "platform_physical_compact_v1",
+        "platform_physical_core_v1",
+    ):
+        _analysis_fail("analysis_policy_value_invalid", "platform_schema_candidates")
+    if _analysis_sequence(policy["horizons"], "horizons") != (5, 20, 60, "full"):
+        _analysis_fail("analysis_policy_value_invalid", "horizons")
+    forbidden_inputs = _analysis_sequence(policy["forbidden_inputs"], "forbidden_inputs")
+    if forbidden_inputs != _ANALYSIS_FORBIDDEN_INPUTS:
+        _analysis_fail("analysis_policy_forbidden_input_mismatch")
+    forbidden_roles = _analysis_sequence(policy["forbidden_roles"], "forbidden_roles")
+    if forbidden_roles != _ANALYSIS_FORBIDDEN_ROLES:
+        _analysis_fail("analysis_policy_forbidden_role_mismatch")
+    ridges = _analysis_sequence(policy["ridge_grid"], "ridge_grid")
+    if not ridges:
+        _analysis_fail("analysis_policy_ridge_invalid")
+    normalized_ridges: list[float] = []
+    for ridge in ridges:
+        if isinstance(ridge, bool) or not isinstance(ridge, (int, float)):
+            _analysis_fail("analysis_policy_ridge_invalid")
+        number = float(ridge)
+        if not math.isfinite(number) or number < 0.0:
+            _analysis_fail("analysis_policy_ridge_invalid")
+        normalized_ridges.append(number)
+    if normalized_ridges != sorted(set(normalized_ridges)):
+        _analysis_fail("analysis_policy_ridge_invalid")
+
+    bootstrap = _analysis_exact(
+        policy["bootstrap"], _ANALYSIS_BOOTSTRAP_FIELDS, "bootstrap"
+    )
+    alpha = _analysis_number(bootstrap["alpha"], "bootstrap.alpha")
+    if not 0.0 < alpha < 1.0:
+        _analysis_fail("analysis_policy_value_invalid", "bootstrap.alpha")
+    if (
+        isinstance(bootstrap["resamples"], bool)
+        or not isinstance(bootstrap["resamples"], int)
+        or bootstrap["resamples"] <= 0
+        or isinstance(bootstrap["seed"], bool)
+        or not isinstance(bootstrap["seed"], int)
+        or bootstrap["unit"] != "episode_block"
+    ):
+        _analysis_fail("analysis_policy_value_invalid", "bootstrap")
+
+    algorithm = _analysis_exact(
+        policy["inner_decision_algorithm"],
+        _ANALYSIS_ALGORITHM_FIELDS,
+        "inner_decision_algorithm",
+    )
+    if (
+        algorithm["name"] != "lexicographic-paired-source-validation-v1"
+        or algorithm["primary_metric"] != "full_equal_configuration_macro"
+        or _analysis_sequence(algorithm["tie_break_order"], "tie_break_order")
+        != _ANALYSIS_TIE_BREAK_ORDER
+    ):
+        _analysis_fail("analysis_policy_value_invalid", "inner_decision_algorithm")
+
+    metric = _analysis_exact(
+        policy["metric_schema"], _ANALYSIS_METRIC_FIELDS, "metric_schema"
+    )
+    if (
+        _analysis_sequence(metric["aggregation"], "metric_schema.aggregation")
+        != (
+            "per_configuration",
+            "equal_configuration_macro",
+            "worst_configuration",
+        )
+        or metric["official_orientation"] != "so3_geodesic_radians"
+        or metric["row_weighted"] != "diagnostic_only"
+        or metric["version"] != "phase8-episode-metrics-v1"
+    ):
+        _analysis_fail("analysis_policy_value_invalid", "metric_schema")
+
+    gates = _analysis_exact(
+        policy["gate_template"], _ANALYSIS_GATE_FIELDS, "gate_template"
+    )
+    for name in (
+        "conditional_margin_fraction",
+        "minimum_improvement_fraction",
+        "noninferiority_fraction",
+    ):
+        _analysis_number(gates[name], f"gate_template.{name}")
+    for name in ("divergence_max", "invalid_quaternion_max", "nonfinite_max"):
+        if gates[name] != 0:
+            _analysis_fail("analysis_policy_value_invalid", f"gate_template.{name}")
+
+    reference = _analysis_exact(
+        policy["reference_diagnostic"],
+        _ANALYSIS_REFERENCE_FIELDS,
+        "reference_diagnostic",
+    )
+    if (
+        reference["enabled"] is not True
+        or reference["model_id"] != "reference_conditioned_diagnostic_v2"
+        or reference["namespace"] != "diagnostic/reference_conditioned_v2"
+        or reference["selection_eligible"] is not False
+    ):
+        _analysis_fail("reference_diagnostic_not_eligible")
+
+
+def _freeze_analysis_mapping(value: Mapping[str, Any]) -> Mapping[str, Any]:
+    frozen: dict[str, Any] = {}
+    for key, nested in value.items():
+        if isinstance(nested, Mapping):
+            frozen[str(key)] = _freeze_analysis_mapping(nested)
+        elif isinstance(nested, Sequence) and not isinstance(nested, (str, bytes)):
+            frozen[str(key)] = tuple(nested)
+        else:
+            frozen[str(key)] = nested
+    return MappingProxyType(frozen)
+
+
+@dataclass(frozen=True)
+class AnalysisPolicyV2:
+    data_prefixes: tuple[int, ...]
+    observable_candidates: tuple[str, ...]
+    ridge_grid: tuple[float, ...]
+    normalization_candidates: tuple[str, ...]
+    platform_schema_candidates: tuple[str, ...]
+    horizons: tuple[int | str, ...]
+    bootstrap: Mapping[str, Any]
+    inner_decision_algorithm: Mapping[str, Any]
+    metric_schema: Mapping[str, Any]
+    gate_template: Mapping[str, Any]
+    forbidden_inputs: tuple[str, ...]
+    forbidden_roles: tuple[str, ...]
+    reference_diagnostic: Mapping[str, Any]
+    approval_status: str
+    qualification_level: str
+    backend: str
+    version: str = ANALYSIS_POLICY_VERSION_V1
+    policy_sha256: str = field(init=False)
+
+    def __post_init__(self) -> None:
+        object.__setattr__(self, "data_prefixes", tuple(self.data_prefixes))
+        object.__setattr__(self, "observable_candidates", tuple(self.observable_candidates))
+        object.__setattr__(self, "ridge_grid", tuple(float(item) for item in self.ridge_grid))
+        object.__setattr__(self, "normalization_candidates", tuple(self.normalization_candidates))
+        object.__setattr__(self, "platform_schema_candidates", tuple(self.platform_schema_candidates))
+        object.__setattr__(self, "horizons", tuple(self.horizons))
+        object.__setattr__(self, "forbidden_inputs", tuple(self.forbidden_inputs))
+        object.__setattr__(self, "forbidden_roles", tuple(self.forbidden_roles))
+        for name in (
+            "bootstrap",
+            "inner_decision_algorithm",
+            "metric_schema",
+            "gate_template",
+            "reference_diagnostic",
+        ):
+            object.__setattr__(self, name, _freeze_analysis_mapping(getattr(self, name)))
+        validate_analysis_policy_v1(self.to_dict())
+        from koopman.evidence_v2 import canonical_sha256
+
+        object.__setattr__(self, "policy_sha256", canonical_sha256(self.to_dict()))
+
+    def to_dict(self) -> dict[str, Any]:
+        def thaw(value: Any) -> Any:
+            if isinstance(value, Mapping):
+                return {key: thaw(nested) for key, nested in value.items()}
+            if isinstance(value, tuple):
+                return [thaw(item) for item in value]
+            return value
+
+        return {
+            "analysis_policy_version": self.version,
+            "approval_status": self.approval_status,
+            "backend": self.backend,
+            "bootstrap": thaw(self.bootstrap),
+            "data_prefixes": list(self.data_prefixes),
+            "forbidden_inputs": list(self.forbidden_inputs),
+            "forbidden_roles": list(self.forbidden_roles),
+            "gate_template": thaw(self.gate_template),
+            "horizons": list(self.horizons),
+            "inner_decision_algorithm": thaw(self.inner_decision_algorithm),
+            "metric_schema": thaw(self.metric_schema),
+            "normalization_candidates": list(self.normalization_candidates),
+            "observable_candidates": list(self.observable_candidates),
+            "platform_schema_candidates": list(self.platform_schema_candidates),
+            "qualification_level": self.qualification_level,
+            "reference_diagnostic": thaw(self.reference_diagnostic),
+            "ridge_grid": list(self.ridge_grid),
+        }
+
+
+def analysis_policy_from_mapping_v1(value: Any) -> AnalysisPolicyV2:
+    validate_analysis_policy_v1(value)
+    assert isinstance(value, Mapping)
+    return AnalysisPolicyV2(
+        data_prefixes=tuple(value["data_prefixes"]),
+        observable_candidates=tuple(value["observable_candidates"]),
+        ridge_grid=tuple(value["ridge_grid"]),
+        normalization_candidates=tuple(value["normalization_candidates"]),
+        platform_schema_candidates=tuple(value["platform_schema_candidates"]),
+        horizons=tuple(value["horizons"]),
+        bootstrap=dict(value["bootstrap"]),
+        inner_decision_algorithm=dict(value["inner_decision_algorithm"]),
+        metric_schema=dict(value["metric_schema"]),
+        gate_template=dict(value["gate_template"]),
+        forbidden_inputs=tuple(value["forbidden_inputs"]),
+        forbidden_roles=tuple(value["forbidden_roles"]),
+        reference_diagnostic=dict(value["reference_diagnostic"]),
+        approval_status=str(value["approval_status"]),
+        qualification_level=str(value["qualification_level"]),
+        backend=str(value["backend"]),
+        version=str(value["analysis_policy_version"]),
+    )
+
+
+def load_analysis_policy_v1(path: str | Path) -> AnalysisPolicyV2:
+    policy_path = Path(path)
+    if policy_path.is_symlink() or not policy_path.exists() or not policy_path.is_file():
+        _analysis_fail("analysis_policy_artifact_invalid", str(policy_path))
+    raw = policy_path.read_bytes()
+    if len(raw) > MAX_ANALYSIS_POLICY_BYTES:
+        _analysis_fail("analysis_policy_artifact_too_large")
+
+    def pairs(values: list[tuple[str, Any]]) -> dict[str, Any]:
+        result: dict[str, Any] = {}
+        for key, nested in values:
+            if key in result:
+                _analysis_fail("analysis_policy_duplicate_json_key", key)
+            result[key] = nested
+        return result
+
+    try:
+        value = json.loads(
+            raw.decode("utf-8"),
+            object_pairs_hook=pairs,
+            parse_constant=lambda constant: _analysis_fail(
+                "analysis_policy_nonfinite_json", constant
+            ),
+        )
+    except UnicodeDecodeError as exc:
+        raise ValueError("analysis_policy_artifact_not_utf8") from exc
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"analysis_policy_json_invalid:{exc.msg}") from exc
+    return analysis_policy_from_mapping_v1(value)
