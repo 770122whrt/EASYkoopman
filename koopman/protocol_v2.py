@@ -11,9 +11,10 @@ from datetime import datetime, timezone
 import json
 import math
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
-from koopman.collection_v2 import EpisodeRoleIntentV2
+if TYPE_CHECKING:
+    from koopman.collection_v2 import EpisodeRoleIntentV2
 
 
 PILOT_POLICY_VERSION = "phase8-pilot-collection-policy-v1"
@@ -434,8 +435,10 @@ def validate_main_role_protocol_v1(value: Any) -> None:
         _main_fail("configuration_matrix_mismatch")
 
 
-def main_role_intents_v2(value: Any) -> tuple[EpisodeRoleIntentV2, ...]:
+def main_role_intents_v2(value: Any) -> tuple["EpisodeRoleIntentV2", ...]:
     """Adapt the validated protocol to collection/inventory role intent."""
+    from koopman.collection_v2 import EpisodeRoleIntentV2
+
     validate_main_role_protocol_v1(value)
     assert isinstance(value, Mapping)
     return tuple(
