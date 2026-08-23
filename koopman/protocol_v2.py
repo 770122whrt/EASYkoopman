@@ -7,10 +7,13 @@ intent only; post-collection hashes and any modelling result are forbidden.
 from __future__ import annotations
 
 from collections.abc import Mapping, Sequence
+from datetime import datetime, timezone
 import json
 import math
 from pathlib import Path
 from typing import Any
+
+from koopman.collection_v2 import EpisodeRoleIntentV2
 
 
 PILOT_POLICY_VERSION = "phase8-pilot-collection-policy-v1"
@@ -226,3 +229,225 @@ def load_pilot_collection_policy(path: str | Path) -> dict[str, Any]:
     validate_pilot_collection_policy(payload)
     assert isinstance(payload, dict)
     return payload
+
+
+MAIN_ROLE_PROTOCOL_VERSION = "phase8-main-role-protocol-v1"
+MAIN_EXPERIMENT_ID = "phase8-main-identification-v1-proposal"
+MAIN_EXCITATION_FAMILIES = (
+    "independent_prbs",
+    "bounded_multisine",
+    "coupled_chirp",
+)
+MAIN_TRANSITION_COUNT = 512
+MAIN_RAW_ACTION_ABS_MAX = 0.25
+MAIN_ROLE_COUNTS = {"fit": 6, "validation": 3, "test": 3}
+_MAIN_PROTOCOL_FIELDS = frozenset(
+    {
+        "approval_status",
+        "artifact_origin_level",
+        "controller_mode",
+        "entries",
+        "experiment_id",
+        "frozen_at",
+        "proposal_only",
+        "protocol_version",
+        "raw_action_abs_max",
+        "task_id",
+        "transition_count",
+        "transition_schema_version",
+    }
+)
+_MAIN_ENTRY_FIELDS = frozenset(
+    {
+        "configuration",
+        "episode_id",
+        "excitation_family",
+        "manifest_path",
+        "repetition",
+        "role",
+        "scenario",
+        "seed",
+        "transition_count",
+        "transition_path",
+    }
+)
+
+
+def _main_fail(reason: str, detail: str | None = None) -> None:
+    raise ValueError(reason if detail is None else f"{reason}:{detail}")
+
+
+def _utc_timestamp(value: Any, path: str) -> str:
+    if not isinstance(value, str) or not value.endswith("Z"):
+        _main_fail("timestamp_invalid", path)
+    try:
+        parsed = datetime.fromisoformat(value[:-1] + "+00:00")
+    except ValueError as exc:
+        raise ValueError(f"timestamp_invalid:{path}") from exc
+    if parsed.tzinfo != timezone.utc or parsed.microsecond != 0:
+        _main_fail("timestamp_invalid", path)
+    return value
+
+
+def _main_seed(
+    configuration_index: int,
+    role: str,
+    family_index: int,
+    repetition: int,
+) -> int:
+    role_offset = {"fit": 1000, "validation": 2000, "test": 3000}[role]
+    return 820_000 + configuration_index * 10_000 + role_offset + family_index * 10 + repetition
+
+
+def _recommended_main_entries() -> list[dict[str, Any]]:
+    entries: list[dict[str, Any]] = []
+    for configuration_index, configuration in enumerate(PUBLIC_CONFIGURATIONS):
+        for role in ("fit", "validation", "test"):
+            repetitions = 2 if role == "fit" else 1
+            for family_index, family in enumerate(MAIN_EXCITATION_FAMILIES):
+                for repetition in range(1, repetitions + 1):
+                    seed = _main_seed(
+                        configuration_index,
+                        role,
+                        family_index,
+                        repetition,
+                    )
+                    episode_id = (
+                        f"phase8-main-{configuration}-{role}-"
+                        f"{family.replace('_', '-')}-r{repetition}-s{seed}"
+                    )
+                    entries.append(
+                        {
+                            "configuration": configuration,
+                            "episode_id": episode_id,
+                            "excitation_family": family,
+                            "manifest_path": f"manifests/{episode_id}.manifest.json",
+                            "repetition": repetition,
+                            "role": role,
+                            "scenario": f"phase8-main-{family.replace('_', '-')}",
+                            "seed": seed,
+                            "transition_count": MAIN_TRANSITION_COUNT,
+                            "transition_path": f"episodes/{episode_id}.jsonl",
+                        }
+                    )
+    return entries
+
+
+def build_recommended_main_role_protocol_v1(*, frozen_at: str) -> dict[str, Any]:
+    """Return the exact D-23 proposal without claiming approval or evidence."""
+    _utc_timestamp(frozen_at, "frozen_at")
+    protocol = {
+        "approval_status": "pending_d23",
+        "artifact_origin_level": PILOT_ARTIFACT_ORIGIN,
+        "controller_mode": PILOT_CONTROLLER_MODE,
+        "entries": _recommended_main_entries(),
+        "experiment_id": MAIN_EXPERIMENT_ID,
+        "frozen_at": frozen_at,
+        "proposal_only": True,
+        "protocol_version": MAIN_ROLE_PROTOCOL_VERSION,
+        "raw_action_abs_max": MAIN_RAW_ACTION_ABS_MAX,
+        "task_id": PILOT_TASK_ID,
+        "transition_count": MAIN_TRANSITION_COUNT,
+        "transition_schema_version": PILOT_TRANSITION_SCHEMA,
+    }
+    validate_main_role_protocol_v1(protocol)
+    return protocol
+
+
+def validate_main_role_protocol_v1(value: Any) -> None:
+    """Validate the ordered exact-eight 6/3/3 whole-episode proposal."""
+    if not isinstance(value, Mapping):
+        _main_fail("type_invalid", "protocol")
+    actual_fields = set(value)
+    if actual_fields != _MAIN_PROTOCOL_FIELDS:
+        _main_fail("field_set_mismatch", "protocol")
+    expected_scalars = {
+        "approval_status": "pending_d23",
+        "artifact_origin_level": PILOT_ARTIFACT_ORIGIN,
+        "controller_mode": PILOT_CONTROLLER_MODE,
+        "experiment_id": MAIN_EXPERIMENT_ID,
+        "proposal_only": True,
+        "protocol_version": MAIN_ROLE_PROTOCOL_VERSION,
+        "raw_action_abs_max": MAIN_RAW_ACTION_ABS_MAX,
+        "task_id": PILOT_TASK_ID,
+        "transition_count": MAIN_TRANSITION_COUNT,
+        "transition_schema_version": PILOT_TRANSITION_SCHEMA,
+    }
+    for field, expected in expected_scalars.items():
+        if value[field] != expected:
+            _main_fail("protocol_value_mismatch", field)
+    _utc_timestamp(value["frozen_at"], "frozen_at")
+    entries = value["entries"]
+    if isinstance(entries, (str, bytes)) or not isinstance(entries, Sequence):
+        _main_fail("type_invalid", "entries")
+    expected_entries = _recommended_main_entries()
+    if len(entries) != len(expected_entries):
+        _main_fail("configuration_matrix_mismatch", f"count={len(entries)}")
+    episode_ids: set[str] = set()
+    seeds: set[int] = set()
+    paths: set[str] = set()
+    normalized: list[dict[str, Any]] = []
+    expected_by_id = {entry["episode_id"]: entry for entry in expected_entries}
+    for index, raw_entry in enumerate(entries):
+        if not isinstance(raw_entry, Mapping):
+            _main_fail("type_invalid", f"entries[{index}]")
+        extra = set(raw_entry) - _MAIN_ENTRY_FIELDS
+        if any("row" in str(field).lower() for field in extra):
+            _main_fail("row_level_split_forbidden", f"entries[{index}]")
+        if set(raw_entry) != _MAIN_ENTRY_FIELDS:
+            _main_fail("field_set_mismatch", f"entries[{index}]")
+        entry = dict(raw_entry)
+        configuration = entry["configuration"]
+        if configuration not in PUBLIC_CONFIGURATIONS:
+            _main_fail("configuration_set_mismatch", str(configuration))
+        role = entry["role"]
+        if role not in MAIN_ROLE_COUNTS:
+            _main_fail("role_assignment_drift", str(role))
+        if entry["excitation_family"] not in MAIN_EXCITATION_FAMILIES:
+            _main_fail("configuration_matrix_mismatch", "excitation_family")
+        episode_id = entry["episode_id"]
+        if isinstance(episode_id, str) and episode_id.startswith("phase8-pilot-"):
+            _main_fail("pilot_main_id_reuse", episode_id)
+        if episode_id in episode_ids:
+            _main_fail("split_episode_overlap", str(episode_id))
+        episode_ids.add(episode_id)
+        seed = entry["seed"]
+        if seed in PILOT_POLICY_SEEDS.values():
+            _main_fail("pilot_main_id_reuse", f"seed={seed}")
+        if seed in seeds:
+            _main_fail("split_episode_overlap", f"seed={seed}")
+        seeds.add(seed)
+        for field in ("transition_path", "manifest_path"):
+            path = entry[field]
+            if path in paths:
+                _main_fail("split_episode_overlap", str(path))
+            paths.add(path)
+        expected_for_id = expected_by_id.get(episode_id)
+        if expected_for_id is not None and role != expected_for_id["role"]:
+            _main_fail("role_assignment_drift", str(episode_id))
+        normalized.append(entry)
+    if normalized != expected_entries:
+        expected_ids = {entry["episode_id"] for entry in expected_entries}
+        actual_ids = {entry["episode_id"] for entry in normalized}
+        if actual_ids == expected_ids:
+            _main_fail("protocol_order_drift")
+        _main_fail("configuration_matrix_mismatch")
+
+
+def main_role_intents_v2(value: Any) -> tuple[EpisodeRoleIntentV2, ...]:
+    """Adapt the validated protocol to collection/inventory role intent."""
+    validate_main_role_protocol_v1(value)
+    assert isinstance(value, Mapping)
+    return tuple(
+        EpisodeRoleIntentV2(
+            configuration=entry["configuration"],
+            episode_id=entry["episode_id"],
+            role=entry["role"],
+            scenario=entry["scenario"],
+            seed=entry["seed"],
+            transition_count=entry["transition_count"],
+            transition_path=entry["transition_path"],
+            manifest_path=entry["manifest_path"],
+        )
+        for entry in value["entries"]
+    )
