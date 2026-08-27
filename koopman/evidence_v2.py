@@ -38,6 +38,19 @@ PILOT_DISALLOWED_CLAIMS = (
     "ood_generalization",
     "mpc_or_closed_loop_effectiveness",
 )
+MAIN_DATASET_QUALIFICATION_LEVEL = "server_isaac_identification_dataset"
+MAIN_DATASET_ALLOWED_CLAIMS = (
+    "exact_eight_main_dataset_ready",
+    "immutable_role_inventory_ready",
+    "loco_split_ready",
+)
+MAIN_DATASET_DISALLOWED_CLAIMS = (
+    "model_identified",
+    "feature_or_horizon_selected",
+    "prediction_or_rollout_performance",
+    "ood_generalization",
+    "mpc_or_closed_loop_effectiveness",
+)
 MAX_ENVELOPE_BYTES = 2 * 1024 * 1024
 MAX_REFERENCED_FILES = 10_000
 _SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
@@ -306,6 +319,68 @@ def build_external_phase8_envelope(
     return envelope
 
 
+def build_external_main_dataset_envelope(
+    output_path: str | Path,
+    *,
+    experiment_id: str,
+    source_commit: str,
+    role_protocol_path: str | Path,
+    analysis_policy_path: str | Path,
+    runtime_provenance: Mapping[str, Any],
+    inventory_path: str | Path,
+    split_path: str | Path,
+    referenced_paths: Sequence[str | Path],
+) -> dict[str, Any]:
+    """Write the exact-eight main dataset envelope after all bytes exist."""
+    from koopman.protocol_v2 import (
+        validate_analysis_policy_v1,
+        validate_main_role_protocol_v1,
+    )
+
+    output = Path(output_path).resolve()
+    role_protocol = Path(role_protocol_path).resolve()
+    analysis_policy = Path(analysis_policy_path).resolve()
+    inventory = Path(inventory_path).resolve()
+    split = Path(split_path).resolve()
+    validate_main_role_protocol_v1(load_bounded_json(role_protocol))
+    validate_analysis_policy_v1(load_bounded_json(analysis_policy))
+    inventory_payload = load_bounded_json(inventory)
+    split_payload = load_bounded_json(split)
+    role_sha256 = file_sha256(role_protocol)
+    runtime_sha256 = canonical_sha256(runtime_provenance)
+    if inventory_payload.get("role_protocol_sha256") != role_sha256:
+        _fail("protocol_hash_mismatch", "inventory")
+    if inventory_payload.get("runtime_sha256") != runtime_sha256:
+        _fail("runtime_hash_mismatch", "inventory")
+    if inventory_payload.get("source_commit") != source_commit:
+        _fail("source_commit_mismatch", "inventory")
+    if split_payload.get("role_protocol_sha256") != role_sha256:
+        _fail("protocol_hash_mismatch", "split")
+    if split_payload.get("inventory_sha256") != inventory_payload.get("inventory_sha256"):
+        _fail("inventory_hash_mismatch", "split")
+    records = referenced_file_records(output.parent, referenced_paths)
+    envelope = _build_envelope(
+        experiment_id=experiment_id,
+        artifact_origin_level="server_isaac_smoke",
+        qualification_level=MAIN_DATASET_QUALIFICATION_LEVEL,
+        source_commit=source_commit,
+        protocol_sha256=role_sha256,
+        runtime_provenance=runtime_provenance,
+        inventory_sha256=file_sha256(inventory),
+        decision_sha256=file_sha256(split),
+        referenced_files=records,
+        allowed_claims=MAIN_DATASET_ALLOWED_CLAIMS,
+        disallowed_claims=MAIN_DATASET_DISALLOWED_CLAIMS,
+        validator_name="build_phase8_main_dataset_envelope",
+        external_validation=True,
+    )
+    atomic_write_json(output, envelope)
+    validate_phase8_evidence(
+        output, required_qualification=MAIN_DATASET_QUALIFICATION_LEVEL
+    )
+    return envelope
+
+
 def _validate_hash(value: Any, field: str) -> str:
     if not isinstance(value, str) or not _SHA256_RE.fullmatch(value):
         _fail("hash_invalid", field)
@@ -377,6 +452,11 @@ def validate_phase8_evidence(
             _fail("claim_set_invalid", "allowed_claims")
         if tuple(payload["disallowed_claims"]) != PILOT_DISALLOWED_CLAIMS:
             _fail("claim_set_invalid", "disallowed_claims")
+    if qualification == MAIN_DATASET_QUALIFICATION_LEVEL:
+        if tuple(payload["allowed_claims"]) != MAIN_DATASET_ALLOWED_CLAIMS:
+            _fail("claim_set_invalid", "allowed_claims")
+        if tuple(payload["disallowed_claims"]) != MAIN_DATASET_DISALLOWED_CLAIMS:
+            _fail("claim_set_invalid", "disallowed_claims")
     references = payload["referenced_files"]
     if (
         not isinstance(references, list)
@@ -436,6 +516,35 @@ def validate_phase8_evidence(
             _fail("inventory_hash_mismatch")
         if decision_ref["sha256"] != payload["decision_sha256"]:
             _fail("decision_hash_mismatch")
+    if qualification == MAIN_DATASET_QUALIFICATION_LEVEL:
+        core_paths = {
+            "main_role_assignment_protocol.json",
+            "analysis_policy.json",
+            "dataset_inventory.json",
+            "loco_split_manifest.json",
+            "runtime_provenance.json",
+        }
+        by_path = {item["path"]: item for item in references}
+        if not core_paths.issubset(by_path):
+            _fail("reference_set_invalid", "main_dataset_core_files")
+        if by_path["main_role_assignment_protocol.json"]["sha256"] != payload["protocol_sha256"]:
+            _fail("protocol_hash_mismatch")
+        if by_path["dataset_inventory.json"]["sha256"] != payload["inventory_sha256"]:
+            _fail("inventory_hash_mismatch")
+        if by_path["loco_split_manifest.json"]["sha256"] != payload["decision_sha256"]:
+            _fail("decision_hash_mismatch")
+        inventory_payload = load_bounded_json(root / "dataset_inventory.json")
+        split_payload = load_bounded_json(root / "loco_split_manifest.json")
+        if inventory_payload.get("role_protocol_sha256") != payload["protocol_sha256"]:
+            _fail("protocol_hash_mismatch", "inventory")
+        if inventory_payload.get("runtime_sha256") != payload["runtime_sha256"]:
+            _fail("runtime_hash_mismatch", "inventory")
+        if inventory_payload.get("source_commit") != payload["source_commit"]:
+            _fail("source_commit_mismatch", "inventory")
+        if split_payload.get("role_protocol_sha256") != payload["protocol_sha256"]:
+            _fail("protocol_hash_mismatch", "split")
+        if split_payload.get("inventory_sha256") != inventory_payload.get("inventory_sha256"):
+            _fail("inventory_hash_mismatch", "split")
     return {
         "validation_gate": "phase8_external_evidence_valid",
         "artifact_origin_level": origin,

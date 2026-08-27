@@ -292,29 +292,24 @@ def _utc_timestamp(value: Any, path: str) -> str:
     return value
 
 
-def _main_seed(
-    configuration_index: int,
-    role: str,
-    family_index: int,
-    repetition: int,
-) -> int:
-    role_offset = {"fit": 1000, "validation": 2000, "test": 3000}[role]
-    return 820_000 + configuration_index * 10_000 + role_offset + family_index * 10 + repetition
+def _main_seed(role: str, repetition: int) -> int:
+    if role == "fit":
+        return 8200 + repetition
+    if role == "validation":
+        return 8301
+    if role == "test":
+        return 8401
+    _main_fail("role_assignment_drift", role)
 
 
 def _recommended_main_entries() -> list[dict[str, Any]]:
     entries: list[dict[str, Any]] = []
-    for configuration_index, configuration in enumerate(PUBLIC_CONFIGURATIONS):
+    for configuration in PUBLIC_CONFIGURATIONS:
         for role in ("fit", "validation", "test"):
             repetitions = 2 if role == "fit" else 1
-            for family_index, family in enumerate(MAIN_EXCITATION_FAMILIES):
+            for family in MAIN_EXCITATION_FAMILIES:
                 for repetition in range(1, repetitions + 1):
-                    seed = _main_seed(
-                        configuration_index,
-                        role,
-                        family_index,
-                        repetition,
-                    )
+                    seed = _main_seed(role, repetition)
                     episode_id = (
                         f"phase8-main-{configuration}-{role}-"
                         f"{family.replace('_', '-')}-r{repetition}-s{seed}"
@@ -387,7 +382,6 @@ def validate_main_role_protocol_v1(value: Any) -> None:
     if len(entries) != len(expected_entries):
         _main_fail("configuration_matrix_mismatch", f"count={len(entries)}")
     episode_ids: set[str] = set()
-    seeds: set[int] = set()
     paths: set[str] = set()
     normalized: list[dict[str, Any]] = []
     expected_by_id = {entry["episode_id"]: entry for entry in expected_entries}
@@ -417,9 +411,6 @@ def validate_main_role_protocol_v1(value: Any) -> None:
         seed = entry["seed"]
         if seed in PILOT_POLICY_SEEDS.values():
             _main_fail("pilot_main_id_reuse", f"seed={seed}")
-        if seed in seeds:
-            _main_fail("split_episode_overlap", f"seed={seed}")
-        seeds.add(seed)
         for field in ("transition_path", "manifest_path"):
             path = entry[field]
             if path in paths:
@@ -554,18 +545,20 @@ def _analysis_number(value: Any, path: str, *, minimum: float = 0.0) -> float:
 
 
 def validate_analysis_policy_v1(value: Any) -> None:
-    """Validate the local-only 08-03 analysis-policy schema/fixture."""
+    """Validate the exact local fixture or pending D-23 analysis proposal."""
 
     policy = _analysis_exact(value, _ANALYSIS_POLICY_FIELDS, "policy")
     expected_scalars = {
         "analysis_policy_version": ANALYSIS_POLICY_VERSION_V1,
-        "approval_status": "local_fixture_only_not_d23",
         "backend": "controlled_edmd_v2",
         "qualification_level": "local_contract",
     }
     for name, expected in expected_scalars.items():
         if policy[name] != expected:
             _analysis_fail("analysis_policy_value_invalid", name)
+    approval_status = policy["approval_status"]
+    if approval_status not in {"local_fixture_only_not_d23", "pending_d23"}:
+        _analysis_fail("analysis_policy_value_invalid", "approval_status")
     if _analysis_sequence(policy["data_prefixes"], "data_prefixes") != (2, 4, 6):
         _analysis_fail("analysis_policy_value_invalid", "data_prefixes")
     if _analysis_sequence(policy["observable_candidates"], "observable_candidates") != (
@@ -604,6 +597,11 @@ def validate_analysis_policy_v1(value: Any) -> None:
             _analysis_fail("analysis_policy_ridge_invalid")
         normalized_ridges.append(number)
     if normalized_ridges != sorted(set(normalized_ridges)):
+        _analysis_fail("analysis_policy_ridge_invalid")
+    if (
+        approval_status == "pending_d23"
+        and tuple(normalized_ridges) != (1e-08, 1e-06, 1e-04, 1e-02)
+    ):
         _analysis_fail("analysis_policy_ridge_invalid")
 
     bootstrap = _analysis_exact(
@@ -676,6 +674,65 @@ def validate_analysis_policy_v1(value: Any) -> None:
         or reference["selection_eligible"] is not False
     ):
         _analysis_fail("reference_diagnostic_not_eligible")
+
+
+def build_recommended_analysis_policy_v1() -> dict[str, Any]:
+    """Return the exact pending D-23 analysis proposal without approval claims."""
+    policy = {
+        "analysis_policy_version": ANALYSIS_POLICY_VERSION_V1,
+        "approval_status": "pending_d23",
+        "backend": "controlled_edmd_v2",
+        "bootstrap": {
+            "alpha": 0.05,
+            "resamples": 2000,
+            "seed": 80304,
+            "unit": "episode_block",
+        },
+        "data_prefixes": [2, 4, 6],
+        "forbidden_inputs": list(_ANALYSIS_FORBIDDEN_INPUTS),
+        "forbidden_roles": list(_ANALYSIS_FORBIDDEN_ROLES),
+        "gate_template": {
+            "conditional_margin_fraction": 0.05,
+            "divergence_max": 0,
+            "invalid_quaternion_max": 0,
+            "minimum_improvement_fraction": 0.01,
+            "nonfinite_max": 0,
+            "noninferiority_fraction": 0.1,
+        },
+        "horizons": [5, 20, 60, "full"],
+        "inner_decision_algorithm": {
+            "name": "lexicographic-paired-source-validation-v1",
+            "primary_metric": "full_equal_configuration_macro",
+            "tie_break_order": list(_ANALYSIS_TIE_BREAK_ORDER),
+        },
+        "metric_schema": {
+            "aggregation": [
+                "per_configuration",
+                "equal_configuration_macro",
+                "worst_configuration",
+            ],
+            "official_orientation": "so3_geodesic_radians",
+            "row_weighted": "diagnostic_only",
+            "version": "phase8-episode-metrics-v1",
+        },
+        "normalization_candidates": ["none", "standard_v1"],
+        "observable_candidates": ["identity_v1", "auv_kinematic_v1"],
+        "platform_schema_candidates": [
+            "none",
+            "platform_physical_compact_v1",
+            "platform_physical_core_v1",
+        ],
+        "qualification_level": "local_contract",
+        "reference_diagnostic": {
+            "enabled": True,
+            "model_id": "reference_conditioned_diagnostic_v2",
+            "namespace": "diagnostic/reference_conditioned_v2",
+            "selection_eligible": False,
+        },
+        "ridge_grid": [1e-08, 1e-06, 1e-04, 1e-02],
+    }
+    validate_analysis_policy_v1(policy)
+    return policy
 
 
 def _freeze_analysis_mapping(value: Mapping[str, Any]) -> Mapping[str, Any]:

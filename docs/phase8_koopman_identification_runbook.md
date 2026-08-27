@@ -1,5 +1,54 @@
 # Phase 8 Koopman Identification Pilot Runbook
 
+## Main Experiment D-23 Proposal
+
+The two canonical proposal files are `protocols/phase8/main_role_assignment_protocol.json` and `protocols/phase8/analysis_policy.json`. Their status is `pending_d23`: they are a **pre-registered engineering design**, not a statistical optimality claim. No bundle, server collection, model fit or held-out test may begin until the user explicitly approves the exact current hashes.
+
+The collection matrix covers `base`, `long_body`, `heavy_moderate`, `asymmetric`, `uuv6`, `uuv6_angled`, `uuv4` and `uuv4_angled`. Every configuration receives the same 12 whole episodes:
+
+| Role | Episodes/config | Excitation families | Seeds/family | Length |
+|---|---:|---|---|---:|
+| fit | 6 | `independent_prbs`, `bounded_multisine`, `coupled_chirp` | 8201, 8202 | 512 |
+| validation | 3 | same three | 8301 | 512 |
+| test | 3 | same three | 8401 | 512 |
+
+This is `8 × 12 × 512 = 49,152` transitions. Raw four-channel commands are deterministic from the frozen family and seed and bounded by `0.25`. Episode IDs, paths and roles are unique and disjoint from the pilot. The collector has no CLI flags that can override role, seed, scenario, length or family.
+
+The proposed analysis grid is fixed before the bytes exist:
+
+| Item | Exact proposal |
+|---|---|
+| Fit-episode prefixes | `2, 4, 6` complete fit episodes/source configuration |
+| Observables | `identity_v1`, `auv_kinematic_v1` |
+| Ridge | `1e-8, 1e-6, 1e-4, 1e-2` |
+| Normalization | `none`, `standard_v1` |
+| Platform descriptors | `none`, `platform_physical_compact_v1`, `platform_physical_core_v1` |
+| Rollout horizons | `5, 20, 60, full` without truth resets |
+| Official orientation | sign-invariant SO(3) geodesic radians; invalid/projection events are reason-coded |
+| Bootstrap | episode-block, alpha `0.05`, seed `80304`, `2000` resamples |
+| Aggregation | per-configuration, equal-configuration macro, worst configuration; row-weighted is diagnostic only |
+| Gates | improvement `0.01`, conditional margin `0.05`, non-inferiority `0.10`, zero nonfinite/divergence/invalid-quaternion events |
+
+Primary selection forbids reference, PWM, thruster mask, applied wrench, environment oracle/estimate, configuration identity and held-out statistics. The reference-conditioned diagnostic and held-out expert are explicitly non-promoting. Pilot health merely showed that real collection worked; it did not choose any value above.
+
+At D-23 the user either approves both exact SHA-256 values, or requests changes. A change creates a new experiment ID and requires a new commit plus the full preflight. Silence and earlier general approval do not count.
+
+## Main Local Gate and Server Chain
+
+Before D-23, run only:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\phase8_main_local_preflight.ps1
+```
+
+After explicit approval, the agent reruns that gate through `phase8_main_prepare_bundle.ps1`, verifies the offline bundle and hashes, transfers it, and runs in isolated `/root/EASYkoopman-phase8-main-v2`. `/root/IsaacLab` remains unchanged. The eight Isaac processes run serially by configuration; total time depends on server startup and simulation throughput, so the operational estimate is several hours rather than a guaranteed deadline.
+
+The server will create inventory and LOCO split only after all exact 96 episodes, manifests and logs exist. Pullback stages and revalidates every byte before promoting into an absent `source/results/koopman_phase8_dataset` directory.
+
+## Main Failure and Claim Boundary
+
+Any interrupted, failed, partial, stale, role-drifted or provenance-mismatched run is `data_insufficient`. Resume means a **fresh experiment** in a new empty server directory; never append or patch a partial run. The main artifact supports the `dataset-not-model` claim only: dataset readiness does not prove an identified model, OOD transfer, selection, MPC or closed-loop effectiveness.
+
 ## Evidence Vocabulary
 
 Every transition keeps the frozen Phase 7 origin `server_isaac_smoke`. Phase 8 uses a separate external envelope whose `qualification_level` may be `server_isaac_identification_pilot` only after the independent validator re-reads every referenced byte. A local builder can emit only `local_contract`.

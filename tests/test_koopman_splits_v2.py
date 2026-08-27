@@ -113,7 +113,21 @@ def test_recommended_main_protocol_is_exact_symmetric_pending_d23_proposal() -> 
         MAIN_EXCITATION_FAMILIES
     )
     assert len({entry["episode_id"] for entry in entries}) == len(entries)
-    assert len({entry["seed"] for entry in entries}) == len(entries)
+    # D-23 freezes role-separated seed values shared symmetrically across
+    # configurations/families; episode IDs and full protocol identities remain unique.
+    assert {entry["seed"] for entry in entries} == {8201, 8202, 8301, 8401}
+    assert len(
+        {
+            (
+                entry["configuration"],
+                entry["role"],
+                entry["excitation_family"],
+                entry["repetition"],
+                entry["seed"],
+            )
+            for entry in entries
+        }
+    ) == len(entries)
     for configuration in SUPPORTED_EMBODIMENTS:
         selected = [entry for entry in entries if entry["configuration"] == configuration]
         assert [entry["role"] for entry in selected].count("fit") == 6

@@ -19,6 +19,12 @@ from koopman.collection_v2 import (
     validate_dataset_inventory_v2,
     write_dataset_inventory_v2,
 )
+from koopman.evidence_v2 import load_bounded_json
+from koopman.protocol_v2 import (
+    MAIN_ROLE_PROTOCOL_VERSION,
+    main_role_intents_v2,
+    validate_main_role_protocol_v1,
+)
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
@@ -37,7 +43,12 @@ def build_argument_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = build_argument_parser().parse_args(argv)
     try:
-        intents = load_episode_role_intents_v2(args.intent)
+        intent_payload = load_bounded_json(args.intent)
+        if intent_payload.get("protocol_version") == MAIN_ROLE_PROTOCOL_VERSION:
+            validate_main_role_protocol_v1(intent_payload)
+            intents = main_role_intents_v2(intent_payload)
+        else:
+            intents = load_episode_role_intents_v2(args.intent)
         inventory = build_dataset_inventory_v2(
             args.root,
             intents,

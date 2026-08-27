@@ -1,4 +1,4 @@
-"""Collect the two pre-registered Phase 8 pilot episodes for one configuration.
+"""Collect one pre-registered Phase 8 pilot or main configuration matrix.
 
 The public parser, policy action generator and collection loop remain Isaac-free.
 Isaac, Gym and Torch are imported only after :class:`AppLauncher` starts.
@@ -25,11 +25,17 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from koopman.protocol_v2 import (
+    MAIN_EXCITATION_FAMILIES,
+    MAIN_RAW_ACTION_ABS_MAX,
+    MAIN_ROLE_PROTOCOL_VERSION,
+    MAIN_TRANSITION_COUNT,
     PILOT_CONTROLLER_MODE,
     PILOT_RAW_ACTION_ABS_MAX,
     PILOT_TASK_ID,
     PUBLIC_CONFIGURATIONS,
+    validate_main_role_protocol_v1,
 )
+from koopman.evidence_v2 import load_bounded_json
 from koopman.schema_v2 import SERVER_EVIDENCE_LEVEL
 from workflows.collect_koopman_v2_smoke import (
     ServerEpisodeLoggerV2,
@@ -59,9 +65,17 @@ def deterministic_policy_action(
     entry: Mapping[str, Any], step: int
 ) -> tuple[float, float, float, float]:
     """Return the registered bounded raw action without reading trajectories."""
-    if isinstance(step, bool) or not isinstance(step, int) or not 0 <= step < 128:
+    transition_count = entry.get("transition_count")
+    if (
+        isinstance(step, bool)
+        or not isinstance(step, int)
+        or isinstance(transition_count, bool)
+        or not isinstance(transition_count, int)
+        or not 0 <= step < transition_count
+    ):
         raise ValueError(f"step_invalid:{step}")
     kind = entry.get("policy_kind")
+    family = entry.get("excitation_family")
     seed = entry.get("seed")
     if kind == "axis_pulse" and seed == 8101:
         channel = (step // 8) % 4
@@ -79,6 +93,38 @@ def deterministic_policy_action(
             value += 0.08 * math.sin((step + 1) * (channel + 2) * 0.071 - phase)
             values.append(value)
         return tuple(values)  # type: ignore[return-value]
+    if family in MAIN_EXCITATION_FAMILIES and seed in {8201, 8202, 8301, 8401}:
+        if family == "independent_prbs":
+            values = []
+            for channel in range(4):
+                period = 7 + 2 * channel
+                bit = ((step // period) + seed + channel * 3) % 2
+                magnitude = 0.18 + 0.015 * channel
+                values.append(magnitude if bit == 0 else -magnitude)
+            return tuple(values)  # type: ignore[return-value]
+        if family == "bounded_multisine":
+            values = []
+            for channel in range(4):
+                phase = ((seed + 37 * (channel + 1)) % 360) * math.pi / 180.0
+                value = 0.12 * math.sin((step + 1) * (channel + 1) * 0.071 + phase)
+                value += 0.08 * math.sin((step + 1) * (channel + 2) * 0.029 - phase)
+                values.append(value)
+            return tuple(values)  # type: ignore[return-value]
+        if family == "coupled_chirp":
+            normalized_time = step / max(1, MAIN_TRANSITION_COUNT - 1)
+            chirp_phase = 2.0 * math.pi * (
+                0.5 * normalized_time + 3.5 * normalized_time * normalized_time
+            )
+            seed_phase = (seed % 360) * math.pi / 180.0
+            return tuple(
+                0.2
+                * math.sin(
+                    chirp_phase * (1.0 + 0.12 * channel)
+                    + seed_phase
+                    + channel * math.pi / 3.0
+                )
+                for channel in range(4)
+            )  # type: ignore[return-value]
     raise ValueError(f"pilot_policy_invalid:entry_action:{kind}:{seed}")
 
 
@@ -91,17 +137,18 @@ def collect_policy_entries(
     action_builder: Callable[[tuple[float, ...]], Any] | None = None,
 ) -> list[dict[str, Any]]:
     """Reset, collect and finalize each policy episode independently."""
-    if len(entries) != 2:
-        raise ValueError(f"pilot_policy_invalid:configuration_entry_count:{len(entries)}")
+    if len(entries) not in {2, 12}:
+        raise ValueError(f"collection_policy_invalid:configuration_entry_count:{len(entries)}")
     normalized = [dict(entry) for entry in entries]
     configurations = {entry.get("configuration") for entry in normalized}
     if len(configurations) != 1 or next(iter(configurations)) not in PUBLIC_CONFIGURATIONS:
-        raise ValueError("pilot_policy_invalid:configuration_entry_set")
+        raise ValueError("collection_policy_invalid:configuration_entry_set")
     results: list[dict[str, Any]] = []
     for entry in normalized:
         count = entry.get("transition_count")
-        if isinstance(count, bool) or count != 128:
-            raise ValueError("pilot_policy_invalid:transition_count")
+        expected_count = 128 if len(entries) == 2 else MAIN_TRANSITION_COUNT
+        if isinstance(count, bool) or count != expected_count:
+            raise ValueError("collection_policy_invalid:transition_count")
         reset(entry["seed"], entry["episode_id"])
         bridge = bridge_factory(entry)
         logger = logger_factory(entry)
@@ -112,7 +159,7 @@ def collect_policy_entries(
             logger.write(record)
         result = logger.finalize()
         if result.get("record_count") != count:
-            raise ValueError(f"pilot_health_failed:transition_count:{entry['episode_id']}")
+            raise ValueError(f"collection_failed:transition_count:{entry['episode_id']}")
         results.append(dict(result))
     return results
 
@@ -123,8 +170,8 @@ def write_episode_success_logs(
     results: Sequence[Mapping[str, Any]],
 ) -> list[Path]:
     """Persist one fresh collection-health log for every completed episode."""
-    if len(entries) != 2 or len(results) != len(entries):
-        raise ValueError("pilot_health_failed:success_log_result_count")
+    if len(entries) not in {2, 12} or len(results) != len(entries):
+        raise ValueError("collection_failed:success_log_result_count")
     root = Path(os.path.abspath(Path(result_root).expanduser()))
     written: list[Path] = []
     for entry_value, result_value in zip(entries, results, strict=True):
@@ -142,10 +189,11 @@ def write_episode_success_logs(
             root / "logs" / f"{entry['episode_id']}.log",
             root,
         )
+        policy_label = entry.get("policy_kind", entry.get("excitation_family"))
         payload = (
             f"episode_id={entry['episode_id']}\n"
             f"configuration={entry['configuration']}\n"
-            f"policy_kind={entry['policy_kind']}\n"
+            f"policy_kind={policy_label}\n"
             f"seed={entry['seed']}\n"
             f"record_count={result['record_count']}\n"
             "semantic_status=pass\n"
@@ -225,10 +273,19 @@ def _repository_commit(allowed_untracked_roots: Sequence[str | Path]) -> str:
     return commit
 
 
+def _load_collection_policy(path: str | Path) -> dict[str, Any]:
+    payload = load_bounded_json(path)
+    if payload.get("protocol_version") == MAIN_ROLE_PROTOCOL_VERSION:
+        validate_main_role_protocol_v1(payload)
+        return payload
+    return load_operational_pilot_policy(Path(path))
+
+
 def _configuration_entries(policy: Mapping[str, Any], configuration: str) -> list[dict[str, Any]]:
     entries = [dict(entry) for entry in policy["entries"] if entry["configuration"] == configuration]
-    if len(entries) != 2:
-        raise ValueError(f"pilot_policy_invalid:configuration_entry_count:{configuration}")
+    expected = 12 if policy.get("protocol_version") == MAIN_ROLE_PROTOCOL_VERSION else 2
+    if len(entries) != expected:
+        raise ValueError(f"collection_policy_invalid:configuration_entry_count:{configuration}")
     return entries
 
 
@@ -260,9 +317,11 @@ def run_isaac_collection(args: argparse.Namespace) -> int:
         from easyuuv_nc.env.easyuuv_env import EasyUUVEnvCfg
         from workflows.qualify_easyuuv_v2 import detect_runtime_provenance
 
-        policy = load_operational_pilot_policy(args.policy)
+        policy = _load_collection_policy(args.policy)
         entries = _configuration_entries(policy, args.configuration)
-        status_root = args.result_root.parent / "koopman_phase8_pilot_status"
+        is_main = policy.get("protocol_version") == MAIN_ROLE_PROTOCOL_VERSION
+        status_name = "koopman_phase8_main_status" if is_main else "koopman_phase8_pilot_status"
+        status_root = args.result_root.parent / status_name
         source_commit = _repository_commit((args.result_root, status_root))
         provenance = detect_runtime_provenance(isaaclab.__file__)
         runtime = dict(provenance["runtime_provenance"])
@@ -309,11 +368,15 @@ def run_isaac_collection(args: argparse.Namespace) -> int:
 
         def logger_factory(entry: dict[str, Any]) -> ServerEpisodeLoggerV2:
             episode = resolve_output_path(
-                args.result_root / "episodes" / f"{entry['episode_id']}.jsonl",
+                args.result_root / entry.get(
+                    "transition_path", f"episodes/{entry['episode_id']}.jsonl"
+                ),
                 args.result_root,
             )
             manifest = resolve_output_path(
-                args.result_root / "manifests" / f"{entry['episode_id']}.manifest.json",
+                args.result_root / entry.get(
+                    "manifest_path", f"manifests/{entry['episode_id']}.manifest.json"
+                ),
                 args.result_root,
             )
             return ServerEpisodeLoggerV2(episode, manifest, runtime_provenance=runtime)
@@ -340,10 +403,10 @@ def run_isaac_collection(args: argparse.Namespace) -> int:
 
 def _failure_payload(args: argparse.Namespace, reason: str) -> dict[str, Any]:
     return {
-        "schema_version": "phase8-pilot-collection-failure-v1",
+        "schema_version": "phase8-collection-failure-v1",
         "configuration": args.configuration,
         "reason": reason,
-        "eligible_for_pilot_audit": False,
+        "eligible_for_dataset_audit": False,
     }
 
 
@@ -351,7 +414,7 @@ def main(argv: list[str] | None = None) -> int:
     args = build_argument_parser().parse_args(argv)
     try:
         args.result_root = Path(os.path.abspath(args.result_root))
-        policy = load_operational_pilot_policy(args.policy)
+        policy = _load_collection_policy(args.policy)
         _configuration_entries(policy, args.configuration)
         args.result_root.mkdir(parents=True, exist_ok=True)
         return run_isaac_collection(args)
@@ -360,7 +423,13 @@ def main(argv: list[str] | None = None) -> int:
     except Exception as exc:
         reason = str(exc) or type(exc).__name__
     try:
-        status_root = args.result_root.parent / "koopman_phase8_pilot_status"
+        policy_name = getattr(args, "policy", Path(""))
+        status_name = (
+            "koopman_phase8_main_status"
+            if "main_role_assignment" in str(policy_name)
+            else "koopman_phase8_pilot_status"
+        )
+        status_root = args.result_root.parent / status_name
         status_root.mkdir(parents=True, exist_ok=True)
         failure = status_root / f"{args.configuration}.failure.json"
         if not failure.exists():
