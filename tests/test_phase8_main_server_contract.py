@@ -4,9 +4,11 @@ from collections import Counter, defaultdict
 from copy import deepcopy
 import json
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
+from workflows import collect_koopman_v2_identification as collection_workflow
 from koopman.protocol_v2 import (
     MAIN_EXCITATION_FAMILIES,
     MAIN_RAW_ACTION_ABS_MAX,
@@ -35,8 +37,8 @@ def test_exact_main_role_protocol_is_the_pending_d23_proposal() -> None:
     protocol = _json(ROLE_PROTOCOL_PATH)
     validate_main_role_protocol_v1(protocol)
 
-    assert protocol["protocol_version"] == "phase8-main-role-protocol-v1"
-    assert protocol["experiment_id"] == "phase8-main-identification-v1-proposal"
+    assert protocol["protocol_version"] == "phase8-main-role-protocol-v2"
+    assert protocol["experiment_id"] == "phase8-main-identification-v2-proposal"
     assert protocol["approval_status"] == "pending_d23"
     assert protocol["proposal_only"] is True
     assert protocol["transition_count"] == 512
@@ -48,10 +50,44 @@ def test_exact_main_role_protocol_is_the_pending_d23_proposal() -> None:
         by_configuration[entry["configuration"]].append(entry)
     assert tuple(by_configuration) == tuple(PUBLIC_CONFIGURATIONS)
 
-    expected_family_seeds = {
+    expected_excitation_seeds = {
         "fit": [8201, 8202],
         "validation": [8301],
         "test": [8401],
+    }
+    expected_environment_seeds = {
+        "fit": {
+            "independent_prbs": [9211, 9212],
+            "bounded_multisine": [9221, 9222],
+            "coupled_chirp": [9231, 9232],
+        },
+        "validation": {
+            "independent_prbs": [9311],
+            "bounded_multisine": [9321],
+            "coupled_chirp": [9331],
+        },
+        "test": {
+            "independent_prbs": [9411],
+            "bounded_multisine": [9421],
+            "coupled_chirp": [9431],
+        },
+    }
+    assert protocol["seed_semantics"] == {
+        "environment_seed_field": "seed",
+        "environment_seed_scope": "matched_across_configurations_by_role_family_repetition",
+        "environment_seed_controls": [
+            "environment_reset",
+            "goal_reference",
+        ],
+        "excitation_seed_field": "excitation_seed",
+        "excitation_seed_scope": "matched_across_configurations_by_role_repetition",
+    }
+    assert protocol["environment_contract"] == {
+        "domain_randomization_enabled": False,
+        "eval_mode": True,
+        "reference_mode": "step",
+        "sensor_noise_enabled": False,
+        "disturbance_mode": "none",
     }
     for configuration in PUBLIC_CONFIGURATIONS:
         entries = by_configuration[configuration]
@@ -61,14 +97,19 @@ def test_exact_main_role_protocol_is_the_pending_d23_proposal() -> None:
             "validation": 3,
             "test": 3,
         }
-        for role, seeds in expected_family_seeds.items():
+        for role, excitation_seeds in expected_excitation_seeds.items():
             role_entries = [entry for entry in entries if entry["role"] == role]
             for family in MAIN_EXCITATION_FAMILIES:
+                assert [
+                    entry["excitation_seed"]
+                    for entry in role_entries
+                    if entry["excitation_family"] == family
+                ] == excitation_seeds
                 assert [
                     entry["seed"]
                     for entry in role_entries
                     if entry["excitation_family"] == family
-                ] == seeds
+                ] == expected_environment_seeds[role][family]
 
     episode_ids = [entry["episode_id"] for entry in protocol["entries"]]
     assert len(set(episode_ids)) == 96
@@ -80,7 +121,7 @@ def test_exact_main_analysis_policy_is_pending_d23_and_immutable() -> None:
     payload = _json(ANALYSIS_POLICY_PATH)
     policy = load_analysis_policy_v1(ANALYSIS_POLICY_PATH)
 
-    assert payload["analysis_policy_version"] == "phase8-analysis-policy-v1"
+    assert payload["analysis_policy_version"] == "phase8-analysis-policy-v2"
     assert policy.approval_status == "pending_d23"
     assert policy.qualification_level == "local_contract"
     assert policy.data_prefixes == (2, 4, 6)
@@ -95,9 +136,21 @@ def test_exact_main_analysis_policy_is_pending_d23_and_immutable() -> None:
     assert policy.horizons == (5, 20, 60, "full")
     assert policy.bootstrap == {
         "alpha": 0.05,
+        "aggregate": "equal_configuration_macro",
+        "configuration_sampling": "fixed_exact_eight",
+        "pairing": "paired_by_configuration_role_family_repetition",
+        "population_scope": "supported_exact_eight_only",
         "resamples": 2000,
         "seed": 80304,
+        "stratify_by": "configuration",
         "unit": "episode_block",
+    }
+    assert payload["outer_fold_execution"] == {
+        "candidate_selection": "seven_source_fit_validation_only",
+        "holdout_unit": "configuration",
+        "normalization": "seven_source_only",
+        "primary_heldout_access": "final_test_only",
+        "primary_model_freeze": "before_heldout_test_open",
     }
     assert payload["metric_schema"] == {
         "aggregation": [
@@ -165,7 +218,38 @@ def test_main_actions_are_deterministic_bounded_signed_and_family_specific() -> 
             assert any(action[channel] > 0.0 for action in first)
             assert any(action[channel] < 0.0 for action in first)
         trajectories[family] = first
+
+        changed_environment = deepcopy(entry)
+        changed_environment["seed"] += 100
+        assert [
+            deterministic_policy_action(changed_environment, step) for step in range(512)
+        ] == first
+
+        changed_excitation = deepcopy(entry)
+        changed_excitation["excitation_seed"] += 1
+        assert [
+            deterministic_policy_action(changed_excitation, step) for step in range(512)
+        ] != first
     assert len({repr(value) for value in trajectories.values()}) == 3
+
+
+def test_main_environment_contract_disables_non_nominal_randomization() -> None:
+    protocol = _json(ROLE_PROTOCOL_PATH)
+    cfg = SimpleNamespace(
+        eval_mode=False,
+        reference_mode="sine_sweep",
+        disturbance_cfg=SimpleNamespace(mode="jonswap"),
+        noise_cfg=SimpleNamespace(enable_noise=True),
+        domain_randomization=SimpleNamespace(use_custom_randomization=True),
+    )
+
+    collection_workflow.apply_main_environment_contract(cfg, protocol)
+
+    assert cfg.eval_mode is True
+    assert cfg.reference_mode == "step"
+    assert cfg.disturbance_cfg.mode == "none"
+    assert cfg.noise_cfg.enable_noise is False
+    assert cfg.domain_randomization.use_custom_randomization is False
 
 
 class _Bridge:
@@ -273,6 +357,7 @@ def test_main_scripts_freeze_exact_set_provenance_and_no_partial_promotion() -> 
         ),
         "scripts/phase8_main_server_run.sh": (
             "koopman_phase8_dataset",
+            "phase8-main-identification-v2-proposal",
             "main_role_assignment_protocol.json",
             "analysis_policy.json",
             "dataset_inventory.json",

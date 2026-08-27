@@ -234,8 +234,8 @@ def load_pilot_collection_policy(path: str | Path) -> dict[str, Any]:
     return payload
 
 
-MAIN_ROLE_PROTOCOL_VERSION = "phase8-main-role-protocol-v1"
-MAIN_EXPERIMENT_ID = "phase8-main-identification-v1-proposal"
+MAIN_ROLE_PROTOCOL_VERSION = "phase8-main-role-protocol-v2"
+MAIN_EXPERIMENT_ID = "phase8-main-identification-v2-proposal"
 MAIN_EXCITATION_FAMILIES = (
     "independent_prbs",
     "bounded_multisine",
@@ -250,11 +250,13 @@ _MAIN_PROTOCOL_FIELDS = frozenset(
         "artifact_origin_level",
         "controller_mode",
         "entries",
+        "environment_contract",
         "experiment_id",
         "frozen_at",
         "proposal_only",
         "protocol_version",
         "raw_action_abs_max",
+        "seed_semantics",
         "task_id",
         "transition_count",
         "transition_schema_version",
@@ -264,6 +266,7 @@ _MAIN_ENTRY_FIELDS = frozenset(
     {
         "configuration",
         "episode_id",
+        "excitation_seed",
         "excitation_family",
         "manifest_path",
         "repetition",
@@ -292,7 +295,7 @@ def _utc_timestamp(value: Any, path: str) -> str:
     return value
 
 
-def _main_seed(role: str, repetition: int) -> int:
+def _main_excitation_seed(role: str, repetition: int) -> int:
     if role == "fit":
         return 8200 + repetition
     if role == "validation":
@@ -302,6 +305,33 @@ def _main_seed(role: str, repetition: int) -> int:
     _main_fail("role_assignment_drift", role)
 
 
+def _main_environment_seed(role: str, family: str, repetition: int) -> int:
+    family_offset = MAIN_EXCITATION_FAMILIES.index(family) + 1
+    if role == "fit":
+        return 9200 + 10 * family_offset + repetition
+    if role == "validation":
+        return 9300 + 10 * family_offset + repetition
+    if role == "test":
+        return 9400 + 10 * family_offset + repetition
+    _main_fail("role_assignment_drift", role)
+
+
+_MAIN_SEED_SEMANTICS = {
+    "environment_seed_field": "seed",
+    "environment_seed_scope": "matched_across_configurations_by_role_family_repetition",
+    "environment_seed_controls": ["environment_reset", "goal_reference"],
+    "excitation_seed_field": "excitation_seed",
+    "excitation_seed_scope": "matched_across_configurations_by_role_repetition",
+}
+_MAIN_ENVIRONMENT_CONTRACT = {
+    "domain_randomization_enabled": False,
+    "eval_mode": True,
+    "reference_mode": "step",
+    "sensor_noise_enabled": False,
+    "disturbance_mode": "none",
+}
+
+
 def _recommended_main_entries() -> list[dict[str, Any]]:
     entries: list[dict[str, Any]] = []
     for configuration in PUBLIC_CONFIGURATIONS:
@@ -309,16 +339,19 @@ def _recommended_main_entries() -> list[dict[str, Any]]:
             repetitions = 2 if role == "fit" else 1
             for family in MAIN_EXCITATION_FAMILIES:
                 for repetition in range(1, repetitions + 1):
-                    seed = _main_seed(role, repetition)
+                    excitation_seed = _main_excitation_seed(role, repetition)
+                    seed = _main_environment_seed(role, family, repetition)
                     episode_id = (
                         f"phase8-main-{configuration}-{role}-"
-                        f"{family.replace('_', '-')}-r{repetition}-s{seed}"
+                        f"{family.replace('_', '-')}-r{repetition}-"
+                        f"es{excitation_seed}-rs{seed}"
                     )
                     entries.append(
                         {
                             "configuration": configuration,
                             "episode_id": episode_id,
                             "excitation_family": family,
+                            "excitation_seed": excitation_seed,
                             "manifest_path": f"manifests/{episode_id}.manifest.json",
                             "repetition": repetition,
                             "role": role,
@@ -339,11 +372,13 @@ def build_recommended_main_role_protocol_v1(*, frozen_at: str) -> dict[str, Any]
         "artifact_origin_level": PILOT_ARTIFACT_ORIGIN,
         "controller_mode": PILOT_CONTROLLER_MODE,
         "entries": _recommended_main_entries(),
+        "environment_contract": dict(_MAIN_ENVIRONMENT_CONTRACT),
         "experiment_id": MAIN_EXPERIMENT_ID,
         "frozen_at": frozen_at,
         "proposal_only": True,
         "protocol_version": MAIN_ROLE_PROTOCOL_VERSION,
         "raw_action_abs_max": MAIN_RAW_ACTION_ABS_MAX,
+        "seed_semantics": dict(_MAIN_SEED_SEMANTICS),
         "task_id": PILOT_TASK_ID,
         "transition_count": MAIN_TRANSITION_COUNT,
         "transition_schema_version": PILOT_TRANSITION_SCHEMA,
@@ -363,10 +398,12 @@ def validate_main_role_protocol_v1(value: Any) -> None:
         "approval_status": "pending_d23",
         "artifact_origin_level": PILOT_ARTIFACT_ORIGIN,
         "controller_mode": PILOT_CONTROLLER_MODE,
+        "environment_contract": _MAIN_ENVIRONMENT_CONTRACT,
         "experiment_id": MAIN_EXPERIMENT_ID,
         "proposal_only": True,
         "protocol_version": MAIN_ROLE_PROTOCOL_VERSION,
         "raw_action_abs_max": MAIN_RAW_ACTION_ABS_MAX,
+        "seed_semantics": _MAIN_SEED_SEMANTICS,
         "task_id": PILOT_TASK_ID,
         "transition_count": MAIN_TRANSITION_COUNT,
         "transition_schema_version": PILOT_TRANSITION_SCHEMA,
@@ -409,7 +446,8 @@ def validate_main_role_protocol_v1(value: Any) -> None:
             _main_fail("split_episode_overlap", str(episode_id))
         episode_ids.add(episode_id)
         seed = entry["seed"]
-        if seed in PILOT_POLICY_SEEDS.values():
+        excitation_seed = entry["excitation_seed"]
+        if seed in PILOT_POLICY_SEEDS.values() or excitation_seed in PILOT_POLICY_SEEDS.values():
             _main_fail("pilot_main_id_reuse", f"seed={seed}")
         for field in ("transition_path", "manifest_path"):
             path = entry[field]
@@ -450,7 +488,8 @@ def main_role_intents_v2(value: Any) -> tuple["EpisodeRoleIntentV2", ...]:
 
 
 ANALYSIS_POLICY_VERSION_V1 = "phase8-analysis-policy-v1"
-_ANALYSIS_POLICY_FIELDS = frozenset(
+ANALYSIS_POLICY_VERSION_V2 = "phase8-analysis-policy-v2"
+_ANALYSIS_POLICY_FIELDS_V2 = frozenset(
     {
         "analysis_policy_version",
         "approval_status",
@@ -465,13 +504,28 @@ _ANALYSIS_POLICY_FIELDS = frozenset(
         "metric_schema",
         "normalization_candidates",
         "observable_candidates",
+        "outer_fold_execution",
         "platform_schema_candidates",
         "qualification_level",
         "reference_diagnostic",
         "ridge_grid",
     }
 )
-_ANALYSIS_BOOTSTRAP_FIELDS = frozenset({"alpha", "resamples", "seed", "unit"})
+_ANALYSIS_POLICY_FIELDS_V1 = _ANALYSIS_POLICY_FIELDS_V2 - {"outer_fold_execution"}
+_ANALYSIS_BOOTSTRAP_FIELDS_V2 = frozenset(
+    {
+        "alpha",
+        "aggregate",
+        "configuration_sampling",
+        "pairing",
+        "population_scope",
+        "resamples",
+        "seed",
+        "stratify_by",
+        "unit",
+    }
+)
+_ANALYSIS_BOOTSTRAP_FIELDS_V1 = frozenset({"alpha", "resamples", "seed", "unit"})
 _ANALYSIS_ALGORITHM_FIELDS = frozenset(
     {"name", "primary_metric", "tie_break_order"}
 )
@@ -490,6 +544,15 @@ _ANALYSIS_GATE_FIELDS = frozenset(
 )
 _ANALYSIS_REFERENCE_FIELDS = frozenset(
     {"enabled", "model_id", "namespace", "selection_eligible"}
+)
+_ANALYSIS_OUTER_FOLD_FIELDS = frozenset(
+    {
+        "candidate_selection",
+        "holdout_unit",
+        "normalization",
+        "primary_heldout_access",
+        "primary_model_freeze",
+    }
 )
 _ANALYSIS_FORBIDDEN_INPUTS = (
     "reference_5",
@@ -547,9 +610,17 @@ def _analysis_number(value: Any, path: str, *, minimum: float = 0.0) -> float:
 def validate_analysis_policy_v1(value: Any) -> None:
     """Validate the exact local fixture or pending D-23 analysis proposal."""
 
-    policy = _analysis_exact(value, _ANALYSIS_POLICY_FIELDS, "policy")
+    if not isinstance(value, Mapping):
+        _analysis_fail("analysis_policy_field_set_mismatch", "policy")
+    version = value.get("analysis_policy_version")
+    if version == ANALYSIS_POLICY_VERSION_V2:
+        policy = _analysis_exact(value, _ANALYSIS_POLICY_FIELDS_V2, "policy")
+    elif version == ANALYSIS_POLICY_VERSION_V1:
+        policy = _analysis_exact(value, _ANALYSIS_POLICY_FIELDS_V1, "policy")
+    else:
+        _analysis_fail("analysis_policy_value_invalid", "analysis_policy_version")
     expected_scalars = {
-        "analysis_policy_version": ANALYSIS_POLICY_VERSION_V1,
+        "analysis_policy_version": version,
         "backend": "controlled_edmd_v2",
         "qualification_level": "local_contract",
     }
@@ -559,6 +630,13 @@ def validate_analysis_policy_v1(value: Any) -> None:
     approval_status = policy["approval_status"]
     if approval_status not in {"local_fixture_only_not_d23", "pending_d23"}:
         _analysis_fail("analysis_policy_value_invalid", "approval_status")
+    if (
+        approval_status == "pending_d23" and version != ANALYSIS_POLICY_VERSION_V2
+    ) or (
+        approval_status == "local_fixture_only_not_d23"
+        and version != ANALYSIS_POLICY_VERSION_V1
+    ):
+        _analysis_fail("analysis_policy_value_invalid", "analysis_policy_version")
     if _analysis_sequence(policy["data_prefixes"], "data_prefixes") != (2, 4, 6):
         _analysis_fail("analysis_policy_value_invalid", "data_prefixes")
     if _analysis_sequence(policy["observable_candidates"], "observable_candidates") != (
@@ -605,7 +683,11 @@ def validate_analysis_policy_v1(value: Any) -> None:
         _analysis_fail("analysis_policy_ridge_invalid")
 
     bootstrap = _analysis_exact(
-        policy["bootstrap"], _ANALYSIS_BOOTSTRAP_FIELDS, "bootstrap"
+        policy["bootstrap"],
+        _ANALYSIS_BOOTSTRAP_FIELDS_V2
+        if version == ANALYSIS_POLICY_VERSION_V2
+        else _ANALYSIS_BOOTSTRAP_FIELDS_V1,
+        "bootstrap",
     )
     alpha = _analysis_number(bootstrap["alpha"], "bootstrap.alpha")
     if not 0.0 < alpha < 1.0:
@@ -619,6 +701,29 @@ def validate_analysis_policy_v1(value: Any) -> None:
         or bootstrap["unit"] != "episode_block"
     ):
         _analysis_fail("analysis_policy_value_invalid", "bootstrap")
+    if version == ANALYSIS_POLICY_VERSION_V2:
+        if (
+            bootstrap["aggregate"] != "equal_configuration_macro"
+            or bootstrap["configuration_sampling"] != "fixed_exact_eight"
+            or bootstrap["pairing"]
+            != "paired_by_configuration_role_family_repetition"
+            or bootstrap["population_scope"] != "supported_exact_eight_only"
+            or bootstrap["stratify_by"] != "configuration"
+        ):
+            _analysis_fail("analysis_policy_value_invalid", "bootstrap")
+        outer_fold = _analysis_exact(
+            policy["outer_fold_execution"],
+            _ANALYSIS_OUTER_FOLD_FIELDS,
+            "outer_fold_execution",
+        )
+        if outer_fold != {
+            "candidate_selection": "seven_source_fit_validation_only",
+            "holdout_unit": "configuration",
+            "normalization": "seven_source_only",
+            "primary_heldout_access": "final_test_only",
+            "primary_model_freeze": "before_heldout_test_open",
+        }:
+            _analysis_fail("analysis_policy_value_invalid", "outer_fold_execution")
 
     algorithm = _analysis_exact(
         policy["inner_decision_algorithm"],
@@ -679,13 +784,18 @@ def validate_analysis_policy_v1(value: Any) -> None:
 def build_recommended_analysis_policy_v1() -> dict[str, Any]:
     """Return the exact pending D-23 analysis proposal without approval claims."""
     policy = {
-        "analysis_policy_version": ANALYSIS_POLICY_VERSION_V1,
+        "analysis_policy_version": ANALYSIS_POLICY_VERSION_V2,
         "approval_status": "pending_d23",
         "backend": "controlled_edmd_v2",
         "bootstrap": {
             "alpha": 0.05,
+            "aggregate": "equal_configuration_macro",
+            "configuration_sampling": "fixed_exact_eight",
+            "pairing": "paired_by_configuration_role_family_repetition",
+            "population_scope": "supported_exact_eight_only",
             "resamples": 2000,
             "seed": 80304,
+            "stratify_by": "configuration",
             "unit": "episode_block",
         },
         "data_prefixes": [2, 4, 6],
@@ -717,6 +827,13 @@ def build_recommended_analysis_policy_v1() -> dict[str, Any]:
         },
         "normalization_candidates": ["none", "standard_v1"],
         "observable_candidates": ["identity_v1", "auv_kinematic_v1"],
+        "outer_fold_execution": {
+            "candidate_selection": "seven_source_fit_validation_only",
+            "holdout_unit": "configuration",
+            "normalization": "seven_source_only",
+            "primary_heldout_access": "final_test_only",
+            "primary_model_freeze": "before_heldout_test_open",
+        },
         "platform_schema_candidates": [
             "none",
             "platform_physical_compact_v1",
@@ -758,6 +875,7 @@ class AnalysisPolicyV2:
     bootstrap: Mapping[str, Any]
     inner_decision_algorithm: Mapping[str, Any]
     metric_schema: Mapping[str, Any]
+    outer_fold_execution: Mapping[str, Any]
     gate_template: Mapping[str, Any]
     forbidden_inputs: tuple[str, ...]
     forbidden_roles: tuple[str, ...]
@@ -765,7 +883,7 @@ class AnalysisPolicyV2:
     approval_status: str
     qualification_level: str
     backend: str
-    version: str = ANALYSIS_POLICY_VERSION_V1
+    version: str = ANALYSIS_POLICY_VERSION_V2
     policy_sha256: str = field(init=False)
 
     def __post_init__(self) -> None:
@@ -781,6 +899,7 @@ class AnalysisPolicyV2:
             "bootstrap",
             "inner_decision_algorithm",
             "metric_schema",
+            "outer_fold_execution",
             "gate_template",
             "reference_diagnostic",
         ):
@@ -798,7 +917,7 @@ class AnalysisPolicyV2:
                 return [thaw(item) for item in value]
             return value
 
-        return {
+        payload = {
             "analysis_policy_version": self.version,
             "approval_status": self.approval_status,
             "backend": self.backend,
@@ -817,6 +936,9 @@ class AnalysisPolicyV2:
             "reference_diagnostic": thaw(self.reference_diagnostic),
             "ridge_grid": list(self.ridge_grid),
         }
+        if self.version == ANALYSIS_POLICY_VERSION_V2:
+            payload["outer_fold_execution"] = thaw(self.outer_fold_execution)
+        return payload
 
 
 def analysis_policy_from_mapping_v1(value: Any) -> AnalysisPolicyV2:
@@ -832,6 +954,7 @@ def analysis_policy_from_mapping_v1(value: Any) -> AnalysisPolicyV2:
         bootstrap=dict(value["bootstrap"]),
         inner_decision_algorithm=dict(value["inner_decision_algorithm"]),
         metric_schema=dict(value["metric_schema"]),
+        outer_fold_execution=dict(value.get("outer_fold_execution", {})),
         gate_template=dict(value["gate_template"]),
         forbidden_inputs=tuple(value["forbidden_inputs"]),
         forbidden_roles=tuple(value["forbidden_roles"]),

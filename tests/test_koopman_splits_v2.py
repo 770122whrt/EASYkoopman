@@ -103,7 +103,7 @@ def test_recommended_main_protocol_is_exact_symmetric_pending_d23_proposal() -> 
     validate_main_role_protocol_v1(protocol)
     entries = protocol["entries"]
 
-    assert protocol["protocol_version"] == "phase8-main-role-protocol-v1"
+    assert protocol["protocol_version"] == "phase8-main-role-protocol-v2"
     assert protocol["approval_status"] == "pending_d23"
     assert protocol["proposal_only"] is True
     assert protocol["transition_count"] == 512
@@ -113,9 +113,24 @@ def test_recommended_main_protocol_is_exact_symmetric_pending_d23_proposal() -> 
         MAIN_EXCITATION_FAMILIES
     )
     assert len({entry["episode_id"] for entry in entries}) == len(entries)
-    # D-23 freezes role-separated seed values shared symmetrically across
-    # configurations/families; episode IDs and full protocol identities remain unique.
-    assert {entry["seed"] for entry in entries} == {8201, 8202, 8301, 8401}
+    # D-23 v2 separates excitation from matched environment resets. Both are
+    # symmetric across configurations, while environment streams are distinct
+    # across role/family/repetition episode blocks.
+    assert {entry["excitation_seed"] for entry in entries} == {8201, 8202, 8301, 8401}
+    assert {entry["seed"] for entry in entries} == {
+        9211,
+        9212,
+        9221,
+        9222,
+        9231,
+        9232,
+        9311,
+        9321,
+        9331,
+        9411,
+        9421,
+        9431,
+    }
     assert len(
         {
             (
@@ -123,6 +138,7 @@ def test_recommended_main_protocol_is_exact_symmetric_pending_d23_proposal() -> 
                 entry["role"],
                 entry["excitation_family"],
                 entry["repetition"],
+                entry["excitation_seed"],
                 entry["seed"],
             )
             for entry in entries

@@ -6,13 +6,13 @@ The two canonical proposal files are `protocols/phase8/main_role_assignment_prot
 
 The collection matrix covers `base`, `long_body`, `heavy_moderate`, `asymmetric`, `uuv6`, `uuv6_angled`, `uuv4` and `uuv4_angled`. Every configuration receives the same 12 whole episodes:
 
-| Role | Episodes/config | Excitation families | Seeds/family | Length |
-|---|---:|---|---|---:|
-| fit | 6 | `independent_prbs`, `bounded_multisine`, `coupled_chirp` | 8201, 8202 | 512 |
-| validation | 3 | same three | 8301 | 512 |
-| test | 3 | same three | 8401 | 512 |
+| Role | Episodes/config | Excitation families | Excitation seeds/family | Environment reset seeds by family | Length |
+|---|---:|---|---|---|---:|
+| fit | 6 | `independent_prbs`, `bounded_multisine`, `coupled_chirp` | 8201, 8202 | 9211/9212, 9221/9222, 9231/9232 | 512 |
+| validation | 3 | same three | 8301 | 9311, 9321, 9331 | 512 |
+| test | 3 | same three | 8401 | 9411, 9421, 9431 | 512 |
 
-This is `8 × 12 × 512 = 49,152` transitions. Raw four-channel commands are deterministic from the frozen family and seed and bounded by `0.25`. Episode IDs, paths and roles are unique and disjoint from the pilot. The collector has no CLI flags that can override role, seed, scenario, length or family.
+This is `8 × 12 × 512 = 49,152` transitions. `excitation_seed` controls only the deterministic bounded four-channel command. The separate environment `seed` is matched across configurations for the same role/family/repetition and controls reset/reference randomness; it is never reused across distinct family/repetition episode blocks. Main collection enforces `eval_mode=true`, no domain randomization, no sensor noise and no disturbance. Episode IDs, paths and roles are unique and disjoint from the pilot. The collector has no CLI flags that can override role, either seed, scenario, length or family.
 
 The proposed analysis grid is fixed before the bytes exist:
 
@@ -25,11 +25,13 @@ The proposed analysis grid is fixed before the bytes exist:
 | Platform descriptors | `none`, `platform_physical_compact_v1`, `platform_physical_core_v1` |
 | Rollout horizons | `5, 20, 60, full` without truth resets |
 | Official orientation | sign-invariant SO(3) geodesic radians; invalid/projection events are reason-coded |
-| Bootstrap | episode-block, alpha `0.05`, seed `80304`, `2000` resamples |
+| Bootstrap | paired episode-block within configuration, fixed exact-eight configurations, equal-configuration macro, alpha `0.05`, seed `80304`, `2000` resamples; no broader platform-population inference |
 | Aggregation | per-configuration, equal-configuration macro, worst configuration; row-weighted is diagnostic only |
 | Gates | improvement `0.01`, conditional margin `0.05`, non-inferiority `0.10`, zero nonfinite/divergence/invalid-quaternion events |
 
 Primary selection forbids reference, PWM, thruster mask, applied wrench, environment oracle/estimate, configuration identity and held-out statistics. The reference-conditioned diagnostic and held-out expert are explicitly non-promoting. Pilot health merely showed that real collection worked; it did not choose any value above.
+
+Each outer fold holds out one complete configuration. Candidate selection and normalization read only the other seven configurations' fit/validation episodes. The selected primary model artifact must be fit and hash-frozen before the held-out test is opened; the held-out configuration is then used only for final scoring. The expert remains a separate non-promoting diagnostic namespace.
 
 At D-23 the user either approves both exact SHA-256 values, or requests changes. A change creates a new experiment ID and requires a new commit plus the full preflight. Silence and earlier general approval do not count.
 

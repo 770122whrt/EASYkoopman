@@ -76,7 +76,7 @@ def deterministic_policy_action(
         raise ValueError(f"step_invalid:{step}")
     kind = entry.get("policy_kind")
     family = entry.get("excitation_family")
-    seed = entry.get("seed")
+    seed = entry.get("excitation_seed", entry.get("seed"))
     if kind == "axis_pulse" and seed == 8101:
         channel = (step // 8) % 4
         sign = 1.0 if (step // 32) % 2 == 0 else -1.0
@@ -126,6 +126,20 @@ def deterministic_policy_action(
                 for channel in range(4)
             )  # type: ignore[return-value]
     raise ValueError(f"pilot_policy_invalid:entry_action:{kind}:{seed}")
+
+
+def apply_main_environment_contract(cfg: Any, policy: Mapping[str, Any]) -> None:
+    """Apply the frozen nominal Phase 8 environment settings before gym.make."""
+
+    validate_main_role_protocol_v1(policy)
+    contract = policy["environment_contract"]
+    cfg.eval_mode = contract["eval_mode"]
+    cfg.reference_mode = contract["reference_mode"]
+    cfg.disturbance_cfg.mode = contract["disturbance_mode"]
+    cfg.noise_cfg.enable_noise = contract["sensor_noise_enabled"]
+    cfg.domain_randomization.use_custom_randomization = contract[
+        "domain_randomization_enabled"
+    ]
 
 
 def collect_policy_entries(
@@ -340,6 +354,8 @@ def run_isaac_collection(args: argparse.Namespace) -> int:
         register_gym_tasks()
         cfg = EasyUUVEnvCfg()
         cfg.scene.num_envs = 1
+        if is_main:
+            apply_main_environment_contract(cfg, policy)
         env = gym.make(PILOT_TASK_ID, cfg=cfg)
         if args.configuration != "base":
             env.unwrapped.apply_embodiment_config(args.configuration)
