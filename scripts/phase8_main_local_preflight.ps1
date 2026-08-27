@@ -92,7 +92,7 @@ try {
     $null = Git-Text diff --check
     Write-Output "gate=git_diff_check;status=pass"
 
-    $null = Git-Text cat-file -e "${phase8ExecutionBaseline}^{commit}"
+    $null = Git-Text -Arguments @("cat-file", "-e", "${phase8ExecutionBaseline}^{commit}")
     $v1Protected = Git-Text diff --name-only v1.0 -- .planning/milestones .planning/reports koopman/model.py koopman/lifted_edmd.py koopman/mpc.py koopman/mpc_controller.py
     if ($v1Protected) { Fail-Gate "protected_diff" $v1Protected }
     $priorEvidence = Git-Text diff --name-only $phase8ExecutionBaseline -- source/results/koopman_phase6 source/results/koopman_phase7
