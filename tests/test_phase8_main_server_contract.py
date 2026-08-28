@@ -387,6 +387,30 @@ def test_main_scripts_freeze_exact_set_provenance_and_no_partial_promotion() -> 
     assert not (PROJECT_ROOT / "source" / "results" / "koopman_phase8_dataset").exists()
 
 
+def test_main_server_runner_reuses_locked_server_environment_and_snapshots_pipeline_status() -> None:
+    text = (PROJECT_ROOT / "scripts" / "phase8_main_server_run.sh").read_text(
+        encoding="utf-8"
+    )
+
+    for token in (
+        "set -Eeuo pipefail",
+        "phase6_server_preflight.sh",
+        "phase6_offline_install.sh",
+        "/opt/conda/etc/profile.d/conda.sh",
+        "/opt/conda/envs/isaaclab/bin/python",
+        "phase6_activate_conda_env",
+        "phase6_capture_locked_isaaclab_state",
+        "phase6_prepare_offline_python_env",
+        'pipeline_status=("${PIPESTATUS[@]}")',
+        'native_status="${pipeline_status[0]:-125}"',
+        'tee_status="${pipeline_status[1]:-125}"',
+    ):
+        assert token in text, f"main server runner is missing {token!r}"
+
+    assert "native_status=${PIPESTATUS[0]}" not in text
+    assert "tee_status=${PIPESTATUS[1]}" not in text
+
+
 def test_runbook_marks_d23_values_as_unapproved_engineering_design() -> None:
     text = (PROJECT_ROOT / "docs" / "phase8_koopman_identification_runbook.md").read_text(
         encoding="utf-8"
