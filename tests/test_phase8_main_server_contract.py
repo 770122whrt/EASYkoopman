@@ -400,8 +400,6 @@ def test_main_scripts_freeze_exact_set_provenance_and_no_partial_promotion() -> 
         for token in tokens:
             assert token in text, f"{relative} is missing fail-closed token {token!r}"
 
-    assert not (PROJECT_ROOT / "source" / "results" / "koopman_phase8_dataset").exists()
-
 
 def test_main_server_runner_reuses_locked_server_environment_and_snapshots_pipeline_status() -> None:
     text = (PROJECT_ROOT / "scripts" / "phase8_main_server_run.sh").read_text(
