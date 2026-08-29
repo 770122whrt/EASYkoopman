@@ -17,7 +17,7 @@ v1.0 的阶段名称、结论和证据已冻结，不在本活动 roadmap 中重
 |---|---|---|---|---|
 | 6 | EasyUUV 2.0 Intake and Multi-Configuration Qualification | QUAL-01..08 | v1.0 frozen baseline | Complete — 4/4 plans verified |
 | 7 | Cross-Configuration Koopman Data and Control Contract | CONT-01..05 | Phase 6 | Complete — 4/4 plans verified |
-| 8 | Multi-Configuration Koopman Identification and OOD Gate | KID-01..05 | Phase 7 | Planned — 0/5 plans complete |
+| 8 | Multi-Configuration Koopman Identification and OOD Gate | KID-01..05 | Phase 7 | Executing — 4/5 plans complete |
 | 9 | Configuration-Aware Koopman-MPC Integration | MPC2-01..04 | Phase 8 | Pending |
 | 10 | Environment Awareness and Online Koopman Update | ADAPT-01..05 | Phase 9 | Pending |
 | 11 | Low-Frequency Agent Supervisor | AGENT-01..04 | Phase 10 | Pending |
@@ -136,7 +136,7 @@ Plans:
 
 **Wave 4** *(blocked on Wave 3 completion; includes D-23 user decision and server checkpoint)*
 
-- [ ] 08-04-PLAN.md — present and freeze exact main role/action and analysis policies, then collect and independently pull back the real exact-eight 96-episode identification dataset.
+- [x] 08-04-PLAN.md — froze the approved D-23 hashes and independently pulled back the real exact-eight 96-episode/49,152-transition server dataset with exact inventory, LOCO split and external evidence gates (`a7e8198`, evidence `98dbd76`).
 
 **Wave 5** *(blocked on Wave 4 completion)*
 

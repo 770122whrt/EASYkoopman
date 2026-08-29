@@ -3,19 +3,19 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Multi-Configuration Koopman Transfer and Environment-Aware Control
 status: executing
-last_updated: "2026-08-23T18:58:00Z"
-last_activity: 2026-08-24 -- Plan 08-03 completed with controlled-EDMD v2, episode-safe SO(3) metrics and sealed seven-source decisions
+last_updated: "2026-08-29T14:40:03Z"
+last_activity: 2026-08-29 -- Plan 08-04 completed with the approved exact-eight 96-episode real-server dataset and validated pullback
 progress:
   total_phases: 7
   completed_phases: 2
   total_plans: 13
-  completed_plans: 11
-  percent: 85
+  completed_plans: 12
+  percent: 92
 ---
 
 # Project State: EASYkoopman
 
-**Updated:** 2026-08-24
+**Updated:** 2026-08-29
 **Current focus:** Phase 08 — multi-configuration-koopman-identification-and-ood-gate
 **Active milestone:** `v2.0 Multi-Configuration Koopman Transfer and Environment-Aware Control`
 **Branch:** `v2.0-multi-configuration`
@@ -29,9 +29,9 @@ See `.planning/PROJECT.md`.
 ## Current Position
 
 Phase: 08 (multi-configuration-koopman-identification-and-ood-gate) — EXECUTING
-Plan: 4 of 5
+Plan: 5 of 5
 Status: Ready to execute
-Last activity: 2026-08-24 -- Plan 08-03 completed; Plan 08-04 is next
+Last activity: 2026-08-29 -- Plan 08-04 completed; Plan 08-05 is next
 
 ## Milestone Goal
 
@@ -149,7 +149,13 @@ All three boundaries are visible on `origin/v2.0-multi-configuration`: simulator
 - Every synthetic fold decision evaluates the frozen 108-candidate local grid from exactly seven source configurations, records every opened episode/statistic and seals before held-out test access; only pooled/conditional result types are eligible.
 - Independent closeout passed 396 broad tests plus one existing skip and the final full suite as `733 passed, 1 skipped`; compileall, standalone diff-check, key links, protected paths and forbidden-root absence passed.
 - Plan 08-03 is `local_contract` only. Its policy fixture is not D-23 approval, no real main/evaluation/selection root exists and KID-01..05 remain incomplete.
+- Plan 08-04 froze the explicitly approved D-23 role/action and analysis-policy hashes, then ran the exact protocol from tested source `a7e8198` in isolated `/root/EASYkoopman-phase8-main-v2` on the unchanged Isaac server.
+- The successful server chain completed 8/8 native, tee and semantic gates and produced exactly 96 episode JSONL, 96 manifests, 96 logs, zero `.part` files and 49,152 transitions: each configuration has six fit, three validation and three test episodes of 512 transitions.
+- The post-collection inventory, exact-eight LOCO split and external envelope were built only after the exact set completed. Server and local validators returned `phase8_external_evidence_valid`, 293 referenced files and `warnings=[]`; envelope SHA-256 is `46d02531457123f2a1dfda3b16159b359a6caff2d90b14283094a349647a1b04`.
+- Random-staging pullback validated all 294 canonical files, exact protocol/source/runtime hashes and all process statuses before atomic promotion. Evidence is isolated in commit `98dbd76`, and Git text conversion is disabled only for that immutable dataset subtree.
+- Three failed server attempts were preserved and never promoted or appended: missing non-interactive Conda activation, native 178-step timeout, and postprocessing hash contamination. The successful attempt used a fresh bundle/checkout/result root and completed with `bootstrap.exit=0`.
+- Plan 08-04 proves exact-eight dataset and LOCO-split readiness only. No model has been fitted or selected and no held-out prediction, OOD transfer, MPC, environment-adaptation or Agentic claim is supported. KID-01 data and KID-02/03/05 prerequisites are ready, but formal KID completion remains pending 08-05 and independent verification.
 
 ## Next Action
 
-Execute `08-04-PLAN.md`: present and freeze the exact main role/action and analysis policies for D-23 user approval, then collect and independently pull back the real exact-eight 96-episode identification dataset only after that decision/checkpoint. Do not treat the 08-03 local fixture as canonical approval.
+Execute `08-05-PLAN.md`: run the one frozen exact-eight LOCO evaluation against the canonical 08-04 dataset. Machine-verify that each fold's primary model and all model-affecting choices are sealed before held-out test access; test outcomes may not alter fitting or candidate selection. Emit separate immutable evaluation and selection/no-selection roots, then perform independent goal-backward Phase 8 verification.
