@@ -164,7 +164,8 @@ def _candidate_result(candidate, opened, fold):
         and candidate.observable_schema == "identity_v1"
         and candidate.ridge == pytest.approx(1.0e-8)
         and candidate.normalization == "none"
-        and candidate.platform_schema == "platform_physical_compact_v1"
+        and candidate.platform_schema
+        in {"none", "platform_physical_compact_v1"}
     )
     penalty = 0.0 if preferred else 1.0
     scores = {
@@ -359,12 +360,20 @@ def test_fold_decision_opens_exactly_seven_sources_and_seals_before_test(tmp_pat
     assert decision.source_configurations == session.fold.source_configurations
     assert len(decision.source_configurations) == 7
     assert decision.source_episode_sha256s == session.fold.source_episode_sha256s
-    assert decision.selected.data_prefix == 4
-    assert decision.selected.observable_schema == "identity_v1"
-    assert decision.selected.ridge == pytest.approx(1.0e-8)
-    assert decision.selected.normalization == "none"
-    assert decision.selected.platform_schema == "platform_physical_compact_v1"
-    assert decision.diagnostics["design_rank"] == 203
+    assert set(decision.selected_candidates) == {
+        ModelRoleV2.POOLED.value,
+        ModelRoleV2.CONDITIONAL.value,
+    }
+    pooled = decision.selected_candidates[ModelRoleV2.POOLED.value]
+    conditional = decision.selected_candidates[ModelRoleV2.CONDITIONAL.value]
+    assert pooled.data_prefix == conditional.data_prefix == 4
+    assert pooled.observable_schema == conditional.observable_schema == "identity_v1"
+    assert pooled.ridge == conditional.ridge == pytest.approx(1.0e-8)
+    assert pooled.normalization == conditional.normalization == "none"
+    assert pooled.platform_schema == "none"
+    assert conditional.platform_schema == "platform_physical_compact_v1"
+    assert decision.diagnostics[ModelRoleV2.POOLED.value]["design_rank"] == 16
+    assert decision.diagnostics[ModelRoleV2.CONDITIONAL.value]["design_rank"] == 203
     assert decision.test_open_count_at_seal == 0
     assert session.test_accesses == ()
     assert {record.configuration for record in session.dataset_accesses} == set(
@@ -456,15 +465,20 @@ def test_heldout_statistic_different_budget_and_policy_drift_fail_closed() -> No
 def test_stale_normalizer_or_model_binding_is_rejected() -> None:
     session, _ = _session()
     decision = _seal(session)
+    selected = decision.selected_candidates[ModelRoleV2.CONDITIONAL.value]
     valid_model = SimpleNamespace(
         fold_id=decision.fold_id,
-        observable_schema=decision.selected.observable_schema,
-        ridge=decision.selected.ridge,
-        normalization=decision.selected.normalization,
+        observable_schema=selected.observable_schema,
+        ridge=selected.ridge,
+        normalization=selected.normalization,
         conditioning="platform_affine",
-        platform_normalizer_sha256=decision.platform_normalizer_sha256,
+        platform_normalizer_sha256=decision.platform_normalizer_sha256s[
+            ModelRoleV2.CONDITIONAL.value
+        ],
     )
-    validate_fold_model_binding_v2(decision, valid_model)
+    validate_fold_model_binding_v2(
+        decision, valid_model, family=ModelRoleV2.CONDITIONAL
+    )
     with pytest.raises(ValueError, match="stale_normalizer"):
         validate_fold_model_binding_v2(
             decision,
@@ -474,12 +488,28 @@ def test_stale_normalizer_or_model_binding_is_rejected() -> None:
                     "platform_normalizer_sha256": "0" * 64,
                 }
             ),
+            family=ModelRoleV2.CONDITIONAL,
         )
     with pytest.raises(ValueError, match="fold_model_binding_mismatch"):
         validate_fold_model_binding_v2(
             decision,
             SimpleNamespace(**{**vars(valid_model), "ridge": 0.5}),
+            family=ModelRoleV2.CONDITIONAL,
         )
+
+    pooled = decision.selected_candidates[ModelRoleV2.POOLED.value]
+    validate_fold_model_binding_v2(
+        decision,
+        SimpleNamespace(
+            fold_id=decision.fold_id,
+            observable_schema=pooled.observable_schema,
+            ridge=pooled.ridge,
+            normalization=pooled.normalization,
+            conditioning="none",
+            platform_normalizer_sha256=None,
+        ),
+        family=ModelRoleV2.POOLED,
+    )
 
 
 def test_six_roles_have_exact_eligibility_and_reference_is_non_promoting() -> None:
