@@ -35,7 +35,7 @@ export PYTHONDONTWRITEBYTECODE=1
 [[ ! -e "$RESULT_ROOT" && ! -e "$STATUS_ROOT" ]] || { echo stale_or_partial_main_root >&2; exit 1; }
 [[ -x "$ISAACLAB_PY" ]] || { echo isaaclab_launcher_missing >&2; exit 1; }
 [[ -f "$CONDA_SH" ]] || { echo conda_activation_script_missing >&2; exit 1; }
-mkdir -p "$RESULT_ROOT" "$STATUS_ROOT"
+mkdir -p "$RESULT_ROOT"/{episodes,manifests,logs} "$STATUS_ROOT"
 
 phase6_activate_conda_env \
     "$STATUS_ROOT" "$CONDA_SH" "$CONDA_ENVIRONMENT" "$CONDA_PYTHON"
@@ -75,7 +75,19 @@ for configuration in base long_body heavy_moderate asymmetric uuv6 uuv6_angled u
     tee_status="${pipeline_status[1]:-125}"
     printf '%s\n' "$native_status" > "$STATUS_ROOT/$configuration.native_status"
     printf '%s\n' "$tee_status" > "$STATUS_ROOT/$configuration.tee_status"
-    semantic_status=pass; [[ "$native_status" -eq 0 && "$tee_status" -eq 0 ]] || semantic_status=fail
+    semantic_status="fail"
+    if [[ "$native_status" -eq 0 && "$tee_status" -eq 0 ]]; then
+        episode_count="$(find "$RESULT_ROOT/episodes" -maxdepth 1 -type f -name "phase8-main-${configuration}-*.jsonl" | wc -l)"
+        manifest_count="$(find "$RESULT_ROOT/manifests" -maxdepth 1 -type f -name "phase8-main-${configuration}-*.manifest.json" | wc -l)"
+        log_count="$(find "$RESULT_ROOT/logs" -maxdepth 1 -type f -name "phase8-main-${configuration}-*.log" | wc -l)"
+        part_count="$(find "$RESULT_ROOT/episodes" -maxdepth 1 -type f -name "phase8-main-${configuration}-*.part" | wc -l)"
+        if [[ "$episode_count" -eq 12 && "$manifest_count" -eq 12 && "$log_count" -eq 12 && "$part_count" -eq 0 ]]; then
+            semantic_status="pass"
+        else
+            printf 'configuration_exact_12_failed configuration=%s episodes=%s manifests=%s logs=%s parts=%s\n' \
+                "$configuration" "$episode_count" "$manifest_count" "$log_count" "$part_count" >&2
+        fi
+    fi
     printf '%s\n' "$semantic_status" > "$STATUS_ROOT/$configuration.semantic_status"
     [[ "$semantic_status" == pass ]] || any_failed=1
 done

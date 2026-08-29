@@ -252,6 +252,22 @@ def test_main_environment_contract_disables_non_nominal_randomization() -> None:
     assert cfg.domain_randomization.use_custom_randomization is False
 
 
+def test_main_environment_contract_prevents_native_timeout_inside_512_step_block() -> None:
+    protocol = _json(ROLE_PROTOCOL_PATH)
+    cfg = SimpleNamespace(
+        cap_episode_length=True,
+        eval_mode=False,
+        reference_mode="sine_sweep",
+        disturbance_cfg=SimpleNamespace(mode="jonswap"),
+        noise_cfg=SimpleNamespace(enable_noise=True),
+        domain_randomization=SimpleNamespace(use_custom_randomization=True),
+    )
+
+    collection_workflow.apply_main_environment_contract(cfg, protocol)
+
+    assert cfg.cap_episode_length is False
+
+
 class _Bridge:
     def __init__(self, entry: dict, fail_at: int | None = None) -> None:
         self.entry = entry
@@ -404,6 +420,9 @@ def test_main_server_runner_reuses_locked_server_environment_and_snapshots_pipel
         'pipeline_status=("${PIPESTATUS[@]}")',
         'native_status="${pipeline_status[0]:-125}"',
         'tee_status="${pipeline_status[1]:-125}"',
+        "configuration_exact_12_failed",
+        'part_count="$(find',
+        'semantic_status="pass"',
     ):
         assert token in text, f"main server runner is missing {token!r}"
 

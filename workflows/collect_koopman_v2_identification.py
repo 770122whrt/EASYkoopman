@@ -133,6 +133,10 @@ def apply_main_environment_contract(cfg: Any, policy: Mapping[str, Any]) -> None
 
     validate_main_role_protocol_v1(policy)
     contract = policy["environment_contract"]
+    # The frozen main episodes contain 512 controlled transitions.  EasyUUV's
+    # default three-second time limit would reset the simulator near step 178,
+    # so the collector owns the episode boundary for this workflow.
+    cfg.cap_episode_length = False
     cfg.eval_mode = contract["eval_mode"]
     cfg.reference_mode = contract["reference_mode"]
     cfg.disturbance_cfg.mode = contract["disturbance_mode"]
