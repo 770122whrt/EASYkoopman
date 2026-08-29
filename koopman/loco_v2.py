@@ -328,6 +328,130 @@ class RoleResultMatrixV2:
         )
 
 
+@dataclass(frozen=True)
+class FrozenPrimaryStateV2:
+    """Immutable primary decision/model identity captured before outer test access."""
+
+    fold_id: str
+    holdout_configuration: str
+    source_configurations: tuple[str, ...]
+    source_episode_sha256s: tuple[str, ...]
+    candidate_id: str
+    decision_sha256: str
+    analysis_policy_sha256: str
+    primary_model_sha256s: Mapping[str, str]
+    frozen_at: str
+    candidate_revision: int = 0
+    model_revision: int = 0
+    test_open_count_at_freeze: int = 0
+    post_test_mutation_count: int = 0
+    state: str = "frozen"
+    freeze_state_sha256: str = field(init=False)
+
+    def __post_init__(self) -> None:
+        sources = tuple(self.source_configurations)
+        hashes = tuple(self.source_episode_sha256s)
+        models = dict(self.primary_model_sha256s)
+        if (
+            self.state != "frozen"
+            or len(sources) != 7
+            or len(set(sources)) != 7
+            or self.holdout_configuration in sources
+            or not hashes
+        ):
+            _fail("primary_freeze_invalid")
+        for name, value in (
+            ("candidate_id", self.candidate_id),
+            ("decision_sha256", self.decision_sha256),
+            ("analysis_policy_sha256", self.analysis_policy_sha256),
+            *tuple((f"primary_model_sha256s.{key}", value) for key, value in models.items()),
+            *tuple(("source_episode_sha256s", value) for value in hashes),
+        ):
+            _sha(value, name)
+        if not models:
+            _fail("primary_freeze_model_set_empty")
+        if any(
+            isinstance(value, bool) or not isinstance(value, int) or value != 0
+            for value in (
+                self.candidate_revision,
+                self.model_revision,
+                self.test_open_count_at_freeze,
+                self.post_test_mutation_count,
+            )
+        ):
+            _fail("post_test_retune")
+        object.__setattr__(self, "source_configurations", sources)
+        object.__setattr__(self, "source_episode_sha256s", hashes)
+        object.__setattr__(self, "primary_model_sha256s", MappingProxyType(models))
+        object.__setattr__(
+            self,
+            "freeze_state_sha256",
+            canonical_sha256(self.to_dict(include_sha256=False)),
+        )
+
+    def to_dict(self, *, include_sha256: bool = True) -> dict[str, Any]:
+        value = {
+            "analysis_policy_sha256": self.analysis_policy_sha256,
+            "candidate_id": self.candidate_id,
+            "candidate_revision": self.candidate_revision,
+            "decision_sha256": self.decision_sha256,
+            "fold_id": self.fold_id,
+            "frozen_at": self.frozen_at,
+            "holdout_configuration": self.holdout_configuration,
+            "model_revision": self.model_revision,
+            "post_test_mutation_count": self.post_test_mutation_count,
+            "primary_model_sha256s": dict(self.primary_model_sha256s),
+            "source_configurations": list(self.source_configurations),
+            "source_episode_sha256s": list(self.source_episode_sha256s),
+            "state": self.state,
+            "test_open_count_at_freeze": self.test_open_count_at_freeze,
+        }
+        if include_sha256:
+            value["freeze_state_sha256"] = self.freeze_state_sha256
+        return value
+
+
+@dataclass(frozen=True)
+class PrimaryTestAccessTokenV2:
+    fold_id: str
+    holdout_configuration: str
+    test_episode_ids: tuple[str, ...]
+    freeze_state_sha256: str
+    freeze_candidate_id: str
+    analysis_policy_sha256: str
+
+
+def authorize_primary_test_access_v2(
+    frozen: FrozenPrimaryStateV2,
+    *,
+    analysis_policy: AnalysisPolicyV2,
+    fold_id: str,
+    holdout_configuration: str,
+    test_episode_ids: tuple[str, ...],
+) -> PrimaryTestAccessTokenV2:
+    """Issue the only primary-path token that permits held-out bytes to open."""
+
+    episodes = tuple(test_episode_ids)
+    if not isinstance(frozen, FrozenPrimaryStateV2):
+        _fail("primary_freeze_missing")
+    if (
+        frozen.fold_id != fold_id
+        or frozen.holdout_configuration != holdout_configuration
+        or frozen.analysis_policy_sha256 != analysis_policy.policy_sha256
+    ):
+        _fail("primary_freeze_binding_mismatch")
+    if not episodes or len(set(episodes)) != len(episodes):
+        _fail("outer_test_binding_mismatch")
+    return PrimaryTestAccessTokenV2(
+        fold_id=fold_id,
+        holdout_configuration=holdout_configuration,
+        test_episode_ids=episodes,
+        freeze_state_sha256=frozen.freeze_state_sha256,
+        freeze_candidate_id=frozen.candidate_id,
+        analysis_policy_sha256=frozen.analysis_policy_sha256,
+    )
+
+
 def _entry_map(inventory: DatasetInventoryV2) -> Mapping[str, EpisodeInventoryEntryV2]:
     return {entry.episode_id: entry for entry in inventory.entries}
 

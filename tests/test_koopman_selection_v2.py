@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import FrozenInstanceError
+import hashlib
 import inspect
 import json
 from pathlib import Path
@@ -8,7 +9,7 @@ from pathlib import Path
 import pytest
 
 from easyuuv_nc.embodiments import SUPPORTED_EMBODIMENTS
-from koopman.evidence_v2 import canonical_json_bytes, file_sha256
+from koopman.evidence_v2 import canonical_json_bytes, canonical_sha256, file_sha256
 from koopman.protocol_v2 import load_analysis_policy_v1
 
 
@@ -32,6 +33,10 @@ METRICS = (
     "so3_geodesic_rmse_radians",
     "so3_geodesic_max_radians",
 )
+
+
+def _sha(label: str) -> str:
+    return hashlib.sha256(label.encode("utf-8")).hexdigest()
 
 
 def _horizon(scale: float) -> dict:
@@ -59,7 +64,7 @@ def _role(configuration: str, role: str, scale: float) -> dict:
         },
         "status": "success",
         "reason_code": None,
-        "model_sha256": None if role == "persistence" else (role[0] * 64),
+        "model_sha256": None if role == "persistence" else _sha(f"model-{configuration}-{role}"),
         "input_fields": (
             ["state_11", "virtual_control_4", "platform_physical_descriptor"]
             if role == "conditional_koopman_v2"
@@ -90,8 +95,8 @@ def _evaluation_payload() -> dict:
     folds = []
     for configuration in SUPPORTED_EMBODIMENTS:
         sources = [name for name in SUPPORTED_EMBODIMENTS if name != configuration]
-        candidate_id = (configuration[0] if configuration else "c") * 64
-        decision_sha256 = (configuration[-1] if configuration else "d") * 64
+        candidate_id = _sha(f"candidate-{configuration}")
+        decision_sha256 = _sha(f"decision-{configuration}")
         folds.append(
             {
                 "fold_id": f"loco-holdout-{configuration}",
@@ -110,10 +115,10 @@ def _evaluation_payload() -> dict:
                     "analysis_policy_sha256": policy.policy_sha256,
                     "source_configurations": sources,
                     "primary_model_sha256s": {
-                        "simple_linear_v2": "s" * 64,
-                        "source_per_configuration_koopman_v2": "r" * 64,
-                        "pooled_koopman_v2": "p" * 64,
-                        "conditional_koopman_v2": "c" * 64,
+                        "simple_linear_v2": _sha(f"simple-{configuration}"),
+                        "source_per_configuration_koopman_v2": _sha(f"source-{configuration}"),
+                        "pooled_koopman_v2": _sha(f"pooled-{configuration}"),
+                        "conditional_koopman_v2": _sha(f"conditional-{configuration}"),
                     },
                     "candidate_revision": 0,
                     "model_revision": 0,
@@ -145,8 +150,8 @@ def _evaluation_payload() -> dict:
         "analysis_gate_template": dict(policy.gate_template),
         "bootstrap_policy": dict(policy.bootstrap),
         "role_protocol_sha256": ROLE_PROTOCOL_SHA256,
-        "dataset_inventory_sha256": "d" * 64,
-        "loco_split_sha256": "l" * 64,
+        "dataset_inventory_sha256": _sha("inventory"),
+        "loco_split_sha256": _sha("split"),
         "folds": folds,
     }
 
@@ -164,8 +169,8 @@ def _write_envelope(tmp_path: Path, payload: dict) -> Path:
         "source_commit": "a" * 40,
         "protocol_sha256": ROLE_PROTOCOL_SHA256,
         "runtime_provenance": {},
-        "runtime_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-        "inventory_sha256": "d" * 64,
+        "runtime_sha256": canonical_sha256({}),
+        "inventory_sha256": _sha("inventory"),
         "decision_sha256": file_sha256(summary),
         "referenced_files": [
             {
@@ -289,7 +294,7 @@ def test_primary_freeze_is_immutable_and_required_before_test_access() -> None:
         candidate_id="c" * 64,
         decision_sha256="d" * 64,
         analysis_policy_sha256=policy.policy_sha256,
-        primary_model_sha256s={"pooled_koopman_v2": "p" * 64},
+        primary_model_sha256s={"pooled_koopman_v2": _sha("freeze-pooled")},
         frozen_at="2026-08-29T15:00:00Z",
     )
     token = authorize_primary_test_access_v2(
