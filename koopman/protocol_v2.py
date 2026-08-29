@@ -526,8 +526,24 @@ _ANALYSIS_BOOTSTRAP_FIELDS_V2 = frozenset(
     }
 )
 _ANALYSIS_BOOTSTRAP_FIELDS_V1 = frozenset({"alpha", "resamples", "seed", "unit"})
-_ANALYSIS_ALGORITHM_FIELDS = frozenset(
+_ANALYSIS_ALGORITHM_FIELDS_V1 = frozenset(
     {"name", "primary_metric", "tie_break_order"}
+)
+_ANALYSIS_ALGORITHM_FIELDS_V2 = _ANALYSIS_ALGORITHM_FIELDS_V1 | {"source_score"}
+_ANALYSIS_SOURCE_SCORE_FIELDS_V2 = frozenset(
+    {
+        "aggregation",
+        "baseline_reference",
+        "denominator_zero",
+        "direction",
+        "group_reduction",
+        "horizon",
+        "name",
+        "primary_metric_groups",
+    }
+)
+_ANALYSIS_DENOMINATOR_ZERO_FIELDS_V2 = frozenset(
+    {"candidate_positive", "candidate_zero"}
 )
 _ANALYSIS_METRIC_FIELDS = frozenset(
     {"aggregation", "official_orientation", "row_weighted", "version"}
@@ -576,6 +592,14 @@ _ANALYSIS_TIE_BREAK_ORDER = (
     "ridge_order",
     "normalization_order",
     "platform_schema_order",
+)
+SOURCE_SCORE_PRIMARY_METRICS_V2 = (
+    "depth_rmse",
+    "linear_velocity_rmse",
+    "angular_velocity_rmse",
+    "so3_geodesic_mean_radians",
+    "so3_geodesic_rmse_radians",
+    "so3_geodesic_max_radians",
 )
 MAX_ANALYSIS_POLICY_BYTES = 512 * 1024
 
@@ -727,7 +751,9 @@ def validate_analysis_policy_v1(value: Any) -> None:
 
     algorithm = _analysis_exact(
         policy["inner_decision_algorithm"],
-        _ANALYSIS_ALGORITHM_FIELDS,
+        _ANALYSIS_ALGORITHM_FIELDS_V2
+        if version == ANALYSIS_POLICY_VERSION_V2
+        else _ANALYSIS_ALGORITHM_FIELDS_V1,
         "inner_decision_algorithm",
     )
     if (
@@ -737,6 +763,34 @@ def validate_analysis_policy_v1(value: Any) -> None:
         != _ANALYSIS_TIE_BREAK_ORDER
     ):
         _analysis_fail("analysis_policy_value_invalid", "inner_decision_algorithm")
+    if version == ANALYSIS_POLICY_VERSION_V2:
+        source_score = _analysis_exact(
+            algorithm["source_score"],
+            _ANALYSIS_SOURCE_SCORE_FIELDS_V2,
+            "inner_decision_algorithm.source_score",
+        )
+        denominator_zero = _analysis_exact(
+            source_score["denominator_zero"],
+            _ANALYSIS_DENOMINATOR_ZERO_FIELDS_V2,
+            "inner_decision_algorithm.source_score.denominator_zero",
+        )
+        if source_score != {
+            "aggregation": "equal_configuration_macro",
+            "baseline_reference": "minimum_error",
+            "denominator_zero": denominator_zero,
+            "direction": "lower_is_better",
+            "group_reduction": "maximum",
+            "horizon": "full",
+            "name": "robust_relative_max_ratio_v1",
+            "primary_metric_groups": list(SOURCE_SCORE_PRIMARY_METRICS_V2),
+        } or denominator_zero != {
+            "candidate_positive": "candidate_ineligible",
+            "candidate_zero": "ratio_one",
+        }:
+            _analysis_fail(
+                "analysis_policy_value_invalid",
+                "inner_decision_algorithm.source_score",
+            )
 
     metric = _analysis_exact(
         policy["metric_schema"], _ANALYSIS_METRIC_FIELDS, "metric_schema"
@@ -772,9 +826,15 @@ def validate_analysis_policy_v1(value: Any) -> None:
         _ANALYSIS_REFERENCE_FIELDS,
         "reference_diagnostic",
     )
+    expected_reference_enabled = version == ANALYSIS_POLICY_VERSION_V1
+    if reference["enabled"] is not expected_reference_enabled:
+        _analysis_fail(
+            "reference_diagnostic_not_disabled"
+            if version == ANALYSIS_POLICY_VERSION_V2
+            else "reference_diagnostic_not_eligible"
+        )
     if (
-        reference["enabled"] is not True
-        or reference["model_id"] != "reference_conditioned_diagnostic_v2"
+        reference["model_id"] != "reference_conditioned_diagnostic_v2"
         or reference["namespace"] != "diagnostic/reference_conditioned_v2"
         or reference["selection_eligible"] is not False
     ):
@@ -813,6 +873,19 @@ def build_recommended_analysis_policy_v1() -> dict[str, Any]:
         "inner_decision_algorithm": {
             "name": "lexicographic-paired-source-validation-v1",
             "primary_metric": "full_equal_configuration_macro",
+            "source_score": {
+                "aggregation": "equal_configuration_macro",
+                "baseline_reference": "minimum_error",
+                "denominator_zero": {
+                    "candidate_positive": "candidate_ineligible",
+                    "candidate_zero": "ratio_one",
+                },
+                "direction": "lower_is_better",
+                "group_reduction": "maximum",
+                "horizon": "full",
+                "name": "robust_relative_max_ratio_v1",
+                "primary_metric_groups": list(SOURCE_SCORE_PRIMARY_METRICS_V2),
+            },
             "tie_break_order": list(_ANALYSIS_TIE_BREAK_ORDER),
         },
         "metric_schema": {
@@ -841,7 +914,7 @@ def build_recommended_analysis_policy_v1() -> dict[str, Any]:
         ],
         "qualification_level": "local_contract",
         "reference_diagnostic": {
-            "enabled": True,
+            "enabled": False,
             "model_id": "reference_conditioned_diagnostic_v2",
             "namespace": "diagnostic/reference_conditioned_v2",
             "selection_eligible": False,

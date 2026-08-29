@@ -13,6 +13,7 @@ from types import SimpleNamespace
 
 import pytest
 
+import koopman.loco_v2 as loco_v2
 from easyuuv_nc.embodiments import SUPPORTED_EMBODIMENTS
 from koopman.collection_v2 import DatasetInventoryV2, EpisodeInventoryEntryV2
 from koopman.loco_v2 import (
@@ -47,6 +48,15 @@ POLICY_PATH = (
     / "fixtures"
     / "koopman_phase8_synthetic_system"
     / "analysis_policy_v1.json"
+)
+CANONICAL_POLICY_PATH = PROJECT_ROOT / "protocols" / "phase8" / "analysis_policy.json"
+PRIMARY_SOURCE_SCORE_METRICS = (
+    "depth_rmse",
+    "linear_velocity_rmse",
+    "angular_velocity_rmse",
+    "so3_geodesic_mean_radians",
+    "so3_geodesic_rmse_radians",
+    "so3_geodesic_max_radians",
 )
 
 
@@ -246,6 +256,95 @@ def test_analysis_policy_is_exact_local_fixture_not_canonical_approval() -> None
 )
 def test_analysis_policy_mutations_fail_closed(mutation, reason) -> None:
     payload = json.loads(POLICY_PATH.read_text(encoding="utf-8"))
+    mutation(payload)
+    with pytest.raises(ValueError, match=reason):
+        validate_analysis_policy_v1(payload)
+
+
+def test_canonical_policy_freezes_robust_relative_source_score_and_disables_reference() -> None:
+    payload = json.loads(CANONICAL_POLICY_PATH.read_text(encoding="utf-8"))
+    validate_analysis_policy_v1(payload)
+
+    source_score = payload["inner_decision_algorithm"]["source_score"]
+    assert source_score == {
+        "aggregation": "equal_configuration_macro",
+        "baseline_reference": "minimum_error",
+        "denominator_zero": {
+            "candidate_positive": "candidate_ineligible",
+            "candidate_zero": "ratio_one",
+        },
+        "direction": "lower_is_better",
+        "group_reduction": "maximum",
+        "horizon": "full",
+        "name": "robust_relative_max_ratio_v1",
+        "primary_metric_groups": list(PRIMARY_SOURCE_SCORE_METRICS),
+    }
+    assert "weights" not in source_score
+    assert payload["reference_diagnostic"]["enabled"] is False
+
+
+def test_robust_relative_source_score_uses_stronger_baseline_and_max_group() -> None:
+    candidate = dict.fromkeys(PRIMARY_SOURCE_SCORE_METRICS, 1.0)
+    persistence = dict.fromkeys(PRIMARY_SOURCE_SCORE_METRICS, 2.0)
+    simple_linear = dict.fromkeys(PRIMARY_SOURCE_SCORE_METRICS, 2.0)
+    candidate["depth_rmse"] = 2.0
+    persistence["depth_rmse"] = 4.0
+    simple_linear["depth_rmse"] = 3.0
+    candidate["linear_velocity_rmse"] = 4.0
+    persistence["linear_velocity_rmse"] = 8.0
+    simple_linear["linear_velocity_rmse"] = 10.0
+
+    score = loco_v2.robust_relative_source_score_v2(
+        candidate,
+        persistence,
+        simple_linear,
+        primary_metric_groups=PRIMARY_SOURCE_SCORE_METRICS,
+    )
+
+    assert score == pytest.approx(2.0 / 3.0)
+
+
+def test_robust_relative_source_score_defines_zero_denominator_without_epsilon() -> None:
+    zero = dict.fromkeys(PRIMARY_SOURCE_SCORE_METRICS, 0.0)
+    assert loco_v2.robust_relative_source_score_v2(
+        zero,
+        zero,
+        zero,
+        primary_metric_groups=PRIMARY_SOURCE_SCORE_METRICS,
+    ) == pytest.approx(1.0)
+
+    positive = dict(zero)
+    positive["depth_rmse"] = 0.1
+    with pytest.raises(ValueError, match="source_score_reference_zero_candidate_positive"):
+        loco_v2.robust_relative_source_score_v2(
+            positive,
+            zero,
+            zero,
+            primary_metric_groups=PRIMARY_SOURCE_SCORE_METRICS,
+        )
+
+
+@pytest.mark.parametrize(
+    ("mutation", "reason"),
+    [
+        (
+            lambda value: value["inner_decision_algorithm"].pop("source_score"),
+            "analysis_policy_field_set_mismatch",
+        ),
+        (
+            lambda value: value["inner_decision_algorithm"]["source_score"].update(
+                weights=[1.0] * len(PRIMARY_SOURCE_SCORE_METRICS)
+            ),
+            "analysis_policy_field_set_mismatch",
+        ),
+        (
+            lambda value: value["reference_diagnostic"].update(enabled=True),
+            "reference_diagnostic_not_disabled",
+        ),
+    ],
+)
+def test_canonical_source_score_semantic_mutations_fail_closed(mutation, reason) -> None:
+    payload = json.loads(CANONICAL_POLICY_PATH.read_text(encoding="utf-8"))
     mutation(payload)
     with pytest.raises(ValueError, match=reason):
         validate_analysis_policy_v1(payload)

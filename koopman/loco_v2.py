@@ -17,7 +17,7 @@ from typing import Any, TypeVar
 
 from koopman.collection_v2 import DatasetInventoryV2, EpisodeInventoryEntryV2
 from koopman.evidence_v2 import canonical_json_bytes, canonical_sha256
-from koopman.protocol_v2 import AnalysisPolicyV2
+from koopman.protocol_v2 import AnalysisPolicyV2, SOURCE_SCORE_PRIMARY_METRICS_V2
 from koopman.splits_v2 import (
     ExpertLOCOViewV2,
     LOCOFoldManifestV2,
@@ -93,6 +93,50 @@ def candidate_grid_v2(policy: AnalysisPolicyV2) -> tuple[CandidateSpecV2, ...]:
         for normalization in policy.normalization_candidates
         for platform in policy.platform_schema_candidates
     )
+
+
+def robust_relative_source_score_v2(
+    candidate_errors: Mapping[str, float],
+    persistence_errors: Mapping[str, float],
+    simple_linear_errors: Mapping[str, float],
+    *,
+    primary_metric_groups: tuple[str, ...],
+) -> float:
+    """Return the frozen unweighted worst relative source-validation error.
+
+    Inputs are the already aggregated full-horizon errors for one source
+    configuration.  A zero reference and zero candidate is exact parity and
+    therefore has ratio one.  A positive candidate error against a zero
+    reference is ineligible instead of being softened with an epsilon.
+    """
+
+    groups = tuple(primary_metric_groups)
+    if groups != SOURCE_SCORE_PRIMARY_METRICS_V2:
+        _fail("source_score_metric_group_mismatch")
+    expected = set(groups)
+    if any(set(values) != expected for values in (
+        candidate_errors,
+        persistence_errors,
+        simple_linear_errors,
+    )):
+        _fail("source_score_metric_group_mismatch")
+    ratios: list[float] = []
+    for group in groups:
+        values = tuple(
+            float(errors[group])
+            for errors in (candidate_errors, persistence_errors, simple_linear_errors)
+        )
+        if any(not math.isfinite(value) or value < 0.0 for value in values):
+            _fail("source_score_error_invalid", group)
+        candidate_error, persistence_error, simple_linear_error = values
+        reference = min(persistence_error, simple_linear_error)
+        if reference == 0.0:
+            if candidate_error > 0.0:
+                _fail("source_score_reference_zero_candidate_positive", group)
+            ratios.append(1.0)
+        else:
+            ratios.append(candidate_error / reference)
+    return max(ratios)
 
 
 @dataclass(frozen=True)
