@@ -423,8 +423,21 @@ def test_main_server_runner_reuses_locked_server_environment_and_snapshots_pipel
         "configuration_exact_12_failed",
         'part_count="$(find',
         'semantic_status="pass"',
+        'runtime_sha="$("$CONDA_PYTHON" -c',
+        '"$CONDA_PYTHON" workflows/build_koopman_v2_inventory.py',
+        '"$CONDA_PYTHON" workflows/build_koopman_v2_splits.py',
+        '"$CONDA_PYTHON" workflows/build_phase8_main_envelope.py',
+        '"$CONDA_PYTHON" workflows/validate_phase8_evidence.py',
     ):
         assert token in text, f"main server runner is missing {token!r}"
+
+    for unsafe_postprocess in (
+        '"$ISAACLAB_PY" -p workflows/build_koopman_v2_inventory.py',
+        '"$ISAACLAB_PY" -p workflows/build_koopman_v2_splits.py',
+        '"$ISAACLAB_PY" -p workflows/build_phase8_main_envelope.py',
+        '"$ISAACLAB_PY" -p workflows/validate_phase8_evidence.py',
+    ):
+        assert unsafe_postprocess not in text
 
     assert "native_status=${PIPESTATUS[0]}" not in text
     assert "tee_status=${PIPESTATUS[1]}" not in text
