@@ -730,6 +730,12 @@ class EasyUUVEnv(DirectRLEnv):
         # get force calculation functions and rotor dynamics models
         self.force_calculation_functions = HydrodynamicForceModels(self.num_envs, self.device, False)
         self.thruster_dynamics = DynamicsFirstOrder(self.num_envs, 8, self.cfg.dyn_time_constant, self.device)
+        # _compute_dynamics runs once per physics substep, including every
+        # decimation substep.  Keep an actuator-local clock instead of deriving
+        # time from episode_length_buf, which advances only once per control step.
+        self._thruster_dynamics_time_s = torch.zeros(
+            self.num_envs, device=self.device, dtype=torch.float32
+        )
         self.thruster_conversion = ConversionFunctionBasic(self.cfg.rotor_constant)
 
         # Embodiment type for cross-embodiment experiments
@@ -1713,6 +1719,8 @@ class EasyUUVEnv(DirectRLEnv):
             self._last_applied_wrench_6[ids] = 0.0
             self._last_fluid_velocity_w[ids] = 0.0
             self._last_thruster_efficiency_n[ids] = 0.0
+        if hasattr(self, "_thruster_dynamics_time_s"):
+            self._thruster_dynamics_time_s[ids] = 0.0
 
         self.obs_noise_buffer[env_ids] = 0.0
         self._prev_action[env_ids] = 0.0
@@ -2368,8 +2376,9 @@ class EasyUUVEnv(DirectRLEnv):
         motorValues[motorValues <= -threshold] = 161.0 * (torch.pow(motorValues[motorValues <= -threshold], 2.0)) + 517.86 * motorValues[motorValues <= -threshold] - 5.72
 
         # get the current motor velocities using thruster dynamics
-        # TODO: CHECK THAT SIM DT IS CORRECT HERE
-        motorValues = self.thruster_dynamics.update(motorValues, self.episode_length_buf * self.sim.cfg.dt)
+        end_time_s = self._thruster_dynamics_time_s + float(self.sim.cfg.dt)
+        motorValues = self.thruster_dynamics.update(motorValues, end_time_s)
+        self._thruster_dynamics_time_s.copy_(end_time_s)
 
         # get thruster forces from their speeds using the thruster conversion function 
         motorValues = self.thruster_conversion.convert(motorValues)

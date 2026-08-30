@@ -167,22 +167,47 @@ def get_thruster_com_and_orientations(device):
 class Dynamics(ABC):
 
   def __init__(self, numEnvs:int, num_thrusters_per_env:int, device:torch.device) -> None: 
+    if numEnvs <= 0:
+      raise ValueError("numEnvs must be strictly positive.")
+    if num_thrusters_per_env <= 0:
+      raise ValueError("num_thrusters_per_env must be strictly positive.")
     self.numEnvs = numEnvs
     self.num_thrusters_per_env = num_thrusters_per_env
-    self.device = device
+    self.device = torch.device(device)
     self.reset_all()
 
-  # maskArr is a boolean array of size (numEnvs) where envs with value=True are reset
-  def reset(self, maskArr:list):
-    self.state[maskArr,:] = 0.0
-    self.prevTime[maskArr] = -1.0
+  def _normalize_env_ids(self, env_ids) -> torch.Tensor:
+    raw = torch.as_tensor(env_ids, device=self.device)
+    if raw.numel() == 0:
+      return torch.empty(0, dtype=torch.long, device=self.device)
+    if raw.dtype == torch.bool:
+      if raw.shape != (self.numEnvs,):
+        raise ValueError(
+          f"Boolean environment mask must have shape ({self.numEnvs},), got {tuple(raw.shape)}."
+        )
+      normalized = torch.nonzero(raw, as_tuple=False).reshape(-1)
+    else:
+      if raw.dtype.is_floating_point or raw.dtype.is_complex:
+        raise ValueError("Environment ids must be integer indices or a boolean mask.")
+      normalized = raw.to(dtype=torch.long).reshape(-1)
+    if torch.any(normalized < 0) or torch.any(normalized >= self.numEnvs):
+      raise IndexError(f"Environment ids must be in [0, {self.numEnvs}).")
+    return normalized
+
+  # env_ids may be integer indices or a boolean mask of length numEnvs.
+  def reset(self, env_ids):
+    env_ids_t = self._normalize_env_ids(env_ids)
+    if env_ids_t.numel() == 0:
+      return
+    self.state[env_ids_t, :] = 0.0
+    self.prevTime[env_ids_t] = 0.0
 
   def reset_all(self):
     self.state = torch.zeros((self.numEnvs, self.num_thrusters_per_env), dtype=torch.float32, device=self.device, requires_grad=False)
-    self.prevTime = torch.ones((self.numEnvs), dtype=torch.float32, device=self.device, requires_grad=False) * -1.0
+    self.prevTime = torch.zeros((self.numEnvs), dtype=torch.float32, device=self.device, requires_grad=False)
 
   @abstractmethod
-  def update(self, cmd:torch.tensor, t:float) -> float:
+  def update(self, cmd:torch.Tensor, t:torch.Tensor) -> torch.Tensor:
     pass
 
 class DynamicsFirstOrder(Dynamics):
@@ -190,9 +215,15 @@ class DynamicsFirstOrder(Dynamics):
   def __init__(self, numEnvs:int, num_thrusters_per_env:int, tau:float, device:torch.device):
     super().__init__(numEnvs=numEnvs, num_thrusters_per_env=num_thrusters_per_env, device=device)
     self.tau = torch.full((self.numEnvs,), float(tau), dtype=torch.float32, device=self.device)
+    self._validate_time_constants(self.tau)
+
+  @staticmethod
+  def _validate_time_constants(tau:torch.Tensor) -> None:
+    if not torch.all(torch.isfinite(tau)) or not torch.all(tau > 0.0):
+      raise ValueError("Thruster time constants must be finite and strictly positive.")
 
   def set_time_constants(self, env_ids, tau_values) -> None:
-    env_ids_t = torch.as_tensor(env_ids, device=self.device, dtype=torch.long)
+    env_ids_t = self._normalize_env_ids(env_ids)
     if env_ids_t.numel() == 0:
       return
 
@@ -203,31 +234,46 @@ class DynamicsFirstOrder(Dynamics):
       raise ValueError(
         f"Expected {env_ids_t.numel()} time constants for the selected environments, got {tau_tensor.numel()}."
       )
+    self._validate_time_constants(tau_tensor)
     self.tau[env_ids_t] = tau_tensor
 
   # cmd: torch.tensor of shape (numEnvs, num_thrusters_per_env) 
   # t: torch.tensor of shape (numEnvs) with the current times 
   # given force commands, update the state of system and report current thrusts 
-  def update(self, cmd:torch.tensor, t:torch.tensor) -> float:
-    # old method would return state if single time was not set yet
-    #if self.prevTime < 0:
-    #  self.prevTime = t
-    #  return self.state
+  def update(self, cmd:torch.Tensor, t:torch.Tensor) -> torch.Tensor:
+    expected_cmd_shape = (self.numEnvs, self.num_thrusters_per_env)
+    if not isinstance(cmd, torch.Tensor) or tuple(cmd.shape) != expected_cmd_shape:
+      actual_shape = tuple(cmd.shape) if isinstance(cmd, torch.Tensor) else None
+      raise ValueError(f"cmd must have shape {expected_cmd_shape}, got {actual_shape}.")
+    if cmd.device != self.state.device:
+      raise ValueError(f"cmd must use device {self.state.device}, got {cmd.device}.")
+    if cmd.dtype != self.state.dtype:
+      raise ValueError(f"cmd must use dtype {self.state.dtype}, got {cmd.dtype}.")
+    if not torch.all(torch.isfinite(cmd)):
+      raise ValueError("cmd must contain only finite values.")
 
-    # set previously unupdated times to the current time in those envs
-    self.prevTime[self.prevTime < 0] = t[self.prevTime < 0]
+    expected_time_shape = (self.numEnvs,)
+    if not isinstance(t, torch.Tensor) or tuple(t.shape) != expected_time_shape:
+      actual_shape = tuple(t.shape) if isinstance(t, torch.Tensor) else None
+      raise ValueError(f"t must have shape {expected_time_shape}, got {actual_shape}.")
+    if t.device != self.prevTime.device:
+      raise ValueError(f"t must use device {self.prevTime.device}, got {t.device}.")
+    if t.dtype != self.prevTime.dtype:
+      raise ValueError(f"t must use dtype {self.prevTime.dtype}, got {t.dtype}.")
+    if not torch.all(torch.isfinite(t)):
+      raise ValueError("t must contain only finite values.")
 
-    # because dt = 0 for previously unupdated times, alpha=1 and we just get the previous state 
+    if torch.any(t < self.prevTime):
+      raise ValueError("t must be monotonic for every environment.")
+
     dt = t - self.prevTime
-    alpha = torch.exp(-dt/self.tau)
-    alpha = torch.zeros_like(alpha) # todo: this wipes out alpha, always just sets it to the command!
-    #print(self.state.shape, cmd.shape, alpha.shape)
-    #print(dt, alpha, self.state)
+    alpha = torch.exp(-dt / self.tau)
+    next_state = self.state * alpha.unsqueeze(-1) + (1.0 - alpha).unsqueeze(-1) * cmd
+    if not torch.all(torch.isfinite(next_state)):
+      raise RuntimeError("First-order thruster update produced non-finite actuator state.")
 
-    self.state = self.state * alpha.unsqueeze(-1) + (1.0 - alpha).unsqueeze(-1) * cmd
-    assert torch.any(self.state == cmd)
-
-    self.prevTime = t
+    self.state.copy_(next_state)
+    self.prevTime.copy_(t)
     return self.state
 
 # based on https://github.com/uuvsimulator/uuv_simulator/blob/master/uuv_gazebo_plugins/uuv_gazebo_plugins/src/ThrusterConversionFcn.cc
