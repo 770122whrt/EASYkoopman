@@ -377,6 +377,18 @@ class Phase8SelectionResultV2:
             self, "family_diagnostics", MappingProxyType(dict(self.family_diagnostics))
         )
 
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "evaluation_envelope_path": self.evaluation_envelope_path,
+            "evaluation_envelope_sha256": self.evaluation_envelope_sha256,
+            "family_diagnostics": dict(self.family_diagnostics),
+            "reason_codes": list(self.reason_codes),
+            "selected_family": self.selected_family,
+            "selected_model_path": self.selected_model_path,
+            "status": self.status,
+            "version": self.version,
+        }
+
 
 def select_phase8_candidate(
     evaluation_envelope: str | Path,

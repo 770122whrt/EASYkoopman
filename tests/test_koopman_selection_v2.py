@@ -225,6 +225,37 @@ def test_no_selection_is_reason_coded_and_has_no_model_path(tmp_path) -> None:
     assert "baseline_improvement_failed" in result.reason_codes
 
 
+def test_no_selection_is_atomically_published_without_model_path(tmp_path) -> None:
+    from koopman.evidence_v2 import validate_phase8_evidence
+    from workflows.select_koopman_v2 import publish_terminal_result
+
+    payload = _evaluation_payload()
+    for fold in payload["folds"]:
+        fold["roles"]["pooled_koopman_v2"] = _role(
+            fold["holdout_configuration"], "pooled_koopman_v2", 1.2
+        )
+        fold["roles"]["conditional_koopman_v2"] = _role(
+            fold["holdout_configuration"], "conditional_koopman_v2", 1.1
+        )
+    output_root = tmp_path / "selection"
+
+    envelope_path = publish_terminal_result(
+        evaluation_envelope=_write_envelope(tmp_path, payload),
+        analysis_policy=POLICY_PATH,
+        source_commit="b" * 40,
+        output_root=output_root,
+    )
+
+    selection = json.loads((output_root / "selection_result.json").read_text())
+    assert selection["status"] == "no_selection"
+    assert selection["selected_family"] is None
+    assert selection["selected_model_path"] is None
+    assert envelope_path == output_root / "selection_envelope.json"
+    assert validate_phase8_evidence(
+        envelope_path, required_qualification="no_selection"
+    )["validation_gate"] == "phase8_external_evidence_valid"
+
+
 def test_one_failed_family_is_ineligible_without_invalidating_other_family(tmp_path) -> None:
     from koopman.selection_v2 import select_phase8_candidate
 
