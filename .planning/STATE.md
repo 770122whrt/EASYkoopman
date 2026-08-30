@@ -3,20 +3,20 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Multi-Configuration Koopman Transfer and Environment-Aware Control
 status: executing
-last_updated: "2026-08-29T14:40:03Z"
-last_activity: 2026-08-29 -- Plan 08-04 completed with the approved exact-eight 96-episode real-server dataset and validated pullback
+last_updated: "2026-08-30T03:05:49Z"
+last_activity: 2026-08-30 -- Phase 8 independently verified complete with a valid frozen no-selection result
 progress:
   total_phases: 7
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 13
-  completed_plans: 12
-  percent: 92
+  completed_plans: 13
+  percent: 100
 ---
 
 # Project State: EASYkoopman
 
-**Updated:** 2026-08-29
-**Current focus:** Phase 08 — multi-configuration-koopman-identification-and-ood-gate
+**Updated:** 2026-08-30
+**Current focus:** Phase 08 complete — valid frozen `NO_SELECTION`; no Phase 9 model handoff
 **Active milestone:** `v2.0 Multi-Configuration Koopman Transfer and Environment-Aware Control`
 **Branch:** `v2.0-multi-configuration`
 
@@ -28,10 +28,10 @@ See `.planning/PROJECT.md`.
 
 ## Current Position
 
-Phase: 08 (multi-configuration-koopman-identification-and-ood-gate) — EXECUTING
+Phase: 08 (multi-configuration-koopman-identification-and-ood-gate) — COMPLETE
 Plan: 5 of 5
-Status: Ready to execute
-Last activity: 2026-08-29 -- Plan 08-04 completed; Plan 08-05 is next
+Status: Independently verified `PASS_VALID_FROZEN_NO_SELECTION`
+Last activity: 2026-08-30 -- Plan 08-05 completed; KID-01..05 passed; no model was promoted
 
 ## Milestone Goal
 
@@ -155,7 +155,11 @@ All three boundaries are visible on `origin/v2.0-multi-configuration`: simulator
 - Random-staging pullback validated all 294 canonical files, exact protocol/source/runtime hashes and all process statuses before atomic promotion. Evidence is isolated in commit `98dbd76`, and Git text conversion is disabled only for that immutable dataset subtree.
 - Three failed server attempts were preserved and never promoted or appended: missing non-interactive Conda activation, native 178-step timeout, and postprocessing hash contamination. The successful attempt used a fresh bundle/checkout/result root and completed with `bootstrap.exit=0`.
 - Plan 08-04 proves exact-eight dataset and LOCO-split readiness only. No model has been fitted or selected and no held-out prediction, OOD transfer, MPC, environment-adaptation or Agentic claim is supported. KID-01 data and KID-02/03/05 prerequisites are ready, but formal KID completion remains pending 08-05 and independent verification.
+- Plan 08-05 completed all eight source-only LOCO folds. Every primary candidate/model was frozen before held-out access with zero test opens at freeze and zero post-test mutations; the evaluation envelope validates 106 referenced files with `warnings=[]`.
+- Pooled Koopman was identical to simple linear and failed the frozen improvement/bootstrap gates. Conditional Koopman was ineligible after reason-coded quaternion-projection failures on `heavy_moderate`, `uuv4` and `uuv4_angled`.
+- The atomic terminal envelope is a pathless `no_selection`; it validates with `warnings=[]`. Independent verification reran the canonical envelopes, structural audit and 64 relevant tests, then passed KID-01..05 as `PASS_VALID_FROZEN_NO_SELECTION`.
+- Phase 8 is scientifically complete but no Phase 9 handoff model exists. This result supports held-out prediction evaluation and rejection only, not Koopman-MPC, environment transfer, Agentic, Sim2Real or hardware claims.
 
 ## Next Action
 
-Execute `08-05-PLAN.md`: run the one frozen exact-eight LOCO evaluation against the canonical 08-04 dataset. Machine-verify that each fold's primary model and all model-affecting choices are sealed before held-out test access; test outcomes may not alter fitting or candidate selection. Emit separate immutable evaluation and selection/no-selection roots, then perform independent goal-backward Phase 8 verification.
+STOP after Phase 8. Before Phase 9 planning or execution, make an explicit research decision about the valid frozen `no_selection`: a future versioned identification experiment may address the model limitation, but this Phase 8 result must remain immutable and cannot supply a Koopman-MPC handoff model.

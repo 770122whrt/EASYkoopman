@@ -27,11 +27,11 @@
 
 ### Multi-Configuration Koopman Identification
 
-- [ ] **KID-01**: Training, validation and test data are split by configuration and episode rather than by randomly sampled rows.
-- [ ] **KID-02**: The identification workflow compares persistence, linear, per-configuration Koopman, pooled Koopman, conditional Koopman and per-configuration expert upper-bound models under the same split manifest.
-- [ ] **KID-03**: Held-out-configuration reports include one-step, multi-step and rollout prediction metrics with configuration-level aggregation.
-- [ ] **KID-04**: Orientation prediction error uses an SO(3) geodesic metric and is not labelled from raw quaternion-component RMSE.
-- [ ] **KID-05**: Model selection writes a provenance-checked manifest and permits `no_selection` when no candidate passes every required gate.
+- [x] **KID-01**: Training, validation and test data are split by configuration and episode rather than by randomly sampled rows.
+- [x] **KID-02**: The identification workflow compares persistence, linear, per-configuration Koopman, pooled Koopman, conditional Koopman and per-configuration expert upper-bound models under the same split manifest.
+- [x] **KID-03**: Held-out-configuration reports include one-step, multi-step and rollout prediction metrics with configuration-level aggregation.
+- [x] **KID-04**: Orientation prediction error uses an SO(3) geodesic metric and is not labelled from raw quaternion-component RMSE.
+- [x] **KID-05**: Model selection writes a provenance-checked manifest and permits `no_selection` when no candidate passes every required gate.
 
 ### Configuration-Aware Koopman-MPC
 
@@ -103,11 +103,11 @@
 | CONT-03 | Phase 7 | Complete |
 | CONT-04 | Phase 7 | Complete |
 | CONT-05 | Phase 7 | Complete |
-| KID-01 | Phase 8 | Pending |
-| KID-02 | Phase 8 | Pending |
-| KID-03 | Phase 8 | Pending |
-| KID-04 | Phase 8 | Pending |
-| KID-05 | Phase 8 | Pending |
+| KID-01 | Phase 8 | Complete |
+| KID-02 | Phase 8 | Complete |
+| KID-03 | Phase 8 | Complete |
+| KID-04 | Phase 8 | Complete |
+| KID-05 | Phase 8 | Complete |
 | MPC2-01 | Phase 9 | Pending |
 | MPC2-02 | Phase 9 | Pending |
 | MPC2-03 | Phase 9 | Pending |

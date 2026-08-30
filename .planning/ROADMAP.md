@@ -17,8 +17,8 @@ v1.0 的阶段名称、结论和证据已冻结，不在本活动 roadmap 中重
 |---|---|---|---|---|
 | 6 | EasyUUV 2.0 Intake and Multi-Configuration Qualification | QUAL-01..08 | v1.0 frozen baseline | Complete — 4/4 plans verified |
 | 7 | Cross-Configuration Koopman Data and Control Contract | CONT-01..05 | Phase 6 | Complete — 4/4 plans verified |
-| 8 | Multi-Configuration Koopman Identification and OOD Gate | KID-01..05 | Phase 7 | Executing — 4/5 plans complete |
-| 9 | Configuration-Aware Koopman-MPC Integration | MPC2-01..04 | Phase 8 | Pending |
+| 8 | Multi-Configuration Koopman Identification and OOD Gate | KID-01..05 | Phase 7 | Complete — 5/5 plans verified; valid `NO_SELECTION` |
+| 9 | Configuration-Aware Koopman-MPC Integration | MPC2-01..04 | Phase 8 | Pending — no Phase 8 handoff model |
 | 10 | Environment Awareness and Online Koopman Update | ADAPT-01..05 | Phase 9 | Pending |
 | 11 | Low-Frequency Agent Supervisor | AGENT-01..04 | Phase 10 | Pending |
 | 12 | Final Matched Evaluation and Research Evidence | EVAL-01..05 | Phase 11 | Pending |
@@ -140,7 +140,7 @@ Plans:
 
 **Wave 5** *(blocked on Wave 4 completion)*
 
-- [ ] 08-05-PLAN.md — run the one frozen exact-eight LOCO evaluation, atomically emit separate selection/no-selection evidence, perform test-free final refit when eligible and close only after independent goal-backward verification.
+- [x] 08-05-PLAN.md — completed all eight frozen LOCO folds, atomically published a pathless `no_selection`, and passed independent goal-backward verification (`PASS_VALID_FROZEN_NO_SELECTION`).
 
 **Cross-cutting constraints:**
 
@@ -149,6 +149,7 @@ Plans:
 - Main selection inputs are `state_11 + virtual_control_4`, with optional fold-fitted physical platform context. Reference, PWM, measured wrench and environment oracle remain diagnostic/non-promoting.
 - Planning, local implementation, pilot evidence, main server dataset, offline evaluation, terminal selection/no-selection and closeout remain separate commits and immutable roots.
 - Phase 8 proves or rejects held-out-configuration prediction transfer only; MPC/closed-loop, environment adaptation, Agentic and hardware claims remain Phase 9+.
+- Phase 8 closed with a valid negative result: neither eligible Koopman family passed the frozen gate, so Phase 9 has no model handoff and must not begin execution from this artifact.
 
 ### Phase 9: Configuration-Aware Koopman-MPC Integration
 
