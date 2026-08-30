@@ -154,7 +154,7 @@ class SourceMetricRecordV21:
     configuration: str
     candidate_errors: Mapping[str, float | None]
     persistence_errors: Mapping[str, float]
-    simple_linear_errors: Mapping[str, float]
+    simple_linear_errors: Mapping[str, float | None]
 
     def __post_init__(self) -> None:
         if not self.configuration:
@@ -182,7 +182,7 @@ class SourceMetricRecordV21:
             "simple_linear_errors",
             _metric_mapping(
                 self.simple_linear_errors,
-                allow_none=False,
+                allow_none=True,
                 path=f"{self.configuration}.simple_linear",
             ),
         )
@@ -267,7 +267,7 @@ class CandidateLedgerEntryV21:
     source_configuration_metrics: Mapping[str, Mapping[str, Mapping[str, float | None]]]
     candidate_equal_configuration_macro: Mapping[str, float] | None
     persistence_equal_configuration_macro: Mapping[str, float]
-    simple_linear_equal_configuration_macro: Mapping[str, float]
+    simple_linear_equal_configuration_macro: Mapping[str, float] | None
     ratios: Mapping[str, float]
     source_score: float | None
     numerics: NumericalDiagnosticsV21
@@ -320,8 +320,10 @@ class CandidateLedgerEntryV21:
             "ratios": dict(self.ratios),
             "rejection_reason": self.rejection_reason,
             "selection_eligible": self.selection_eligible,
-            "simple_linear_equal_configuration_macro": dict(
-                self.simple_linear_equal_configuration_macro
+            "simple_linear_equal_configuration_macro": (
+                None
+                if self.simple_linear_equal_configuration_macro is None
+                else dict(self.simple_linear_equal_configuration_macro)
             ),
             "source_configuration_metrics": {
                 configuration: {
@@ -349,9 +351,12 @@ def _entry(evaluation: CandidateEvaluationV21) -> CandidateLedgerEntryV21:
     candidate_macro = _macro(evaluation.source_records, "candidate_errors")
     persistence_macro = _macro(evaluation.source_records, "persistence_errors")
     simple_macro = _macro(evaluation.source_records, "simple_linear_errors")
-    assert persistence_macro is not None and simple_macro is not None
+    assert persistence_macro is not None
     reason = evaluation.rejection_reason
     eligible = evaluation.converged
+    if eligible and simple_macro is None:
+        eligible = False
+        reason = "simple_linear_baseline_failed"
     if eligible and evaluation.numerics.design_rank != evaluation.numerics.design_width:
         eligible = False
         reason = "design_rank_insufficient"
@@ -402,13 +407,17 @@ def _entry(evaluation: CandidateEvaluationV21) -> CandidateLedgerEntryV21:
     )
 
 
-def _ranking_key_v21(entry: CandidateLedgerEntryV21) -> tuple[Any, ...]:
+def _ranking_key_v21(
+    entry: CandidateLedgerEntryV21,
+    family_order: Sequence[str],
+) -> tuple[Any, ...]:
     return (
         float(entry.source_score),
         entry.candidate.data_prefix,
         0 if entry.candidate.observable_schema == "so3_identity_v1" else 1,
         entry.candidate.ridge,
         0 if entry.candidate.normalization == "none" else 1,
+        tuple(family_order).index(entry.candidate.family),
         entry.candidate.candidate_id,
     )
 
@@ -416,6 +425,7 @@ def _ranking_key_v21(entry: CandidateLedgerEntryV21) -> tuple[Any, ...]:
 @dataclass(frozen=True)
 class SourceCandidateLedgerV21:
     source_configurations: tuple[str, ...]
+    family_order: tuple[str, ...]
     candidates: tuple[CandidateLedgerEntryV21, ...]
     ranking: tuple[str, ...]
     selected_candidates: Mapping[str, str]
@@ -426,6 +436,7 @@ class SourceCandidateLedgerV21:
 
     def __post_init__(self) -> None:
         object.__setattr__(self, "source_configurations", tuple(self.source_configurations))
+        object.__setattr__(self, "family_order", tuple(self.family_order))
         object.__setattr__(self, "candidates", tuple(self.candidates))
         object.__setattr__(self, "ranking", tuple(self.ranking))
         object.__setattr__(
@@ -433,6 +444,11 @@ class SourceCandidateLedgerV21:
         )
         if len(self.source_configurations) != 7 or len(set(self.source_configurations)) != 7:
             _fail("source_configuration_set_mismatch")
+        if (
+            len(self.family_order) != len(ELIGIBLE_FAMILIES_V21)
+            or set(self.family_order) != set(ELIGIBLE_FAMILIES_V21)
+        ):
+            _fail("family_order_invalid")
         if not self.sealed or self.source_configuration_mode != SOURCE_CONFIGURATION_MODE_V21:
             _fail("source_ledger_not_sealed")
         object.__setattr__(
@@ -442,6 +458,7 @@ class SourceCandidateLedgerV21:
     def to_dict(self, *, include_sha256: bool = True) -> dict[str, Any]:
         value = {
             "candidates": [entry.to_dict() for entry in self.candidates],
+            "family_order": list(self.family_order),
             "ranking": list(self.ranking),
             "sealed": self.sealed,
             "selected_candidates": dict(self.selected_candidates),
@@ -459,12 +476,18 @@ def build_source_candidate_ledger_v21(
     *,
     source_configurations: Sequence[str],
     expected_candidates: Sequence[CandidateSpecV21],
+    family_order: Sequence[str] = ELIGIBLE_FAMILIES_V21,
 ) -> SourceCandidateLedgerV21:
     """Seal a complete source-only ledger; no held-out input exists here."""
 
     sources = tuple(source_configurations)
+    families = tuple(family_order)
     if len(sources) != 7 or len(set(sources)) != 7:
         _fail("source_configuration_set_mismatch")
+    if len(families) != len(ELIGIBLE_FAMILIES_V21) or set(families) != set(
+        ELIGIBLE_FAMILIES_V21
+    ):
+        _fail("family_order_invalid")
     expected = tuple(expected_candidates)
     results = tuple(evaluations)
     expected_ids = tuple(candidate.candidate_id for candidate in expected)
@@ -478,14 +501,15 @@ def build_source_candidate_ledger_v21(
             _fail("source_configuration_set_mismatch")
     entries = tuple(_entry(result) for result in ordered)
     eligible = [entry for entry in entries if entry.selection_eligible]
-    ranked = sorted(eligible, key=_ranking_key_v21)
+    ranked = sorted(eligible, key=lambda entry: _ranking_key_v21(entry, families))
     selected: dict[str, str] = {}
-    for family in ELIGIBLE_FAMILIES_V21:
+    for family in families:
         family_entries = [entry for entry in ranked if entry.candidate.family == family]
         if family_entries:
             selected[family] = family_entries[0].candidate.candidate_id
     return SourceCandidateLedgerV21(
         source_configurations=sources,
+        family_order=families,
         candidates=entries,
         ranking=tuple(entry.candidate.candidate_id for entry in ranked),
         selected_candidates=selected,
@@ -582,7 +606,7 @@ def freeze_primary_v21(
     }
     ranked = sorted(
         (entry for entry in ledger.candidates if entry.selection_eligible),
-        key=_ranking_key_v21,
+        key=lambda entry: _ranking_key_v21(entry, ledger.family_order),
     )
     expected_ranking = tuple(entry.candidate.candidate_id for entry in ranked)
     expected_selected: dict[str, str] = {}

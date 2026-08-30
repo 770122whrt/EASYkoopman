@@ -172,7 +172,11 @@ class _SyntheticFormalLocoBackend:
         }
 
     def evaluate_expert(self, model, payloads):
-        return 0.2, dict.fromkeys(PRIMARY_METRICS_V21, 0.2)
+        return (
+            dict.fromkeys(PRIMARY_METRICS_V21, 0.2),
+            dict.fromkeys(PRIMARY_METRICS_V21, 1.0),
+            dict.fromkeys(PRIMARY_METRICS_V21, 0.8),
+        )
 
     @staticmethod
     def serialize_expert(model):

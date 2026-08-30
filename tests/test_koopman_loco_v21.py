@@ -198,6 +198,75 @@ def test_condition_and_nonconvergence_are_reason_coded_not_dropped() -> None:
     assert ledger.ranking == ()
 
 
+def test_missing_simple_linear_baseline_is_selection_ineligible() -> None:
+    from koopman.loco_v21 import (
+        CandidateEvaluationV21,
+        NumericalDiagnosticsV21,
+        SourceMetricRecordV21,
+    )
+
+    candidate = _spec("simple-linear-failed")
+    records = tuple(
+        SourceMetricRecordV21(
+            configuration=configuration,
+            candidate_errors=_errors(0.4),
+            persistence_errors=_errors(1.0),
+            simple_linear_errors=_errors(None),
+        )
+        for configuration in SOURCES
+    )
+    evaluation = CandidateEvaluationV21(
+        candidate,
+        records,
+        NumericalDiagnosticsV21(22, 22.0, 22, 2.0),
+        True,
+        None,
+        "model-simple-linear-failed",
+        "normalizer-simple-linear-failed",
+        None,
+    )
+
+    ledger = _ledger(evaluation)
+    entry = ledger.candidates[0]
+    assert entry.selection_eligible is False
+    assert entry.rejection_reason == "simple_linear_baseline_failed"
+    assert entry.source_score is None
+    assert ledger.ranking == ()
+
+
+def test_family_order_from_policy_precedes_candidate_id_fallback() -> None:
+    from koopman.loco_v21 import build_source_candidate_ledger_v21
+
+    pooled = _spec("z-pooled", family="pooled")
+    conditional = _spec("a-conditional", family="conditional")
+    evaluations = (
+        _evaluation(pooled),
+        _evaluation(conditional, rank=66, width=66),
+    )
+
+    conditional_first = build_source_candidate_ledger_v21(
+        evaluations,
+        source_configurations=SOURCES,
+        expected_candidates=(pooled, conditional),
+        family_order=("conditional", "pooled"),
+    )
+    pooled_first = build_source_candidate_ledger_v21(
+        evaluations,
+        source_configurations=SOURCES,
+        expected_candidates=(pooled, conditional),
+        family_order=("pooled", "conditional"),
+    )
+
+    assert conditional_first.ranking[:2] == (
+        conditional.candidate_id,
+        pooled.candidate_id,
+    )
+    assert pooled_first.ranking[:2] == (
+        pooled.candidate_id,
+        conditional.candidate_id,
+    )
+
+
 def test_effective_rank_records_entropy_rank_as_float() -> None:
     from koopman.loco_v21 import NumericalDiagnosticsV21
 

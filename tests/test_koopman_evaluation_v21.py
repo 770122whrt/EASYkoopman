@@ -226,7 +226,7 @@ def test_expert_uses_heldout_fit_and_validation_for_independent_selection(
     def evaluator(model, payloads):
         validation_calls.append((model["candidate"], tuple(payloads)))
         score = 0.2 if model["candidate"] == "expert-b" else 0.4
-        return score, _metric(score)
+        return _metric(score), _metric(2.0), _metric(1.0)
 
     expert = session.select_and_freeze_expert(
         candidates=_expert_candidates(),
@@ -256,6 +256,136 @@ def test_expert_uses_heldout_fit_and_validation_for_independent_selection(
         "expert-b",
     )
     assert frozen.freeze_sha256 == session.primary_freeze.freeze_sha256
+
+
+def test_expert_data_prefix_controls_fit_and_robust_relative_selection(
+    tmp_path: Path,
+) -> None:
+    from koopman.evaluation_v21 import ExpertCandidateSpecV21, ExpertEpisodeV21
+
+    assert "data_prefix" in inspect.signature(ExpertCandidateSpecV21).parameters
+    candidates = (
+        ExpertCandidateSpecV21(
+            label="prefix-2",
+            observable_schema="so3_identity_v1",
+            data_prefix=2,
+            ridge=1e-6,
+            normalization="none",
+        ),
+        ExpertCandidateSpecV21(
+            label="prefix-4",
+            observable_schema="so3_identity_v1",
+            data_prefix=4,
+            ridge=1e-6,
+            normalization="none",
+        ),
+    )
+    fit = tuple(
+        ExpertEpisodeV21(f"{HOLDOUT}-fit-{index}", HOLDOUT, "fit", f"fit-{index}")
+        for index in range(6)
+    )
+    _, validation = _expert_episodes()
+    fitted_prefixes: list[tuple[str, tuple[str, ...]]] = []
+
+    def fitter(candidate, payloads):
+        fitted_prefixes.append((candidate.label, tuple(payloads)))
+        return {
+            "candidate": candidate.label,
+            "model_identity": f"model-{candidate.label}",
+            "normalizer_identity": f"normalizer-{candidate.label}",
+        }
+
+    def evaluator(model, payloads):
+        del payloads
+        candidate_error = 0.75 if model["candidate"] == "prefix-4" else 1.25
+        return _metric(candidate_error), _metric(2.0), _metric(1.0)
+
+    session = _session()
+    _diagnose(session)
+    expert = session.select_and_freeze_expert(
+        candidates=candidates,
+        fit_episodes=fit,
+        validation_episodes=validation,
+        fitter=fitter,
+        evaluator=evaluator,
+        **_expert_persistence(tmp_path / "expert" / "selected_model.json"),
+    )
+
+    assert fitted_prefixes == [
+        ("prefix-2", ("fit-0", "fit-1")),
+        ("prefix-4", ("fit-0", "fit-1", "fit-2", "fit-3")),
+    ]
+    assert expert.selected_candidate_id == candidates[1].candidate_id
+    assert expert.ledger[1].validation_score == pytest.approx(0.75)
+    assert all(
+        value == pytest.approx(0.75)
+        for value in expert.ledger[1].ratios.values()
+    )
+
+
+def test_expert_relative_selection_is_invariant_to_metric_unit_scaling(
+    tmp_path: Path,
+) -> None:
+    from koopman.evaluation_v21 import ExpertCandidateSpecV21
+
+    candidates = (
+        ExpertCandidateSpecV21(
+            label="uniform-ratio",
+            observable_schema="so3_identity_v1",
+            data_prefix=2,
+            ridge=1e-6,
+            normalization="none",
+        ),
+        ExpertCandidateSpecV21(
+            label="raw-max-decoy",
+            observable_schema="so3_kinematic_v1",
+            data_prefix=2,
+            ridge=1e-6,
+            normalization="none",
+        ),
+    )
+    fit, validation = _expert_episodes()
+
+    def run(scale: float, name: str) -> str:
+        session = _session()
+        _diagnose(session)
+
+        def fitter(candidate, payloads):
+            del payloads
+            return {
+                "candidate": candidate.label,
+                "model_identity": f"model-{candidate.label}",
+                "normalizer_identity": f"normalizer-{candidate.label}",
+            }
+
+        def evaluator(model, payloads):
+            del payloads
+            reference = _metric(1.0)
+            reference["linear_velocity_rmse"] = 100.0 * scale
+            persistence = _metric(2.0)
+            persistence["linear_velocity_rmse"] = 200.0 * scale
+            candidate_metrics = _metric(
+                0.5 if model["candidate"] == "uniform-ratio" else 0.6
+            )
+            candidate_metrics["linear_velocity_rmse"] = (
+                (50.0 if model["candidate"] == "uniform-ratio" else 40.0)
+                * scale
+            )
+            return candidate_metrics, persistence, reference
+
+        expert = session.select_and_freeze_expert(
+            candidates=candidates,
+            fit_episodes=fit,
+            validation_episodes=validation,
+            fitter=fitter,
+            evaluator=evaluator,
+            **_expert_persistence(tmp_path / name / "selected_model.json"),
+        )
+        assert expert.selected_candidate_id is not None
+        return expert.selected_candidate_id
+
+    assert run(1.0, "original-units") == candidates[0].candidate_id
+    assert run(1.0e-3, "scaled-units") == candidates[0].candidate_id
 
 
 def test_expert_is_nonconditional_and_failure_does_not_block_primary_test(
@@ -327,7 +457,11 @@ def test_expert_artifact_is_frozen_roundtripped_and_never_changes_primary_identi
             "model_identity": candidate.label,
             "normalizer_identity": candidate.label,
         },
-        evaluator=lambda model, payloads: (0.1, _metric(0.1)),
+        evaluator=lambda model, payloads: (
+            _metric(0.1),
+            _metric(2.0),
+            _metric(1.0),
+        ),
         **_expert_persistence(tmp_path / "expert" / "selected_model.json"),
     )
     with pytest.raises(FrozenInstanceError):

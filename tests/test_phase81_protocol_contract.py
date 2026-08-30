@@ -96,6 +96,10 @@ def test_analysis_policy_freezes_v21_without_promotion_drift():
     assert payload["conditional"]["regularized_condition_max"] == 1.0e8
     assert payload["inner_decision_algorithm"]["source_score"]["primary_metrics"] == list(PRIMARY_METRICS)
     assert payload["inner_decision_algorithm"]["source_score"]["aggregation"] == "unweighted_maximum"
+    assert payload["inner_decision_algorithm"]["family_order"] == [
+        "pooled",
+        "conditional",
+    ]
     assert payload["gate_template"] == {
         "conditional_margin_fraction": 0.05,
         "divergence_max": 0,
@@ -108,6 +112,20 @@ def test_analysis_policy_freezes_v21_without_promotion_drift():
     assert payload["bootstrap"]["stratify_by"] == "configuration"
     assert payload["heldout_descriptor_diagnostic"]["selection_eligible"] is False
     assert payload["heldout_expert"]["selection_eligible"] is False
+    assert payload["heldout_expert"]["nonpromoting"] is True
+    assert payload["heldout_expert"]["data_prefixes"] == [2, 4, 6]
+    assert payload["heldout_expert"]["observable_candidates"] == [
+        "so3_identity_v1",
+        "so3_kinematic_v1",
+    ]
+    assert payload["heldout_expert"]["ridge_grid"] == [1e-8, 1e-6, 1e-4, 1e-2]
+    assert payload["heldout_expert"]["normalization_candidates"] == [
+        "none",
+        "standard_v1",
+    ]
+    assert payload["heldout_expert"]["source_score"] == payload[
+        "inner_decision_algorithm"
+    ]["source_score"]
     assert payload["source_per_configuration"] == "report_all_no_ranking"
     assert payload["final_refit"]["conditional_population_scope"] == "final_refit_all8"
     assert payload["rollout_policy"] == OFFICIAL_ROLLOUT_POLICY_V21.payload()

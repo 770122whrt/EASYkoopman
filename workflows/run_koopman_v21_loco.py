@@ -116,6 +116,13 @@ def _run_authorized_loco(**kwargs: Any) -> int:
     )
     registry.validate_split_path(args.split)
     policy_sha256 = _file_sha256(Path(args.analysis_policy))
+    try:
+        analysis_policy = json.loads(Path(args.analysis_policy).read_text(encoding="utf-8"))
+        family_order = tuple(
+            analysis_policy["inner_decision_algorithm"]["family_order"]
+        )
+    except (OSError, UnicodeError, json.JSONDecodeError, KeyError, TypeError) as exc:
+        raise ValueError("formal_loco_analysis_policy_invalid") from exc
     if (
         approval.get("decision") != "approved"
         or approval.get("experiment_id") != EXPERIMENT_ID_V21
@@ -151,6 +158,7 @@ def _run_authorized_loco(**kwargs: Any) -> int:
                 source_inputs.candidate_evaluations,
                 source_configurations=sources,
                 expected_candidates=source_inputs.expected_candidates,
+                family_order=family_order,
             )
             write_source_candidate_ledger_v21(
                 ledger, fold_root / "source_candidate_ledger.json"

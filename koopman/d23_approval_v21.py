@@ -396,14 +396,45 @@ def build_analysis_policy_proposal_v21() -> dict[str, Any]:
             "selection_eligible": False,
         },
         "heldout_expert": {
-            "candidate_selection": "heldout_fit_then_heldout_validation",
+            "candidate_selection": "heldout_fit_prefix_then_heldout_validation",
             "conditioning": "none",
+            "data_prefixes": [2, 4, 6],
             "failure_blocks_primary_test": False,
+            "fit_prefix_order": "frozen_role_protocol_episode_order",
+            "fit_role": "heldout_configuration_fit_only",
             "independent_namespace": True,
+            "matched_simple_linear": (
+                "so3_identity_v1_same_prefix_ridge_normalization"
+            ),
+            "nonpromoting": True,
+            "normalization_candidates": ["none", "standard_v1"],
+            "observable_candidates": ["so3_identity_v1", "so3_kinematic_v1"],
+            "ridge_grid": [1.0e-8, 1.0e-6, 1.0e-4, 1.0e-2],
             "selection_eligible": False,
+            "source_score": {
+                "aggregation": "unweighted_maximum",
+                "baseline_reference": "minimum_error",
+                "denominator_zero": {
+                    "candidate_positive": "candidate_ineligible",
+                    "candidate_zero": "ratio_one",
+                },
+                "direction": "lower_is_better",
+                "horizon": "full",
+                "primary_metrics": list(PRIMARY_METRICS_V21),
+            },
+            "tie_break_order": [
+                "source_score",
+                "data_prefix",
+                "observable_order",
+                "ridge_order",
+                "normalization_order",
+                "candidate_id_fallback",
+            ],
+            "validation_role": "heldout_configuration_validation_only",
         },
         "horizons": [5, 20, 60, "full"],
         "inner_decision_algorithm": {
+            "family_order": ["pooled", "conditional"],
             "name": "lexicographic-paired-source-validation-v21",
             "source_score": {
                 "aggregation": "unweighted_maximum",

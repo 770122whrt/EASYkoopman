@@ -19,7 +19,13 @@ from koopman.loco_v21 import (
     PRIMARY_METRICS_V21,
     FrozenPrimaryV21,
     SourceCandidateLedgerV21,
+    robust_relative_source_score_v21,
 )
+
+EXPERT_DATA_PREFIX_ORDER_V21 = (2, 4, 6)
+EXPERT_OBSERVABLE_ORDER_V21 = ("so3_identity_v1", "so3_kinematic_v1")
+EXPERT_RIDGE_ORDER_V21 = (1.0e-8, 1.0e-6, 1.0e-4, 1.0e-2)
+EXPERT_NORMALIZATION_ORDER_V21 = ("none", "standard_v1")
 
 
 def _fail(reason: str, detail: str | None = None) -> None:
@@ -414,17 +420,22 @@ class ExpertCandidateSpecV21:
     observable_schema: str
     ridge: float
     normalization: str
+    data_prefix: int = 2
     conditioning: str = "none"
     candidate_id: str = field(init=False)
 
     def __post_init__(self) -> None:
         if self.conditioning != "none":
             _fail("expert_conditioning_forbidden")
-        if self.observable_schema not in {"so3_identity_v1", "so3_kinematic_v1"}:
+        if self.observable_schema not in EXPERT_OBSERVABLE_ORDER_V21:
             _fail("expert_observable_invalid")
-        if self.normalization not in {"none", "standard_v1"}:
+        if self.normalization not in EXPERT_NORMALIZATION_ORDER_V21:
             _fail("expert_normalization_invalid")
-        if not math.isfinite(float(self.ridge)) or self.ridge < 0.0:
+        if self.data_prefix not in EXPERT_DATA_PREFIX_ORDER_V21:
+            _fail("expert_data_prefix_invalid")
+        if not math.isfinite(float(self.ridge)) or float(self.ridge) not in (
+            EXPERT_RIDGE_ORDER_V21
+        ):
             _fail("expert_ridge_invalid")
         object.__setattr__(self, "ridge", float(self.ridge))
         object.__setattr__(self, "candidate_id", canonical_sha256(self.to_dict()))
@@ -432,6 +443,7 @@ class ExpertCandidateSpecV21:
     def to_dict(self) -> dict[str, Any]:
         return {
             "conditioning": self.conditioning,
+            "data_prefix": self.data_prefix,
             "label": self.label,
             "normalization": self.normalization,
             "observable_schema": self.observable_schema,
@@ -460,6 +472,9 @@ class ExpertLedgerEntryV21:
     reason_code: str | None
     validation_score: float | None
     validation_metrics: Mapping[str, float]
+    persistence_validation_metrics: Mapping[str, float]
+    simple_linear_validation_metrics: Mapping[str, float]
+    ratios: Mapping[str, float]
     model_identity: str | None
     normalizer_identity: str | None
 
@@ -467,6 +482,12 @@ class ExpertLedgerEntryV21:
         object.__setattr__(
             self, "validation_metrics", MappingProxyType(dict(self.validation_metrics))
         )
+        for name in (
+            "persistence_validation_metrics",
+            "simple_linear_validation_metrics",
+            "ratios",
+        ):
+            object.__setattr__(self, name, MappingProxyType(dict(getattr(self, name))))
         if self.status not in {"success", "failed"}:
             _fail("expert_status_invalid")
         if self.status == "success":
@@ -487,6 +508,13 @@ class ExpertLedgerEntryV21:
             "model_identity": self.model_identity,
             "normalizer_identity": self.normalizer_identity,
             "reason_code": self.reason_code,
+            "ratios": dict(self.ratios),
+            "persistence_validation_metrics": dict(
+                self.persistence_validation_metrics
+            ),
+            "simple_linear_validation_metrics": dict(
+                self.simple_linear_validation_metrics
+            ),
             "status": self.status,
             "validation_metrics": dict(self.validation_metrics),
             "validation_score": self.validation_score,
@@ -781,7 +809,14 @@ class FoldEvaluationSessionV21:
         fit_episodes: Sequence[ExpertEpisodeV21],
         validation_episodes: Sequence[ExpertEpisodeV21],
         fitter: Callable[[ExpertCandidateSpecV21, tuple[Any, ...]], Any],
-        evaluator: Callable[[Any, tuple[Any, ...]], tuple[float, Mapping[str, float]]],
+        evaluator: Callable[
+            [Any, tuple[Any, ...]],
+            tuple[
+                Mapping[str, float],
+                Mapping[str, float],
+                Mapping[str, float],
+            ],
+        ],
         artifact_path: str | Path,
         serializer: Callable[[Any], bytes],
         loader: Callable[[bytes], Any],
@@ -811,7 +846,9 @@ class FoldEvaluationSessionV21:
         fitted_by_id: dict[str, Any] = {}
         for candidate in candidate_set:
             try:
-                fitted = fitter(candidate, fit_payloads)
+                if candidate.data_prefix > len(fit_payloads):
+                    _fail("expert_data_prefix_unavailable")
+                fitted = fitter(candidate, fit_payloads[: candidate.data_prefix])
                 if not isinstance(fitted, Mapping):
                     _fail("expert_fitted_model_invalid")
                 model_identity = fitted.get("model_identity")
@@ -820,33 +857,45 @@ class FoldEvaluationSessionV21:
                     normalizer_identity, str
                 ):
                     _fail("expert_fitted_model_invalid")
-                score, metrics = evaluator(fitted, validation_payloads)
-                score = float(score)
-                if not math.isfinite(score):
-                    _fail("expert_validation_score_invalid")
+                metrics, persistence_metrics, simple_linear_metrics = evaluator(
+                    fitted, validation_payloads
+                )
                 frozen_metrics = _metric_map(metrics)
+                frozen_persistence = _metric_map(persistence_metrics)
+                frozen_simple_linear = _metric_map(simple_linear_metrics)
+                score, ratios = robust_relative_source_score_v21(
+                    frozen_metrics,
+                    frozen_persistence,
+                    frozen_simple_linear,
+                )
                 entries.append(
                     ExpertLedgerEntryV21(
-                        candidate,
-                        "success",
-                        None,
-                        score,
-                        frozen_metrics,
-                        model_identity,
-                        normalizer_identity,
+                        candidate=candidate,
+                        status="success",
+                        reason_code=None,
+                        validation_score=score,
+                        validation_metrics=frozen_metrics,
+                        persistence_validation_metrics=frozen_persistence,
+                        simple_linear_validation_metrics=frozen_simple_linear,
+                        ratios=ratios,
+                        model_identity=model_identity,
+                        normalizer_identity=normalizer_identity,
                     )
                 )
                 fitted_by_id[candidate.candidate_id] = fitted
             except Exception as error:  # each failed candidate remains in the ledger
                 entries.append(
                     ExpertLedgerEntryV21(
-                        candidate,
-                        "failed",
-                        f"expert_candidate_failed:{type(error).__name__}",
-                        None,
-                        {},
-                        None,
-                        None,
+                        candidate=candidate,
+                        status="failed",
+                        reason_code=f"expert_candidate_failed:{type(error).__name__}",
+                        validation_score=None,
+                        validation_metrics={},
+                        persistence_validation_metrics={},
+                        simple_linear_validation_metrics={},
+                        ratios={},
+                        model_identity=None,
+                        normalizer_identity=None,
                     )
                 )
         successful = [entry for entry in entries if entry.status == "success"]
@@ -855,7 +904,14 @@ class FoldEvaluationSessionV21:
                 successful,
                 key=lambda entry: (
                     float(entry.validation_score),
-                    candidate_set.index(entry.candidate),
+                    EXPERT_DATA_PREFIX_ORDER_V21.index(entry.candidate.data_prefix),
+                    EXPERT_OBSERVABLE_ORDER_V21.index(
+                        entry.candidate.observable_schema
+                    ),
+                    EXPERT_RIDGE_ORDER_V21.index(entry.candidate.ridge),
+                    EXPERT_NORMALIZATION_ORDER_V21.index(
+                        entry.candidate.normalization
+                    ),
                     entry.candidate.candidate_id,
                 ),
             )
@@ -1395,7 +1451,7 @@ class DatasetFormalLocoBackendV21:
                     ),
                     persistence_errors=persistence[configuration],
                     simple_linear_errors=(
-                        dict.fromkeys(PRIMARY_METRICS_V21, sys.float_info.max)
+                        dict.fromkeys(PRIMARY_METRICS_V21, None)
                         if simple_errors[configuration] is None
                         else simple_errors[configuration]
                     ),
@@ -1468,17 +1524,23 @@ class DatasetFormalLocoBackendV21:
     def expert_candidates(self, *, heldout_configuration: str) -> tuple[Any, ...]:
         del heldout_configuration
         result = []
-        for observable in self.analysis_policy["observable_candidates"]:
-            for ridge in self.analysis_policy["ridge_grid"]:
-                for normalization in self.analysis_policy["normalization_candidates"]:
-                    result.append(
-                        ExpertCandidateSpecV21(
-                            f"expert:{observable}:r{ridge}:{normalization}",
-                            observable,
-                            ridge,
-                            normalization,
+        expert_policy = self.analysis_policy["heldout_expert"]
+        for data_prefix in expert_policy["data_prefixes"]:
+            for observable in expert_policy["observable_candidates"]:
+                for ridge in expert_policy["ridge_grid"]:
+                    for normalization in expert_policy["normalization_candidates"]:
+                        result.append(
+                            ExpertCandidateSpecV21(
+                                label=(
+                                    f"expert:p{data_prefix}:{observable}:"
+                                    f"r{ridge}:{normalization}"
+                                ),
+                                observable_schema=observable,
+                                ridge=ridge,
+                                normalization=normalization,
+                                data_prefix=data_prefix,
+                            )
                         )
-                    )
         return tuple(result)
 
     def fit_expert(self, candidate: ExpertCandidateSpecV21, payloads: tuple[Any, ...]) -> Any:
@@ -1502,28 +1564,48 @@ class DatasetFormalLocoBackendV21:
             ridge=candidate.ridge,
             normalization=candidate.normalization,
         )
+        simple_linear_model = ControlledEDMDV21.fit(
+            states,
+            memory,
+            controls,
+            targets,
+            observable_schema="so3_identity_v1",
+            conditioning="none",
+            ridge=candidate.ridge,
+            normalization=candidate.normalization,
+        )
         return {
             "candidate_id": candidate.candidate_id,
             "model": model,
+            "simple_linear_model": simple_linear_model,
             "model_identity": model.model_sha256,
             "normalizer_identity": self._normalizer_identity(model),
         }
 
     def evaluate_expert(
         self, model: Mapping[str, Any], payloads: tuple[Any, ...]
-    ) -> tuple[float, Mapping[str, float]]:
-        artifacts = [
-            self._artifact(model["model"], dataset, projector=None)
-            for dataset in payloads
-        ]
-        full = [artifact.horizons["full"] for artifact in artifacts]
-        if any(item.status != "success" for item in full):
-            _fail("expert_validation_rollout_failed")
-        metrics = {
-            metric: sum(float(item.values[metric]) for item in full) / len(full)
-            for metric in PRIMARY_METRICS_V21
-        }
-        return max(metrics.values()), metrics
+    ) -> tuple[Mapping[str, float], Mapping[str, float], Mapping[str, float]]:
+        def validation_metrics(candidate_model: Any) -> Mapping[str, float]:
+            artifacts = [
+                self._artifact(candidate_model, dataset, projector=None)
+                for dataset in payloads
+            ]
+            full = [artifact.horizons["full"] for artifact in artifacts]
+            if any(item.status != "success" for item in full):
+                _fail("expert_validation_rollout_failed")
+            return MappingProxyType(
+                {
+                    metric: sum(float(item.values[metric]) for item in full)
+                    / len(full)
+                    for metric in PRIMARY_METRICS_V21
+                }
+            )
+
+        return (
+            validation_metrics(model["model"]),
+            validation_metrics(_PersistenceIncrementModelV21()),
+            validation_metrics(model["simple_linear_model"]),
+        )
 
     @staticmethod
     def serialize_expert(model: Mapping[str, Any]) -> bytes:
