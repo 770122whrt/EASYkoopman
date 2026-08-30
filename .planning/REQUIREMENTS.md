@@ -48,7 +48,7 @@
 
 ### Phase 8.2 Fresh Server Evaluation and Closeout
 
-- [ ] **KIDO-01**: A versioned Phase 8.2 operational shell validates canonical D-23, targeted/relevant local tests and a clean committed HEAD, then creates an offline-verified and cloneable Git bundle before any SSH request.
+- [x] **KIDO-01**: A versioned Phase 8.2 operational shell validates canonical D-23, targeted/relevant local tests and a clean committed HEAD, then creates an offline-verified and cloneable Git bundle before any SSH request.
 - [ ] **KIDO-02**: The unchanged server collects a fresh exact-eight v2.1 dataset in isolated checkout/result roots with exactly 96 protocol episodes and fail-closed native, tee, schema and partial-file gates.
 - [ ] **KIDO-03**: Server inventory/split and staged local pullback validate source commit, protocol/approval hashes, exact file set, every v2.1 episode and exact-eight split before atomic canonical promotion.
 - [ ] **KIDO-04**: Formal eight-fold LOCO preserves source-only selection and pre-test freeze in every fold, then publishes the frozen outer `SELECTION` or pathless `NO_SELECTION` without post-test tuning.
@@ -139,7 +139,7 @@
 | KIDR-08 | Phase 8.1 | Complete |
 | KIDR-09 | Phase 8.1 | Complete |
 | KIDR-10 | Phase 8.1 | Complete |
-| KIDO-01 | Phase 8.2 | Pending |
+| KIDO-01 | Phase 8.2 | Complete |
 | KIDO-02 | Phase 8.2 | Pending |
 | KIDO-03 | Phase 8.2 | Pending |
 | KIDO-04 | Phase 8.2 | Pending |

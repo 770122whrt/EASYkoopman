@@ -19,7 +19,7 @@ v1.0 的阶段名称、结论和证据已冻结，不在本活动 roadmap 中重
 | 7 | Cross-Configuration Koopman Data and Control Contract | CONT-01..05 | Phase 6 | Complete — 4/4 plans verified |
 | 8 | Multi-Configuration Koopman Identification and OOD Gate | KID-01..05 | Phase 7 | Complete — 5/5 plans verified; valid `NO_SELECTION` |
 | 8.1 | Local Simulator and Koopman Identification Repair | KIDR-01..10 | Phase 8 | Complete — 4/4 local plans verified; D-23 approved |
-| 8.2 | Phase 8.1 Fresh Server Evaluation and Closeout | KIDO-01..05 | Phase 8.1 D-23 approval | In progress — local operational readiness only |
+| 8.2 | Phase 8.1 Fresh Server Evaluation and Closeout | KIDO-01..05 | Phase 8.1 D-23 approval | In progress — Plan 1/4 complete; awaiting server-start checkpoint |
 | 9 | Configuration-Aware Koopman-MPC Integration | MPC2-01..04 | Phase 8.2 terminal selection | Pending — no Phase 8.2 handoff model |
 | 10 | Environment Awareness and Online Koopman Update | ADAPT-01..05 | Phase 9 | Pending |
 | 11 | Low-Frequency Agent Supervisor | AGENT-01..04 | Phase 10 | Pending |
@@ -211,7 +211,7 @@ Plans:
 
 **Wave 1**
 
-- [ ] 08.2-01-PLAN.md — implement and verify the local operational shell and offline bundle; stop before SSH.
+- [x] 08.2-01-PLAN.md — implemented the complete operational shell, passed canonical D-23 plus 32 targeted/200 relevant tests, and verified an offline-cloneable bundle; stopped before SSH.
 
 **Wave 2** *(blocked on Wave 1 and explicit server-start checkpoint)*
 

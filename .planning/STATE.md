@@ -3,20 +3,20 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Multi-Configuration Koopman Transfer and Environment-Aware Control
 status: executing
-last_updated: "2026-08-30T10:00:00Z"
-last_activity: 2026-08-30 -- Phase 8.1 D-23 approved; Phase 8.2 local operational implementation under verification
+last_updated: "2026-08-30T11:00:00Z"
+last_activity: 2026-08-30 -- Phase 8.2 Plan 01 local preflight and offline bundle verification passed; no SSH performed
 progress:
   total_phases: 9
   completed_phases: 4
   total_plans: 21
-  completed_plans: 17
-  percent: 81
+  completed_plans: 18
+  percent: 86
 ---
 
 # Project State: EASYkoopman
 
 **Updated:** 2026-08-30
-**Current focus:** Phase 08.2 Plan 01 — local operational readiness and offline bundle
+**Current focus:** Phase 08.2 Plan 02 checkpoint — fresh server collection and validated pullback
 **Active milestone:** `v2.0 Multi-Configuration Koopman Transfer and Environment-Aware Control`
 **Branch:** `v2.0-multi-configuration`
 
@@ -28,10 +28,10 @@ See `.planning/PROJECT.md`.
 
 ## Current Position
 
-Phase: 08.2 (fresh-server-evaluation-and-closeout) — LOCAL READINESS IN PROGRESS
-Plan: 0/4 Phase 8.2 plans complete; Plan 01 implementation is ready for clean-HEAD preflight/bundle
-Status: Phase 8.1 D-23 approved; no SSH, fresh dataset, formal LOCO or terminal decision exists
-Last activity: 2026-08-30 -- canonical D-23 validation and Phase 8.2 targeted/relevant local tests passed
+Phase: 08.2 (fresh-server-evaluation-and-closeout) — SERVER CHECKPOINT READY
+Plan: 1/4 Phase 8.2 plans complete
+Status: Clean-HEAD preflight and offline bundle verification passed; no SSH, fresh dataset, formal LOCO or terminal decision exists
+Last activity: 2026-08-30 -- canonical D-23, 32 targeted, 200 relevant, parsers, compileall and offline bundle clone all passed
 
 ## Milestone Goal
 
@@ -165,7 +165,8 @@ All three boundaries are visible on `origin/v2.0-multi-configuration`: simulator
 - Phase 8.1 local validation passed 214 targeted tests and 435 relevant simulator/embodiment/runtime/v2 compatibility regressions. A later scoped semantic fix passed 5 targeted tests and 201 relevant regressions at source commit `5fd7a995e2fc1abfcc85b8921ab98096dafc3ee7`.
 - The user approved the exact Phase 8.1 role hash `083d5eae3729e9939287345ab258dbfe4b4c8ca71ab769c2fd8616431a649417` and analysis hash `7a790b43d0f1581b8995ccdcbd9b6d259cb09bc8fe2268201400243d05f1e18c`. `protocols/phase8_1/d23_approval.json` machine-validates this decision binding and explicitly provides no human identity authentication.
 - Phase 8.2 now owns a separate four-plan chain: local preflight/bundle, fresh server collection/pullback, formal eight-fold LOCO/outer decision and independent closeout. Its new operational contract tests pass locally, but no server or formal evidence has been created.
+- Plan 08.2-01 completed the versioned preflight, bundle/bootstrap/collection/pullback/formal/closeout scripts and runbook. The checked-in preflight passed canonical approval, 32 targeted tests, 200 relevant regressions, compileall, script parsing, protected-history, clean-tree and absent-root gates; bundle verify plus isolated offline clone passed before any SSH.
 
 ## Next Action
 
-Commit the Phase 8.2 operational implementation, run its checked-in preflight from a clean HEAD and create/verify the offline bundle. Only after those local gates pass, ask the user to start the unchanged server. Preserve the frozen Phase 8 `no_selection` and do not enter Phase 9.
+Ask the user to start the unchanged server. After explicit confirmation, execute Plan 08.2-02 from the final verified bundle: transfer, fresh collection, staged pullback and inventory/split validation. Preserve the frozen Phase 8 `no_selection`; do not run formal LOCO until fresh pullback is independently valid and committed, and do not enter Phase 9.
