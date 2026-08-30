@@ -305,21 +305,72 @@ def _full_errors(
     *,
     candidate: CandidateSpecV2 | None = None,
 ) -> dict[str, float] | None:
-    totals = {name: [] for name in OFFICIAL_ERROR_METRICS_V2}
-    for episode in episodes:
-        active_model = model if candidate is None else _bound_model(model, episode, candidate)
-        trajectory = episode.trajectory()
-        trace = rollout_episode_v2(
-            active_model,
-            trajectory,
-            start=0,
-            steps=trajectory.transition_count,
-            policy=OFFICIAL_ROLLOUT_POLICY_V2,
+    values = tuple(episodes)
+    if not values or len({episode.dataset.sample_count for episode in values}) != 1:
+        _fail("source_validation_shape_mismatch")
+    transition_count = values[0].dataset.sample_count
+    current = np.asarray(
+        [episode.preprocessed.states[0] for episode in values], dtype=np.float64
+    )
+    rollout: list[np.ndarray] = []
+    descriptors = (
+        None
+        if candidate is None or candidate.platform_schema == "none"
+        else tuple(episode.descriptor(candidate.platform_schema) for episode in values)
+    )
+    for step in range(transition_count):
+        controls = np.asarray(
+            [episode.dataset.U[step] for episode in values], dtype=np.float64
         )
-        if trace.status != "success":
+        try:
+            if descriptors is None:
+                predicted = np.asarray(
+                    model.predict_next(current, controls), dtype=np.float64
+                )
+            else:
+                predicted = np.asarray(
+                    model.predict_next(
+                        current,
+                        controls,
+                        platform_descriptor=descriptors,
+                    ),
+                    dtype=np.float64,
+                )
+        except Exception:
             return None
-        predictions = trace.predictions
-        truths = trajectory.targets
+        if predicted.shape != current.shape or not np.isfinite(predicted).all():
+            return None
+        norms = np.linalg.norm(predicted[:, 1:5], axis=1)
+        corrections = np.abs(norms - 1.0)
+        if (
+            np.any(norms < OFFICIAL_ROLLOUT_POLICY_V2.quaternion_epsilon)
+            or np.any(
+                corrections
+                > OFFICIAL_ROLLOUT_POLICY_V2.quaternion_projection_limit
+            )
+        ):
+            return None
+        predicted = predicted.copy()
+        predicted[:, 1:5] /= norms[:, None]
+        if (
+            np.any(np.abs(predicted[:, 0]) > OFFICIAL_ROLLOUT_POLICY_V2.depth_abs_max)
+            or np.any(
+                np.abs(predicted[:, 5:8])
+                > OFFICIAL_ROLLOUT_POLICY_V2.linear_velocity_abs_max
+            )
+            or np.any(
+                np.abs(predicted[:, 8:11])
+                > OFFICIAL_ROLLOUT_POLICY_V2.angular_velocity_abs_max
+            )
+        ):
+            return None
+        rollout.append(predicted)
+        current = predicted
+    prediction_cube = np.stack(rollout, axis=1)
+    totals = {name: [] for name in OFFICIAL_ERROR_METRICS_V2}
+    for index, episode in enumerate(values):
+        predictions = prediction_cube[index]
+        truths = episode.preprocessed.targets
         depth = float(np.sqrt(np.mean(np.square(predictions[:, 0] - truths[:, 0]))))
         linear = float(
             np.sqrt(np.mean(np.square(predictions[:, 5:8] - truths[:, 5:8])))

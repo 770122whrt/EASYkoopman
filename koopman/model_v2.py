@@ -5,6 +5,7 @@ from __future__ import annotations
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
 import json
+import math
 import os
 from pathlib import Path
 import tempfile
@@ -500,11 +501,24 @@ class ControlledEDMDV2:
             if target_normalizer is not None
             else target_array
         )
-        rank = int(np.linalg.matrix_rank(fit_design))
-        condition_number = float(np.linalg.cond(fit_design))
-        condition_finite = bool(np.isfinite(condition_number))
         gram = fit_design.T @ fit_design
         rhs = fit_design.T @ fit_target
+        eigenvalues = np.linalg.eigvalsh(gram)
+        largest_eigenvalue = max(0.0, float(eigenvalues[-1]))
+        largest_singular = math.sqrt(largest_eigenvalue)
+        tolerance = (
+            largest_singular
+            * max(fit_design.shape)
+            * np.finfo(fit_design.dtype).eps
+        )
+        positive = eigenvalues[eigenvalues > tolerance * tolerance]
+        rank = int(positive.size)
+        condition_number = (
+            math.sqrt(largest_eigenvalue / float(positive[0]))
+            if rank == fit_design.shape[1] and positive.size
+            else math.inf
+        )
+        condition_finite = math.isfinite(condition_number)
         if ridge > 0.0:
             gram = gram + float(ridge) * np.eye(gram.shape[0], dtype=np.float64)
         method = "solve" if ridge > 0.0 or rank == fit_design.shape[1] else "pinv"
