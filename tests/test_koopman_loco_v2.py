@@ -20,10 +20,12 @@ from koopman.loco_v2 import (
     CandidateValidationResultV2,
     DiagnosticRoleResultV2,
     FoldExecutionV2,
+    FrozenPrimaryStateV2,
     ModelRoleV2,
     ReferenceDiagnosticResultV2,
     RoleOutcomeV2,
     SelectionEligibleRoleResultV2,
+    authorize_primary_test_access_v2,
     candidate_grid_v2,
     validate_fold_model_binding_v2,
 )
@@ -224,6 +226,31 @@ def _seal(session: FoldExecutionV2, *, path: Path | None = None):
     )
 
 
+def _test_token(session: FoldExecutionV2):
+    assert session.decision is not None
+    frozen = FrozenPrimaryStateV2(
+        fold_id=session.fold.fold_id,
+        holdout_configuration=session.fold.holdout_configuration,
+        source_configurations=session.fold.source_configurations,
+        source_episode_sha256s=session.fold.source_episode_sha256s,
+        candidate_id=session.decision.candidate_id,
+        decision_sha256=session.decision.decision_sha256,
+        analysis_policy_sha256=session.decision.analysis_policy_sha256,
+        primary_model_sha256s={
+            ModelRoleV2.POOLED.value: "1" * 64,
+            ModelRoleV2.CONDITIONAL.value: "2" * 64,
+        },
+        frozen_at="2026-08-29T00:00:00Z",
+    )
+    return authorize_primary_test_access_v2(
+        frozen,
+        analysis_policy=_policy(),
+        fold_id=session.fold.fold_id,
+        holdout_configuration=session.fold.holdout_configuration,
+        test_episode_ids=session.fold.primary_heldout_test_episode_ids,
+    )
+
+
 def test_analysis_policy_is_exact_local_fixture_not_canonical_approval() -> None:
     policy = _policy()
     assert policy.version == ANALYSIS_POLICY_VERSION_V1
@@ -408,7 +435,13 @@ def test_test_open_before_decision_and_post_test_retune_fail_closed() -> None:
     with pytest.raises(ValueError, match="fold_decision_missing"):
         session.open_primary_test(test_opener=lambda entry: entry, policy=_policy())
     _seal(session)
-    opened = session.open_primary_test(test_opener=lambda entry: entry, policy=_policy())
+    with pytest.raises(ValueError, match="primary_freeze_missing"):
+        session.open_primary_test(test_opener=lambda entry: entry, policy=_policy())
+    opened = session.open_primary_test(
+        test_opener=lambda entry: entry,
+        policy=_policy(),
+        access_token=_test_token(session),
+    )
     assert len(opened) == 1
     assert opened[0].configuration == session.fold.holdout_configuration
     with pytest.raises(ValueError, match="post_test_retune"):
@@ -459,6 +492,7 @@ def test_heldout_statistic_different_budget_and_policy_drift_fail_closed() -> No
         session.open_primary_test(
             test_opener=lambda entry: entry,
             policy=changed_policy,
+            access_token=_test_token(session),
         )
 
 
@@ -519,7 +553,11 @@ def test_six_roles_have_exact_eligibility_and_reference_is_non_promoting() -> No
         expert_view=expert_view,
         expert_opener=lambda entry: entry,
     )
-    session.open_primary_test(test_opener=lambda entry: entry, policy=_policy())
+    session.open_primary_test(
+        test_opener=lambda entry: entry,
+        policy=_policy(),
+        access_token=_test_token(session),
+    )
 
     def runner(role, fit_payloads, test_payloads, fold_decision):
         assert fold_decision.decision_sha256 == decision.decision_sha256
@@ -566,7 +604,11 @@ def test_every_role_is_success_or_reason_coded_failure_under_one_contract() -> N
     session, expert_view = _session()
     decision = _seal(session)
     session.open_expert_decision(expert_view=expert_view, expert_opener=lambda entry: entry)
-    session.open_primary_test(test_opener=lambda entry: entry, policy=_policy())
+    session.open_primary_test(
+        test_opener=lambda entry: entry,
+        policy=_policy(),
+        access_token=_test_token(session),
+    )
 
     def runner(role, fit_payloads, test_payloads, fold_decision):
         if role == ModelRoleV2.SOURCE_PER_CONFIGURATION:

@@ -743,11 +743,25 @@ class FoldExecutionV2:
         *,
         test_opener: Callable[[EpisodeInventoryEntryV2], T],
         policy: AnalysisPolicyV2,
+        access_token: PrimaryTestAccessTokenV2 | None = None,
     ) -> tuple[T, ...]:
         if self.decision is None:
             _fail("fold_decision_missing")
         if policy.policy_sha256 != self.decision.analysis_policy_sha256:
             _fail("analysis_policy_drift")
+        if not isinstance(access_token, PrimaryTestAccessTokenV2):
+            _fail("primary_freeze_missing")
+        if (
+            access_token.fold_id != self.fold.fold_id
+            or access_token.holdout_configuration
+            != self.fold.holdout_configuration
+            or access_token.test_episode_ids
+            != self.fold.primary_heldout_test_episode_ids
+            or access_token.freeze_candidate_id != self.decision.candidate_id
+            or access_token.analysis_policy_sha256
+            != self.decision.analysis_policy_sha256
+        ):
+            _fail("primary_freeze_binding_mismatch")
         if self.test_accesses:
             _fail("heldout_test_already_open")
         entries = _entry_map(self.inventory)
