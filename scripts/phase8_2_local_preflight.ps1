@@ -27,9 +27,23 @@ function Invoke-Gate {
 }
 function Git-Text {
     param([Parameter(ValueFromRemainingArguments = $true)][string[]]$Arguments)
-    $value = (& git @Arguments 2>&1) -join "`n"
-    if ($LASTEXITCODE -ne 0) { Fail-Gate "git_command" ($Arguments -join " ") }
-    return $value.Trim()
+    $stdout = [IO.Path]::GetTempFileName()
+    $stderr = [IO.Path]::GetTempFileName()
+    try {
+        $previousPreference = $ErrorActionPreference
+        try {
+            $ErrorActionPreference = "Continue"
+            & git @Arguments 1> $stdout 2> $stderr
+            $nativeExitCode = $LASTEXITCODE
+        }
+        finally { $ErrorActionPreference = $previousPreference }
+        $value = [IO.File]::ReadAllText($stdout).Trim()
+        $errorText = [IO.File]::ReadAllText($stderr).Trim()
+        if ($errorText) { Write-Warning $errorText }
+        if ($nativeExitCode -ne 0) { Fail-Gate "git_command" ($Arguments -join " ") }
+        return $value
+    }
+    finally { Remove-Item -LiteralPath $stdout, $stderr -Force -ErrorAction SilentlyContinue }
 }
 function Resolve-Bash {
     $execPath = Git-Text --exec-path

@@ -167,6 +167,14 @@ def test_local_preflight_and_bundle_do_not_ssh_or_open_formal_test() -> None:
         assert "select_koopman_v21.py" not in source
 
 
+def test_local_preflight_git_helper_treats_stderr_warning_by_exit_code() -> None:
+    source = (SCRIPTS / "phase8_2_local_preflight.ps1").read_text(encoding="utf-8")
+    assert "[IO.Path]::GetTempFileName()" in source
+    assert '1> $stdout 2> $stderr' in source
+    assert '$nativeExitCode = $LASTEXITCODE' in source
+    assert '$nativeExitCode -ne 0' in source
+
+
 def test_formal_runner_orders_evaluation_before_selection() -> None:
     source = (SCRIPTS / "phase8_2_formal_local.ps1").read_text(encoding="utf-8")
     assert source.index("run_koopman_v21_loco.py") < source.index("select_koopman_v21.py")
