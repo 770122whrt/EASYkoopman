@@ -8,8 +8,8 @@ This runbook operates the D-23-approved Phase 8.1 experiment without changing it
 - role SHA-256: `083d5eae3729e9939287345ab258dbfe4b4c8ca71ab769c2fd8616431a649417`
 - analysis SHA-256: `7a790b43d0f1581b8995ccdcbd9b6d259cb09bc8fe2268201400243d05f1e18c`
 - local transfer: `.pytest-tmp/phase8-2-transfer`
-- server checkout: `/root/EASYkoopman-phase8-2-v1`
-- server result: `/root/EASYkoopman-phase8-2-results-v1`
+- server checkout: `/root/EASYkoopman-phase8-2-v2`
+- server result: `/root/EASYkoopman-phase8-2-results-v2`
 - local result: `source/results/koopman_phase8_2`
 
 ## Gate 1 — Local readiness, before server request
@@ -35,7 +35,7 @@ The prepare script reruns preflight, verifies the bundle, clones it offline into
 The user must explicitly confirm that the unchanged server is running. Then transfer the already verified artifacts:
 
 ```powershell
-scp .pytest-tmp/phase8-2-transfer/EasyUUV-phase8-2-v1.bundle agentic-AUV:/root/
+scp .pytest-tmp/phase8-2-transfer/EasyUUV-phase8-2-v2.bundle agentic-AUV:/root/
 scp .pytest-tmp/phase8-2-transfer/expected-source-commit.txt agentic-AUV:/root/
 scp .pytest-tmp/phase8-2-transfer/expected-branch.txt agentic-AUV:/root/
 scp .pytest-tmp/phase8-2-transfer/bundle.sha256 agentic-AUV:/root/
@@ -46,7 +46,7 @@ scp .pytest-tmp/phase8-2-transfer/phase8_2_server_bootstrap.sh agentic-AUV:/root
 ssh agentic-AUV "bash /root/phase8_2_server_bootstrap.sh"
 ```
 
-Bootstrap refuses existing checkout/result roots. Collection writes outside the Git checkout, runs 8 independent configuration collectors and blocks inventory creation unless all 96 episode/manifests/log triplets pass.
+Bootstrap refuses existing checkout/result roots. Operational `v1` failed before collection because a readonly shell variable was reassigned and is preserved as a failed attempt; only fresh `v2` roots may be used. Collection writes outside the Git checkout, runs 8 independent configuration collectors and blocks inventory creation unless all 96 episode/manifests/log triplets pass.
 
 ## Gate 3 — Staged pullback
 

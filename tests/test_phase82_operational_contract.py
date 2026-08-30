@@ -142,8 +142,8 @@ def test_dataset_index_fails_closed_on_source_or_semantic_drift(tmp_path: Path) 
     ("name", "required"),
     [
         ("phase8_2_local_preflight.ps1", ("validate_phase81_d23_approval.py", "worktree_clean", "phase8_2_operational_contract")),
-        ("phase8_2_prepare_bundle.ps1", ("phase8_2_local_preflight.ps1", "git bundle verify", "git clone", "EasyUUV-phase8-2-v1.bundle")),
-        ("phase8_2_server_bootstrap.sh", ("/root/EASYkoopman-phase8-2-v1", "/root/EASYkoopman-phase8-2-results-v1", "bundle verify", "git clone")),
+        ("phase8_2_prepare_bundle.ps1", ("phase8_2_local_preflight.ps1", "git bundle verify", "git clone", "EasyUUV-phase8-2-v2.bundle")),
+        ("phase8_2_server_bootstrap.sh", ("/root/EASYkoopman-phase8-2-v2", "/root/EASYkoopman-phase8-2-results-v2", "bundle verify", "git clone")),
         ("phase8_2_server_collect.sh", ("collect_koopman_v21_identification.py", "build_phase82_dataset_index.py", "runner_failure_blocks_inventory", "exact_96_set_failed")),
         ("phase8_2_pullback.ps1", ("validate_phase82_dataset_index.py", ".pytest-tmp/phase8-2-pullback-", "Move-Item", "source/results/koopman_phase8_2/dataset")),
         ("phase8_2_formal_local.ps1", ("run_koopman_v21_loco.py", "select_koopman_v21.py", "source/results/koopman_phase8_2/evaluation", "source/results/koopman_phase8_2/selection")),
@@ -173,6 +173,13 @@ def test_local_preflight_git_helper_treats_stderr_warning_by_exit_code() -> None
     assert '1> $stdout 2> $stderr' in source
     assert '$nativeExitCode = $LASTEXITCODE' in source
     assert '$nativeExitCode -ne 0' in source
+
+
+def test_server_bootstrap_does_not_reassign_its_readonly_result_variable() -> None:
+    source = (SCRIPTS / "phase8_2_server_bootstrap.sh").read_text(encoding="utf-8")
+    assert 'readonly SERVER_RESULT_ROOT="/root/EASYkoopman-phase8-2-results-v2"' in source
+    assert 'RESULT_ROOT="$SERVER_RESULT_ROOT" bash' in source
+    assert "readonly RESULT_ROOT=" not in source
 
 
 def test_formal_runner_orders_evaluation_before_selection() -> None:

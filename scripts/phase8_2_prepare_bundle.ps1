@@ -24,7 +24,7 @@ try {
     $transfer = Join-Path $repository $TransferDirectory
     if (Test-Path -LiteralPath $transfer) { throw "transfer_directory_exists" }
     $null = New-Item -ItemType Directory -Path $transfer
-    $bundle = Join-Path $transfer "EasyUUV-phase8-2-v1.bundle"
+    $bundle = Join-Path $transfer "EasyUUV-phase8-2-v2.bundle"
     & git bundle create $bundle $branch
     if ($LASTEXITCODE -ne 0) { throw "bundle_create_failed" }
     & git bundle verify $bundle

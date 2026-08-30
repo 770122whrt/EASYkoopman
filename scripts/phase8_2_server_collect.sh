@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-readonly PROJECT_ROOT="${PROJECT_ROOT:-/root/EASYkoopman-phase8-2-v1}"
-readonly RESULT_ROOT="${RESULT_ROOT:-/root/EASYkoopman-phase8-2-results-v1}"
+readonly PROJECT_ROOT="${PROJECT_ROOT:-/root/EASYkoopman-phase8-2-v2}"
+readonly RESULT_ROOT="${RESULT_ROOT:-/root/EASYkoopman-phase8-2-results-v2}"
 readonly DATASET_ROOT="$RESULT_ROOT/dataset"
 readonly STATUS_ROOT="$RESULT_ROOT/status"
 readonly CONFIGURATION_ROOT="$RESULT_ROOT/configurations"

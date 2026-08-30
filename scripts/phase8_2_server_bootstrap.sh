@@ -2,9 +2,9 @@
 set -Eeuo pipefail
 
 readonly TRANSFER_ROOT="${TRANSFER_ROOT:-/root}"
-readonly PROJECT_ROOT="/root/EASYkoopman-phase8-2-v1"
-readonly RESULT_ROOT="/root/EASYkoopman-phase8-2-results-v1"
-readonly BUNDLE="$TRANSFER_ROOT/EasyUUV-phase8-2-v1.bundle"
+readonly PROJECT_ROOT="/root/EASYkoopman-phase8-2-v2"
+readonly SERVER_RESULT_ROOT="/root/EASYkoopman-phase8-2-results-v2"
+readonly BUNDLE="$TRANSFER_ROOT/EasyUUV-phase8-2-v2.bundle"
 readonly EXPECTED_COMMIT_FILE="$TRANSFER_ROOT/expected-source-commit.txt"
 readonly EXPECTED_BRANCH_FILE="$TRANSFER_ROOT/expected-branch.txt"
 readonly EXPECTED_BUNDLE_HASH_FILE="$TRANSFER_ROOT/bundle.sha256"
@@ -17,7 +17,7 @@ for path in "$BUNDLE" "$EXPECTED_COMMIT_FILE" "$EXPECTED_BRANCH_FILE" \
     [[ -f "$path" ]] || die "bundle_sidecar_missing:$path"
 done
 [[ ! -e "$PROJECT_ROOT" ]] || die "isolated_project_root_exists"
-[[ ! -e "$RESULT_ROOT" ]] || die "isolated_result_root_exists"
+[[ ! -e "$SERVER_RESULT_ROOT" ]] || die "isolated_result_root_exists"
 
 expected_commit="$(tr -d '\r\n' < "$EXPECTED_COMMIT_FILE")"
 expected_branch="$(tr -d '\r\n' < "$EXPECTED_BRANCH_FILE")"
@@ -51,4 +51,4 @@ for binding in \
     [[ "$actual" == "$expected" ]] || die "protocol_binding_mismatch:$relative"
 done
 
-RESULT_ROOT="$RESULT_ROOT" bash "$PROJECT_ROOT/scripts/phase8_2_server_collect.sh"
+RESULT_ROOT="$SERVER_RESULT_ROOT" bash "$PROJECT_ROOT/scripts/phase8_2_server_collect.sh"

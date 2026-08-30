@@ -2,8 +2,8 @@
 param(
     [string]$RepositoryRoot = "",
     [string]$Remote = "agentic-AUV",
-    [string]$RemoteDatasetRoot = "/root/EASYkoopman-phase8-2-results-v1/dataset",
-    [string]$RemoteStatusRoot = "/root/EASYkoopman-phase8-2-results-v1/status",
+    [string]$RemoteDatasetRoot = "/root/EASYkoopman-phase8-2-results-v2/dataset",
+    [string]$RemoteStatusRoot = "/root/EASYkoopman-phase8-2-results-v2/status",
     [string]$TransferDirectory = ".pytest-tmp/phase8-2-transfer",
     [string]$CanonicalRoot = "source/results/koopman_phase8_2",
     [string]$PythonExecutable = ""
