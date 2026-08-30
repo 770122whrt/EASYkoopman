@@ -15,9 +15,9 @@ human_verification: []
 controlled-EDMD v2 backend 和冻结分析协议完成八折 LOCO 预测比较，并只允许
 pooled/conditional 通过冻结硬门；否则输出可审计且无模型路径的 `no_selection`。
 
-**Verified:** 2026-08-30T03:03:33Z  
-**Status:** `passed`  
-**Re-verification:** No — initial independent verification  
+**Verified:** 2026-08-30T03:03:33Z
+**Status:** `passed`
+**Re-verification:** No — initial independent verification
 **Verdict:** `PASS_VALID_FROZEN_NO_SELECTION`
 
 本报告从 KID-01..05 和 ROADMAP success criteria 反向检查真实代码、canonical
@@ -168,5 +168,5 @@ No protocol deviation.
 
 ---
 
-_Verifier: independent gsd-verifier agent_  
+_Verifier: independent gsd-verifier agent_
 _Terminal verdict: `PASS_VALID_FROZEN_NO_SELECTION`_
