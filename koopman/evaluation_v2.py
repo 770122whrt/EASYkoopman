@@ -599,10 +599,17 @@ def _aggregate_roles(
     artifacts: Mapping[str, Sequence[EpisodeMetricArtifactV2]],
 ) -> dict[str, Any]:
     return {
-        role: aggregate_configuration_metrics_v2(
-            values,
-            expected_configurations=SUPPORTED_EMBODIMENTS,
-            expected_horizons=REQUIRED_HORIZON_LABELS_V2,
+        role: (
+            {
+                "status": "failed",
+                "reason_code": "source_candidate_unavailable",
+            }
+            if not values
+            else aggregate_configuration_metrics_v2(
+                values,
+                expected_configurations=SUPPORTED_EMBODIMENTS,
+                expected_horizons=REQUIRED_HORIZON_LABELS_V2,
+            )
         )
         for role, values in artifacts.items()
     }
@@ -719,18 +726,23 @@ def run_phase8_loco_evaluation_v2(
             configurations=fold.source_configurations,
             fold=fold,
         )
-        conditional = fit_candidate_model_v2(
-            conditional_candidate,
-            source_episodes,
-            configurations=fold.source_configurations,
-            fold=fold,
+        conditional = (
+            None
+            if conditional_candidate is None
+            else fit_candidate_model_v2(
+                conditional_candidate,
+                source_episodes,
+                configurations=fold.source_configurations,
+                fold=fold,
+            )
         )
         validate_fold_model_binding_v2(
             decision, pooled, family=ModelRoleV2.POOLED
         )
-        validate_fold_model_binding_v2(
-            decision, conditional, family=ModelRoleV2.CONDITIONAL
-        )
+        if conditional is not None:
+            validate_fold_model_binding_v2(
+                decision, conditional, family=ModelRoleV2.CONDITIONAL
+            )
         pooled_fit = _fit_episodes(
             source_episodes,
             configurations=fold.source_configurations,
@@ -745,7 +757,19 @@ def run_phase8_loco_evaluation_v2(
         )
         model_root = fold_root / "models"
         pooled.save(model_root / "pooled_koopman_v2.json")
-        conditional.save(model_root / "conditional_koopman_v2.json")
+        conditional_failure_path = model_root / "conditional_koopman_v2.failure.json"
+        if conditional is None:
+            atomic_write_json(
+                conditional_failure_path,
+                {
+                    "decision_sha256": decision.decision_sha256,
+                    "reason_code": "source_candidate_unavailable",
+                    "role": ModelRoleV2.CONDITIONAL.value,
+                    "status": "failed",
+                },
+            )
+        else:
+            conditional.save(model_root / "conditional_koopman_v2.json")
         source_model.save(model_root / "source_per_configuration_koopman_v2.json")
         _save_simple(simple, model_root / "simple_linear_v2.json")
         frozen = FrozenPrimaryStateV2(
@@ -760,7 +784,11 @@ def run_phase8_loco_evaluation_v2(
                 ModelRoleV2.SIMPLE_LINEAR.value: _simple_hash(simple),
                 ModelRoleV2.SOURCE_PER_CONFIGURATION.value: source_model.model_sha256,
                 ModelRoleV2.POOLED.value: pooled.model_sha256,
-                ModelRoleV2.CONDITIONAL.value: conditional.model_sha256,
+                ModelRoleV2.CONDITIONAL.value: (
+                    file_sha256(conditional_failure_path)
+                    if conditional is None
+                    else conditional.model_sha256
+                ),
             },
             frozen_at=_utc_now(),
         )
@@ -806,12 +834,6 @@ def run_phase8_loco_evaluation_v2(
             ),
             (ModelRoleV2.POOLED, pooled, pooled.model_sha256, None),
             (
-                ModelRoleV2.CONDITIONAL,
-                conditional,
-                conditional.model_sha256,
-                conditional_candidate,
-            ),
-            (
                 ModelRoleV2.HELDOUT_EXPERT,
                 expert,
                 expert.model_sha256,
@@ -832,6 +854,35 @@ def run_phase8_loco_evaluation_v2(
             atomic_write_json(
                 fold_root / "metrics" / f"{role.value}.json", role_payload
             )
+        if conditional is None:
+            conditional_payload = {
+                "role": ModelRoleV2.CONDITIONAL.value,
+                "selection_eligible": True,
+                "status": "failed",
+                "reason_code": "source_candidate_unavailable",
+                "model_sha256": None,
+                "input_fields": [
+                    "state_11",
+                    "virtual_control_4",
+                    "platform_physical_descriptor",
+                ],
+                "episode_results": [],
+            }
+            conditional_artifacts: tuple[EpisodeMetricArtifactV2, ...] = ()
+        else:
+            conditional_payload, conditional_artifacts = _role_payload(
+                ModelRoleV2.CONDITIONAL,
+                conditional,
+                test_episodes,
+                model_sha256=conditional.model_sha256,
+                conditional_candidate=conditional_candidate,
+            )
+        roles[ModelRoleV2.CONDITIONAL.value] = conditional_payload
+        all_artifacts[ModelRoleV2.CONDITIONAL.value].extend(conditional_artifacts)
+        atomic_write_json(
+            fold_root / "metrics" / f"{ModelRoleV2.CONDITIONAL.value}.json",
+            conditional_payload,
+        )
         fold_payloads.append(
             {
                 "fold_id": fold.fold_id,

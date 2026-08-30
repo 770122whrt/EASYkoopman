@@ -189,7 +189,7 @@ class FoldProtocolDecisionV2:
     holdout_configuration: str
     source_configurations: tuple[str, ...]
     source_episode_sha256s: tuple[str, ...]
-    selected_candidates: Mapping[str, CandidateSpecV2]
+    selected_candidates: Mapping[str, CandidateSpecV2 | None]
     diagnostics: Mapping[str, Any]
     source_gates: Mapping[str, Any]
     sealed_at: str
@@ -212,16 +212,20 @@ class FoldProtocolDecisionV2:
             _PRIMARY_KOOPMAN_FAMILIES
         ):
             _fail("primary_candidate_family_set_mismatch")
-        if (
-            not isinstance(selected[_PRIMARY_KOOPMAN_FAMILIES[0]], CandidateSpecV2)
-            or selected[_PRIMARY_KOOPMAN_FAMILIES[0]].platform_schema != "none"
-            or not isinstance(selected[_PRIMARY_KOOPMAN_FAMILIES[1]], CandidateSpecV2)
-            or selected[_PRIMARY_KOOPMAN_FAMILIES[1]].platform_schema == "none"
+        pooled = selected[_PRIMARY_KOOPMAN_FAMILIES[0]]
+        conditional = selected[_PRIMARY_KOOPMAN_FAMILIES[1]]
+        if not isinstance(pooled, CandidateSpecV2) or pooled.platform_schema != "none":
+            _fail("primary_candidate_family_binding_mismatch")
+        if conditional is not None and (
+            not isinstance(conditional, CandidateSpecV2)
+            or conditional.platform_schema == "none"
         ):
             _fail("primary_candidate_family_binding_mismatch")
         if normalizers[_PRIMARY_KOOPMAN_FAMILIES[0]] is not None:
             _fail("pooled_normalizer_forbidden")
-        if normalizers[_PRIMARY_KOOPMAN_FAMILIES[1]] is None:
+        if (conditional is None) != (
+            normalizers[_PRIMARY_KOOPMAN_FAMILIES[1]] is None
+        ):
             _fail("conditional_normalizer_missing")
         object.__setattr__(self, "selected_candidates", MappingProxyType(selected))
         object.__setattr__(self, "platform_normalizer_sha256s", MappingProxyType(normalizers))
@@ -244,7 +248,7 @@ class FoldProtocolDecisionV2:
             "candidate_id",
             canonical_sha256(
                 {
-                    family: candidate.candidate_id
+                    family: None if candidate is None else candidate.candidate_id
                     for family, candidate in selected.items()
                 }
             ),
@@ -264,7 +268,11 @@ class FoldProtocolDecisionV2:
             "platform_normalizer_sha256s": dict(self.platform_normalizer_sha256s),
             "sealed_at": self.sealed_at,
             "selected_candidates": {
-                family: candidate.to_dict() | {"candidate_id": candidate.candidate_id}
+                family: (
+                    None
+                    if candidate is None
+                    else candidate.to_dict() | {"candidate_id": candidate.candidate_id}
+                )
                 for family, candidate in self.selected_candidates.items()
             },
             "source_configurations": list(self.source_configurations),
@@ -692,14 +700,20 @@ class FoldExecutionV2:
                 item for item in evaluated if item[1].candidate.platform_schema != "none"
             ),
         }
-        if any(not items for items in evaluated_by_family.values()):
-            _fail("candidate_family_no_converged_result")
+        if not evaluated_by_family[ModelRoleV2.POOLED.value]:
+            _fail("pooled_candidate_no_converged_result")
         selected_results = {
-            family: min(items, key=key)[1]
+            family: (None if not items else min(items, key=key)[1])
             for family, items in evaluated_by_family.items()
         }
-        diagnostics: dict[str, dict[str, float | int]] = {}
+        diagnostics: dict[str, dict[str, float | int | str]] = {}
         for family, selected_result in selected_results.items():
+            if selected_result is None:
+                diagnostics[family] = {
+                    "reason_code": "source_candidate_unavailable",
+                    "status": "failed",
+                }
+                continue
             source_scores = tuple(
                 float(selected_result.source_scores[name])
                 for name in self.fold.source_configurations
@@ -717,7 +731,7 @@ class FoldExecutionV2:
             source_configurations=self.fold.source_configurations,
             source_episode_sha256s=self.fold.source_episode_sha256s,
             selected_candidates={
-                family: result.candidate
+                family: None if result is None else result.candidate
                 for family, result in selected_results.items()
             },
             diagnostics=diagnostics,
@@ -728,7 +742,7 @@ class FoldExecutionV2:
             metric_policy_sha256=_metric_policy_sha256(self.policy),
             budget_sha256=_budget_sha256(self.policy),
             platform_normalizer_sha256s={
-                family: result.platform_normalizer_sha256
+                family: None if result is None else result.platform_normalizer_sha256
                 for family, result in selected_results.items()
             },
             test_open_count_at_seal=len(self.test_accesses),
@@ -895,6 +909,8 @@ def validate_fold_model_binding_v2(
     if family_name not in _PRIMARY_KOOPMAN_FAMILIES:
         _fail("primary_candidate_family_binding_mismatch")
     selected = decision.selected_candidates[family_name]
+    if selected is None:
+        _fail("source_candidate_unavailable", family_name)
     expected_conditioning = (
         "none" if selected.platform_schema == "none" else "platform_affine"
     )

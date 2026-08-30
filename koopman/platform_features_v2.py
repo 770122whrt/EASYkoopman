@@ -256,6 +256,16 @@ def _validate_context(value: Any) -> Mapping[str, Any]:
     return value
 
 
+def _json_value(value: Any) -> Any:
+    """Restore dataset-frozen containers to their canonical JSON value."""
+
+    if isinstance(value, Mapping):
+        return {str(key): _json_value(nested) for key, nested in value.items()}
+    if isinstance(value, Sequence) and not isinstance(value, (str, bytes)):
+        return [_json_value(item) for item in value]
+    return value
+
+
 def _physical_feature_values(context: Mapping[str, Any]) -> dict[str, float]:
     inertia = _vector(
         context["inertia_diagonal_kg_m2"], 3, "inertia", positive=True
@@ -328,8 +338,9 @@ def build_platform_descriptor_v2(
     ):
         _fail("physical_field_set_mismatch")
     contexts = tuple(_validate_context(value) for value in platform_contexts)
-    first_hash = canonical_sha256(contexts[0])
-    if any(canonical_sha256(context) != first_hash for context in contexts[1:]):
+    canonical_contexts = tuple(_json_value(context) for context in contexts)
+    first_hash = canonical_sha256(canonical_contexts[0])
+    if any(canonical_sha256(context) != first_hash for context in canonical_contexts[1:]):
         _fail("platform_context_drift")
     feature_map = _physical_feature_values(contexts[0])
     values = [feature_map[name] for name in schema.feature_names]

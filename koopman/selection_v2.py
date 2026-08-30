@@ -235,6 +235,17 @@ def _family_diagnostics(
             "conditional_margin_pass": False,
             "reason_codes": ["role_failed"],
         }
+    expected_episode_keys = set(role_results["persistence"])
+    if (
+        set(candidate) != expected_episode_keys
+        or set(role_results["simple_linear_v2"]) != expected_episode_keys
+    ):
+        return {
+            "all_hard_gates_pass": False,
+            "baseline_gates_pass": False,
+            "conditional_margin_pass": False,
+            "reason_codes": ["role_failed"],
+        }
     gate = policy.gate_template
     reasons: list[str] = []
     health_counts = {

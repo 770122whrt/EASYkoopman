@@ -430,6 +430,36 @@ def test_all_eight_synthetic_folds_decide_before_any_heldout_test_open(tmp_path)
     assert len({decision.decision_sha256 for decision in decisions}) == 8
 
 
+def test_one_unavailable_family_is_reason_coded_without_fallback_candidate() -> None:
+    session, _ = _session("base")
+
+    def conditional_unavailable(candidate, opened, fold):
+        result = _candidate_result(candidate, opened, fold)
+        return replace(
+            result,
+            converged=candidate.platform_schema == "none" and result.converged,
+        )
+
+    decision = session.seal_decision(
+        source_opener=lambda entry: entry,
+        candidate_evaluator=conditional_unavailable,
+        sealed_at="2026-08-30T00:00:00Z",
+    )
+
+    assert decision.selected_candidates[ModelRoleV2.POOLED.value] is not None
+    assert decision.selected_candidates[ModelRoleV2.CONDITIONAL.value] is None
+    assert decision.diagnostics[ModelRoleV2.CONDITIONAL.value] == {
+        "reason_code": "source_candidate_unavailable",
+        "status": "failed",
+    }
+    with pytest.raises(ValueError, match="source_candidate_unavailable"):
+        validate_fold_model_binding_v2(
+            decision,
+            SimpleNamespace(),
+            family=ModelRoleV2.CONDITIONAL,
+        )
+
+
 def test_test_open_before_decision_and_post_test_retune_fail_closed() -> None:
     session, _ = _session()
     with pytest.raises(ValueError, match="fold_decision_missing"):

@@ -9,6 +9,7 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+from types import MappingProxyType
 
 import numpy as np
 import pytest
@@ -153,6 +154,25 @@ def test_descriptor_rejects_per_row_platform_drift() -> None:
             [first, second],
             schema=select_platform_feature_schema_v2("platform_physical_core_v1"),
         )
+
+
+def test_descriptor_accepts_dataset_frozen_mapping_context() -> None:
+    """Model-facing datasets expose read-only mappings, not mutable dicts."""
+
+    def freeze(value):
+        if isinstance(value, dict):
+            return MappingProxyType({key: freeze(item) for key, item in value.items()})
+        if isinstance(value, list):
+            return tuple(freeze(item) for item in value)
+        return value
+
+    schema = select_platform_feature_schema_v2("platform_physical_compact_v1")
+    context = freeze(declared_platform_context_v2("base"))
+
+    descriptor = build_platform_descriptor_v2([context], schema=schema)
+
+    assert descriptor.configuration == "base"
+    assert descriptor.values.shape == (schema.dimension,)
 
 
 def test_normalizer_fits_exact_seven_sources_and_binds_fold_provenance() -> None:

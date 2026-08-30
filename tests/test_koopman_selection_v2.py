@@ -225,6 +225,30 @@ def test_no_selection_is_reason_coded_and_has_no_model_path(tmp_path) -> None:
     assert "baseline_improvement_failed" in result.reason_codes
 
 
+def test_one_failed_family_is_ineligible_without_invalidating_other_family(tmp_path) -> None:
+    from koopman.selection_v2 import select_phase8_candidate
+
+    payload = _evaluation_payload()
+    failed = payload["folds"][0]["roles"]["conditional_koopman_v2"]
+    failed.update(
+        status="failed",
+        reason_code="source_candidate_unavailable",
+        model_sha256=None,
+        episode_results=[],
+    )
+
+    result = select_phase8_candidate(_write_envelope(tmp_path, payload), POLICY_PATH)
+
+    assert result.status == "koopman_selection"
+    assert result.selected_family == "pooled_koopman_v2"
+    assert result.family_diagnostics["conditional_koopman_v2"][
+        "all_hard_gates_pass"
+    ] is False
+    assert result.family_diagnostics["conditional_koopman_v2"]["reason_codes"] == [
+        "role_failed"
+    ]
+
+
 @pytest.mark.parametrize(
     ("mutation", "reason"),
     [
