@@ -33,6 +33,19 @@
 - [x] **KID-04**: Orientation prediction error uses an SO(3) geodesic metric and is not labelled from raw quaternion-component RMSE.
 - [x] **KID-05**: Model selection writes a provenance-checked manifest and permits `no_selection` when no candidate passes every required gate.
 
+### Phase 8.1 Local Simulator and Identification Repair
+
+- [x] **KIDR-01**: Thruster first-order dynamics use physics-substep end times so the first substep after reset receives one full `physics_dt` and D substeps match the analytic first-order response.
+- [x] **KIDR-02**: Additive schema v2.1 records a causal `actuator_memory_4` and exposes an exact 19D primary view without modifying schema v2 bytes or defaults.
+- [x] **KIDR-03**: The v2.1 Bridge/collector records and validates `physics_dt_s`, integer `decimation` and `control_dt_s=physics_dt_s*decimation`, with zero warm-up and episode-local memory reset.
+- [x] **KIDR-04**: The Phase 8.1 backend predicts body-right SO(3) increments through deterministic Log/Exp semantics rather than arbitrary quaternion-component recursion and projection.
+- [x] **KIDR-05**: Frozen 22/56D observables and 66/100D PCA2 structured conditional designs pass exact ordering, source-only PCA and numerical admission contracts.
+- [x] **KIDR-06**: Multi-step rollout uses only the window-start memory and causal recurrence, never future memory truth, and reports identity/simple-linear estimator equivalence honestly.
+- [x] **KIDR-07**: Every fold can seal a complete source candidate ledger, isolate held-out descriptor diagnostics, independently select a non-promoting expert and report all source-per-configuration models without cross-unit ranking.
+- [x] **KIDR-08**: Positive selection can execute a test-free all-eight fit/validation final refit and atomic publication through an interface that accepts only the selected family.
+- [x] **KIDR-09**: Phase 8.1 role/analysis protocols remain pending D-23, while a separate approval-record validator fails closed without creating or authenticating a real human approval.
+- [x] **KIDR-10**: Targeted and related local regressions verify v2/v2.1 isolation and claim boundaries without bundle, SSH, server collection, formal LOCO or Phase 9 execution.
+
 ### Configuration-Aware Koopman-MPC
 
 - [ ] **MPC2-01**: MPC optimizes bounded 4D virtual control and uses the active configuration's TAM allocator to produce physical thruster commands.
@@ -108,6 +121,16 @@
 | KID-03 | Phase 8 | Complete |
 | KID-04 | Phase 8 | Complete |
 | KID-05 | Phase 8 | Complete |
+| KIDR-01 | Phase 8.1 | Complete |
+| KIDR-02 | Phase 8.1 | Complete |
+| KIDR-03 | Phase 8.1 | Complete |
+| KIDR-04 | Phase 8.1 | Complete |
+| KIDR-05 | Phase 8.1 | Complete |
+| KIDR-06 | Phase 8.1 | Complete |
+| KIDR-07 | Phase 8.1 | Complete |
+| KIDR-08 | Phase 8.1 | Complete |
+| KIDR-09 | Phase 8.1 | Complete |
+| KIDR-10 | Phase 8.1 | Complete |
 | MPC2-01 | Phase 9 | Pending |
 | MPC2-02 | Phase 9 | Pending |
 | MPC2-03 | Phase 9 | Pending |
@@ -129,8 +152,8 @@
 
 **Coverage:**
 
-- v2.0 requirements: 36 total
-- Mapped to phases: 36
+- v2.0 requirements: 46 total
+- Mapped to phases: 46
 - Unmapped: 0 ✓
 
 ---

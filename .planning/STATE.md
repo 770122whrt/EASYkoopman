@@ -3,20 +3,20 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Multi-Configuration Koopman Transfer and Environment-Aware Control
 status: executing
-last_updated: "2026-08-30T03:05:49Z"
-last_activity: 2026-08-30 -- Phase 8 independently verified complete with a valid frozen no-selection result
+last_updated: "2026-08-30T07:43:03.771Z"
+last_activity: 2026-08-30 -- Phase 8.1 local repair passed second deep review; pending separate D-23 hash review
 progress:
-  total_phases: 7
-  completed_phases: 3
-  total_plans: 13
-  completed_plans: 13
+  total_phases: 8
+  completed_phases: 4
+  total_plans: 17
+  completed_plans: 17
   percent: 100
 ---
 
 # Project State: EASYkoopman
 
 **Updated:** 2026-08-30
-**Current focus:** Phase 08 complete — valid frozen `NO_SELECTION`; no Phase 9 model handoff
+**Current focus:** Phase 08.1 protocol proposal — local repair complete, awaiting separate D-23 hash review
 **Active milestone:** `v2.0 Multi-Configuration Koopman Transfer and Environment-Aware Control`
 **Branch:** `v2.0-multi-configuration`
 
@@ -28,10 +28,10 @@ See `.planning/PROJECT.md`.
 
 ## Current Position
 
-Phase: 08 (multi-configuration-koopman-identification-and-ood-gate) — COMPLETE
-Plan: 5 of 5
-Status: Independently verified `PASS_VALID_FROZEN_NO_SELECTION`
-Last activity: 2026-08-30 -- Plan 08-05 completed; KID-01..05 passed; no model was promoted
+Phase: 08.1 (local-simulator-and-identification-repair) — LOCAL REPAIR COMPLETE
+Plan: 4/4 local plans complete
+Status: Ready for new D-23 hash review; approval record/server/formal LOCO remain prohibited
+Last activity: 2026-08-30 -- Phase 8.1 local repair passed second deep review; pending separate D-23 hash review
 
 ## Milestone Goal
 
@@ -159,7 +159,9 @@ All three boundaries are visible on `origin/v2.0-multi-configuration`: simulator
 - Pooled Koopman was identical to simple linear and failed the frozen improvement/bootstrap gates. Conditional Koopman was ineligible after reason-coded quaternion-projection failures on `heavy_moderate`, `uuv4` and `uuv4_angled`.
 - The atomic terminal envelope is a pathless `no_selection`; it validates with `warnings=[]`. Independent verification reran the canonical envelopes, structural audit and 64 relevant tests, then passed KID-01..05 as `PASS_VALID_FROZEN_NO_SELECTION`.
 - Phase 8 is scientifically complete but no Phase 9 handoff model exists. This result supports held-out prediction evaluation and rejection only, not Koopman-MPC, environment transfer, Agentic, Sim2Real or hardware claims.
+- Phase 8.1 completed its four local-only repair plans: corrected first-substep thruster dynamics, added isolated schema/model/evaluation v2.1, implemented fail-closed formal entrypoints and produced two pending-D-23 protocol proposals. The second deep review is `READY` only for a new protocol-hash review; it is not D-23 approval or new experimental evidence.
+- Phase 8.1 local validation passed 214 targeted tests and 435 relevant simulator/embodiment/runtime/v2 compatibility regressions. The canonical Phase 8.1 approval record and all server/formal output roots remain absent.
 
 ## Next Action
 
-STOP after Phase 8. Before Phase 9 planning or execution, make an explicit research decision about the valid frozen `no_selection`: a future versioned identification experiment may address the model limitation, but this Phase 8 result must remain immutable and cannot supply a Koopman-MPC handoff model.
+Review the two pending Phase 8.1 protocol hashes as a separate D-23 decision. Preserve the frozen Phase 8 `no_selection`; do not create an approval record, bundle, SSH, collect, run formal LOCO, publish a selection or enter Phase 9 without explicit D-23 approval.

@@ -18,7 +18,8 @@ v1.0 的阶段名称、结论和证据已冻结，不在本活动 roadmap 中重
 | 6 | EasyUUV 2.0 Intake and Multi-Configuration Qualification | QUAL-01..08 | v1.0 frozen baseline | Complete — 4/4 plans verified |
 | 7 | Cross-Configuration Koopman Data and Control Contract | CONT-01..05 | Phase 6 | Complete — 4/4 plans verified |
 | 8 | Multi-Configuration Koopman Identification and OOD Gate | KID-01..05 | Phase 7 | Complete — 5/5 plans verified; valid `NO_SELECTION` |
-| 9 | Configuration-Aware Koopman-MPC Integration | MPC2-01..04 | Phase 8 | Pending — no Phase 8 handoff model |
+| 8.1 | Local Simulator and Koopman Identification Repair | KIDR-01..10 | Phase 8 | Complete — 4/4 local plans verified; pending new D-23 review |
+| 9 | Configuration-Aware Koopman-MPC Integration | MPC2-01..04 | Phase 8.1 terminal selection | Pending — no Phase 8.1 handoff model |
 | 10 | Environment Awareness and Online Koopman Update | ADAPT-01..05 | Phase 9 | Pending |
 | 11 | Low-Frequency Agent Supervisor | AGENT-01..04 | Phase 10 | Pending |
 | 12 | Final Matched Evaluation and Research Evidence | EVAL-01..05 | Phase 11 | Pending |
@@ -151,11 +152,46 @@ Plans:
 - Phase 8 proves or rejects held-out-configuration prediction transfer only; MPC/closed-loop, environment adaptation, Agentic and hardware claims remain Phase 9+.
 - Phase 8 closed with a valid negative result: neither eligible Koopman family passed the frozen gate, so Phase 9 has no model handoff and must not begin execution from this artifact.
 
+### Phase 08.1: Local Simulator and Koopman Identification Repair (INSERTED)
+
+**Goal:** 在完全保留旧 Phase 8 frozen `NO_SELECTION` 的前提下，本地修复推进器一阶动态时钟，建立 additive schema/model/evaluation v2.1 与 pending-D-23 协议提案，使新实验可以在用户另行批准后重新采集，而不使用旧 held-out test 调参。
+
+**Depends on:** Phase 8 frozen negative result and approved Phase 8.1 design
+
+**Requirements**: KIDR-01, KIDR-02, KIDR-03, KIDR-04, KIDR-05, KIDR-06, KIDR-07, KIDR-08, KIDR-09, KIDR-10
+
+**Success Criteria**:
+1. reset 后第一个 physics substep 获得完整 `physics_dt`，D-substep response 与 control-interval closed form 等价。
+2. schema v2.1 以 19D `[state_11, actuator_memory_4, virtual_control_4]` primary view 接通 Bridge/dataset/rollout，并保持旧 v2 bytes/API 不变。
+3. SO(3) Log/Exp、22/56D observables、PCA2 structured conditional 66/100D 和 rank/condition admission 均由 targeted tests 精确验证。
+4. source ledger、held-out diagnostic、expert、pre-test freeze 和 positive final-refit/publication 状态机在 synthetic local tests 中 fail closed。
+5. 新 role/analysis protocols 保持 pending D-23；canonical approval record、bundle、SSH、server dataset与正式LOCO均不存在。
+
+**Plans:** 4 plans
+
+Plans:
+
+**Wave 1**
+
+- [x] 08.1-01-PLAN.md — repaired the first-substep actuator clock and established strict causal actuator-memory/schema/dataset/Bridge v2.1 contracts.
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [x] 08.1-02-PLAN.md — implemented deterministic SO(3), exact observables, source-only PCA2 structured conditional and causal rollout.
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [x] 08.1-03-PLAN.md — sealed complete source ledgers, isolated held-out diagnostics/experts and implemented test-free family-only final refit/publication.
+
+**Wave 4** *(blocked on Wave 3 completion)*
+
+- [x] 08.1-04-PLAN.md — froze pending-D-23 proposals, guarded formal entrypoints, passed relevant local regression and stopped at hash-review readiness.
+
 ### Phase 9: Configuration-Aware Koopman-MPC Integration
 
 **Goal:** 让 Koopman-MPC 在统一 4D virtual-control 空间优化，并通过当前构型 TAM、可控自由度 mask 与确定性 fallback 实现可比较的多构型闭环控制。
 
-**Depends on:** Phase 8
+**Depends on:** Phase 8.1 terminal `koopman_selection`; planning may inspect a valid `NO_SELECTION`, execution remains blocked without a model handoff
 
 **Requirements**: MPC2-01, MPC2-02, MPC2-03, MPC2-04
 
@@ -240,13 +276,14 @@ Plans:
 | 6 | QUAL-01..08 | 8 |
 | 7 | CONT-01..05 | 5 |
 | 8 | KID-01..05 | 5 |
+| 8.1 | KIDR-01..10 | 10 |
 | 9 | MPC2-01..04 | 4 |
 | 10 | ADAPT-01..05 | 5 |
 | 11 | AGENT-01..04 | 4 |
 | 12 | EVAL-01..05 | 5 |
-| **Total** | **All v2.0 requirements** | **36** |
+| **Total** | **All v2.0 requirements** | **46** |
 
-Coverage: 36 mapped, 0 unmapped, 0 multiply mapped.
+Coverage: 46 mapped, 0 unmapped, 0 multiply mapped.
 
 ---
 
