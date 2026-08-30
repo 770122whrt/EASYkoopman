@@ -6,6 +6,7 @@ from pathlib import Path
 
 from koopman.d23_approval_v21 import (
     EXPERIMENT_ID_V21,
+    validate_d23_approval_v21,
     validate_analysis_policy_proposal_v21,
     validate_role_protocol_proposal_v21,
 )
@@ -65,7 +66,13 @@ def test_pending_role_protocol_is_exact_eight_v21_and_timing_bound():
         assert roles.count("fit") == 6
         assert roles.count("validation") == 3
         assert roles.count("test") == 3
-    assert not APPROVAL_PATH.exists()
+    approval = validate_d23_approval_v21(
+        _load(APPROVAL_PATH),
+        role_protocol_path=ROLE_PATH,
+        analysis_policy_path=POLICY_PATH,
+    )
+    assert approval["decision"] == "approved"
+    assert approval["experiment_id"] == EXPERIMENT_ID_V21
 
 
 def test_analysis_policy_freezes_v21_without_promotion_drift():

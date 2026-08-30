@@ -46,6 +46,14 @@
 - [x] **KIDR-09**: Phase 8.1 role/analysis protocols remain pending D-23, while a separate approval-record validator fails closed without creating or authenticating a real human approval.
 - [x] **KIDR-10**: Targeted and related local regressions verify v2/v2.1 isolation and claim boundaries without bundle, SSH, server collection, formal LOCO or Phase 9 execution.
 
+### Phase 8.2 Fresh Server Evaluation and Closeout
+
+- [ ] **KIDO-01**: A versioned Phase 8.2 operational shell validates canonical D-23, targeted/relevant local tests and a clean committed HEAD, then creates an offline-verified and cloneable Git bundle before any SSH request.
+- [ ] **KIDO-02**: The unchanged server collects a fresh exact-eight v2.1 dataset in isolated checkout/result roots with exactly 96 protocol episodes and fail-closed native, tee, schema and partial-file gates.
+- [ ] **KIDO-03**: Server inventory/split and staged local pullback validate source commit, protocol/approval hashes, exact file set, every v2.1 episode and exact-eight split before atomic canonical promotion.
+- [ ] **KIDO-04**: Formal eight-fold LOCO preserves source-only selection and pre-test freeze in every fold, then publishes the frozen outer `SELECTION` or pathless `NO_SELECTION` without post-test tuning.
+- [ ] **KIDO-05**: Independent closeout verifies all canonical envelopes and limits the conclusion to fresh-episode transfer within the fixed exact-eight catalog before any Phase 9 handoff.
+
 ### Configuration-Aware Koopman-MPC
 
 - [ ] **MPC2-01**: MPC optimizes bounded 4D virtual control and uses the active configuration's TAM allocator to produce physical thruster commands.
@@ -131,6 +139,11 @@
 | KIDR-08 | Phase 8.1 | Complete |
 | KIDR-09 | Phase 8.1 | Complete |
 | KIDR-10 | Phase 8.1 | Complete |
+| KIDO-01 | Phase 8.2 | Pending |
+| KIDO-02 | Phase 8.2 | Pending |
+| KIDO-03 | Phase 8.2 | Pending |
+| KIDO-04 | Phase 8.2 | Pending |
+| KIDO-05 | Phase 8.2 | Pending |
 | MPC2-01 | Phase 9 | Pending |
 | MPC2-02 | Phase 9 | Pending |
 | MPC2-03 | Phase 9 | Pending |
@@ -152,11 +165,11 @@
 
 **Coverage:**
 
-- v2.0 requirements: 46 total
-- Mapped to phases: 46
+- v2.0 requirements: 51 total
+- Mapped to phases: 51
 - Unmapped: 0 ✓
 
 ---
 
 *Requirements defined: 2026-08-09*
-*Last updated: 2026-08-09 during v2.0 milestone initialization*
+*Last updated: 2026-08-30 for Phase 8.2 operational isolation*

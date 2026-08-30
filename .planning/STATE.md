@@ -3,20 +3,20 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Multi-Configuration Koopman Transfer and Environment-Aware Control
 status: executing
-last_updated: "2026-08-30T07:43:03.771Z"
-last_activity: 2026-08-30 -- Phase 8.1 local repair passed second deep review; pending separate D-23 hash review
+last_updated: "2026-08-30T10:00:00Z"
+last_activity: 2026-08-30 -- Phase 8.1 D-23 approved; Phase 8.2 local operational implementation under verification
 progress:
-  total_phases: 8
+  total_phases: 9
   completed_phases: 4
-  total_plans: 17
+  total_plans: 21
   completed_plans: 17
-  percent: 100
+  percent: 81
 ---
 
 # Project State: EASYkoopman
 
 **Updated:** 2026-08-30
-**Current focus:** Phase 08.1 protocol proposal — local repair complete, awaiting separate D-23 hash review
+**Current focus:** Phase 08.2 Plan 01 — local operational readiness and offline bundle
 **Active milestone:** `v2.0 Multi-Configuration Koopman Transfer and Environment-Aware Control`
 **Branch:** `v2.0-multi-configuration`
 
@@ -28,10 +28,10 @@ See `.planning/PROJECT.md`.
 
 ## Current Position
 
-Phase: 08.1 (local-simulator-and-identification-repair) — LOCAL REPAIR COMPLETE
-Plan: 4/4 local plans complete
-Status: Ready for new D-23 hash review; approval record/server/formal LOCO remain prohibited
-Last activity: 2026-08-30 -- Phase 8.1 local repair passed second deep review; pending separate D-23 hash review
+Phase: 08.2 (fresh-server-evaluation-and-closeout) — LOCAL READINESS IN PROGRESS
+Plan: 0/4 Phase 8.2 plans complete; Plan 01 implementation is ready for clean-HEAD preflight/bundle
+Status: Phase 8.1 D-23 approved; no SSH, fresh dataset, formal LOCO or terminal decision exists
+Last activity: 2026-08-30 -- canonical D-23 validation and Phase 8.2 targeted/relevant local tests passed
 
 ## Milestone Goal
 
@@ -93,6 +93,8 @@ Frozen conclusions carried into v2.0:
 | Agent boundary | Low-frequency allow-listed supervisor; no direct PWM or real-time `env.step()` loop. |
 | Evidence | Local contract tests and server Isaac evidence remain separate and level-labelled. |
 | Promotion | `no_selection` is a valid outcome when no candidate passes every gate. |
+| Phase 8.1 D-23 | Approved only for role `083d5eae...9417`, analysis `7a790b43...e18c` and experiment `phase8.1-main-identification-v1`; identity assurance remains none. |
+| Phase 8.2 isolation | Server collection, pullback, formal LOCO and closeout live only in `source/results/koopman_phase8_2`, never in frozen Phase 8/8.1 result roots. |
 
 ## Git Delivery Boundaries
 
@@ -159,9 +161,11 @@ All three boundaries are visible on `origin/v2.0-multi-configuration`: simulator
 - Pooled Koopman was identical to simple linear and failed the frozen improvement/bootstrap gates. Conditional Koopman was ineligible after reason-coded quaternion-projection failures on `heavy_moderate`, `uuv4` and `uuv4_angled`.
 - The atomic terminal envelope is a pathless `no_selection`; it validates with `warnings=[]`. Independent verification reran the canonical envelopes, structural audit and 64 relevant tests, then passed KID-01..05 as `PASS_VALID_FROZEN_NO_SELECTION`.
 - Phase 8 is scientifically complete but no Phase 9 handoff model exists. This result supports held-out prediction evaluation and rejection only, not Koopman-MPC, environment transfer, Agentic, Sim2Real or hardware claims.
-- Phase 8.1 completed its four local-only repair plans: corrected first-substep thruster dynamics, added isolated schema/model/evaluation v2.1, implemented fail-closed formal entrypoints and produced two pending-D-23 protocol proposals. The second deep review is `READY` only for a new protocol-hash review; it is not D-23 approval or new experimental evidence.
-- Phase 8.1 local validation passed 214 targeted tests and 435 relevant simulator/embodiment/runtime/v2 compatibility regressions. The canonical Phase 8.1 approval record and all server/formal output roots remain absent.
+- Phase 8.1 completed its four local-only repair plans: corrected first-substep thruster dynamics, added isolated schema/model/evaluation v2.1, implemented fail-closed formal entrypoints and produced two pending-D-23 protocol proposals. The historical pre-approval review remains preserved.
+- Phase 8.1 local validation passed 214 targeted tests and 435 relevant simulator/embodiment/runtime/v2 compatibility regressions. A later scoped semantic fix passed 5 targeted tests and 201 relevant regressions at source commit `5fd7a995e2fc1abfcc85b8921ab98096dafc3ee7`.
+- The user approved the exact Phase 8.1 role hash `083d5eae3729e9939287345ab258dbfe4b4c8ca71ab769c2fd8616431a649417` and analysis hash `7a790b43d0f1581b8995ccdcbd9b6d259cb09bc8fe2268201400243d05f1e18c`. `protocols/phase8_1/d23_approval.json` machine-validates this decision binding and explicitly provides no human identity authentication.
+- Phase 8.2 now owns a separate four-plan chain: local preflight/bundle, fresh server collection/pullback, formal eight-fold LOCO/outer decision and independent closeout. Its new operational contract tests pass locally, but no server or formal evidence has been created.
 
 ## Next Action
 
-Review the two pending Phase 8.1 protocol hashes as a separate D-23 decision. Preserve the frozen Phase 8 `no_selection`; do not create an approval record, bundle, SSH, collect, run formal LOCO, publish a selection or enter Phase 9 without explicit D-23 approval.
+Commit the Phase 8.2 operational implementation, run its checked-in preflight from a clean HEAD and create/verify the offline bundle. Only after those local gates pass, ask the user to start the unchanged server. Preserve the frozen Phase 8 `no_selection` and do not enter Phase 9.

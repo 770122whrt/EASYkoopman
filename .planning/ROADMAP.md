@@ -18,8 +18,9 @@ v1.0 的阶段名称、结论和证据已冻结，不在本活动 roadmap 中重
 | 6 | EasyUUV 2.0 Intake and Multi-Configuration Qualification | QUAL-01..08 | v1.0 frozen baseline | Complete — 4/4 plans verified |
 | 7 | Cross-Configuration Koopman Data and Control Contract | CONT-01..05 | Phase 6 | Complete — 4/4 plans verified |
 | 8 | Multi-Configuration Koopman Identification and OOD Gate | KID-01..05 | Phase 7 | Complete — 5/5 plans verified; valid `NO_SELECTION` |
-| 8.1 | Local Simulator and Koopman Identification Repair | KIDR-01..10 | Phase 8 | Complete — 4/4 local plans verified; pending new D-23 review |
-| 9 | Configuration-Aware Koopman-MPC Integration | MPC2-01..04 | Phase 8.1 terminal selection | Pending — no Phase 8.1 handoff model |
+| 8.1 | Local Simulator and Koopman Identification Repair | KIDR-01..10 | Phase 8 | Complete — 4/4 local plans verified; D-23 approved |
+| 8.2 | Phase 8.1 Fresh Server Evaluation and Closeout | KIDO-01..05 | Phase 8.1 D-23 approval | In progress — local operational readiness only |
+| 9 | Configuration-Aware Koopman-MPC Integration | MPC2-01..04 | Phase 8.2 terminal selection | Pending — no Phase 8.2 handoff model |
 | 10 | Environment Awareness and Online Koopman Update | ADAPT-01..05 | Phase 9 | Pending |
 | 11 | Low-Frequency Agent Supervisor | AGENT-01..04 | Phase 10 | Pending |
 | 12 | Final Matched Evaluation and Research Evidence | EVAL-01..05 | Phase 11 | Pending |
@@ -165,7 +166,7 @@ Plans:
 2. schema v2.1 以 19D `[state_11, actuator_memory_4, virtual_control_4]` primary view 接通 Bridge/dataset/rollout，并保持旧 v2 bytes/API 不变。
 3. SO(3) Log/Exp、22/56D observables、PCA2 structured conditional 66/100D 和 rank/condition admission 均由 targeted tests 精确验证。
 4. source ledger、held-out diagnostic、expert、pre-test freeze 和 positive final-refit/publication 状态机在 synthetic local tests 中 fail closed。
-5. 新 role/analysis protocols 保持 pending D-23；canonical approval record、bundle、SSH、server dataset与正式LOCO均不存在。
+5. 新 role/analysis protocols 的 bytes 保持 `pending_d23/proposal_only`，独立 canonical approval record 精确绑定用户批准的 hashes、experiment ID 与 `approved` decision；server dataset 与正式 LOCO 仍不存在。
 
 **Plans:** 4 plans
 
@@ -187,11 +188,54 @@ Plans:
 
 - [x] 08.1-04-PLAN.md — froze pending-D-23 proposals, guarded formal entrypoints, passed relevant local regression and stopped at hash-review readiness.
 
+**Post-fix D-23:** User approval binds role hash `083d5eae...9417`, analysis hash `7a790b43...e18c` and experiment `phase8.1-main-identification-v1`. The canonical approval record validates this binding only (`identity_assurance=none`). All server/formal work is isolated in Phase 8.2.
+
+### Phase 08.2: Phase 8.1 Fresh Server Evaluation and Closeout
+
+**Goal:** 从 clean committed HEAD 构建并验证离线 bundle；在用户启动现有服务器后重新采集 fresh v2.1 exact-eight dataset，经 staged pullback/inventory/split validation 后执行冻结的正式 8-fold LOCO、outer `SELECTION/NO_SELECTION` 和独立 closeout。
+
+**Depends on:** Phase 8.1 local repair and exact D-23 protocol-hash approval
+
+**Requirements**: KIDO-01, KIDO-02, KIDO-03, KIDO-04, KIDO-05
+
+**Success Criteria**:
+1. canonical approval、targeted/relevant tests、clean HEAD、versioned operational scripts 与 verified offline bundle 全部在请求启动服务器前完成。
+2. fresh server result root 精确完成 8×12 v2.1 episodes，任一 native/tee/schema/inventory gate 失败都不能产生 canonical success evidence。
+3. pullback 只在 source/protocol/approval/file/schema/inventory/split 全部验证后从随机 staging 原子提升。
+4. formal evaluator 对每折严格执行 source-only selection、pre-test freeze 和 guarded held-out test，八折后输出冻结的 `SELECTION` 或 `NO_SELECTION`。
+5. independent closeout 只支持 fixed exact-eight catalog 的 fresh-episode prediction-transfer 结论，并在进入 Phase 9 前明确是否存在有效模型 handoff。
+
+**Plans:** 4 plans
+
+Plans:
+
+**Wave 1**
+
+- [ ] 08.2-01-PLAN.md — implement and verify the local operational shell and offline bundle; stop before SSH.
+
+**Wave 2** *(blocked on Wave 1 and explicit server-start checkpoint)*
+
+- [ ] 08.2-02-PLAN.md — collect the fresh v2.1 server dataset and atomically promote a validated pullback.
+
+**Wave 3** *(blocked on Wave 2)*
+
+- [ ] 08.2-03-PLAN.md — run the frozen formal eight-fold LOCO and outer terminal decision.
+
+**Wave 4** *(blocked on Wave 3)*
+
+- [ ] 08.2-04-PLAN.md — independently verify and close the exact evidence/claim boundary.
+
+**Cross-cutting constraints:**
+
+- Experiment ID and D-23 protocol bytes remain Phase 8.1-owned and immutable; Phase 8.2 only operates them.
+- No server/formal artifact is appended to Phase 8.1 or to the frozen pre-fix Phase 8 experiment.
+- No Phase 9, Koopman-MPC, PPO, Agent, environment transfer or Sim2Real work begins in Phase 8.2.
+
 ### Phase 9: Configuration-Aware Koopman-MPC Integration
 
 **Goal:** 让 Koopman-MPC 在统一 4D virtual-control 空间优化，并通过当前构型 TAM、可控自由度 mask 与确定性 fallback 实现可比较的多构型闭环控制。
 
-**Depends on:** Phase 8.1 terminal `koopman_selection`; planning may inspect a valid `NO_SELECTION`, execution remains blocked without a model handoff
+**Depends on:** Phase 8.2 terminal `koopman_selection`; planning may inspect a valid `NO_SELECTION`, execution remains blocked without a model handoff
 
 **Requirements**: MPC2-01, MPC2-02, MPC2-03, MPC2-04
 
@@ -277,6 +321,7 @@ Plans:
 | 7 | CONT-01..05 | 5 |
 | 8 | KID-01..05 | 5 |
 | 8.1 | KIDR-01..10 | 10 |
+| 8.2 | KIDO-01..05 | 5 |
 | 9 | MPC2-01..04 | 4 |
 | 10 | ADAPT-01..05 | 5 |
 | 11 | AGENT-01..04 | 4 |
