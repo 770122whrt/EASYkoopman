@@ -194,6 +194,85 @@ def test_exact_synthetic_approval_unlocks_only_the_injected_runner(
     assert not (tmp_path / "output").exists()
 
 
+def test_formal_entrypoint_routes_approved_fold_and_assembly_modes(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    role = tmp_path / "role.json"
+    policy = tmp_path / "policy.json"
+    approval = tmp_path / "approval.json"
+    role.write_bytes(ROLE_PATH.read_bytes())
+    policy.write_bytes(POLICY_PATH.read_bytes())
+    approval.write_bytes(
+        _canonical_bytes(
+            {
+                "analysis_policy_sha256": hashlib.sha256(policy.read_bytes()).hexdigest(),
+                "approval_record_version": "phase8.1-d23-approval-v1",
+                "attestation_scope": "protocol_hash_decision_binding_only",
+                "decision": "approved",
+                "experiment_id": "phase8.1-main-identification-v1",
+                "identity_assurance": "none",
+                "role_protocol_sha256": hashlib.sha256(role.read_bytes()).hexdigest(),
+            }
+        )
+    )
+    _bind_canonical_paths(
+        monkeypatch,
+        approval=approval,
+        role=role,
+        policy=policy,
+    )
+    observed: list[tuple[str, str]] = []
+
+    def forbidden_all(**_kwargs):
+        raise AssertionError("monolithic runner used for segmented mode")
+
+    def run_fold(**kwargs):
+        observed.append(("fold", kwargs["args"].fold))
+        return 0
+
+    def assemble(**kwargs):
+        observed.append(("assemble", str(kwargs["args"].fold_root)))
+        return 0
+
+    monkeypatch.setattr(run_koopman_v21_loco, "_run_authorized_loco", forbidden_all)
+    monkeypatch.setattr(run_koopman_v21_loco, "_run_authorized_loco_fold", run_fold)
+    monkeypatch.setattr(
+        run_koopman_v21_loco, "_assemble_authorized_loco_folds", assemble
+    )
+    common = [
+        "--approval-record",
+        str(approval),
+        "--role-protocol",
+        str(role),
+        "--analysis-policy",
+        str(policy),
+    ]
+    assert (
+        run_koopman_v21_loco.main(
+            common
+            + ["--output-root", str(tmp_path / "base"), "--fold", "base"]
+        )
+        == 0
+    )
+    fold_root = tmp_path / "fold-work"
+    assert (
+        run_koopman_v21_loco.main(
+            common
+            + [
+                "--output-root",
+                str(tmp_path / "evaluation"),
+                "--fold",
+                "assemble",
+                "--fold-root",
+                str(fold_root),
+            ]
+        )
+        == 0
+    )
+    assert observed == [("fold", "base"), ("assemble", str(fold_root))]
+
+
 @pytest.mark.parametrize(
     "module,runner_name",
     [

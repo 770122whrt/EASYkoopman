@@ -378,6 +378,224 @@ def test_authorized_synthetic_full_chain_uses_real_state_machine_and_exact_proto
         )
 
 
+def test_segmented_fold_outputs_survive_later_failure_and_assemble_exact_eight(
+    tmp_path: Path,
+) -> None:
+    role, policy, inventory, role_sha, policy_sha = _write_protocol_inputs(tmp_path)
+    from koopman.evaluation_v21 import load_protocol_episode_registry_v21
+
+    registry = load_protocol_episode_registry_v21(
+        role_protocol_path=role,
+        inventory_path=inventory,
+    )
+    split = tmp_path / "split.json"
+    split.write_bytes(_canonical_bytes(registry.expected_split_payload()))
+    approval = {
+        "decision": "approved",
+        "experiment_id": EXPERIMENT_ID,
+        "role_protocol_sha256": role_sha,
+        "analysis_policy_sha256": policy_sha,
+    }
+    fold_work_root = tmp_path / "fold-work"
+
+    def fold_args(configuration: str) -> SimpleNamespace:
+        return SimpleNamespace(
+            role_protocol=role,
+            analysis_policy=policy,
+            inventory=inventory,
+            split=split,
+            dataset_root=tmp_path / "synthetic-dataset",
+            output_root=fold_work_root / configuration,
+            source_commit="1" * 40,
+            evaluator_commit="2" * 40,
+            fold=configuration,
+        )
+
+    first = SUPPORTED_EMBODIMENTS[0]
+    assert (
+        run_koopman_v21_loco._run_authorized_loco_fold(
+            args=fold_args(first),
+            approval=approval,
+            backend=_SyntheticFormalLocoBackend(),
+        )
+        == 0
+    )
+    first_envelope = fold_work_root / first / "fold_envelope.json"
+    assert first_envelope.is_file()
+
+    class _FailingBackend(_SyntheticFormalLocoBackend):
+        def prepare_source_fold(self, **kwargs):
+            raise RuntimeError("synthetic_native_process_failure")
+
+    second = SUPPORTED_EMBODIMENTS[1]
+    with pytest.raises(RuntimeError, match="synthetic_native_process_failure"):
+        run_koopman_v21_loco._run_authorized_loco_fold(
+            args=fold_args(second),
+            approval=approval,
+            backend=_FailingBackend(),
+        )
+    assert first_envelope.is_file()
+    assert not (fold_work_root / second).exists()
+
+    for configuration in SUPPORTED_EMBODIMENTS[1:]:
+        assert (
+            run_koopman_v21_loco._run_authorized_loco_fold(
+                args=fold_args(configuration),
+                approval=approval,
+                backend=_SyntheticFormalLocoBackend(),
+            )
+            == 0
+        )
+
+    evaluation_root = tmp_path / "evaluation"
+    assert (
+        run_koopman_v21_loco._assemble_authorized_loco_folds(
+            args=SimpleNamespace(
+                role_protocol=role,
+                analysis_policy=policy,
+                inventory=inventory,
+                split=split,
+                fold_root=fold_work_root,
+                output_root=evaluation_root,
+                source_commit="1" * 40,
+                evaluator_commit="2" * 40,
+            ),
+            approval=approval,
+        )
+        == 0
+    )
+    summary = json.loads(
+        (evaluation_root / "evaluation_summary.json").read_text(encoding="utf-8")
+    )
+    assert tuple(
+        fold["heldout_configuration"] for fold in summary["folds"]
+    ) == tuple(SUPPORTED_EMBODIMENTS)
+    assert all(fold["state"] == "TEST_OPENED" for fold in summary["folds"])
+    assert summary["source_commit"] == "1" * 40
+    assert summary["evaluator_commit"] == "2" * 40
+
+
+def test_segmented_assembly_rejects_rehashed_post_test_freeze_mutation(
+    tmp_path: Path,
+) -> None:
+    role, policy, inventory, role_sha, policy_sha = _write_protocol_inputs(tmp_path)
+    from koopman.evaluation_v21 import load_protocol_episode_registry_v21
+
+    registry = load_protocol_episode_registry_v21(
+        role_protocol_path=role,
+        inventory_path=inventory,
+    )
+    split = tmp_path / "split.json"
+    split.write_bytes(_canonical_bytes(registry.expected_split_payload()))
+    approval = {
+        "decision": "approved",
+        "experiment_id": EXPERIMENT_ID,
+        "role_protocol_sha256": role_sha,
+        "analysis_policy_sha256": policy_sha,
+    }
+    heldout = SUPPORTED_EMBODIMENTS[0]
+    fold_work_root = tmp_path / "fold-work"
+    fold_output = fold_work_root / heldout
+    assert (
+        run_koopman_v21_loco._run_authorized_loco_fold(
+            args=SimpleNamespace(
+                role_protocol=role,
+                analysis_policy=policy,
+                inventory=inventory,
+                split=split,
+                dataset_root=tmp_path / "synthetic-dataset",
+                output_root=fold_output,
+                source_commit="1" * 40,
+                fold=heldout,
+            ),
+            approval=approval,
+            backend=_SyntheticFormalLocoBackend(),
+        )
+        == 0
+    )
+    freeze_path = fold_output / "fold" / "pre_test_freeze.json"
+    freeze = json.loads(freeze_path.read_text(encoding="utf-8"))
+    freeze["test_open_count_at_freeze"] = 1
+    freeze_path.write_bytes(_canonical_bytes(freeze))
+    envelope_path = fold_output / "fold_envelope.json"
+    envelope = json.loads(envelope_path.read_text(encoding="utf-8"))
+    envelope["artifact_sha256"]["pre_test_freeze.json"] = hashlib.sha256(
+        freeze_path.read_bytes()
+    ).hexdigest()
+    envelope_path.write_bytes(_canonical_bytes(envelope))
+
+    with pytest.raises(ValueError, match="formal_fold_freeze_invalid"):
+        run_koopman_v21_loco._assemble_authorized_loco_folds(
+            args=SimpleNamespace(
+                role_protocol=role,
+                analysis_policy=policy,
+                inventory=inventory,
+                split=split,
+                fold_root=fold_work_root,
+                output_root=tmp_path / "evaluation",
+                source_commit="1" * 40,
+            ),
+            approval=approval,
+        )
+
+
+def test_segmented_fold_keeps_failed_expert_nonpromoting_and_nonblocking(
+    tmp_path: Path,
+) -> None:
+    role, policy, inventory, role_sha, policy_sha = _write_protocol_inputs(tmp_path)
+    from koopman.evaluation_v21 import load_protocol_episode_registry_v21
+
+    registry = load_protocol_episode_registry_v21(
+        role_protocol_path=role,
+        inventory_path=inventory,
+    )
+    split = tmp_path / "split.json"
+    split.write_bytes(_canonical_bytes(registry.expected_split_payload()))
+
+    class _FailedExpertBackend(_SyntheticFormalLocoBackend):
+        def evaluate_expert(self, model, payloads):
+            raise ValueError("synthetic_expert_failure")
+
+    heldout = SUPPORTED_EMBODIMENTS[0]
+    output = tmp_path / "fold"
+    assert (
+        run_koopman_v21_loco._run_authorized_loco_fold(
+            args=SimpleNamespace(
+                role_protocol=role,
+                analysis_policy=policy,
+                inventory=inventory,
+                split=split,
+                dataset_root=tmp_path / "synthetic-dataset",
+                output_root=output,
+                source_commit="1" * 40,
+                evaluator_commit="2" * 40,
+                fold=heldout,
+            ),
+            approval={
+                "decision": "approved",
+                "experiment_id": EXPERIMENT_ID,
+                "role_protocol_sha256": role_sha,
+                "analysis_policy_sha256": policy_sha,
+            },
+            backend=_FailedExpertBackend(),
+        )
+        == 0
+    )
+    expert = json.loads(
+        (output / "fold" / "expert" / "expert_freeze.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    envelope = json.loads(
+        (output / "fold_envelope.json").read_text(encoding="utf-8")
+    )
+    assert expert["status"] == "failed"
+    assert expert["selection_eligible"] is False
+    assert expert["nonpromoting"] is True
+    assert not (output / "fold" / "expert" / "selected_model.json").exists()
+    assert "expert/selected_model.json" not in envelope["artifact_sha256"]
+
+
 def test_formal_loco_rejects_incomplete_inventory_before_backend_or_data_open(
     tmp_path: Path,
 ) -> None:

@@ -187,6 +187,31 @@ def test_formal_runner_orders_evaluation_before_selection() -> None:
     assert source.index("run_koopman_v21_loco.py") < source.index("select_koopman_v21.py")
 
 
+def test_formal_runner_uses_resume_safe_per_fold_processes_before_exact8_assembly() -> None:
+    source = (SCRIPTS / "phase8_2_formal_local.ps1").read_text(encoding="utf-8")
+    for configuration in (
+        "base",
+        "long_body",
+        "heavy_moderate",
+        "asymmetric",
+        "uuv6",
+        "uuv6_angled",
+        "uuv4",
+        "uuv4_angled",
+    ):
+        assert f'"{configuration}"' in source
+    assert "$foldWorkRoot" in source
+    assert '"fold_envelope.json"' in source
+    assert "--fold $configuration" in source
+    assert "--fold assemble" in source
+    assert "--fold-root $foldWorkRoot" in source
+    assert "--evaluator-commit $evaluatorCommit" in source
+    assert "post_collection_repair_scope_violation" in source
+    assert source.rindex("--fold assemble") < source.rindex(
+        "& $PythonExecutable workflows/select_koopman_v21.py"
+    )
+
+
 def test_closeout_validator_accepts_only_bound_terminal_artifacts(tmp_path: Path) -> None:
     from workflows.close_phase82 import close_phase82
 

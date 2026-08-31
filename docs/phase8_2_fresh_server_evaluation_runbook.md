@@ -66,7 +66,7 @@ Formal evaluation requires the pulled dataset to be committed and the worktree c
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/phase8_2_formal_local.ps1
 ```
 
-This runs the approved exact-eight evaluator and only then the outer selector. It does not accept a candidate ID, test metrics or threshold override. The terminal result is either a valid `SELECTION` publication or a pathless `NO_SELECTION`.
+This runs the approved logical exact-eight evaluator as eight independent Python processes, one held-out configuration per process. Each successful fold is atomically published under `.pytest-tmp/phase8-2-formal-folds/`; a native crash can therefore be resumed from the missing fold without reopening or recomputing completed fold outputs. The script validates all eight fold envelopes and freeze artifacts before atomically assembling canonical `evaluation/`, and only then runs the outer selector. It does not accept a candidate ID, test metrics or threshold override. Process segmentation does not change the frozen D-23 analysis semantics. The terminal result is either a valid `SELECTION` publication or a pathless `NO_SELECTION`.
 
 ## Gate 5 — Independent closeout
 
@@ -81,6 +81,7 @@ The independent closeout revalidates canonical D-23, all 96 dataset bindings, ev
 ## Failure handling
 
 - Preserve failed server roots; never append or relabel them as canonical success evidence.
+- Preserve failed local staging roots outside canonical `evaluation/`. A nonzero/native fold exit leaves previously published fold outputs intact; rerun the formal script to continue from the first missing fold.
 - Rebuild from a fresh bundle/checkout/result root after fixing a genuine implementation defect.
 - Do not change frozen candidates, metrics, thresholds or protocols in response to held-out results.
 - A valid `NO_SELECTION` closes Phase 8.2 without a model handoff.
