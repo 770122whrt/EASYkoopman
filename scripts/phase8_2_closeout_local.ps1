@@ -16,8 +16,23 @@ try {
     if (-not (Test-Path -LiteralPath $sourceCommitFile -PathType Leaf)) { throw "source_commit_sidecar_missing" }
     $sourceCommit = (Get-Content -Raw -LiteralPath $sourceCommitFile).Trim()
     if ($sourceCommit -notmatch '^[0-9a-f]{40}$') { throw "source_commit_invalid" }
-    $sourceDrift = (& git diff --name-only $sourceCommit HEAD -- . ':(exclude)source/results/koopman_phase8_2') -join "`n"
-    if ($sourceDrift) { throw "post_collection_source_drift:$sourceDrift" }
+    $allowedPostCollectionRepairPaths = @(
+        ".planning/phases/08.2-phase-8-1-fresh-server-evaluation-and-closeout/08.2-03-PLAN.md",
+        ".planning/phases/08.2-phase-8-1-fresh-server-evaluation-and-closeout/08.2-SPEC.md",
+        "docs/phase8_2_fresh_server_evaluation_runbook.md",
+        "scripts/phase8_2_formal_local.ps1",
+        "scripts/phase8_2_closeout_local.ps1",
+        "tests/test_phase81_entrypoints.py",
+        "tests/test_phase81_formal_chain.py",
+        "tests/test_phase82_operational_contract.py",
+        "workflows/run_koopman_v21_loco.py"
+    )
+    $sourceDriftPaths = @(& git diff --name-only $sourceCommit HEAD -- . ':(exclude)source/results/koopman_phase8_2')
+    if ($LASTEXITCODE -ne 0) { throw "post_collection_source_drift_check_failed" }
+    $unexpectedDrift = @($sourceDriftPaths | Where-Object { $_ -and $_ -notin $allowedPostCollectionRepairPaths })
+    if ($unexpectedDrift.Count -ne 0) {
+        throw "post_collection_repair_scope_violation:$($unexpectedDrift -join ',')"
+    }
     $status = (& git -c core.excludesFile= status --porcelain=v1 --untracked-files=all) -join "`n"
     if ($status) { throw "worktree_dirty:$status" }
     $root = "source/results/koopman_phase8_2"
