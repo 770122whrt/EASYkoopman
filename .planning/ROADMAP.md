@@ -19,8 +19,8 @@ v1.0 的阶段名称、结论和证据已冻结，不在本活动 roadmap 中重
 | 7 | Cross-Configuration Koopman Data and Control Contract | CONT-01..05 | Phase 6 | Complete — 4/4 plans verified |
 | 8 | Multi-Configuration Koopman Identification and OOD Gate | KID-01..05 | Phase 7 | Complete — 5/5 plans verified; valid `NO_SELECTION` |
 | 8.1 | Local Simulator and Koopman Identification Repair | KIDR-01..10 | Phase 8 | Complete — 4/4 local plans verified; D-23 approved |
-| 8.2 | Phase 8.1 Fresh Server Evaluation and Closeout | KIDO-01..05 | Phase 8.1 D-23 approval | In progress — Plan 1/4 complete; awaiting server-start checkpoint |
-| 9 | Configuration-Aware Koopman-MPC Integration | MPC2-01..04 | Phase 8.2 terminal selection | Pending — no Phase 8.2 handoff model |
+| 8.2 | Phase 8.1 Fresh Server Evaluation and Closeout | KIDO-01..05 | Phase 8.1 D-23 approval | Complete — 4/4 plans verified; terminal `NO_SELECTION` with `VERIFIED` closeout |
+| 9 | Configuration-Aware Koopman-MPC Integration | MPC2-01..04 | Phase 8.2 terminal selection | Blocked — no Phase 8.2 handoff model; awaiting user decision on negative-result carry-forward |
 | 10 | Environment Awareness and Online Koopman Update | ADAPT-01..05 | Phase 9 | Pending |
 | 11 | Low-Frequency Agent Supervisor | AGENT-01..04 | Phase 10 | Pending |
 | 12 | Final Matched Evaluation and Research Evidence | EVAL-01..05 | Phase 11 | Pending |
@@ -215,15 +215,15 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 and explicit server-start checkpoint)*
 
-- [ ] 08.2-02-PLAN.md — collect the fresh v2.1 server dataset and atomically promote a validated pullback.
+- [x] 08.2-02-PLAN.md — collected the fresh v2.1 server dataset (96 episodes, zero `.part`, 49,152 transitions) in isolated `v2` roots, validated the staged pullback and atomically promoted `dataset/` + `collection_status/`; the failed `v1` bootstrap attempt is preserved.
 
 **Wave 3** *(blocked on Wave 2)*
 
-- [ ] 08.2-03-PLAN.md — run the frozen formal eight-fold LOCO and outer terminal decision.
+- [x] 08.2-03-PLAN.md — ran the frozen formal eight-fold LOCO as eight independent processes with per-fold pre-test freeze and atomic publication, assembled canonical `evaluation/` and published the terminal `NO_SELECTION` envelope.
 
 **Wave 4** *(blocked on Wave 3)*
 
-- [ ] 08.2-04-PLAN.md — independently verify and close the exact evidence/claim boundary.
+- [x] 08.2-04-PLAN.md — independently verified the exact evidence/claim boundary with verdict `VERIFIED` and closed Phase 8.2.
 
 **Cross-cutting constraints:**
 

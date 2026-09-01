@@ -3,20 +3,20 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Multi-Configuration Koopman Transfer and Environment-Aware Control
 status: executing
-last_updated: "2026-08-30T11:00:00Z"
-last_activity: 2026-08-30 -- Phase 8.2 Plan 01 local preflight and offline bundle verification passed; no SSH performed
+last_updated: "2026-09-01T16:00:00Z"
+last_activity: 2026-09-01 -- Phase 8.2 formal eight-fold LOCO closed with terminal NO_SELECTION and independent closeout VERIFIED
 progress:
   total_phases: 9
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 21
-  completed_plans: 18
-  percent: 86
+  completed_plans: 21
+  percent: 100
 ---
 
 # Project State: EASYkoopman
 
-**Updated:** 2026-08-30
-**Current focus:** Phase 08.2 Plan 02 checkpoint — fresh server collection and validated pullback
+**Updated:** 2026-09-01
+**Current focus:** Phase 8.2 closed — terminal `NO_SELECTION` with `VERIFIED` closeout; awaiting user decision on Phase 9 direction
 **Active milestone:** `v2.0 Multi-Configuration Koopman Transfer and Environment-Aware Control`
 **Branch:** `v2.0-multi-configuration`
 
@@ -28,10 +28,10 @@ See `.planning/PROJECT.md`.
 
 ## Current Position
 
-Phase: 08.2 (fresh-server-evaluation-and-closeout) — SERVER CHECKPOINT READY
-Plan: 1/4 Phase 8.2 plans complete
-Status: Clean-HEAD preflight and offline bundle verification passed; no SSH, fresh dataset, formal LOCO or terminal decision exists
-Last activity: 2026-08-30 -- canonical D-23, 32 targeted, 200 relevant, parsers, compileall and offline bundle clone all passed
+Phase: 08.2 (fresh-server-evaluation-and-closeout) — COMPLETE
+Plan: 4/4 Phase 8.2 plans complete
+Status: Fresh v2.1 exact-eight dataset collected, pulled back and committed; formal eight-fold LOCO executed with per-fold pre-test freeze; terminal decision `NO_SELECTION` published; independent closeout passed with verdict `VERIFIED`; no Phase 9 handoff model exists
+Last activity: 2026-09-01 -- Gate 4 formal chain + Gate 5 closeout completed; evaluation/selection/closeout roots committed and immutable
 
 ## Milestone Goal
 
@@ -95,6 +95,7 @@ Frozen conclusions carried into v2.0:
 | Promotion | `no_selection` is a valid outcome when no candidate passes every gate. |
 | Phase 8.1 D-23 | Approved only for role `083d5eae...9417`, analysis `7a790b43...e18c` and experiment `phase8.1-main-identification-v1`; identity assurance remains none. |
 | Phase 8.2 isolation | Server collection, pullback, formal LOCO and closeout live only in `source/results/koopman_phase8_2`, never in frozen Phase 8/8.1 result roots. |
+| Phase 8.2 terminal | `NO_SELECTION` with `VERIFIED` closeout; fresh-root isolation and freeze semantics enforced; evidence roots immutable. |
 
 ## Git Delivery Boundaries
 
@@ -167,7 +168,10 @@ All three boundaries are visible on `origin/v2.0-multi-configuration`: simulator
 - Phase 8.2 now owns a separate four-plan chain: local preflight/bundle, fresh server collection/pullback, formal eight-fold LOCO/outer decision and independent closeout. Its new operational contract tests pass locally, but no server or formal evidence has been created.
 - Plan 08.2-01 completed the versioned preflight, bundle/bootstrap/collection/pullback/formal/closeout scripts and runbook. The checked-in preflight passed canonical approval, 32 targeted tests, 200 relevant regressions, compileall, script parsing, protected-history, clean-tree and absent-root gates; bundle verify plus isolated offline clone passed before any SSH.
 - The first Plan 08.2-02 `v1` server bootstrap cloned the verified source but stopped before collection because the bootstrap reassigned its own readonly `RESULT_ROOT` variable. No episode, model, held-out test or formal result was created. The failed `/root/EASYkoopman-phase8-2-v1` attempt is preserved; the scoped repair uses fresh `v2` checkout/result roots and has 15 passing operational contract tests.
+- Plan 08.2-02 collected the fresh v2.1 exact-eight dataset on the unchanged Isaac server from tested source `4f3b4cb` in isolated `/root/EASYkoopman-phase8-2-v2` (checkout) and `/root/EASYkoopman-phase8-2-results-v2` (results): 8 configurations x 12 episodes, 96 JSONL/manifest/log triplets, zero `.part`, 49,152 strict transitions. The operational `v1` failure (readonly variable reassignment before collection) is preserved and never promoted. Staged pullback validated all gates before atomic promotion of `dataset/` and `collection_status/`.
+- Plan 08.2-03 executed the frozen formal eight-fold LOCO as eight independent Python processes with per-fold pre-test freeze and atomic publication, then assembled canonical `evaluation/` and published the terminal `NO_SELECTION` envelope through the checked-in formal chain; all eight folds succeeded. Pooled Koopman remained numerically identical to simple linear (24/24 evaluations) and both comprehensively lost to the persistence baseline; conditional Koopman failed closed 8/8 with reason `source_candidate_unavailable`. The terminal artifact is pathless; final refit was not invoked. Evaluation and selection evidence is isolated in commit `ce622c0`.
+- Plan 08.2-04 independently revalidated canonical D-23, the dataset/evaluation/selection envelopes, the exact eight-fold set, zero leakage/freeze evidence and the exact evidence/claim boundary, producing `source/results/koopman_phase8_2/closeout/` with status `VERIFIED`, `terminal_decision=NO_SELECTION`, `model_handoff=false` and `fold_count=8`. Closeout gate alignment is isolated in commit `384caf1` and closeout evidence in `ab3c867`.
 
 ## Next Action
 
-The unchanged server is running. Commit and push the scoped `v2` bootstrap repair, regenerate and verify the bundle from that clean HEAD, then execute Plan 08.2-02 using fresh `v2` roots: transfer, collection, staged pullback and inventory/split validation. Preserve the frozen Phase 8 `no_selection`; do not run formal LOCO until fresh pullback is independently valid and committed, and do not enter Phase 9.
+Phase 8.2 is closed with a valid terminal `NO_SELECTION`; no Phase 9 handoff model exists. Do not retune or rewrite the frozen result. The user must decide whether to (a) proceed to Phase 9-12 with a linear/conditional-linear nominal model plus bounded fallback carrying the negative result, or (b) close v2.0 as a dual-negative milestone, or (c) open a new versioned identification protocol (e.g. quadratic-damping observables u|u|) under a fresh D-23 approval. Do not enter Phase 9 without an explicit decision.
