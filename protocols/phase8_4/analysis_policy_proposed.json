@@ -1,0 +1,78 @@
+{
+  "version": "formal-structured-edmd-analysis-v25",
+  "experiment_id": "phase8.4-structured-formal-v25-20260912",
+  "families": [
+    "linear_free",
+    "nonlinear_free",
+    "linear_fixed",
+    "nonlinear_fixed"
+  ],
+  "primary": "nonlinear_fixed",
+  "scopes": "eight_local_one_pooled_eight_source_only_heldout",
+  "fits": 68,
+  "mean_ridge": 0.001,
+  "std_floor": 1e-06,
+  "condition_limit": 100000000.0,
+  "fit_role_only": true,
+  "validation_use": "fixed_gate_only_no_tuning",
+  "test_access": "after_source_bound_validation_and_model_freeze",
+  "horizons_control": [
+    1,
+    20,
+    60,
+    128,
+    512
+  ],
+  "origins": "all_control_boundaries;512fixed_origin",
+  "path_ticks": "all_physics_ticks",
+  "units": [
+    "m",
+    "rad",
+    "m/s",
+    "rad/s"
+  ],
+  "denominator_floor": [
+    0.01,
+    0.01,
+    0.01,
+    0.01
+  ],
+  "gates": {
+    "primary_all_complete_and_512_stable": true,
+    "mandatory_accuracy_horizons": [
+      20,
+      60,
+      128
+    ],
+    "aggregate_normalized_max": 1.0,
+    "each_configuration_normalized_max": 1.05,
+    "each_configuration_each_metric_max": 1.1,
+    "combined_velocity_max": 0.9,
+    "each_configuration_velocity_better_seed_count": 2,
+    "nonlinear_over_complete_linear_fixed_max": 0.9,
+    "each_configuration_over_linear_max": 1.05,
+    "both_endpoint_and_path": true,
+    "state_abs_limit": 100.0,
+    "native_source_semantic_failures_allowed": 0
+  },
+  "uncertainty": {
+    "paired_episode_block_bootstrap_replicates": 2000,
+    "seed": 8490,
+    "percentiles": [
+      2.5,
+      97.5
+    ],
+    "stratification": "within_configuration_whole_seed_family_blocks",
+    "interpretation": "exploratory_interval_with_only_three_test_blocks_per_configuration;not_population_proof"
+  },
+  "ablations": "reuse_both_nonlinear_operators_unprojected;fixed_input_ablation_retains_nonlinear_known_kick",
+  "free_input_failures": "record_invalid_finite_comparison;never_treat_as_numeric_win",
+  "handoff": "only_after_formal_gates_and_independent_closeout;pooled_fit_only_operator;matching_direct4DcausalNclock",
+  "claims_excluded": [
+    "unseen_real_platform",
+    "hardware",
+    "closed_loop",
+    "Agentic_benefit",
+    "global_finite_linear_Koopman_closure"
+  ]
+}

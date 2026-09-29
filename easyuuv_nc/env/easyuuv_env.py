@@ -106,6 +106,15 @@ class EasyUUVEnvCfg(DirectRLEnvCfg):
 
     # env
     decimation = 2
+    # Versioned reset repair. Keep archived collection behavior reproducible;
+    # new diagnostic A/B runs explicitly select episode_local_v1.
+    control_history_reset_mode = "legacy"
+    # Versioned direct pre-TAM pilot; legacy controller interpretation is default.
+    control_input_mode = "legacy_action"
+    # Versioned physical repair; legacy remains available for frozen experiments.
+    inertia_sync_mode = "legacy"
+    physics_initialization_mode = "legacy"
+    initial_embodiment_type = "base"
     cap_episode_length = True
     episode_length_s = 3.0
     episode_length_before_reset = None
@@ -719,7 +728,10 @@ class EasyUUVEnv(DirectRLEnv):
             self._gain_tuner = None
 
         self._refresh_domain_randomization_defaults()
-        
+
+        if getattr(self, "_initial_mechanics_v23", None) is not None:
+            self.apply_embodiment_config(self.cfg.initial_embodiment_type)
+
         # Set initial goals
         self._reset_idx(self._robot._ALL_INDICES)
 
@@ -1125,6 +1137,9 @@ class EasyUUVEnv(DirectRLEnv):
         Args:
             embodiment_type: One of 'base', 'long_body', 'heavy_duty', 'asymmetric'
         """
+        if (getattr(self.cfg, "physics_initialization_mode", "legacy") == "authored_static_v1"
+                and embodiment_type != self.cfg.initial_embodiment_type):
+            raise ValueError("static_initialization_configuration_switch")
         if embodiment_type not in self.cfg.embodiment_configs:
             raise ValueError(f"Unknown embodiment type: {embodiment_type}. "
                            f"Available types: {list(self.cfg.embodiment_configs.keys())}")
@@ -1143,6 +1158,7 @@ class EasyUUVEnv(DirectRLEnv):
         self.inertia_tensors[:, 0] = config["inertia_tensors"][0]
         self.inertia_tensors[:, 1] = config["inertia_tensors"][1]
         self.inertia_tensors[:, 2] = config["inertia_tensors"][2]
+        self._sync_declared_inertias(self._robot._ALL_INDICES)
 
         # Apply COM to COB offset
         self.com_to_cob_offsets = torch.tensor(config["com_to_cob_offset"]).repeat(self.num_envs, 1).to(self.device)
@@ -1274,6 +1290,36 @@ class EasyUUVEnv(DirectRLEnv):
             lower = range_tensor[..., 0].expand(shape).to(device=self.device, dtype=torch.float32)
             upper = range_tensor[..., 1].expand(shape).to(device=self.device, dtype=torch.float32)
         return math_utils.sample_uniform(lower, upper, shape, self.device)
+
+    def _sync_declared_inertias(self, env_ids: torch.Tensor) -> None:
+        """Synchronize declared body-frame diagonal inertia through the PhysX API."""
+        mode = getattr(self.cfg, "inertia_sync_mode", "legacy")
+        if mode == "legacy":
+            return
+        if mode != "declared_v1":
+            raise ValueError(f"inertia_sync_mode invalid: {mode}")
+        indices = torch.as_tensor(env_ids, dtype=torch.long, device="cpu").reshape(-1)
+        if indices.numel() == 0:
+            return
+        if torch.any(indices < 0) or torch.any(indices >= self.num_envs):
+            raise ValueError("inertia_env_indices_invalid")
+        selected = indices.to(self.inertia_tensors.device)
+        diagonal = self.inertia_tensors[selected].detach().cpu()
+        if diagonal.shape != (indices.numel(), 3) or not torch.isfinite(diagonal).all() or torch.any(diagonal <= 0):
+            raise ValueError("declared_inertia_invalid")
+        view = self._robot.root_physx_view
+        values = view.get_inertias().detach().cpu().clone()
+        if values.shape != (self.num_envs, 9):
+            raise ValueError("physx_inertia_shape_invalid")
+        # PhysX expects full-view buffers plus selected indices. Diagonal tensors
+        # have identical column-major and row-major flattenings.
+        expected = torch.diag_embed(diagonal).reshape(-1, 9)
+        values[indices] = expected.to(values.dtype)
+        view.set_inertias(values, indices)
+        actual = view.get_inertias().detach().cpu()[indices]
+        if not torch.allclose(actual, expected.to(actual.dtype), rtol=1e-6, atol=1e-7):
+            raise RuntimeError("physx_inertia_readback_mismatch")
+        self.inertia_tensors_mean[selected] = self.inertia_tensors[selected].mean(dim=1, keepdim=True)
 
     def _set_masses(self, env_ids: torch.Tensor, masses: torch.Tensor) -> None:
         self.masses[env_ids] = masses
@@ -1452,6 +1498,8 @@ class EasyUUVEnv(DirectRLEnv):
     def _setup_scene(self):
         self.cfg.robot_cfg.init_state = RigidObjectCfg.InitialStateCfg(pos=(0.0, 0.0, self.cfg.starting_depth))
         self._robot = RigidObject(self.cfg.robot_cfg)
+        from easyuuv_nc.initialization_v23 import author_initial_mechanics
+        self._initial_mechanics_v23 = author_initial_mechanics(self.cfg, sim_utils)
 
         ground_mode = str(getattr(self.cfg, "ground_plane_mode", "grid"))
         if ground_mode == "local_cuboid":
@@ -1489,6 +1537,10 @@ class EasyUUVEnv(DirectRLEnv):
         """
         if self._debug: print("original actions vec: ", actions)
         if self._debug: print("concatenated actions shape: ", self._actions)
+
+        if getattr(self.cfg, "control_input_mode", "legacy_action") != "legacy_action":
+            from easyuuv_nc.control_v24 import begin_interval
+            begin_interval(self, actions)  # Validate before the legacy clip/mutation.
 
         # 阻尼项缓冲：在覆盖前把上一/上上步动作存好（reward 消费）。
         self._prev_prev_action[:] = self._prev_action
@@ -1698,6 +1750,18 @@ class EasyUUVEnv(DirectRLEnv):
 
         return out_of_bounds, time_out
 
+    def _reset_control_history(self, env_ids):
+        """Reset controller-owned memory only in the explicitly selected contract."""
+        mode = getattr(self.cfg, "control_history_reset_mode", "legacy")
+        if mode not in {"legacy", "episode_local_v1"}:
+            raise ValueError(f"control_history_reset_mode invalid: {mode}")
+        if mode == "episode_local_v1":
+            # _pre_physics_step copies _actions into reward history. Clearing
+            # only _prev_action would reintroduce the old episode on that call.
+            for name in ("old_actions", "actions_i", "_actions"):
+                if hasattr(self, name):
+                    getattr(self, name)[env_ids] = 0.0
+
     def _reset_idx(self, env_ids: Sequence[int] | None):
         """@dox _reset_idx
         @brief Reset selected envs and zero meta-control state.
@@ -1707,6 +1771,13 @@ class EasyUUVEnv(DirectRLEnv):
         """
         if env_ids is None:
             env_ids = self._robot._ALL_INDICES
+        if getattr(self.cfg, "physics_initialization_mode", "legacy") == "authored_static_v1":
+            from easyuuv_nc.initialization_v23 import initial_mechanics
+            initial_mechanics(self.cfg)  # Reject newly enabled randomization before reset writes.
+        self._reset_control_history(env_ids)
+        if getattr(self.cfg, "control_input_mode", "legacy_action") != "legacy_action":
+            from easyuuv_nc.control_v24 import reset_direct
+            reset_direct(self, env_ids)
         super()._reset_idx(env_ids)
         ids = torch.as_tensor(env_ids, device=self.device, dtype=torch.long) if not isinstance(env_ids, torch.Tensor) else env_ids.to(device=self.device, dtype=torch.long)
 
@@ -2010,6 +2081,8 @@ class EasyUUVEnv(DirectRLEnv):
                 self.device,
             )
 
+        self._sync_declared_inertias(env_ids)
+
     def _sample_from_circle(self, num_env_ids, r):
         sampled_radius = r * torch.sqrt(torch.rand((num_env_ids), device=self.device))
         sampled_theta = torch.rand((num_env_ids), device=self.device) * 2 * 3.14159
@@ -2088,6 +2161,9 @@ class EasyUUVEnv(DirectRLEnv):
         return e_R, e_omega
 
     def _pid_control(self, actions, actions_d, actions_i) -> torch.Tensor:
+        if getattr(self.cfg, "control_input_mode", "legacy_action") != "legacy_action":
+            from easyuuv_nc.control_v24 import direct_pwm
+            return direct_pwm(self)
         # 将action修改为PID控制，随后输出PWM波的正规化频率。
         motorValue = torch.zeros(self.num_envs, self._num_thrusters, device=self.device)
         if not self.cfg.cascade_control:
