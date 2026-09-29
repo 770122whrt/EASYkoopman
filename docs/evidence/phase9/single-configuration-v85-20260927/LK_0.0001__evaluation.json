@@ -1,0 +1,687 @@
+{
+  "training_rows": [
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8720-prbs",
+      "source_trace_sha256": "e713f82299dede5095a0d054fe89a027280b340b6ac7561236621b4cf647d33d",
+      "origin": 256,
+      "horizon_physics": 1,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 1,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 0.9389805070346152,
+      "metrics": {
+        "z_rmse_m": 1.144594117263864e-07,
+        "attitude_rmse_rad": 3.382136878856419e-06,
+        "velocity_6_rmse": [
+          2.890489411682642e-07,
+          1.6268776153847485e-06,
+          2.4155142212822778e-08,
+          1.5667169608201857e-06,
+          4.7689167018870804e-08,
+          7.61706054933908e-07
+        ],
+        "linear_velocity_rmse_m_s": 9.540900615640333e-07,
+        "angular_velocity_rmse_rad_s": 1.0061597630090976e-06
+      }
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8720-prbs",
+      "source_trace_sha256": "e713f82299dede5095a0d054fe89a027280b340b6ac7561236621b4cf647d33d",
+      "origin": 256,
+      "horizon_physics": 80,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 80,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 0.9389805070346152,
+      "metrics": {
+        "z_rmse_m": 8.94566591239451e-05,
+        "attitude_rmse_rad": 0.0002680726215581837,
+        "velocity_6_rmse": [
+          0.00045363512079642877,
+          0.0008171109282142787,
+          0.000960294380498746,
+          0.0008237674442008753,
+          0.0008214224857206833,
+          0.0017285470736523457
+        ],
+        "linear_velocity_rmse_m_s": 0.00077365375309731,
+        "angular_velocity_rmse_rad_s": 0.0012029412133052436
+      }
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8720-prbs",
+      "source_trace_sha256": "e713f82299dede5095a0d054fe89a027280b340b6ac7561236621b4cf647d33d",
+      "origin": 256,
+      "horizon_physics": 128,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 128,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 0.9389805070346152,
+      "metrics": {
+        "z_rmse_m": 0.0005535958319958491,
+        "attitude_rmse_rad": 0.0011670266911034013,
+        "velocity_6_rmse": [
+          0.0009254706710299746,
+          0.003922006618761505,
+          0.0022385584859498744,
+          0.01402308660943041,
+          0.00181399975111577,
+          0.009321517000196407
+        ],
+        "linear_velocity_rmse_m_s": 0.002661439208120544,
+        "angular_velocity_rmse_rad_s": 0.009778006482877532
+      }
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8720-prbs",
+      "source_trace_sha256": "e713f82299dede5095a0d054fe89a027280b340b6ac7561236621b4cf647d33d",
+      "origin": 384,
+      "horizon_physics": 1,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 1,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 1.1967841569669886,
+      "metrics": {
+        "z_rmse_m": 4.841528600252332e-08,
+        "attitude_rmse_rad": 1.5679534003694347e-06,
+        "velocity_6_rmse": [
+          1.4983894718725637e-06,
+          5.828360371378178e-06,
+          4.3926814562861294e-07,
+          1.3387968192252186e-06,
+          4.0636430967549986e-06,
+          4.0085305527196025e-06
+        ],
+        "linear_velocity_rmse_m_s": 3.4836720153612867e-06,
+        "angular_velocity_rmse_rad_s": 3.3849613160299994e-06
+      }
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8720-prbs",
+      "source_trace_sha256": "e713f82299dede5095a0d054fe89a027280b340b6ac7561236621b4cf647d33d",
+      "origin": 384,
+      "horizon_physics": 80,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 80,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 1.1967841569669886,
+      "metrics": {
+        "z_rmse_m": 4.418257401076947e-05,
+        "attitude_rmse_rad": 0.000313739983362742,
+        "velocity_6_rmse": [
+          0.00019485263887291957,
+          0.0006092679566129326,
+          0.00026493391024652303,
+          0.003130614679232765,
+          0.0006085467248476098,
+          0.0019133644107419499
+        ],
+        "linear_velocity_rmse_m_s": 0.00039973531685752234,
+        "angular_velocity_rmse_rad_s": 0.0021472494618654434
+      }
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8720-prbs",
+      "source_trace_sha256": "e713f82299dede5095a0d054fe89a027280b340b6ac7561236621b4cf647d33d",
+      "origin": 384,
+      "horizon_physics": 128,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 128,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 1.1967841569669886,
+      "metrics": {
+        "z_rmse_m": 0.0005721816095321207,
+        "attitude_rmse_rad": 0.0024662716339138094,
+        "velocity_6_rmse": [
+          0.0004708282074713555,
+          0.004888732428657149,
+          0.0022575553797242564,
+          0.020854641252307626,
+          0.005575692979319269,
+          0.018658502840312664
+        ],
+        "linear_velocity_rmse_m_s": 0.003120787307314008,
+        "angular_velocity_rmse_rad_s": 0.01647365717546286
+      }
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8720-prbs",
+      "source_trace_sha256": "e713f82299dede5095a0d054fe89a027280b340b6ac7561236621b4cf647d33d",
+      "origin": 512,
+      "horizon_physics": 1,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 1,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 0.6612346144112242,
+      "metrics": {
+        "z_rmse_m": 7.378591160289716e-08,
+        "attitude_rmse_rad": 1.7980460082291203e-06,
+        "velocity_6_rmse": [
+          4.243768476719996e-06,
+          2.8080064381869833e-06,
+          3.9954995983970676e-07,
+          8.728974252303345e-07,
+          2.050198845471307e-06,
+          9.696582231877304e-07
+        ],
+        "linear_velocity_rmse_m_s": 2.946982140614916e-06,
+        "angular_velocity_rmse_rad_s": 1.4030327022490976e-06
+      }
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8720-prbs",
+      "source_trace_sha256": "e713f82299dede5095a0d054fe89a027280b340b6ac7561236621b4cf647d33d",
+      "origin": 512,
+      "horizon_physics": 80,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 80,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 0.6612346144112242,
+      "metrics": {
+        "z_rmse_m": 1.0844630364778403e-05,
+        "attitude_rmse_rad": 0.00013703281871776883,
+        "velocity_6_rmse": [
+          0.00013759826749252082,
+          0.0002829794970281819,
+          0.00026832045967993616,
+          0.0007657307772191393,
+          0.0006343396953102941,
+          0.001848105641891464
+        ],
+        "linear_velocity_rmse_m_s": 0.00023875129880143644,
+        "angular_velocity_rmse_rad_s": 0.001211641439785721
+      }
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8720-prbs",
+      "source_trace_sha256": "e713f82299dede5095a0d054fe89a027280b340b6ac7561236621b4cf647d33d",
+      "origin": 512,
+      "horizon_physics": 128,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 128,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 0.6612346144112242,
+      "metrics": {
+        "z_rmse_m": 0.00022987346790256827,
+        "attitude_rmse_rad": 0.0009299668740599603,
+        "velocity_6_rmse": [
+          0.000325698548295135,
+          0.0023937134650880397,
+          0.0016512491837959685,
+          0.008654722610994689,
+          0.0012244806845609943,
+          0.007511285362032682
+        ],
+        "linear_velocity_rmse_m_s": 0.0016894345764478127,
+        "angular_velocity_rmse_rad_s": 0.00665389570627644
+      }
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8721-multisine",
+      "source_trace_sha256": "ed1e4b0821ffeddf2de3db80b5c53c3f600430e0e83b8c0308b91a7c546f2c2d",
+      "origin": 256,
+      "horizon_physics": 1,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 1,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 0.7667599702381407,
+      "metrics": {
+        "z_rmse_m": 3.2433634444828385e-07,
+        "attitude_rmse_rad": 2.1569141295818214e-06,
+        "velocity_6_rmse": [
+          6.278237378380868e-07,
+          2.305493619260447e-06,
+          1.1079615988562885e-08,
+          2.0258204506248194e-06,
+          1.783622539812716e-08,
+          8.717365001688513e-07
+        ],
+        "linear_velocity_rmse_m_s": 1.3795634855675757e-06,
+        "angular_velocity_rmse_rad_s": 1.2733409015699392e-06
+      }
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8721-multisine",
+      "source_trace_sha256": "ed1e4b0821ffeddf2de3db80b5c53c3f600430e0e83b8c0308b91a7c546f2c2d",
+      "origin": 256,
+      "horizon_physics": 80,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 80,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 0.7667599702381407,
+      "metrics": {
+        "z_rmse_m": 5.1457332918366844e-05,
+        "attitude_rmse_rad": 0.0005927171606376227,
+        "velocity_6_rmse": [
+          0.00023944311056616678,
+          0.0005318607329711289,
+          0.0002813743776902075,
+          0.0036107106755976547,
+          0.0010454830775411758,
+          0.0013931364077665834
+        ],
+        "linear_velocity_rmse_m_s": 0.0003738896374131185,
+        "angular_velocity_rmse_rad_s": 0.0023145262653470884
+      }
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8721-multisine",
+      "source_trace_sha256": "ed1e4b0821ffeddf2de3db80b5c53c3f600430e0e83b8c0308b91a7c546f2c2d",
+      "origin": 256,
+      "horizon_physics": 128,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 128,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 0.7667599702381407,
+      "metrics": {
+        "z_rmse_m": 0.00033801735244866154,
+        "attitude_rmse_rad": 0.0012537619845940217,
+        "velocity_6_rmse": [
+          0.00023203027849019508,
+          0.0022831023125291974,
+          0.0012920857851777931,
+          0.009186896343856115,
+          0.0032683017012528925,
+          0.009342661185258712
+        ],
+        "linear_velocity_rmse_m_s": 0.0015205130598881112,
+        "angular_velocity_rmse_rad_s": 0.00779671252229017
+      }
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8721-multisine",
+      "source_trace_sha256": "ed1e4b0821ffeddf2de3db80b5c53c3f600430e0e83b8c0308b91a7c546f2c2d",
+      "origin": 384,
+      "horizon_physics": 1,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 1,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 0.12582884240074824,
+      "metrics": {
+        "z_rmse_m": 1.3802774212479108e-07,
+        "attitude_rmse_rad": 2.2383508361132597e-06,
+        "velocity_6_rmse": [
+          8.756836399518393e-07,
+          1.3534282083672551e-07,
+          4.975518722305505e-07,
+          1.3473261152030513e-06,
+          6.953105085930056e-07,
+          3.4875891637142775e-07
+        ],
+        "linear_velocity_rmse_m_s": 5.867132695481018e-07,
+        "angular_velocity_rmse_rad_s": 8.982162222643615e-07
+      }
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8721-multisine",
+      "source_trace_sha256": "ed1e4b0821ffeddf2de3db80b5c53c3f600430e0e83b8c0308b91a7c546f2c2d",
+      "origin": 384,
+      "horizon_physics": 80,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 80,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 0.12582884240074824,
+      "metrics": {
+        "z_rmse_m": 1.6199282338477256e-05,
+        "attitude_rmse_rad": 0.0002503767715607865,
+        "velocity_6_rmse": [
+          8.359500845171794e-05,
+          0.00029301675621095144,
+          9.118059504396686e-05,
+          0.0007132739397492417,
+          0.000383578277982886,
+          0.0007678197270766854
+        ],
+        "linear_velocity_rmse_m_s": 0.00018363083053688889,
+        "angular_velocity_rmse_rad_s": 0.0006443185396871739
+      }
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8721-multisine",
+      "source_trace_sha256": "ed1e4b0821ffeddf2de3db80b5c53c3f600430e0e83b8c0308b91a7c546f2c2d",
+      "origin": 384,
+      "horizon_physics": 128,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 128,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 0.12582884240074824,
+      "metrics": {
+        "z_rmse_m": 8.616507138345177e-05,
+        "attitude_rmse_rad": 0.00035555505398405585,
+        "velocity_6_rmse": [
+          0.00014729672817886006,
+          0.000980904262367107,
+          0.0002646151011738975,
+          0.002083904930771525,
+          0.0008513214311212131,
+          0.0013900345176311012
+        ],
+        "linear_velocity_rmse_m_s": 0.0005927030312704184,
+        "angular_velocity_rmse_rad_s": 0.001527482012964045
+      }
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8721-multisine",
+      "source_trace_sha256": "ed1e4b0821ffeddf2de3db80b5c53c3f600430e0e83b8c0308b91a7c546f2c2d",
+      "origin": 512,
+      "horizon_physics": 1,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 1,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 0.4698298849803767,
+      "metrics": {
+        "z_rmse_m": 7.181677474932258e-09,
+        "attitude_rmse_rad": 9.068920644940776e-07,
+        "velocity_6_rmse": [
+          5.70177288814898e-07,
+          1.306552240974159e-06,
+          1.6412106098803725e-07,
+          3.5792795830477675e-06,
+          2.4602832698165933e-06,
+          4.824104705078436e-07
+        ],
+        "linear_velocity_rmse_m_s": 8.284758338327766e-07,
+        "angular_velocity_rmse_rad_s": 2.523024373208843e-06
+      }
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8721-multisine",
+      "source_trace_sha256": "ed1e4b0821ffeddf2de3db80b5c53c3f600430e0e83b8c0308b91a7c546f2c2d",
+      "origin": 512,
+      "horizon_physics": 80,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 80,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 0.4698298849803767,
+      "metrics": {
+        "z_rmse_m": 1.703064858004865e-05,
+        "attitude_rmse_rad": 0.0002999009860187863,
+        "velocity_6_rmse": [
+          0.00010706521745642574,
+          0.00085460618512168,
+          0.0001856995709738159,
+          0.0015747960753267464,
+          0.0007862431034111109,
+          0.0013478191923290402
+        ],
+        "linear_velocity_rmse_m_s": 0.0005086908108393161,
+        "angular_velocity_rmse_rad_s": 0.0012799449821166227
+      }
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8721-multisine",
+      "source_trace_sha256": "ed1e4b0821ffeddf2de3db80b5c53c3f600430e0e83b8c0308b91a7c546f2c2d",
+      "origin": 512,
+      "horizon_physics": 128,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 128,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 0.4698298849803767,
+      "metrics": {
+        "z_rmse_m": 0.00010494600145852702,
+        "attitude_rmse_rad": 0.0007041520409383626,
+        "velocity_6_rmse": [
+          0.0002455023591990529,
+          0.0018272671819783415,
+          0.0006019143894823745,
+          0.007115542363718198,
+          0.0018868967402389026,
+          0.003855265073892177
+        ],
+        "linear_velocity_rmse_m_s": 0.0011197436752777114,
+        "angular_velocity_rmse_rad_s": 0.004797721376798413
+      }
+    }
+  ],
+  "heldout_rows": [
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8722-chirp",
+      "source_trace_sha256": "337193e1247f3c0435dbd76d2bc79865929547e036dfb27221c9f24dc680834a",
+      "origin": 256,
+      "horizon_physics": 1,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 1,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 2.6083792793804856,
+      "metrics": {
+        "z_rmse_m": 2.6591071655701626e-07,
+        "attitude_rmse_rad": 1.6065635647706886e-06,
+        "velocity_6_rmse": [
+          7.440539029021638e-07,
+          2.3416319927126704e-06,
+          6.647278008933832e-08,
+          1.9071985359139397e-06,
+          7.380794518372182e-08,
+          1.1584749812973947e-06
+        ],
+        "linear_velocity_rmse_m_s": 1.4190695578690826e-06,
+        "angular_velocity_rmse_rad_s": 1.289045919851386e-06
+      }
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8722-chirp",
+      "source_trace_sha256": "337193e1247f3c0435dbd76d2bc79865929547e036dfb27221c9f24dc680834a",
+      "origin": 256,
+      "horizon_physics": 80,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 80,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 2.6083792793804856,
+      "metrics": {
+        "z_rmse_m": 0.0005678139377165206,
+        "attitude_rmse_rad": 0.0011633110325366782,
+        "velocity_6_rmse": [
+          0.002754263857210025,
+          0.0007839712523684592,
+          0.0050427649749844716,
+          0.003098011392546274,
+          0.002052063010062599,
+          0.006631974892091302
+        ],
+        "linear_velocity_rmse_m_s": 0.0033481367411643433,
+        "angular_velocity_rmse_rad_s": 0.004389067028991588
+      }
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8722-chirp",
+      "source_trace_sha256": "337193e1247f3c0435dbd76d2bc79865929547e036dfb27221c9f24dc680834a",
+      "origin": 256,
+      "horizon_physics": 128,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 128,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 2.6083792793804856,
+      "metrics": {
+        "z_rmse_m": 0.004555591807635926,
+        "attitude_rmse_rad": 0.008967030842416164,
+        "velocity_6_rmse": [
+          0.003447011296796934,
+          0.010376885666352025,
+          0.015431663787788314,
+          0.0466087784988809,
+          0.008684179436447038,
+          0.032903759674090996
+        ],
+        "linear_velocity_rmse_m_s": 0.010919369491445388,
+        "angular_velocity_rmse_rad_s": 0.03331891658068776
+      }
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8722-chirp",
+      "source_trace_sha256": "337193e1247f3c0435dbd76d2bc79865929547e036dfb27221c9f24dc680834a",
+      "origin": 384,
+      "horizon_physics": 1,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 1,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 45.38033473863484,
+      "metrics": {
+        "z_rmse_m": 5.5870067386720734e-05,
+        "attitude_rmse_rad": 0.000176202858375956,
+        "velocity_6_rmse": [
+          0.00020828701727863396,
+          0.0008147758108070172,
+          4.623384694251928e-05,
+          0.0002578220587308583,
+          0.000726322151804043,
+          0.00038288686744045175
+        ],
+        "linear_velocity_rmse_m_s": 0.00048627175942613497,
+        "angular_velocity_rmse_rad_s": 0.0004968629708574372
+      }
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8722-chirp",
+      "source_trace_sha256": "337193e1247f3c0435dbd76d2bc79865929547e036dfb27221c9f24dc680834a",
+      "origin": 384,
+      "horizon_physics": 80,
+      "model": "LK_0.0001",
+      "complete": false,
+      "completed_physics": 64,
+      "failure": "forecast_state_envelope",
+      "latent_consistency_max_over_attempted_horizon": 45.38033473863484,
+      "metrics": null
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8722-chirp",
+      "source_trace_sha256": "337193e1247f3c0435dbd76d2bc79865929547e036dfb27221c9f24dc680834a",
+      "origin": 384,
+      "horizon_physics": 128,
+      "model": "LK_0.0001",
+      "complete": false,
+      "completed_physics": 64,
+      "failure": "forecast_state_envelope",
+      "latent_consistency_max_over_attempted_horizon": 45.38033473863484,
+      "metrics": null
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8722-chirp",
+      "source_trace_sha256": "337193e1247f3c0435dbd76d2bc79865929547e036dfb27221c9f24dc680834a",
+      "origin": 512,
+      "horizon_physics": 1,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 1,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 44.79998253130016,
+      "metrics": {
+        "z_rmse_m": 3.8684767982744006e-05,
+        "attitude_rmse_rad": 0.00010575923403183913,
+        "velocity_6_rmse": [
+          6.460563745828768e-05,
+          0.0003650197448412467,
+          9.444787343663302e-05,
+          0.0007284245228150188,
+          7.881145392746314e-05,
+          0.00024699826965663123
+        ],
+        "linear_velocity_rmse_m_s": 0.0002208571961789358,
+        "angular_velocity_rmse_rad_s": 0.0004464010438763998
+      }
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8722-chirp",
+      "source_trace_sha256": "337193e1247f3c0435dbd76d2bc79865929547e036dfb27221c9f24dc680834a",
+      "origin": 512,
+      "horizon_physics": 80,
+      "model": "LK_0.0001",
+      "complete": true,
+      "completed_physics": 80,
+      "failure": null,
+      "latent_consistency_max_over_attempted_horizon": 44.79998253130016,
+      "metrics": {
+        "z_rmse_m": 0.030622674958936804,
+        "attitude_rmse_rad": 0.03233875120429566,
+        "velocity_6_rmse": [
+          0.04003206131839022,
+          0.10989063809661263,
+          0.095466493487736,
+          0.34899747756730287,
+          0.12042839429278873,
+          0.14167061819347088
+        ],
+        "linear_velocity_rmse_m_s": 0.08716338997064456,
+        "angular_velocity_rmse_rad_s": 0.22830739625893248
+      }
+    },
+    {
+      "configuration": "base",
+      "episode": "i29-base-fit-8722-chirp",
+      "source_trace_sha256": "337193e1247f3c0435dbd76d2bc79865929547e036dfb27221c9f24dc680834a",
+      "origin": 512,
+      "horizon_physics": 128,
+      "model": "LK_0.0001",
+      "complete": false,
+      "completed_physics": 91,
+      "failure": "forecast_state_envelope",
+      "latent_consistency_max_over_attempted_horizon": 44.79998253130016,
+      "metrics": null
+    }
+  ],
+  "gates": {
+    "training": {
+      "eligible_body_prediction": true,
+      "windows": 6,
+      "failures": 0,
+      "max_z_rmse_m": 8.94566591239451e-05,
+      "max_attitude_rmse_rad": 0.0005927171606376227,
+      "closed_loop_admitted": false
+    },
+    "heldout": {
+      "eligible_body_prediction": false,
+      "windows": 3,
+      "failures": 1,
+      "max_z_rmse_m": 0.030622674958936804,
+      "max_attitude_rmse_rad": 0.03233875120429566,
+      "closed_loop_admitted": false
+    }
+  }
+}

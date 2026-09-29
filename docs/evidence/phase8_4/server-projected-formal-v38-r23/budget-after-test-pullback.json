@@ -1,0 +1,897 @@
+{
+  "schema": "projected-formal-budget-v38",
+  "freeze_sha256": "6a6274f9466894871621148573dac6a2fb366cd63442b28a52cac36d29ad37a4",
+  "attempts": [
+    {
+      "bucket": "collector",
+      "name": "p38-base-preflight-9300-prbs",
+      "status": "exited",
+      "charged_seconds": 30.650828102137893,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-base-preflight-9300-prbs",
+      "status": "exited",
+      "charged_seconds": 2.3218783638440073,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-long_body-preflight-9301-prbs",
+      "status": "exited",
+      "charged_seconds": 31.823265010025352,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-long_body-preflight-9301-prbs",
+      "status": "exited",
+      "charged_seconds": 2.086824825964868,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-heavy_moderate-preflight-9302-prbs",
+      "status": "exited",
+      "charged_seconds": 60.37915838090703,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-heavy_moderate-preflight-9302-prbs",
+      "status": "exited",
+      "charged_seconds": 2.043435974046588,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-asymmetric-preflight-9303-prbs",
+      "status": "exited",
+      "charged_seconds": 31.981251956894994,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-asymmetric-preflight-9303-prbs",
+      "status": "exited",
+      "charged_seconds": 2.111085016746074,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv6-preflight-9304-prbs",
+      "status": "exited",
+      "charged_seconds": 30.105916861910373,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv6-preflight-9304-prbs",
+      "status": "exited",
+      "charged_seconds": 1.8137156297452748,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv6_angled-preflight-9305-prbs",
+      "status": "exited",
+      "charged_seconds": 32.61191768292338,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv6_angled-preflight-9305-prbs",
+      "status": "exited",
+      "charged_seconds": 1.9052449921146035,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv4-preflight-9306-prbs",
+      "status": "exited",
+      "charged_seconds": 29.393105062656105,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv4-preflight-9306-prbs",
+      "status": "exited",
+      "charged_seconds": 1.803920014295727,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv4_angled-preflight-9307-prbs",
+      "status": "exited",
+      "charged_seconds": 29.779969214927405,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv4_angled-preflight-9307-prbs",
+      "status": "exited",
+      "charged_seconds": 1.8749437211081386,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "archive:preflight",
+      "status": "exited",
+      "charged_seconds": 9.753591628279537,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "pullback:preflight",
+      "status": "exited",
+      "charged_seconds": 17.93699999997625,
+      "native_exit": 1
+    },
+    {
+      "bucket": "analysis",
+      "name": "numeric_repair_reaudit",
+      "status": "exited",
+      "charged_seconds": 86.2749336361303,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-base-validation-9400-prbs",
+      "status": "exited",
+      "charged_seconds": 48.46740631619468,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-base-validation-9400-prbs",
+      "status": "exited",
+      "charged_seconds": 4.387757493183017,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-base-validation-9401-multisine",
+      "status": "exited",
+      "charged_seconds": 50.9364324118942,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-base-validation-9401-multisine",
+      "status": "exited",
+      "charged_seconds": 4.122486856300384,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-base-validation-9402-chirp",
+      "status": "exited",
+      "charged_seconds": 48.78572095697746,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-base-validation-9402-chirp",
+      "status": "exited",
+      "charged_seconds": 4.170529965311289,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-long_body-validation-9403-prbs",
+      "status": "exited",
+      "charged_seconds": 49.38755516987294,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-long_body-validation-9403-prbs",
+      "status": "exited",
+      "charged_seconds": 4.074294867925346,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-long_body-validation-9404-multisine",
+      "status": "exited",
+      "charged_seconds": 83.47125001391396,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-long_body-validation-9404-multisine",
+      "status": "exited",
+      "charged_seconds": 4.0412186537869275,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-long_body-validation-9405-chirp",
+      "status": "exited",
+      "charged_seconds": 66.91217482695356,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-long_body-validation-9405-chirp",
+      "status": "exited",
+      "charged_seconds": 4.037411453668028,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-heavy_moderate-validation-9406-prbs",
+      "status": "exited",
+      "charged_seconds": 50.72972648916766,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-heavy_moderate-validation-9406-prbs",
+      "status": "exited",
+      "charged_seconds": 3.9650799222290516,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-heavy_moderate-validation-9407-multisine",
+      "status": "exited",
+      "charged_seconds": 46.09649862116203,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-heavy_moderate-validation-9407-multisine",
+      "status": "exited",
+      "charged_seconds": 3.99749342398718,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-heavy_moderate-validation-9408-chirp",
+      "status": "exited",
+      "charged_seconds": 45.44001552276313,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-heavy_moderate-validation-9408-chirp",
+      "status": "exited",
+      "charged_seconds": 3.9563155067153275,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-asymmetric-validation-9409-prbs",
+      "status": "exited",
+      "charged_seconds": 51.24144476419315,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-asymmetric-validation-9409-prbs",
+      "status": "exited",
+      "charged_seconds": 4.109382588881999,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-asymmetric-validation-9410-multisine",
+      "status": "exited",
+      "charged_seconds": 49.77041597990319,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-asymmetric-validation-9410-multisine",
+      "status": "exited",
+      "charged_seconds": 3.9829967012628913,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-asymmetric-validation-9411-chirp",
+      "status": "exited",
+      "charged_seconds": 48.89324799505994,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-asymmetric-validation-9411-chirp",
+      "status": "exited",
+      "charged_seconds": 3.914205784909427,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv6-validation-9412-prbs",
+      "status": "exited",
+      "charged_seconds": 52.33412797190249,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv6-validation-9412-prbs",
+      "status": "exited",
+      "charged_seconds": 3.7164027192629874,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv6-validation-9413-multisine",
+      "status": "exited",
+      "charged_seconds": 50.34155329503119,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv6-validation-9413-multisine",
+      "status": "exited",
+      "charged_seconds": 3.5813104887492955,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv6-validation-9414-chirp",
+      "status": "exited",
+      "charged_seconds": 50.66606149915606,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv6-validation-9414-chirp",
+      "status": "exited",
+      "charged_seconds": 3.6882387823425233,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv6_angled-validation-9415-prbs",
+      "status": "exited",
+      "charged_seconds": 51.12448958680034,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv6_angled-validation-9415-prbs",
+      "status": "exited",
+      "charged_seconds": 3.658212322741747,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv6_angled-validation-9416-multisine",
+      "status": "exited",
+      "charged_seconds": 47.374635516200215,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv6_angled-validation-9416-multisine",
+      "status": "exited",
+      "charged_seconds": 3.6301404680125415,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv6_angled-validation-9417-chirp",
+      "status": "exited",
+      "charged_seconds": 50.17794509977102,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv6_angled-validation-9417-chirp",
+      "status": "exited",
+      "charged_seconds": 3.598352372646332,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv4-validation-9418-prbs",
+      "status": "exited",
+      "charged_seconds": 50.28986452706158,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv4-validation-9418-prbs",
+      "status": "exited",
+      "charged_seconds": 3.579267959110439,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv4-validation-9419-multisine",
+      "status": "exited",
+      "charged_seconds": 51.48607271676883,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv4-validation-9419-multisine",
+      "status": "exited",
+      "charged_seconds": 3.6511021121405065,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv4-validation-9420-chirp",
+      "status": "exited",
+      "charged_seconds": 45.80034640012309,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv4-validation-9420-chirp",
+      "status": "exited",
+      "charged_seconds": 3.657055270858109,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv4_angled-validation-9421-prbs",
+      "status": "exited",
+      "charged_seconds": 50.810377329122275,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv4_angled-validation-9421-prbs",
+      "status": "exited",
+      "charged_seconds": 3.621908012777567,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv4_angled-validation-9422-multisine",
+      "status": "exited",
+      "charged_seconds": 46.026835441123694,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv4_angled-validation-9422-multisine",
+      "status": "exited",
+      "charged_seconds": 3.6050581596791744,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv4_angled-validation-9423-chirp",
+      "status": "exited",
+      "charged_seconds": 47.138620850630105,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv4_angled-validation-9423-chirp",
+      "status": "exited",
+      "charged_seconds": 3.627444040030241,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "archive:validation",
+      "status": "exited",
+      "charged_seconds": 34.55651579098776,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "pullback:validation",
+      "status": "exited",
+      "charged_seconds": 431.5779999999795,
+      "native_exit": 1
+    },
+    {
+      "bucket": "analysis",
+      "name": "validation_numeric_repair_reaudit",
+      "status": "exited",
+      "charged_seconds": 644.1090000000033,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "formal_analysis:validation",
+      "status": "exited",
+      "charged_seconds": 335.58165164105594,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "independent_analysis:validation",
+      "status": "exited",
+      "charged_seconds": 622.3129999999946,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-base-test-9500-prbs",
+      "status": "exited",
+      "charged_seconds": 46.535218943841755,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-base-test-9500-prbs",
+      "status": "exited",
+      "charged_seconds": 3.9671544046141207,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-base-test-9501-multisine",
+      "status": "exited",
+      "charged_seconds": 48.80295970896259,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-base-test-9501-multisine",
+      "status": "exited",
+      "charged_seconds": 3.885250640101731,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-base-test-9502-chirp",
+      "status": "exited",
+      "charged_seconds": 46.38404597900808,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-base-test-9502-chirp",
+      "status": "exited",
+      "charged_seconds": 3.8277928209863603,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-long_body-test-9503-prbs",
+      "status": "exited",
+      "charged_seconds": 51.18691932875663,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-long_body-test-9503-prbs",
+      "status": "exited",
+      "charged_seconds": 3.9016426098532975,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-long_body-test-9504-multisine",
+      "status": "exited",
+      "charged_seconds": 99.29848211118951,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-long_body-test-9504-multisine",
+      "status": "exited",
+      "charged_seconds": 3.8481650999747217,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-long_body-test-9505-chirp",
+      "status": "exited",
+      "charged_seconds": 72.74468562891707,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-long_body-test-9505-chirp",
+      "status": "exited",
+      "charged_seconds": 3.8180983196944,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-heavy_moderate-test-9506-prbs",
+      "status": "exited",
+      "charged_seconds": 43.59859254490584,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-heavy_moderate-test-9506-prbs",
+      "status": "exited",
+      "charged_seconds": 3.975507298950106,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-heavy_moderate-test-9507-multisine",
+      "status": "exited",
+      "charged_seconds": 42.70508589409292,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-heavy_moderate-test-9507-multisine",
+      "status": "exited",
+      "charged_seconds": 3.8034536610357463,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-heavy_moderate-test-9508-chirp",
+      "status": "exited",
+      "charged_seconds": 42.34294111607596,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-heavy_moderate-test-9508-chirp",
+      "status": "exited",
+      "charged_seconds": 3.8724262197501957,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-asymmetric-test-9509-prbs",
+      "status": "exited",
+      "charged_seconds": 49.47350854566321,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-asymmetric-test-9509-prbs",
+      "status": "exited",
+      "charged_seconds": 3.8647522614337504,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-asymmetric-test-9510-multisine",
+      "status": "exited",
+      "charged_seconds": 44.98038768488914,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-asymmetric-test-9510-multisine",
+      "status": "exited",
+      "charged_seconds": 3.941479068249464,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-asymmetric-test-9511-chirp",
+      "status": "exited",
+      "charged_seconds": 47.25417074467987,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-asymmetric-test-9511-chirp",
+      "status": "exited",
+      "charged_seconds": 3.9178152210079134,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv6-test-9512-prbs",
+      "status": "exited",
+      "charged_seconds": 48.72845824807882,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv6-test-9512-prbs",
+      "status": "exited",
+      "charged_seconds": 3.5984040210023522,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv6-test-9513-multisine",
+      "status": "exited",
+      "charged_seconds": 50.326503342948854,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv6-test-9513-multisine",
+      "status": "exited",
+      "charged_seconds": 3.4877346800640225,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv6-test-9514-chirp",
+      "status": "exited",
+      "charged_seconds": 48.78391113970429,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv6-test-9514-chirp",
+      "status": "exited",
+      "charged_seconds": 3.500111567787826,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv6_angled-test-9515-prbs",
+      "status": "exited",
+      "charged_seconds": 47.996302803047,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv6_angled-test-9515-prbs",
+      "status": "exited",
+      "charged_seconds": 3.4900394598953426,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv6_angled-test-9516-multisine",
+      "status": "exited",
+      "charged_seconds": 47.23960564704612,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv6_angled-test-9516-multisine",
+      "status": "exited",
+      "charged_seconds": 3.479183651972562,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv6_angled-test-9517-chirp",
+      "status": "exited",
+      "charged_seconds": 47.40016996813938,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv6_angled-test-9517-chirp",
+      "status": "exited",
+      "charged_seconds": 3.5752188097685575,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv4-test-9518-prbs",
+      "status": "exited",
+      "charged_seconds": 49.6897877198644,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv4-test-9518-prbs",
+      "status": "exited",
+      "charged_seconds": 3.530245683621615,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv4-test-9519-multisine",
+      "status": "exited",
+      "charged_seconds": 44.192059194203466,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv4-test-9519-multisine",
+      "status": "exited",
+      "charged_seconds": 3.608287785202265,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv4-test-9520-chirp",
+      "status": "exited",
+      "charged_seconds": 42.466946326196194,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv4-test-9520-chirp",
+      "status": "exited",
+      "charged_seconds": 3.46545816026628,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv4_angled-test-9521-prbs",
+      "status": "exited",
+      "charged_seconds": 46.627819976303726,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv4_angled-test-9521-prbs",
+      "status": "exited",
+      "charged_seconds": 3.5196309140883386,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv4_angled-test-9522-multisine",
+      "status": "exited",
+      "charged_seconds": 41.36569184716791,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv4_angled-test-9522-multisine",
+      "status": "exited",
+      "charged_seconds": 3.4566076011396945,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv4_angled-test-9523-chirp",
+      "status": "exited",
+      "charged_seconds": 44.22970183612779,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv4_angled-test-9523-chirp",
+      "status": "exited",
+      "charged_seconds": 3.626110317185521,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "archive:test",
+      "status": "exited",
+      "charged_seconds": 34.55317750712857,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "pullback:test",
+      "status": "exited",
+      "charged_seconds": 322.9219999999914,
+      "native_exit": 0
+    }
+  ],
+  "charged_seconds": {
+    "collector": 2704.78218785394,
+    "analysis": 2736.874154945551
+  },
+  "numeric_recovery": {
+    "schema": "projected-v38-numeric-recovery",
+    "parent_freeze_sha256": "85fda36f7e8ef69502395b8e87b48afc7421d73d153b59454febd83277e9b6d7",
+    "parent_attempt_count": 18,
+    "parent_attempts_digest": "af47f19be562a56b3f8a1d3972e516960e887364f9776899bc77dea37e9b4168",
+    "preflight_audit_sha256": "effe92dc081776d66a7cd724eb49d45eb9be944b2957b53fc43e7fbffa5eda20",
+    "diagnostic_seconds": 86.2749336361303
+  },
+  "validation_numeric_recovery": {
+    "schema": "projected-v38-validation-numeric-recovery",
+    "parent_freeze_sha256": "a592b69b84e3d6a2fad0b0cc70d3613f44a23c077ac8f0a33bead61e156effa5",
+    "parent_attempt_count": 69,
+    "parent_attempts_digest": "adb3d2ca291e6e514cb66997598923de451904b2de5c9acc23920b1a3533129a",
+    "validation_audit_sha256": "1a5aaa47b7e9cb43697cf31a5f60533f167f6545ef42befa8c3787f3b3769dc8",
+    "diagnostic_seconds": 644.1090000000033
+  },
+  "resource_amendment": {
+    "schema": "projected-v38-analysis-budget-amendment",
+    "parent_attempt_count": 72,
+    "parent_freeze_sha256": "b52e81b2e9f3ad95282ff7041b5b316ce14b3270a539d917e0102376e6474657",
+    "parent_attempts_digest": "50ac8f0a748da179c70238440a892fab7c981d4b65fd7a55c8469a9f95115bc1",
+    "parent_budget_sha256": "40824fa2c3070bc4343dea11a435c6e0fe332600a11817cf2f2571fd1df03d16",
+    "approval_sha256": "7450a86029e94691a7e409d8d3268fb87dc6569e57c2674b9e8d56ba293f880b",
+    "validation_audit_sha256": "70bfc08364b0b53d3dd0c3fe3449c10c9ccf5a1d1e8c7cea4da59f6946cccde5",
+    "resource_cap": {
+      "collector_seconds": 5400,
+      "native_case_seconds": 300,
+      "native_cases": 56,
+      "analysis_seconds": 4500,
+      "analysis_processes": 4,
+      "disk_bytes": 4294967296
+    }
+  }
+}

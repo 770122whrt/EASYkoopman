@@ -1,0 +1,21 @@
+{
+  "native_exit": 0,
+  "group_stopped": true,
+  "seconds": 76.01259681209922,
+  "command": [
+    "/root/shared-nvme/agentic-auv/runtime/bin/python",
+    "-B",
+    "-m",
+    "workflows.collect_continuous_v76",
+    "--configuration",
+    "uuv4",
+    "--controller",
+    "feedback",
+    "--assets",
+    "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+    "--manifest",
+    "continuous-source-r3.json",
+    "--output",
+    "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv4-pitch-feedback-r3"
+  ]
+}

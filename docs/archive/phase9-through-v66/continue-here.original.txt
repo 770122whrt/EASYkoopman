@@ -1,0 +1,644 @@
+<!-- Current bounded control effects result 2026-09-21T14:53:40+08:00 -->
+
+v65真实base俯仰匹配pilot已见局部收益：综合误差降低18.42%、姿态RMSE降低5.90%、深度RMSE降低90.27%，但命令变化2.68倍、力矩平方积分5.73倍；单seed/2秒，不是独特Koopman或泛化证明。v66近似静态跟踪已越过旧死区中断，但两条反馈臂因10.178/323.656ms超时未完成；匹配门未过，asymmetric/uuv4未启动。稳态周期仍超16.667ms。10次有界启动、4例完整重放、失败全保留，所有进程已退出。 [本轮结果与下一步](../docs/phase9_control_effects_v65_results.md)
+
+先对实际失败状态定位反馈尾延迟并做保持约束的优化；再完成同版本base匹配配对，通过后扩展构型。后续按同MPC分别比较名义参数、辨识参数和模型表示收益；在线适应/Agent保持条件后续。无需追加用户决策，当前服务器可关闭，下一次实际运行再连接。
+
+先读结果和docs/evidence/phase9/control-effects-v65-20260921/review.json。v65/v66分开；不得把v66 MPC完整轨迹与失败反馈前缀混比较。当前无活动exec/服务器worker，不重启未完成的旧session。原684源/2965环境文件/Isaac patch未变；31份选定结果已回传校验。本轮goal可按有边界结论完成，不把Phase9标complete。
+
+---
+以下均为历史交接；旧next-action由上文替代。
+
+<!-- Latest user direction 2026-09-21 -->
+
+用户2026-09-21确认首次周期可作为启动阶段单独计时，优先尽快验证控制效果。下一项：一次有限启动＋稳态独立计时/连续历史 → base实际MPC接管 → 匹配闭环pilot；实时资格与仿真控制效果分别报告，旧NO_GO不改写。见[新优先级与边界](../docs/phase9_startup_and_control_evidence_priority.md)。
+
+本轮仅核对结果并更新方向，未修改代码、未连接服务器或新增实验。下方v64优先持续剖析的旧next-action由本条更新。
+
+<!-- Current 2026-09-21T00:28:37+08:00 -->
+
+v64完成CPU完整预测循环编译与可选共享前缀：服务器八构型96直接请求输出等价，求解中位17.8–21.0ms降至10.4–12.6ms（40%–44%）；3个实际worker请求通过100ms门。共享相对编译仅小增益且单次IPC较慢，不默认采用。真实base首周期27.767ms仍超过16.667ms，MPC请求/激活0，正常清理。88文件核验、旧模型/源/原环境未变，服务器任务已结束。
+
+先读[v64结果](../docs/phase9_compiled_mpc_v64_results.md)及[review](../docs/evidence/phase9/compiled-mpc-v64-server-20260921/review.json)。算法源码koopman/*_v64.py，扩展来源检查workflows/runtime_addon_v64.py；最终服务器入口见结果链接的attempt05/diagnose.py。发布v59与v38继续冻结。
+
+下一项优先以细分计时定位主控制回读、env.step/PhysX、子步取证/校验/ack的成本，再消除同一物理时点的重复计算；保留全部原门与失败。整段编译作为下一版本集成候选，共享不默认开启。匹配闭环及MPC2仍开放，不进入训练/Agent。
+
+本轮所有组已退出，服务器可关；端口31348，5次有界调用包含包装修复追加一次，165.809/600秒。旧scope与失败不改写。无待用户审批项；不要继续轮询旧session。
+
+---
+以下为历史交接；以本段为当前状态。
+
+<!-- Current 2026-09-20T22:55:50+08:00 -->
+
+v62完成生命周期修复与准备后剖析：3次base真实短运行均未再段错误，按原周期超时返回native1。无profiler基线29.382ms，批量快照36.831ms更慢，未采用；16.667ms门仍NO_GO。禁用CUDA的一次离线冻结MPC请求24.757ms，通过该次100ms求解门，不是艇载实时或闭环证据。82相关测试、52文件核验，原源/模型/依赖未改，进程已结束。
+
+先读[v62结果](../docs/phase9_runtime_v62_results.md)和[review](../docs/evidence/phase9/runtime-v62-20260920/review.json)。新入口workflows/runtime_acceleration_v62.py与attempt02一致，生命周期helper为runtime_lifecycle_v62.py。runtime_snapshot_v62.py只保留失败候选，不切换默认。CPU检查入口runtime_cpu_check_v62.py仅1条离线fit请求；不得计为真实MPC激活。
+
+本轮4次已结束，137.795/600秒，3次Isaac各1区间/2子步，另1次CPU无物理；所有原证据保留，进程已清理。下一步定位主控制/求解/仿真/审计成本，禁止直接放宽门或跳过首周期；GPU不是现有控制器依赖。无待审批项，服务器可停。
+
+---
+
+以下为历史交接，不代表当前阻塞仍存在。
+
+<!-- Current 2026-09-20T22:26:35+08:00 -->
+
+用户继续授权修复/解释耗时/计算加速。先读[v61结果](../docs/phase9_runtime_acceleration_v61_results.md)及[review](../docs/evidence/phase9/runtime-profile-v60-20260920/review.json)。原v59失败保持，不能重跑原包。
+
+v60四次尝试范围已结束：包装profile.py遮蔽stdlib的0.11秒失败保留；3次真实base各1区间/2子步。带profiler基线351.469ms→EAGER160.201ms，EAGER+56次私有张量数学准备后无profiler28.044ms。准备0.5795秒、不推进物理，完整reset快照不变；两子步选定物理/执行器字段对照差0（1e-6门）。75相关测试，50文件核hash，107.346/600秒；MPC请求/激活0，native SIGSEGV仍在，不称60Hz或控制收益GO。
+
+实现入口workflows/runtime_acceleration_v61.py与实际attempt04源相同，依赖runtime_prepare_v61.py，仍为诊断；依赖只读来自v59发布，新增模块和结果置于独立目录。下一步对准备后路径定位剩余约11.4ms差距，native栈/最小生命周期定位退出问题；不能把仿真器+审计墙钟直接当MPC成本，也不默认放宽冻结16.667ms。
+
+相关进程结束，服务器可关；端点31348、隔离环境可复用。旧源684文件、原依赖2965文件未改。92604/88106/95507/27712均terminal；无待用户审批项，goal未登记。
+
+## 以下为历史记录
+
+<!-- Current 2026-09-20T22:01:53+08:00 -->
+
+用户授权“修复后再上服务器进行测试效果”，一次v59已完成且停止。先读[v59结果](../docs/phase9_runtime_preflight_v59_results.md)、[机器复核](../docs/evidence/phase9/server-preflight-v59-20260920/review.json)和[v59运行说明](../docs/phase9_runtime_preflight_v59_runbook.md)。以下v58形状待修复/无控制区间/报告缺失描述仅为历史，不能用作当前状态。
+
+v59已修复真实tau/drag形状、显式正常关闭及六个边界日志、LF启动脚本；386相关测试通过/1跳过。服务器base context通过，1真实控制区间、2子步，首周期544.064ms超过16.667ms；决策约2.794ms，MPC请求/激活0。三个close已返回且trace完整，随后collector原生SIGSEGV(-11)。24文件逐项核hash，后七构型未启动，无重试，旧源/模型/环境未改。
+
+下一项是首周期分项计时与报告后原生崩溃的最小生命周期定位；不能把544ms全归于优化器或PhysX，也不能删首周期、放宽门或os._exit(0)伪造通过。冻结v59 release aa1efbb4…b7e3a9和失败原样保留。仅按明确证据修复再新版本复测；不训练、不扩展Agent或未见构型。
+
+端点31348，隔离环境可复用；相关组和/proc检查无残留，GPU查询为空。当前服务器可关闭，goal未登记，无待用户审批项。19830及30514均terminal，不再轮询。
+
+## 以下为历史记录
+
+<!-- Current 2026-09-20T21:33:59+08:00 -->
+
+用户批准隔离环境后，31348服务器v58已实际运行一次并按失败即停结束。先读[真实结果](../docs/phase9_runtime_preflight_v58_results.md)和[复核JSON](../docs/evidence/phase9/server-preflight-v58-20260920/review.json)。隔离环境通过、原2965文件未变，可复用；无需再次安装。
+
+base在实际reset后因tau及drag的单环境向量形状与v57验收/fixture不符而失败。0受控区间，后续7构型未启动。清理前报告保留异常，最终trace缺失；App原生快速关闭与现象一致，但精确关闭边界仍待插桩。18文件已拉回SHA匹配；远端组和进程检查无残留。阶段native1，外层PS/Bash末行CR导致SSH包装native2，分别保留。
+
+下一步本地真实快照回归及版本化接口/关闭报告修复；不改冻结v58，不把离线形状转换当原运行通过，不自动重试或放宽100ms/16.67ms。修复版预检需要具体范围，不能借本次剩余额度自动跑。当前服务器可停，goal未登记；MPC2-01..04不关闭。本次只运行到初始化准入，不能判断Koopman控制优劣。
+
+## 以下为历史记录
+
+<!-- Current 2026-09-20T21:14:50+08:00 -->
+
+v58已获用户执行授权，端口最新确认31348（不是30852）。SSH成功、RTX4090在位，IsaacLab HEAD/补丁匹配；NumPy/Numba/llvmlite实际为1.26.0/0.59.1/0.42.0，冻结要求1.26.4/0.61.2/0.44.0。实际预检尚未启动。先读[现场结果](../docs/phase9_server_environment_v58_results.md)和[隔离环境修订](../docs/phase9_runtime_environment_v58_amendment.md)。
+
+release 8a08093a…bf4a7a3已重新核验。有效授权元数据为资产目录PHASE9_APPROVAL_PORT31348.json；原PHASE9_APPROVAL.json保留早先端口历史，二者实验范围相同。原运行提案不允许自动安装依赖，所以只读核验后停止，等待隔离环境准备与资源修订；不要重问已获批准的短预检，不要改原环境或冻结版本门。现有环境未变、未上传、零仿真/训练，本任务未启动远端实验进程；goal未登记。旧交接中的待执行授权、30852当前端点或collector未实现均已过时。
+
+## 以下为历史记录
+
+<!-- Current 2026-09-20T21:01:43+08:00 -->
+
+用户已接受“先验证现有Koopman的实际闭环效果，再决定泛化/适应/Agent”的路线；本轮要求先更新文档、需要服务器时停下。规划及交接已同步，未连接SSH、上传、拟合或采样。goal工具返回null。以下旧条目中的goal active、collector待实现等只描述历史时点。
+
+先读[当前效果判断与顺序](../docs/phase9_shared_policy_generalization_scope.md)、[STATE](STATE.md)，再读[v58短预检提案](../docs/phase9_runtime_preflight_v58_proposal.md)与[运行说明](../docs/phase9_runtime_preflight_v58_runbook.md)。v57采集器/v58监督与发布已准备，本地347 passed、1项真实Linux检查待现场；不能当Isaac证据。Phase8.4 prediction GO保持，闭环/独特Koopman/Agent收益未证明；研究完成度粗估40–50/100，计划33/35和94%不是整体研究比例。
+
+下一项需要服务器：root@183.147.142.40:30852，迁移和现有环境尚未现场核实。本轮到此停止；待用户通知继续，核对绑定release 8a08093a6f07d1630691d4aa5d9871137e1dd9bab116cdbba49404628bf4a7a3的具体授权和服务器就绪，再按原提案执行8构型×32区间、base先行、30分钟/512MiB、零拟合、失败即停。未生成PHASE9_APPROVAL.json；不把路线认可当作已运行，不重复使用关闭的v38预算。短预检后再冻结匹配闭环规模和接受门；当前不扩大字典/在线更新/经验库/Agent。
+
+## 以下为历史记录
+
+<!-- Current 2026-09-20T18:07:17+08:00 -->
+
+Phase9 v56资产迁移接口已通过69项相关测试；620文件迁移副本、八构型支持域及冻结哈希核对一致，原handoff未改。原100ms对照中迁移worker超时，NO_GO保留；一次1000ms诊断返回与原路径相同命令/预测，不能升级实时性。下一步实际collector、完整周期及匹配对照准备；goal active，当前无需服务器。
+
+先读[v56结果](../docs/phase9_runtime_assets_v56_results.md)。97770/7874/29084/26273均terminal，不再轮询。资产包620文件约82.70MB，已完整核hash；仅资产，未添加Phase9可执行overlay。v56加载器/对照脚本已归档，不改旧结果；首诊断参数错误已单独保留，第二目录才执行唯一诊断请求。新阶段累计265.159/1200秒，已计新文件约79.15/128MiB（含资产副本），不要再复制整个USD包。下一项实际collector/运行context校验/全周期门与匹配对照；打包时复用这个资产目录并新增独立release清单，不能把原v38源码清单当新的运行授权。
+
+## 以下为历史记录
+
+<!-- Current 2026-09-20T17:44:51+08:00 -->
+
+Phase9实际子步桥接v55已实现：基于归档DirectRLEnv循环，29项新合同包含在205项相关测试中通过，覆盖八构型及半区间接触/读回失败/时钟跳变/意外reset。仅CPU调用顺序fixture；v54两例计算门保持，完整周期和Isaac闭环尚未准入。下一步源/模型迁移、实际collector与匹配对照；goal active，当前无需服务器。
+
+先读[v55结果](../docs/phase9_isaac_adapter_v55_results.md)、source/review.json和09-03末尾。句柄68970/42501/20650/42422/20938均terminal，不再轮询。205相关测试native0；v55已归档，不直接修改已测源码。实际physics完成需要scene时间戳，counter在apply前已递增。旧阶段1177.442/1200秒关闭，新阶段累计84.564/1200秒独立。新服务器工厂还须处理冻结handoff里的Windows绝对路径，不能改冻结handoff；实际collector/全周期/匹配对照与服务器资源提案尚缺。
+
+## 以下为历史记录
+
+<!-- Current 2026-09-20T17:30:33+08:00 -->
+
+Phase9运行仲裁与唯一发令协调器已实现，v53保留全部检查并缓存固定映射，v54修复新回复拒绝时旧有效计划的连续性。最新99项相关测试通过；两构型各24区间静止观测/合成ack试测2/2通过，其中uuv6_angled一次worker超时正确回退。仅本地接口计算证据，八构型完整周期与Isaac闭环尚未通过。下一步真实reset/子步确认adapter；goal active，当前无需服务器。
+
+先读[v54结果](../docs/phase9_runtime_arbiter_v54_results.md)和09-03末尾。最新试测native0，旧执行阶段1177.442/1200秒已结算；不要重跑或借旧余额。v54没有拒绝回复，不把本次时间改善因果归于连续性修复。下一本地阶段独立记录实际子步桥接、来源与匹配评估准备；正式服务器仍需具体范围与新授权。
+
+## 以下为历史记录
+
+<!-- Current 2026-09-20T16:33:23+08:00 -->
+
+Phase9恢复基准与真实冻结模型worker已接通；v51提前筛除死区边界候选后八构型固定fit请求8/8通过，父端收到/解码23.15–29.39ms，116项相关测试通过。v50的6/8 NO_GO及诊断保留，未放松任何门。下一步真实命令前缀、激活位置、当前状态偏差与持续受限停止的仲裁，随后Isaac确认adapter和完整低层周期；闭环未准入。goal active，当前无需服务器。
+
+先读[v51结果](../docs/phase9_recovery_worker_v51_results.md)及09-03末尾。v50源反例、100相关测试、真实worker6/8 NO_GO、两例只读诊断、v51的116相关测试及8/8新测量均已完成。新命令基准保持明确8区间前缀，后12区间只朝当前静态需求限速；不是未来反馈。v51只提前筛掉距PWM死区面≤2e-6候选；原门、模型、权重不变，未失败六构型的命令/预测/代价按1e-12保持一致。
+
+旧句柄31079/14880/40857/54349/18880全部terminal，不再轮询。最新review绑定v45/v47/v48/v50/v51源码和Phase8.4冻结三哈希，不改已归档模块。下一项仲裁需要RED反例：错episode/reset/reference/代次/模型、实际前缀被fallback替换、缺历史、晚到/错激活、预测状态偏差；不能把组件GO冒充闭环GO。执行器历史唯一来源仍是v49账本确认。实际Isaac adapter、低层全周期、持续受限停止、具体服务器新方案仍缺。
+
+累计697.763/1200秒，余502.237秒，阶段证据约8.44MB/128MiB。无新拟合、正式test或服务器采样；30852迁移未验证。goal active，当前无阻塞、不需要用户决策。
+
+## 以下为历史记录
+
+<!-- Current 2026-09-20T16:14:59+08:00 -->
+
+Phase9已完成v48执行账本和v49确认映射/独立求解进程的本地实现；v48相关177项、v49相关170项测试通过。旧命令兼容重放161/256区间通过且已测缓存差0，NO_GO及三例诊断保留。base零基准的九候选死区反例已确认。下一步有界恢复序列、真实模型worker及前缀/激活/状态仲裁，完整周期和Isaac闭环未准入。goal active，当前无需服务器；08.4冻结证据保持。
+
+先读[v49结果](../docs/phase9_execution_and_worker_v49_results.md)与09-03末尾。全部先前测试句柄已结束，不轮询。base零基准九候选全部稳态推力0；仅源反例，不是闭环失败。下一项有界恢复序列与真实模型worker，随后计划前缀/激活/当前状态仲裁、持续无进展停止合同及真实Isaac确认adapter。累计456.423/1200秒，余743.577秒；新服务器资源尚未批准，关闭v38预算不借用。
+
+## 以下为历史记录
+
+<!-- Current 2026-09-20T15:14:55+08:00 -->
+
+Phase9受限跟踪回退v47通过本地提案检查：39项针对性包含在198项相关测试中；120/120合法且满足周期，1.53–7.86ms。其中78次满足静态推力残差、42次受限跟踪，原目标与残差保留。该新门不等于旧v46门通过或闭环控制有效；v46 NO_GO保持。下一步实际一次性启动许可、原子真实发令确认及非阻塞仲裁。goal active，无运行进程，当前无需服务器；08.4冻结证据保持。
+
+先读[v47结果](../docs/phase9_bounded_tracking_v47_results.md)和[09-03最后的修订](phases/09-configuration-aware-koopman-mpc/09-03-PLAN.md)。新代码bounded_feedback_v47/测试/benchmark已与归档哈希核对，冻结后保留；依赖v46需求/原映射和v45等旧模块没有修改。初始RED37项缺模块/native1保留，随后37项通过，增加2个边界/来源测试后相关198项（含新39项）native0。90867相关测试及6946固定请求测量均已结束/native0，不再轮询。
+
+新提案门不是原完整目标每步必须达到的门：78次静态目标残差合格、42次保留受限误差，12次内部完整逆解超fit盒但实际命令全合法；原源重算差0。target_attained仅指稳态wrench残差，不能当深度到达/真实转速稳态/闭环稳定。支持域边界允许明确zero_progress，但本轮门拒绝tracking_limited且zero_progress；持续受限的运行停止合同仍待实现。
+
+下一步从一次性启动许可与唯一发令/原子真实历史的RED开始：绑定episode/实际零转速reset/context/model/support/reference和真实序号；只有真实发令确认后才推进因果执行器缓存，消费首命令阶跃许可。重复/乱序/不确定确认和半区间抓取必须拒绝，worker重启或换reference不能重开许可。之后独立worker、有限队列、前缀/过期/状态偏差仲裁；不要假设未来反馈已知。已给出的prepare_startup只是提案，不等同实际权限已实现。
+
+阶段累计299.256/1200秒、剩余900.744秒/128MiB；v38关闭预算不借用。没有新拟合、正式test访问、服务器采样或控制器晋级。服务器30852迁移未验证；本地准备完成具体新范围再联系用户。goal active、无阻塞、无活动进程。
+
+## 以下为历史记录
+
+<!-- Current 2026-09-20T14:57:27+08:00 -->
+
+Phase9新回退v46已实现，55项针对性/159项相关测试通过，但固定可用性仅75/120，保留NO_GO。四例源诊断表明完整静态目标可达，直接限速后均未达到原目标残差；需要把逆解正确性与受限跟踪分开，不能重命名实际输出伪造通过。下一版先做明确的命令限制器及有界逆解种子，再实际启动许可/非阻塞仲裁。v45求解器本地GO保持，完整系统未准入。goal active，无运行进程，当前无需服务器；08.4冻结证据保持。
+
+先读[v46结果](../docs/phase9_bounded_feedback_v46_results.md)、[09-03最后的修订](phases/09-configuration-aware-koopman-mpc/09-03-PLAN.md)。新代码bounded_feedback_v46已归档与当前源匹配，不改v38–46旧证据。43111为初始RED/native1；binding-red两项预期失败，随后55针对性通过；81634相关159、18026固定40请求/120计时及4例源诊断全部native0结束，无待轮询进程。native0不表示回退GO：75可用、25有限搜索未找到解、20触及10ms；全部调用1.49–10.98ms，但可用性仍NO_GO。
+
+关键诊断：base旧命令0时局部差分困在死区；heavy旧采集origin64约下沉0.30m/速度−0.15m/s，新高度反馈产生更大恢复需求。四例原v31静态逆解都满足完整目标，命令步长0.020004–0.074599；直接限速后仍是合法实际命令，但未达到原目标残差。heavy完整逆解还超fit命令盒，实际限速命令在盒内。没有证明全局不可行，也没有闭环稳定证据。
+
+下一版先RED，明确两层：快速完整目标静态逆解（已知几何/曲线数值种子+有限精化，原残差/PWM/死区门，内部仍10ms），然后公共系数限制实际0.01slew及fit命令盒，有限比例避开模糊死区面，独立验算实际命令。完整静态逆解只是内部参考，不能在fit外直接发令/给学习预测器。原目标、逆解残差、受限tracking残差必须分列；tracking_limited不算目标已达到。不要把实际输出重新命名为目标，不把旧v46 NO_GO翻成GO。无合格静态逆解/合法命令或超时则停episode。随后再真正实现一次性启动许可、原子真实历史/唯一发令、worker/仲裁；当前prepare_startup只是纯提案，没有消费启动权限。
+
+v45求解器24/24≤100ms证据保持，停止孤立预测微优化。当前本地累计238.289/1200秒、余961.711秒/128MiB，v38已关闭预算不借用；无服务器/拟合/正式test访问，30852迁移尚未验证。goal active，当前不需用户协助。
+
+## 以下为历史记录
+
+<!-- Current 2026-09-20T14:19:34+08:00 -->
+
+Phase9的v45命令分配复用已通过63项针对性、190项相关测试及八构型完整求解检查。严格24/24次满足100ms（43.18–94.10ms），同轮中位提速2.091倍、已测数值差0；完整控制系统尚未准入。冷启动诊断发现六构型首命令超出新0.01逐区间变化率，需要显式一次性启动合同。下一步新深度/可控姿态回退与非阻塞仲裁，停止追加孤立预测优化。goal active，无运行进程，当前无需服务器；08.4冻结证据及v44 NO_GO保留。
+
+先读[v45结果](../docs/phase9_prepared_commands_v45_results.md)及[09-03计划](phases/09-configuration-aware-koopman-mpc/09-03-PLAN.md)。本次新模块为prepared_commands_v45、command_batch_v45、bounded_mpc_v45；source归档/当前源及v44参考绑定已复核。47594为预期RED/native1；72430针对性63、94357相关190及84256八构型pilot均已native0结束，不轮询、不重复测量。v45完整求解43.18–94.10ms不包括IPC和实际发令，仍runtime_eligible=False。
+
+下一步不再微调预测性能。先按新回退/启动合同建反例：高度反馈方向、欠驱动纯yaw不变量、原source float32 PWM/稳态wrench等价、饱和/死区/物理残差/变化率拒绝，零reset下首次命令及重复启动拒绝；有限逆解和超时失败不发命令。六构型既有成功首命令超过新0.01slew，因此一次性启动阶跃必须显式准入并在实际新pilot覆盖；后续变化率保持，禁止隐式预热或填充已发历史。新回退随后接非阻塞worker/原子捕获/已发前缀/激活和状态偏差核验。原采集FeedbackPolicy高度Kp/Kd为0且欠驱动roll/pitch反馈受yaw影响，不直接复用作合格回退。
+
+本地阶段已测135.576/1200秒，余1064.424秒、128MiB；v44约218.25秒、旧编译232.768秒和旧性能1650.127秒历史保留，不挪用v38正式额度。可选编译依赖仍位于`.pytest-tmp/phase9-numba-v43`。无活动进程/当前无需服务器，30852迁移尚未核验。Phase9要求未关闭，实际闭环待具体新资源方案。
+
+## 以下为历史记录
+
+<!-- Current 2026-09-20T13:54:01+08:00 -->
+
+Phase9本地有界求解核v44已实现；32项针对性、127项相关测试通过。首轮完整求解仅9/24满足100ms，原回退0/8满足16.67ms，保留NO_GO。Windows粗时钟问题已修复；完整剖析定位重复分配，另发现旧采集回退缺高度反馈及欠驱动倾斜合同。下一步一次分配复用优化，再补齐新回退与非阻塞仲裁。goal active，当前无运行进程、不需要服务器；08.4冻结证据保持。
+
+先读[v44结果](../docs/phase9_bounded_mpc_v44_results.md)和[09-03计划](phases/09-configuration-aware-koopman-mpc/09-03-PLAN.md)。当前代码与mpc-v44-profile源归档匹配；首轮mpc-v44-pilot是时钟修复前的独立NO_GO，原源归档完整，不重写。所有进程均结束：8711相关回归127通过/native0，98939两构型profile21.987秒/native0；不存在待轮询句柄。
+
+下一项已具体限定：新版本准备构型分配并复用候选相同float32命令，约束与预测共用结果，保持原死区/时钟/分支隔离与1e-12等价门；先RED。新本地1200秒/128MiB额度尚未使用，v44已记录约218.25秒；旧编译232.768/1200秒与旧性能1650.127/1800秒历史独立，均不挪用v38。可选编译依赖仍在`.pytest-tmp/phase9-numba-v43`。随后新回退必须补高度跟踪和欠驱动倾斜不变量，再非阻塞worker/原子历史捕获/承诺前缀及激活时间核对。没有可准入命令就停止模拟episode，不能把零/过期命令说成安全。
+
+v44所有输出仍runtime_eligible=False；09-02/03和Phase9要求未关闭。30852新服务器迁移未验证，当前无需用户操作/服务器。正式闭环资源另提具体范围。
+
+## 以下为历史记录
+
+<!-- Current 2026-09-20T13:11:27+08:00 -->
+
+Phase9的v43编译执行已通过38项针对性、183项包含新路径的相关回归及八构型fit-only检查。K8/H20整批21–69ms，较同轮v42提速1.67–3.08倍，最大差2.78e-16；首次编译12.415秒须在worker READY前完成。09-03本地合同计划已具体化，下一步实现可控目标/支持域与有界候选，再补齐完整求解和fallback成本。goal active，无运行进程，当前无需服务器；08.4冻结证据保持。
+
+先读[v43结果](../docs/phase9_compiled_cost_v43.md)和[09-03本地计划](phases/09-configuration-aware-koopman-mpc/09-03-PLAN.md)。v43为可选编译预测器，复用v42完整批量路径；旧v39–42源码、r23和原容差不变。依赖在`.pytest-tmp/phase9-numba-v43`，测试需该目录加入PYTHONPATH；benchmark通过`--compiler-dir`显式指定。不要把可选依赖缺失导致的skip当作编译验证。
+
+所有过程已结束：安装首失败34352/RED70031为native1且保留；72821/31136/21273/28371/22408 native0，不重跑。编译阶段已测232.768/1200秒，此前1650.127秒阶段历史保持。下一项从RED测试开始实现可控目标、fit来源支持域和有界候选；uuv4的yaw不变量必须同时作用于优化/评分，角速度安全边界仍保留。实际fallback逆解耗时尚未测量，不能默认它能60Hz运行。尚无09-03实现、完整求解或服务器资格。
+
+## 以下为历史记录
+
+<!-- Current 2026-09-20T12:50:47+08:00 -->
+
+Phase9的v42固定分配预计算已通过45项针对性和155项相关测试；八构型K8/H20整批79–159ms，相对v41再提速1.68–3.64倍，最大差2.22e-16。尚未满足60Hz或完整MPC计算门。下一项有界评估固定数值核编译，再确定完整优化调度；goal active，无运行进程，当前无需服务器，08.4冻结证据保持。
+
+先读[v42结果](../docs/phase9_allocation_cost_v42.md)及[09-02](phases/09-configuration-aware-koopman-mpc/09-02-PLAN.md)。54826为预期RED/native1；57533/15439/88477/34758全部native0，已结束，不重跑。第一阶段保守1650.127/1800秒；新编译可行性阶段20分钟/512MiB已具体限定但尚未开始、无新依赖。不要修改v39–42参考路径或原容差，不使用正式test调优。新服务器30852迁移未验证，当前无需服务器；Phase9全部控制要求仍开放。
+
+## 以下为历史记录
+
+<!-- Current 2026-09-20T12:31:27+08:00 -->
+
+Phase9批量预测v41已通过43项针对性/138项相关测试和八构型长时域16格对照（192条候选），最大差2.678e-15；较逐候选提速约2.3–2.7倍，但整批计算仍过慢。新剖析定位64%–65%耗时在命令/分配核，09-02下一步做直接分配核等价优化。goal active，当前无运行任务，不需要服务器，08.4冻结结果保持。
+
+先读[v41结果](../docs/phase9_batch_cost_v41.md)及[09-02](phases/09-configuration-aware-koopman-mpc/09-02-PLAN.md)。33236/83790/64143全部native0，不重跑。下一项直接分配核尚未实现，先RED，再与原核逐命令/批量对照。保守工程额度1503.747/1800秒，约296秒余量；只做有必要的有界检查。Numba仅查过文档，未安装；本地Python3.12.4/NumPy1.26.4未变。新服务器30852迁移未验证。
+
+## 以下为历史记录
+
+<!-- Current 2026-09-20T12:01:23+08:00 -->
+
+Phase9的v40等价优化已通过178项相关回归及144格冻结对照；已测字段差0、完整预测中位加速1.568倍。20步单候选仍29.46–116.07ms，未通过60Hz门。09-02继续批量候选预测与计算/调度验证；goal active，当前无运行任务，不需要服务器。08.4冻结结果保持。
+
+先读[结果](../docs/phase9_prediction_cost_v40.md)及[09-02](phases/09-configuration-aware-koopman-mpc/09-02-PLAN.md)。v40完整检查46464已native0，不重启；模型、接口和测试源码副本保存在pilot/source。下一项batch接口尚未实现，先RED再实现，按分支复核严格容差和隔离。新工程检查累计662.491/1800秒，v38额度不动。新服务器端口30852，迁移未验证。
+
+## 以下为历史记录
+
+<!-- Current 2026-09-20T11:38:59+08:00 -->
+
+路线审核后按用户授权恢复Phase 9，goal active。08.4限定预测/接口范围仍完成；09-01本地144格等价与耗时结果已审阅，09-02进入性能定位和等价优化。当前CPU单次20步预测超过16.67ms，不准入60Hz在线MPC。新的服务器闭环预算未批准，当前本地工作无需服务器。
+
+先读[审核报告](../docs/phase9_roadmap_review.md)、[09-02](phases/09-configuration-aware-koopman-mpc/09-02-PLAN.md)。最新用户要求审核后合理则继续，取代下方暂缓指令。新goal已实际创建。八构型fit-only热点剖析已完成25.688秒、native0，见docs/evidence/phase9/command-state-profile-v39-20260920。接下来分析热点并只做保持语义的本地优化，不启动新服务器实验。
+
+## 以下为历史状态
+
+<!-- Current 2026-09-20T11:00:45+08:00 -->
+
+Phase 8.4已按限定预测与接口范围完成：validation/test各24条、1152项评分、24/24固定门独立GO，18冻结模型零新拟合。按用户最新要求，暂缓Phase 9；已有少量本地接口预备与144格检查结果原样保留，不继续控制器集成或晋级。当前无活动任务，应用goal查询为空。新服务器端口30852及迁移说明已收到，迁移完整性尚未实际核验；不保存密码。
+
+用户最新优先级：说明Phase8.4完成情况与尚缺证据，暂不进入Phase9。81531句柄已不存在，144格本地检查已有结束记录，不重启。应用当前无goal，不能自行新建来绕过暂缓要求。下方继续Phase9的历史记录已被本条取代。
+
+<!-- Current 2026-09-20T02:12:08+08:00 -->
+
+v38的validation和test各24条、1152项评分、24组固定门均已独立复核GO；18冻结模型零新拟合。累计采集2704.782秒、分析3296.516秒/4500秒，125笔账本及原失败完整保留。08.4八项计划及NID-01..05按限定预测/接口范围关闭，更正后的handoff v2已就绪；完整Koopman闭合、额外学习优势、MPC与Agentic收益未证明。下一步为09-01本地因果预测分支接口与耗时验证，goal继续，无活动服务器任务。
+
+当前无活动本地或服务器进程；不要重跑r23采集/评分/审核。账本125笔、SHA916d99370b36fa191152f137ca7a5b8fba3103126129ff03a526856ae8d7ef29已同步。只消费prediction-control-handoff-v2.json，首版通道名误写已由冻结catalog核查更正，模型/实验数值不变。下一步[09-01本地计划](phases/09-configuration-aware-koopman-mpc/09-01-PLAN.md)；[正式报告](../docs/phase8_4_v38_formal_results.md)。
+
+用户已批准的15分钟分析额度已实施，最终实耗54.94分钟；无需重问相同批准。新的Phase9服务器实验另有具体范围/预算，当前本地工作不用服务器。下方所有过程性状态均为历史。
+
+<!-- Current 2026-09-20T01:28:52+08:00 -->
+
+r23原定24条test已全部采集，native0且服务器24/24物理检查通过。完整归档已拉回，本地独立数据复核正在运行；尚未启动test模型评分或宣称正式test GO。分析4500秒上限已接入，18冻结模型零拟合，原失败与费用保留；NID-05和goal active，Phase9无handoff。
+
+活动本地session15501；远程采集与归档已native0。只观察该复核，完成后CAS同步账本和凭证；不得重采、重复归档/解压。细节以HANDOFF.json及r23/test-pullback-operation.json为准。下方历史记录保留。
+
+<!-- Current 2026-09-20T01:03:40+08:00 -->
+
+正式validation的1152项评分和24组固定门已独立复核GO。用户批准的累计分析4500秒已在r23接入、冻结并通过服务器核验；原树与隔离源码各555测试通过。原72笔账本和两次失败完整继承，18冻结模型零拟合。原定24条test已放行并启动，尚无test成功结论；NID-05和goal active，Phase9无handoff。
+
+唯一活动任务为r23 test supervisor26310/start333161413，child26311/start333161417。完整部署、release与启动凭证已拉回。原账本前72条和原r22源码不改；监视现有任务，成功后归档/拉回/评分/独立复核，失败停止后续阶段。当前运行中账本含预留额，不能当作最终实耗。下方均为历史记录。
+
+<!-- Current 2026-09-20T00:34:51+08:00 -->
+
+24条正式validation及1152项评分已经完整通过服务器和本地独立复核（native0，24组门GO）；18冻结模型无重拟合。累计采集1510.428秒、分析2290.438秒。用户已批准仅将分析上限3600增至4500秒（其余范围不变）；资源执行修订尚待实现/冻结，原r22仍为3600秒。test尚未采集或release，Phase9无handoff，goal active。
+
+实际复核SHA70bfc083…ccde5；同步账本SHA40824fa2…3d16。无活动进程；不要重跑评分/审计。下一步接入已批准的资源修订，再test。详情见HANDOFF.json与docs/phase8_4_v38_validation_results.md。
+
+<!-- Current 2026-09-20T00:04:02+08:00 -->
+
+r22正式validation评分已启动，已确认supervisor5781/start332809883和child5783/start332809886真实存活，4个worker。原24条数据、18冻结模型；无重采/拟合。只观察此任务，不能因连接或观察超时重启。结果和test尚无结论，应用goal active；下一步完整评分、独立复核、GO后test。
+
+<!-- Current 2026-09-19T23:59:18+08:00 -->
+
+r22已在真实服务器部署并验证源码、原24条validation数据与修复验收凭证（native0）。源码00d01f1e…347d、freeze b52e81b2…4657保持；原树与隔离源码各542项历史测试及本次540文件字节核对通过。18个冻结模型的正式评分、独立算术审计和test尚未开始。累计采集1510.428秒、分析1332.544秒，分析余额2267.456秒；原失败和预算完整保留。下一步直接运行validation评分与独立审核，通过原固定门后才开放test。SSH已恢复，应用goal实测paused；NID-05未完成，Phase9无handoff。
+
+服务器新r22目录已存在，bootstrap已经退出0；不得重复部署或重采。下一步以HANDOFF.json为准。本次仅部署/验收既有产物，未启动模型评分。下方均为历史记录。
+
+<!-- Current 2026-09-14T15:31:53+08:00 -->
+
+r22数值验收修复已冻结：原树与隔离源码各542项完整测试通过，原24条validation经424.718秒正式独立复核全部通过（24576物理子步）；原8预检继续复用，未重采或重拟合。源码00d01f1e…347d、freeze b52e81b2…4657；两次native1及全部费用保留，累计采集1510.428秒、分析1332.544秒，原分析预算还剩2267.456秒。30文件、422894字节部署包已就绪，等待用户通知服务器开启后再连接；尚未评分或采集test。NID-05与goal开放，Phase9无handoff。
+
+无本任务活动进程。下一步等待用户服务器开启通知，再按HANDOFF.json部署r22并评分。旧条目只作历史记录。
+
+<!-- Current 2026-09-14T15:19:10+08:00 -->
+
+24条validation已完整采集，24/24原物理门重算通过；r21正式拉回因单条转速摘要差1.168e-5>1e-5而退出1，失败及688.435秒分析费用已同步。r22将摘要与逐点缓存转速容差统一为1e-4，原1e-3物理门和模型精度门不变。此前候选541/541完整测试通过；修正原目录读取接口后，最终候选00d01f1e…347d正在两端完整重测，随后正式复核现存24条数据。诊断另计219.391秒，18模型零拟合，评分和test未开始；goal/NID-05开放，Phase9无handoff。
+
+活动句柄：54934、15728。不要重采或重复解压。最新入口以HANDOFF.json为准。
+
+<!-- Current 2026-09-14T12:38:37+08:00 -->
+
+r21的24条×512区间validation已全部采集并通过服务器物理检查，归档已保留。Windows独立验收native1：转速重算误差摘要的两端差值超过1e-5；正在逐条核查原物理门与实际数值差。已保留失败并同步实际费用（采集1510.43s、分析688.43s，另计正在运行的有界诊断），尚未评分或采集test。原8条预检已复用；18旧模型零拟合。用户已授权小容差修复，科学门不变；NID-05与goal继续，Phase9无handoff。
+
+下一步以 HANDOFF.json 和 validation-numeric-diagnosis/operation.json 为准，勿重启32746或重复解压。
+
+# Current continuation: repaired r21 formal validation running
+
+2026-09-14T12:00:43+08:00。r21数值验收修复已接入：原树与隔离源码各535项测试通过，原8条预检正式复核通过并复用；旧失败native1及全部费用保留。新冻结源码0fd19ff2…83da、freeze a592b69b…effa5已通过服务器检查，24条×512区间validation已启动（supervisor32746/start285257166）。固定18旧模型，零拟合；test只在原精度门及独立审计通过后开放。NID-05与goal继续，Phase9无handoff。
+
+只观察现有server supervisor32746、proc start285257166，job `/root/phase84-projected-formal-v38-r21/validation-job.json`。本地SSH只读观察会话30720已确认该句柄存活，不因观察超时重新启动。源码根`/root/EASYkoopman-phase8-4-projected-formal-v38-r21`，transfer同名phase84目录；新包`.pytest-tmp/phase84-projected-formal-v38-20260914-r21`。
+
+首次上传被自动审批拒绝，逐文件核对载荷与现有授权后相同上传已获放行；无待用户审批。原r20目录、数据、失败账本保持；新账本前18条完整继承，第18条仍native1。初始继承采集276.725秒、分析129.927秒；新增操作继续累计原预算。等待24validation原生/语义结果，失败即停止后续角色；成功后按冻结手册归档、拉回、评分、独立审核，GO后才test。
+
+[修复入口](../docs/phase8_4_v38_tolerance_repair.md)；[r21运行手册](../docs/phase8_4_projected_formal_v38_runbook.md)；[r21包证据](../docs/evidence/phase8_4/projected-formal-repair-v38-20260914-r21/package.json)。原树与新隔离源码各535测试已结束0；8条正式复核33.062秒已入账。科研目标/Phase9交接尚未完成。
+
+## Previous continuation (historical)
+
+# Current continuation: v38 numerical agreement repaired; formal integration next
+
+2026-09-14T11:23:50+08:00。v38八条真实预检已完成（2048控制区间、4096物理子步），原生8/8退出0。首次本地拉回因浮点摘要完全相等而失败；按用户要求加入有界容差后，8条完整物理重算与13处数值差异检查均通过，515项相关源码测试通过。修复尚待接入冻结正式运行入口，validation/test各0条，18旧模型未改、零新拟合。失败与预算保留，08/NID-05和goal继续，Phase9无handoff。
+
+先读[修复报告](../docs/phase8_4_v38_tolerance_repair.md)。原preflight supervisor2523已退出0，无本任务活动服务器进程。r20源码、archive和failed pullback账本保持冻结；不要重启8预检、改写native1或重置预算。用户已批准原v38范围并明确要求小容差，不重复询问相同授权。下一步接入已测试的验收修复，显式记录审计源码修订和旧数据身份，并承接全部费用；正式validation尚未开放。
+
+## Previous continuation (historical)
+
+# Current continuation: v38 package ready; new formal decision pending
+
+2026-09-14T10:30:56+08:00。v38本地正式运行包已就绪：采集/适配、连续512预测、四进程分析、原始归档拉回、独立数组及条件预测复算、test释放和预算入口全部接通；原树与隔离clone各497项测试通过，537文件与18个旧模型已冻结。当前等待一次新D-23范围决定及正式运行时服务器开机，无新正式数据/拟合。v37接口等价、v32独立pilot GO、v34/v35 NO_GO及旧正式NO_SELECTION保持；08任务1完成、任务2待决定，NID-05与goal继续，Phase9无handoff。
+
+先读[v38就绪报告](../docs/phase8_4_projected_formal_v38_preparation.md)、[运行手册](../docs/phase8_4_projected_formal_v38_runbook.md)及[真实包检查](../docs/evidence/phase8_4/projected-formal-package-v38-20260914-r20/audit.json)。源码快照`1ba1d0e3dc8dcbc83263e678b7eea259672a8f83`、freeze`85fda36f7e8ef69502395b8e87b48afc7421d73d153b59454febd83277e9b6d7`，包位于`.pytest-tmp/phase84-projected-formal-v38-20260914-r20`。不要重跑build/freeze或旧诊断脚本；两个本地测试进程已退出0。本轮无SSH，不假定服务器仍开机。
+
+任务1完成，任务2等待针对该freeze的新D-23；尚无authorization.json。获准后按56病例/90分钟采集/60分钟分析墙钟/4GiB执行，服务器到时需要开启。独立审计复用冻结预测器数学实现，重新计算全部条件预测和保存数组误差；未完整重新生成策略命令。SOURCE/fixture通过不等于新独立精度结果。NID-05与整个goal未完成，Phase9无handoff。
+
+## Previous continuation entry (historical)
+
+# Current continuation: v38 local contracts implemented; integration/package next
+
+2026-09-14T00:12:54+08:00。v38本地正式协议与命令接口已实现：固定56病例和18个旧模型、实际速度输出列绑定、512连续分块、完整评分与test释放检查、采集/预算监督；80项相关本地测试通过。正式分析与归档拉回入口、隔离源码包仍待接通，尚未请求或批准新D-23，无新服务器数据。v37八构型接口等价结果、v32独立pilot GO、v34/v35 NO_GO及旧正式NO_SELECTION保持；08/NID-05与goal active，Phase9无handoff。
+
+先读[v38本地实现进度](../docs/phase8_4_projected_formal_v38_preparation.md)及[08计划](phases/08.4-conditional-identification-experiment/08.4-08-PLAN.md)。不要重新实现已通过的协议/清单/指标门/预测/预算模块。下一步接通正式分析运行器、真实归档拉回复算凭证、全文件release反例，然后隔离源码包测试与runbook/freeze。以上本地就绪后才提请一次具体新D-23，当前没有授权文件或新服务器仿真。所有本地进程已结束。
+
+## Previous continuation entry (historical)
+
+# Current continuation: v37 interface verified; formal v38 preparation next
+
+2026-09-13T23:38:42+08:00。v37的4D因果命令预测接口已实现，八构型64个对照物理子步的状态/PWM/转速/作用输入/时钟差均0，分支隔离及独立核验通过；46相关测试通过。修正了名义质量与PhysX倒数往返读回的准入差异，预测始终保留实际质量。07按模型形式/负证据/接口合同范围完成；08/NID-05准备新的正式协议与本地运行包，D-23尚未请求或批准。保留v30速度观测量回归加已知运动学，不声称完整Koopman闭合或超越参数模型；v34/v35 NO_GO、旧正式NO_SELECTION及24test未采保持，goal active，无Phase9 handoff。
+
+先读[v37结果](../docs/phase8_4_command_prediction_v37_results.md)、[08计划](phases/08.4-conditional-identification-experiment/08.4-08-PLAN.md)和[v38正式准备稿](../docs/phase8_4_projected_formal_v38_proposal.md)。协议/模型manifest/评分/test释放、本地包尚待实现。先做足本地就绪工作，之后才提请一次具体新D-23；旧v25批准不冒充新正式授权，普通实现授权持续。
+
+当前无本任务进程。v36的4例成功后质量准入失败已冻结；v37接受精确float32倒数往返质量，预测始终使用实际context，八例64子步旧新差0，独立核查通过，原四例逐数组相同。46相关测试、492source/46input、旧13失败记录与145正式证据保留；v36/v37共享300秒已计170.375秒，勿重置预算或重跑冻结脚本。
+
+07限定完成，08/NID-05与goal继续。实际模型只对六个速度观测量回归，解析推进位姿，不等于完整有限维Koopman闭合；物理参数等价和未证明的额外学习/Agentic收益继续明确。无Phase9 handoff。
+
+以下为历史交接，当前状态以上述入口为准。
+
+# Current continuation: v35 rejected and audited; v36 command interface next
+
+2026-09-13T23:09:13+08:00。v34/v35各240项递推完整，但heldout各6门均失败，两个候选均NO_GO，独立核验通过。停止自由位姿字典扩展及对应独立重采；保留已知运动学与冻结v30结构化速度预测器，明确其参数模型等价性及未证实的额外学习优势。下一步按v36合同补可分支调用的4D因果命令预测接口，先本地测试和八构型固定fit起点等价核查，无新拟合/服务器。v32独立投影pilot GO、旧正式NO_SELECTION及24test未采保持；07/NID-05和goal active，无Phase9 handoff。
+
+先读[v35结果](../docs/phase8_4_kinematic_dictionary_v35_results.md)与[v36合同](../docs/phase8_4_causal_command_contract_v36.md)。v36只有设计，尚未实现。下一步可分支调用的4D计划命令预测接口→RED/实现→八构型原fit第一PRBS起点128与旧policy_forecast命令序列逐子步等价。最多300秒source诊断，零新拟合/仿真/validation/test。
+
+全部本任务进程已结束；v35主计算396.484秒，保守诊断180秒。481源码/46输入、九拟合、240分数/12门、旧145正式证据核对通过。勿重跑v33/v34/v35冻结与实验脚本。goal与07/NID-05继续，Phase9无handoff。保留已知运动学是当前证据选择，不把参数模型等价改写成新算法贡献。
+
+以下历史交接均由上述当前状态覆盖。
+
+# Current continuation: v34 rejected; v35 kinematic dictionary running
+
+2026-09-13T22:57:54+08:00。v34完整状态投影240/240项递推完整，但heldout全部6门失败，fit_screen_no_go；独立审核通过。固定起点干预将主要姿态/速度退化定位到自由姿态读出，并证明原字典缺少R·skew(omega)耦合。v35只补九项运动学观测量，保持D/Q、输入、投影、fit分割及门不变；31相关测试通过，9个位姿读出拟合及240项fit筛查已冻结并运行。v32独立投影pilot GO、旧NO_SELECTION与24test未采保持；07/NID-05和goal active，无Phase9 handoff。
+
+先读[v34结果](../docs/phase8_4_state_projection_v34_results.md)和[v35冻结设计](../docs/phase8_4_kinematic_dictionary_v35_design.md)。本地session9652正在运行一次固定9矩阵/240项fit筛查，最多600秒；不要重复启动。完成后检查native-exit、status及全部构型/时域，再独立核对源码、父模型、分割、分数和门。只做本地fit，没有服务器或新独立验证。
+
+v34主计算494.937秒，另保守诊断180秒；旧结果/源码及145项正式证据保持冻结。固定姿态干预和混合差分反例是机制证据，不是v35成功。当前07/NID-05开放，30/31计划进度不等于科学完成。
+
+以下为历史交接；上面的当前状态优先。
+
+# Current continuation: v33 negative audited, v34 projection design ready
+
+2026-09-13T22:24:30+08:00。v33输入时序修复与固定9矩阵/1440项fit-only对照完成并独立核验；新完整算子仅48/240项单控制区间（2物理子步）预测完整，长预测仍失败。固定base反例查明提升二次阻力可产生正功，恢复物理阻力观测量使该起点39步失败→120步完成；全目录修复未证实。下一步按v34唯一设计做完整状态读出和一致重新提升，保留学习位姿输出。v32独立投影pilot GO、旧NO_SELECTION及24test未采保持；07/NID-05和goal active，无Phase9 handoff。
+
+先读[v33结果](../docs/phase8_4_controlled_lift_v33_results.md)和[v34设计](../docs/phase8_4_full_state_projection_v34_design.md)。v34只有设计，代码/测试/冻结/运行尚未开始。接下来RED合同→完整状态读出/一致重提升→冻结240fit评分，复用9个v33矩阵不再拟合。
+
+全部本任务进程已结束。v33源码469hash、34父模型、9新矩阵、1440评分、旧145证据已核对；v33freeze/runner/audit不可重跑。两个source-only机制探针及独立审核在docs/evidence/phase8_4/controlled-lift-v33-20260913。input-only修复不够、线性重复关系修复也不够；二次阻力正功→发散的固定起点干预支持一致投影方向，但不是全目录成功。保持Koopman-UUV/Agentic目标，分清方法归属、预测收益和额外贡献；不把本次fit或原r19调参后再当独立验证。
+
+---
+
+# Historical continuation: user-paused v29 preparation
+
+2026-09-13T18:16:47+08:00。用户要求先暂停，等其开启服务器后再继续。r16八构型校准证据保持通过且冻结。v29独立数据协议初版及protocol模块已写；曾6项协议测试通过，随后收紧原始报告training_eligible门但尚未重跑。适配器9项RED测试已写，适配器/新collector/validator/runner尚未实现；未打包、未运行r17、无新采集或模型拟合。最后SSH返回Connection refused，暂停后不得自行重连。
+
+恢复后先读[新数据协议初版](../docs/phase8_4_fresh_identification_v29.md)、`workflows/identification_protocol_v29.py`、`tests/test_identification_protocol_v29.py`、`tests/test_identification_adapter_v29.py`。先实现因果数据适配和角色/失败保护，再做源代码检查及完整包测试；不得直接启动采集。协议文档还需同步PRBS正交前四块和原始报告始终待验收的细节。用户明确通知恢复之前保持暂停。
+
+---
+
+# Historical r16 continuation: eight configurations calibrated
+
+2026-09-13T16:35:30+08:00。r16八构型全部通过4.27秒冷启动配平及5.33秒脉冲，原始归档和本地独立重算通过。380 root/clone；物理参数、零转速初态和原误差门不变。新fit/validation、受约束Koopman候选及NID-04仍未完成，Phase9无model handoff。
+
+先冻结独立的新fit/validation角色、种子、时长和外部激励；适配实际已发命令、两子步因果执行器历史及真实物理参数，审查输入/状态覆盖与共线性，再实现受物理结构约束的Koopman候选。校准轨迹不改名训练，旧NO_SELECTION/24test未采保持冻结。
+
+先读[当前结果](../docs/phase8_4_state_feedback_results.md)、[06计划](phases/08.4-conditional-identification-experiment/08.4-06-PLAN.md)。服务器和普通实施授权持续，不能因历史r11说明重复询问同一权限。本轮校准进程已结束。
+
+---
+
+# Historical r11 continuation: seven configurations calibrated; asymmetric state-dependent preparation next
+
+2026-09-13。用户要求继续适配/校准，r11固定测试及拉回已完成，服务器在线且无GPU作业。先读[校准结果](../docs/phase8_4_workpoint_calibration_results.md)和[06](phases/08.4-conditional-identification-experiment/08.4-06-PLAN.md)。347 root/clone；source6875b428b14085576fb84aa8e1288c61c63a9540，416文件。15真实进程、14完整通过、1asymmetric拒绝、1脉冲跳过；5568physics，272.210秒。没有新拟合或test访问。
+
+下一步先数据：asymmetric的恒定初态配平不能抵消运动后的恢复力矩，1.6s末步偏航恢复力矩约−9.285Nm，角速度范数3.008rad/s触发门；无触底。补按当前姿态计算的恢复力补偿及有界反馈/显式启动过程，若采用反馈，八构型应使用同一规则及物理参数化。先冻结新对照及源/种子/时长/预算，不能把已完成的校准病例重跑或改名训练，也不能把7/8偷偷称为全目录完成。下一版collector还应明确保持失败native返回码，当前验收链已按语义拒绝其exit0。
+
+旧r8/e2 NO_SELECTION、24test未采、r9接触证据保持冻结。根HEAD782c15a未commit/push。新数据条件、NID-04与算法候选尚未完成，Phase9–12保持条件阻塞。普通代码/服务器授权持续，无需重复问开机；不能声称整个goal或科学里程碑完成。
+
+---
+
+# Historical r9 continuation: live contact contract passed
+
+2026-09-13。用户已开启服务器并确认先数据适配再算法，普通实施和服务器授权持续。r9实际接触getter/几何/collector/validator/source bundle以及6条GPU诊断完成；不要再请求开机，不要重跑r9。先读[实际结果](../docs/phase8_4_free_water_runtime_results.md)和[06](phases/08.4-conditional-identification-experiment/08.4-06-PLAN.md)。
+
+source8a73485b33306eb7fe420b87dcfe08df7323b4b2，407文件，root/clone各320测试。base32×2 on/off、heavy128×2及asymmetric256×2，共832control/1664physics，6native0，103.747秒；三阶段各44归档条目均拉回验收。服务器源码干净，最终GPUcompute进程为空。原根HEAD782c15a未commit/push；无新增模型拟合。
+
+新heavy低高度在物理索引150首次接触，99个接触子步；高高度0。接触前150子步q/速度差0；加入直接法向接触力后，最大垂直残差0.69625→1.87e-7m/s。这是本短对照的因果机制证据，不是模型误差提升。新asymmetric未接触，低高度36子步只违反actor≥1m保守限制，不能记成碰撞；旧4条fit事件仍无历史直接sensor读数。
+
+下一步先数据工作点校准：固定八构型源码升沉探针显示heavy需222.91N静态升力，纯升沉+0.2只42.21N，约+0.5352是静态一维平衡候选，不是悬停验证；uuv6同+0.2约4.34N，base微小浮力差又涉及PWM死区。结合恢复力矩、饱和、控制轴、冷启动/显式准备过程与现有相对起始高度7m边界，冻结新的诊断/fit/validation种子、时长和资源门后再采新训练数据。不得把6条diagnostic改名训练或过滤碰撞后拼接episode。
+
+实际接触场景已核对唯一1×1×0.5m盒体和z=0水平Plane；只新增report属性，休眠/其他物理属性保持。场景角阻尼读回0.05，算法阶段再处理其离散影响和位姿更新。旧long_body范围外推及学习跨项问题仍未修复，Koopman/Agentic目标保持，Phase9–12不提前推进。当前06和NID-04未完成，旧正式NO_SELECTION/test未采继续冻结。
+
+以下为历史交接，上述已执行结果优先。
+
+---
+
+# Historical continuation: free-water/contact contract before new candidate
+
+2026-09-13。最新用户要求本地先更新，需要服务器时通知开机。本轮未SSH、无新增仿真/拟合。先读[新发现](../docs/phase8_4_free_water_findings.md)、[短对照入口](../docs/phase8_4_free_water_microtrace.md)、[06计划](phases/08.4-conditional-identification-experiment/08.4-06-PLAN.md)。
+
+四段冻结物理诊断确认解析外力基本吻合后端，但heavy在低高度有约0.89m/s未解释速度突变。24fit完整离线审查进一步发现heavy三条分别856/850/855个异常冲量子步，asymmetric-chirp另1个；全部发生在actor z<1m，其余20条最大平移残差约5.34e-8m/s。heavy质量45.402kg，volume未翻倍，负浮力约222.91N；环境生成地面，旧采集器无接触/净空门。接触是强支持推断，尚无真实contact sensor读回，不能宣称全部碰撞已确认。
+
+旧模型失稳复现有效，但“剩余主要是模型状态算子”归因不充分。现在先补自由水域合同；保留long_body外推与错误跨项问题。新增koopman/physical_terms_v26.py、workflows/free_water_v26.py、workflows/free_water_trace_v26.py及CPU反例；未改写v24/v25或旧正式数据。实际contact getter、全部碰撞几何、collector/bundle/on-off gate尚未完成，候选拟合暂停。
+
+下一步需要用户开机后只读实际资产/版本/接触API；完成新collector与source freeze后，最多6个冷启动短对照，共832control intervals、1664physics ticks，详见入口。不要继续扫描旧validation、打开test、重跑r8或训练被回溯筛选过的数据。新自由水域检查通过以后才恢复候选设计与独立新证据。Koopman-UUV/Agentic-AUV目标不变，Phase9–12仍未完成。
+
+旧正式145artifact哈希、原trace验收和两轮pilot保持冻结。本轮所有local诊断session已完成；无本任务新服务器进程。原Git根HEAD782c15a，未commit/push。下方为历史交接，上述新结果和用户最新服务器安排优先。
+
+---
+
+# Historical continuation: formal NO_SELECTION closed; state-dynamics repair preparation
+
+2026-09-13T01:39:45+08:00。本次具体D-23已经批准并执行至验证失败门，勿再问同一许可。8预检及48fit/validation真实GPU和本地验收全部通过，68固定模型、2280评分完成；独立算术/角色/清单/门槛重算确认NO_SELECTION。主候选336/360完整；pooled24/24在512步稳定但精度/非线性增益不达标，local-heavy_moderate及heldout-long_body失稳。两条原模型重现第5/18子步失败，学习状态项错误与非线性外推放大是直接机制。
+
+先读docs/phase8_4_formal_validation_results.md和.planning/phases/08.4-conditional-identification-experiment/08.4-06-PLAN.md。05完成，06待执行；NID-01..03完成，NID-04新增未完成。候选修复尚未实现。下一步限定物理状态项、fit覆盖/共线性审查，准备一个受物理结构约束的Koopman候选，再设计独立新证据；不将研究改为纯线性或分构型，不将已观察validation的改善当作独立验证。
+
+无本任务活跃仿真/拟合，所有现有exec会话已terminal0。24test未采，无pre-test-freeze/handoff；不得运行准备过的publish-actual-freeze.py或恢复test。正式输出source/results/phase8.4-structured-formal-v25-20260912已由docs/evidence/phase8_4/formal-validation-closeout-20260913/audit.json记录哈希。分析账本1240.00秒／3600秒，采集1339.02秒／10800秒；不是批准剩余额度用于任意新协议。采集r8 commit0986465e92124f1269cbe844327de9189d0513e6，评价e2 commit3bdde17883158d085bddda97d50a65deef4d6366，各自绑定；e2root/clone266相关测试。
+
+原根HEAD782c15a未提交/推送。用户服务器/训练/普通细节及完整路线授权持续；get_goal本轮null，未伪称appgoal已启用。整个路线未完成，Phase9–12仍须独立证据。旧8.2与两轮pilot冻结。
+
+以下为历史交接；上面的实际批准和运行状态优先。
+
+
+
+# Historical continuation: formal D-23 decision under active goal
+
+2026-09-12T23:59:22+08:00。03已完成独立18条真实GPU轨迹、28固定模型、684评分及独立角色/算术核验，结论pilot GO。20/60步归一化终点宏误差0.1233/0.2443，9/9条128步稳定；base60步姿态0.508803rad仍差于persistence0.435500rad，128步总体姿态也未全面改善。02的NO_GO与全部旧证据保持冻结。
+
+04准备完成：8构型×8预检/72正式episode，共37120控制区间；68固定模型；逐构型×指标门及128精度/512稳定性规则。新r8源码0986465e92124f1269cbe844327de9189d0513e6，root/clone各229测试、80dry-run、pending拒绝和70个plant文件不变检查通过。未正式采集，approval=pending。先读[正式提案](../docs/phase8_4_formal_d23_proposal.md)、[runbook](../docs/phase8_4_formal_runbook.md)、[05计划](phases/08.4-conditional-identification-experiment/08.4-05-PLAN.md)。
+
+当前唯一需要用户沟通的是这份具体D-23决定。普通代码/GPU/训练授权持续，不重复询问。批准后按05冻结正式分析实现、source-bound上传/预检、fit/validation与实际模型freeze、test及closeout推进。没有模型freeze不得手写通过状态开test。分析执行源码单独绑定，不能把采集准备包描述为已完成正式评价。Goal active且路线未完成；Phase9需真实合格handoff，10–12继续保留。无活跃GPU/拟合进程；原Git根未提交或推送。重新检查现场，不启动旧失败病例或改写旧证据。
+
+以下为历史记录，当前入口以上述状态与STATE/HANDOFF为准。
+
+---
+context: research
+phase: 8.3-control-identification-forensics
+plan: 02
+status: partial_runtime_static_initialization_fixed
+last_updated: 2026-09-12T19:13:44+08:00
+---
+
+**最新用户方向：** 学长建议+本任务判断为主，代码细节自主处理。主线保持Koopman-UUV／Agentic-AUV，线性/分构型/persistence是诊断对照。见[PROJECT](PROJECT.md#target-research-direction-user-confirmed-2026-09-12)。
+
+**最新补充检查：** [因果重建](../docs/phase8_3_causal_reconstruction.md)已完成：四条已验收轨迹，按预设动作与自身历史重建两个子步控制/转速，全部通过。无新增仿真/模型拟合。当前仍需验证表征收益和fresh pilot覆盖。
+
+# 当前服务器结果（优先于所有下方历史记录）
+
+2026-09-12T19:13:44+08:00。先读[初始化修复](../docs/phase8_3_initialization_repair.md)。固定构型初始化修复已通过真实GPU验收：原资产22.8kg造成冷启动首步响应异常，authored_static_v1在PhysX创建前写入质量/惯量；base/uuv4 seed8201及uuv6 seed8201/8202共四组冷/热对照，64个observed物理子步state11逐分量差0。新增576区间/13进程，累计1056区间/26进程；210本地及210独立克隆测试通过，105文件拉回核验通过。完成修复后覆盖审查，再用匹配轨迹比较有序子步输入与因果N维执行器状态；8.4 fresh pilot在接口决定后冻结。剩余46个旧plant病例保持未完成且不自动恢复。动态换构型/DR尚未验证，32步trace不支持60/512步性能结论。Phase8.3仍partial，8.4conditional，Phase9无handoff。 当前没有本任务活跃仿真，无新模型fit，无原仓库commit/push。服务器/GPU/训练授权持续，无需再次询问。下方reset未知、网络阻塞和serveroffline均是历史状态。
+
+# 历史连接阻塞
+
+2026-09-12T17:45:56+08:00：用户已开机并授权服务器/GPU/训练，且再次确认SSH地址端口未变。当前TCP端口可连接，但三次限时SSH均未收到remote banner，认证未开始；尚未上传、读取GPU或启动Isaac/训练。需要通过供应商网页终端检查sshd与监听/转发状态。授权持续有效，恢复连接后直接按已有bundle与64区间gate推进，无需再次征求执行权限。证据见[连接检查](../docs/evidence/phase8_3/server-connect-20260912-powered-on/connection-check.json)。
+
+# 当前控制链机制与运行准备（优先于下方历史记录）
+
+先读[控制区间调查](../docs/phase8_3_control_seam_findings.md)。实际CPU控制核证明构型分配/PWM死区/末子步遗漏相互作用；同depth0.1的base/uuv6第二子步推力相差7.56倍（仅该探针）。分构型短时同类激励较好不等于单构型已解决。未测正式预测误差归因比例。
+
+已补command-only推进器估计与真实PhysX质量/惯量读回；原工作区187测试及独立bundle重克隆187测试通过。Bundle身份和首批命令见[runbook](../docs/phase8_3_trace_runbook.md)。原仓库没有commit/push；快照包有自己的隔离提交。
+
+用户确认服务器离线，要求需要时告知。现在本地首批准备已完成；下一动作是通知可开机，开机后严格预检并只跑base冷启动trace-on/off各32区间，共64，墙钟上限30分钟；不自动矩阵、不重采96段。实际Isaac/加载绑定/文件拉回仍未完成，8.3仍open、8.4conditional、9blocked。无需再次询问研究方向。下方“尚无bundle/未授权本地实现”等均为历史状态。
+
+# 前次方向判断
+
+用户授权继续按师兄PDF和代码证据探究；一轮固定方向对照已完成，见[方向对照结果](../docs/phase8_3_direction_assay.md)。运动学单步位姿有收益，分构型动力学在未见激励与长递推上失败；没有新模型。176测试通过。下一步先实际子步/执行器合同取证，再fresh pilot验证运动学加动力学；不继续旧validation调参，不自动改研究目标或进入Phase9。
+
+# 前次稳定性修复状态
+
+用户已授权并完成一轮局部修复：[修复结果](../docs/phase8_3_repair_results.md)。同source case稳定性修复后21/21 full rollout存活，但全部6项宏平均误差差于persistence，因此没有可用模型。167本地测试通过；3处trace接缝验收漏洞已修。不得继续盲调旧validation或进入Phase9。下一步完成clean tested bundle与08.3-02实际trace准备；无Isaac/SSH/commit/push。前次158测试和“尚未进行模型干预”均为历史状态。
+
+# 当前交接更新（2026-09-12，优先于下方历史内容）
+
+用户已授权本地补齐控制链缺漏并查明失败。先读[控制链调查](../docs/phase8_3_control_chain_findings.md)及[08.3-01局部总结](phases/08.3-control-identification-forensics/08.3-01-SUMMARY.md)。历史“未授权实现/等待执行”已过期。
+
+- CFR-02完成：一次固定source-only拟合，35个源fit/validation episode；20/21 full rollout角速度越界，最早第15次预测。原数值诊断与ledger相同，不是全候选根因证明。
+- 已实现可选episode_local_v1 reset、逐子步observer、source-only诊断及单case trace准备入口；158本地测试通过，未验证Isaac分支。
+- 08.3-01仍partial：自动trace物理/匹配验收已通过本地测试；clean tested bundle与真实加载绑定尚未完成。下一步补这些readiness；不要重跑已完成候选诊断，也不要直接重采96episodes。
+- 8.3-02真实trace、8.3-03表征/接口决策未执行；8.4条件性，Phase9仍无model handoff。
+- Phase8.2证据与负结论未改。没有SSH/Isaac/commit/push。
+
+以下保留旧交接原文，供历史核对；其中相反的授权/状态描述均以上方为准。
+
+## 以下为上一轮历史交接（保留原文，不再是当前下一步指令）
+
+
+# EasyUUV Phase 8.2 → 下一步独立批判性审查交接
+
+本交接位于已完成的 Phase 8.2 与尚未获准启动的后续工作之间。下一位执行者的首要任务不是实现既有建议，而是独立审核、反驳和改进当前判断。
+
+# BLOCKING CONSTRAINTS — Read Before Anything Else
+
+> 下列约束来自已经观察到的代码/实验问题或正式 closeout 状态，不是一般性提醒。继续工作前必须逐项确认理解。
+
+- [ ] **冻结证据不可改写**：`source/results/koopman_phase8_2/`、Phase 8.1 D-23 协议和 Phase 8.2 checkpoint 属于既有实验；新假设、新 schema 或新数据必须进入新的实验边界。
+- [ ] **Phase 9 没有模型入口**：正式 closeout 为 `VERIFIED + NO_SELECTION + model_handoff=false`；不得把任意线性模型或旧 Koopman 模型冒充已晋级模型。
+- [ ] **transition 控制归因尚未闭合**：当前静态审计认为一次 `env.step()` 内有两个 physics substep，而 Bridge 只读取最后一次 telemetry。必须独立核实 Isaac Lab `DirectRLEnv` 的真实调用语义，不能仅复述本交接。
+- [ ] **episode 边界存在可见 reset 缺口**：`_reset_idx()` 未发现对 `old_actions` 的逐环境清零。必须验证实际运行路径和影响范围，不能只凭字段缺失推导总体模型失败原因。
+- [ ] **当前 Phase 8.3/8.4 只是候选方案**：下一位可以保留、拆分、合并或否决该方案，但必须给出证据和更可检验的替代路径。
+
+**在输出独立审查结论之前，不要修改 roadmap、state、phase 目录、实现代码或冻结证据。**
+
+## Critical Anti-Patterns
+
+| Pattern | Description | Severity | Prevention Mechanism |
+|---|---|---:|---|
+| 用协议通过替代物理充分性 | `VERIFIED` 证明冻结流程与证据链通过，不证明 transition/control state 是充分统计量 | blocking | 分开报告 protocol validity、data semantics 和 scientific promotion |
+| 把相关性写成 NO_SELECTION 根因 | 控制语义、actuator memory 和条件特征可能有问题，但尚无消融证明它们导致 Koopman 失败 | blocking | 为每个因果判断列出反事实 A/B 和可观测指标 |
+| 把接口同维度当成同物理意义 | 4D `[roll,pitch,yaw,depth]` 只是统一坐标名，经过不同 TAM/几何/饱和后不保证相同 wrench | advisory | 明确命令层、期望 wrench、实际 impulse 三层变量和单位 |
+| 把架构变更伪装成小修复 | “每个 control step 只算一次低层控制”会改变闭环行为，不只是修 logger | blocking | 同时评审 hold、substep-aware、direct pre-TAM 三种架构 |
+| 直接复用旧 MPC | 历史 `koopman/mpc.py` 以固定 8D PWM 为接口 | blocking | Phase 9 只能重新定义与模型一致的 4D 接口，旧代码仅作参考 |
+| 用 simulator truth 获得漂亮结果 | 真推进器状态或实际 wrench 未必能在部署时可靠获得 | blocking | 主模型输入必须因果且可部署；oracle 仅可作为 diagnostic upper bound |
+| 一上来重采全量数据 | 尚未证明哪个合同变化值得 96-episode 重采 | advisory | 先做 8.3 bounded trace 与 A/B stop/go gate |
+
+<current_state>
+
+- 仓库根：`E:/code for project/Agentic AUV/EasyUUV`
+- 当前分支：`no-selection`
+- 当前 HEAD：`782c15a`，检查时与 `origin/no-selection` 一致
+- Phase 8.2 正式状态：`status=VERIFIED`、`terminal_decision=NO_SELECTION`、`fold_count=8`、`model_handoff=false`
+- 正式数据范围：8 configurations × 12 episodes × 512 transitions = 49,152 transitions；`physics_dt=1/120 s`、`decimation=2`、`control_dt=1/60 s`
+- 当前 primary model view：`[state_11, actuator_memory_4, virtual_control_4]`
+- 当前工作区在本次交接前只有一个未跟踪文件：`.planning/checkpoints/phase8.2-post-closeout-control-contract-turning-point-2026-09-03.md`
+- 本交接新增文档后仍未 commit、未 push。
+- 没有运行中的评估、服务器任务、watcher 或实时监控。
+- `ROADMAP.md`、`STATE.md`、任何 phase 文件和实现代码均未在本次交接中修改。
+
+</current_state>
+
+<completed_work>
+
+1. Phase 8.2 已完成 fresh server collection、八折 LOCO、outer selection 和 independent closeout。
+2. 原始《目前存在的问题.pdf》已转写到 milestone checkpoint，并与代码做过一轮静态对照。
+3. 初步审计将六点分为：
+   - 代码级强证据：substep telemetry/transition 语义、`old_actions` reset；
+   - 建模合同假设：4D 物理语义、actuator memory、TAM/平台描述；
+   - 已被 roadmap 预见但未实现：4D Koopman-MPC 与旧 8D PWM MPC 的接口迁移。
+4. 初步建议是 Phase 8.3 做本地合同修复与 bounded A/B，只有证据改善才进入新 ID、新 D-23 的 Phase 8.4 重采/LOCO。
+5. 本次补充了批判性审查启动 prompt 和本交接，不把上述初步建议当作既定计划。
+
+</completed_work>
+
+<remaining_work>
+
+1. **独立复核事实层**：重新验证每个代码调用链、配置默认值、数据 capture point 和正式 selection failure mode。
+2. **批判当前 Markdown**：逐条给出 `confirmed / partially supported / uncertain / refuted`，指出过度推断、缺失反例和措辞问题。
+3. **重新设计候选架构**：至少比较 direct pre-TAM、保留 inner controller、substep-aware 三条路线，并允许得出“暂不做 Koopman”的结论。
+4. **形成最小验证方案**：定义本地 contract test、Isaac micro-trace、matched A/B、stop/go 指标和证据等级。
+5. **等待用户决策**：只有用户审核独立报告并选择方向后，才可修改 roadmap/phase、实现代码、申请服务器或创建新 D-23。
+
+</remaining_work>
+
+<decisions_made>
+
+- 保留 Phase 8.2 的负结果和冻结证据，不通过修改历史来“修正”结果。
+- 当前任务采用 critique-first：下一位必须尝试证伪当前方案，而不是按 Phase 8.3/8.4 直接执行。
+- 暂不修改 `.planning/ROADMAP.md`、`.planning/STATE.md` 或 phase 结构。
+- 暂不运行 server/SSH、全量重采、formal LOCO、监控或 Phase 9。
+- 当前 checkpoint 是 discussion draft；它不是用户批准的 roadmap 变更，也不是 runtime A/B 证据。
+
+</decisions_made>
+
+<blockers>
+
+- **Phase 9 scientific blocker**：不存在选中的模型 handoff。
+- **Architecture blocker**：尚未决定未来 MPC 的输入究竟是 direct `virtual_control_4`，还是 high-level reference/raw action 加保留的 S-surface/PID。
+- **Observability blocker**：尚未决定执行器状态使用 N 维 masked memory、fixed-dimensional wrench memory，还是其他部署可估计表示。
+- **Evidence blocker**：现有静态审计没有量化两个 substep 控制差异、reset 泄漏幅值及其对预测误差的实际贡献。
+- **Human decision**：用户需要在独立批判报告后决定是否建立新 Phase、走线性 fallback，或结束当前 Koopman 路线。
+
+</blockers>
+
+## Required Reading（按顺序）
+
+1. `AGENTS.md` — 仓库证据边界和测试路由。
+2. `source/results/koopman_phase8_2/closeout/closeout.json` — 正式终态，优先于叙述性文档。
+3. `source/results/koopman_phase8_2/selection/selection_result.json` — 每个 family 的实际 failure reason。
+4. `.planning/checkpoints/phase8.2-no-selection-2026-09-02.md` — 冻结交付边界。
+5. `.planning/checkpoints/phase8.2-post-closeout-control-contract-turning-point-2026-09-03.md` — **待批判对象，不是指令。**
+6. `.planning/PROJECT.md`、`.planning/ROADMAP.md`、`.planning/STATE.md` — 理解项目目标；注意它们只反映已记录规划，不能覆盖 canonical result。
+7. `easyuuv_nc/env/easyuuv_env.py` — `_pre_physics_step`、`_apply_action`、`_reset_idx`、`_pid_control`、`_compute_dynamics`、telemetry。
+8. `workflows/koopman_bridge_v2.py`、`workflows/koopman_bridge_v21.py` — `state_t → env.step → latest telemetry → state_t+1`。
+9. `koopman/actuator_memory_v21.py`、`koopman/platform_features_v21.py`、`koopman/platform_features_v2.py` — memory 和 physical context 的真实信息量。
+10. `easyuuv_nc/thrust_allocation.py`、`easyuuv_nc/embodiments.py` — TAM、几何、mask 和 rank。
+11. `koopman/mpc.py`、`koopman/mpc_controller.py` — 历史 8D PWM 假设。
+12. `docs/phase8_3_critical_review_prompt.md` — 下一任务的完整工作说明与输出格式。
+
+## 需要优先批判的当前结论
+
+1. `_apply_action()` 是否确定在目标 Isaac Lab 版本的每个 physics substep 都调用？如果本机无法核实，必须把它标为待 runtime trace 验证，而不是确认事实。
+2. 即使两个 substep 的 `virtual_control` 不同，最正确的离散输入应是什么：最后值、均值、时间序列、generalized impulse、raw action，还是 controller state augmented input？
+3. “每个 control step 只计算一次控制并 hold”是否改变 S-surface/PID 的设计带宽和闭环稳定性？它是否反而让采集 plant 与现有 baseline 不再相同？
+4. 如果 Phase 9 MPC 直接输出 `virtual_control_4` 并绕开 S-surface/PID，Phase 8.2 在 inner controller 下采集到的映射是否仍与 Phase 9 的执行 plant 一致？
+5. 当前 pooled Koopman 与 simple linear 数值相同，主要是候选/observable 等价导致，还是控制合同导致？不能在没有消融时把二者混为同一个根因。
+6. platform PCA2 缺失 exact $B$/authority 是否真的伤害预测，还是 conditioning 结构、样本覆盖或数值 gate 才是主要瓶颈？
+7. `actuator_memory_4` 的不足能否用可部署 estimator 修复？8D padded memory 会不会因为不同构型推进器索引不具有共同物理语义而制造新问题？
+8. 现有数据能用于哪些 exploratory diagnostics？哪些结论必须 fresh recollection？不得把探索性重分析伪装成新 protocol 的正式结果。
+9. Phase 8.3/8.4 是否是最小、最清楚的阶段划分？也可以提出单一 forensic phase、独立新 milestone 或线性-only 路线。
+
+## Infrastructure State
+
+- 本地 Windows 工作区；仓库位于嵌套根 `E:/code for project/Agentic AUV/EasyUUV`。
+- Isaac 物理证据依赖服务器流程；当前未启动服务器连接。
+- 当前无后台进程、无实时监控、无自动续跑。
+- `gsd-sdk` 在本机当前 shell 中不可用，因此本交接未通过 GSD SDK 创建 WIP commit。
+
+## Pre-Execution Critique Required
+
+- **Design artifact:** `.planning/checkpoints/phase8.2-post-closeout-control-contract-turning-point-2026-09-03.md`
+- **Critique prompt:** `docs/phase8_3_critical_review_prompt.md`
+- **Critique focus:** 事实是否成立、因果是否被夸大、接口层级是否混淆、修复是否改变 plant、验证是否足以决定全量重采。
+- **Gate:** 在独立审查报告完成并获得用户确认前，不得改 roadmap/phase，不得实现，不得重采，不得进入 Phase 9。
+
+<context>
+
+当前最重要的不是继续寻找更复杂的 Koopman lift，而是先确定“我们到底在识别哪一个离散系统”。现有转折点文档提出了一个合理但仍可能错误的故事：数据语义和执行器记忆不足拖累了跨构型 Koopman。下一位需要把这个故事当作待证伪假设，寻找最强反例，并将模型能力、数据 capture、inner-loop controller、TAM 和 actuator dynamics 分开分析。
+
+</context>
+
+<next_action>
+
+从 `git status`、当前 HEAD 和 canonical closeout/selection 的重新核验开始；随后按 `docs/phase8_3_critical_review_prompt.md` 执行一次只读批判性审查，产出独立报告。不要先改计划或代码。
+
+</next_action>
+

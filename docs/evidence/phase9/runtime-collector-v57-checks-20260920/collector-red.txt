@@ -1,0 +1,96 @@
+FFFFFFF                                                                  [100%]
+================================== FAILURES ===================================
+______ test_collector_module_import_does_not_launch_or_import_simulator _______
+
+    def test_collector_module_import_does_not_launch_or_import_simulator():
+        prior=set(sys.modules)
+>       importlib.import_module('workflows.collect_runtime_v57')
+
+tests\test_runtime_collector_v57.py:10: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+E:\anaconda\Lib\importlib\__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'workflows.collect_runtime_v57'
+import_ = <function _gcd_import at 0x000001F8E2FF80E0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'workflows.collect_runtime_v57'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+__________ test_unapproved_case_rejected_before_output_or_simulator ___________
+
+tmp_path = WindowsPath('E:/code for project/Agentic AUV/EasyUUV/.pytest-tmp/collector-v57-red/test_unapproved_case_rejected_0')
+
+    def test_unapproved_case_rejected_before_output_or_simulator(tmp_path):
+>       from workflows.collect_runtime_v57 import collect_case
+E       ModuleNotFoundError: No module named 'workflows.collect_runtime_v57'
+
+tests\test_runtime_collector_v57.py:15: ModuleNotFoundError
+___ test_native_zero_does_not_override_missing_or_failed_report[1-report0] ____
+
+native = 1, report = {'status': 'completed_runtime_pending_acceptance'}
+
+    @pytest.mark.parametrize('native,report',[(1,{'status':'completed_runtime_pending_acceptance'}),
+        (0,None),(0,{'status':'stopped_runtime_no_go'}),(0,{'status':'completed_runtime_pending_acceptance','request':{}})])
+    def test_native_zero_does_not_override_missing_or_failed_report(native,report):
+>       from workflows.collect_runtime_v57 import classify_exit
+E       ModuleNotFoundError: No module named 'workflows.collect_runtime_v57'
+
+tests\test_runtime_collector_v57.py:25: ModuleNotFoundError
+_____ test_native_zero_does_not_override_missing_or_failed_report[0-None] _____
+
+native = 0, report = None
+
+    @pytest.mark.parametrize('native,report',[(1,{'status':'completed_runtime_pending_acceptance'}),
+        (0,None),(0,{'status':'stopped_runtime_no_go'}),(0,{'status':'completed_runtime_pending_acceptance','request':{}})])
+    def test_native_zero_does_not_override_missing_or_failed_report(native,report):
+>       from workflows.collect_runtime_v57 import classify_exit
+E       ModuleNotFoundError: No module named 'workflows.collect_runtime_v57'
+
+tests\test_runtime_collector_v57.py:25: ModuleNotFoundError
+___ test_native_zero_does_not_override_missing_or_failed_report[0-report2] ____
+
+native = 0, report = {'status': 'stopped_runtime_no_go'}
+
+    @pytest.mark.parametrize('native,report',[(1,{'status':'completed_runtime_pending_acceptance'}),
+        (0,None),(0,{'status':'stopped_runtime_no_go'}),(0,{'status':'completed_runtime_pending_acceptance','request':{}})])
+    def test_native_zero_does_not_override_missing_or_failed_report(native,report):
+>       from workflows.collect_runtime_v57 import classify_exit
+E       ModuleNotFoundError: No module named 'workflows.collect_runtime_v57'
+
+tests\test_runtime_collector_v57.py:25: ModuleNotFoundError
+___ test_native_zero_does_not_override_missing_or_failed_report[0-report3] ____
+
+native = 0
+report = {'request': {}, 'status': 'completed_runtime_pending_acceptance'}
+
+    @pytest.mark.parametrize('native,report',[(1,{'status':'completed_runtime_pending_acceptance'}),
+        (0,None),(0,{'status':'stopped_runtime_no_go'}),(0,{'status':'completed_runtime_pending_acceptance','request':{}})])
+    def test_native_zero_does_not_override_missing_or_failed_report(native,report):
+>       from workflows.collect_runtime_v57 import classify_exit
+E       ModuleNotFoundError: No module named 'workflows.collect_runtime_v57'
+
+tests\test_runtime_collector_v57.py:25: ModuleNotFoundError
+__ test_only_complete_bound_report_and_native_zero_pass_supervisor_envelope ___
+
+    def test_only_complete_bound_report_and_native_zero_pass_supervisor_envelope():
+>       from workflows.collect_runtime_v57 import classify_exit
+E       ModuleNotFoundError: No module named 'workflows.collect_runtime_v57'
+
+tests\test_runtime_collector_v57.py:31: ModuleNotFoundError
+=========================== short test summary info ===========================
+FAILED tests/test_runtime_collector_v57.py::test_collector_module_import_does_not_launch_or_import_simulator
+FAILED tests/test_runtime_collector_v57.py::test_unapproved_case_rejected_before_output_or_simulator
+FAILED tests/test_runtime_collector_v57.py::test_native_zero_does_not_override_missing_or_failed_report[1-report0]
+FAILED tests/test_runtime_collector_v57.py::test_native_zero_does_not_override_missing_or_failed_report[0-None]
+FAILED tests/test_runtime_collector_v57.py::test_native_zero_does_not_override_missing_or_failed_report[0-report2]
+FAILED tests/test_runtime_collector_v57.py::test_native_zero_does_not_override_missing_or_failed_report[0-report3]
+FAILED tests/test_runtime_collector_v57.py::test_only_complete_bound_report_and_native_zero_pass_supervisor_envelope
+7 failed in 0.35s

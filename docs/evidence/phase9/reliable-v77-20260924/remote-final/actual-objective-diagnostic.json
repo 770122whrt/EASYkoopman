@@ -1,0 +1,175 @@
+{
+  "scope": "posthoc actual two-second objective using the same weights and common zero initial command; not sum of overlapping predicted horizon objectives",
+  "cases": [
+    {
+      "case": "base-pitch-nominal_physics-repair-r4",
+      "mpc": {
+        "cost": 0.0009126427703782105,
+        "stage": {
+          "depth": 2.1563609071032867e-05,
+          "attitude": 0.0006527060006865658,
+          "vertical_speed": 6.833198350680154e-06,
+          "angular_speed": 0.0001630067120090987
+        },
+        "terminal": {
+          "depth": 3.7074287320137955e-06,
+          "attitude": 2.3219865142392837e-05,
+          "vertical_speed": 1.1461039241370755e-05,
+          "angular_speed": 3.9140684258797145e-06
+        }
+      },
+      "feedback": {
+        "cost": 0.0008754166076069703,
+        "stage": {
+          "depth": 1.5509382497687813e-05,
+          "attitude": 0.0006854006618387502,
+          "vertical_speed": 3.1425106561409303e-06,
+          "angular_speed": 0.0001398486924634973
+        },
+        "terminal": {
+          "depth": 4.518770765571389e-06,
+          "attitude": 1.0235191472785526e-06,
+          "vertical_speed": 8.663564868616209e-07,
+          "angular_speed": 1.2870173480555859e-05
+        }
+      },
+      "actual_objective_improvement_percent": -4.252393939955201
+    },
+    {
+      "case": "base-pitch-projected_koopman-repair-r4",
+      "mpc": {
+        "cost": 0.0009207325602842049,
+        "stage": {
+          "depth": 2.1938759639776133e-05,
+          "attitude": 0.0006546746552760263,
+          "vertical_speed": 6.759474503499502e-06,
+          "angular_speed": 0.00016296505795794294
+        },
+        "terminal": {
+          "depth": 4.155396027272218e-06,
+          "attitude": 2.8461836001218224e-05,
+          "vertical_speed": 1.124802277189104e-05,
+          "angular_speed": 3.96318907171449e-06
+        }
+      },
+      "feedback": {
+        "cost": 0.0008754166076069703,
+        "stage": {
+          "depth": 1.5509382497687813e-05,
+          "attitude": 0.0006854006618387502,
+          "vertical_speed": 3.1425106561409303e-06,
+          "angular_speed": 0.0001398486924634973
+        },
+        "terminal": {
+          "depth": 4.518770765571389e-06,
+          "attitude": 1.0235191472785526e-06,
+          "vertical_speed": 8.663564868616209e-07,
+          "angular_speed": 1.2870173480555859e-05
+        }
+      },
+      "actual_objective_improvement_percent": -5.176501369000741
+    },
+    {
+      "case": "long_body-pitch-projected_koopman-repair-r4",
+      "mpc": {
+        "cost": 0.0008845545054923377,
+        "stage": {
+          "depth": 8.21877139477086e-06,
+          "attitude": 0.0006664437440867868,
+          "vertical_speed": 1.7295583095811398e-06,
+          "angular_speed": 0.00014525862943150399
+        },
+        "terminal": {
+          "depth": 6.134004252089653e-06,
+          "attitude": 6.127255298359483e-06,
+          "vertical_speed": 4.674733622061889e-07,
+          "angular_speed": 2.705729048452432e-05
+        }
+      },
+      "feedback": {
+        "cost": 0.0008435438334806531,
+        "stage": {
+          "depth": 2.4795643620715663e-06,
+          "attitude": 0.0006624685030969406,
+          "vertical_speed": 3.8016945502419494e-07,
+          "angular_speed": 0.0001539645174169799
+        },
+        "terminal": {
+          "depth": 1.6661599602230126e-06,
+          "attitude": 8.255075735517942e-09,
+          "vertical_speed": 5.739709825074611e-08,
+          "angular_speed": 2.396261397271901e-06
+        }
+      },
+      "actual_objective_improvement_percent": -4.8617120277514525
+    },
+    {
+      "case": "uuv4-pitch-nominal_physics-repair-r4",
+      "mpc": {
+        "cost": 0.0031605546550179603,
+        "stage": {
+          "depth": 0.0007438709114959845,
+          "attitude": 0.0006472901637970472,
+          "vertical_speed": 9.34777017690767e-05,
+          "angular_speed": 0.0003806034307565519
+        },
+        "terminal": {
+          "depth": 0.0008906812909117434,
+          "attitude": 2.1806035591471714e-06,
+          "vertical_speed": 9.988888984617537e-05,
+          "angular_speed": 3.3360006224423706e-05
+        }
+      },
+      "feedback": {
+        "cost": 0.0010618782316117916,
+        "stage": {
+          "depth": 5.732347436075239e-06,
+          "attitude": 0.0006616476373261334,
+          "vertical_speed": 3.4576858811509187e-06,
+          "angular_speed": 0.00015013254106135181
+        },
+        "terminal": {
+          "depth": 4.977901198799373e-06,
+          "attitude": 2.5850928706630183e-08,
+          "vertical_speed": 3.0050056140655102e-06,
+          "angular_speed": 4.975534760148164e-07
+        }
+      },
+      "actual_objective_improvement_percent": -197.63814352052904
+    },
+    {
+      "case": "uuv4-pitch-projected_koopman-repair-r4",
+      "mpc": {
+        "cost": 0.0024489187203233236,
+        "stage": {
+          "depth": 0.0005691131282371013,
+          "attitude": 0.0006289577568407841,
+          "vertical_speed": 9.775258561037335e-05,
+          "angular_speed": 0.0004088700651909368
+        },
+        "terminal": {
+          "depth": 0.0003695502584832866,
+          "attitude": 1.3871538089519184e-07,
+          "vertical_speed": 9.864377410865608e-05,
+          "angular_speed": 2.060688935398474e-05
+        }
+      },
+      "feedback": {
+        "cost": 0.0010618782316117916,
+        "stage": {
+          "depth": 5.732347436075239e-06,
+          "attitude": 0.0006616476373261334,
+          "vertical_speed": 3.4576858811509187e-06,
+          "angular_speed": 0.00015013254106135181
+        },
+        "terminal": {
+          "depth": 4.977901198799373e-06,
+          "attitude": 2.5850928706630183e-08,
+          "vertical_speed": 3.0050056140655102e-06,
+          "angular_speed": 4.975534760148164e-07
+        }
+      },
+      "actual_objective_improvement_percent": -130.62142601851693
+    }
+  ]
+}

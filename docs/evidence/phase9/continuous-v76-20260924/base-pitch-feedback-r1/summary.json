@@ -1,0 +1,632 @@
+{
+  "schema": "continuous-control-v76",
+  "case": {
+    "configuration": "base",
+    "controller": "feedback",
+    "controls": 60,
+    "seed": 19760,
+    "reference": [
+      5.5,
+      0.9998000066665778,
+      0.0,
+      0.01999866669333308,
+      0.0
+    ],
+    "task": "pitch_0.04_rad"
+  },
+  "status": "completed_pending_independent_acceptance",
+  "cleanup_errors": [],
+  "model_fits": 0,
+  "real_time_qualified": false,
+  "timing_mode": "synchronous_nonrealtime",
+  "contact_authoring": [
+    {
+      "body_path": "/World/envs/env_0/Robot/base_link",
+      "before": {
+        "physics:angularVelocity": "(0, 0, 0)",
+        "physics:centerOfMass": "(-inf, -inf, -inf)",
+        "physics:density": "0.0",
+        "physics:diagonalInertia": "(0.37, 0.97, 1.19)",
+        "physics:kinematicEnabled": "False",
+        "physics:mass": "22.799999237060547",
+        "physics:principalAxes": "(1, 0, 0, 0)",
+        "physics:rigidBodyEnabled": "True",
+        "physics:startsAsleep": "False",
+        "physics:velocity": "(0, 0, 0)",
+        "physxArticulation:articulationEnabled": "False",
+        "physxArticulation:enabledSelfCollisions": "False",
+        "physxArticulation:sleepThreshold": "4.999999873689376e-05",
+        "physxArticulation:solverPositionIterationCount": "32",
+        "physxArticulation:solverVelocityIterationCount": "1",
+        "physxArticulation:stabilizationThreshold": "9.999999747378752e-06",
+        "physxRigidBody:angularDamping": "0.05000000074505806",
+        "physxRigidBody:cfmScale": "0.02500000037252903",
+        "physxRigidBody:contactSlopCoefficient": "0.0",
+        "physxRigidBody:disableGravity": "False",
+        "physxRigidBody:enableCCD": "False",
+        "physxRigidBody:enableGyroscopicForces": "True",
+        "physxRigidBody:enableSpeculativeCCD": "False",
+        "physxRigidBody:linearDamping": "0.0",
+        "physxRigidBody:lockedPosAxis": "0",
+        "physxRigidBody:lockedRotAxis": "0",
+        "physxRigidBody:maxAngularVelocity": "5729.580078125",
+        "physxRigidBody:maxContactImpulse": "inf",
+        "physxRigidBody:maxDepenetrationVelocity": "10.0",
+        "physxRigidBody:maxLinearVelocity": "inf",
+        "physxRigidBody:retainAccelerations": "False",
+        "physxRigidBody:sleepThreshold": "4.999999873689376e-05",
+        "physxRigidBody:solveContact": "True",
+        "physxRigidBody:solverPositionIterationCount": "16",
+        "physxRigidBody:solverVelocityIterationCount": "1",
+        "physxRigidBody:stabilizationThreshold": "9.999999747378752e-06"
+      },
+      "after": {
+        "physics:angularVelocity": "(0, 0, 0)",
+        "physics:centerOfMass": "(-inf, -inf, -inf)",
+        "physics:density": "0.0",
+        "physics:diagonalInertia": "(0.37, 0.97, 1.19)",
+        "physics:kinematicEnabled": "False",
+        "physics:mass": "22.799999237060547",
+        "physics:principalAxes": "(1, 0, 0, 0)",
+        "physics:rigidBodyEnabled": "True",
+        "physics:startsAsleep": "False",
+        "physics:velocity": "(0, 0, 0)",
+        "physxArticulation:articulationEnabled": "False",
+        "physxArticulation:enabledSelfCollisions": "False",
+        "physxArticulation:sleepThreshold": "4.999999873689376e-05",
+        "physxArticulation:solverPositionIterationCount": "32",
+        "physxArticulation:solverVelocityIterationCount": "1",
+        "physxArticulation:stabilizationThreshold": "9.999999747378752e-06",
+        "physxContactReport:threshold": "0.0",
+        "physxRigidBody:angularDamping": "0.05000000074505806",
+        "physxRigidBody:cfmScale": "0.02500000037252903",
+        "physxRigidBody:contactSlopCoefficient": "0.0",
+        "physxRigidBody:disableGravity": "False",
+        "physxRigidBody:enableCCD": "False",
+        "physxRigidBody:enableGyroscopicForces": "True",
+        "physxRigidBody:enableSpeculativeCCD": "False",
+        "physxRigidBody:linearDamping": "0.0",
+        "physxRigidBody:lockedPosAxis": "0",
+        "physxRigidBody:lockedRotAxis": "0",
+        "physxRigidBody:maxAngularVelocity": "5729.580078125",
+        "physxRigidBody:maxContactImpulse": "inf",
+        "physxRigidBody:maxDepenetrationVelocity": "10.0",
+        "physxRigidBody:maxLinearVelocity": "inf",
+        "physxRigidBody:retainAccelerations": "False",
+        "physxRigidBody:sleepThreshold": "4.999999873689376e-05",
+        "physxRigidBody:solveContact": "True",
+        "physxRigidBody:solverPositionIterationCount": "16",
+        "physxRigidBody:solverVelocityIterationCount": "1",
+        "physxRigidBody:stabilizationThreshold": "9.999999747378752e-06"
+      },
+      "changed_attributes": [
+        "physxContactReport:threshold"
+      ]
+    }
+  ],
+  "source_manifest_sha256": "5b019b3593527e1774f397fc13645ff1c040b6385cb893a46f4ac01d67e3fa9c",
+  "physical_steps": 240,
+  "completed_controls": 60,
+  "model": {
+    "kind": "feedback",
+    "frozen_parameter_source_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+    "common_support_id": "2beb7816cf9bf5896c9976c16efa41688a09cb065737a2a39baba7e563644998",
+    "horizon_macro_steps": 10,
+    "weights": "ObjectiveWeights defaults"
+  },
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "geometry": {
+    "body_path": "/World/envs/env_0/Robot/base_link",
+    "collider_path": "/World/envs/env_0/Robot/base_link/collisions",
+    "ground_path": "/World/ground/geometry/mesh",
+    "body_local_corners_m": [
+      [
+        -0.5,
+        -0.5,
+        -0.25
+      ],
+      [
+        -0.5,
+        -0.5,
+        0.25
+      ],
+      [
+        -0.5,
+        0.5,
+        -0.25
+      ],
+      [
+        -0.5,
+        0.5,
+        0.25
+      ],
+      [
+        0.5,
+        -0.5,
+        -0.25
+      ],
+      [
+        0.5,
+        -0.5,
+        0.25
+      ],
+      [
+        0.5,
+        0.5,
+        -0.25
+      ],
+      [
+        0.5,
+        0.5,
+        0.25
+      ]
+    ],
+    "ground_world_corners_m": [
+      [
+        -50.0,
+        -50.0,
+        -0.10000000074505806
+      ],
+      [
+        -50.0,
+        -50.0,
+        -7.450580569168253e-10
+      ],
+      [
+        -50.0,
+        50.0,
+        -0.10000000074505806
+      ],
+      [
+        -50.0,
+        50.0,
+        -7.450580569168253e-10
+      ],
+      [
+        50.0,
+        -50.0,
+        -0.10000000074505806
+      ],
+      [
+        50.0,
+        -50.0,
+        -7.450580569168253e-10
+      ],
+      [
+        50.0,
+        50.0,
+        -0.10000000074505806
+      ],
+      [
+        50.0,
+        50.0,
+        -7.450580569168253e-10
+      ]
+    ],
+    "ground_world_z_m": -7.450580569168253e-10,
+    "meters_per_unit": 1.0,
+    "initial_clearance_m": 5.250000000745058,
+    "minimum_clearance_m": 0.1,
+    "body_physics_attributes": {
+      "physics:angularVelocity": "(0, 0, 0)",
+      "physics:centerOfMass": "(-inf, -inf, -inf)",
+      "physics:density": "0.0",
+      "physics:diagonalInertia": "(0.37, 0.97, 1.19)",
+      "physics:kinematicEnabled": "False",
+      "physics:mass": "22.701000213623047",
+      "physics:principalAxes": "(1, 0, 0, 0)",
+      "physics:rigidBodyEnabled": "True",
+      "physics:startsAsleep": "False",
+      "physics:velocity": "(0, 0, 0)",
+      "physxArticulation:articulationEnabled": "False",
+      "physxArticulation:enabledSelfCollisions": "False",
+      "physxArticulation:sleepThreshold": "4.999999873689376e-05",
+      "physxArticulation:solverPositionIterationCount": "32",
+      "physxArticulation:solverVelocityIterationCount": "1",
+      "physxArticulation:stabilizationThreshold": "9.999999747378752e-06",
+      "physxContactReport:threshold": "0.0",
+      "physxRigidBody:angularDamping": "0.05000000074505806",
+      "physxRigidBody:cfmScale": "0.02500000037252903",
+      "physxRigidBody:contactSlopCoefficient": "0.0",
+      "physxRigidBody:disableGravity": "False",
+      "physxRigidBody:enableCCD": "False",
+      "physxRigidBody:enableGyroscopicForces": "True",
+      "physxRigidBody:enableSpeculativeCCD": "False",
+      "physxRigidBody:linearDamping": "0.0",
+      "physxRigidBody:lockedPosAxis": "0",
+      "physxRigidBody:lockedRotAxis": "0",
+      "physxRigidBody:maxAngularVelocity": "5729.580078125",
+      "physxRigidBody:maxContactImpulse": "inf",
+      "physxRigidBody:maxDepenetrationVelocity": "10.0",
+      "physxRigidBody:maxLinearVelocity": "inf",
+      "physxRigidBody:retainAccelerations": "False",
+      "physxRigidBody:sleepThreshold": "4.999999873689376e-05",
+      "physxRigidBody:solveContact": "True",
+      "physxRigidBody:solverPositionIterationCount": "16",
+      "physxRigidBody:solverVelocityIterationCount": "1",
+      "physxRigidBody:stabilizationThreshold": "9.999999747378752e-06"
+    },
+    "algorithm": "actual_USD_cuboid_ground_top_v76"
+  },
+  "math_preparation": {
+    "physics_steps": 0,
+    "calls": 56,
+    "startup_seconds": 0.6699664182960987,
+    "preparation": "private_math_inputs_only",
+    "measurements": [
+      {
+        "name": "quat_conjugate",
+        "repeat": 0,
+        "seconds": 0.04677388444542885
+      },
+      {
+        "name": "quat_conjugate",
+        "repeat": 1,
+        "seconds": 9.838119149208069e-05
+      },
+      {
+        "name": "quat_conjugate",
+        "repeat": 2,
+        "seconds": 7.737800478935242e-05
+      },
+      {
+        "name": "quat_conjugate",
+        "repeat": 3,
+        "seconds": 7.897615432739258e-05
+      },
+      {
+        "name": "quat_conjugate",
+        "repeat": 4,
+        "seconds": 7.763877511024475e-05
+      },
+      {
+        "name": "quat_conjugate",
+        "repeat": 5,
+        "seconds": 7.625669240951538e-05
+      },
+      {
+        "name": "quat_conjugate",
+        "repeat": 6,
+        "seconds": 7.781758904457092e-05
+      },
+      {
+        "name": "quat_conjugate",
+        "repeat": 7,
+        "seconds": 7.553026080131531e-05
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 0,
+        "seconds": 0.03466297313570976
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 1,
+        "seconds": 0.00014919787645339966
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 2,
+        "seconds": 0.00012890994548797607
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 3,
+        "seconds": 0.00012902915477752686
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 4,
+        "seconds": 0.00012785941362380981
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 5,
+        "seconds": 0.00012670829892158508
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 6,
+        "seconds": 0.0001271367073059082
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 7,
+        "seconds": 0.0001282617449760437
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 0,
+        "seconds": 0.00019386038184165955
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 1,
+        "seconds": 0.0494716577231884
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 2,
+        "seconds": 0.00022523850202560425
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 3,
+        "seconds": 0.00013528019189834595
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 4,
+        "seconds": 0.00013149529695510864
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 5,
+        "seconds": 0.00013124942779541016
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 6,
+        "seconds": 0.00013044849038124084
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 7,
+        "seconds": 0.0001300722360610962
+      },
+      {
+        "name": "quat_error",
+        "repeat": 0,
+        "seconds": 0.011897452175617218
+      },
+      {
+        "name": "quat_error",
+        "repeat": 1,
+        "seconds": 0.22273503616452217
+      },
+      {
+        "name": "quat_error",
+        "repeat": 2,
+        "seconds": 0.00025798752903938293
+      },
+      {
+        "name": "quat_error",
+        "repeat": 3,
+        "seconds": 0.00024386867880821228
+      },
+      {
+        "name": "quat_error",
+        "repeat": 4,
+        "seconds": 0.0002447478473186493
+      },
+      {
+        "name": "quat_error",
+        "repeat": 5,
+        "seconds": 0.00023951008915901184
+      },
+      {
+        "name": "quat_error",
+        "repeat": 6,
+        "seconds": 0.0002353377640247345
+      },
+      {
+        "name": "quat_error",
+        "repeat": 7,
+        "seconds": 0.00023595616221427917
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 0,
+        "seconds": 0.0005746446549892426
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 1,
+        "seconds": 0.0003483965992927551
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 2,
+        "seconds": 0.0003417357802391052
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 3,
+        "seconds": 0.0003449283540248871
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 4,
+        "seconds": 0.0003566555678844452
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 5,
+        "seconds": 0.0003506466746330261
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 6,
+        "seconds": 0.0003578588366508484
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 7,
+        "seconds": 0.0003628581762313843
+      },
+      {
+        "name": "drag",
+        "repeat": 0,
+        "seconds": 0.01221909373998642
+      },
+      {
+        "name": "drag",
+        "repeat": 1,
+        "seconds": 0.0007491856813430786
+      },
+      {
+        "name": "drag",
+        "repeat": 2,
+        "seconds": 0.0007389448583126068
+      },
+      {
+        "name": "drag",
+        "repeat": 3,
+        "seconds": 0.0007431171834468842
+      },
+      {
+        "name": "drag",
+        "repeat": 4,
+        "seconds": 0.0007544085383415222
+      },
+      {
+        "name": "drag",
+        "repeat": 5,
+        "seconds": 0.0007341578602790833
+      },
+      {
+        "name": "drag",
+        "repeat": 6,
+        "seconds": 0.0007316656410694122
+      },
+      {
+        "name": "drag",
+        "repeat": 7,
+        "seconds": 0.0007360987365245819
+      },
+      {
+        "name": "reward",
+        "repeat": 0,
+        "seconds": 0.015338517725467682
+      },
+      {
+        "name": "reward",
+        "repeat": 1,
+        "seconds": 0.254992350935936
+      },
+      {
+        "name": "reward",
+        "repeat": 2,
+        "seconds": 0.0003004930913448334
+      },
+      {
+        "name": "reward",
+        "repeat": 3,
+        "seconds": 0.0002795979380607605
+      },
+      {
+        "name": "reward",
+        "repeat": 4,
+        "seconds": 0.00028635933995246887
+      },
+      {
+        "name": "reward",
+        "repeat": 5,
+        "seconds": 0.00028471648693084717
+      },
+      {
+        "name": "reward",
+        "repeat": 6,
+        "seconds": 0.00028079748153686523
+      },
+      {
+        "name": "reward",
+        "repeat": 7,
+        "seconds": 0.00027769431471824646
+      }
+    ],
+    "allocation": {
+      "physics_steps": 0,
+      "calls": 0,
+      "startup_seconds": 0.0,
+      "reason": "legacy_no_matrix_allocation"
+    }
+  },
+  "context_audit": {
+    "accepted": true,
+    "configuration": "base",
+    "observed_context_key": [
+      22.701000213623047,
+      0.3700000047683716,
+      0.9700000286102295,
+      1.190000057220459,
+      0.0,
+      0.0,
+      0.009999999776482582,
+      0.022747844457626343,
+      1.0,
+      997.0,
+      0.001306,
+      9.81
+    ],
+    "fit_context_key": [
+      22.701000213623047,
+      0.3700000047683716,
+      0.9700000286102295,
+      1.190000057220459,
+      0.0,
+      0.0,
+      0.009999999776482582,
+      0.022747844457626343,
+      1.0,
+      997.0,
+      0.001306,
+      9.81
+    ],
+    "absolute_difference": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "absolute_tolerances": [
+      1e-05,
+      1e-06,
+      1e-06,
+      1e-06,
+      1e-06,
+      1e-06,
+      1e-06,
+      1e-08,
+      1e-06,
+      1e-05,
+      1e-09,
+      1e-06
+    ],
+    "actuator_tau_s": 0.05
+  },
+  "metrics": {
+    "depth_rmse_m": 0.002784724627111971,
+    "attitude_rmse_rad": 0.0185121671048901,
+    "normalized_tracking_score": 0.23357443494671923,
+    "maximum_angular_speed": 0.05000787228345871,
+    "maximum_cycle_ms": 516.6625007987022
+  },
+  "stats": {
+    "requests": 0,
+    "mpc_activations": 0,
+    "confirmed_controls": 60,
+    "dispatches": 60,
+    "rejected_replies": 0,
+    "worker_failures": 0
+  },
+  "cleanup_completed": {
+    "worker": false,
+    "environment": true,
+    "simulation_app": true
+  },
+  "native_alias_release": {
+    "robot_alias_present": true,
+    "robot_released": true
+  },
+  "native_dependents_gc_collected": 0,
+  "wall_seconds": 97.09426224976778
+}

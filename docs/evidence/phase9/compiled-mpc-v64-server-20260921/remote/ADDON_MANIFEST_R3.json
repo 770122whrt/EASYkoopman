@@ -1,0 +1,27 @@
+{
+  "schema": "compiled-mpc-v64-addon-r3",
+  "previous_manifest_sha256": "2f3ffd27045b377a05d545845e5f39dac67887146e5608060c15ac13156e7c67",
+  "change": "One packaging-only repair: validate exactly three additive modules against manifest as well as original frozen sources; no solver changes; fifth and final bounded invocation, within original 600 seconds/180 per invocation/8MiB ceilings.",
+  "auxiliary_diagnosis_reserved_seconds": 30,
+  "files_sha256": {
+    "scope.json": "7e1807e7039604eed4f533152ce216188973dec3b83efd6417ed1e808db5873e",
+    "supervisor.py": "d21ccc86bdb6fad4187c592de49ce826ce12792a8045f79b95fb55faeb438aa2",
+    "attempt01/benchmark.py": "4d54c3d3ead58bbebcdd6c777a8bdf97a62d9a8f16fa007c2cc57d7b9fb2daa9",
+    "attempt02/diagnose.py": "46a65198b75b5d421e86d88d10254c0c74a18f66f7e0d67b748d9bcb350364f8",
+    "attempt02/runtime_lifecycle_v62.py": "323738ae9ebbb0ff62fa4d87a232fc15caf6831c6823c2f448494376d6dc0700",
+    "attempt02/runtime_prepare_v61.py": "447a495edc0018ec69b43bd38de09c6b1a7f1a1fd95847d8b78ff4ac3f0b5552",
+    "koopman/bounded_mpc_v64.py": "1d9f88e5550bd27ebdc7a2345e6a9986261ca6d1213d4731a1d3fd3a41768794",
+    "koopman/compiled_forecast_v64.py": "09f81534e6cce7177cfc8642da027f5543288af266dff964500c64fcb511b3d2",
+    "koopman/compiled_recovery_v64.py": "dacf36c9f6a73c097e56bd858a31f6bf7bece5cda89cedb997fb11cc12f27820",
+    "supervisor-r2.py": "9e749e16d55ee7bb4b5ccfe0f3e18cb9f74029d5295f132c7b2c5f581181a254",
+    "attempt03/benchmark.py": "b86eac11b2a32c9d25bcac0afe0769e699bf472c641c03ace4a7c85cfa75345e",
+    "attempt04/diagnose.py": "46a65198b75b5d421e86d88d10254c0c74a18f66f7e0d67b748d9bcb350364f8",
+    "attempt04/runtime_lifecycle_v62.py": "323738ae9ebbb0ff62fa4d87a232fc15caf6831c6823c2f448494376d6dc0700",
+    "attempt04/runtime_prepare_v61.py": "447a495edc0018ec69b43bd38de09c6b1a7f1a1fd95847d8b78ff4ac3f0b5552",
+    "supervisor-r3.py": "03adf638a2bce2ec7a560598018191a73fd94b67a4fe39ff80b166f7424b4d61",
+    "attempt05/diagnose.py": "f3366f579ab60e9f6066f59a264b54c7b6a58ed4a3ce96c16499da436c1e1eca",
+    "attempt05/runtime_addon_v64.py": "a9fec657b7403de10d6d376e4e0d71bd11acf63ffa87e1edf6f9caa1047fc642",
+    "attempt05/runtime_lifecycle_v62.py": "323738ae9ebbb0ff62fa4d87a232fc15caf6831c6823c2f448494376d6dc0700",
+    "attempt05/runtime_prepare_v61.py": "447a495edc0018ec69b43bd38de09c6b1a7f1a1fd95847d8b78ff4ac3f0b5552"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "timestamp": "2026-09-13T12:56:50.183739+08:00",
+  "scope": "Source and preserved evidence integrity; link checks, not model validation",
+  "checks": {
+    "r9_source": {
+      "checked_files": 407,
+      "mismatches": []
+    },
+    "formal_models_and_scores": {
+      "checked_files": 145,
+      "mismatches": []
+    },
+    "projected-edmd-pilot-20260912": {
+      "checked_files": 35,
+      "mismatches": []
+    },
+    "structured-edmd-pilot-20260912": {
+      "checked_files": 40,
+      "mismatches": []
+    },
+    "r8_raw_fit_validation": {
+      "checked_files": 223,
+      "mismatches": []
+    },
+    "r9_on-off": {
+      "checked_files": 44,
+      "mismatches": [],
+      "archive_sha256_matches_acceptance": true
+    },
+    "r9_heavy": {
+      "checked_files": 44,
+      "mismatches": [],
+      "archive_sha256_matches_acceptance": true
+    },
+    "r9_asymmetric": {
+      "checked_files": 44,
+      "mismatches": [],
+      "archive_sha256_matches_acceptance": true
+    },
+    "updated_document_links": {
+      "checked_links": 109,
+      "missing": []
+    },
+    "handoff": {
+      "status": "r9_six_diagnostics_accepted_heavy_contact_confirmed_data_calibration_next",
+      "human_actions_pending": [],
+      "blockers": []
+    }
+  },
+  "support_scripts": {
+    "pack_free_water_v26.py": "0e126c1011ef8dc0259b0d4d33f6c12afb5cf47fbedf0425bbe902748cf9ad50",
+    "accept_free_water_v26.py": "efd00b37507303e2ce08b0d57bac02834c7656e78e3d07df1060790165ee583f"
+  },
+  "passed": true,
+  "model_handoff": false
+}

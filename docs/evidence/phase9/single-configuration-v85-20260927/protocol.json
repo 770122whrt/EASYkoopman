@@ -1,0 +1,48 @@
+{
+  "schema": "single-configuration-lifted-diagnosis-v85",
+  "configuration": "base",
+  "training_excitations": [
+    "prbs",
+    "multisine"
+  ],
+  "heldout_excitation": "chirp",
+  "ridge_grid": [
+    1e-08,
+    1e-06,
+    0.0001,
+    0.001,
+    0.1
+  ],
+  "selection": "none; report every predeclared candidate; heldout never selects a deployment model",
+  "nonlinear_lift_changed": false,
+  "context": "one constant mechanical context, no cross-configuration inference",
+  "maximum_seconds": 120,
+  "maximum_bytes": 67108864,
+  "maximum_new_fits": 10,
+  "origins": [
+    256,
+    384,
+    512
+  ],
+  "horizons": [
+    1,
+    80,
+    128
+  ],
+  "gate": {
+    "horizon_physics": 80,
+    "max_window_z_rmse_m": 0.002,
+    "max_window_attitude_rmse_rad": 0.004
+  },
+  "source_sha256": {
+    "workflows\\single_configuration_v85.py": "4bd74106ae9cf38fffb778bd9f6e6c411cec07fc48f4cbf3ab2719a2f6328cab",
+    "koopman\\lifted_propagation_v84.py": "6fafdff448ecb3fd49de0904d2197c3885dad76890eb20de04f68c0349c05bde",
+    "koopman\\bilinear_lifted_v85.py": "858c5bad82355f8cbe81367574db5a2e5fe20d136795fe3c8800b2c8a36ee0d7",
+    "workflows\\calibrate_lifted_v84.py": "192ef4b3f04182a736e6ffddd5ae71ecc4b0515e6d800b72de5e8d6036c83128",
+    "workflows\\calibrate_bilinear_v85.py": "9a30dca2e05f43145da83ae51cd425b4a9bf247d6b3d22c710862c23a9e9411f",
+    "workflows\\compare_models_v84.py": "dc0f7250c55b1d38802c1f3917390a545f20ed5e52e605918c0272d449f973ee"
+  },
+  "blind_test": false,
+  "physics_runs": 0,
+  "solver_runs": 0
+}

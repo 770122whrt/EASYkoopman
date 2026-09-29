@@ -1,0 +1,126 @@
+{
+  "timestamp": "2026-09-20T18:44:34+08:00",
+  "status": "local_collector_and_execution_replay_tested_server_not_run",
+  "tests_new": 78,
+  "tests_related": 325,
+  "source_sha256": {
+    "workflows/runtime_episode_v57.py": "94804693ceb3f6aabf1788ed5f6eb0d44e1f3e0d82640fe0d6a9a956e439191e",
+    "workflows/phase9_preflight_v57.py": "2902541b6c545e94c38fcc2302e8bff58b858af60a23deef5ee24ef3b867a922",
+    "workflows/collect_runtime_v57.py": "40849e6fff28274f25c1a698a72014e714321f52ac0ab59188e7277f42dc54f9",
+    "workflows/runtime_audit_v57.py": "73d3534a9e2a7b7146308a58c82a924e9911bbe6c289d1285cbaf900f53e8ed7",
+    "workflows/validate_runtime_v57.py": "74ec6fa354b4408ec5606e0e1507f4ff85c00d8a69d2bbcb5f67ae93e1ca489e",
+    "tests/test_runtime_episode_v57.py": "de3c7349976ccfbcd0ccf6b387105747dfdc2abfee51af18e3b3d9fa8588c7c3",
+    "tests/test_phase9_preflight_v57.py": "f897596084098a25b153f33916a846a0f758d59be61ca60d00562716ba6c46b7",
+    "tests/test_runtime_collector_v57.py": "2abf9f902deb5ee0fad24693bc9549cafa6a68cd079146f093d1be19c9e83d87",
+    "tests/test_runtime_audit_v57.py": "bf59bb00900d94780a238a2cd52287d5ea5315ab39821499d5be8b1fdc85f2f7",
+    "tests/test_validate_runtime_v57.py": "dfff22978c4421e0a191ec1f4049fad5190e09b3b7878a82635194cf3274e3f5"
+  },
+  "runs": [
+    {
+      "path": "docs/evidence/phase9/runtime-collector-v57-checks-20260920/audit-focused01-native.json",
+      "seconds": 10.7901376,
+      "exit_code": 0
+    },
+    {
+      "path": "docs/evidence/phase9/runtime-collector-v57-checks-20260920/audit-red-native.json",
+      "seconds": 6.9333183,
+      "exit_code": 1
+    },
+    {
+      "path": "docs/evidence/phase9/runtime-collector-v57-checks-20260920/collector-focused01-native.json",
+      "seconds": 8.0206874,
+      "exit_code": 0
+    },
+    {
+      "path": "docs/evidence/phase9/runtime-collector-v57-checks-20260920/collector-red-native.json",
+      "seconds": 1.3701034,
+      "exit_code": 1
+    },
+    {
+      "path": "docs/evidence/phase9/runtime-collector-v57-checks-20260920/episode-focused01-native.json",
+      "seconds": 8.4368936,
+      "exit_code": 1
+    },
+    {
+      "path": "docs/evidence/phase9/runtime-collector-v57-checks-20260920/episode-red-native.json",
+      "seconds": 6.0867826,
+      "exit_code": 1
+    },
+    {
+      "path": "docs/evidence/phase9/runtime-collector-v57-checks-20260920/native-red-native.json",
+      "seconds": 5.8921237,
+      "exit_code": 1
+    },
+    {
+      "path": "docs/evidence/phase9/runtime-collector-v57-checks-20260920/preflight-focused01-native.json",
+      "seconds": 7.3824566,
+      "exit_code": 0
+    },
+    {
+      "path": "docs/evidence/phase9/runtime-collector-v57-checks-20260920/preflight-red-native.json",
+      "seconds": 1.4169522,
+      "exit_code": 1
+    },
+    {
+      "path": "docs/evidence/phase9/runtime-collector-v57-checks-20260920/related01-native.json",
+      "seconds": 58.9742373,
+      "exit_code": 0
+    },
+    {
+      "path": "docs/evidence/phase9/runtime-collector-v57-checks-20260920/validate-focused01-native.json",
+      "seconds": 18.9594507,
+      "exit_code": 0
+    },
+    {
+      "path": "docs/evidence/phase9/runtime-collector-v57-checks-20260920/validate-red-native.json",
+      "seconds": 16.7748951,
+      "exit_code": 1
+    }
+  ],
+  "v57_seconds": 151.0380385,
+  "new_local_stage_seconds": 416.1968157,
+  "new_local_stage_limit_seconds": 1200,
+  "new_local_stage_limit_bytes": 134217728,
+  "phase84_hashes_unchanged": {
+    "formal-closeout.json": "ca77ecc765bd63e87e41f04ddb33bda322ad8dda09a8d2e8b0e8bc01053bf4ec",
+    "prediction-control-handoff-v2.json": "5d8c4aa1264d93307dc0cf692757441509e75809206ed80006543ca5e4239632",
+    "live-budget.json": "916d99370b36fa191152f137ca7a5b8fba3103126129ff03a526856ae8d7ef29"
+  },
+  "new_server_runs": 0,
+  "new_fits": 0,
+  "formal_test_access": false,
+  "server_release_complete": false,
+  "new_runtime_approval": false,
+  "original_v56_100ms_gate": "NO_GO retained",
+  "optimizer_recomputed": false,
+  "admission_math_reused": true,
+  "next_work": [
+    "bounded_stage_supervisor",
+    "executable_release_and_runbook",
+    "specific_new_server_proposal",
+    "matched_control_comparators"
+  ],
+  "new_local_stage_bytes_measured": 83440902,
+  "measurement_file_count": 1074,
+  "measurement_scope": "v55-v57 source, docs, evidence, matching test-temp, relocated assets; full current planning files conservatively included",
+  "measurement_roots": [
+    ".pytest-tmp/assets-v56-focused01",
+    ".pytest-tmp/assets-v56-red",
+    ".pytest-tmp/assets-v56-related",
+    ".pytest-tmp/collector-v57-red",
+    ".pytest-tmp/phase9-runtime-assets-v56-20260920",
+    ".pytest-tmp/preflight-v57-focused01",
+    ".pytest-tmp/preflight-v57-red",
+    ".pytest-tmp/v57-collector-focused01",
+    ".pytest-tmp/v57-native-red",
+    ".pytest-tmp/v57-related01",
+    "docs/evidence/phase9/isaac-adapter-v55-checks-20260920",
+    "docs/evidence/phase9/runtime-assets-v56-checks-20260920",
+    "docs/evidence/phase9/runtime-assets-v56-diagnosis-20260920",
+    "docs/evidence/phase9/runtime-assets-v56-diagnosis02-20260920",
+    "docs/evidence/phase9/runtime-assets-v56-relocation-20260920",
+    "docs/evidence/phase9/runtime-collector-v57-checks-20260920"
+  ],
+  "metadata_growth_reserve_bytes": 1048576,
+  "budgeted_stage_bytes": 84489478
+}

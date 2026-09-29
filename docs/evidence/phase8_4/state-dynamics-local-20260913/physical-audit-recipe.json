@@ -1,0 +1,34 @@
+{
+  "status": "fixed_four_clip_diagnostic",
+  "clips": [
+    {
+      "configuration": "heavy_moderate",
+      "run_id": "f25-heavy_moderate-validation-8463-chirp",
+      "origin": 79,
+      "reason": "previously reproduced earliest local failure"
+    },
+    {
+      "configuration": "long_body",
+      "run_id": "f25-long_body-validation-8461-prbs",
+      "origin": 428,
+      "reason": "previously reproduced earliest heldout failure"
+    },
+    {
+      "configuration": "uuv6",
+      "run_id": "f25-uuv6-validation-8461-prbs",
+      "origin": 75,
+      "reason": "largest frozen128 endpoint linear-velocity squared error; posthoc selection"
+    },
+    {
+      "configuration": "uuv6_angled",
+      "run_id": "f25-uuv6_angled-validation-8461-prbs",
+      "origin": 77,
+      "reason": "largest frozen128 endpoint linear-velocity squared error; posthoc selection"
+    }
+  ],
+  "physics_ticks_each": 40,
+  "model_fits": 0,
+  "new_simulation": false,
+  "test_accessed": false,
+  "script_sha256": "4c5c8117746b5c625148f1b1a24e946494a19348d70797c7815ccc271156056e"
+}

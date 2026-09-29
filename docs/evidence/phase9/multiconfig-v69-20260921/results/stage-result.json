@@ -1,0 +1,24 @@
+{
+  "status": "global_stop",
+  "configurations": {
+    "uuv4": {
+      "status": "running",
+      "cases": {
+        "uuv4-pitch-feedback": "global_stop"
+      },
+      "not_run": []
+    }
+  },
+  "new_fits": 0,
+  "charged_seconds": 51.73225061502308,
+  "physical_starts": 1,
+  "manifest_sha256": "c4b475245dc8bf0e771563cb8c9a3658ae466f98ce2f49d8a26c6fa01e54ad68",
+  "inherited": {
+    "base": "four_arms_accepted_r3",
+    "asymmetric": "support_no_go_at10physics_steps_r3"
+  },
+  "exception": "ValueError:unclassified_or_integrity_failure:uuv4-pitch-feedback",
+  "retained_bytes": 176478407,
+  "addon_bytes": 615893,
+  "wall_seconds": 53.73448437731713
+}

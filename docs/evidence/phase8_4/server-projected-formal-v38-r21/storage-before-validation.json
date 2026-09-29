@@ -1,0 +1,29 @@
+{
+  "status": "pre_validation_conservative_storage_projection",
+  "local_measured_bytes": 687698010,
+  "local_components": {
+    ".pytest-tmp/phase84-projected-formal-v38-20260914-r20": 399502852,
+    ".pytest-tmp/phase84-projected-formal-v38-20260914-r21": 81179016,
+    "docs/evidence/phase8_4/projected-formal-package-v38-20260914-r20": 240196,
+    "docs/evidence/phase8_4/projected-formal-repair-v38-20260914-r21": 381349,
+    "docs/evidence/phase8_4/server-projected-formal-v38-r20": 206048588,
+    ".pytest-tmp/p38-auditor-green": 58215,
+    ".pytest-tmp/p38-auditor-red": 521,
+    ".pytest-tmp/p38-cache-green": 57218,
+    ".pytest-tmp/p38-recovery-green": 57696,
+    ".pytest-tmp/p38-repair-package-green": 58215,
+    ".pytest-tmp/p38-repair-package-red": 0,
+    ".pytest-tmp/p38-tolerance-green": 57630,
+    ".pytest-tmp/p38-tolerance-red": 56514
+  },
+  "remote_measured_bytes": 444974679,
+  "combined_measured_bytes": 1132672689,
+  "prior_full_run_projection": 3877653038.2000003,
+  "added_r21_local_bytes": 81560365,
+  "r21_remote_allowance": 81000000,
+  "extra_metadata_allowance": 2000000,
+  "repaired_full_run_projection": 4042213403.2000003,
+  "cap_bytes": 4294967296,
+  "headroom_bytes": 252753892.7999997,
+  "note": "Projection is not final runtime consumption; retain both r20 and r21; remeasure before stage archives/pullback/scoring."
+}

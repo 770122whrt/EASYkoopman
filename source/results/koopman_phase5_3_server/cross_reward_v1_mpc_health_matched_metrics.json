@@ -1,0 +1,64 @@
+{
+  "runs": [
+    {
+      "sample_count": 350,
+      "fallback_count": 93,
+      "fallback_rate": 0.26571428571428574,
+      "fallback_reason_counts": {
+        "no_cost_improvement": 35,
+        "timeout": 58
+      },
+      "latency_ms_mean": 11.712282821536064,
+      "latency_ms_max": 13.677484355866909,
+      "policy_action_clip_rate_mean": 0.08214285714285714,
+      "policy_action_clip_rate_max": 0.5,
+      "pwm_saturation_threshold": 0.99,
+      "pwm_saturation_rate": 0.15,
+      "pwm_abs_mean": 0.43477642965702606,
+      "pwm_abs_max": 1.0,
+      "depth_rmse": 0.7183674179378976,
+      "attitude_rmse": 0.7695913771449688,
+      "path": "source/results/koopman_phase5_3/cross_reward_v1_mpc_health_step.jsonl"
+    },
+    {
+      "sample_count": 350,
+      "fallback_count": 134,
+      "fallback_rate": 0.38285714285714284,
+      "fallback_reason_counts": {
+        "no_cost_improvement": 5,
+        "timeout": 129
+      },
+      "latency_ms_mean": 11.98374016742621,
+      "latency_ms_max": 12.510711327195168,
+      "policy_action_clip_rate_mean": 0.024285714285714285,
+      "policy_action_clip_rate_max": 0.25,
+      "pwm_saturation_threshold": 0.99,
+      "pwm_saturation_rate": 0.10214285714285715,
+      "pwm_abs_mean": 0.4405981032787573,
+      "pwm_abs_max": 1.0,
+      "depth_rmse": 0.7778609338703797,
+      "attitude_rmse": 0.7928590413535843,
+      "path": "source/results/koopman_phase5_3/cross_reward_v1_mpc_health_sine.jsonl"
+    },
+    {
+      "sample_count": 350,
+      "fallback_count": 99,
+      "fallback_rate": 0.28285714285714286,
+      "fallback_reason_counts": {
+        "no_cost_improvement": 27,
+        "timeout": 72
+      },
+      "latency_ms_mean": 11.911582491759743,
+      "latency_ms_max": 13.149702921509743,
+      "policy_action_clip_rate_mean": 0.013571428571428571,
+      "policy_action_clip_rate_max": 0.25,
+      "pwm_saturation_threshold": 0.99,
+      "pwm_saturation_rate": 0.10535714285714286,
+      "pwm_abs_mean": 0.35935977106714356,
+      "pwm_abs_max": 1.0,
+      "depth_rmse": 0.6557235293464483,
+      "attitude_rmse": 0.6436862830022531,
+      "path": "source/results/koopman_phase5_3/cross_reward_v1_mpc_health_irregular.jsonl"
+    }
+  ]
+}

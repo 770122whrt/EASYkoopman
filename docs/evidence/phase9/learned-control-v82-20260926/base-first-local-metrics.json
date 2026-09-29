@@ -1,0 +1,31 @@
+{
+  "normalized_tracking_score": 0.1575916562139488,
+  "depth_rmse_m": 0.00019067601199993487,
+  "attitude_rmse_rad": 0.015874546310874815,
+  "terminal_depth_error_m": 0.00025272369384765625,
+  "terminal_attitude_error_rad": 0.0008683110379318433,
+  "control_squared_integral": 0.0011279914323523179,
+  "actual_objective": 0.0007184168915993534,
+  "cycle_median_ms": 25087.737573310733,
+  "cycle_p95_ms": 28697.506658919156,
+  "cycle_max_ms": 30065.304145216942,
+  "solve_status_counts": {
+    "optimized": 29,
+    "recovered": 5,
+    "warm_retained": 22,
+    "preview_retained": 3
+  },
+  "selected_reference_counts": {
+    "worker": 34,
+    "warm": 22,
+    "preview": 3
+  },
+  "nlp_return_status_counts": {
+    "Maximum_Iterations_Exceeded": 32,
+    "Solved_To_Acceptable_Level": 4,
+    "Solve_Succeeded": 23
+  },
+  "control_effort_is_not_energy_in_joules": true,
+  "normalized_gain_vs_physical_percent": -2.968871099160242,
+  "objective_gain_vs_physical_percent": 0.8584893374774083
+}

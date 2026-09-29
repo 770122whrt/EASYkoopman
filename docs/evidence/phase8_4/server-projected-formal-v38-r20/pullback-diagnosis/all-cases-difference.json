@@ -1,0 +1,1020 @@
+{
+  "status": "nonpromoting_semantic_comparison_complete",
+  "cases": 8,
+  "physics_ticks": 4096,
+  "all_local_validators_pass": true,
+  "differences": [
+    {
+      "case": "p38-base-preflight-9300-prbs",
+      "path": "/maximum_motion/tilt_rad",
+      "server": 0.03934519317209799,
+      "local": 0.03934519317209798,
+      "absolute_difference": 6.938893903907228e-18,
+      "ulp_difference": 1.0
+    },
+    {
+      "case": "p38-long_body-preflight-9301-prbs",
+      "path": "/maximum_motion/tilt_rad",
+      "server": 0.042658364528684815,
+      "local": 0.04265836452868481,
+      "absolute_difference": 6.938893903907228e-18,
+      "ulp_difference": 1.0
+    },
+    {
+      "case": "p38-uuv6-preflight-9304-prbs",
+      "path": "/maximum_control_pwm_speed_wrench_errors/1",
+      "server": 5.960464477539063e-08,
+      "local": 7.450580596923828e-08,
+      "absolute_difference": 1.4901161193847656e-08,
+      "ulp_difference": 1125899906842624.0
+    },
+    {
+      "case": "p38-uuv6-preflight-9304-prbs",
+      "path": "/maximum_control_pwm_speed_wrench_errors/2",
+      "server": 2.7456696329863917e-05,
+      "local": 2.550390321687246e-05,
+      "absolute_difference": 1.9527931129914577e-06,
+      "ulp_difference": 576362796548096.0
+    },
+    {
+      "case": "p38-uuv6-preflight-9304-prbs",
+      "path": "/maximum_control_pwm_speed_wrench_errors/3",
+      "server": 3.87399049461834e-06,
+      "local": 3.6837322632266023e-06,
+      "absolute_difference": 1.902582313917378e-07,
+      "ulp_difference": 224617273753600.0
+    },
+    {
+      "case": "p38-uuv6_angled-preflight-9305-prbs",
+      "path": "/maximum_control_pwm_speed_wrench_errors/1",
+      "server": 1.043081283569336e-07,
+      "local": 8.940696716308594e-08,
+      "absolute_difference": 1.4901161193847656e-08,
+      "ulp_difference": 1125899906842624.0
+    },
+    {
+      "case": "p38-uuv6_angled-preflight-9305-prbs",
+      "path": "/maximum_control_pwm_speed_wrench_errors/2",
+      "server": 3.8537464185139925e-05,
+      "local": 4.405441819699263e-05,
+      "absolute_difference": 5.516954011852704e-06,
+      "ulp_difference": 814158709784576.0
+    },
+    {
+      "case": "p38-uuv6_angled-preflight-9305-prbs",
+      "path": "/maximum_control_pwm_speed_wrench_errors/3",
+      "server": 7.6038059884098175e-06,
+      "local": 9.09126563364282e-06,
+      "absolute_difference": 1.4874596452330024e-06,
+      "ulp_difference": 878041196658688.0
+    },
+    {
+      "case": "p38-uuv4-preflight-9306-prbs",
+      "path": "/maximum_control_pwm_speed_wrench_errors/2",
+      "server": 2.5349947563313435e-05,
+      "local": 2.866713660409914e-05,
+      "absolute_difference": 3.3171890407857063e-06,
+      "ulp_difference": 979061396471808.0
+    },
+    {
+      "case": "p38-uuv4-preflight-9306-prbs",
+      "path": "/maximum_control_pwm_speed_wrench_errors/3",
+      "server": 4.1323798427583824e-06,
+      "local": 4.986226706193975e-06,
+      "absolute_difference": 8.538468634355922e-07,
+      "ulp_difference": 1008044452347904.0
+    },
+    {
+      "case": "p38-uuv4_angled-preflight-9307-prbs",
+      "path": "/maximum_control_pwm_speed_wrench_errors/3",
+      "server": 3.8341250094831025e-06,
+      "local": 3.934104015890227e-06,
+      "absolute_difference": 9.997900640712487e-08,
+      "ulp_difference": 118034377211904.0
+    },
+    {
+      "case": "p38-uuv4_angled-preflight-9307-prbs",
+      "path": "/maximum_motion/tilt_rad",
+      "server": 0.06084528080755581,
+      "local": 0.0608452808075558,
+      "absolute_difference": 6.938893903907228e-18,
+      "ulp_difference": 1.0
+    },
+    {
+      "case": "p38-uuv4_angled-preflight-9307-prbs",
+      "path": "/tail/maximum/tilt_rad",
+      "server": 0.06084528080755581,
+      "local": 0.0608452808075558,
+      "absolute_difference": 6.938893903907228e-18,
+      "ulp_difference": 1.0
+    }
+  ],
+  "records": [
+    {
+      "case": "p38-base-preflight-9300-prbs",
+      "server": {
+        "status": "identification_semantics_passed",
+        "role": "preflight",
+        "run_id": "p38-base-preflight-9300-prbs",
+        "source_commit": "1ba1d0e3dc8dcbc83263e678b7eea259672a8f83",
+        "physics_ticks": 512,
+        "contact_ticks": 0,
+        "first_contact_index": null,
+        "impulse_ticks": 0,
+        "first_impulse_index": null,
+        "rejected_ticks": 0,
+        "minimum_hull_clearance_m": 5.159414670873798,
+        "maximum_velocity_balance_residual_m_s": 4.218542829133049e-08,
+        "maximum_control_pwm_speed_wrench_errors": [
+          0.0,
+          0.0,
+          8.806953857742883e-06,
+          1.448299194350966e-06
+        ],
+        "maximum_motion": {
+          "linear_speed_m_s": 0.05947609973142912,
+          "angular_speed_rad_s": 0.23828781151637954,
+          "tilt_rad": 0.03934519317209799,
+          "horizontal_displacement_m": 0.0014957405927675915,
+          "vertical_displacement_m": 0.07922220230102539
+        },
+        "tail": {
+          "eligible_for_excitation": true,
+          "tail_physics_ticks": 64,
+          "maximum": {
+            "linear_speed_m_s": 0.04940845355604127,
+            "angular_speed_rad_s": 0.23828781151637954,
+            "tilt_rad": 0.02353384028840658
+          },
+          "limits": {
+            "linear_speed_m_s": 0.5,
+            "angular_speed_rad_s": 0.5,
+            "tilt_rad": 0.5235987755982988
+          },
+          "claim": "bounded motion only, not exact hovering"
+        },
+        "model_handoff": false,
+        "training_eligible": false,
+        "minimum_pwm_headroom": 0.8476802706718445,
+        "minimum_deadzone_distance_pwm": 2.0265579223632812e-06,
+        "maximum_allocation_acceleration_error_6": [
+          1.0093417538069621e-06,
+          8.402046671352768e-08,
+          0.014979088324429608,
+          0.08716882685788671,
+          0.05336941902615325,
+          0.06730118963611002
+        ],
+        "controller_state_replayed": true
+      },
+      "local": {
+        "status": "identification_semantics_passed",
+        "role": "preflight",
+        "run_id": "p38-base-preflight-9300-prbs",
+        "source_commit": "1ba1d0e3dc8dcbc83263e678b7eea259672a8f83",
+        "physics_ticks": 512,
+        "contact_ticks": 0,
+        "first_contact_index": null,
+        "impulse_ticks": 0,
+        "first_impulse_index": null,
+        "rejected_ticks": 0,
+        "minimum_hull_clearance_m": 5.159414670873798,
+        "maximum_velocity_balance_residual_m_s": 4.218542829133049e-08,
+        "maximum_control_pwm_speed_wrench_errors": [
+          0.0,
+          0.0,
+          8.806953857742883e-06,
+          1.448299194350966e-06
+        ],
+        "maximum_motion": {
+          "linear_speed_m_s": 0.05947609973142912,
+          "angular_speed_rad_s": 0.23828781151637954,
+          "tilt_rad": 0.03934519317209798,
+          "horizontal_displacement_m": 0.0014957405927675915,
+          "vertical_displacement_m": 0.07922220230102539
+        },
+        "tail": {
+          "eligible_for_excitation": true,
+          "tail_physics_ticks": 64,
+          "maximum": {
+            "linear_speed_m_s": 0.04940845355604127,
+            "angular_speed_rad_s": 0.23828781151637954,
+            "tilt_rad": 0.02353384028840658
+          },
+          "limits": {
+            "linear_speed_m_s": 0.5,
+            "angular_speed_rad_s": 0.5,
+            "tilt_rad": 0.5235987755982988
+          },
+          "claim": "bounded motion only, not exact hovering"
+        },
+        "model_handoff": false,
+        "training_eligible": false,
+        "minimum_pwm_headroom": 0.8476802706718445,
+        "minimum_deadzone_distance_pwm": 2.0265579223632812e-06,
+        "maximum_allocation_acceleration_error_6": [
+          1.0093417538069621e-06,
+          8.402046671352768e-08,
+          0.014979088324429608,
+          0.08716882685788671,
+          0.05336941902615325,
+          0.06730118963611002
+        ],
+        "controller_state_replayed": true
+      },
+      "reused_first_diagnostic_sha256": "d4fc28d39d4678914118b2bf7826c05edef0420937ae44838a9a059576583ba7"
+    },
+    {
+      "case": "p38-long_body-preflight-9301-prbs",
+      "server": {
+        "status": "identification_semantics_passed",
+        "role": "preflight",
+        "run_id": "p38-long_body-preflight-9301-prbs",
+        "source_commit": "1ba1d0e3dc8dcbc83263e678b7eea259672a8f83",
+        "physics_ticks": 512,
+        "contact_ticks": 0,
+        "first_contact_index": null,
+        "impulse_ticks": 0,
+        "first_impulse_index": null,
+        "rejected_ticks": 0,
+        "minimum_hull_clearance_m": 5.127805770051935,
+        "maximum_velocity_balance_residual_m_s": 4.373187646082924e-08,
+        "maximum_control_pwm_speed_wrench_errors": [
+          0.0,
+          0.0,
+          1.7913089180865427e-05,
+          4.5497662979343545e-06
+        ],
+        "maximum_motion": {
+          "linear_speed_m_s": 0.08384985758339535,
+          "angular_speed_rad_s": 0.32652546786948705,
+          "tilt_rad": 0.042658364528684815,
+          "horizontal_displacement_m": 0.0011106783648639426,
+          "vertical_displacement_m": 0.10186624526977539
+        },
+        "tail": {
+          "eligible_for_excitation": true,
+          "tail_physics_ticks": 64,
+          "maximum": {
+            "linear_speed_m_s": 0.07679584765696412,
+            "angular_speed_rad_s": 0.32652546786948705,
+            "tilt_rad": 0.04184496580997329
+          },
+          "limits": {
+            "linear_speed_m_s": 0.5,
+            "angular_speed_rad_s": 0.5,
+            "tilt_rad": 0.5235987755982988
+          },
+          "claim": "bounded motion only, not exact hovering"
+        },
+        "model_handoff": false,
+        "training_eligible": false,
+        "minimum_pwm_headroom": 0.8072412610054016,
+        "minimum_deadzone_distance_pwm": 2.0079314708709717e-06,
+        "maximum_allocation_acceleration_error_6": [
+          9.914180456940398e-07,
+          1.6804093342705536e-07,
+          0.021005043035718342,
+          0.0943757033260121,
+          0.02081950440602598,
+          0.03307878259231023
+        ],
+        "controller_state_replayed": true
+      },
+      "local": {
+        "status": "identification_semantics_passed",
+        "role": "preflight",
+        "run_id": "p38-long_body-preflight-9301-prbs",
+        "source_commit": "1ba1d0e3dc8dcbc83263e678b7eea259672a8f83",
+        "physics_ticks": 512,
+        "contact_ticks": 0,
+        "first_contact_index": null,
+        "impulse_ticks": 0,
+        "first_impulse_index": null,
+        "rejected_ticks": 0,
+        "minimum_hull_clearance_m": 5.127805770051935,
+        "maximum_velocity_balance_residual_m_s": 4.373187646082924e-08,
+        "maximum_control_pwm_speed_wrench_errors": [
+          0.0,
+          0.0,
+          1.7913089180865427e-05,
+          4.5497662979343545e-06
+        ],
+        "maximum_motion": {
+          "linear_speed_m_s": 0.08384985758339535,
+          "angular_speed_rad_s": 0.32652546786948705,
+          "tilt_rad": 0.04265836452868481,
+          "horizontal_displacement_m": 0.0011106783648639426,
+          "vertical_displacement_m": 0.10186624526977539
+        },
+        "tail": {
+          "eligible_for_excitation": true,
+          "tail_physics_ticks": 64,
+          "maximum": {
+            "linear_speed_m_s": 0.07679584765696412,
+            "angular_speed_rad_s": 0.32652546786948705,
+            "tilt_rad": 0.04184496580997329
+          },
+          "limits": {
+            "linear_speed_m_s": 0.5,
+            "angular_speed_rad_s": 0.5,
+            "tilt_rad": 0.5235987755982988
+          },
+          "claim": "bounded motion only, not exact hovering"
+        },
+        "model_handoff": false,
+        "training_eligible": false,
+        "minimum_pwm_headroom": 0.8072412610054016,
+        "minimum_deadzone_distance_pwm": 2.0079314708709717e-06,
+        "maximum_allocation_acceleration_error_6": [
+          9.914180456940398e-07,
+          1.6804093342705536e-07,
+          0.021005043035718342,
+          0.0943757033260121,
+          0.02081950440602598,
+          0.03307878259231023
+        ],
+        "controller_state_replayed": true
+      }
+    },
+    {
+      "case": "p38-heavy_moderate-preflight-9302-prbs",
+      "server": {
+        "status": "identification_semantics_passed",
+        "role": "preflight",
+        "run_id": "p38-heavy_moderate-preflight-9302-prbs",
+        "source_commit": "1ba1d0e3dc8dcbc83263e678b7eea259672a8f83",
+        "physics_ticks": 512,
+        "contact_ticks": 0,
+        "first_contact_index": null,
+        "impulse_ticks": 0,
+        "first_impulse_index": null,
+        "rejected_ticks": 0,
+        "minimum_hull_clearance_m": 4.700684976427702,
+        "maximum_velocity_balance_residual_m_s": 4.74887839274846e-08,
+        "maximum_control_pwm_speed_wrench_errors": [
+          0.0,
+          0.0,
+          9.489117485372844e-05,
+          0.0001368887262174212
+        ],
+        "maximum_motion": {
+          "linear_speed_m_s": 0.453962057831182,
+          "angular_speed_rad_s": 0.27383744443694735,
+          "tilt_rad": 0.041367202066120996,
+          "horizontal_displacement_m": 0.1223302928643188,
+          "vertical_displacement_m": 0.5327625274658203
+        },
+        "tail": {
+          "eligible_for_excitation": true,
+          "tail_physics_ticks": 64,
+          "maximum": {
+            "linear_speed_m_s": 0.09978741502286516,
+            "angular_speed_rad_s": 0.27383744443694735,
+            "tilt_rad": 0.03016774670734481
+          },
+          "limits": {
+            "linear_speed_m_s": 0.5,
+            "angular_speed_rad_s": 0.5,
+            "tilt_rad": 0.5235987755982988
+          },
+          "claim": "bounded motion only, not exact hovering"
+        },
+        "model_handoff": false,
+        "training_eligible": false,
+        "minimum_pwm_headroom": 0.3875105381011963,
+        "minimum_deadzone_distance_pwm": 5.211681127548218e-06,
+        "maximum_allocation_acceleration_error_6": [
+          1.9070492098998878e-05,
+          8.402046671352768e-08,
+          0.0016312572213318585,
+          0.0005450059023169696,
+          2.82995719276728e-05,
+          0.0013172263634535163
+        ],
+        "controller_state_replayed": true
+      },
+      "local": {
+        "status": "identification_semantics_passed",
+        "role": "preflight",
+        "run_id": "p38-heavy_moderate-preflight-9302-prbs",
+        "source_commit": "1ba1d0e3dc8dcbc83263e678b7eea259672a8f83",
+        "physics_ticks": 512,
+        "contact_ticks": 0,
+        "first_contact_index": null,
+        "impulse_ticks": 0,
+        "first_impulse_index": null,
+        "rejected_ticks": 0,
+        "minimum_hull_clearance_m": 4.700684976427702,
+        "maximum_velocity_balance_residual_m_s": 4.74887839274846e-08,
+        "maximum_control_pwm_speed_wrench_errors": [
+          0.0,
+          0.0,
+          9.489117485372844e-05,
+          0.0001368887262174212
+        ],
+        "maximum_motion": {
+          "linear_speed_m_s": 0.453962057831182,
+          "angular_speed_rad_s": 0.27383744443694735,
+          "tilt_rad": 0.041367202066120996,
+          "horizontal_displacement_m": 0.1223302928643188,
+          "vertical_displacement_m": 0.5327625274658203
+        },
+        "tail": {
+          "eligible_for_excitation": true,
+          "tail_physics_ticks": 64,
+          "maximum": {
+            "linear_speed_m_s": 0.09978741502286516,
+            "angular_speed_rad_s": 0.27383744443694735,
+            "tilt_rad": 0.03016774670734481
+          },
+          "limits": {
+            "linear_speed_m_s": 0.5,
+            "angular_speed_rad_s": 0.5,
+            "tilt_rad": 0.5235987755982988
+          },
+          "claim": "bounded motion only, not exact hovering"
+        },
+        "model_handoff": false,
+        "training_eligible": false,
+        "minimum_pwm_headroom": 0.3875105381011963,
+        "minimum_deadzone_distance_pwm": 5.211681127548218e-06,
+        "maximum_allocation_acceleration_error_6": [
+          1.9070492098998878e-05,
+          8.402046671352768e-08,
+          0.0016312572213318585,
+          0.0005450059023169696,
+          2.82995719276728e-05,
+          0.0013172263634535163
+        ],
+        "controller_state_replayed": true
+      }
+    },
+    {
+      "case": "p38-asymmetric-preflight-9303-prbs",
+      "server": {
+        "status": "identification_semantics_passed",
+        "role": "preflight",
+        "run_id": "p38-asymmetric-preflight-9303-prbs",
+        "source_commit": "1ba1d0e3dc8dcbc83263e678b7eea259672a8f83",
+        "physics_ticks": 512,
+        "contact_ticks": 0,
+        "first_contact_index": null,
+        "impulse_ticks": 0,
+        "first_impulse_index": null,
+        "rejected_ticks": 0,
+        "minimum_hull_clearance_m": 5.0752017049027,
+        "maximum_velocity_balance_residual_m_s": 4.239555040363996e-08,
+        "maximum_control_pwm_speed_wrench_errors": [
+          0.0,
+          0.0,
+          4.549719471924618e-05,
+          2.394719510334653e-05
+        ],
+        "maximum_motion": {
+          "linear_speed_m_s": 0.04582162421068992,
+          "angular_speed_rad_s": 1.5591032148238815,
+          "tilt_rad": 0.28742415019106915,
+          "horizontal_displacement_m": 0.006859755934199967,
+          "vertical_displacement_m": 0.013735771179199219
+        },
+        "tail": {
+          "eligible_for_excitation": true,
+          "tail_physics_ticks": 64,
+          "maximum": {
+            "linear_speed_m_s": 0.041524140107167956,
+            "angular_speed_rad_s": 0.20734877045399452,
+            "tilt_rad": 0.021270696047206706
+          },
+          "limits": {
+            "linear_speed_m_s": 0.5,
+            "angular_speed_rad_s": 0.5,
+            "tilt_rad": 0.5235987755982988
+          },
+          "claim": "bounded motion only, not exact hovering"
+        },
+        "model_handoff": false,
+        "training_eligible": false,
+        "minimum_pwm_headroom": 0.5284240543842316,
+        "minimum_deadzone_distance_pwm": 3.7085264921188354e-06,
+        "maximum_allocation_acceleration_error_6": [
+          1.0498641674673598e-06,
+          1.6804093342705536e-07,
+          0.0248477862682211,
+          0.04835124489451086,
+          0.02219276688107683,
+          0.08702763550143583
+        ],
+        "controller_state_replayed": true
+      },
+      "local": {
+        "status": "identification_semantics_passed",
+        "role": "preflight",
+        "run_id": "p38-asymmetric-preflight-9303-prbs",
+        "source_commit": "1ba1d0e3dc8dcbc83263e678b7eea259672a8f83",
+        "physics_ticks": 512,
+        "contact_ticks": 0,
+        "first_contact_index": null,
+        "impulse_ticks": 0,
+        "first_impulse_index": null,
+        "rejected_ticks": 0,
+        "minimum_hull_clearance_m": 5.0752017049027,
+        "maximum_velocity_balance_residual_m_s": 4.239555040363996e-08,
+        "maximum_control_pwm_speed_wrench_errors": [
+          0.0,
+          0.0,
+          4.549719471924618e-05,
+          2.394719510334653e-05
+        ],
+        "maximum_motion": {
+          "linear_speed_m_s": 0.04582162421068992,
+          "angular_speed_rad_s": 1.5591032148238815,
+          "tilt_rad": 0.28742415019106915,
+          "horizontal_displacement_m": 0.006859755934199967,
+          "vertical_displacement_m": 0.013735771179199219
+        },
+        "tail": {
+          "eligible_for_excitation": true,
+          "tail_physics_ticks": 64,
+          "maximum": {
+            "linear_speed_m_s": 0.041524140107167956,
+            "angular_speed_rad_s": 0.20734877045399452,
+            "tilt_rad": 0.021270696047206706
+          },
+          "limits": {
+            "linear_speed_m_s": 0.5,
+            "angular_speed_rad_s": 0.5,
+            "tilt_rad": 0.5235987755982988
+          },
+          "claim": "bounded motion only, not exact hovering"
+        },
+        "model_handoff": false,
+        "training_eligible": false,
+        "minimum_pwm_headroom": 0.5284240543842316,
+        "minimum_deadzone_distance_pwm": 3.7085264921188354e-06,
+        "maximum_allocation_acceleration_error_6": [
+          1.0498641674673598e-06,
+          1.6804093342705536e-07,
+          0.0248477862682211,
+          0.04835124489451086,
+          0.02219276688107683,
+          0.08702763550143583
+        ],
+        "controller_state_replayed": true
+      }
+    },
+    {
+      "case": "p38-uuv6-preflight-9304-prbs",
+      "server": {
+        "status": "identification_semantics_passed",
+        "role": "preflight",
+        "run_id": "p38-uuv6-preflight-9304-prbs",
+        "source_commit": "1ba1d0e3dc8dcbc83263e678b7eea259672a8f83",
+        "physics_ticks": 512,
+        "contact_ticks": 0,
+        "first_contact_index": null,
+        "impulse_ticks": 0,
+        "first_impulse_index": null,
+        "rejected_ticks": 0,
+        "minimum_hull_clearance_m": 5.219039669095343,
+        "maximum_velocity_balance_residual_m_s": 4.682992131837399e-08,
+        "maximum_control_pwm_speed_wrench_errors": [
+          0.0,
+          5.960464477539063e-08,
+          2.7456696329863917e-05,
+          3.87399049461834e-06
+        ],
+        "maximum_motion": {
+          "linear_speed_m_s": 0.04931648682159326,
+          "angular_speed_rad_s": 0.30138520134305696,
+          "tilt_rad": 0.04809044971865317,
+          "horizontal_displacement_m": 0.007516734462145317,
+          "vertical_displacement_m": 0.020135879516601562
+        },
+        "tail": {
+          "eligible_for_excitation": true,
+          "tail_physics_ticks": 64,
+          "maximum": {
+            "linear_speed_m_s": 0.04173066643750599,
+            "angular_speed_rad_s": 0.30138520134305696,
+            "tilt_rad": 0.04809044971865317
+          },
+          "limits": {
+            "linear_speed_m_s": 0.5,
+            "angular_speed_rad_s": 0.5,
+            "tilt_rad": 0.5235987755982988
+          },
+          "claim": "bounded motion only, not exact hovering"
+        },
+        "model_handoff": false,
+        "training_eligible": false,
+        "minimum_pwm_headroom": 0.8124535232782364,
+        "minimum_deadzone_distance_pwm": 3.3937394618988037e-06,
+        "maximum_allocation_acceleration_error_6": [
+          0.004012267745390028,
+          0.0,
+          0.008780573566266686,
+          0.06467395500102019,
+          0.029274943905403195,
+          0.09636002093159689
+        ],
+        "controller_state_replayed": true
+      },
+      "local": {
+        "status": "identification_semantics_passed",
+        "role": "preflight",
+        "run_id": "p38-uuv6-preflight-9304-prbs",
+        "source_commit": "1ba1d0e3dc8dcbc83263e678b7eea259672a8f83",
+        "physics_ticks": 512,
+        "contact_ticks": 0,
+        "first_contact_index": null,
+        "impulse_ticks": 0,
+        "first_impulse_index": null,
+        "rejected_ticks": 0,
+        "minimum_hull_clearance_m": 5.219039669095343,
+        "maximum_velocity_balance_residual_m_s": 4.682992131837399e-08,
+        "maximum_control_pwm_speed_wrench_errors": [
+          0.0,
+          7.450580596923828e-08,
+          2.550390321687246e-05,
+          3.6837322632266023e-06
+        ],
+        "maximum_motion": {
+          "linear_speed_m_s": 0.04931648682159326,
+          "angular_speed_rad_s": 0.30138520134305696,
+          "tilt_rad": 0.04809044971865317,
+          "horizontal_displacement_m": 0.007516734462145317,
+          "vertical_displacement_m": 0.020135879516601562
+        },
+        "tail": {
+          "eligible_for_excitation": true,
+          "tail_physics_ticks": 64,
+          "maximum": {
+            "linear_speed_m_s": 0.04173066643750599,
+            "angular_speed_rad_s": 0.30138520134305696,
+            "tilt_rad": 0.04809044971865317
+          },
+          "limits": {
+            "linear_speed_m_s": 0.5,
+            "angular_speed_rad_s": 0.5,
+            "tilt_rad": 0.5235987755982988
+          },
+          "claim": "bounded motion only, not exact hovering"
+        },
+        "model_handoff": false,
+        "training_eligible": false,
+        "minimum_pwm_headroom": 0.8124535232782364,
+        "minimum_deadzone_distance_pwm": 3.3937394618988037e-06,
+        "maximum_allocation_acceleration_error_6": [
+          0.004012267745390028,
+          0.0,
+          0.008780573566266686,
+          0.06467395500102019,
+          0.029274943905403195,
+          0.09636002093159689
+        ],
+        "controller_state_replayed": true
+      }
+    },
+    {
+      "case": "p38-uuv6_angled-preflight-9305-prbs",
+      "server": {
+        "status": "identification_semantics_passed",
+        "role": "preflight",
+        "run_id": "p38-uuv6_angled-preflight-9305-prbs",
+        "source_commit": "1ba1d0e3dc8dcbc83263e678b7eea259672a8f83",
+        "physics_ticks": 512,
+        "contact_ticks": 0,
+        "first_contact_index": null,
+        "impulse_ticks": 0,
+        "first_impulse_index": null,
+        "rejected_ticks": 0,
+        "minimum_hull_clearance_m": 5.210596520329075,
+        "maximum_velocity_balance_residual_m_s": 4.325451755290006e-08,
+        "maximum_control_pwm_speed_wrench_errors": [
+          0.0,
+          1.043081283569336e-07,
+          3.8537464185139925e-05,
+          7.6038059884098175e-06
+        ],
+        "maximum_motion": {
+          "linear_speed_m_s": 0.039621289247697464,
+          "angular_speed_rad_s": 0.2772238184938232,
+          "tilt_rad": 0.061832153704738,
+          "horizontal_displacement_m": 0.0058527065963700905,
+          "vertical_displacement_m": 0.01024007797241211
+        },
+        "tail": {
+          "eligible_for_excitation": true,
+          "tail_physics_ticks": 64,
+          "maximum": {
+            "linear_speed_m_s": 0.03552304843694269,
+            "angular_speed_rad_s": 0.2772238184938232,
+            "tilt_rad": 0.061832153704738
+          },
+          "limits": {
+            "linear_speed_m_s": 0.5,
+            "angular_speed_rad_s": 0.5,
+            "tilt_rad": 0.5235987755982988
+          },
+          "claim": "bounded motion only, not exact hovering"
+        },
+        "model_handoff": false,
+        "training_eligible": false,
+        "minimum_pwm_headroom": 0.8172112554311752,
+        "minimum_deadzone_distance_pwm": 3.1776726245880127e-06,
+        "maximum_allocation_acceleration_error_6": [
+          0.003704206624857521,
+          0.0,
+          0.008584914251823408,
+          0.08468735657122654,
+          0.018504449015130608,
+          0.027882076579822748
+        ],
+        "controller_state_replayed": true
+      },
+      "local": {
+        "status": "identification_semantics_passed",
+        "role": "preflight",
+        "run_id": "p38-uuv6_angled-preflight-9305-prbs",
+        "source_commit": "1ba1d0e3dc8dcbc83263e678b7eea259672a8f83",
+        "physics_ticks": 512,
+        "contact_ticks": 0,
+        "first_contact_index": null,
+        "impulse_ticks": 0,
+        "first_impulse_index": null,
+        "rejected_ticks": 0,
+        "minimum_hull_clearance_m": 5.210596520329075,
+        "maximum_velocity_balance_residual_m_s": 4.325451755290006e-08,
+        "maximum_control_pwm_speed_wrench_errors": [
+          0.0,
+          8.940696716308594e-08,
+          4.405441819699263e-05,
+          9.09126563364282e-06
+        ],
+        "maximum_motion": {
+          "linear_speed_m_s": 0.039621289247697464,
+          "angular_speed_rad_s": 0.2772238184938232,
+          "tilt_rad": 0.061832153704738,
+          "horizontal_displacement_m": 0.0058527065963700905,
+          "vertical_displacement_m": 0.01024007797241211
+        },
+        "tail": {
+          "eligible_for_excitation": true,
+          "tail_physics_ticks": 64,
+          "maximum": {
+            "linear_speed_m_s": 0.03552304843694269,
+            "angular_speed_rad_s": 0.2772238184938232,
+            "tilt_rad": 0.061832153704738
+          },
+          "limits": {
+            "linear_speed_m_s": 0.5,
+            "angular_speed_rad_s": 0.5,
+            "tilt_rad": 0.5235987755982988
+          },
+          "claim": "bounded motion only, not exact hovering"
+        },
+        "model_handoff": false,
+        "training_eligible": false,
+        "minimum_pwm_headroom": 0.8172112554311752,
+        "minimum_deadzone_distance_pwm": 3.1776726245880127e-06,
+        "maximum_allocation_acceleration_error_6": [
+          0.003704206624857521,
+          0.0,
+          0.008584914251823408,
+          0.08468735657122654,
+          0.018504449015130608,
+          0.027882076579822748
+        ],
+        "controller_state_replayed": true
+      }
+    },
+    {
+      "case": "p38-uuv4-preflight-9306-prbs",
+      "server": {
+        "status": "identification_semantics_passed",
+        "role": "preflight",
+        "run_id": "p38-uuv4-preflight-9306-prbs",
+        "source_commit": "1ba1d0e3dc8dcbc83263e678b7eea259672a8f83",
+        "physics_ticks": 512,
+        "contact_ticks": 0,
+        "first_contact_index": null,
+        "impulse_ticks": 0,
+        "first_impulse_index": null,
+        "rejected_ticks": 0,
+        "minimum_hull_clearance_m": 5.2408729443878554,
+        "maximum_velocity_balance_residual_m_s": 4.2108043230026666e-08,
+        "maximum_control_pwm_speed_wrench_errors": [
+          0.0,
+          5.960464477539063e-08,
+          2.5349947563313435e-05,
+          4.1323798427583824e-06
+        ],
+        "maximum_motion": {
+          "linear_speed_m_s": 0.041220685373616346,
+          "angular_speed_rad_s": 0.2250308701358791,
+          "tilt_rad": 0.040865638204457405,
+          "horizontal_displacement_m": 0.0035453686905435244,
+          "vertical_displacement_m": 0.026632308959960938
+        },
+        "tail": {
+          "eligible_for_excitation": true,
+          "tail_physics_ticks": 64,
+          "maximum": {
+            "linear_speed_m_s": 0.031058029070318356,
+            "angular_speed_rad_s": 0.2250308701358791,
+            "tilt_rad": 0.019710480994772208
+          },
+          "limits": {
+            "linear_speed_m_s": 0.5,
+            "angular_speed_rad_s": 0.5,
+            "tilt_rad": 0.5235987755982988
+          },
+          "claim": "bounded motion only, not exact hovering"
+        },
+        "model_handoff": false,
+        "training_eligible": false,
+        "minimum_pwm_headroom": 0.8470225930213928,
+        "minimum_deadzone_distance_pwm": 2.0079314708709717e-06,
+        "maximum_allocation_acceleration_error_6": [
+          1.226752472224688e-06,
+          0.0,
+          0.012599059208749031,
+          0.09020765723862098,
+          0.04542539653230896,
+          3.7514312915431936e-06
+        ],
+        "controller_state_replayed": true
+      },
+      "local": {
+        "status": "identification_semantics_passed",
+        "role": "preflight",
+        "run_id": "p38-uuv4-preflight-9306-prbs",
+        "source_commit": "1ba1d0e3dc8dcbc83263e678b7eea259672a8f83",
+        "physics_ticks": 512,
+        "contact_ticks": 0,
+        "first_contact_index": null,
+        "impulse_ticks": 0,
+        "first_impulse_index": null,
+        "rejected_ticks": 0,
+        "minimum_hull_clearance_m": 5.2408729443878554,
+        "maximum_velocity_balance_residual_m_s": 4.2108043230026666e-08,
+        "maximum_control_pwm_speed_wrench_errors": [
+          0.0,
+          5.960464477539063e-08,
+          2.866713660409914e-05,
+          4.986226706193975e-06
+        ],
+        "maximum_motion": {
+          "linear_speed_m_s": 0.041220685373616346,
+          "angular_speed_rad_s": 0.2250308701358791,
+          "tilt_rad": 0.040865638204457405,
+          "horizontal_displacement_m": 0.0035453686905435244,
+          "vertical_displacement_m": 0.026632308959960938
+        },
+        "tail": {
+          "eligible_for_excitation": true,
+          "tail_physics_ticks": 64,
+          "maximum": {
+            "linear_speed_m_s": 0.031058029070318356,
+            "angular_speed_rad_s": 0.2250308701358791,
+            "tilt_rad": 0.019710480994772208
+          },
+          "limits": {
+            "linear_speed_m_s": 0.5,
+            "angular_speed_rad_s": 0.5,
+            "tilt_rad": 0.5235987755982988
+          },
+          "claim": "bounded motion only, not exact hovering"
+        },
+        "model_handoff": false,
+        "training_eligible": false,
+        "minimum_pwm_headroom": 0.8470225930213928,
+        "minimum_deadzone_distance_pwm": 2.0079314708709717e-06,
+        "maximum_allocation_acceleration_error_6": [
+          1.226752472224688e-06,
+          0.0,
+          0.012599059208749031,
+          0.09020765723862098,
+          0.04542539653230896,
+          3.7514312915431936e-06
+        ],
+        "controller_state_replayed": true
+      }
+    },
+    {
+      "case": "p38-uuv4_angled-preflight-9307-prbs",
+      "server": {
+        "status": "identification_semantics_passed",
+        "role": "preflight",
+        "run_id": "p38-uuv4_angled-preflight-9307-prbs",
+        "source_commit": "1ba1d0e3dc8dcbc83263e678b7eea259672a8f83",
+        "physics_ticks": 512,
+        "contact_ticks": 0,
+        "first_contact_index": null,
+        "impulse_ticks": 0,
+        "first_impulse_index": null,
+        "rejected_ticks": 0,
+        "minimum_hull_clearance_m": 5.224991269625618,
+        "maximum_velocity_balance_residual_m_s": 4.544719110679413e-08,
+        "maximum_control_pwm_speed_wrench_errors": [
+          0.0,
+          8.195638656616211e-08,
+          2.9027755914512454e-05,
+          3.8341250094831025e-06
+        ],
+        "maximum_motion": {
+          "linear_speed_m_s": 0.04258930312979763,
+          "angular_speed_rad_s": 0.3202524690174837,
+          "tilt_rad": 0.06084528080755581,
+          "horizontal_displacement_m": 0.0014882790287513328,
+          "vertical_displacement_m": 0.022304058074951172
+        },
+        "tail": {
+          "eligible_for_excitation": true,
+          "tail_physics_ticks": 64,
+          "maximum": {
+            "linear_speed_m_s": 0.03401975649591575,
+            "angular_speed_rad_s": 0.3202524690174837,
+            "tilt_rad": 0.06084528080755581
+          },
+          "limits": {
+            "linear_speed_m_s": 0.5,
+            "angular_speed_rad_s": 0.5,
+            "tilt_rad": 0.5235987755982988
+          },
+          "claim": "bounded motion only, not exact hovering"
+        },
+        "model_handoff": false,
+        "training_eligible": false,
+        "minimum_pwm_headroom": 0.8373484462499619,
+        "minimum_deadzone_distance_pwm": 2.2239983081817627e-06,
+        "maximum_allocation_acceleration_error_6": [
+          1.2229910063654822e-06,
+          0.0,
+          0.011783343565049382,
+          0.06867824282203137,
+          0.054276136667388813,
+          4.3324044694521464e-06
+        ],
+        "controller_state_replayed": true
+      },
+      "local": {
+        "status": "identification_semantics_passed",
+        "role": "preflight",
+        "run_id": "p38-uuv4_angled-preflight-9307-prbs",
+        "source_commit": "1ba1d0e3dc8dcbc83263e678b7eea259672a8f83",
+        "physics_ticks": 512,
+        "contact_ticks": 0,
+        "first_contact_index": null,
+        "impulse_ticks": 0,
+        "first_impulse_index": null,
+        "rejected_ticks": 0,
+        "minimum_hull_clearance_m": 5.224991269625618,
+        "maximum_velocity_balance_residual_m_s": 4.544719110679413e-08,
+        "maximum_control_pwm_speed_wrench_errors": [
+          0.0,
+          8.195638656616211e-08,
+          2.9027755914512454e-05,
+          3.934104015890227e-06
+        ],
+        "maximum_motion": {
+          "linear_speed_m_s": 0.04258930312979763,
+          "angular_speed_rad_s": 0.3202524690174837,
+          "tilt_rad": 0.0608452808075558,
+          "horizontal_displacement_m": 0.0014882790287513328,
+          "vertical_displacement_m": 0.022304058074951172
+        },
+        "tail": {
+          "eligible_for_excitation": true,
+          "tail_physics_ticks": 64,
+          "maximum": {
+            "linear_speed_m_s": 0.03401975649591575,
+            "angular_speed_rad_s": 0.3202524690174837,
+            "tilt_rad": 0.0608452808075558
+          },
+          "limits": {
+            "linear_speed_m_s": 0.5,
+            "angular_speed_rad_s": 0.5,
+            "tilt_rad": 0.5235987755982988
+          },
+          "claim": "bounded motion only, not exact hovering"
+        },
+        "model_handoff": false,
+        "training_eligible": false,
+        "minimum_pwm_headroom": 0.8373484462499619,
+        "minimum_deadzone_distance_pwm": 2.2239983081817627e-06,
+        "maximum_allocation_acceleration_error_6": [
+          1.2229910063654822e-06,
+          0.0,
+          0.011783343565049382,
+          0.06867824282203137,
+          0.054276136667388813,
+          4.3324044694521464e-06
+        ],
+        "controller_state_replayed": true
+      }
+    }
+  ],
+  "formal_release": false
+}

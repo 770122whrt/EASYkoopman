@@ -1,0 +1,27 @@
+{
+  "created_at": "2026-09-20T12:26:59.483899+08:00",
+  "evidence_level": "local_synthetic_allocator_timing_only",
+  "source_commit": "bfe1659f2aee45760b66dbb98884f37fd20ad391",
+  "rows": [
+    {
+      "configuration": "base",
+      "commands": 100,
+      "wall_s": 0.13322810002136976,
+      "process_cpu_s": 0.109375,
+      "cpu_over_wall": 0.8209604428979793
+    },
+    {
+      "configuration": "uuv6_angled",
+      "commands": 100,
+      "wall_s": 0.14488609999534674,
+      "process_cpu_s": 0.125,
+      "cpu_over_wall": 0.8627466679275277
+    }
+  ],
+  "measured_loop_seconds": 0.46799999999348074,
+  "notes": [
+    "Windows_process_CPU_time_is_quantized_use_aggregate_only",
+    "not_a_model_or_control_qualification",
+    "no_concurrent_task_benchmark_running"
+  ]
+}

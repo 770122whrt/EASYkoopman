@@ -1,0 +1,39 @@
+{
+  "checkpoint_provenance_valid": true,
+  "checkpoint_provenance": "phase5_4_pareto_sentinel",
+  "source_training_summary_path": "/root/EASYkoopman/source/results/koopman_phase5_4/rm_horizon4_timeout14/sentinel_summary.json",
+  "source_result_bucket": "retrained_ppo_koopman_mpc",
+  "source_ppo_evidence_level": "phase5_4_pareto_sentinel",
+  "source_controller_path": "koopman_mpc/direct_state",
+  "source_adapter_mode": "heuristic_reference_delta_v0",
+  "source_koopman_backend": "direct_state",
+  "source_profile_id": "rm_horizon4_timeout14",
+  "source_phase5_4_track": "RM",
+  "source_reward_profile": "koopman_mpc_stability_v1",
+  "source_adapter_profile": "heuristic_reference_delta_v0_default",
+  "source_mpc_profile": "mpc_health_v1",
+  "source_changed_axis": "reward_mpc",
+  "source_sweep_round": "round1",
+  "source_parent_profile_id": "cross_reward_v1_mpc_health",
+  "source_parameter_distance_from_parent": 5.666666666666667,
+  "source_changed_parameter_count": 4,
+  "source_parameter_step_count": {
+    "mpc_horizon": 1.0,
+    "mpc_control_weight": 1.9999999999999996,
+    "mpc_smoothness_weight": 1.6666666666666672,
+    "mpc_timeout_ms": 1.0
+  },
+  "source_protected_strengths": [
+    "mpc_pwm",
+    "mpc_clip",
+    "mpc_depth",
+    "mpc_attitude"
+  ],
+  "source_training_ladder_stage": "sentinel",
+  "source_phase5_2_summary_path": "/root/EASYkoopman/source/results/koopman_phase5_2/phase5_2_experiment_summary.json",
+  "source_phase5_3_summary_path": "/root/EASYkoopman/source/results/koopman_phase5_3/phase5_3_cross_selection.json",
+  "source_log_dir": "/root/IsaacLab/logs/rsl_rl/phase54_rm_horizon4_timeout14/2026-07-05_17-44-57_rm_horizon4_timeout14_sentinel_50",
+  "source_git_commit": "c69448b1c97aaaef5d6d17636879f5d17b0c5175",
+  "source_git_dirty": true,
+  "source_checkpoint_mtime": 1783244744.896191
+}

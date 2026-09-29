@@ -1,0 +1,91 @@
+{
+  "schema": "four-family-offline-comparison-v84",
+  "families": [
+    "P",
+    "R53",
+    "Rc",
+    "LK"
+  ],
+  "ridges": [
+    0.001,
+    0.1
+  ],
+  "origins": [
+    256,
+    384,
+    512
+  ],
+  "horizons": [
+    1,
+    80,
+    128
+  ],
+  "new_gate": {
+    "horizon_physics": 80,
+    "max_window_z_rmse_m": 0.002,
+    "max_window_attitude_rmse_rad": 0.004
+  },
+  "gate_rationale": "2mm depth / 4mrad attitude finite-horizon RMS budget; frozen before model fitting; not historical threshold",
+  "maximum_seconds": 1200,
+  "maximum_bytes": 268435456,
+  "physics_runs": 0,
+  "solver_runs": 0,
+  "local_chart_angle_limit": 0.6,
+  "chart_applied_to_all_families": true,
+  "inputs": "recorded_actuator_derived_body_acceleration; conditional body prediction only",
+  "blind_test": false,
+  "evaluation": "historical fit pooled resubstitution and retrospective LOCO",
+  "model_selection": "none; retain both fixed ridges and failures",
+  "source_dev": "hold alphabetically last source configuration out of each outer source fold",
+  "source_dev_not_used_to_select_candidates": true,
+  "heldout_data_used_in_scaling": false,
+  "LK_features": [
+    "height_offset",
+    "chart_x",
+    "chart_y",
+    "chart_z",
+    "v_x",
+    "v_y",
+    "v_z",
+    "w_x",
+    "w_y",
+    "w_z",
+    "chart_x_square",
+    "chart_y_square",
+    "chart_z_square",
+    "v_x_square",
+    "v_y_square",
+    "v_z_square",
+    "w_x_square",
+    "w_y_square",
+    "w_z_square",
+    "v_x_signed_square",
+    "v_y_signed_square",
+    "v_z_signed_square",
+    "w_x_signed_square",
+    "w_y_signed_square",
+    "w_z_signed_square",
+    "w_xy",
+    "w_yz",
+    "w_zx",
+    "chart_0_w_0",
+    "chart_0_w_1",
+    "chart_0_w_2",
+    "chart_1_w_0",
+    "chart_1_w_1",
+    "chart_1_w_2",
+    "chart_2_w_0",
+    "chart_2_w_1",
+    "chart_2_w_2",
+    "constant"
+  ],
+  "LK_inputs": "a_and_a_squared",
+  "LK_height_translation_equivariant": true,
+  "propagation_diagnostic": "same fitted LK A/B, per-step re-lifting toggled only in marked rows",
+  "control_admission": "requires independent causal-command rollout, NumPy/CasADi and solver validation after this gate",
+  "implementation_sha256": {
+    "workflows\\compare_models_v84.py": "dc0f7250c55b1d38802c1f3917390a545f20ed5e52e605918c0272d449f973ee",
+    "koopman\\lifted_propagation_v84.py": "d342b996e99aec3b924c8f61f9a0064d841ae825a17588fb4166c2191b47271e",
+    "koopman\\compact_residual_v84.py": "9f836323fa41b6718715c72677d99db7bd235d0350d2462c827e2d538898f11f"
+  }
+}

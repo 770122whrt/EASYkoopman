@@ -1,0 +1,274 @@
+{
+  "schema": "projected-v38-independent-closeout-v1",
+  "status": "formal_validation_and_test_GO",
+  "created_at": "2026-09-20T01:55:17.738352+08:00",
+  "roles": {
+    "validation": {
+      "source_commit": "00d01f1eda690d663612be8ff4d571a898b4347d",
+      "freeze_sha256": "b52e81b2e9f3ad95282ff7041b5b316ce14b3270a539d917e0102376e6474657",
+      "data_source_commit": "0fd19ff28b0c1f3260a0a6ecbacc3ee0edd783da",
+      "data_freeze_sha256": "a592b69b84e3d6a2fad0b0cc70d3613f44a23c077ac8f0a33bead61e156effa5",
+      "result_sha256": "110791b47f04c22511f6a1d787a5193508c732f385ee160b8c786b6dde838941",
+      "scores_sha256": "e706ddfb01290261e45ee33a298cbefff28966e437fa183d530ae9af1c0f230a",
+      "audit_sha256": "70bfc08364b0b53d3dd0c3fe3449c10c9ccf5a1d1e8c7cea4da59f6946cccde5",
+      "acceptance_sha256": "1a5aaa47b7e9cb43697cf31a5f60533f167f6545ef42befa8c3787f3b3769dc8",
+      "cases": 24,
+      "physics_ticks": 24576,
+      "rows": 1152,
+      "gates_passed": 24,
+      "all_paths_complete": true,
+      "gate_ranges": [
+        {
+          "mode": "conditional_projected",
+          "scope": "pooled",
+          "gates": 6,
+          "normalized_velocity_ratio_min": 0.0003551150667600304,
+          "normalized_velocity_ratio_max": 0.0012218048044891653,
+          "minimum_episode_wins": 3
+        },
+        {
+          "mode": "conditional_projected",
+          "scope": "heldout",
+          "gates": 6,
+          "normalized_velocity_ratio_min": 0.0003609307320478528,
+          "normalized_velocity_ratio_max": 0.0012268541809793692,
+          "minimum_episode_wins": 3
+        },
+        {
+          "mode": "policy_self_recurrence",
+          "scope": "pooled",
+          "gates": 6,
+          "normalized_velocity_ratio_min": 0.002684975094159063,
+          "normalized_velocity_ratio_max": 0.008339993743990899,
+          "minimum_episode_wins": 3
+        },
+        {
+          "mode": "policy_self_recurrence",
+          "scope": "heldout",
+          "gates": 6,
+          "normalized_velocity_ratio_min": 0.0028630867473385144,
+          "normalized_velocity_ratio_max": 0.004416741407544424,
+          "minimum_episode_wins": 3
+        }
+      ],
+      "body_velocity_component_rmse_m_s_at_conditional_h128": [
+        {
+          "configuration": "base",
+          "nonlinear__pooled": 2.742679320070865e-06,
+          "nonlinear__heldout": 2.745192316763328e-06,
+          "linear__pooled": 0.009624226903261179,
+          "known_physics__none": 2.7261621508089063e-06,
+          "persistence__none": 0.017266188278947242
+        },
+        {
+          "configuration": "long_body",
+          "nonlinear__pooled": 4.570692325336508e-06,
+          "nonlinear__heldout": 4.524875642946163e-06,
+          "linear__pooled": 0.011340456663336627,
+          "known_physics__none": 4.607687090782118e-06,
+          "persistence__none": 0.016473951567364222
+        },
+        {
+          "configuration": "heavy_moderate",
+          "nonlinear__pooled": 0.0003102543044333945,
+          "nonlinear__heldout": 0.0003084408654883395,
+          "linear__pooled": 0.021416663425837923,
+          "known_physics__none": 0.0003181891450572399,
+          "persistence__none": 0.07595265455582607
+        },
+        {
+          "configuration": "asymmetric",
+          "nonlinear__pooled": 3.537684769818032e-06,
+          "nonlinear__heldout": 3.5529836571683487e-06,
+          "linear__pooled": 0.00583271284615642,
+          "known_physics__none": 3.5594252874886437e-06,
+          "persistence__none": 0.0164288861439278
+        },
+        {
+          "configuration": "uuv6",
+          "nonlinear__pooled": 5.4828977765549e-06,
+          "nonlinear__heldout": 5.482443314497501e-06,
+          "linear__pooled": 0.010028366792518164,
+          "known_physics__none": 5.535647940026824e-06,
+          "persistence__none": 0.01788486209850446
+        },
+        {
+          "configuration": "uuv6_angled",
+          "nonlinear__pooled": 4.361125803098959e-06,
+          "nonlinear__heldout": 4.356340228189911e-06,
+          "linear__pooled": 0.00823266994501273,
+          "known_physics__none": 4.417412132467072e-06,
+          "persistence__none": 0.016093962230240868
+        },
+        {
+          "configuration": "uuv4",
+          "nonlinear__pooled": 3.737893467082385e-06,
+          "nonlinear__heldout": 3.7392691542208834e-06,
+          "linear__pooled": 0.008555247530480292,
+          "known_physics__none": 3.7477005648352398e-06,
+          "persistence__none": 0.01586470773875082
+        },
+        {
+          "configuration": "uuv4_angled",
+          "nonlinear__pooled": 3.635116319661836e-06,
+          "nonlinear__heldout": 3.6357173735758443e-06,
+          "linear__pooled": 0.006668021586561999,
+          "known_physics__none": 3.6873080218399755e-06,
+          "persistence__none": 0.016015702587083572
+        }
+      ]
+    },
+    "test": {
+      "source_commit": "bfe1659f2aee45760b66dbb98884f37fd20ad391",
+      "freeze_sha256": "6a6274f9466894871621148573dac6a2fb366cd63442b28a52cac36d29ad37a4",
+      "data_source_commit": "bfe1659f2aee45760b66dbb98884f37fd20ad391",
+      "data_freeze_sha256": "6a6274f9466894871621148573dac6a2fb366cd63442b28a52cac36d29ad37a4",
+      "result_sha256": "7ba84c8f9b3166c8c41a6030453f3f87bb5806a8ebffb389d5adb7b18ffa9f67",
+      "scores_sha256": "d943e20daaebfc7584ab4cd012133d1856ac7bca24fcb74ad7295f509cfce6aa",
+      "audit_sha256": "ea6fadc79a14bfa3cca667b4935946d0786df3e0174900d6919bc8a6b4b08b8d",
+      "acceptance_sha256": "0ebc1471f04da01adb207d849746eb98f5cf8e29838cbdc151f1f1e5f6a53d69",
+      "cases": 24,
+      "physics_ticks": 24576,
+      "rows": 1152,
+      "gates_passed": 24,
+      "all_paths_complete": true,
+      "gate_ranges": [
+        {
+          "mode": "conditional_projected",
+          "scope": "pooled",
+          "gates": 6,
+          "normalized_velocity_ratio_min": 0.00035611974327398165,
+          "normalized_velocity_ratio_max": 0.001278538614144277,
+          "minimum_episode_wins": 3
+        },
+        {
+          "mode": "conditional_projected",
+          "scope": "heldout",
+          "gates": 6,
+          "normalized_velocity_ratio_min": 0.00036156223273704535,
+          "normalized_velocity_ratio_max": 0.0012817032032680937,
+          "minimum_episode_wins": 3
+        },
+        {
+          "mode": "policy_self_recurrence",
+          "scope": "pooled",
+          "gates": 6,
+          "normalized_velocity_ratio_min": 0.00626599403423916,
+          "normalized_velocity_ratio_max": 0.01903106502535255,
+          "minimum_episode_wins": 3
+        },
+        {
+          "mode": "policy_self_recurrence",
+          "scope": "heldout",
+          "gates": 6,
+          "normalized_velocity_ratio_min": 0.00536823374032872,
+          "normalized_velocity_ratio_max": 0.02009565411879787,
+          "minimum_episode_wins": 3
+        }
+      ],
+      "body_velocity_component_rmse_m_s_at_conditional_h128": [
+        {
+          "configuration": "base",
+          "nonlinear__pooled": 3.086013746077709e-06,
+          "nonlinear__heldout": 3.0841080661749183e-06,
+          "linear__pooled": 0.008736726322093822,
+          "known_physics__none": 3.1066156324394364e-06,
+          "persistence__none": 0.017655916392141587
+        },
+        {
+          "configuration": "long_body",
+          "nonlinear__pooled": 4.61384949070573e-06,
+          "nonlinear__heldout": 4.698158438472343e-06,
+          "linear__pooled": 0.013580305144706234,
+          "known_physics__none": 4.595523233871548e-06,
+          "persistence__none": 0.02020363774366412
+        },
+        {
+          "configuration": "heavy_moderate",
+          "nonlinear__pooled": 0.0002669191865749772,
+          "nonlinear__heldout": 0.00026619619273304855,
+          "linear__pooled": 0.021415470050147562,
+          "known_physics__none": 0.0002738494007240545,
+          "persistence__none": 0.07715203457534821
+        },
+        {
+          "configuration": "asymmetric",
+          "nonlinear__pooled": 3.6757593051808065e-06,
+          "nonlinear__heldout": 3.7823181633778344e-06,
+          "linear__pooled": 0.006104519257172598,
+          "known_physics__none": 3.8157677705753045e-06,
+          "persistence__none": 0.015058577964444065
+        },
+        {
+          "configuration": "uuv6",
+          "nonlinear__pooled": 4.323348409920374e-06,
+          "nonlinear__heldout": 4.322691715233691e-06,
+          "linear__pooled": 0.011463087397290581,
+          "known_physics__none": 4.290341129768828e-06,
+          "persistence__none": 0.018012568181468142
+        },
+        {
+          "configuration": "uuv6_angled",
+          "nonlinear__pooled": 4.646665694916322e-06,
+          "nonlinear__heldout": 4.64209324166153e-06,
+          "linear__pooled": 0.009137964384812167,
+          "known_physics__none": 4.669807061240741e-06,
+          "persistence__none": 0.01693603148658517
+        },
+        {
+          "configuration": "uuv4",
+          "nonlinear__pooled": 3.870428161151161e-06,
+          "nonlinear__heldout": 3.871089757602184e-06,
+          "linear__pooled": 0.006939884585104402,
+          "known_physics__none": 3.896640871151278e-06,
+          "persistence__none": 0.018838136598909132
+        },
+        {
+          "configuration": "uuv4_angled",
+          "nonlinear__pooled": 4.130215303229437e-06,
+          "nonlinear__heldout": 4.129999880959464e-06,
+          "linear__pooled": 0.006486492565501435,
+          "known_physics__none": 4.180864783284705e-06,
+          "persistence__none": 0.017502354525640782
+        }
+      ]
+    }
+  },
+  "frozen_models": 18,
+  "new_model_fits": 0,
+  "source_commit": "bfe1659f2aee45760b66dbb98884f37fd20ad391",
+  "source_manifest_sha256": "8022d4f2e76e727067d8c4e436dbdb48c26d278802568def466b37b2e21bf670",
+  "model_manifest_sha256": "393ccbfd80ab1878ff23d78bb1ebefe3cc040a0698bd50eb42d965513dd0ca8a",
+  "evidence_level": "fixed_exact_eight_catalog_fresh_episode_prediction_validation_and_test",
+  "unique_koopman_advantage_proven": false,
+  "complete_lift_recurrence_qualified": false,
+  "closed_loop_mpc_qualified": false,
+  "agentic_contribution_proven": false,
+  "audit_limits": {
+    "predictor_math": "reuses_frozen_predictors",
+    "independent_arithmetic": true,
+    "full_policy_regeneration": false
+  },
+  "metric_label_correction": {
+    "previous_file": "../server-projected-formal-v38-r22/validation-descriptive-summary.json",
+    "original_sha256": "e88f86c21baf0f3a253c9798305f2c0f2d86fb5d1af4570f0ba8e41414ae1eac",
+    "incorrect_label": "world_velocity_component_rmse_m_s",
+    "correct_label": "body_velocity_component_rmse_m_s",
+    "numbers_or_gates_changed": false,
+    "source": "workflows/evaluate_projected_edmd_v24.py:squared_errors; state columns5:8 body velocity"
+  },
+  "resource_cap": {
+    "collector_seconds": 5400,
+    "native_case_seconds": 300,
+    "native_cases": 56,
+    "analysis_seconds": 4500,
+    "analysis_processes": 4,
+    "disk_bytes": 4294967296
+  },
+  "charged_seconds": {
+    "collector": 2704.78218785394,
+    "analysis": 3296.516435761215
+  },
+  "budget_sha256": "916d99370b36fa191152f137ca7a5b8fba3103126129ff03a526856ae8d7ef29",
+  "attempts": 125
+}

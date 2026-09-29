@@ -1,0 +1,3017 @@
+{
+  "scope": "posthoc descriptive analysis of fixed assay; no new fits or dataset opens",
+  "report_sha256": "cad6091a0e7b0eca7646de8b215b4ab1956920034646826114f6aa96d5574ae1",
+  "macro_ratios": {
+    "persistence": {
+      "one_step": {
+        "success_count": 21,
+        "episode_count": 21,
+        "ratios": {
+          "depth_rmse": 1.0,
+          "linear_velocity_rmse": 1.0,
+          "angular_velocity_rmse": 1.0,
+          "so3_geodesic_mean_radians": 1.0,
+          "so3_geodesic_rmse_radians": 1.0,
+          "so3_geodesic_max_radians": 1.0
+        }
+      },
+      "5": {
+        "success_count": 21,
+        "episode_count": 21,
+        "ratios": {
+          "depth_rmse": 1.0,
+          "linear_velocity_rmse": 1.0,
+          "angular_velocity_rmse": 1.0,
+          "so3_geodesic_mean_radians": 1.0,
+          "so3_geodesic_rmse_radians": 1.0,
+          "so3_geodesic_max_radians": 1.0
+        }
+      },
+      "20": {
+        "success_count": 21,
+        "episode_count": 21,
+        "ratios": {
+          "depth_rmse": 1.0,
+          "linear_velocity_rmse": 1.0,
+          "angular_velocity_rmse": 1.0,
+          "so3_geodesic_mean_radians": 1.0,
+          "so3_geodesic_rmse_radians": 1.0,
+          "so3_geodesic_max_radians": 1.0
+        }
+      },
+      "60": {
+        "success_count": 21,
+        "episode_count": 21,
+        "ratios": {
+          "depth_rmse": 1.0,
+          "linear_velocity_rmse": 1.0,
+          "angular_velocity_rmse": 1.0,
+          "so3_geodesic_mean_radians": 1.0,
+          "so3_geodesic_rmse_radians": 1.0,
+          "so3_geodesic_max_radians": 1.0
+        }
+      },
+      "512": {
+        "success_count": 21,
+        "episode_count": 21,
+        "ratios": {
+          "depth_rmse": 1.0,
+          "linear_velocity_rmse": 1.0,
+          "angular_velocity_rmse": 1.0,
+          "so3_geodesic_mean_radians": 1.0,
+          "so3_geodesic_rmse_radians": 1.0,
+          "so3_geodesic_max_radians": 1.0
+        }
+      }
+    },
+    "constant_twist": {
+      "one_step": {
+        "success_count": 21,
+        "episode_count": 21,
+        "ratios": {
+          "depth_rmse": 0.0426219328611841,
+          "linear_velocity_rmse": 1.0,
+          "angular_velocity_rmse": 1.0,
+          "so3_geodesic_mean_radians": 0.06547852225533667,
+          "so3_geodesic_rmse_radians": 0.07363339551827049,
+          "so3_geodesic_max_radians": 0.17135508662096305
+        }
+      },
+      "5": {
+        "success_count": 21,
+        "episode_count": 21,
+        "ratios": {
+          "depth_rmse": 1.0,
+          "linear_velocity_rmse": 1.0,
+          "angular_velocity_rmse": 1.0,
+          "so3_geodesic_mean_radians": 1.0,
+          "so3_geodesic_rmse_radians": 1.0,
+          "so3_geodesic_max_radians": 1.0
+        }
+      },
+      "20": {
+        "success_count": 21,
+        "episode_count": 21,
+        "ratios": {
+          "depth_rmse": 1.0,
+          "linear_velocity_rmse": 1.0,
+          "angular_velocity_rmse": 1.0,
+          "so3_geodesic_mean_radians": 1.0,
+          "so3_geodesic_rmse_radians": 1.0,
+          "so3_geodesic_max_radians": 1.0
+        }
+      },
+      "60": {
+        "success_count": 21,
+        "episode_count": 21,
+        "ratios": {
+          "depth_rmse": 1.0,
+          "linear_velocity_rmse": 1.0,
+          "angular_velocity_rmse": 1.0,
+          "so3_geodesic_mean_radians": 1.0,
+          "so3_geodesic_rmse_radians": 1.0,
+          "so3_geodesic_max_radians": 1.0
+        }
+      },
+      "512": {
+        "success_count": 21,
+        "episode_count": 21,
+        "ratios": {
+          "depth_rmse": 1.0,
+          "linear_velocity_rmse": 1.0,
+          "angular_velocity_rmse": 1.0,
+          "so3_geodesic_mean_radians": 1.0,
+          "so3_geodesic_rmse_radians": 1.0,
+          "so3_geodesic_max_radians": 1.0
+        }
+      }
+    },
+    "pooled": {
+      "one_step": {
+        "success_count": 21,
+        "episode_count": 21,
+        "ratios": {
+          "depth_rmse": 0.38164479343576907,
+          "linear_velocity_rmse": 1.2681535902140886,
+          "angular_velocity_rmse": 0.9575882867757266,
+          "so3_geodesic_mean_radians": 0.06259540095820772,
+          "so3_geodesic_rmse_radians": 0.06937827460187802,
+          "so3_geodesic_max_radians": 0.17113384860659683
+        }
+      },
+      "5": {
+        "success_count": 21,
+        "episode_count": 21,
+        "ratios": {
+          "depth_rmse": 1.0194194487288408,
+          "linear_velocity_rmse": 0.9733861094129496,
+          "angular_velocity_rmse": 0.8620432777021426,
+          "so3_geodesic_mean_radians": 0.9345467974904199,
+          "so3_geodesic_rmse_radians": 0.9132578131499248,
+          "so3_geodesic_max_radians": 0.8946901637239713
+        }
+      },
+      "20": {
+        "success_count": 21,
+        "episode_count": 21,
+        "ratios": {
+          "depth_rmse": 0.9536378959361556,
+          "linear_velocity_rmse": 0.9773555501464254,
+          "angular_velocity_rmse": 0.771767252323757,
+          "so3_geodesic_mean_radians": 0.7947656458273707,
+          "so3_geodesic_rmse_radians": 0.7874203011454145,
+          "so3_geodesic_max_radians": 0.7843054779922194
+        }
+      },
+      "60": {
+        "success_count": 21,
+        "episode_count": 21,
+        "ratios": {
+          "depth_rmse": 0.9436275532893932,
+          "linear_velocity_rmse": 0.9967417565043006,
+          "angular_velocity_rmse": 0.9302376592605541,
+          "so3_geodesic_mean_radians": 0.7864788819039313,
+          "so3_geodesic_rmse_radians": 0.7959688086226941,
+          "so3_geodesic_max_radians": 0.8454803472471124
+        }
+      },
+      "512": {
+        "success_count": 21,
+        "episode_count": 21,
+        "ratios": {
+          "depth_rmse": 1.1667105541379765,
+          "linear_velocity_rmse": 1.4470132975082968,
+          "angular_velocity_rmse": 5.807090509918456,
+          "so3_geodesic_mean_radians": 1.6083187987808636,
+          "so3_geodesic_rmse_radians": 1.7189242166426173,
+          "so3_geodesic_max_radians": 1.9448994542041864
+        }
+      }
+    },
+    "per_configuration": {
+      "one_step": {
+        "success_count": 21,
+        "episode_count": 21,
+        "ratios": {
+          "depth_rmse": 0.7072533476335676,
+          "linear_velocity_rmse": 6.587815249703217,
+          "angular_velocity_rmse": 3.207957806559932,
+          "so3_geodesic_mean_radians": 0.201126091599609,
+          "so3_geodesic_rmse_radians": 0.2209082859233586,
+          "so3_geodesic_max_radians": 0.27170953181245844
+        }
+      },
+      "5": {
+        "success_count": 21,
+        "episode_count": 21,
+        "ratios": {
+          "depth_rmse": 0.7846569631822826,
+          "linear_velocity_rmse": 0.6912391586684089,
+          "angular_velocity_rmse": 0.35134359595524267,
+          "so3_geodesic_mean_radians": 0.3811002149953019,
+          "so3_geodesic_rmse_radians": 0.3723716151702363,
+          "so3_geodesic_max_radians": 0.3641597523400753
+        }
+      },
+      "20": {
+        "success_count": 21,
+        "episode_count": 21,
+        "ratios": {
+          "depth_rmse": 0.17826182160195636,
+          "linear_velocity_rmse": 0.36271323199084426,
+          "angular_velocity_rmse": 0.5474245698176076,
+          "so3_geodesic_mean_radians": 0.393239716654434,
+          "so3_geodesic_rmse_radians": 0.4149828096987111,
+          "so3_geodesic_max_radians": 0.4763464201395807
+        }
+      },
+      "60": {
+        "success_count": 18,
+        "episode_count": 21,
+        "ratios": null
+      },
+      "512": {
+        "success_count": 3,
+        "episode_count": 21,
+        "ratios": null
+      }
+    },
+    "per_configuration_kinematic": {
+      "one_step": {
+        "success_count": 21,
+        "episode_count": 21,
+        "ratios": {
+          "depth_rmse": 0.0426219328611841,
+          "linear_velocity_rmse": 6.587815249703217,
+          "angular_velocity_rmse": 3.207957806559932,
+          "so3_geodesic_mean_radians": 0.06547852225533667,
+          "so3_geodesic_rmse_radians": 0.07363339551827049,
+          "so3_geodesic_max_radians": 0.17135508662096305
+        }
+      },
+      "5": {
+        "success_count": 21,
+        "episode_count": 21,
+        "ratios": {
+          "depth_rmse": 0.3750310440436662,
+          "linear_velocity_rmse": 0.7027987431421541,
+          "angular_velocity_rmse": 0.349023692976302,
+          "so3_geodesic_mean_radians": 0.4556868778208194,
+          "so3_geodesic_rmse_radians": 0.42471135936015225,
+          "so3_geodesic_max_radians": 0.39139691894901363
+        }
+      },
+      "20": {
+        "success_count": 21,
+        "episode_count": 21,
+        "ratios": {
+          "depth_rmse": 0.13886363038483115,
+          "linear_velocity_rmse": 0.3637015900186956,
+          "angular_velocity_rmse": 0.5637189884131777,
+          "so3_geodesic_mean_radians": 0.3613186968810252,
+          "so3_geodesic_rmse_radians": 0.3855400945233783,
+          "so3_geodesic_max_radians": 0.44258696265405734
+        }
+      },
+      "60": {
+        "success_count": 18,
+        "episode_count": 21,
+        "ratios": null
+      },
+      "512": {
+        "success_count": 0,
+        "episode_count": 21,
+        "ratios": null
+      }
+    }
+  },
+  "excitation_one_step_ratios": {
+    "bounded_multisine-r1": {
+      "persistence": {
+        "depth_rmse": 1.0,
+        "linear_velocity_rmse": 1.0,
+        "angular_velocity_rmse": 1.0,
+        "so3_geodesic_mean_radians": 1.0,
+        "so3_geodesic_rmse_radians": 1.0,
+        "so3_geodesic_max_radians": 1.0
+      },
+      "constant_twist": {
+        "depth_rmse": 0.030407244329198214,
+        "linear_velocity_rmse": 1.0,
+        "angular_velocity_rmse": 1.0,
+        "so3_geodesic_mean_radians": 0.06539417282066509,
+        "so3_geodesic_rmse_radians": 0.07941067288532154,
+        "so3_geodesic_max_radians": 0.23546196588310925
+      },
+      "pooled": {
+        "depth_rmse": 0.22047416504812278,
+        "linear_velocity_rmse": 1.1922249122626103,
+        "angular_velocity_rmse": 0.718856728400648,
+        "so3_geodesic_mean_radians": 0.04695103306409821,
+        "so3_geodesic_rmse_radians": 0.056612986657918266,
+        "so3_geodesic_max_radians": 0.21617489470915985
+      },
+      "per_configuration": {
+        "depth_rmse": 0.2301562534693103,
+        "linear_velocity_rmse": 3.498822384595787,
+        "angular_velocity_rmse": 1.7203275608858917,
+        "so3_geodesic_mean_radians": 0.1295166435995936,
+        "so3_geodesic_rmse_radians": 0.1305709736584504,
+        "so3_geodesic_max_radians": 0.1377289052381146
+      },
+      "per_configuration_kinematic": {
+        "depth_rmse": 0.030407244329198214,
+        "linear_velocity_rmse": 3.498822384595787,
+        "angular_velocity_rmse": 1.7203275608858917,
+        "so3_geodesic_mean_radians": 0.06539417282066509,
+        "so3_geodesic_rmse_radians": 0.07941067288532154,
+        "so3_geodesic_max_radians": 0.23546196588310925
+      }
+    },
+    "coupled_chirp-r1": {
+      "persistence": {
+        "depth_rmse": 1.0,
+        "linear_velocity_rmse": 1.0,
+        "angular_velocity_rmse": 1.0,
+        "so3_geodesic_mean_radians": 1.0,
+        "so3_geodesic_rmse_radians": 1.0,
+        "so3_geodesic_max_radians": 1.0
+      },
+      "constant_twist": {
+        "depth_rmse": 0.051365649428267726,
+        "linear_velocity_rmse": 1.0,
+        "angular_velocity_rmse": 1.0,
+        "so3_geodesic_mean_radians": 0.04525942790940124,
+        "so3_geodesic_rmse_radians": 0.05178503003916602,
+        "so3_geodesic_max_radians": 0.13971043172297004
+      },
+      "pooled": {
+        "depth_rmse": 0.7515290376074496,
+        "linear_velocity_rmse": 1.6059406720679423,
+        "angular_velocity_rmse": 1.4334282505622618,
+        "so3_geodesic_mean_radians": 0.06263024353718877,
+        "so3_geodesic_rmse_radians": 0.07046672914985522,
+        "so3_geodesic_max_radians": 0.16396082549811108
+      },
+      "per_configuration": {
+        "depth_rmse": 1.6798334874193088,
+        "linear_velocity_rmse": 14.039218890468597,
+        "angular_velocity_rmse": 6.932817618578774,
+        "so3_geodesic_mean_radians": 0.2789367342242156,
+        "so3_geodesic_rmse_radians": 0.3193071964212615,
+        "so3_geodesic_max_radians": 0.4343879497931282
+      },
+      "per_configuration_kinematic": {
+        "depth_rmse": 0.051365649428267726,
+        "linear_velocity_rmse": 14.039218890468597,
+        "angular_velocity_rmse": 6.932817618578774,
+        "so3_geodesic_mean_radians": 0.04525942790940124,
+        "so3_geodesic_rmse_radians": 0.05178503003916602,
+        "so3_geodesic_max_radians": 0.13971043172297004
+      }
+    },
+    "independent_prbs-r1": {
+      "persistence": {
+        "depth_rmse": 1.0,
+        "linear_velocity_rmse": 1.0,
+        "angular_velocity_rmse": 1.0,
+        "so3_geodesic_mean_radians": 1.0,
+        "so3_geodesic_rmse_radians": 1.0,
+        "so3_geodesic_max_radians": 1.0
+      },
+      "constant_twist": {
+        "depth_rmse": 0.04505144458929467,
+        "linear_velocity_rmse": 1.0,
+        "angular_velocity_rmse": 1.0,
+        "so3_geodesic_mean_radians": 0.1399980263197141,
+        "so3_geodesic_rmse_radians": 0.1367809482960103,
+        "so3_geodesic_max_radians": 0.15856775907022527
+      },
+      "pooled": {
+        "depth_rmse": 0.1071219190560748,
+        "linear_velocity_rmse": 0.9453011258717477,
+        "angular_velocity_rmse": 0.6341365637255154,
+        "so3_geodesic_mean_radians": 0.0887434923539162,
+        "so3_geodesic_rmse_radians": 0.0865242463666813,
+        "so3_geodesic_max_radians": 0.13028243976461096
+      },
+      "per_configuration": {
+        "depth_rmse": 0.0419919541556426,
+        "linear_velocity_rmse": 0.628242562601426,
+        "angular_velocity_rmse": 0.3114827515301222,
+        "so3_geodesic_mean_radians": 0.035167510430777135,
+        "so3_geodesic_rmse_radians": 0.041108771349577765,
+        "so3_geodesic_max_radians": 0.09415358495397749
+      },
+      "per_configuration_kinematic": {
+        "depth_rmse": 0.04505144458929467,
+        "linear_velocity_rmse": 0.628242562601426,
+        "angular_velocity_rmse": 0.3114827515301222,
+        "so3_geodesic_mean_radians": 0.1399980263197141,
+        "so3_geodesic_rmse_radians": 0.1367809482960103,
+        "so3_geodesic_max_radians": 0.15856775907022527
+      }
+    }
+  },
+  "per_configuration": {
+    "long_body": {
+      "persistence": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0011961181549791642,
+            "linear_velocity_rmse": 0.004787064041301791,
+            "angular_velocity_rmse": 0.055367216637845364,
+            "so3_geodesic_mean_radians": 0.023148458116486376,
+            "so3_geodesic_rmse_radians": 0.027693884012519914,
+            "so3_geodesic_max_radians": 0.06291676584473017
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.000251831409197399,
+            "linear_velocity_rmse": 0.004938063394611649,
+            "angular_velocity_rmse": 0.05310991768225898,
+            "so3_geodesic_mean_radians": 0.00189163194766435,
+            "so3_geodesic_rmse_radians": 0.0026715122538360004,
+            "so3_geodesic_max_radians": 0.005184084840290634
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.007544074450135473,
+            "linear_velocity_rmse": 0.03243568026088374,
+            "angular_velocity_rmse": 0.28277768882520227,
+            "so3_geodesic_mean_radians": 0.048691546356953226,
+            "so3_geodesic_rmse_radians": 0.0656629788490274,
+            "so3_geodesic_max_radians": 0.13149358991611912
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.039382856878743815,
+            "linear_velocity_rmse": 0.05527165018428341,
+            "angular_velocity_rmse": 0.4187050429803086,
+            "so3_geodesic_mean_radians": 0.25532758419560136,
+            "so3_geodesic_rmse_radians": 0.31744728920133364,
+            "so3_geodesic_max_radians": 0.5772304813988723
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.25280142354426366,
+            "linear_velocity_rmse": 0.0690873567946523,
+            "angular_velocity_rmse": 0.9596948255702867,
+            "so3_geodesic_mean_radians": 0.6312799158510768,
+            "so3_geodesic_rmse_radians": 0.7684520535140275,
+            "so3_geodesic_max_radians": 1.6200829746534147
+          }
+        }
+      },
+      "constant_twist": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 7.459305149707301e-05,
+            "linear_velocity_rmse": 0.004787064041301791,
+            "angular_velocity_rmse": 0.055367216637845364,
+            "so3_geodesic_mean_radians": 0.0010768972772247855,
+            "so3_geodesic_rmse_radians": 0.001195585349672165,
+            "so3_geodesic_max_radians": 0.002563852604482873
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.000251831409197399,
+            "linear_velocity_rmse": 0.004938063394611649,
+            "angular_velocity_rmse": 0.05310991768225898,
+            "so3_geodesic_mean_radians": 0.00189163194766435,
+            "so3_geodesic_rmse_radians": 0.0026715122538360004,
+            "so3_geodesic_max_radians": 0.005184084840290634
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.007544074450135473,
+            "linear_velocity_rmse": 0.03243568026088374,
+            "angular_velocity_rmse": 0.28277768882520227,
+            "so3_geodesic_mean_radians": 0.048691546356953226,
+            "so3_geodesic_rmse_radians": 0.0656629788490274,
+            "so3_geodesic_max_radians": 0.13149358991611912
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.039382856878743815,
+            "linear_velocity_rmse": 0.05527165018428341,
+            "angular_velocity_rmse": 0.4187050429803086,
+            "so3_geodesic_mean_radians": 0.25532758419560136,
+            "so3_geodesic_rmse_radians": 0.31744728920133364,
+            "so3_geodesic_max_radians": 0.5772304813988723
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.25280142354426366,
+            "linear_velocity_rmse": 0.0690873567946523,
+            "angular_velocity_rmse": 0.9596948255702867,
+            "so3_geodesic_mean_radians": 0.6312799158510768,
+            "so3_geodesic_rmse_radians": 0.7684520535140275,
+            "so3_geodesic_max_radians": 1.6200829746534147
+          }
+        }
+      },
+      "pooled": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0009310326984500822,
+            "linear_velocity_rmse": 0.006761344555969884,
+            "angular_velocity_rmse": 0.058036052063161564,
+            "so3_geodesic_mean_radians": 0.001114126687499348,
+            "so3_geodesic_rmse_radians": 0.0012764062166400077,
+            "so3_geodesic_max_radians": 0.002660799886049954
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 9.284510681309821e-05,
+            "linear_velocity_rmse": 0.0016408369028026292,
+            "angular_velocity_rmse": 0.05843404423172344,
+            "so3_geodesic_mean_radians": 0.0027356821995989516,
+            "so3_geodesic_rmse_radians": 0.0035460327697277127,
+            "so3_geodesic_max_radians": 0.006471882203381553
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.003142215501865366,
+            "linear_velocity_rmse": 0.016711544276172007,
+            "angular_velocity_rmse": 0.2904156144689081,
+            "so3_geodesic_mean_radians": 0.04883821387124116,
+            "so3_geodesic_rmse_radians": 0.06617386803115684,
+            "so3_geodesic_max_radians": 0.13797150690488433
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.01810108557382882,
+            "linear_velocity_rmse": 0.03915655048014715,
+            "angular_velocity_rmse": 0.5408494474437869,
+            "so3_geodesic_mean_radians": 0.3061357352097284,
+            "so3_geodesic_rmse_radians": 0.3899853505130821,
+            "so3_geodesic_max_radians": 0.7633200473186429
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.2969796575051837,
+            "linear_velocity_rmse": 0.1121309537759461,
+            "angular_velocity_rmse": 5.166211051157317,
+            "so3_geodesic_mean_radians": 1.5953508035824324,
+            "so3_geodesic_rmse_radians": 1.8016373186476375,
+            "so3_geodesic_max_radians": 3.1376544113891374
+          }
+        }
+      },
+      "per_configuration": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0007336508853508938,
+            "linear_velocity_rmse": 0.004366410770777893,
+            "angular_velocity_rmse": 0.03248867591609287,
+            "so3_geodesic_mean_radians": 0.0005968005852351161,
+            "so3_geodesic_rmse_radians": 0.0006969657379568457,
+            "so3_geodesic_max_radians": 0.0019066845544097207
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.00022691666235827228,
+            "linear_velocity_rmse": 0.003297842826021602,
+            "angular_velocity_rmse": 0.041145842727613485,
+            "so3_geodesic_mean_radians": 0.002195871710240304,
+            "so3_geodesic_rmse_radians": 0.002756943196551273,
+            "so3_geodesic_max_radians": 0.004852294792232344
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.00175490520672374,
+            "linear_velocity_rmse": 0.010345731805321366,
+            "angular_velocity_rmse": 0.25267966358063515,
+            "so3_geodesic_mean_radians": 0.03339357922236403,
+            "so3_geodesic_rmse_radians": 0.046899858752111924,
+            "so3_geodesic_max_radians": 0.10978772592432125
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.023515922849745782,
+            "linear_velocity_rmse": 0.092408376014751,
+            "angular_velocity_rmse": 2.8828587116591975,
+            "so3_geodesic_mean_radians": 0.6931692410378268,
+            "so3_geodesic_rmse_radians": 1.0235720609540548,
+            "so3_geodesic_max_radians": 2.5365656674272294
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 0,
+          "macro_metrics": null
+        }
+      },
+      "per_configuration_kinematic": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 7.459305149707301e-05,
+            "linear_velocity_rmse": 0.004366410770777893,
+            "angular_velocity_rmse": 0.03248867591609287,
+            "so3_geodesic_mean_radians": 0.0010768972772247855,
+            "so3_geodesic_rmse_radians": 0.001195585349672165,
+            "so3_geodesic_max_radians": 0.002563852604482873
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 4.1240614494595804e-05,
+            "linear_velocity_rmse": 0.0032995882728970934,
+            "angular_velocity_rmse": 0.04118736844244473,
+            "so3_geodesic_mean_radians": 0.0008147881559107065,
+            "so3_geodesic_rmse_radians": 0.0011100163827953548,
+            "so3_geodesic_max_radians": 0.0020971513883577837
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.001474859409867928,
+            "linear_velocity_rmse": 0.010380860632066918,
+            "angular_velocity_rmse": 0.253366677863662,
+            "so3_geodesic_mean_radians": 0.02506406958459194,
+            "so3_geodesic_rmse_radians": 0.03737671883867933,
+            "so3_geodesic_max_radians": 0.09250336460965086
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.025128639481821622,
+            "linear_velocity_rmse": 0.09025725138744049,
+            "angular_velocity_rmse": 2.88402034202645,
+            "so3_geodesic_mean_radians": 0.6709723469847265,
+            "so3_geodesic_rmse_radians": 1.003204401377299,
+            "so3_geodesic_max_radians": 2.536619222482828
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 0,
+          "macro_metrics": null
+        }
+      }
+    },
+    "heavy_moderate": {
+      "persistence": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0061255016625178125,
+            "linear_velocity_rmse": 0.038970492755016205,
+            "angular_velocity_rmse": 0.12627157328098337,
+            "so3_geodesic_mean_radians": 0.0017395990887293614,
+            "so3_geodesic_rmse_radians": 0.004845734641742758,
+            "so3_geodesic_max_radians": 0.029210877788760248
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.01036356141121353,
+            "linear_velocity_rmse": 0.15029007870304067,
+            "angular_velocity_rmse": 0.01793973821977329,
+            "so3_geodesic_mean_radians": 0.000576001210259275,
+            "so3_geodesic_rmse_radians": 0.0008363366399445239,
+            "so3_geodesic_max_radians": 0.001653639387664124
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.10108742221659332,
+            "linear_velocity_rmse": 0.372471102331426,
+            "angular_velocity_rmse": 0.16528759720031536,
+            "so3_geodesic_mean_radians": 0.02427040506570842,
+            "so3_geodesic_rmse_radians": 0.03423299396002621,
+            "so3_geodesic_max_radians": 0.07389792696472518
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.44791931833060783,
+            "linear_velocity_rmse": 0.5064712977821026,
+            "angular_velocity_rmse": 0.28519828047198637,
+            "so3_geodesic_mean_radians": 0.17402916052507064,
+            "so3_geodesic_rmse_radians": 0.2221504681114722,
+            "so3_geodesic_max_radians": 0.4171103772534622
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 1.1747036198825924,
+            "linear_velocity_rmse": 0.21914277181446717,
+            "angular_velocity_rmse": 0.18540758123163603,
+            "so3_geodesic_mean_radians": 0.3662052421552995,
+            "so3_geodesic_rmse_radians": 0.37615281888796437,
+            "so3_geodesic_max_radians": 0.46138522821934164
+          }
+        }
+      },
+      "constant_twist": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0005037828831481045,
+            "linear_velocity_rmse": 0.038970492755016205,
+            "angular_velocity_rmse": 0.12627157328098337,
+            "so3_geodesic_mean_radians": 0.0008569964024796274,
+            "so3_geodesic_rmse_radians": 0.002305066689148431,
+            "so3_geodesic_max_radians": 0.0391020268797884
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.01036356141121353,
+            "linear_velocity_rmse": 0.15029007870304067,
+            "angular_velocity_rmse": 0.01793973821977329,
+            "so3_geodesic_mean_radians": 0.000576001210259275,
+            "so3_geodesic_rmse_radians": 0.0008363366399445239,
+            "so3_geodesic_max_radians": 0.001653639387664124
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.10108742221659332,
+            "linear_velocity_rmse": 0.372471102331426,
+            "angular_velocity_rmse": 0.16528759720031536,
+            "so3_geodesic_mean_radians": 0.02427040506570842,
+            "so3_geodesic_rmse_radians": 0.03423299396002621,
+            "so3_geodesic_max_radians": 0.07389792696472518
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.44791931833060783,
+            "linear_velocity_rmse": 0.5064712977821026,
+            "angular_velocity_rmse": 0.28519828047198637,
+            "so3_geodesic_mean_radians": 0.17402916052507064,
+            "so3_geodesic_rmse_radians": 0.2221504681114722,
+            "so3_geodesic_max_radians": 0.4171103772534622
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 1.1747036198825924,
+            "linear_velocity_rmse": 0.21914277181446717,
+            "angular_velocity_rmse": 0.18540758123163603,
+            "so3_geodesic_mean_radians": 0.3662052421552995,
+            "so3_geodesic_rmse_radians": 0.37615281888796437,
+            "so3_geodesic_max_radians": 0.46138522821934164
+          }
+        }
+      },
+      "pooled": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0015366094892121868,
+            "linear_velocity_rmse": 0.039212082221873036,
+            "angular_velocity_rmse": 0.136341974441071,
+            "so3_geodesic_mean_radians": 0.001445516686727567,
+            "so3_geodesic_rmse_radians": 0.002514249914812588,
+            "so3_geodesic_max_radians": 0.03945170365811171
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.010506818973592751,
+            "linear_velocity_rmse": 0.15125339601531582,
+            "angular_velocity_rmse": 0.06351014324948666,
+            "so3_geodesic_mean_radians": 0.0029751101466526982,
+            "so3_geodesic_rmse_radians": 0.0038544035883931807,
+            "so3_geodesic_max_radians": 0.007041950225332479
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.10189042512029144,
+            "linear_velocity_rmse": 0.3734012813392897,
+            "angular_velocity_rmse": 0.2979399460855693,
+            "so3_geodesic_mean_radians": 0.051281239376897124,
+            "so3_geodesic_rmse_radians": 0.06912920957439421,
+            "so3_geodesic_max_radians": 0.14260489809508192
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.44437367131708666,
+            "linear_velocity_rmse": 0.5021450737129787,
+            "angular_velocity_rmse": 0.5226765732145766,
+            "so3_geodesic_mean_radians": 0.3008797674946378,
+            "so3_geodesic_rmse_radians": 0.381105962025557,
+            "so3_geodesic_max_radians": 0.7378772620792587
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 1.1643086766997457,
+            "linear_velocity_rmse": 0.2404845382249583,
+            "angular_velocity_rmse": 4.912480527718341,
+            "so3_geodesic_mean_radians": 1.5316408117220106,
+            "so3_geodesic_rmse_radians": 1.7690040095479862,
+            "so3_geodesic_max_radians": 3.139135565182889
+          }
+        }
+      },
+      "per_configuration": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.006672485663918732,
+            "linear_velocity_rmse": 0.3479671931495756,
+            "angular_velocity_rmse": 0.6734497723634574,
+            "so3_geodesic_mean_radians": 0.006865027523022013,
+            "so3_geodesic_rmse_radians": 0.0112514317104071,
+            "so3_geodesic_max_radians": 0.057422733066139015
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.008131717542081024,
+            "linear_velocity_rmse": 0.10568835393664,
+            "angular_velocity_rmse": 0.025608284605666522,
+            "so3_geodesic_mean_radians": 0.0019285709785838833,
+            "so3_geodesic_rmse_radians": 0.002165183882477163,
+            "so3_geodesic_max_radians": 0.0034320640574133075
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.012982088562843873,
+            "linear_velocity_rmse": 0.11852479817816396,
+            "angular_velocity_rmse": 0.1549435424436784,
+            "so3_geodesic_mean_radians": 0.022940797698954823,
+            "so3_geodesic_rmse_radians": 0.031199554179407295,
+            "so3_geodesic_max_radians": 0.06735125547813435
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.16531131538300195,
+            "linear_velocity_rmse": 0.27926243808024226,
+            "angular_velocity_rmse": 0.3045090504184793,
+            "so3_geodesic_mean_radians": 0.17463706949105698,
+            "so3_geodesic_rmse_radians": 0.22588646651320124,
+            "so3_geodesic_max_radians": 0.4463211534867857
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 2,
+          "macro_metrics": null
+        }
+      },
+      "per_configuration_kinematic": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0005037828831481045,
+            "linear_velocity_rmse": 0.3479671931495756,
+            "angular_velocity_rmse": 0.6734497723634574,
+            "so3_geodesic_mean_radians": 0.0008569964024796274,
+            "so3_geodesic_rmse_radians": 0.002305066689148431,
+            "so3_geodesic_max_radians": 0.0391020268797884
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.004041906395926266,
+            "linear_velocity_rmse": 0.10766693053267533,
+            "angular_velocity_rmse": 0.02524231057189132,
+            "so3_geodesic_mean_radians": 0.0013320464521806676,
+            "so3_geodesic_rmse_radians": 0.001629678281813947,
+            "so3_geodesic_max_radians": 0.0026743280718169327
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.010705881900148486,
+            "linear_velocity_rmse": 0.1188698114402642,
+            "angular_velocity_rmse": 0.1532850544428186,
+            "so3_geodesic_mean_radians": 0.022184586368899917,
+            "so3_geodesic_rmse_radians": 0.030807265818999882,
+            "so3_geodesic_max_radians": 0.06708455633210575
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.16431092989210466,
+            "linear_velocity_rmse": 0.2802311868908834,
+            "angular_velocity_rmse": 0.30598432619540533,
+            "so3_geodesic_mean_radians": 0.17406209734313136,
+            "so3_geodesic_rmse_radians": 0.22562213111514015,
+            "so3_geodesic_max_radians": 0.4484579472942341
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 0,
+          "macro_metrics": null
+        }
+      }
+    },
+    "asymmetric": {
+      "persistence": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0009294801584706225,
+            "linear_velocity_rmse": 0.004202811692948634,
+            "angular_velocity_rmse": 0.07248159323322896,
+            "so3_geodesic_mean_radians": 0.020443193520451475,
+            "so3_geodesic_rmse_radians": 0.025206234339749726,
+            "so3_geodesic_max_radians": 0.08266893024962835
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.00025151343135897884,
+            "linear_velocity_rmse": 0.00493391839325068,
+            "angular_velocity_rmse": 1.001349595244819,
+            "so3_geodesic_mean_radians": 0.0552143194321237,
+            "so3_geodesic_rmse_radians": 0.06874335430721933,
+            "so3_geodesic_max_radians": 0.12064886380326574
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.007193836576481473,
+            "linear_velocity_rmse": 0.03185193236271686,
+            "angular_velocity_rmse": 2.304819460386346,
+            "so3_geodesic_mean_radians": 0.5161575697361578,
+            "so3_geodesic_rmse_radians": 0.6482554461024979,
+            "so3_geodesic_max_radians": 1.221245420283686
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.03111338439758629,
+            "linear_velocity_rmse": 0.05646698184863983,
+            "angular_velocity_rmse": 1.766050785297277,
+            "so3_geodesic_mean_radians": 1.4027554443599495,
+            "so3_geodesic_rmse_radians": 1.5621763963873445,
+            "so3_geodesic_max_radians": 2.0583831697590047
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.27316446284953494,
+            "linear_velocity_rmse": 0.05905931367591923,
+            "angular_velocity_rmse": 0.8735321666957411,
+            "so3_geodesic_mean_radians": 1.8238562905224607,
+            "so3_geodesic_rmse_radians": 1.8648111836469845,
+            "so3_geodesic_max_radians": 2.3648921470942885
+          }
+        }
+      },
+      "constant_twist": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 1.917264086694182e-05,
+            "linear_velocity_rmse": 0.004202811692948634,
+            "angular_velocity_rmse": 0.07248159323322896,
+            "so3_geodesic_mean_radians": 0.001288494264139607,
+            "so3_geodesic_rmse_radians": 0.0015699961565620833,
+            "so3_geodesic_max_radians": 0.0067688930717135195
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.00025151343135897884,
+            "linear_velocity_rmse": 0.00493391839325068,
+            "angular_velocity_rmse": 1.001349595244819,
+            "so3_geodesic_mean_radians": 0.0552143194321237,
+            "so3_geodesic_rmse_radians": 0.06874335430721933,
+            "so3_geodesic_max_radians": 0.12064886380326574
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.007193836576481473,
+            "linear_velocity_rmse": 0.03185193236271686,
+            "angular_velocity_rmse": 2.304819460386346,
+            "so3_geodesic_mean_radians": 0.5161575697361578,
+            "so3_geodesic_rmse_radians": 0.6482554461024979,
+            "so3_geodesic_max_radians": 1.221245420283686
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.03111338439758629,
+            "linear_velocity_rmse": 0.05646698184863983,
+            "angular_velocity_rmse": 1.766050785297277,
+            "so3_geodesic_mean_radians": 1.4027554443599495,
+            "so3_geodesic_rmse_radians": 1.5621763963873445,
+            "so3_geodesic_max_radians": 2.0583831697590047
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.27316446284953494,
+            "linear_velocity_rmse": 0.05905931367591923,
+            "angular_velocity_rmse": 0.8735321666957411,
+            "so3_geodesic_mean_radians": 1.8238562905224607,
+            "so3_geodesic_rmse_radians": 1.8648111836469845,
+            "so3_geodesic_max_radians": 2.3648921470942885
+          }
+        }
+      },
+      "pooled": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0011553300463328935,
+            "linear_velocity_rmse": 0.004894104570870258,
+            "angular_velocity_rmse": 0.08685329163458673,
+            "so3_geodesic_mean_radians": 0.0015455845659688144,
+            "so3_geodesic_rmse_radians": 0.001777466818484573,
+            "so3_geodesic_max_radians": 0.00676009080490918
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 9.300423090049739e-05,
+            "linear_velocity_rmse": 0.0016367858442858608,
+            "angular_velocity_rmse": 0.9923449050861866,
+            "so3_geodesic_mean_radians": 0.05505758638583979,
+            "so3_geodesic_rmse_radians": 0.06848889990931752,
+            "so3_geodesic_max_radians": 0.12012012683945615
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0027891584252980116,
+            "linear_velocity_rmse": 0.020197294130230248,
+            "angular_velocity_rmse": 2.374348950895655,
+            "so3_geodesic_mean_radians": 0.5213899400284324,
+            "so3_geodesic_rmse_radians": 0.6572986199722707,
+            "so3_geodesic_max_radians": 1.2497741982287636
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.014481434839933685,
+            "linear_velocity_rmse": 0.045148854621181116,
+            "angular_velocity_rmse": 1.9893910341715555,
+            "so3_geodesic_mean_radians": 1.5770909341549373,
+            "so3_geodesic_rmse_radians": 1.779113663828087,
+            "so3_geodesic_max_radians": 2.406185905473992
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.2912109597873695,
+            "linear_velocity_rmse": 0.10736201971741284,
+            "angular_velocity_rmse": 5.189002181868111,
+            "so3_geodesic_mean_radians": 1.753022744576499,
+            "so3_geodesic_rmse_radians": 1.916904213933627,
+            "so3_geodesic_max_radians": 3.139522230207801
+          }
+        }
+      },
+      "per_configuration": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0004473875981604108,
+            "linear_velocity_rmse": 0.003355966926461468,
+            "angular_velocity_rmse": 0.06991393882177191,
+            "so3_geodesic_mean_radians": 0.0013286541372788511,
+            "so3_geodesic_rmse_radians": 0.001514202781502257,
+            "so3_geodesic_max_radians": 0.0032511354329200666
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0003041581185309618,
+            "linear_velocity_rmse": 0.0034539587504491564,
+            "angular_velocity_rmse": 0.0846014928293567,
+            "so3_geodesic_mean_radians": 0.004412436890284769,
+            "so3_geodesic_rmse_radians": 0.005570517436035573,
+            "so3_geodesic_max_radians": 0.009887417909826559
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.003060154628520513,
+            "linear_velocity_rmse": 0.017440072498398112,
+            "angular_velocity_rmse": 0.14318011627890048,
+            "so3_geodesic_mean_radians": 0.025006849128833986,
+            "so3_geodesic_rmse_radians": 0.028796493742539092,
+            "so3_geodesic_max_radians": 0.042538912002146066
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.013927774902568128,
+            "linear_velocity_rmse": 0.056718394752694884,
+            "angular_velocity_rmse": 0.3821796328452273,
+            "so3_geodesic_mean_radians": 0.13387150202829493,
+            "so3_geodesic_rmse_radians": 0.18115000961209296,
+            "so3_geodesic_max_radians": 0.40630017587795225
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 1,
+          "macro_metrics": null
+        }
+      },
+      "per_configuration_kinematic": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 1.917264086694182e-05,
+            "linear_velocity_rmse": 0.003355966926461468,
+            "angular_velocity_rmse": 0.06991393882177191,
+            "so3_geodesic_mean_radians": 0.001288494264139607,
+            "so3_geodesic_rmse_radians": 0.0015699961565620833,
+            "so3_geodesic_max_radians": 0.0067688930717135195
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 6.293850809894932e-05,
+            "linear_velocity_rmse": 0.0034566529130016614,
+            "angular_velocity_rmse": 0.08028251708137663,
+            "so3_geodesic_mean_radians": 0.021578766439005238,
+            "so3_geodesic_rmse_radians": 0.024139371305908694,
+            "so3_geodesic_max_radians": 0.03727680159006138
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0009921334847648206,
+            "linear_velocity_rmse": 0.017368199967805868,
+            "angular_velocity_rmse": 0.16861172238408884,
+            "so3_geodesic_mean_radians": 0.05814484289738109,
+            "so3_geodesic_rmse_radians": 0.06323799023895661,
+            "so3_geodesic_max_radians": 0.0845142233526246
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.00652278312115118,
+            "linear_velocity_rmse": 0.05754583256794902,
+            "angular_velocity_rmse": 0.40245066184189016,
+            "so3_geodesic_mean_radians": 0.1603027031923387,
+            "so3_geodesic_rmse_radians": 0.20125530062687966,
+            "so3_geodesic_max_radians": 0.4244886853203389
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 0,
+          "macro_metrics": null
+        }
+      }
+    },
+    "uuv6": {
+      "persistence": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0020606777999587996,
+            "linear_velocity_rmse": 0.0024849244801767863,
+            "angular_velocity_rmse": 0.0967876680248632,
+            "so3_geodesic_mean_radians": 0.026658892591440855,
+            "so3_geodesic_rmse_radians": 0.02915608050215529,
+            "so3_geodesic_max_radians": 0.057523325038692175
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.00017841214732732205,
+            "linear_velocity_rmse": 0.0027345116491745824,
+            "angular_velocity_rmse": 0.10584395548930908,
+            "so3_geodesic_mean_radians": 0.003756829975705826,
+            "so3_geodesic_rmse_radians": 0.005307959629399963,
+            "so3_geodesic_max_radians": 0.010305032182187495
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0022797992478456154,
+            "linear_velocity_rmse": 0.009130553490630485,
+            "angular_velocity_rmse": 0.7509373032956116,
+            "so3_geodesic_mean_radians": 0.12205796028572187,
+            "so3_geodesic_rmse_radians": 0.16911850568618259,
+            "so3_geodesic_max_radians": 0.3489266510363893
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.014166428448785235,
+            "linear_velocity_rmse": 0.022723270738295488,
+            "angular_velocity_rmse": 0.8362450762087175,
+            "so3_geodesic_mean_radians": 0.5729957815554938,
+            "so3_geodesic_rmse_radians": 0.6919037165151,
+            "so3_geodesic_max_radians": 1.1595129864955154
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.490630920128274,
+            "linear_velocity_rmse": 0.07780872398367188,
+            "angular_velocity_rmse": 1.0108622976431119,
+            "so3_geodesic_mean_radians": 1.2768628204129298,
+            "so3_geodesic_rmse_radians": 1.3590355925904134,
+            "so3_geodesic_max_radians": 2.026587443842074
+          }
+        }
+      },
+      "constant_twist": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 1.779709400617953e-05,
+            "linear_velocity_rmse": 0.0024849244801767863,
+            "angular_velocity_rmse": 0.0967876680248632,
+            "so3_geodesic_mean_radians": 0.001856757966399494,
+            "so3_geodesic_rmse_radians": 0.002089416384019165,
+            "so3_geodesic_max_radians": 0.003701312761541911
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.00017841214732732205,
+            "linear_velocity_rmse": 0.0027345116491745824,
+            "angular_velocity_rmse": 0.10584395548930908,
+            "so3_geodesic_mean_radians": 0.003756829975705826,
+            "so3_geodesic_rmse_radians": 0.005307959629399963,
+            "so3_geodesic_max_radians": 0.010305032182187495
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0022797992478456154,
+            "linear_velocity_rmse": 0.009130553490630485,
+            "angular_velocity_rmse": 0.7509373032956116,
+            "so3_geodesic_mean_radians": 0.12205796028572187,
+            "so3_geodesic_rmse_radians": 0.16911850568618259,
+            "so3_geodesic_max_radians": 0.3489266510363893
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.014166428448785235,
+            "linear_velocity_rmse": 0.022723270738295488,
+            "angular_velocity_rmse": 0.8362450762087175,
+            "so3_geodesic_mean_radians": 0.5729957815554938,
+            "so3_geodesic_rmse_radians": 0.6919037165151,
+            "so3_geodesic_max_radians": 1.1595129864955154
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.490630920128274,
+            "linear_velocity_rmse": 0.07780872398367188,
+            "angular_velocity_rmse": 1.0108622976431119,
+            "so3_geodesic_mean_radians": 1.2768628204129298,
+            "so3_geodesic_rmse_radians": 1.3590355925904134,
+            "so3_geodesic_max_radians": 2.026587443842074
+          }
+        }
+      },
+      "pooled": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0007355125270107715,
+            "linear_velocity_rmse": 0.005911566431850322,
+            "angular_velocity_rmse": 0.06574821398561013,
+            "so3_geodesic_mean_radians": 0.0012529799058461231,
+            "so3_geodesic_rmse_radians": 0.0014158066307717796,
+            "so3_geodesic_max_radians": 0.0029951488853288788
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0003131716168350644,
+            "linear_velocity_rmse": 0.003332761239258433,
+            "angular_velocity_rmse": 0.027294795220552292,
+            "so3_geodesic_mean_radians": 0.0011840100588476367,
+            "so3_geodesic_rmse_radians": 0.0014812130633549846,
+            "so3_geodesic_max_radians": 0.0026273955146748525
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0033378827213750763,
+            "linear_velocity_rmse": 0.014414097588031556,
+            "angular_velocity_rmse": 0.2387843653874285,
+            "so3_geodesic_mean_radians": 0.03584399926350895,
+            "so3_geodesic_rmse_radians": 0.05077953632766652,
+            "so3_geodesic_max_radians": 0.10530847877096768
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.017789144741841484,
+            "linear_velocity_rmse": 0.02806369422182724,
+            "angular_velocity_rmse": 0.40863648900097543,
+            "so3_geodesic_mean_radians": 0.18163128006169593,
+            "so3_geodesic_rmse_radians": 0.22902719196044516,
+            "so3_geodesic_max_radians": 0.4629582830216859
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.6121895312112254,
+            "linear_velocity_rmse": 0.137503928070872,
+            "angular_velocity_rmse": 5.034443656198384,
+            "so3_geodesic_mean_radians": 1.7231530526712675,
+            "so3_geodesic_rmse_radians": 1.9421367384199726,
+            "so3_geodesic_max_radians": 3.1390618540207806
+          }
+        }
+      },
+      "per_configuration": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0006972555474337944,
+            "linear_velocity_rmse": 0.004159419314990182,
+            "angular_velocity_rmse": 0.23731099515114862,
+            "so3_geodesic_mean_radians": 0.0043718388772409,
+            "so3_geodesic_rmse_radians": 0.005049253960950211,
+            "so3_geodesic_max_radians": 0.008980811978340579
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.00014427674145893728,
+            "linear_velocity_rmse": 0.001786607691007686,
+            "angular_velocity_rmse": 0.13795310874691114,
+            "so3_geodesic_mean_radians": 0.007173102110845711,
+            "so3_geodesic_rmse_radians": 0.009064300252210849,
+            "so3_geodesic_max_radians": 0.016131055449087
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0011935614095054715,
+            "linear_velocity_rmse": 0.005284026145386387,
+            "angular_velocity_rmse": 0.82047840055724,
+            "so3_geodesic_mean_radians": 0.11433422038028385,
+            "so3_geodesic_rmse_radians": 0.15909811884758845,
+            "so3_geodesic_max_radians": 0.3650814094861281
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.015545913223756952,
+            "linear_velocity_rmse": 0.04314565360523275,
+            "angular_velocity_rmse": 10.13640059080719,
+            "so3_geodesic_mean_radians": 1.0614662837335853,
+            "so3_geodesic_rmse_radians": 1.435788225955137,
+            "so3_geodesic_max_radians": 3.111500242649045
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 0,
+          "macro_metrics": null
+        }
+      },
+      "per_configuration_kinematic": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 1.779709400617953e-05,
+            "linear_velocity_rmse": 0.004159419314990182,
+            "angular_velocity_rmse": 0.23731099515114862,
+            "so3_geodesic_mean_radians": 0.001856757966399494,
+            "so3_geodesic_rmse_radians": 0.002089416384019165,
+            "so3_geodesic_max_radians": 0.003701312761541911
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 3.785961223287041e-05,
+            "linear_velocity_rmse": 0.0017859715301503055,
+            "angular_velocity_rmse": 0.13824721176685387,
+            "so3_geodesic_mean_radians": 0.0033029746237026193,
+            "so3_geodesic_rmse_radians": 0.00450367610837341,
+            "so3_geodesic_max_radians": 0.008439470285070777
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0008659104291104412,
+            "linear_velocity_rmse": 0.005258635134024494,
+            "angular_velocity_rmse": 0.8254280351872194,
+            "so3_geodesic_mean_radians": 0.08936119436539307,
+            "so3_geodesic_rmse_radians": 0.1303310200418085,
+            "so3_geodesic_max_radians": 0.31356084411059504
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.012789621317731419,
+            "linear_velocity_rmse": 0.04303854512601055,
+            "angular_velocity_rmse": 10.158436595143188,
+            "so3_geodesic_mean_radians": 1.0402695420251988,
+            "so3_geodesic_rmse_radians": 1.4210010937758117,
+            "so3_geodesic_max_radians": 3.0884947712649917
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 0,
+          "macro_metrics": null
+        }
+      }
+    },
+    "uuv6_angled": {
+      "persistence": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0020611378865421893,
+            "linear_velocity_rmse": 0.0024100097230375667,
+            "angular_velocity_rmse": 0.10419768604219987,
+            "so3_geodesic_mean_radians": 0.02769587633372513,
+            "so3_geodesic_rmse_radians": 0.030127129815225046,
+            "so3_geodesic_max_radians": 0.05796821452579711
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0001764457539417879,
+            "linear_velocity_rmse": 0.002697038188500826,
+            "angular_velocity_rmse": 0.11668060825517391,
+            "so3_geodesic_mean_radians": 0.004150803617587071,
+            "so3_geodesic_rmse_radians": 0.005859736894098576,
+            "so3_geodesic_max_radians": 0.011371758701016381
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.00216048402126783,
+            "linear_velocity_rmse": 0.008563026931125772,
+            "angular_velocity_rmse": 0.798633841956573,
+            "so3_geodesic_mean_radians": 0.13160262359738692,
+            "so3_geodesic_rmse_radians": 0.1817855903647189,
+            "so3_geodesic_max_radians": 0.37286854814896925
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.012910068666374527,
+            "linear_velocity_rmse": 0.02170570109646402,
+            "angular_velocity_rmse": 0.8740752313334962,
+            "so3_geodesic_mean_radians": 0.5878357171293089,
+            "so3_geodesic_rmse_radians": 0.7056556785376582,
+            "so3_geodesic_max_radians": 1.170078041178134
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.47931456836063013,
+            "linear_velocity_rmse": 0.07751898683252609,
+            "angular_velocity_rmse": 1.0445283351571197,
+            "so3_geodesic_mean_radians": 1.2264946376925974,
+            "so3_geodesic_rmse_radians": 1.3086663785717636,
+            "so3_geodesic_max_radians": 1.9836188904401613
+          }
+        }
+      },
+      "constant_twist": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 1.6709844430286436e-05,
+            "linear_velocity_rmse": 0.0024100097230375667,
+            "angular_velocity_rmse": 0.10419768604219987,
+            "so3_geodesic_mean_radians": 0.0019884904192102163,
+            "so3_geodesic_rmse_radians": 0.0022494956403628576,
+            "so3_geodesic_max_radians": 0.004362089451242901
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0001764457539417879,
+            "linear_velocity_rmse": 0.002697038188500826,
+            "angular_velocity_rmse": 0.11668060825517391,
+            "so3_geodesic_mean_radians": 0.004150803617587071,
+            "so3_geodesic_rmse_radians": 0.005859736894098576,
+            "so3_geodesic_max_radians": 0.011371758701016381
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.00216048402126783,
+            "linear_velocity_rmse": 0.008563026931125772,
+            "angular_velocity_rmse": 0.798633841956573,
+            "so3_geodesic_mean_radians": 0.13160262359738692,
+            "so3_geodesic_rmse_radians": 0.1817855903647189,
+            "so3_geodesic_max_radians": 0.37286854814896925
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.012910068666374527,
+            "linear_velocity_rmse": 0.02170570109646402,
+            "angular_velocity_rmse": 0.8740752313334962,
+            "so3_geodesic_mean_radians": 0.5878357171293089,
+            "so3_geodesic_rmse_radians": 0.7056556785376582,
+            "so3_geodesic_max_radians": 1.170078041178134
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.47931456836063013,
+            "linear_velocity_rmse": 0.07751898683252609,
+            "angular_velocity_rmse": 1.0445283351571197,
+            "so3_geodesic_mean_radians": 1.2264946376925974,
+            "so3_geodesic_rmse_radians": 1.3086663785717636,
+            "so3_geodesic_max_radians": 1.9836188904401613
+          }
+        }
+      },
+      "pooled": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.000696182501237642,
+            "linear_velocity_rmse": 0.006285877770847772,
+            "angular_velocity_rmse": 0.07569765874376135,
+            "so3_geodesic_mean_radians": 0.0014207616651222537,
+            "so3_geodesic_rmse_radians": 0.0016239442673351338,
+            "so3_geodesic_max_radians": 0.003498441706118961
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0003162656117584025,
+            "linear_velocity_rmse": 0.003391809554706761,
+            "angular_velocity_rmse": 0.02999676556236205,
+            "so3_geodesic_mean_radians": 0.0009891634750873622,
+            "so3_geodesic_rmse_radians": 0.0013428422198350776,
+            "so3_geodesic_max_radians": 0.002514941436028493
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0033315235831390994,
+            "linear_velocity_rmse": 0.014382128215872795,
+            "angular_velocity_rmse": 0.3249462013754643,
+            "so3_geodesic_mean_radians": 0.049712878863236,
+            "so3_geodesic_rmse_radians": 0.07050725053936215,
+            "so3_geodesic_max_radians": 0.14682126727493683
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.017795518625527144,
+            "linear_velocity_rmse": 0.028214325079908075,
+            "angular_velocity_rmse": 0.44606616123516557,
+            "so3_geodesic_mean_radians": 0.20201786606222946,
+            "so3_geodesic_rmse_radians": 0.24552283941776495,
+            "so3_geodesic_max_radians": 0.4468516744261954
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.6011758103762946,
+            "linear_velocity_rmse": 0.1389312678503932,
+            "angular_velocity_rmse": 5.018766735279226,
+            "so3_geodesic_mean_radians": 1.7022994314189264,
+            "so3_geodesic_rmse_radians": 1.9249212345573519,
+            "so3_geodesic_max_radians": 3.136817091318496
+          }
+        }
+      },
+      "per_configuration": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0005200386374888019,
+            "linear_velocity_rmse": 0.002591048575103797,
+            "angular_velocity_rmse": 0.18869401632524618,
+            "so3_geodesic_mean_radians": 0.003389884687032906,
+            "so3_geodesic_rmse_radians": 0.0040709619386951135,
+            "so3_geodesic_max_radians": 0.009379417543531261
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.00019057993086228552,
+            "linear_velocity_rmse": 0.0026187774122659307,
+            "angular_velocity_rmse": 0.16192194475059654,
+            "so3_geodesic_mean_radians": 0.008446267934367733,
+            "so3_geodesic_rmse_radians": 0.010668467233620317,
+            "so3_geodesic_max_radians": 0.018977529681876774
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0017835882018243144,
+            "linear_velocity_rmse": 0.011550423974056019,
+            "angular_velocity_rmse": 1.0570652661741045,
+            "so3_geodesic_mean_radians": 0.1411178675921035,
+            "so3_geodesic_rmse_radians": 0.19835137153768256,
+            "so3_geodesic_max_radians": 0.46253259737985747
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 0,
+          "macro_metrics": null
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 0,
+          "macro_metrics": null
+        }
+      },
+      "per_configuration_kinematic": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 1.6709844430286436e-05,
+            "linear_velocity_rmse": 0.002591048575103797,
+            "angular_velocity_rmse": 0.18869401632524618,
+            "so3_geodesic_mean_radians": 0.0019884904192102163,
+            "so3_geodesic_rmse_radians": 0.0022494956403628576,
+            "so3_geodesic_max_radians": 0.004362089451242901
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 6.527362330419084e-05,
+            "linear_velocity_rmse": 0.002618080830517126,
+            "angular_velocity_rmse": 0.16294730826417458,
+            "so3_geodesic_mean_radians": 0.0036081432266986974,
+            "so3_geodesic_rmse_radians": 0.004971184900598491,
+            "so3_geodesic_max_radians": 0.009389042264756203
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0015435323508161056,
+            "linear_velocity_rmse": 0.011667151471999199,
+            "angular_velocity_rmse": 1.1048532193039193,
+            "so3_geodesic_mean_radians": 0.11303189954474147,
+            "so3_geodesic_rmse_radians": 0.16746228676373523,
+            "so3_geodesic_max_radians": 0.410267704694604
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 0,
+          "macro_metrics": null
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 0,
+          "macro_metrics": null
+        }
+      }
+    },
+    "uuv4": {
+      "persistence": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0017690778672956864,
+            "linear_velocity_rmse": 0.0020327425143279792,
+            "angular_velocity_rmse": 0.04168224817338675,
+            "so3_geodesic_mean_radians": 0.015801126052993344,
+            "so3_geodesic_rmse_radians": 0.01765464587809491,
+            "so3_geodesic_max_radians": 0.031061952128329517
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.00018857644775908242,
+            "linear_velocity_rmse": 0.0029272383380235796,
+            "angular_velocity_rmse": 0.0437800724145861,
+            "so3_geodesic_mean_radians": 0.0015492084355533675,
+            "so3_geodesic_rmse_radians": 0.0021926461050631335,
+            "so3_geodesic_max_radians": 0.004260514573749073
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0024581981349656033,
+            "linear_velocity_rmse": 0.01030926597403455,
+            "angular_velocity_rmse": 0.22348968110284706,
+            "so3_geodesic_mean_radians": 0.037230575481839924,
+            "so3_geodesic_rmse_radians": 0.05021287140345956,
+            "so3_geodesic_max_radians": 0.10343546917570474
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.016973940162544388,
+            "linear_velocity_rmse": 0.026356407762542722,
+            "angular_velocity_rmse": 0.425078560571706,
+            "so3_geodesic_mean_radians": 0.25409053800832043,
+            "so3_geodesic_rmse_radians": 0.32457700145405827,
+            "so3_geodesic_max_radians": 0.6037270004540742
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.4411663345911246,
+            "linear_velocity_rmse": 0.07104094048390393,
+            "angular_velocity_rmse": 0.6119608890012196,
+            "so3_geodesic_mean_radians": 0.8050744244404995,
+            "so3_geodesic_rmse_radians": 0.8539711342423354,
+            "so3_geodesic_max_radians": 1.2918095364952327
+          }
+        }
+      },
+      "constant_twist": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 2.4821370781867122e-05,
+            "linear_velocity_rmse": 0.0020327425143279792,
+            "angular_velocity_rmse": 0.04168224817338675,
+            "so3_geodesic_mean_radians": 0.000762049431791657,
+            "so3_geodesic_rmse_radians": 0.0008998903665578811,
+            "so3_geodesic_max_radians": 0.001986049080890119
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.00018857644775908242,
+            "linear_velocity_rmse": 0.0029272383380235796,
+            "angular_velocity_rmse": 0.0437800724145861,
+            "so3_geodesic_mean_radians": 0.0015492084355533675,
+            "so3_geodesic_rmse_radians": 0.0021926461050631335,
+            "so3_geodesic_max_radians": 0.004260514573749073
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0024581981349656033,
+            "linear_velocity_rmse": 0.01030926597403455,
+            "angular_velocity_rmse": 0.22348968110284706,
+            "so3_geodesic_mean_radians": 0.037230575481839924,
+            "so3_geodesic_rmse_radians": 0.05021287140345956,
+            "so3_geodesic_max_radians": 0.10343546917570474
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.016973940162544388,
+            "linear_velocity_rmse": 0.026356407762542722,
+            "angular_velocity_rmse": 0.425078560571706,
+            "so3_geodesic_mean_radians": 0.25409053800832043,
+            "so3_geodesic_rmse_radians": 0.32457700145405827,
+            "so3_geodesic_max_radians": 0.6037270004540742
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.4411663345911246,
+            "linear_velocity_rmse": 0.07104094048390393,
+            "angular_velocity_rmse": 0.6119608890012196,
+            "so3_geodesic_mean_radians": 0.8050744244404995,
+            "so3_geodesic_rmse_radians": 0.8539711342423354,
+            "so3_geodesic_max_radians": 1.2918095364952327
+          }
+        }
+      },
+      "pooled": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0005029212114968509,
+            "linear_velocity_rmse": 0.0045573912137283805,
+            "angular_velocity_rmse": 0.04671472040266594,
+            "so3_geodesic_mean_radians": 0.0007204261878714214,
+            "so3_geodesic_rmse_radians": 0.0009828495103856429,
+            "so3_geodesic_max_radians": 0.00254839388069382
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0002463087760038421,
+            "linear_velocity_rmse": 0.0027250545168229032,
+            "angular_velocity_rmse": 0.01008639502240038,
+            "so3_geodesic_mean_radians": 0.0006252895313613658,
+            "so3_geodesic_rmse_radians": 0.0007372217319537682,
+            "so3_geodesic_max_radians": 0.0011511654515872268
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0023179069213259775,
+            "linear_velocity_rmse": 0.012176585935251227,
+            "angular_velocity_rmse": 0.06956420428848395,
+            "so3_geodesic_mean_radians": 0.010961622476559282,
+            "so3_geodesic_rmse_radians": 0.015305290053022178,
+            "so3_geodesic_max_radians": 0.03238946476412973
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.016447111069114725,
+            "linear_velocity_rmse": 0.03446138212292255,
+            "angular_velocity_rmse": 0.380242302649364,
+            "so3_geodesic_mean_radians": 0.0913067623429261,
+            "so3_geodesic_rmse_radians": 0.13597975612366964,
+            "so3_geodesic_max_radians": 0.36995927378297183
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.5911449411341559,
+            "linear_velocity_rmse": 0.09906230405706933,
+            "angular_velocity_rmse": 2.728342439777768,
+            "so3_geodesic_mean_radians": 1.4429526628148748,
+            "so3_geodesic_rmse_radians": 1.693335157776864,
+            "so3_geodesic_max_radians": 2.8917249139107324
+          }
+        }
+      },
+      "per_configuration": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.001083819185468913,
+            "linear_velocity_rmse": 0.007876852836970429,
+            "angular_velocity_rmse": 0.27370616136862236,
+            "so3_geodesic_mean_radians": 0.005103764887556528,
+            "so3_geodesic_rmse_radians": 0.005744079756164925,
+            "so3_geodesic_max_radians": 0.00778238238445902
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 5.545880453106173e-05,
+            "linear_velocity_rmse": 0.0008113276582669174,
+            "angular_velocity_rmse": 0.017395942247123476,
+            "so3_geodesic_mean_radians": 0.001018683341472466,
+            "so3_geodesic_rmse_radians": 0.001245567855641698,
+            "so3_geodesic_max_radians": 0.002089918772541359
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0008385166324315771,
+            "linear_velocity_rmse": 0.004696880271472292,
+            "angular_velocity_rmse": 0.08767677415264342,
+            "so3_geodesic_mean_radians": 0.012210526066521663,
+            "so3_geodesic_rmse_radians": 0.017076020956644886,
+            "so3_geodesic_max_radians": 0.03815021157039902
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.012455562773011982,
+            "linear_velocity_rmse": 0.034320392057802886,
+            "angular_velocity_rmse": 0.580348886507026,
+            "so3_geodesic_mean_radians": 0.17536913200250573,
+            "so3_geodesic_rmse_radians": 0.26057602390853984,
+            "so3_geodesic_max_radians": 0.676796534981965
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 0,
+          "macro_metrics": null
+        }
+      },
+      "per_configuration_kinematic": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 2.4821370781867122e-05,
+            "linear_velocity_rmse": 0.007876852836970429,
+            "angular_velocity_rmse": 0.27370616136862236,
+            "so3_geodesic_mean_radians": 0.000762049431791657,
+            "so3_geodesic_rmse_radians": 0.0008998903665578811,
+            "so3_geodesic_max_radians": 0.001986049080890119
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 5.896785346500239e-05,
+            "linear_velocity_rmse": 0.0008101342623913493,
+            "angular_velocity_rmse": 0.01745387325993623,
+            "so3_geodesic_mean_radians": 0.0003387433813882388,
+            "so3_geodesic_rmse_radians": 0.00047902987406730726,
+            "so3_geodesic_max_radians": 0.0009403408925766043
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0009713414752991299,
+            "linear_velocity_rmse": 0.0047244415710311965,
+            "angular_velocity_rmse": 0.08786785178521928,
+            "so3_geodesic_mean_radians": 0.012022410630150087,
+            "so3_geodesic_rmse_radians": 0.016925114306635358,
+            "so3_geodesic_max_radians": 0.03797919657934546
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.01269540602862553,
+            "linear_velocity_rmse": 0.035359829359567406,
+            "angular_velocity_rmse": 0.5973099956858768,
+            "so3_geodesic_mean_radians": 0.17316561487798263,
+            "so3_geodesic_rmse_radians": 0.257528002557,
+            "so3_geodesic_max_radians": 0.6739046036256724
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 0,
+          "macro_metrics": null
+        }
+      }
+    },
+    "uuv4_angled": {
+      "persistence": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.00180584764144808,
+            "linear_velocity_rmse": 0.002001035516082106,
+            "angular_velocity_rmse": 0.04246006021455625,
+            "so3_geodesic_mean_radians": 0.015916810781622204,
+            "so3_geodesic_rmse_radians": 0.017776907168426184,
+            "so3_geodesic_max_radians": 0.03175300916092146
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.00018536401409585812,
+            "linear_velocity_rmse": 0.0028660847356726965,
+            "angular_velocity_rmse": 0.04377068665264571,
+            "so3_geodesic_mean_radians": 0.0015492084486276089,
+            "so3_geodesic_rmse_radians": 0.002192646098531849,
+            "so3_geodesic_max_radians": 0.004260514482409844
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.00238744107410344,
+            "linear_velocity_rmse": 0.009789010847052268,
+            "angular_velocity_rmse": 0.22258327364602684,
+            "so3_geodesic_mean_radians": 0.03714188032064145,
+            "so3_geodesic_rmse_radians": 0.050073125799856975,
+            "so3_geodesic_max_radians": 0.10302202378307916
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.01610650722201923,
+            "linear_velocity_rmse": 0.025175344016149407,
+            "angular_velocity_rmse": 0.4169377264693795,
+            "so3_geodesic_mean_radians": 0.2491870290780057,
+            "so3_geodesic_rmse_radians": 0.31764477978373845,
+            "so3_geodesic_max_radians": 0.5887036773321275
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.44953464583687125,
+            "linear_velocity_rmse": 0.0721766365325976,
+            "angular_velocity_rmse": 0.6161998188360882,
+            "so3_geodesic_mean_radians": 0.8411410358352187,
+            "so3_geodesic_rmse_radians": 0.8927006509491844,
+            "so3_geodesic_max_radians": 1.2933331506732824
+          }
+        }
+      },
+      "constant_twist": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 2.2850930949788032e-05,
+            "linear_velocity_rmse": 0.002001035516082106,
+            "angular_velocity_rmse": 0.04246006021455625,
+            "so3_geodesic_mean_radians": 0.0007744511279263597,
+            "so3_geodesic_rmse_radians": 0.000916742278918988,
+            "so3_geodesic_max_radians": 0.002021784108003135
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.00018536401409585812,
+            "linear_velocity_rmse": 0.0028660847356726965,
+            "angular_velocity_rmse": 0.04377068665264571,
+            "so3_geodesic_mean_radians": 0.0015492084486276089,
+            "so3_geodesic_rmse_radians": 0.002192646098531849,
+            "so3_geodesic_max_radians": 0.004260514482409844
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.00238744107410344,
+            "linear_velocity_rmse": 0.009789010847052268,
+            "angular_velocity_rmse": 0.22258327364602684,
+            "so3_geodesic_mean_radians": 0.03714188032064145,
+            "so3_geodesic_rmse_radians": 0.050073125799856975,
+            "so3_geodesic_max_radians": 0.10302202378307916
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.01610650722201923,
+            "linear_velocity_rmse": 0.025175344016149407,
+            "angular_velocity_rmse": 0.4169377264693795,
+            "so3_geodesic_mean_radians": 0.2491870290780057,
+            "so3_geodesic_rmse_radians": 0.31764477978373845,
+            "so3_geodesic_max_radians": 0.5887036773321275
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.44953464583687125,
+            "linear_velocity_rmse": 0.0721766365325976,
+            "angular_velocity_rmse": 0.6161998188360882,
+            "so3_geodesic_mean_radians": 0.8411410358352187,
+            "so3_geodesic_rmse_radians": 0.8927006509491844,
+            "so3_geodesic_max_radians": 1.2933331506732824
+          }
+        }
+      },
+      "pooled": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0005288220757933641,
+            "linear_velocity_rmse": 0.0045217251975737385,
+            "angular_velocity_rmse": 0.04698570086917031,
+            "so3_geodesic_mean_radians": 0.0007258876446660187,
+            "so3_geodesic_rmse_radians": 0.0009867311492211984,
+            "so3_geodesic_max_radians": 0.0025133093133289735
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0002524724902340248,
+            "linear_velocity_rmse": 0.002845016235464034,
+            "angular_velocity_rmse": 0.010085864702404036,
+            "so3_geodesic_mean_radians": 0.000625311495376263,
+            "so3_geodesic_rmse_radians": 0.0007372510230646007,
+            "so3_geodesic_max_radians": 0.0011512271134578832
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.002501722390784322,
+            "linear_velocity_rmse": 0.012521704077902361,
+            "angular_velocity_rmse": 0.06875977787469122,
+            "so3_geodesic_mean_radians": 0.010893453461859258,
+            "so3_geodesic_rmse_radians": 0.01519208018789437,
+            "so3_geodesic_max_radians": 0.03208302229509546
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.016968990283353493,
+            "linear_velocity_rmse": 0.03465383130316001,
+            "angular_velocity_rmse": 0.38406194027898793,
+            "so3_geodesic_mean_radians": 0.09064183807840952,
+            "so3_geodesic_rmse_radians": 0.13581409798906496,
+            "so3_geodesic_max_radians": 0.37166586003213836
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.5980153581642189,
+            "linear_velocity_rmse": 0.09905643077639766,
+            "angular_velocity_rmse": 2.7410269117987025,
+            "so3_geodesic_mean_radians": 1.463033114207078,
+            "so3_geodesic_rmse_radians": 1.7129934149202652,
+            "so3_geodesic_max_radians": 2.8910984639218795
+          }
+        }
+      },
+      "per_configuration": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0011245265380468278,
+            "linear_velocity_rmse": 0.004457861953979645,
+            "angular_velocity_rmse": 0.2543214176310272,
+            "so3_geodesic_mean_radians": 0.0047727934912770885,
+            "so3_geodesic_rmse_radians": 0.005352917544769065,
+            "so3_geodesic_max_radians": 0.00721830615849182
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 4.5542569258932614e-05,
+            "linear_velocity_rmse": 0.0008124913770956787,
+            "angular_velocity_rmse": 0.017096972224026768,
+            "so3_geodesic_mean_radians": 0.0010020797708354117,
+            "so3_geodesic_rmse_radians": 0.0012248089104446981,
+            "so3_geodesic_max_radians": 0.0020520342914816885
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0006897457059541609,
+            "linear_velocity_rmse": 0.004283838912195705,
+            "angular_velocity_rmse": 0.0834375978268919,
+            "so3_geodesic_mean_radians": 0.011656973066282406,
+            "so3_geodesic_rmse_radians": 0.01628469249087761,
+            "so3_geodesic_max_radians": 0.03630113290402437
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.010469911476734525,
+            "linear_velocity_rmse": 0.028473911788734586,
+            "angular_velocity_rmse": 0.4853186914466591,
+            "so3_geodesic_mean_radians": 0.15343093336895072,
+            "so3_geodesic_rmse_radians": 0.2248334155592285,
+            "so3_geodesic_max_radians": 0.5733262206529603
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 0,
+          "macro_metrics": null
+        }
+      },
+      "per_configuration_kinematic": {
+        "one_step": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 2.2850930949788032e-05,
+            "linear_velocity_rmse": 0.004457861953979645,
+            "angular_velocity_rmse": 0.2543214176310272,
+            "so3_geodesic_mean_radians": 0.0007744511279263597,
+            "so3_geodesic_rmse_radians": 0.000916742278918988,
+            "so3_geodesic_max_radians": 0.002021784108003135
+          }
+        },
+        "5": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 4.056260062376551e-05,
+            "linear_velocity_rmse": 0.0008131630444738695,
+            "angular_velocity_rmse": 0.017155791862181,
+            "so3_geodesic_mean_radians": 0.00032475938269942433,
+            "so3_geodesic_rmse_radians": 0.0004584808577430457,
+            "so3_geodesic_max_radians": 0.0009000569533459223
+          }
+        },
+        "20": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.0008197441214706634,
+            "linear_velocity_rmse": 0.004325697435455127,
+            "angular_velocity_rmse": 0.08342331678375857,
+            "so3_geodesic_mean_radians": 0.011575364734239646,
+            "so3_geodesic_rmse_radians": 0.01625384395738709,
+            "so3_geodesic_max_radians": 0.03633355874233884
+          }
+        },
+        "60": {
+          "episode_count": 3,
+          "success_count": 3,
+          "macro_metrics": {
+            "depth_rmse": 0.011351031093744404,
+            "linear_velocity_rmse": 0.02959821627985267,
+            "angular_velocity_rmse": 0.49952776259176385,
+            "so3_geodesic_mean_radians": 0.15203737022677138,
+            "so3_geodesic_rmse_radians": 0.22291763657052036,
+            "so3_geodesic_max_radians": 0.5727017411752772
+          }
+        },
+        "512": {
+          "episode_count": 3,
+          "success_count": 0,
+          "macro_metrics": null
+        }
+      }
+    }
+  },
+  "fit_structure": {
+    "long_body": {
+      "all_zero_feature_columns": [],
+      "active_design_diagnostics": {
+        "admitted": true,
+        "design_rank": 22,
+        "design_width": 22,
+        "effective_rank": 7.271563815264923,
+        "rank_tolerance": 1.59238253761463e-11,
+        "regularized_condition": 2782942.9251035955,
+        "rejection_reason": null
+      },
+      "training_increment_rmse_10": [
+        6.805288747623809e-05,
+        8.084921777534539e-05,
+        0.0006221646865006918,
+        0.0010262644221419597,
+        0.016237913339470427,
+        0.006534380253569944,
+        0.006626781301192522,
+        0.00020023514274942014,
+        8.132170493442754e-05,
+        8.255821148442519e-05
+      ],
+      "training_zero_increment_rmse_10": [
+        0.0008441859511245286,
+        9.341239350092499e-05,
+        0.0007341300055339865,
+        0.009000232371049223,
+        0.07026526213059735,
+        0.018975311082668898,
+        0.06089627324758239,
+        0.01624156669924254,
+        0.0013184571297282655,
+        0.003763297373053822
+      ],
+      "velocity_control_derivative_6x4": [
+        [
+          -1.330303717808598e-05,
+          -4.917432328537163e-05,
+          2.7139203793005907e-05,
+          -0.00010969508648483542
+        ],
+        [
+          0.00033141007915485777,
+          0.00044349145479442365,
+          -7.228290733927905e-05,
+          8.428791285138091e-05
+        ],
+        [
+          -0.002923468042070149,
+          -0.0019182734733288757,
+          0.001247815111858323,
+          0.03559939449718949
+        ],
+        [
+          -0.48653944296544743,
+          0.024901433620564604,
+          0.0053312824191863485,
+          0.006643307054310119
+        ],
+        [
+          -0.0006433400610461496,
+          0.1074473051075094,
+          -0.0021713320126786535,
+          0.00013787396744033823
+        ],
+        [
+          0.001199948231937706,
+          -0.03337642904010157,
+          -0.17836646717824767,
+          -0.034178458288751046
+        ]
+      ]
+    },
+    "heavy_moderate": {
+      "all_zero_feature_columns": [],
+      "active_design_diagnostics": {
+        "admitted": false,
+        "design_rank": 22,
+        "design_width": 22,
+        "effective_rank": 7.537662573262175,
+        "rank_tolerance": 1.2505235697624184e-11,
+        "regularized_condition": 394046329.5455941,
+        "rejection_reason": "regularized_condition_above_limit"
+      },
+      "training_increment_rmse_10": [
+        0.0005765116120499066,
+        0.010079995015347806,
+        0.011451674645344082,
+        0.051505241133334934,
+        0.1337437940499918,
+        0.06949099619594547,
+        0.023064558009179656,
+        0.0011681953877696488,
+        0.0007000360305339344,
+        0.00026276750826137365
+      ],
+      "training_zero_increment_rmse_10": [
+        0.006012463005114074,
+        0.023636252034244992,
+        0.022145669064030097,
+        0.061015795943830116,
+        0.17271235151158876,
+        0.09696926500180829,
+        0.027856721488270095,
+        0.0019865664747480867,
+        0.0013918976584755766,
+        0.001774290776383499
+      ],
+      "velocity_control_derivative_6x4": [
+        [
+          0.006188063999525027,
+          0.005075510097632526,
+          0.0003055457793795648,
+          0.0023497407824717674
+        ],
+        [
+          -0.011456857852819177,
+          -0.0037518087978479888,
+          0.000630380179474821,
+          0.00014105710053410154
+        ],
+        [
+          -0.02575659189677084,
+          -0.008256944292418005,
+          -0.009658036418887503,
+          0.0004501825995693661
+        ],
+        [
+          0.19025202141627706,
+          0.0933041490082538,
+          -0.04083769054062329,
+          -0.032841404008664525
+        ],
+        [
+          0.013229613532253852,
+          0.01692929056803058,
+          0.024672809139057974,
+          -0.012291847372449422
+        ],
+        [
+          -0.007046917688779285,
+          -0.008484190160115384,
+          0.0009939776295259863,
+          0.013872059530682206
+        ]
+      ]
+    },
+    "asymmetric": {
+      "all_zero_feature_columns": [],
+      "active_design_diagnostics": {
+        "admitted": true,
+        "design_rank": 22,
+        "design_width": 22,
+        "effective_rank": 8.591374132484347,
+        "rank_tolerance": 1.5800446850104287e-11,
+        "regularized_condition": 63297.09907523092,
+        "rejection_reason": null
+      },
+      "training_increment_rmse_10": [
+        0.00013596951977001853,
+        0.0005745548346032859,
+        0.0011328358969697092,
+        0.0013273103917603353,
+        0.027043505149792355,
+        0.01360587969674671,
+        0.011293685690881954,
+        0.0003372444205710237,
+        0.0001694170557195359,
+        0.000140358290771489
+      ],
+      "training_zero_increment_rmse_10": [
+        0.0010060141844716308,
+        0.0006899855801990543,
+        0.001304047997377623,
+        0.00913090116550783,
+        0.10339638278330644,
+        0.04106776715585994,
+        0.06427685679433243,
+        0.01759868466698774,
+        0.007595064823304582,
+        0.010126991294402433
+      ],
+      "velocity_control_derivative_6x4": [
+        [
+          3.1388651472927726e-05,
+          0.00023580809308060657,
+          0.00013833694353148024,
+          0.0017626242213042993
+        ],
+        [
+          -0.0001464110947720021,
+          0.0003023614173051641,
+          0.000694928893241505,
+          0.005545998757133022
+        ],
+        [
+          -0.0032430308816535046,
+          0.00043688566328182527,
+          -0.0003088877687642789,
+          0.035471050112788165
+        ],
+        [
+          -0.36137289354975405,
+          -0.010705553045755154,
+          0.01066268044021961,
+          0.04057527396200076
+        ],
+        [
+          -0.02774901855223176,
+          0.08703624127382385,
+          -0.007323531410121413,
+          -0.0038690594620040364
+        ],
+        [
+          -0.0075304401967289354,
+          0.0031794238428139846,
+          -0.08827334054950564,
+          0.003069218628624336
+        ]
+      ]
+    },
+    "uuv6": {
+      "all_zero_feature_columns": [],
+      "active_design_diagnostics": {
+        "admitted": true,
+        "design_rank": 22,
+        "design_width": 22,
+        "effective_rank": 7.0004829849940675,
+        "rank_tolerance": 1.5867348411094415e-11,
+        "regularized_condition": 11860970.755993139,
+        "rejection_reason": null
+      },
+      "training_increment_rmse_10": [
+        1.5346924240719523e-05,
+        8.581225967019618e-05,
+        0.00013081508768570272,
+        0.0009789271461135862,
+        0.016307682659445318,
+        0.003717760727561686,
+        0.021739133353188996,
+        0.0002012884667001829,
+        4.601966632245621e-05,
+        0.00027025127698793785
+      ],
+      "training_zero_increment_rmse_10": [
+        0.0018852176509969686,
+        0.00018003229000740034,
+        0.00037841745022960347,
+        0.002321597571062039,
+        0.053066598313559976,
+        0.019209900485213247,
+        0.19208453331449518,
+        0.003423308376518691,
+        0.0015365086596624267,
+        0.012536188023352822
+      ],
+      "velocity_control_derivative_6x4": [
+        [
+          9.590419236329929e-05,
+          0.0003829522625225071,
+          -3.528107955518879e-05,
+          4.33122548995717e-05
+        ],
+        [
+          -0.00020947640664510078,
+          -0.0005183975407559533,
+          5.5947419859820445e-05,
+          8.518370841267503e-05
+        ],
+        [
+          -0.005335217640602038,
+          -1.286945184571863e-05,
+          -0.0009326481719952468,
+          0.005724167681235434
+        ],
+        [
+          -0.3860347253813733,
+          0.0037722582424729255,
+          -0.006107285407833861,
+          0.03797539566150931
+        ],
+        [
+          0.004528596862888062,
+          0.14045247465747307,
+          -0.001168562589676488,
+          -0.0014115508808325522
+        ],
+        [
+          -0.061386136264246695,
+          -0.04288254083975647,
+          -0.5386598336363763,
+          -0.11188571810627879
+        ]
+      ]
+    },
+    "uuv6_angled": {
+      "all_zero_feature_columns": [],
+      "active_design_diagnostics": {
+        "admitted": true,
+        "design_rank": 22,
+        "design_width": 22,
+        "effective_rank": 7.302134113726481,
+        "rank_tolerance": 1.597318536914837e-11,
+        "regularized_condition": 4916720.301624179,
+        "rejection_reason": null
+      },
+      "training_increment_rmse_10": [
+        1.8175131001464784e-05,
+        0.00012333374328819002,
+        0.0002175208212565482,
+        0.0011148265683419561,
+        0.021275416838576682,
+        0.006070886938497366,
+        0.019718024176222985,
+        0.00026319326471588116,
+        7.548747462325277e-05,
+        0.00024483448074271233
+      ],
+      "training_zero_increment_rmse_10": [
+        0.0019524920374775457,
+        0.00019991739030899094,
+        0.0006598863838688061,
+        0.0021948546161862604,
+        0.08930004926089746,
+        0.021748922514505675,
+        0.19354475491129214,
+        0.006345168510033237,
+        0.0019772290227369144,
+        0.01262354079322789
+      ],
+      "velocity_control_derivative_6x4": [
+        [
+          -0.00014413055942685273,
+          0.000659939723602467,
+          -3.170356750392101e-05,
+          4.514834648514191e-05
+        ],
+        [
+          0.00011161324398301069,
+          -0.0006668904929236357,
+          -2.9829653606253146e-06,
+          -0.00038089910229303117
+        ],
+        [
+          -0.003443818154090965,
+          -0.0007797805781261269,
+          -0.0011968252854425154,
+          0.005404897027809901
+        ],
+        [
+          -0.41260013911846394,
+          -0.034375979127761684,
+          -0.2537069338783187,
+          -0.018875564085237925
+        ],
+        [
+          0.009447749014050866,
+          0.13971914215306777,
+          0.0015132597504834721,
+          -0.003989092827675585
+        ],
+        [
+          -0.045235897615409665,
+          -0.0696951741156579,
+          -0.5717771331644699,
+          -0.09740475261752135
+        ]
+      ]
+    },
+    "uuv4": {
+      "all_zero_feature_columns": [
+        "actuator_memory_yaw",
+        "virtual_control_yaw"
+      ],
+      "active_design_diagnostics": {
+        "admitted": true,
+        "design_rank": 20,
+        "design_width": 20,
+        "effective_rank": 3.4980714572910045,
+        "rank_tolerance": 1.8507339011810402e-11,
+        "regularized_condition": 18597927.957022242,
+        "rejection_reason": null
+      },
+      "training_increment_rmse_10": [
+        1.1424580951151681e-05,
+        3.8898015626984704e-05,
+        0.00010353086783746375,
+        0.0008937375012111245,
+        0.016373724981749854,
+        0.00258830103063637,
+        0.00014477578546586044,
+        0.00020213473545878724,
+        3.183528044886396e-05,
+        1.8295547809644117e-06
+      ],
+      "training_zero_increment_rmse_10": [
+        0.001633185294551023,
+        0.000143052516727407,
+        0.00035780303450935394,
+        0.002938741937780038,
+        0.05287643913613155,
+        0.018930954385352947,
+        0.00017802169992835878,
+        0.003763188108385828,
+        0.0014584507929079784,
+        0.00012290420158804068
+      ],
+      "velocity_control_derivative_6x4": [
+        [
+          4.850890256542829e-05,
+          0.0002198056405832316,
+          0.0,
+          0.0001091698538258971
+        ],
+        [
+          -0.00045113214682037577,
+          -0.0013997216059172149,
+          0.0,
+          -0.00012727033439634096
+        ],
+        [
+          -0.0041731122116265675,
+          0.0013713166375190556,
+          0.0,
+          0.008505328558731835
+        ],
+        [
+          -0.3722642840589011,
+          0.015526921582392644,
+          0.0,
+          0.039842182585715424
+        ],
+        [
+          0.0074116682132593335,
+          0.15759113879995332,
+          0.0,
+          0.0013570961979938797
+        ],
+        [
+          -0.00031438191398296117,
+          -0.0007368411898511265,
+          0.0,
+          0.0003335533935374281
+        ]
+      ]
+    },
+    "uuv4_angled": {
+      "all_zero_feature_columns": [
+        "actuator_memory_yaw",
+        "virtual_control_yaw"
+      ],
+      "active_design_diagnostics": {
+        "admitted": true,
+        "design_rank": 20,
+        "design_width": 20,
+        "effective_rank": 3.4786987466863195,
+        "rank_tolerance": 1.8598710611142948e-11,
+        "regularized_condition": 22258638.613759167,
+        "rejection_reason": null
+      },
+      "training_increment_rmse_10": [
+        1.035282423102453e-05,
+        3.8968712388770685e-05,
+        0.00010544526249746311,
+        0.000811517811742743,
+        0.016382925012027753,
+        0.002618291806820944,
+        0.00014482577944684405,
+        0.00020223439667371588,
+        3.212336705643779e-05,
+        1.8183146670035772e-06
+      ],
+      "training_zero_increment_rmse_10": [
+        0.0016999524089479222,
+        0.00014850172724908503,
+        0.0003701706062627348,
+        0.002702470724313601,
+        0.052976030917252816,
+        0.01894299134040457,
+        0.00017713518747645204,
+        0.003754284137636693,
+        0.0014648571463369649,
+        0.00011765985687076485
+      ],
+      "velocity_control_derivative_6x4": [
+        [
+          7.243483280078819e-05,
+          0.0002075158244827022,
+          -1.5357080864995506e-30,
+          9.949293313714006e-05
+        ],
+        [
+          -0.0005339950896585954,
+          -0.0014068047753016226,
+          1.1795205087499768e-29,
+          -9.918027199808655e-05
+        ],
+        [
+          -0.0039004726636207056,
+          0.0013361889680297977,
+          1.0046760448138701e-28,
+          0.007839467212350206
+        ],
+        [
+          -0.376010893786246,
+          0.011629564160542434,
+          -2.2905223081932294e-27,
+          0.041691994212825524
+        ],
+        [
+          0.007205056437269855,
+          0.15471175177468743,
+          -1.7172801940557702e-28,
+          0.001823501848049056
+        ],
+        [
+          -0.00031372295710915436,
+          -0.0006355412807330732,
+          3.809000644460395e-30,
+          0.00031426270759667076
+        ]
+      ]
+    }
+  },
+  "all_origins_constant_twist_matches_persistence": true
+}

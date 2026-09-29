@@ -1,0 +1,74 @@
+"""Bounded causal reconstruction of four accepted static traces; no model fit."""
+import hashlib,json
+from pathlib import Path
+import numpy as np
+from workflows.control_seam_v23 import ControlKernel,estimate_speed
+from workflows.trace_control_v23 import actions
+
+root=Path.cwd()
+archive_root=root/'docs/evidence/phase8_3/server-initialization-repair-20260912'
+raw=archive_root/'raw'
+manifest=json.loads((root/'docs/evidence/phase8_3/runtime-package-20260912-r5/SOURCE_MANIFEST.json').read_text())
+for name,sha in manifest['origin_files_sha256'].items():
+ assert hashlib.sha256((root/name).read_bytes()).hexdigest()==sha,name
+index=json.loads((raw/'inventory.json').read_text())
+out=root/'docs/evidence/phase8_3/causal-reconstruction-20260912'
+out.mkdir(exist_ok=False)
+rows_out=[];thresholds={'virtual_control':1e-6,'pwm':1e-6,'speed_command':1e-3,'speed':1e-3}
+for cfg,seed in [('base',8201),('uuv4',8201),('uuv6',8201),('uuv6',8202)]:
+ name=f'init-{cfg}-{seed}-authored-cold'
+ rel=f'initialization/results/{name}/trace.json'
+ file=raw/rel
+ assert hashlib.sha256(file.read_bytes()).hexdigest()==index[rel]['sha256']
+ d=json.loads(file.read_text());spec=d['request']
+ assert spec['physics_initialization_mode']=='authored_static_v1' and spec['condition']=='cold'
+ assert spec['control_history_reset_mode']=='episode_local_v1' and spec['inertia_sync_mode']=='declared_v1'
+ assert len(d['substeps'])==64 and all(r['stage']=='observed' for r in d['substeps'])
+ k=ControlKernel(cfg,dt=spec['physics_dt_s']);estimate=np.zeros(k.env._num_thrusters)
+ for field in ['cascade_control','control_method','s_ratio','self_adapt','attitude_error_mode']:
+  assert getattr(k.env.cfg,field)==d['effective_cfg'][field],field
+ assert np.array_equal(np.array(k.env.PID_args),d['topology']['PID_args'])
+ assert np.array_equal(np.array(k.env.action_lim),d['topology']['action_lim'])
+ maximum={field:np.zeros(k.env._num_thrusters if field!='virtual_control' else 4) for field in thresholds}
+ peak={field:np.zeros_like(value) for field,value in maximum.items()}
+ details=[];generated=actions(spec)
+ for interval,action in enumerate(generated):
+  for substep in range(2):
+   r=d['substeps'][2*interval+substep]
+   assert r['control_index']==interval and r['substep_index']==substep
+   assert np.array_equal(action,np.array(r['command']['telemetry']['raw_action_4'][0],dtype=np.float32))
+   # Reconstruction uses planned actions and its own history; no measured state or commands.
+   command=k.command(action)
+   advanced=k.advance(command['pwm'])
+   estimate=estimate_speed(estimate,command['pwm'],tau=k.tau,dt=k.dt)
+   actual={'virtual_control':r['command']['telemetry']['virtual_control_4'][0],
+           'pwm':r['command']['telemetry']['motor_pwm_n'][0],
+           'speed_command':r['actuator_update']['speed_command_n'][0],
+           'speed':r['command']['actuator_speed_n'][0]}
+   predicted={**command,**advanced,'speed':estimate}
+   errors={key:(np.asarray(predicted[key])-np.asarray(actual[key])) for key in thresholds}
+   for key in thresholds:
+    maximum[key]=np.maximum(maximum[key],np.abs(errors[key]))
+    peak[key]=np.maximum(peak[key],np.abs(np.asarray(actual[key])))
+   details.append({'interval':interval,'substep':substep,'signed_error':{key:value.tolist() for key,value in errors.items()}})
+ row={'configuration':cfg,'seed':seed,'source_trace':rel,'source_trace_sha256':index[rel]['sha256'],
+      'control_intervals':32,'physics_substeps':64,'active_thrusters':k.env._num_thrusters,
+      'unique_action_vectors':len(np.unique(generated,axis=0)),
+      'max_abs_error_by_channel':{key:value.tolist() for key,value in maximum.items()},
+      'actual_peak_abs_by_channel':{key:value.tolist() for key,value in peak.items()},
+      'passed':all(np.all(value<=thresholds[key]) for key,value in maximum.items())}
+ rows_out.append(row)
+ (out/(name+'.json')).write_text(json.dumps({'summary':row,'errors':details},indent=2)+'\n')
+report={'status':'causal_reconstruction_passed' if all(r['passed'] for r in rows_out) else 'causal_reconstruction_failed',
+ 'evidence_level':'offline_reconstruction_against_accepted_real_gpu_trace',
+ 'thresholds_abs_predeclared':thresholds,'cases':rows_out,'model_fits':0,'new_simulation_intervals':0,
+ 'runtime_source_commit':'a9a6e20f4ac05b183cf28fd4710f5a21478b9d7c','controller_kernel_sha256':hashlib.sha256((root/'workflows/control_seam_v23.py').read_bytes()).hexdigest(),
+ 'source_manifest_sha256':hashlib.sha256((root/'docs/evidence/phase8_3/runtime-package-20260912-r5/SOURCE_MANIFEST.json').read_bytes()).hexdigest(),
+ 'causal_inputs':['predeclared raw action sequence','own controller history from zero','fixed controller and actuator parameters','known zero actuator reset'],
+ 'truth_feedback':False,'coverage':{'unique_observed_trajectories':4,'configurations':['base','uuv4','uuv6'],'excitation_families':['prbs'],'observed_intervals_per_trajectory':32,'observed_duration_s':32/60,'warm_and_trace_off_duplicates_counted':False},
+ 'limitations':['default preset raw-action control mode only, not arbitrary state-feedback controllers','known zero actuator state at reset; no unknown-state observer validation','no prediction fit, Koopman lift selection, multi-step model evaluation or control benefit claim','N slot geometry remains required for cross-configuration representation']}
+(out/'report.json').write_text(json.dumps(report,indent=2)+'\n')
+(out/'analysis-script.py.txt').write_text(Path(__file__).read_text())
+(out/'08.3-03-PLAN.md.txt').write_text((root/'.planning/phases/08.3-control-identification-forensics/08.3-03-PLAN.md').read_text(encoding='utf-8'),encoding='utf-8')
+print(json.dumps({'status':report['status'],'cases':[{'configuration':r['configuration'],'seed':r['seed'],'max_abs_error':{k:max(v) for k,v in r['max_abs_error_by_channel'].items()},'unique_actions':r['unique_action_vectors']} for r in rows_out]},indent=2))
+assert all(r['passed'] for r in rows_out),'predeclared_causal_reconstruction_gate_failed'

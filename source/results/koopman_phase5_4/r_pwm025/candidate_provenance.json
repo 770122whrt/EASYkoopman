@@ -1,0 +1,33 @@
+{
+  "checkpoint_provenance_valid": true,
+  "checkpoint_provenance": "phase5_4_pareto_candidate",
+  "source_training_summary_path": "/root/EASYkoopman/source/results/koopman_phase5_4/r_pwm025/candidate_summary.json",
+  "source_result_bucket": "retrained_ppo_koopman_mpc",
+  "source_ppo_evidence_level": "phase5_4_pareto_candidate",
+  "source_controller_path": "koopman_mpc/direct_state",
+  "source_adapter_mode": "heuristic_reference_delta_v0",
+  "source_koopman_backend": "direct_state",
+  "source_profile_id": "r_pwm025",
+  "source_phase5_4_track": "R",
+  "source_reward_profile": "koopman_mpc_stability_v1",
+  "source_adapter_profile": "heuristic_reference_delta_v0_default",
+  "source_mpc_profile": "mpc_default_v0",
+  "source_changed_axis": "reward",
+  "source_sweep_round": "round1",
+  "source_parent_profile_id": "reward_v1_only",
+  "source_parameter_distance_from_parent": 0.9999999999999998,
+  "source_changed_parameter_count": 1,
+  "source_parameter_step_count": {
+    "phase5_2_w_pwm_sat": 0.9999999999999998
+  },
+  "source_protected_strengths": [
+    "reward_v1_fallback"
+  ],
+  "source_training_ladder_stage": "candidate",
+  "source_phase5_2_summary_path": "/root/EASYkoopman/source/results/koopman_phase5_2/phase5_2_experiment_summary.json",
+  "source_phase5_3_summary_path": "/root/EASYkoopman/source/results/koopman_phase5_3/phase5_3_cross_selection.json",
+  "source_log_dir": "/root/IsaacLab/logs/rsl_rl/phase54_r_pwm025/2026-07-05_17-45-53_r_pwm025_candidate_200",
+  "source_git_commit": "c69448b1c97aaaef5d6d17636879f5d17b0c5175",
+  "source_git_dirty": true,
+  "source_checkpoint_mtime": 1783244944.8660524
+}

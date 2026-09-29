@@ -1,0 +1,943 @@
+{
+  "error": null,
+  "seconds": 23.637129199982155,
+  "events": [
+    {
+      "status": "timeout",
+      "reason": "worker_request_timeout",
+      "generation": "9b2d3e0310d4487dbaf727586b16c906",
+      "request_id": "8cf8109e8a6847ceb409a70f6d96f43f",
+      "key": "9b2d3e0310d4487dbaf727586b16c906:0",
+      "control": 8
+    }
+  ],
+  "admissions": [],
+  "choices": [
+    {
+      "status": "fallback",
+      "command": null,
+      "source": null,
+      "reason": "no_plan",
+      "actual_history_advanced": false,
+      "control": 0
+    },
+    {
+      "status": "fallback",
+      "command": null,
+      "source": null,
+      "reason": "no_plan",
+      "actual_history_advanced": false,
+      "control": 1
+    },
+    {
+      "status": "proposal",
+      "source": "committed_prefix",
+      "command": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "plan_index": 1,
+      "reason": null,
+      "actual_history_advanced": false,
+      "activated": false,
+      "prefix_source": "fallback",
+      "control": 2
+    },
+    {
+      "status": "proposal",
+      "source": "committed_prefix",
+      "command": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "plan_index": 2,
+      "reason": null,
+      "actual_history_advanced": false,
+      "activated": false,
+      "prefix_source": "fallback",
+      "control": 3
+    },
+    {
+      "status": "proposal",
+      "source": "committed_prefix",
+      "command": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "plan_index": 3,
+      "reason": null,
+      "actual_history_advanced": false,
+      "activated": false,
+      "prefix_source": "fallback",
+      "control": 4
+    },
+    {
+      "status": "proposal",
+      "source": "committed_prefix",
+      "command": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "plan_index": 4,
+      "reason": null,
+      "actual_history_advanced": false,
+      "activated": false,
+      "prefix_source": "fallback",
+      "control": 5
+    },
+    {
+      "status": "proposal",
+      "source": "committed_prefix",
+      "command": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "plan_index": 5,
+      "reason": null,
+      "actual_history_advanced": false,
+      "activated": false,
+      "prefix_source": "fallback",
+      "control": 6
+    },
+    {
+      "status": "proposal",
+      "source": "committed_prefix",
+      "command": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "plan_index": 6,
+      "reason": null,
+      "actual_history_advanced": false,
+      "activated": false,
+      "prefix_source": "fallback",
+      "control": 7
+    },
+    {
+      "status": "fallback",
+      "command": null,
+      "source": null,
+      "reason": "worker_worker_request_timeout",
+      "actual_history_advanced": false,
+      "control": 8
+    },
+    {
+      "status": "fallback",
+      "command": null,
+      "source": null,
+      "reason": "worker_worker_request_timeout",
+      "actual_history_advanced": false,
+      "control": 9
+    },
+    {
+      "status": "fallback",
+      "command": null,
+      "source": null,
+      "reason": "worker_worker_request_timeout",
+      "actual_history_advanced": false,
+      "control": 10
+    },
+    {
+      "status": "fallback",
+      "command": null,
+      "source": null,
+      "reason": "worker_worker_request_timeout",
+      "actual_history_advanced": false,
+      "control": 11
+    },
+    {
+      "status": "fallback",
+      "command": null,
+      "source": null,
+      "reason": "worker_worker_request_timeout",
+      "actual_history_advanced": false,
+      "control": 12
+    }
+  ],
+  "rows": [
+    {
+      "control": 0,
+      "decision": {
+        "status": "dispatch",
+        "reason": null,
+        "packet": {
+          "ticket": "7af82fb0a7dd4e3a9950c5ba6c0dad61",
+          "execution_id": "943acc72415a41fea67c31086e86d68e",
+          "episode_id": "fixture-base",
+          "reset_id": "zero",
+          "physics_index": 0,
+          "command": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "startup_exception": true,
+          "source": "fallback",
+          "actual_execution_confirmed": false,
+          "runtime_qualification": "adapter_and_closed_loop_still_required"
+        },
+        "progress": {
+          "status": "continue",
+          "reason": null,
+          "normalized_tracking_error": 0.0,
+          "controls_without_improvement": 0,
+          "zero_progress_controls": 0
+        },
+        "decision_compute_ms": 8.691400027601048,
+        "actual_history_advanced": false
+      },
+      "acks": [
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 1,
+            "history_digest": "7be93b6dee714938e5d52b7c0aef1027fa3f997c942c8fb9f7c377dbf468ed59",
+            "interval_complete": false,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 10.368900024332106,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        },
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 2,
+            "history_digest": "875ac310743fb8e37857cb12d04b61e5ffc3ae1b8a017586051659bab1ef6097",
+            "interval_complete": true,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 11.55500000459142,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        }
+      ]
+    },
+    {
+      "control": 1,
+      "decision": {
+        "status": "dispatch",
+        "reason": null,
+        "packet": {
+          "ticket": "0dd2ed842dd2458eb9884fa23c2b31ae",
+          "execution_id": "943acc72415a41fea67c31086e86d68e",
+          "episode_id": "fixture-base",
+          "reset_id": "zero",
+          "physics_index": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "startup_exception": false,
+          "source": "committed_prefix",
+          "actual_execution_confirmed": false,
+          "runtime_qualification": "adapter_and_closed_loop_still_required"
+        },
+        "progress": {
+          "status": "continue",
+          "reason": null,
+          "normalized_tracking_error": 0.0,
+          "controls_without_improvement": 0,
+          "zero_progress_controls": 0
+        },
+        "decision_compute_ms": 25.340600026538596,
+        "actual_history_advanced": false
+      },
+      "acks": [
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 3,
+            "history_digest": "d594d23715a03bf5135ca6a76351cbd0b77994f841305a0901848da67e868937",
+            "interval_complete": false,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 26.837100012926385,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        },
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 4,
+            "history_digest": "89583499e44aebbc86927c72d1fd03909416fd1838f05bde796f7d4535bb70d3",
+            "interval_complete": true,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 28.355400019790977,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        }
+      ]
+    },
+    {
+      "control": 2,
+      "decision": {
+        "status": "dispatch",
+        "reason": null,
+        "packet": {
+          "ticket": "5609fe38c0494176b37756c4f44888db",
+          "execution_id": "943acc72415a41fea67c31086e86d68e",
+          "episode_id": "fixture-base",
+          "reset_id": "zero",
+          "physics_index": 4,
+          "command": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "startup_exception": false,
+          "source": "committed_prefix",
+          "actual_execution_confirmed": false,
+          "runtime_qualification": "adapter_and_closed_loop_still_required"
+        },
+        "progress": {
+          "status": "continue",
+          "reason": null,
+          "normalized_tracking_error": 0.0,
+          "controls_without_improvement": 0,
+          "zero_progress_controls": 0
+        },
+        "decision_compute_ms": 5.379399983212352,
+        "actual_history_advanced": false
+      },
+      "acks": [
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 5,
+            "history_digest": "3741684ad86294851afeaa6a3774f37b370f043d938d06fdde3d723e656831e0",
+            "interval_complete": false,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 6.853400002000853,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        },
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 6,
+            "history_digest": "2cea01b2422269b83a49f5ee3506a0555b5f7e2e8e23e9c416ea6b45a73bb82f",
+            "interval_complete": true,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 8.241900010034442,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        }
+      ]
+    },
+    {
+      "control": 3,
+      "decision": {
+        "status": "dispatch",
+        "reason": null,
+        "packet": {
+          "ticket": "3f13858b676f440fbe3a21a8a21951c6",
+          "execution_id": "943acc72415a41fea67c31086e86d68e",
+          "episode_id": "fixture-base",
+          "reset_id": "zero",
+          "physics_index": 6,
+          "command": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "startup_exception": false,
+          "source": "committed_prefix",
+          "actual_execution_confirmed": false,
+          "runtime_qualification": "adapter_and_closed_loop_still_required"
+        },
+        "progress": {
+          "status": "continue",
+          "reason": null,
+          "normalized_tracking_error": 0.0,
+          "controls_without_improvement": 0,
+          "zero_progress_controls": 0
+        },
+        "decision_compute_ms": 6.6503999987617135,
+        "actual_history_advanced": false
+      },
+      "acks": [
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 7,
+            "history_digest": "19910a38ffa412c8da3f6a53cc105bec3703ef7e257a2bdba43de9e5772d1dcf",
+            "interval_complete": false,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 8.759900025324896,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        },
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 8,
+            "history_digest": "7e43eb3a5a5fec48f9e3d0d25d91ca69bf6a01c80e67936003b375507f5999a3",
+            "interval_complete": true,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 10.801400028867647,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        }
+      ]
+    },
+    {
+      "control": 4,
+      "decision": {
+        "status": "dispatch",
+        "reason": null,
+        "packet": {
+          "ticket": "677a13bbb1224b67a62e0afa00a59e39",
+          "execution_id": "943acc72415a41fea67c31086e86d68e",
+          "episode_id": "fixture-base",
+          "reset_id": "zero",
+          "physics_index": 8,
+          "command": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "startup_exception": false,
+          "source": "committed_prefix",
+          "actual_execution_confirmed": false,
+          "runtime_qualification": "adapter_and_closed_loop_still_required"
+        },
+        "progress": {
+          "status": "continue",
+          "reason": null,
+          "normalized_tracking_error": 0.0,
+          "controls_without_improvement": 0,
+          "zero_progress_controls": 0
+        },
+        "decision_compute_ms": 6.1440999852493405,
+        "actual_history_advanced": false
+      },
+      "acks": [
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 9,
+            "history_digest": "d7f1cf8d78ac9a520d1866d8bf753055ca928c49da58020cf70f04d579cc2e79",
+            "interval_complete": false,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 8.172900008503348,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        },
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 10,
+            "history_digest": "16f4efe55fc411d276a8e4f159887d2c58a98f51262011629fa80062b278d3cd",
+            "interval_complete": true,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 10.327900003176183,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        }
+      ]
+    },
+    {
+      "control": 5,
+      "decision": {
+        "status": "dispatch",
+        "reason": null,
+        "packet": {
+          "ticket": "1bec9ab43c414d149dec21ecb72b2b2d",
+          "execution_id": "943acc72415a41fea67c31086e86d68e",
+          "episode_id": "fixture-base",
+          "reset_id": "zero",
+          "physics_index": 10,
+          "command": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "startup_exception": false,
+          "source": "committed_prefix",
+          "actual_execution_confirmed": false,
+          "runtime_qualification": "adapter_and_closed_loop_still_required"
+        },
+        "progress": {
+          "status": "continue",
+          "reason": null,
+          "normalized_tracking_error": 0.0,
+          "controls_without_improvement": 0,
+          "zero_progress_controls": 0
+        },
+        "decision_compute_ms": 7.259100006194785,
+        "actual_history_advanced": false
+      },
+      "acks": [
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 11,
+            "history_digest": "f9b5657234288ccce3f58ace8052ccb373b1c0ef63f5769da65508ab3edbc82e",
+            "interval_complete": false,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 8.820999995805323,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        },
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 12,
+            "history_digest": "d30b60dd77487369a2e2c267575b00e09ec11872afd50c28034d0a5e5fa19835",
+            "interval_complete": true,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 10.705099994083866,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        }
+      ]
+    },
+    {
+      "control": 6,
+      "decision": {
+        "status": "dispatch",
+        "reason": null,
+        "packet": {
+          "ticket": "4e7b533204b049f8bf1d7e7efbb8d604",
+          "execution_id": "943acc72415a41fea67c31086e86d68e",
+          "episode_id": "fixture-base",
+          "reset_id": "zero",
+          "physics_index": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "startup_exception": false,
+          "source": "committed_prefix",
+          "actual_execution_confirmed": false,
+          "runtime_qualification": "adapter_and_closed_loop_still_required"
+        },
+        "progress": {
+          "status": "continue",
+          "reason": null,
+          "normalized_tracking_error": 0.0,
+          "controls_without_improvement": 0,
+          "zero_progress_controls": 0
+        },
+        "decision_compute_ms": 7.803799991961569,
+        "actual_history_advanced": false
+      },
+      "acks": [
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 13,
+            "history_digest": "5c65960e8eb78fb4612693024173546c0bba025376d2e04686b3cefa25dac97b",
+            "interval_complete": false,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 9.316600015154108,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        },
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 14,
+            "history_digest": "88859ce8e8d6128de783864b67f3101389ec65e53bc702cd6e5f77baa1af2550",
+            "interval_complete": true,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 11.423499992815778,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        }
+      ]
+    },
+    {
+      "control": 7,
+      "decision": {
+        "status": "dispatch",
+        "reason": null,
+        "packet": {
+          "ticket": "c7edd12d199a4698b908a549356a70e2",
+          "execution_id": "943acc72415a41fea67c31086e86d68e",
+          "episode_id": "fixture-base",
+          "reset_id": "zero",
+          "physics_index": 14,
+          "command": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "startup_exception": false,
+          "source": "committed_prefix",
+          "actual_execution_confirmed": false,
+          "runtime_qualification": "adapter_and_closed_loop_still_required"
+        },
+        "progress": {
+          "status": "continue",
+          "reason": null,
+          "normalized_tracking_error": 0.0,
+          "controls_without_improvement": 0,
+          "zero_progress_controls": 0
+        },
+        "decision_compute_ms": 9.048899984918535,
+        "actual_history_advanced": false
+      },
+      "acks": [
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 15,
+            "history_digest": "795594ed0d03dfa043d9cfb74248fac8967324324e0bf60beae8bd1a7039450d",
+            "interval_complete": false,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 10.159499972360209,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        },
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 16,
+            "history_digest": "7ed2fd896698d8743b23b83557a55f834bea70814f548e969c0ccc42e7c05a31",
+            "interval_complete": true,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 11.392199958208948,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        }
+      ]
+    },
+    {
+      "control": 8,
+      "decision": {
+        "status": "dispatch",
+        "reason": null,
+        "packet": {
+          "ticket": "66e0f58776cb4913b894c036fd897a85",
+          "execution_id": "943acc72415a41fea67c31086e86d68e",
+          "episode_id": "fixture-base",
+          "reset_id": "zero",
+          "physics_index": 16,
+          "command": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "startup_exception": false,
+          "source": "fallback",
+          "actual_execution_confirmed": false,
+          "runtime_qualification": "adapter_and_closed_loop_still_required"
+        },
+        "progress": {
+          "status": "continue",
+          "reason": null,
+          "normalized_tracking_error": 0.0,
+          "controls_without_improvement": 0,
+          "zero_progress_controls": 0
+        },
+        "decision_compute_ms": 6.2624000129289925,
+        "actual_history_advanced": false
+      },
+      "acks": [
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 17,
+            "history_digest": "dbfe55f63f2e634d22c6e1c34e5f7788883b2ec63b4d2e18571b941cb78bfd9a",
+            "interval_complete": false,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 7.491399999707937,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        },
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 18,
+            "history_digest": "103f28d5e0f9a2a280b3e513ece3e30231d7ecc3437b6229954db38336bde373",
+            "interval_complete": true,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 9.026199986692518,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        }
+      ]
+    },
+    {
+      "control": 9,
+      "decision": {
+        "status": "dispatch",
+        "reason": null,
+        "packet": {
+          "ticket": "d55ddd42d74a46cbba9de0a44e6f0375",
+          "execution_id": "943acc72415a41fea67c31086e86d68e",
+          "episode_id": "fixture-base",
+          "reset_id": "zero",
+          "physics_index": 18,
+          "command": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "startup_exception": false,
+          "source": "fallback",
+          "actual_execution_confirmed": false,
+          "runtime_qualification": "adapter_and_closed_loop_still_required"
+        },
+        "progress": {
+          "status": "continue",
+          "reason": null,
+          "normalized_tracking_error": 0.0,
+          "controls_without_improvement": 0,
+          "zero_progress_controls": 0
+        },
+        "decision_compute_ms": 6.224599987035617,
+        "actual_history_advanced": false
+      },
+      "acks": [
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 19,
+            "history_digest": "d3b91007dc8a135683714053622b9790f86472bd076247ddd49c4947ec414732",
+            "interval_complete": false,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 7.383899996057153,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        },
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 20,
+            "history_digest": "11bafeee18c62d1cb4221d78fabf7023f80c872f2608125133b55d857af1639c",
+            "interval_complete": true,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 8.621599990874529,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        }
+      ]
+    },
+    {
+      "control": 10,
+      "decision": {
+        "status": "dispatch",
+        "reason": null,
+        "packet": {
+          "ticket": "49ceb750acbf4ba8ab7fd6512e6a5730",
+          "execution_id": "943acc72415a41fea67c31086e86d68e",
+          "episode_id": "fixture-base",
+          "reset_id": "zero",
+          "physics_index": 20,
+          "command": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "startup_exception": false,
+          "source": "fallback",
+          "actual_execution_confirmed": false,
+          "runtime_qualification": "adapter_and_closed_loop_still_required"
+        },
+        "progress": {
+          "status": "continue",
+          "reason": null,
+          "normalized_tracking_error": 0.0,
+          "controls_without_improvement": 0,
+          "zero_progress_controls": 0
+        },
+        "decision_compute_ms": 7.111099985195324,
+        "actual_history_advanced": false
+      },
+      "acks": [
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 21,
+            "history_digest": "2f66db922b20f7bfcf7c629a771bbe89923fd71d0af7cfc3a4b9e890685256ef",
+            "interval_complete": false,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 7.87019997369498,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        },
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 22,
+            "history_digest": "739b91e36669119f2e25c769e207398887b93ff3ad2136e72f05e567d2482793",
+            "interval_complete": true,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 8.641099964734167,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        }
+      ]
+    },
+    {
+      "control": 11,
+      "decision": {
+        "status": "dispatch",
+        "reason": null,
+        "packet": {
+          "ticket": "e016fd29ee01469baf1963e8c94d091d",
+          "execution_id": "943acc72415a41fea67c31086e86d68e",
+          "episode_id": "fixture-base",
+          "reset_id": "zero",
+          "physics_index": 22,
+          "command": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "startup_exception": false,
+          "source": "fallback",
+          "actual_execution_confirmed": false,
+          "runtime_qualification": "adapter_and_closed_loop_still_required"
+        },
+        "progress": {
+          "status": "continue",
+          "reason": null,
+          "normalized_tracking_error": 0.0,
+          "controls_without_improvement": 0,
+          "zero_progress_controls": 0
+        },
+        "decision_compute_ms": 7.0872000069357455,
+        "actual_history_advanced": false
+      },
+      "acks": [
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 23,
+            "history_digest": "5eca25042779e07c880380d154d11bfab5dfb6b5f881e5b65537f473ff53c01e",
+            "interval_complete": false,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 8.365799993043765,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        },
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 24,
+            "history_digest": "d6306263248955382d1122f104c597e767e8f5878be0136d1f3c315414e0d595",
+            "interval_complete": true,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 9.590899979230016,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        }
+      ]
+    },
+    {
+      "control": 12,
+      "decision": {
+        "status": "dispatch",
+        "reason": null,
+        "packet": {
+          "ticket": "7dd6a6f5046843b69eafb366b3413516",
+          "execution_id": "943acc72415a41fea67c31086e86d68e",
+          "episode_id": "fixture-base",
+          "reset_id": "zero",
+          "physics_index": 24,
+          "command": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "startup_exception": false,
+          "source": "fallback",
+          "actual_execution_confirmed": false,
+          "runtime_qualification": "adapter_and_closed_loop_still_required"
+        },
+        "progress": {
+          "status": "continue",
+          "reason": null,
+          "normalized_tracking_error": 0.0,
+          "controls_without_improvement": 0,
+          "zero_progress_controls": 0
+        },
+        "decision_compute_ms": 10.348200012231246,
+        "actual_history_advanced": false
+      },
+      "acks": [
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 25,
+            "history_digest": "724ad433afda13501c42fd9513118fe2b74f7c94f0496cd894c62778b2d293b1",
+            "interval_complete": false,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 11.612200003582984,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        },
+        {
+          "status": "acknowledged",
+          "receipt": {
+            "physics_index": 26,
+            "history_digest": "1209d799b0f4d2c9314847764282dc64bf8704b9230cb26b3653eb689e11473a",
+            "interval_complete": true,
+            "startup_consumed": true
+          },
+          "control_compute_ms": 12.862599978689104,
+          "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+          "actual_history_advanced": true
+        }
+      ]
+    }
+  ],
+  "closed": {
+    "process_stopped": true,
+    "io_threads_stopped": true
+  },
+  "qualification": false
+}

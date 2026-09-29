@@ -1,0 +1,31 @@
+{
+  "archive_sha256": "cf1be1dbb148e300dcb7654c828f8cf1d1bb694f5637540320b00730261684a0",
+  "inner_files_verified": 100,
+  "local_frozen_python_sources_verified": 667,
+  "server_frozen_source_files_verified": 686,
+  "verified_cases": [
+    {
+      "case": "base-learned-0.001-on-r1",
+      "full_local_acceptance": true,
+      "recheck_scope": "supplementary_portable_full_revalidation"
+    },
+    {
+      "case": "base-learned-0.1-on-r1",
+      "full_local_acceptance": true,
+      "recheck_scope": "supplementary_portable_full_revalidation"
+    },
+    {
+      "case": "uuv4-learned-0.001-on-r1",
+      "full_local_acceptance": false,
+      "recheck_scope": "same_native_runtime_strict_independent_recheck"
+    },
+    {
+      "case": "uuv4-learned-0.1-on-r1",
+      "full_local_acceptance": true,
+      "recheck_scope": "supplementary_portable_full_revalidation"
+    }
+  ],
+  "charged_seconds": 4738.352321391925,
+  "physical_starts": 4,
+  "local_full_portable_revalidation": false
+}

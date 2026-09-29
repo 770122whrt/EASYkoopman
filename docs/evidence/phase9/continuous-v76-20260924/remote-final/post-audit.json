@@ -1,0 +1,1239 @@
+{
+  "scope": "v76_first_group_development",
+  "cases": [
+    {
+      "name": "base-pitch-feedback-r1",
+      "accepted": true,
+      "physical_steps": 240,
+      "exception": null,
+      "trace_sha256": "8db7c966cffe208ceb9edd6b066c0a87d7f1bf8d41755fc01e743225f6cea7d0"
+    },
+    {
+      "name": "base-pitch-projected_koopman-r3",
+      "accepted": true,
+      "physical_steps": 240,
+      "exception": null,
+      "trace_sha256": "ef4a00cf7cfaac023e6690dfeceac976d1ef147b1b7bf0165ffd4b8cbc0d18d3"
+    },
+    {
+      "name": "base-pitch-nominal_physics-r3",
+      "accepted": true,
+      "physical_steps": 240,
+      "exception": null,
+      "trace_sha256": "0d67e6f2fd42e1cf904b8658b0ecd40121852fb6a934540b89b712e5c3fbaf5c"
+    },
+    {
+      "name": "uuv4-pitch-feedback-r3",
+      "accepted": true,
+      "physical_steps": 240,
+      "exception": null,
+      "trace_sha256": "d268a2a2f0679dd32cbe77ba32eaad8c622727740a4d561572f942e653bd17ac"
+    },
+    {
+      "name": "uuv4-pitch-projected_koopman-r3",
+      "accepted": true,
+      "physical_steps": 240,
+      "exception": null,
+      "trace_sha256": "5414fc221824e3ade383d26a5ab79f2513ea6eba8bbbf888b0d15b3d5b2f5018"
+    },
+    {
+      "name": "uuv4-pitch-nominal_physics-r3",
+      "accepted": true,
+      "physical_steps": 240,
+      "exception": null,
+      "trace_sha256": "902086a434819273d05e34aedb770316338d75faa54aaf64065a212cbf0fee9f"
+    },
+    {
+      "name": "long_body-pitch-feedback-r3",
+      "accepted": true,
+      "physical_steps": 240,
+      "exception": null,
+      "trace_sha256": "ce222e4b821e6042b8cba39c44b9e51bccf38cc2b20e2cb29c74c64a475cdd4a"
+    },
+    {
+      "name": "long_body-pitch-projected_koopman-r3",
+      "accepted": false,
+      "physical_steps": 36,
+      "exception": "ValueError:runtime_continuous_no_exact_plan:solver_timeout",
+      "trace_sha256": "9d97d927f9695c52328f7680eb014465aa7eebfb8a4c0dac27f294dfa95d7647"
+    },
+    {
+      "name": "long_body-pitch-nominal_physics-r3",
+      "accepted": false,
+      "physical_steps": 48,
+      "exception": "ValueError:runtime_continuous_no_exact_plan:solver_timeout",
+      "trace_sha256": "58d569beea0beaae498c159c7453fd4dfcad20361040856c1a3ddd905b606deb"
+    },
+    {
+      "name": "uuv6-pitch-feedback-r3",
+      "accepted": true,
+      "physical_steps": 240,
+      "exception": null,
+      "trace_sha256": "f268a697300be7f6d70341bcdaeff6decf0c4ee36a5afbdf5b6a07b036440a57"
+    },
+    {
+      "name": "uuv6-pitch-projected_koopman-r3",
+      "accepted": false,
+      "physical_steps": 192,
+      "exception": "ValueError:runtime_continuous_no_exact_plan:solver_timeout",
+      "trace_sha256": "05ca417997a73baf6fb0c898eea1eb12a3ad16dbb074fa6b59d463e3a9af7966"
+    },
+    {
+      "name": "uuv6-pitch-nominal_physics-r3",
+      "accepted": false,
+      "physical_steps": 92,
+      "exception": "ValueError:runtime_continuous_no_exact_plan:no_exact_feasible_solution_found",
+      "trace_sha256": "e9336b03e2cb93efaff347734cb03248d25714601cbad1886a71ade1f3970b52"
+    }
+  ],
+  "main_cases": 12,
+  "accepted_main_cases": 8,
+  "main_physics_steps": 2288,
+  "native_runs": [
+    {
+      "file": "base-pitch-nominal_physics-r3-validation.exit.json",
+      "native_exit": 0,
+      "group_stopped": true,
+      "seconds": 10.742299925535917,
+      "command": [
+        "/root/shared-nvme/agentic-auv/runtime/bin/python",
+        "-B",
+        "-m",
+        "workflows.validate_continuous_v76",
+        "--trace",
+        "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/base-pitch-nominal_physics-r3/trace.json.gz",
+        "--assets",
+        "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+        "--native-exit",
+        "0"
+      ]
+    },
+    {
+      "file": "base-pitch-nominal_physics-r3.exit.json",
+      "native_exit": 0,
+      "group_stopped": true,
+      "seconds": 206.1936573907733,
+      "command": [
+        "/root/shared-nvme/agentic-auv/runtime/bin/python",
+        "-B",
+        "-m",
+        "workflows.collect_continuous_v76",
+        "--configuration",
+        "base",
+        "--controller",
+        "nominal_physics",
+        "--assets",
+        "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+        "--manifest",
+        "continuous-source-r3.json",
+        "--output",
+        "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/base-pitch-nominal_physics-r3"
+      ]
+    },
+    {
+      "file": "base-pitch-projected_koopman-r3-validation.exit.json",
+      "native_exit": 0,
+      "group_stopped": true,
+      "seconds": 8.384163077920675,
+      "command": [
+        "/root/shared-nvme/agentic-auv/runtime/bin/python",
+        "-B",
+        "-m",
+        "workflows.validate_continuous_v76",
+        "--trace",
+        "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/base-pitch-projected_koopman-r3/trace.json.gz",
+        "--assets",
+        "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+        "--native-exit",
+        "0"
+      ]
+    },
+    {
+      "file": "base-pitch-projected_koopman-r3.exit.json",
+      "native_exit": 0,
+      "group_stopped": true,
+      "seconds": 192.6497762799263,
+      "command": [
+        "/root/shared-nvme/agentic-auv/runtime/bin/python",
+        "-B",
+        "-m",
+        "workflows.collect_continuous_v76",
+        "--configuration",
+        "base",
+        "--controller",
+        "projected_koopman",
+        "--assets",
+        "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+        "--manifest",
+        "continuous-source-r3.json",
+        "--output",
+        "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/base-pitch-projected_koopman-r3"
+      ]
+    },
+    {
+      "file": "long_body-pitch-feedback-r3-validation.exit.json",
+      "native_exit": 0,
+      "group_stopped": true,
+      "seconds": 6.184501327574253,
+      "command": [
+        "/root/shared-nvme/agentic-auv/runtime/bin/python",
+        "-B",
+        "-m",
+        "workflows.validate_continuous_v76",
+        "--trace",
+        "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/long_body-pitch-feedback-r3/trace.json.gz",
+        "--assets",
+        "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+        "--native-exit",
+        "0"
+      ]
+    },
+    {
+      "file": "long_body-pitch-feedback-r3.exit.json",
+      "native_exit": 0,
+      "group_stopped": true,
+      "seconds": 75.05499093607068,
+      "command": [
+        "/root/shared-nvme/agentic-auv/runtime/bin/python",
+        "-B",
+        "-m",
+        "workflows.collect_continuous_v76",
+        "--configuration",
+        "long_body",
+        "--controller",
+        "feedback",
+        "--assets",
+        "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+        "--manifest",
+        "continuous-source-r3.json",
+        "--output",
+        "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/long_body-pitch-feedback-r3"
+      ]
+    },
+    {
+      "file": "long_body-pitch-nominal_physics-r3.exit.json",
+      "native_exit": 1,
+      "group_stopped": true,
+      "seconds": 169.49929824471474,
+      "command": [
+        "/root/shared-nvme/agentic-auv/runtime/bin/python",
+        "-B",
+        "-m",
+        "workflows.collect_continuous_v76",
+        "--configuration",
+        "long_body",
+        "--controller",
+        "nominal_physics",
+        "--assets",
+        "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+        "--manifest",
+        "continuous-source-r3.json",
+        "--output",
+        "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/long_body-pitch-nominal_physics-r3"
+      ]
+    },
+    {
+      "file": "long_body-pitch-projected_koopman-r3.exit.json",
+      "native_exit": 1,
+      "group_stopped": true,
+      "seconds": 124.94948202744126,
+      "command": [
+        "/root/shared-nvme/agentic-auv/runtime/bin/python",
+        "-B",
+        "-m",
+        "workflows.collect_continuous_v76",
+        "--configuration",
+        "long_body",
+        "--controller",
+        "projected_koopman",
+        "--assets",
+        "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+        "--manifest",
+        "continuous-source-r3.json",
+        "--output",
+        "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/long_body-pitch-projected_koopman-r3"
+      ]
+    },
+    {
+      "file": "uuv4-pitch-feedback-r3-validation.exit.json",
+      "native_exit": 0,
+      "group_stopped": true,
+      "seconds": 6.242317907512188,
+      "command": [
+        "/root/shared-nvme/agentic-auv/runtime/bin/python",
+        "-B",
+        "-m",
+        "workflows.validate_continuous_v76",
+        "--trace",
+        "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv4-pitch-feedback-r3/trace.json.gz",
+        "--assets",
+        "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+        "--native-exit",
+        "0"
+      ]
+    },
+    {
+      "file": "uuv4-pitch-feedback-r3.exit.json",
+      "native_exit": 0,
+      "group_stopped": true,
+      "seconds": 76.01259681209922,
+      "command": [
+        "/root/shared-nvme/agentic-auv/runtime/bin/python",
+        "-B",
+        "-m",
+        "workflows.collect_continuous_v76",
+        "--configuration",
+        "uuv4",
+        "--controller",
+        "feedback",
+        "--assets",
+        "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+        "--manifest",
+        "continuous-source-r3.json",
+        "--output",
+        "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv4-pitch-feedback-r3"
+      ]
+    },
+    {
+      "file": "uuv4-pitch-nominal_physics-r3-validation.exit.json",
+      "native_exit": 0,
+      "group_stopped": true,
+      "seconds": 8.142068061977625,
+      "command": [
+        "/root/shared-nvme/agentic-auv/runtime/bin/python",
+        "-B",
+        "-m",
+        "workflows.validate_continuous_v76",
+        "--trace",
+        "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv4-pitch-nominal_physics-r3/trace.json.gz",
+        "--assets",
+        "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+        "--native-exit",
+        "0"
+      ]
+    },
+    {
+      "file": "uuv4-pitch-nominal_physics-r3.exit.json",
+      "native_exit": 0,
+      "group_stopped": true,
+      "seconds": 280.69961040094495,
+      "command": [
+        "/root/shared-nvme/agentic-auv/runtime/bin/python",
+        "-B",
+        "-m",
+        "workflows.collect_continuous_v76",
+        "--configuration",
+        "uuv4",
+        "--controller",
+        "nominal_physics",
+        "--assets",
+        "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+        "--manifest",
+        "continuous-source-r3.json",
+        "--output",
+        "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv4-pitch-nominal_physics-r3"
+      ]
+    },
+    {
+      "file": "uuv4-pitch-projected_koopman-r3-validation.exit.json",
+      "native_exit": 0,
+      "group_stopped": true,
+      "seconds": 7.038170695304871,
+      "command": [
+        "/root/shared-nvme/agentic-auv/runtime/bin/python",
+        "-B",
+        "-m",
+        "workflows.validate_continuous_v76",
+        "--trace",
+        "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv4-pitch-projected_koopman-r3/trace.json.gz",
+        "--assets",
+        "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+        "--native-exit",
+        "0"
+      ]
+    },
+    {
+      "file": "uuv4-pitch-projected_koopman-r3.exit.json",
+      "native_exit": 0,
+      "group_stopped": true,
+      "seconds": 266.25277642533183,
+      "command": [
+        "/root/shared-nvme/agentic-auv/runtime/bin/python",
+        "-B",
+        "-m",
+        "workflows.collect_continuous_v76",
+        "--configuration",
+        "uuv4",
+        "--controller",
+        "projected_koopman",
+        "--assets",
+        "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+        "--manifest",
+        "continuous-source-r3.json",
+        "--output",
+        "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv4-pitch-projected_koopman-r3"
+      ]
+    },
+    {
+      "file": "uuv6-pitch-feedback-r3-validation.exit.json",
+      "native_exit": 0,
+      "group_stopped": true,
+      "seconds": 4.778152007609606,
+      "command": [
+        "/root/shared-nvme/agentic-auv/runtime/bin/python",
+        "-B",
+        "-m",
+        "workflows.validate_continuous_v76",
+        "--trace",
+        "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv6-pitch-feedback-r3/trace.json.gz",
+        "--assets",
+        "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+        "--native-exit",
+        "0"
+      ]
+    },
+    {
+      "file": "uuv6-pitch-feedback-r3.exit.json",
+      "native_exit": 0,
+      "group_stopped": true,
+      "seconds": 69.65622778609395,
+      "command": [
+        "/root/shared-nvme/agentic-auv/runtime/bin/python",
+        "-B",
+        "-m",
+        "workflows.collect_continuous_v76",
+        "--configuration",
+        "uuv6",
+        "--controller",
+        "feedback",
+        "--assets",
+        "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+        "--manifest",
+        "continuous-source-r3.json",
+        "--output",
+        "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv6-pitch-feedback-r3"
+      ]
+    },
+    {
+      "file": "uuv6-pitch-nominal_physics-r3.exit.json",
+      "native_exit": 1,
+      "group_stopped": true,
+      "seconds": 197.79449600726366,
+      "command": [
+        "/root/shared-nvme/agentic-auv/runtime/bin/python",
+        "-B",
+        "-m",
+        "workflows.collect_continuous_v76",
+        "--configuration",
+        "uuv6",
+        "--controller",
+        "nominal_physics",
+        "--assets",
+        "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+        "--manifest",
+        "continuous-source-r3.json",
+        "--output",
+        "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv6-pitch-nominal_physics-r3"
+      ]
+    },
+    {
+      "file": "uuv6-pitch-projected_koopman-r3.exit.json",
+      "native_exit": 1,
+      "group_stopped": true,
+      "seconds": 358.100262966007,
+      "command": [
+        "/root/shared-nvme/agentic-auv/runtime/bin/python",
+        "-B",
+        "-m",
+        "workflows.collect_continuous_v76",
+        "--configuration",
+        "uuv6",
+        "--controller",
+        "projected_koopman",
+        "--assets",
+        "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+        "--manifest",
+        "continuous-source-r3.json",
+        "--output",
+        "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv6-pitch-projected_koopman-r3"
+      ]
+    }
+  ],
+  "recorded_collector_validator_wall_seconds": 2068.374848280102,
+  "active_experiment_processes": [],
+  "files": {
+    "base-pitch-feedback-r1/acceptance.json": {
+      "bytes": 714,
+      "sha256": "e7b5e96063a7d9c73c4bddecac8a249d4d89322739d76eb9c5b4219c5a115805"
+    },
+    "base-pitch-feedback-r1/before-cleanup.json.gz": {
+      "bytes": 150635,
+      "sha256": "efa8d08e589509c75a2e169c72ec13a54219c3022ced99f09a72e4f3b947d7ea"
+    },
+    "base-pitch-feedback-r1/cleanup-01-worker-begin.json": {
+      "bytes": 269,
+      "sha256": "f493d11611195e84e1d80cd366047a386abfcb85874baaa0497dafd19327ff42"
+    },
+    "base-pitch-feedback-r1/cleanup-01-worker-end.json": {
+      "bytes": 267,
+      "sha256": "fea812c45e647f5b519a7ac30f52778dc32ee4c57d86844d65e57e8ecb0648b3"
+    },
+    "base-pitch-feedback-r1/cleanup-02-environment-begin.json": {
+      "bytes": 274,
+      "sha256": "d7f240ca425e9323211dc84119f22fa210894daaebf43a026375c715791c08bd"
+    },
+    "base-pitch-feedback-r1/cleanup-02-environment-end.json": {
+      "bytes": 271,
+      "sha256": "16e4db19392170b6ae762d0894499d22801b8f2f0a87f687107ebeee121195c4"
+    },
+    "base-pitch-feedback-r1/cleanup-03-simulation_app-begin.json": {
+      "bytes": 276,
+      "sha256": "7410b8a2e8081bb1a3260aaf87dc795bbc331092065ec1aae6e50bf41841f0a9"
+    },
+    "base-pitch-feedback-r1/cleanup-03-simulation_app-end.json": {
+      "bytes": 273,
+      "sha256": "f218743dce3cf11bbef0dcfa89dd156fd985c1aaa6eaf868991cb2c2c61afc9f"
+    },
+    "base-pitch-feedback-r1/summary.json": {
+      "bytes": 16860,
+      "sha256": "d30cc2542d82d094b121609eea5f05a70aaed1d25960b561ab4d2f83e60924b4"
+    },
+    "base-pitch-feedback-r1/trace.json.gz": {
+      "bytes": 150779,
+      "sha256": "8db7c966cffe208ceb9edd6b066c0a87d7f1bf8d41755fc01e743225f6cea7d0"
+    },
+    "base-pitch-feedback-r1.log": {
+      "bytes": 18672,
+      "sha256": "fb2a6c1d126cb97b9b82fccee252c839883ed372a7edb7d5165d5e268d6c9519"
+    },
+    "base-pitch-nominal_physics-r3/acceptance.json": {
+      "bytes": 722,
+      "sha256": "61fad442160c96336e175371de5260425fc2b81759bd1fd5f11ce6c0ae95c726"
+    },
+    "base-pitch-nominal_physics-r3/before-cleanup.json.gz": {
+      "bytes": 456173,
+      "sha256": "8d7a65073b6bbd433301a68f973a7fc1451bef35bdaff8e36418a3541c761286"
+    },
+    "base-pitch-nominal_physics-r3/cleanup-01-worker-begin.json": {
+      "bytes": 269,
+      "sha256": "f493d11611195e84e1d80cd366047a386abfcb85874baaa0497dafd19327ff42"
+    },
+    "base-pitch-nominal_physics-r3/cleanup-01-worker-end.json": {
+      "bytes": 267,
+      "sha256": "fea812c45e647f5b519a7ac30f52778dc32ee4c57d86844d65e57e8ecb0648b3"
+    },
+    "base-pitch-nominal_physics-r3/cleanup-02-environment-begin.json": {
+      "bytes": 274,
+      "sha256": "d7f240ca425e9323211dc84119f22fa210894daaebf43a026375c715791c08bd"
+    },
+    "base-pitch-nominal_physics-r3/cleanup-02-environment-end.json": {
+      "bytes": 271,
+      "sha256": "16e4db19392170b6ae762d0894499d22801b8f2f0a87f687107ebeee121195c4"
+    },
+    "base-pitch-nominal_physics-r3/cleanup-03-simulation_app-begin.json": {
+      "bytes": 276,
+      "sha256": "7410b8a2e8081bb1a3260aaf87dc795bbc331092065ec1aae6e50bf41841f0a9"
+    },
+    "base-pitch-nominal_physics-r3/cleanup-03-simulation_app-end.json": {
+      "bytes": 273,
+      "sha256": "f218743dce3cf11bbef0dcfa89dd156fd985c1aaa6eaf868991cb2c2c61afc9f"
+    },
+    "base-pitch-nominal_physics-r3/summary.json": {
+      "bytes": 16881,
+      "sha256": "9193111f07ce6fd6232c82a879acdb791f634ebbe469d421974dfa2c363d7050"
+    },
+    "base-pitch-nominal_physics-r3/trace.json.gz": {
+      "bytes": 456328,
+      "sha256": "0d67e6f2fd42e1cf904b8658b0ecd40121852fb6a934540b89b712e5c3fbaf5c"
+    },
+    "base-pitch-nominal_physics-r3-validation.exit.json": {
+      "bytes": 462,
+      "sha256": "4b929fac3b9cc1b02d443514c0e148f08b30264865cfa70604ee4a4ec84e0656"
+    },
+    "base-pitch-nominal_physics-r3-validation.log": {
+      "bytes": 617,
+      "sha256": "d2df5ee34f4ea40098786588b0ce225ea4d0ea39ad6c3ae1cd0511eea5d8dc96"
+    },
+    "base-pitch-nominal_physics-r3.exit.json": {
+      "bytes": 546,
+      "sha256": "c69c0e003014393a5f6be090b3c56dcc5ccc1a1ebfb9737d328c8c00c328a0af"
+    },
+    "base-pitch-nominal_physics-r3.log": {
+      "bytes": 18692,
+      "sha256": "31cd4f8167f84193cae3c27a0e1b1d6853aca786a6835482ff264c7c2f770f23"
+    },
+    "base-pitch-projected_koopman-r1/before-cleanup.json.gz": {
+      "bytes": 7787,
+      "sha256": "5adc5f88057c4f9b35994f9090effa0d9b1d91606be4006bbe839139dfca0917"
+    },
+    "base-pitch-projected_koopman-r1/cleanup-01-worker-begin.json": {
+      "bytes": 299,
+      "sha256": "0735a393cde68c1baff966dfa3b05b7ff9636990a0a5175dd79b223bb734d0a3"
+    },
+    "base-pitch-projected_koopman-r1/cleanup-01-worker-end.json": {
+      "bytes": 297,
+      "sha256": "1746772cf4539605ebe977c8370f841a2165cc3546aa5ca02415fbd177845836"
+    },
+    "base-pitch-projected_koopman-r1/cleanup-02-environment-begin.json": {
+      "bytes": 304,
+      "sha256": "8bb64fd83723564727fa4dd3b4fbdf92bbbdadfc86bc410cd980d458c3a5c40e"
+    },
+    "base-pitch-projected_koopman-r1/cleanup-02-environment-end.json": {
+      "bytes": 301,
+      "sha256": "c23a83838242eb7d6fb964b6d800ad42fb952dd3ccf462ead08bda71516d6fef"
+    },
+    "base-pitch-projected_koopman-r1/cleanup-03-simulation_app-begin.json": {
+      "bytes": 306,
+      "sha256": "d7b7b344cc4d5b481234458492797016b0850cc0b799b0766c0d92eedd1ff9c1"
+    },
+    "base-pitch-projected_koopman-r1/cleanup-03-simulation_app-end.json": {
+      "bytes": 303,
+      "sha256": "1e89ee9c0da279f889223b7e68537cf97ae0b7ed06e82a96baabbc6541e6b776"
+    },
+    "base-pitch-projected_koopman-r1/summary.json": {
+      "bytes": 16668,
+      "sha256": "d84065e2283f81de6e6be5d04cf1cc9d9168d0ddce283a04496eda5e6c499f76"
+    },
+    "base-pitch-projected_koopman-r1/trace.json.gz": {
+      "bytes": 7879,
+      "sha256": "4ca0006d1f977f8f8b6b279fb07e70b22044e0b58d8c6c38acf827efb5729d66"
+    },
+    "base-pitch-projected_koopman-r1.log": {
+      "bytes": 19003,
+      "sha256": "962cab6d9d671bf79f82ae4403b4787c2753a6e0356eb06f067c6f6ab6542d37"
+    },
+    "base-pitch-projected_koopman-r1.native-exit": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "base-pitch-projected_koopman-r2/acceptance.json": {
+      "bytes": 725,
+      "sha256": "2ba57a7fc397c7016d534bbc647d1a711a22178257de7f5be01cd9789439c5f7"
+    },
+    "base-pitch-projected_koopman-r2/before-cleanup.json.gz": {
+      "bytes": 466591,
+      "sha256": "32b460288a6880608238f4632b066652707ff2fdc14cbe61a4f16cb0f5671097"
+    },
+    "base-pitch-projected_koopman-r2/cleanup-01-worker-begin.json": {
+      "bytes": 269,
+      "sha256": "f493d11611195e84e1d80cd366047a386abfcb85874baaa0497dafd19327ff42"
+    },
+    "base-pitch-projected_koopman-r2/cleanup-01-worker-end.json": {
+      "bytes": 267,
+      "sha256": "fea812c45e647f5b519a7ac30f52778dc32ee4c57d86844d65e57e8ecb0648b3"
+    },
+    "base-pitch-projected_koopman-r2/cleanup-02-environment-begin.json": {
+      "bytes": 274,
+      "sha256": "d7f240ca425e9323211dc84119f22fa210894daaebf43a026375c715791c08bd"
+    },
+    "base-pitch-projected_koopman-r2/cleanup-02-environment-end.json": {
+      "bytes": 271,
+      "sha256": "16e4db19392170b6ae762d0894499d22801b8f2f0a87f687107ebeee121195c4"
+    },
+    "base-pitch-projected_koopman-r2/cleanup-03-simulation_app-begin.json": {
+      "bytes": 276,
+      "sha256": "7410b8a2e8081bb1a3260aaf87dc795bbc331092065ec1aae6e50bf41841f0a9"
+    },
+    "base-pitch-projected_koopman-r2/cleanup-03-simulation_app-end.json": {
+      "bytes": 273,
+      "sha256": "f218743dce3cf11bbef0dcfa89dd156fd985c1aaa6eaf868991cb2c2c61afc9f"
+    },
+    "base-pitch-projected_koopman-r2/summary.json": {
+      "bytes": 16891,
+      "sha256": "64c06b32b84d1b2fbe55f8d4d742f7b27e4d42e6141909b173bd81b802d9bd1d"
+    },
+    "base-pitch-projected_koopman-r2/trace.json.gz": {
+      "bytes": 466722,
+      "sha256": "3c04fe8bd8086fa7610af20d5891a7ee96a4252689deb632c41bd99a7578d629"
+    },
+    "base-pitch-projected_koopman-r2.log": {
+      "bytes": 18702,
+      "sha256": "0c035105c0e70950b29aaafedb591c6b5aab33b5a33cbd0d2d2c428162abb44f"
+    },
+    "base-pitch-projected_koopman-r2.native-exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "base-pitch-projected_koopman-r3/acceptance.json": {
+      "bytes": 724,
+      "sha256": "ba88d0372d3833fd6ef7d51754992f16752cc0b93851b4760573938f88fe8803"
+    },
+    "base-pitch-projected_koopman-r3/before-cleanup.json.gz": {
+      "bytes": 455460,
+      "sha256": "aef86f0773c56b388bcbfaf6d265fa948d08088ed62cd6ca164f82030025e1a1"
+    },
+    "base-pitch-projected_koopman-r3/cleanup-01-worker-begin.json": {
+      "bytes": 269,
+      "sha256": "f493d11611195e84e1d80cd366047a386abfcb85874baaa0497dafd19327ff42"
+    },
+    "base-pitch-projected_koopman-r3/cleanup-01-worker-end.json": {
+      "bytes": 267,
+      "sha256": "fea812c45e647f5b519a7ac30f52778dc32ee4c57d86844d65e57e8ecb0648b3"
+    },
+    "base-pitch-projected_koopman-r3/cleanup-02-environment-begin.json": {
+      "bytes": 274,
+      "sha256": "d7f240ca425e9323211dc84119f22fa210894daaebf43a026375c715791c08bd"
+    },
+    "base-pitch-projected_koopman-r3/cleanup-02-environment-end.json": {
+      "bytes": 271,
+      "sha256": "16e4db19392170b6ae762d0894499d22801b8f2f0a87f687107ebeee121195c4"
+    },
+    "base-pitch-projected_koopman-r3/cleanup-03-simulation_app-begin.json": {
+      "bytes": 276,
+      "sha256": "7410b8a2e8081bb1a3260aaf87dc795bbc331092065ec1aae6e50bf41841f0a9"
+    },
+    "base-pitch-projected_koopman-r3/cleanup-03-simulation_app-end.json": {
+      "bytes": 273,
+      "sha256": "f218743dce3cf11bbef0dcfa89dd156fd985c1aaa6eaf868991cb2c2c61afc9f"
+    },
+    "base-pitch-projected_koopman-r3/summary.json": {
+      "bytes": 16886,
+      "sha256": "9eea3c58b36729b2ff439196d3471acc272eab2cf607ffd46bb77875d5572547"
+    },
+    "base-pitch-projected_koopman-r3/trace.json.gz": {
+      "bytes": 455617,
+      "sha256": "ef4a00cf7cfaac023e6690dfeceac976d1ef147b1b7bf0165ffd4b8cbc0d18d3"
+    },
+    "base-pitch-projected_koopman-r3-validation.exit.json": {
+      "bytes": 463,
+      "sha256": "642ae98b9f73c9ef8a8095c37d918595ba7cbe7938fdcdcf83752c575047c997"
+    },
+    "base-pitch-projected_koopman-r3-validation.log": {
+      "bytes": 619,
+      "sha256": "e78c6095eeb544c28c72b77d8bae8b2b0d4e268cce068e10dbf5dbaeaa7f448f"
+    },
+    "base-pitch-projected_koopman-r3.exit.json": {
+      "bytes": 550,
+      "sha256": "dcadb127e172886de087bb5b19eec11d6c18da40f3d5d09b4112e441c7b266c1"
+    },
+    "base-pitch-projected_koopman-r3.log": {
+      "bytes": 18697,
+      "sha256": "3b8f96a7e6bce1f8f93f7292942ef2a419ed7893790d9a7ee364c0746de7197d"
+    },
+    "comparison.json": {
+      "bytes": 15283,
+      "sha256": "4334bb4ebdeee5f95f77425a729b76a7aa10dc03b54a5e75f8618d0b3aeed3b3"
+    },
+    "feasibility-uuv6-held.log": {
+      "bytes": 2226,
+      "sha256": "f11a7076edb584c916d828febe1224b5e9852a4801e4ddeeeeb9ba62efc65109"
+    },
+    "feasibility-uuv6.log": {
+      "bytes": 2055,
+      "sha256": "30679da2ded695e5f981e61c3d0f01e4ed5c40e901506150e9c01ec9cdc0c460"
+    },
+    "figures/continuous-v76-trajectories.pdf": {
+      "bytes": 38517,
+      "sha256": "4cb16794891b20618b2c49a9b34d1baae5dea18dc3db0041552a65030582d49d"
+    },
+    "figures/continuous-v76-trajectories.png": {
+      "bytes": 534547,
+      "sha256": "69513f3920f415a6a98882607500f8d90b9ffe07f06c9b0a291f8d3454b6a421"
+    },
+    "figures/figure-sources.json": {
+      "bytes": 2050,
+      "sha256": "0fec937cc4b23ea9ef5daaa7cddff9b87695883301c96a883fbfb92fd8409ee5"
+    },
+    "figures-progress/continuous-v76-trajectories.pdf": {
+      "bytes": 28974,
+      "sha256": "870cda15b593254496c30a00aaa28dceaffd25df5bf27d18419eef30f9d961c2"
+    },
+    "figures-progress/continuous-v76-trajectories.png": {
+      "bytes": 376769,
+      "sha256": "b345c57646de3eb26c21d72c9319a87116134cf8d5a771ce9aaefc95f8eaaa31"
+    },
+    "figures-progress/figure-sources.json": {
+      "bytes": 674,
+      "sha256": "f87554ee7eb3f52a51a35f82d6f76c5f0dd52d616f3c6887e24e9226424bacaf"
+    },
+    "long_body-pitch-feedback-r3/acceptance.json": {
+      "bytes": 718,
+      "sha256": "a6ea2668f1e04aa4ea5202b3fca687f5dc21e7ebea2a7104658993d14833c04e"
+    },
+    "long_body-pitch-feedback-r3/before-cleanup.json.gz": {
+      "bytes": 150737,
+      "sha256": "4bece9793b06336d3e15e5eb2c22aa09be15809e6ed2eb918871ebe3bf212c50"
+    },
+    "long_body-pitch-feedback-r3/cleanup-01-worker-begin.json": {
+      "bytes": 269,
+      "sha256": "f493d11611195e84e1d80cd366047a386abfcb85874baaa0497dafd19327ff42"
+    },
+    "long_body-pitch-feedback-r3/cleanup-01-worker-end.json": {
+      "bytes": 267,
+      "sha256": "fea812c45e647f5b519a7ac30f52778dc32ee4c57d86844d65e57e8ecb0648b3"
+    },
+    "long_body-pitch-feedback-r3/cleanup-02-environment-begin.json": {
+      "bytes": 274,
+      "sha256": "d7f240ca425e9323211dc84119f22fa210894daaebf43a026375c715791c08bd"
+    },
+    "long_body-pitch-feedback-r3/cleanup-02-environment-end.json": {
+      "bytes": 271,
+      "sha256": "16e4db19392170b6ae762d0894499d22801b8f2f0a87f687107ebeee121195c4"
+    },
+    "long_body-pitch-feedback-r3/cleanup-03-simulation_app-begin.json": {
+      "bytes": 276,
+      "sha256": "7410b8a2e8081bb1a3260aaf87dc795bbc331092065ec1aae6e50bf41841f0a9"
+    },
+    "long_body-pitch-feedback-r3/cleanup-03-simulation_app-end.json": {
+      "bytes": 273,
+      "sha256": "f218743dce3cf11bbef0dcfa89dd156fd985c1aaa6eaf868991cb2c2c61afc9f"
+    },
+    "long_body-pitch-feedback-r3/summary.json": {
+      "bytes": 16818,
+      "sha256": "774f09b4a47bc4da8ff03754284b98b2d8fd54f289dfb4ff7e597a7c2552a076"
+    },
+    "long_body-pitch-feedback-r3/trace.json.gz": {
+      "bytes": 150881,
+      "sha256": "ce222e4b821e6042b8cba39c44b9e51bccf38cc2b20e2cb29c74c64a475cdd4a"
+    },
+    "long_body-pitch-feedback-r3-validation.exit.json": {
+      "bytes": 459,
+      "sha256": "cb238e0d68d14c5d8d08f2fd4a335a548354d470ae3c23a9a5f6c0344b93f4d4"
+    },
+    "long_body-pitch-feedback-r3-validation.log": {
+      "bytes": 613,
+      "sha256": "ef4e00388c4b5410dcdc2d461d95c1778168a9e0dd85533f771646b96cf11bb2"
+    },
+    "long_body-pitch-feedback-r3.exit.json": {
+      "bytes": 542,
+      "sha256": "77034958e009325d1cb30d07697d1aa002b793ac91d35b16b540a73d1121dab7"
+    },
+    "long_body-pitch-feedback-r3.log": {
+      "bytes": 18631,
+      "sha256": "10cbda4ca84c94e9236bbf53a64950d3b794ee63ab4a609f59ac37947404e99c"
+    },
+    "long_body-pitch-nominal_physics-r3/before-cleanup.json.gz": {
+      "bytes": 96998,
+      "sha256": "1f2a712b0eabe602703d2d144eb42f811de3f0fd096909ac7d61cd93cbf19310"
+    },
+    "long_body-pitch-nominal_physics-r3/cleanup-01-worker-begin.json": {
+      "bytes": 299,
+      "sha256": "0735a393cde68c1baff966dfa3b05b7ff9636990a0a5175dd79b223bb734d0a3"
+    },
+    "long_body-pitch-nominal_physics-r3/cleanup-01-worker-end.json": {
+      "bytes": 297,
+      "sha256": "1746772cf4539605ebe977c8370f841a2165cc3546aa5ca02415fbd177845836"
+    },
+    "long_body-pitch-nominal_physics-r3/cleanup-02-environment-begin.json": {
+      "bytes": 304,
+      "sha256": "8bb64fd83723564727fa4dd3b4fbdf92bbbdadfc86bc410cd980d458c3a5c40e"
+    },
+    "long_body-pitch-nominal_physics-r3/cleanup-02-environment-end.json": {
+      "bytes": 301,
+      "sha256": "c23a83838242eb7d6fb964b6d800ad42fb952dd3ccf462ead08bda71516d6fef"
+    },
+    "long_body-pitch-nominal_physics-r3/cleanup-03-simulation_app-begin.json": {
+      "bytes": 306,
+      "sha256": "d7b7b344cc4d5b481234458492797016b0850cc0b799b0766c0d92eedd1ff9c1"
+    },
+    "long_body-pitch-nominal_physics-r3/cleanup-03-simulation_app-end.json": {
+      "bytes": 303,
+      "sha256": "1e89ee9c0da279f889223b7e68537cf97ae0b7ed06e82a96baabbc6541e6b776"
+    },
+    "long_body-pitch-nominal_physics-r3/summary.json": {
+      "bytes": 16614,
+      "sha256": "b51dc84480e132ea3027240662b6b16e5ef40569dd1bb3487b6490fa137e0649"
+    },
+    "long_body-pitch-nominal_physics-r3/trace.json.gz": {
+      "bytes": 97132,
+      "sha256": "58d569beea0beaae498c159c7453fd4dfcad20361040856c1a3ddd905b606deb"
+    },
+    "long_body-pitch-nominal_physics-r3.exit.json": {
+      "bytes": 557,
+      "sha256": "34c0cdc8c9eb3e103aa58bb77061f8d373cf31c62bd3930a597591adbfffaae4"
+    },
+    "long_body-pitch-nominal_physics-r3.log": {
+      "bytes": 18951,
+      "sha256": "9bfbaada4e3899f9f996637ea3da4540284395354b2c364dc0f387a24d4cc828"
+    },
+    "long_body-pitch-projected_koopman-r3/before-cleanup.json.gz": {
+      "bytes": 73434,
+      "sha256": "4b5b8c7bda34b3529c1df7e099f84da49124e45c17a87db04e2baf663d988f27"
+    },
+    "long_body-pitch-projected_koopman-r3/cleanup-01-worker-begin.json": {
+      "bytes": 299,
+      "sha256": "0735a393cde68c1baff966dfa3b05b7ff9636990a0a5175dd79b223bb734d0a3"
+    },
+    "long_body-pitch-projected_koopman-r3/cleanup-01-worker-end.json": {
+      "bytes": 297,
+      "sha256": "1746772cf4539605ebe977c8370f841a2165cc3546aa5ca02415fbd177845836"
+    },
+    "long_body-pitch-projected_koopman-r3/cleanup-02-environment-begin.json": {
+      "bytes": 304,
+      "sha256": "8bb64fd83723564727fa4dd3b4fbdf92bbbdadfc86bc410cd980d458c3a5c40e"
+    },
+    "long_body-pitch-projected_koopman-r3/cleanup-02-environment-end.json": {
+      "bytes": 301,
+      "sha256": "c23a83838242eb7d6fb964b6d800ad42fb952dd3ccf462ead08bda71516d6fef"
+    },
+    "long_body-pitch-projected_koopman-r3/cleanup-03-simulation_app-begin.json": {
+      "bytes": 306,
+      "sha256": "d7b7b344cc4d5b481234458492797016b0850cc0b799b0766c0d92eedd1ff9c1"
+    },
+    "long_body-pitch-projected_koopman-r3/cleanup-03-simulation_app-end.json": {
+      "bytes": 303,
+      "sha256": "1e89ee9c0da279f889223b7e68537cf97ae0b7ed06e82a96baabbc6541e6b776"
+    },
+    "long_body-pitch-projected_koopman-r3/summary.json": {
+      "bytes": 16620,
+      "sha256": "2a8af9c920a8b5667983985c4f214b5f68a68c7f6867e0c41c484ef3afee0b26"
+    },
+    "long_body-pitch-projected_koopman-r3/trace.json.gz": {
+      "bytes": 73557,
+      "sha256": "9d97d927f9695c52328f7680eb014465aa7eebfb8a4c0dac27f294dfa95d7647"
+    },
+    "long_body-pitch-projected_koopman-r3.exit.json": {
+      "bytes": 561,
+      "sha256": "f02adafd565efde993864a155576c13a8b6216eb1127193f59c659e7f1c2c40f"
+    },
+    "long_body-pitch-projected_koopman-r3.log": {
+      "bytes": 18957,
+      "sha256": "5bae1a413bf1dd638d76cb6283bed0a97104d0a29f77fd2e503cff38e2b9f4b5"
+    },
+    "queue-r3-last-retry.log": {
+      "bytes": 541,
+      "sha256": "8de99873b9d43db0fe274ea1c460bc62c583719935406adfd38d6c30764f44ef"
+    },
+    "queue-r3-last.log": {
+      "bytes": 1025,
+      "sha256": "26548c8b1d55d25aa0efb4b8b27882903e18153d048b6b2f8031d5bbbd8601b5"
+    },
+    "queue-r3-resume.log": {
+      "bytes": 556,
+      "sha256": "25b07a124b0c244c4d4a6549556f10027c3ed131043b88873d153c9fca84e65d"
+    },
+    "queue-r3-uuv6.log": {
+      "bytes": 1807,
+      "sha256": "f7a1950d91990ce66565de030ea680b62f37f586d4cc7adb09d0fd69980eabc7"
+    },
+    "queue-r3.log": {
+      "bytes": 8364,
+      "sha256": "e0f0b8376fb22e869b7ef2839cc9f5ebd99a2ad0a05606f353794b6bad8e42bd"
+    },
+    "stopped-replay-r1.log": {
+      "bytes": 2017,
+      "sha256": "0fc526ad99b00942c0795acfff5153aa03e39bfc61a1dcc63a816025fcbd523a"
+    },
+    "stopped-uuv6.log": {
+      "bytes": 994,
+      "sha256": "94bba0c3dc9150957b95c8712181bbbd7c64e46a4eee3541830836185702c835"
+    },
+    "uuv4-pitch-feedback-r3/acceptance.json": {
+      "bytes": 731,
+      "sha256": "d169debf9031ef6af3749701bc55f1edcea0faddaffbebfbcd826df17e9754e2"
+    },
+    "uuv4-pitch-feedback-r3/before-cleanup.json.gz": {
+      "bytes": 200463,
+      "sha256": "d6305c4a68306f1e2ed5148257c5ef01f35740ddedbc2081cec889ee9b3fedd4"
+    },
+    "uuv4-pitch-feedback-r3/cleanup-01-worker-begin.json": {
+      "bytes": 269,
+      "sha256": "f493d11611195e84e1d80cd366047a386abfcb85874baaa0497dafd19327ff42"
+    },
+    "uuv4-pitch-feedback-r3/cleanup-01-worker-end.json": {
+      "bytes": 267,
+      "sha256": "fea812c45e647f5b519a7ac30f52778dc32ee4c57d86844d65e57e8ecb0648b3"
+    },
+    "uuv4-pitch-feedback-r3/cleanup-02-environment-begin.json": {
+      "bytes": 274,
+      "sha256": "d7f240ca425e9323211dc84119f22fa210894daaebf43a026375c715791c08bd"
+    },
+    "uuv4-pitch-feedback-r3/cleanup-02-environment-end.json": {
+      "bytes": 271,
+      "sha256": "16e4db19392170b6ae762d0894499d22801b8f2f0a87f687107ebeee121195c4"
+    },
+    "uuv4-pitch-feedback-r3/cleanup-03-simulation_app-begin.json": {
+      "bytes": 276,
+      "sha256": "7410b8a2e8081bb1a3260aaf87dc795bbc331092065ec1aae6e50bf41841f0a9"
+    },
+    "uuv4-pitch-feedback-r3/cleanup-03-simulation_app-end.json": {
+      "bytes": 273,
+      "sha256": "f218743dce3cf11bbef0dcfa89dd156fd985c1aaa6eaf868991cb2c2c61afc9f"
+    },
+    "uuv4-pitch-feedback-r3/summary.json": {
+      "bytes": 18002,
+      "sha256": "57102584c6cee09b699a4a4eb92114b99908e8db278fce4b822e38850c52f7f5"
+    },
+    "uuv4-pitch-feedback-r3/trace.json.gz": {
+      "bytes": 200592,
+      "sha256": "d268a2a2f0679dd32cbe77ba32eaad8c622727740a4d561572f942e653bd17ac"
+    },
+    "uuv4-pitch-feedback-r3-validation.exit.json": {
+      "bytes": 454,
+      "sha256": "405060a398f9562d86efda92fbfb1f7059d69f9f2ddb2fdb85b46a8865adbe4d"
+    },
+    "uuv4-pitch-feedback-r3-validation.log": {
+      "bytes": 626,
+      "sha256": "2f802a443a14efbb3f79b8b838a587f0fc58a0b20b865484623b3241673e498b"
+    },
+    "uuv4-pitch-feedback-r3.exit.json": {
+      "bytes": 532,
+      "sha256": "b61a4ba430b2cf20f1c693e7cf622853aa827c9fc0914b7d3e988f01d04ccecf"
+    },
+    "uuv4-pitch-feedback-r3.log": {
+      "bytes": 19455,
+      "sha256": "5370062d4eba57d97c3a702e73d85e6a4ba1f0ede6bf3e409f134a64ecc83c29"
+    },
+    "uuv4-pitch-nominal_physics-r3/acceptance.json": {
+      "bytes": 741,
+      "sha256": "6f6a6e63ad230e47c0b78cd871b0cab330817fb027c6b1d4ae80ebe28d3bbe24"
+    },
+    "uuv4-pitch-nominal_physics-r3/before-cleanup.json.gz": {
+      "bytes": 485112,
+      "sha256": "5ea80fee2500d286010bdf401d929fc33bee0b6d193ccc112f262537f754e3b5"
+    },
+    "uuv4-pitch-nominal_physics-r3/cleanup-01-worker-begin.json": {
+      "bytes": 269,
+      "sha256": "f493d11611195e84e1d80cd366047a386abfcb85874baaa0497dafd19327ff42"
+    },
+    "uuv4-pitch-nominal_physics-r3/cleanup-01-worker-end.json": {
+      "bytes": 267,
+      "sha256": "fea812c45e647f5b519a7ac30f52778dc32ee4c57d86844d65e57e8ecb0648b3"
+    },
+    "uuv4-pitch-nominal_physics-r3/cleanup-02-environment-begin.json": {
+      "bytes": 274,
+      "sha256": "d7f240ca425e9323211dc84119f22fa210894daaebf43a026375c715791c08bd"
+    },
+    "uuv4-pitch-nominal_physics-r3/cleanup-02-environment-end.json": {
+      "bytes": 271,
+      "sha256": "16e4db19392170b6ae762d0894499d22801b8f2f0a87f687107ebeee121195c4"
+    },
+    "uuv4-pitch-nominal_physics-r3/cleanup-03-simulation_app-begin.json": {
+      "bytes": 276,
+      "sha256": "7410b8a2e8081bb1a3260aaf87dc795bbc331092065ec1aae6e50bf41841f0a9"
+    },
+    "uuv4-pitch-nominal_physics-r3/cleanup-03-simulation_app-end.json": {
+      "bytes": 273,
+      "sha256": "f218743dce3cf11bbef0dcfa89dd156fd985c1aaa6eaf868991cb2c2c61afc9f"
+    },
+    "uuv4-pitch-nominal_physics-r3/summary.json": {
+      "bytes": 18006,
+      "sha256": "10996e55822545cea7fe358dc4851ec1fc24b37fc38ea29720a667a012bcec06"
+    },
+    "uuv4-pitch-nominal_physics-r3/trace.json.gz": {
+      "bytes": 485266,
+      "sha256": "902086a434819273d05e34aedb770316338d75faa54aaf64065a212cbf0fee9f"
+    },
+    "uuv4-pitch-nominal_physics-r3-validation.exit.json": {
+      "bytes": 461,
+      "sha256": "e784c63905114798ec316d52f007ab6c82a87d1c4e114c8b48c644ce3ff17739"
+    },
+    "uuv4-pitch-nominal_physics-r3-validation.log": {
+      "bytes": 636,
+      "sha256": "807c6bd4445c946e3b63284797c74ec8cf2020af4f32e6d5e3228431a91b7815"
+    },
+    "uuv4-pitch-nominal_physics-r3.exit.json": {
+      "bytes": 547,
+      "sha256": "a685d1c40c34885057b1ac05f73697b4a89f4d181a9ddda2f551703784f04a36"
+    },
+    "uuv4-pitch-nominal_physics-r3.log": {
+      "bytes": 19459,
+      "sha256": "cb4cb395c1cd285be8bfac5709fa4deac94ae32a92796ffb9cf9f0603a8ef449"
+    },
+    "uuv4-pitch-projected_koopman-r3/acceptance.json": {
+      "bytes": 741,
+      "sha256": "8a4b5c4e56215f87cf62cfe0fae20509fbe27b839772577c26f39d9a037fe54e"
+    },
+    "uuv4-pitch-projected_koopman-r3/before-cleanup.json.gz": {
+      "bytes": 487156,
+      "sha256": "a67a97b3380a51d1b84ebcc0ae14b4d85b7c12f77645d8c6992ad24d2e419d6c"
+    },
+    "uuv4-pitch-projected_koopman-r3/cleanup-01-worker-begin.json": {
+      "bytes": 269,
+      "sha256": "f493d11611195e84e1d80cd366047a386abfcb85874baaa0497dafd19327ff42"
+    },
+    "uuv4-pitch-projected_koopman-r3/cleanup-01-worker-end.json": {
+      "bytes": 267,
+      "sha256": "fea812c45e647f5b519a7ac30f52778dc32ee4c57d86844d65e57e8ecb0648b3"
+    },
+    "uuv4-pitch-projected_koopman-r3/cleanup-02-environment-begin.json": {
+      "bytes": 274,
+      "sha256": "d7f240ca425e9323211dc84119f22fa210894daaebf43a026375c715791c08bd"
+    },
+    "uuv4-pitch-projected_koopman-r3/cleanup-02-environment-end.json": {
+      "bytes": 271,
+      "sha256": "16e4db19392170b6ae762d0894499d22801b8f2f0a87f687107ebeee121195c4"
+    },
+    "uuv4-pitch-projected_koopman-r3/cleanup-03-simulation_app-begin.json": {
+      "bytes": 276,
+      "sha256": "7410b8a2e8081bb1a3260aaf87dc795bbc331092065ec1aae6e50bf41841f0a9"
+    },
+    "uuv4-pitch-projected_koopman-r3/cleanup-03-simulation_app-end.json": {
+      "bytes": 273,
+      "sha256": "f218743dce3cf11bbef0dcfa89dd156fd985c1aaa6eaf868991cb2c2c61afc9f"
+    },
+    "uuv4-pitch-projected_koopman-r3/summary.json": {
+      "bytes": 18023,
+      "sha256": "46f0246968235381ea69ca552188aa3e2a4441a61c38874d4fed96cb1e65b949"
+    },
+    "uuv4-pitch-projected_koopman-r3/trace.json.gz": {
+      "bytes": 487316,
+      "sha256": "5414fc221824e3ade383d26a5ab79f2513ea6eba8bbbf888b0d15b3d5b2f5018"
+    },
+    "uuv4-pitch-projected_koopman-r3-validation.exit.json": {
+      "bytes": 463,
+      "sha256": "316450195e43115b67562825480e4408e3fc4fe2985d9963d7a7be625bbd358e"
+    },
+    "uuv4-pitch-projected_koopman-r3-validation.log": {
+      "bytes": 636,
+      "sha256": "56d17d68037344b4cd7f9440becacb2e29732767379ff6c0437d674f1f430f90"
+    },
+    "uuv4-pitch-projected_koopman-r3.exit.json": {
+      "bytes": 551,
+      "sha256": "b796f7fe056dabcc8593a9bfc293907413aa07866b39b007aa7d2251f420a11e"
+    },
+    "uuv4-pitch-projected_koopman-r3.log": {
+      "bytes": 19476,
+      "sha256": "86a3d99d9bb62dc51f8947eab06f084bd5cf61901b4b6a064990535b4209b1a3"
+    },
+    "uuv6-pitch-feedback-r3/acceptance.json": {
+      "bytes": 733,
+      "sha256": "32ea58dac1f390d82d3998cf1f78c8a829c241c65aa53112a18da8f4ff5c8a55"
+    },
+    "uuv6-pitch-feedback-r3/before-cleanup.json.gz": {
+      "bytes": 196689,
+      "sha256": "e73acfc05c70db42db13bb1cdbc1a13feb6f27950ee0e500338bfa7ac08ca53f"
+    },
+    "uuv6-pitch-feedback-r3/cleanup-01-worker-begin.json": {
+      "bytes": 269,
+      "sha256": "f493d11611195e84e1d80cd366047a386abfcb85874baaa0497dafd19327ff42"
+    },
+    "uuv6-pitch-feedback-r3/cleanup-01-worker-end.json": {
+      "bytes": 267,
+      "sha256": "fea812c45e647f5b519a7ac30f52778dc32ee4c57d86844d65e57e8ecb0648b3"
+    },
+    "uuv6-pitch-feedback-r3/cleanup-02-environment-begin.json": {
+      "bytes": 274,
+      "sha256": "d7f240ca425e9323211dc84119f22fa210894daaebf43a026375c715791c08bd"
+    },
+    "uuv6-pitch-feedback-r3/cleanup-02-environment-end.json": {
+      "bytes": 271,
+      "sha256": "16e4db19392170b6ae762d0894499d22801b8f2f0a87f687107ebeee121195c4"
+    },
+    "uuv6-pitch-feedback-r3/cleanup-03-simulation_app-begin.json": {
+      "bytes": 276,
+      "sha256": "7410b8a2e8081bb1a3260aaf87dc795bbc331092065ec1aae6e50bf41841f0a9"
+    },
+    "uuv6-pitch-feedback-r3/cleanup-03-simulation_app-end.json": {
+      "bytes": 273,
+      "sha256": "f218743dce3cf11bbef0dcfa89dd156fd985c1aaa6eaf868991cb2c2c61afc9f"
+    },
+    "uuv6-pitch-feedback-r3/summary.json": {
+      "bytes": 18011,
+      "sha256": "151be7637ee2e6f2b93cddd896d6cc2d62a64ee1f2254217a12769d09fbe64b7"
+    },
+    "uuv6-pitch-feedback-r3/trace.json.gz": {
+      "bytes": 196858,
+      "sha256": "f268a697300be7f6d70341bcdaeff6decf0c4ee36a5afbdf5b6a07b036440a57"
+    },
+    "uuv6-pitch-feedback-r3-validation.exit.json": {
+      "bytes": 454,
+      "sha256": "0e0a84165134a2f44b17a9f270c65c7b030665213ea27e1977c88241b5a5e457"
+    },
+    "uuv6-pitch-feedback-r3-validation.log": {
+      "bytes": 628,
+      "sha256": "3c2fafaee57932971d36228af18b0ab4b21d088ada215510c39294f51bbdc742"
+    },
+    "uuv6-pitch-feedback-r3.exit.json": {
+      "bytes": 532,
+      "sha256": "14d3f312912338a47046e411b4d56897f4b17671e066762bcb497a98c74f6ae3"
+    },
+    "uuv6-pitch-feedback-r3.log": {
+      "bytes": 19462,
+      "sha256": "5b5b24d25be507490959de32099c51c1d968eb326401bc0a62dcc2bf4c5df9d6"
+    },
+    "uuv6-pitch-nominal_physics-r3/before-cleanup.json.gz": {
+      "bytes": 199992,
+      "sha256": "a10b8f48f2b1b0ce45e50467ff1ec5cab0bf21372ce46da169ef28fd4364ab83"
+    },
+    "uuv6-pitch-nominal_physics-r3/cleanup-01-worker-begin.json": {
+      "bytes": 317,
+      "sha256": "f7bf5230279d335de37643cce542a7a6b7c0dfa33a1a8da5b48288d079465657"
+    },
+    "uuv6-pitch-nominal_physics-r3/cleanup-01-worker-end.json": {
+      "bytes": 315,
+      "sha256": "68c3020944cd185c5da2ba1bca70417da0976499c925440b830a3b21814c27ce"
+    },
+    "uuv6-pitch-nominal_physics-r3/cleanup-02-environment-begin.json": {
+      "bytes": 322,
+      "sha256": "5710cb17839d277871eff062eb574ca5c3e1210505f915c077e338bf70a099cc"
+    },
+    "uuv6-pitch-nominal_physics-r3/cleanup-02-environment-end.json": {
+      "bytes": 319,
+      "sha256": "d2173f171820dace1854fe40aeeffae402084d3b58c90cbbc50547efddf3c3d2"
+    },
+    "uuv6-pitch-nominal_physics-r3/cleanup-03-simulation_app-begin.json": {
+      "bytes": 324,
+      "sha256": "786235a3dd35678c0561c869d6df68d82d7636406a04f08d7181ff8239d4cda6"
+    },
+    "uuv6-pitch-nominal_physics-r3/cleanup-03-simulation_app-end.json": {
+      "bytes": 321,
+      "sha256": "77ee84bd5a815efe8b400bceae0453b57835962ed2aa30a02d80b3e842d63c8d"
+    },
+    "uuv6-pitch-nominal_physics-r3/summary.json": {
+      "bytes": 17824,
+      "sha256": "f69e6aa01d1614f6a55fe8b8225f409754f25e44b4496a85a42bda3de32e6db5"
+    },
+    "uuv6-pitch-nominal_physics-r3/trace.json.gz": {
+      "bytes": 200142,
+      "sha256": "e9336b03e2cb93efaff347734cb03248d25714601cbad1886a71ade1f3970b52"
+    },
+    "uuv6-pitch-nominal_physics-r3.exit.json": {
+      "bytes": 547,
+      "sha256": "30bd4eeebf3f6183126b1680bea3773a618724e37d6d626edcfd226a06b44b78"
+    },
+    "uuv6-pitch-nominal_physics-r3.log": {
+      "bytes": 19817,
+      "sha256": "af21553f318fce4a4dbf08baa7cd0a3c82a1a039775547621192609ca20fbf46"
+    },
+    "uuv6-pitch-projected_koopman-r3/before-cleanup.json.gz": {
+      "bytes": 404312,
+      "sha256": "7a20ac9dc9702616c473f0c0d18a39fea1035516a4f5c3c053336e748cb9b374"
+    },
+    "uuv6-pitch-projected_koopman-r3/cleanup-01-worker-begin.json": {
+      "bytes": 299,
+      "sha256": "0735a393cde68c1baff966dfa3b05b7ff9636990a0a5175dd79b223bb734d0a3"
+    },
+    "uuv6-pitch-projected_koopman-r3/cleanup-01-worker-end.json": {
+      "bytes": 297,
+      "sha256": "1746772cf4539605ebe977c8370f841a2165cc3546aa5ca02415fbd177845836"
+    },
+    "uuv6-pitch-projected_koopman-r3/cleanup-02-environment-begin.json": {
+      "bytes": 304,
+      "sha256": "8bb64fd83723564727fa4dd3b4fbdf92bbbdadfc86bc410cd980d458c3a5c40e"
+    },
+    "uuv6-pitch-projected_koopman-r3/cleanup-02-environment-end.json": {
+      "bytes": 301,
+      "sha256": "c23a83838242eb7d6fb964b6d800ad42fb952dd3ccf462ead08bda71516d6fef"
+    },
+    "uuv6-pitch-projected_koopman-r3/cleanup-03-simulation_app-begin.json": {
+      "bytes": 306,
+      "sha256": "d7b7b344cc4d5b481234458492797016b0850cc0b799b0766c0d92eedd1ff9c1"
+    },
+    "uuv6-pitch-projected_koopman-r3/cleanup-03-simulation_app-end.json": {
+      "bytes": 303,
+      "sha256": "1e89ee9c0da279f889223b7e68537cf97ae0b7ed06e82a96baabbc6541e6b776"
+    },
+    "uuv6-pitch-projected_koopman-r3/summary.json": {
+      "bytes": 17819,
+      "sha256": "574a8482b2ef5cf1ea9786080c5830c1354c38f8d1532d2fdd2adcca14694863"
+    },
+    "uuv6-pitch-projected_koopman-r3/trace.json.gz": {
+      "bytes": 404457,
+      "sha256": "05ca417997a73baf6fb0c898eea1eb12a3ad16dbb074fa6b59d463e3a9af7966"
+    },
+    "uuv6-pitch-projected_koopman-r3.exit.json": {
+      "bytes": 549,
+      "sha256": "d0b5c25e49df0a28efcb41e902d3a0abb9196cc39d7d8e2506bea787d77494d7"
+    },
+    "uuv6-pitch-projected_koopman-r3.log": {
+      "bytes": 19794,
+      "sha256": "058efd9bdea4302ee7848371359cd9311cbf2f7e84d164033ed05e88c0f1748a"
+    }
+  },
+  "bytes_before_inventory": 9235141,
+  "budget_note": "Native run wall time includes main and development failures; offline CPU analysis is separately recorded",
+  "model_fits": 0,
+  "phase9_complete": false,
+  "representation_gain_proven": false
+}

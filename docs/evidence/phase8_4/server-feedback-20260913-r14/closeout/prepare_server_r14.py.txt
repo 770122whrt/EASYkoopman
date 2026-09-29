@@ -1,0 +1,19 @@
+from pathlib import Path
+import hashlib,json,subprocess
+transfer=Path('/root/phase84-transfer-20260913/feedback-r14');root=Path('/root/EASYkoopman-phase8-4-feedback-20260913-r14')
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+read=lambda p:json.loads(p.read_text())
+bundle=transfer/'EasyUUV-phase8-4-feedback.bundle'
+assert sha(bundle)==(transfer/'bundle.sha256').read_text().strip()
+assert not root.exists()
+subprocess.run(['git','clone',str(bundle),str(root)],check=True)
+source=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()
+assert source==(transfer/'expected-source-commit.txt').read_text().strip()
+assert not subprocess.check_output(['git','status','--porcelain=v1','--untracked-files=all'],cwd=root,text=True).strip()
+manifest=read(root/'SOURCE_MANIFEST.json')
+for name,h in manifest['files_sha256'].items():assert sha(root/name)==h,name
+assert sha(transfer/'policy.json')==read(transfer/'request.json')['policy_sha256']
+assert sha(transfer/'prior-budget.json')==read(transfer/'request.json')['prior_budget_sha256']
+record={'status':'source_bundle_clone_and_all_hashes_verified','source_commit':source,'source_root':str(root),'files':len(manifest['files_sha256']),'bundle_sha256':sha(bundle),'policy_sha256':sha(transfer/'policy.json'),'runtime_not_started':True}
+(transfer/'server-preparation.json').write_text(json.dumps(record,indent=2)+'\n')
+print(json.dumps(record))

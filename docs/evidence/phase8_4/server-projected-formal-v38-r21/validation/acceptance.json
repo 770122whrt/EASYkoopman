@@ -1,0 +1,557 @@
+{
+  "status": "projected_formal_source_runtime_inventory_pullback_accepted",
+  "role": "validation",
+  "source_commit": "0fd19ff28b0c1f3260a0a6ecbacc3ee0edd783da",
+  "freeze_sha256": "a592b69b84e3d6a2fad0b0cc70d3613f44a23c077ac8f0a33bead61e156effa5",
+  "trace_sha256": {
+    "p38-base-validation-9400-prbs": "6614a153f102dd9344488d91b4164f5d255815bbf59005efdae290752dbd547b",
+    "p38-base-validation-9401-multisine": "e13f3edc0cda5511a04b48e438d0a29548718a02a46aa5cc07054d75a98682b2",
+    "p38-base-validation-9402-chirp": "950a3f8617e6193ca3cceb424632b176cb26cf6bcb40bf1ce65f4dcc870142e1",
+    "p38-long_body-validation-9403-prbs": "60e8fb8313c0ded0d5011dccf47a4e83ed034e978865b02a147ea1ead0fe2fd7",
+    "p38-long_body-validation-9404-multisine": "b0fb659d52dcd63441f3ebf2c1f9015788345ff31da8f5650c81c7f29db7fa74",
+    "p38-long_body-validation-9405-chirp": "2a5574eaf56a277993a9d292e9a54b8dd5a2bc26ece1b8722aaccee4d0db18cd",
+    "p38-heavy_moderate-validation-9406-prbs": "e26b0df0028e8e4d95ce5c2d1a492982164ed426a1f273d9de353c9fa5a9cc22",
+    "p38-heavy_moderate-validation-9407-multisine": "dc5f4bc89c6059d7ef28a1687ae6a85f3b70b391342919bfae168a9bae17c1e7",
+    "p38-heavy_moderate-validation-9408-chirp": "fd2d9dd758c93b6e74f1e434f7a68c45468cb810761de58fcba149f6ad9efc8d",
+    "p38-asymmetric-validation-9409-prbs": "3551081602172693a67d4b6d0c6dbc243e4384827181230ebd58f39befa9b21b",
+    "p38-asymmetric-validation-9410-multisine": "1d520b27587333ea198486b1becdf216fc62c1200635f91b4618c679ff62e13f",
+    "p38-asymmetric-validation-9411-chirp": "5309450d3d63fed0df015d27b9ae64d3d20df2e6933a34f27f5df46da27c1ed0",
+    "p38-uuv6-validation-9412-prbs": "e0df7e7944c9a6c5b518321fcf2eecbfe93df90ff574b2fa3a36b6909e67bb1e",
+    "p38-uuv6-validation-9413-multisine": "1aa71c23dfcfea7b6e8bc2eea71f80c0638373b90dc75dafc652f1444c335d15",
+    "p38-uuv6-validation-9414-chirp": "8232c49dd7f739a40de850b92e51f2115c5e59fe2ba5a9b52bd98c673d9717cb",
+    "p38-uuv6_angled-validation-9415-prbs": "add31e8c0ac15f5b71bf4f867b50e4ccf597a979b0b2eed429e72101de5f2998",
+    "p38-uuv6_angled-validation-9416-multisine": "dadd74a9ab8d1dd6d424231d0a35f9104163f4ff77e537b0f724ea044bc921cb",
+    "p38-uuv6_angled-validation-9417-chirp": "1087a6731e23d7b18b7ecdd6f26f7fe6fbd0b2fed50eac4400c6c9026a9262d1",
+    "p38-uuv4-validation-9418-prbs": "d818fea62dd61f9b9016dd9897d2491f0091d4bebbcb606b1daf16e0c009ca2e",
+    "p38-uuv4-validation-9419-multisine": "92230c24dae313cfae438127500acfe16ac6b25fb392e7d8aa144b5111a3052f",
+    "p38-uuv4-validation-9420-chirp": "cdaea319d6c4633171c1041f48de8281c9a2ffe3b5c29dbe14dcd3856980bbfa",
+    "p38-uuv4_angled-validation-9421-prbs": "1bc67e63198e0ebf7b0d3d529da510bd090ceb7411cf6c3dbe62c62257f077d2",
+    "p38-uuv4_angled-validation-9422-multisine": "1a0c591df5d8b396e35e38adbdb45bed77b6c737f2c42c76359086d070320564",
+    "p38-uuv4_angled-validation-9423-chirp": "bb7ddfd1a39120229c1e1794de7a17084cc105f68e9e616cbe7f915602c25efb"
+  },
+  "semantic_sha256": {
+    "p38-base-validation-9400-prbs": "974fa5ee0abc5ce28f533eeb61d7824057d50673e7fe53a35c0ef49183f576b6",
+    "p38-base-validation-9401-multisine": "f3bae1105ee53fd597b6f377bb582ea5f1224f8f74151f5e1f3e436392fd8056",
+    "p38-base-validation-9402-chirp": "51f5f9d52a8220932b14091e58956928553139e7771093ad5f426e79ff5bb164",
+    "p38-long_body-validation-9403-prbs": "b00950593b0a093bf28744abc72cfc68fab28caf50ff39b412cc0a24d2d58579",
+    "p38-long_body-validation-9404-multisine": "e3ffa948f0eac951d6e7a5d785a7bccbfad64fa2a228b226d6cedb0fe48fbdb2",
+    "p38-long_body-validation-9405-chirp": "f8baed60f8b00d30856bc1faf0835ce44e7a10ed074c2906f288531d749fcbb5",
+    "p38-heavy_moderate-validation-9406-prbs": "e68bd752ef7f2c29a4ddc2cea6e2ca9cfc0fbffa2ab3f41cbaf56d53f681aa57",
+    "p38-heavy_moderate-validation-9407-multisine": "b78b7aabf3b84f9f3917e442b75f2da8420e47068c1db5d9976371ce4b84eee6",
+    "p38-heavy_moderate-validation-9408-chirp": "04a2ea7938e959eeac06f3ac0c9d4830599c725a454a97153cee8a0109edc39a",
+    "p38-asymmetric-validation-9409-prbs": "2329f73807b97ae2d138f9686e0a40106c367dd9debac60c26f83585819c4cdc",
+    "p38-asymmetric-validation-9410-multisine": "400908c7e3534109456654f6a916a241e67843b00452f309a024b809827ea4df",
+    "p38-asymmetric-validation-9411-chirp": "0c589eef04832e8beb46d2b518208f3db59898813ea74c3468f9af4b9726b19b",
+    "p38-uuv6-validation-9412-prbs": "642048d707c7a0105596c6ce3d760a9f2c4cfac82f3f071eb4647f437e17d761",
+    "p38-uuv6-validation-9413-multisine": "35d93ea54c31b5007731cbb440d76f79d20ce8f5c54f4eed4a257403bb117b04",
+    "p38-uuv6-validation-9414-chirp": "e723d684658052d410a894c9b4523cc7cb88b214f555c82d01b6b2eebd7f1881",
+    "p38-uuv6_angled-validation-9415-prbs": "bece04dce005843ff93a506b06732dcdae529ebf884df80807ddff977eb49db7",
+    "p38-uuv6_angled-validation-9416-multisine": "f4e059a4e5ff7def9929f70e9f620b28e8af3d5def5692a1518e295105d199d8",
+    "p38-uuv6_angled-validation-9417-chirp": "f466751408aa2bff67deea3accfdd1532c4fca22a1aaf0416b68d11bbaae3d69",
+    "p38-uuv4-validation-9418-prbs": "a9a86eb3648b40e03abedda7f533a50c0468a6197c1817a69b2efd54f9212bce",
+    "p38-uuv4-validation-9419-multisine": "c6f649d91046534499b4617aa5770fc87f0232845e11cdcad6f0b76ae7db69ef",
+    "p38-uuv4-validation-9420-chirp": "7220e94d75d951f3cf1f9d2bcb5f37c825e81da2a24e647914c67bf3c9ec5a19",
+    "p38-uuv4_angled-validation-9421-prbs": "ff5a965ae2e48af364beb998fc46487f5c8329a747daf0f564e89f8e427f2e99",
+    "p38-uuv4_angled-validation-9422-multisine": "1ad069ca991cdbc0c045dd8ec709acde6113746e865c252484e244d0dd045404",
+    "p38-uuv4_angled-validation-9423-chirp": "1a70965a5a7f4324198eeaec87fccb4acaef0679c67ff0290bcb436b5ceb89a8"
+  },
+  "archive_sha256": "8fd8fa206fd62adba83b6a120b7a84761b74176b5e8cfac0cbfc37cdf7f53aa9",
+  "semantic_recomputation": {
+    "p38-base-validation-9400-prbs": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/maximum_motion/tilt_rad",
+          "server": 0.05765112361153272,
+          "local": 0.05765112361153271,
+          "absolute_difference": 6.938893903907228e-18,
+          "allowed_difference": 5.865112361153272e-11
+        },
+        {
+          "path": "/tail/maximum/tilt_rad",
+          "server": 0.04490504408125619,
+          "local": 0.04490504408125618,
+          "absolute_difference": 6.938893903907228e-18,
+          "allowed_difference": 4.5905044081256196e-11
+        }
+      ]
+    },
+    "p38-base-validation-9401-multisine": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/tail/maximum/tilt_rad",
+          "server": 0.05062005999390402,
+          "local": 0.05062005999390401,
+          "absolute_difference": 6.938893903907228e-18,
+          "allowed_difference": 5.162005999390402e-11
+        }
+      ]
+    },
+    "p38-base-validation-9402-chirp": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/tail/maximum/tilt_rad",
+          "server": 0.036915747313439655,
+          "local": 0.03691574731343965,
+          "absolute_difference": 6.938893903907228e-18,
+          "allowed_difference": 3.791574731343966e-11
+        }
+      ]
+    },
+    "p38-long_body-validation-9403-prbs": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/maximum_motion/tilt_rad",
+          "server": 0.06260347109704639,
+          "local": 0.06260347109704638,
+          "absolute_difference": 1.3877787807814457e-17,
+          "allowed_difference": 6.360347109704639e-11
+        },
+        {
+          "path": "/tail/maximum/tilt_rad",
+          "server": 0.06260347109704639,
+          "local": 0.06260347109704638,
+          "absolute_difference": 1.3877787807814457e-17,
+          "allowed_difference": 6.360347109704639e-11
+        }
+      ]
+    },
+    "p38-long_body-validation-9404-multisine": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/tail/maximum/tilt_rad",
+          "server": 0.04394061239221833,
+          "local": 0.043940612392218324,
+          "absolute_difference": 6.938893903907228e-18,
+          "allowed_difference": 4.494061239221834e-11
+        }
+      ]
+    },
+    "p38-long_body-validation-9405-chirp": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/tail/maximum/tilt_rad",
+          "server": 0.03704622124962737,
+          "local": 0.037046221249627365,
+          "absolute_difference": 6.938893903907228e-18,
+          "allowed_difference": 3.8046221249627376e-11
+        }
+      ]
+    },
+    "p38-heavy_moderate-validation-9406-prbs": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": []
+    },
+    "p38-heavy_moderate-validation-9407-multisine": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/maximum_motion/tilt_rad",
+          "server": 0.079549167466119,
+          "local": 0.07954916746611901,
+          "absolute_difference": 1.3877787807814457e-17,
+          "allowed_difference": 8.054916746611901e-11
+        }
+      ]
+    },
+    "p38-heavy_moderate-validation-9408-chirp": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": []
+    },
+    "p38-asymmetric-validation-9409-prbs": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/tail/maximum/tilt_rad",
+          "server": 0.016456304610894465,
+          "local": 0.01645630461089446,
+          "absolute_difference": 3.469446951953614e-18,
+          "allowed_difference": 1.7456304610894466e-11
+        }
+      ]
+    },
+    "p38-asymmetric-validation-9410-multisine": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": []
+    },
+    "p38-asymmetric-validation-9411-chirp": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": []
+    },
+    "p38-uuv6-validation-9412-prbs": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/1",
+          "server": 7.450580596923828e-08,
+          "local": 8.195638656616211e-08,
+          "absolute_difference": 7.450580596923828e-09,
+          "allowed_difference": 1e-07
+        },
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/2",
+          "server": 3.240449019870084e-05,
+          "local": 3.750906825672473e-05,
+          "absolute_difference": 5.10457805802389e-06,
+          "allowed_difference": 0.0001
+        },
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/3",
+          "server": 4.656906043010167e-06,
+          "local": 5.2222709321370075e-06,
+          "absolute_difference": 5.653648891268404e-07,
+          "allowed_difference": 1e-05
+        },
+        {
+          "path": "/tail/maximum/tilt_rad",
+          "server": 0.05595256566263516,
+          "local": 0.05595256566263515,
+          "absolute_difference": 6.938893903907228e-18,
+          "allowed_difference": 5.6952565662635165e-11
+        }
+      ]
+    },
+    "p38-uuv6-validation-9413-multisine": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/1",
+          "server": 5.960464477539063e-08,
+          "local": 6.705522537231445e-08,
+          "absolute_difference": 7.450580596923828e-09,
+          "allowed_difference": 1e-07
+        },
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/2",
+          "server": 3.0318853241340094e-05,
+          "local": 3.6677349477542975e-05,
+          "absolute_difference": 6.358496236202882e-06,
+          "allowed_difference": 0.0001
+        },
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/3",
+          "server": 2.933938141325143e-06,
+          "local": 4.122775138171164e-06,
+          "absolute_difference": 1.188836996846021e-06,
+          "allowed_difference": 1e-05
+        },
+        {
+          "path": "/tail/maximum/tilt_rad",
+          "server": 0.03316224845742621,
+          "local": 0.033162248457426206,
+          "absolute_difference": 6.938893903907228e-18,
+          "allowed_difference": 3.416224845742622e-11
+        }
+      ]
+    },
+    "p38-uuv6-validation-9414-chirp": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/1",
+          "server": 5.960464477539063e-08,
+          "local": 7.450580596923828e-08,
+          "absolute_difference": 1.4901161193847656e-08,
+          "allowed_difference": 1e-07
+        },
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/2",
+          "server": 3.197825886047667e-05,
+          "local": 4.0893451050294516e-05,
+          "absolute_difference": 8.915192189817844e-06,
+          "allowed_difference": 0.0001
+        },
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/3",
+          "server": 3.1592962876914044e-06,
+          "local": 4.674543006899512e-06,
+          "absolute_difference": 1.5152467192081076e-06,
+          "allowed_difference": 1e-05
+        },
+        {
+          "path": "/maximum_motion/tilt_rad",
+          "server": 0.13249116287162793,
+          "local": 0.1324911628716279,
+          "absolute_difference": 2.7755575615628914e-17,
+          "allowed_difference": 1.3349116287162793e-10
+        },
+        {
+          "path": "/tail/maximum/tilt_rad",
+          "server": 0.03927842697695534,
+          "local": 0.03927842697695535,
+          "absolute_difference": 6.938893903907228e-18,
+          "allowed_difference": 4.0278426976955354e-11
+        }
+      ]
+    },
+    "p38-uuv6_angled-validation-9415-prbs": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/1",
+          "server": 1.341104507446289e-07,
+          "local": 1.1920928955078125e-07,
+          "absolute_difference": 1.4901161193847656e-08,
+          "allowed_difference": 1e-07
+        },
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/2",
+          "server": 5.0354617570746996e-05,
+          "local": 5.0496166863922554e-05,
+          "absolute_difference": 1.4154929317555798e-07,
+          "allowed_difference": 0.0001
+        },
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/3",
+          "server": 9.538703970690676e-06,
+          "local": 1.0698888063487288e-05,
+          "absolute_difference": 1.1601840927966123e-06,
+          "allowed_difference": 1e-05
+        },
+        {
+          "path": "/tail/maximum/tilt_rad",
+          "server": 0.04716128919453008,
+          "local": 0.04716128919453009,
+          "absolute_difference": 6.938893903907228e-18,
+          "allowed_difference": 4.816128919453009e-11
+        }
+      ]
+    },
+    "p38-uuv6_angled-validation-9416-multisine": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/1",
+          "server": 7.450580596923828e-08,
+          "local": 6.705522537231445e-08,
+          "absolute_difference": 7.450580596923828e-09,
+          "allowed_difference": 1e-07
+        },
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/2",
+          "server": 3.4376645402289796e-05,
+          "local": 2.639786107749842e-05,
+          "absolute_difference": 7.978784324791377e-06,
+          "allowed_difference": 0.0001
+        },
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/3",
+          "server": 3.912927090787832e-06,
+          "local": 5.473649707710138e-06,
+          "absolute_difference": 1.5607226169223054e-06,
+          "allowed_difference": 1e-05
+        },
+        {
+          "path": "/maximum_motion/tilt_rad",
+          "server": 0.06295814705885346,
+          "local": 0.06295814705885347,
+          "absolute_difference": 1.3877787807814457e-17,
+          "allowed_difference": 6.395814705885348e-11
+        }
+      ]
+    },
+    "p38-uuv6_angled-validation-9417-chirp": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/1",
+          "server": 8.195638656616211e-08,
+          "local": 8.940696716308594e-08,
+          "absolute_difference": 7.450580596923828e-09,
+          "allowed_difference": 1e-07
+        },
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/2",
+          "server": 3.4628240229039875e-05,
+          "local": 4.630750846246201e-05,
+          "absolute_difference": 1.1679268233422135e-05,
+          "allowed_difference": 0.0001
+        },
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/3",
+          "server": 7.592437405889996e-06,
+          "local": 1.0042322076131427e-05,
+          "absolute_difference": 2.449884670241431e-06,
+          "allowed_difference": 1e-05
+        },
+        {
+          "path": "/maximum_motion/tilt_rad",
+          "server": 0.15349532941109703,
+          "local": 0.15349532941109706,
+          "absolute_difference": 2.7755575615628914e-17,
+          "allowed_difference": 1.5449532941109708e-10
+        }
+      ]
+    },
+    "p38-uuv4-validation-9418-prbs": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/1",
+          "server": 5.960464477539063e-08,
+          "local": 6.705522537231445e-08,
+          "absolute_difference": 7.450580596923828e-09,
+          "allowed_difference": 1e-07
+        },
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/2",
+          "server": 2.8001218971951403e-05,
+          "local": 2.874870570224175e-05,
+          "absolute_difference": 7.474867302903476e-07,
+          "allowed_difference": 0.0001
+        },
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/3",
+          "server": 3.941048971611849e-06,
+          "local": 4.970977185436709e-06,
+          "absolute_difference": 1.02992821382486e-06,
+          "allowed_difference": 1e-05
+        }
+      ]
+    },
+    "p38-uuv4-validation-9419-multisine": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/1",
+          "server": 2.9802322387695312e-08,
+          "local": 3.725290298461914e-08,
+          "absolute_difference": 7.450580596923828e-09,
+          "allowed_difference": 1e-07
+        },
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/2",
+          "server": 1.6524866460088106e-05,
+          "local": 1.842951392205805e-05,
+          "absolute_difference": 1.9046474619699438e-06,
+          "allowed_difference": 0.0001
+        },
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/3",
+          "server": 1.952429161455882e-06,
+          "local": 2.8855026190655053e-06,
+          "absolute_difference": 9.330734576096233e-07,
+          "allowed_difference": 1e-05
+        }
+      ]
+    },
+    "p38-uuv4-validation-9420-chirp": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/1",
+          "server": 3.725290298461914e-08,
+          "local": 4.470348358154297e-08,
+          "absolute_difference": 7.450580596923828e-09,
+          "allowed_difference": 1e-07
+        },
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/2",
+          "server": 2.6032561095234996e-05,
+          "local": 2.6555783229298413e-05,
+          "absolute_difference": 5.232221340634169e-07,
+          "allowed_difference": 0.0001
+        },
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/3",
+          "server": 3.469154017388121e-06,
+          "local": 4.509163671784222e-06,
+          "absolute_difference": 1.0400096543961013e-06,
+          "allowed_difference": 1e-05
+        },
+        {
+          "path": "/tail/maximum/tilt_rad",
+          "server": 0.03363841103029146,
+          "local": 0.03363841103029145,
+          "absolute_difference": 6.938893903907228e-18,
+          "allowed_difference": 3.463841103029146e-11
+        }
+      ]
+    },
+    "p38-uuv4_angled-validation-9421-prbs": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/3",
+          "server": 4.4191340391463996e-06,
+          "local": 4.510848314431826e-06,
+          "absolute_difference": 9.171427528542608e-08,
+          "allowed_difference": 1e-05
+        }
+      ]
+    },
+    "p38-uuv4_angled-validation-9422-multisine": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/3",
+          "server": 1.9619023223782506e-06,
+          "local": 1.9816085830015595e-06,
+          "absolute_difference": 1.9706260623308935e-08,
+          "allowed_difference": 1e-05
+        }
+      ]
+    },
+    "p38-uuv4_angled-validation-9423-chirp": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/3",
+          "server": 3.5712495076722917e-06,
+          "local": 3.7271625412671483e-06,
+          "absolute_difference": 1.5591303359485664e-07,
+          "allowed_difference": 1e-05
+        },
+        {
+          "path": "/maximum_motion/tilt_rad",
+          "server": 0.11112126228000811,
+          "local": 0.11112126228000813,
+          "absolute_difference": 1.3877787807814457e-17,
+          "allowed_difference": 1.1212126228000813e-10
+        },
+        {
+          "path": "/tail/maximum/tilt_rad",
+          "server": 0.03758354802900204,
+          "local": 0.037583548029002045,
+          "absolute_difference": 6.938893903907228e-18,
+          "allowed_difference": 3.858354802900205e-11
+        }
+      ]
+    }
+  },
+  "auditor_revision": {
+    "schema": "projected-v38-auditor-revision",
+    "parent_source_commit": "0fd19ff28b0c1f3260a0a6ecbacc3ee0edd783da",
+    "parent_freeze_sha256": "a592b69b84e3d6a2fad0b0cc70d3613f44a23c077ac8f0a33bead61e156effa5",
+    "auditor_source_commit": "00d01f1eda690d663612be8ff4d571a898b4347d",
+    "parent_source_manifest_sha256": "d345594418bd057ba06f9d2b58d595d278ee8d18c90e19ab9ef15120a9733c37",
+    "auditor_source_manifest_sha256": "c72d39e3ad432eea4f1d77436ef0afabcc62617cd8ce8ec6664ff93e135b79f4"
+  },
+  "validator_sha256": "be2b9ee408b6a9d7fa1701d6c5051aea2ea8a3fdc85245c8daa654771e446927",
+  "stage_status_sha256": "20e3ed0be32be685fd61a1ae09cb99ed76c334e3c387333052b7bcb5a946885e",
+  "training_eligible": false,
+  "model_handoff": false,
+  "runtime_sha256": {
+    "conda_environment.txt": "d43766a1fb9443c315638a620e88d966b262bc4680246aefd3c6a88cb045580c",
+    "isaaclab_release_commit.txt": "5065c632a86158d5a9d365cf719cbd657050b0ba09d3a87814957c851f10ca74",
+    "isaaclab_release_tag.txt": "51a76904570dfd01d966325f09cddf7ecc5f7608a65d6f4bf11d135bbb88ba0d",
+    "isaaclab_repo_commit.txt": "74568c75a29522612e3c859c074b161607420d2ce03f9c349ca1f89733559e95",
+    "isaaclab_repo_dirty_files.txt": "d591dfe88e1cf4c530bfb654cb03a8fb25a837d3bb347b6e63d50c5221114b90",
+    "isaaclab_repo_parent_commit.txt": "5065c632a86158d5a9d365cf719cbd657050b0ba09d3a87814957c851f10ca74",
+    "isaaclab_repo_patch.sha256": "aabc5ba5c9760f64517897e3822a89b82d5dc316acc9bd743c0e4761ff7496aa",
+    "isaaclab_version_file.txt": "fe650098093fad42070e8a2cacfb216a6c416af57bd26dd6ff479fef69f8bc71",
+    "python_executable.txt": "8ab3f3c4bae33180495105e2a8dfce7abf4175b780eb6bf421d8e5471cc4afa9",
+    "setuptools_version.txt": "67de5d917f8d7a774dd7aac64a7af32eb0228ae1f35dfbbfdf5d8d257cf17107",
+    "logs/conda_activation.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/editable_install.log": "595ff743cdd2251b520ef5f9e6214c1eeccf91ef0ce32c18b28850e5eb6b82ff",
+    "logs/isaaclab_repo_diff.patch": "d056adb8bb64fe7c9c34fffbd2478ef04155df8b60b071da942280952f829079",
+    "logs/python_version.log": "2559727b0cf51e54ab4937e667eddd9c0976e59c91ea45b458f76daf77b04269",
+    "logs/setuptools_version.log": "eb973ecbbf0f845d65f8de6da55e8d9077382fa79f4ac25a1c4b7c85cc7e4305"
+  },
+  "physics_ticks": 24576
+}

@@ -1,0 +1,139 @@
+"""Execute the fixed12-fit representation protocol; exploratory only."""
+from pathlib import Path
+import hashlib,json
+import numpy as np
+from easyuuv_nc.embodiments import qualification_record
+from koopman.actuator_memory_v21 import ActuatorMemoryProxyV21
+from koopman.representation_probe_v23 import VARIANTS, features, fit, rollout
+from koopman.so3_v21 import build_increment_target_v21,so3_geodesic_radians_v21
+from workflows.control_seam_v23 import ControlKernel,estimate_speed
+from workflows.trace_control_v23 import actions
+
+root=Path.cwd();out=root/'docs/evidence/phase8_3/representation-assay-20260912';out.mkdir(exist_ok=False)
+protocol=root/'.planning/phases/08.3-control-identification-forensics/08.3-REPRESENTATION-PROTOCOL.md'
+supp=root/'docs/evidence/phase8_3/server-representation-20260912/raw'
+old=root/'docs/evidence/phase8_3/server-initialization-repair-20260912/raw'
+files=[]
+for c,s in [('base',8201),('uuv4',8201),('uuv6',8201),('uuv6',8202)]:
+ files.append((old,f'initialization/results/init-{c}-{s}-authored-cold/trace.json'))
+for c,s,e in [('base',8202,'prbs'),('uuv4',8202,'prbs')]+[(c,8201,e) for c in ['base','uuv4','uuv6'] for e in ['zero','step']]:
+ files.append((supp,f'results/repr-{c}-{s}-{e}/trace.json'))
+
+episodes=[]
+for base,rel in files:
+ p=base/rel;sha=hashlib.sha256(p.read_bytes()).hexdigest()
+ assert sha==json.loads((base/'inventory.json').read_text())[rel]['sha256']
+ d=json.loads(p.read_text());q=d['request'];c=q['configuration'];mask=qualification_record(c)['control_mask']
+ assert q['physics_initialization_mode']=='authored_static_v1' and q['condition']=='cold'
+ assert q['inertia_sync_mode']=='declared_v1' and q['control_history_reset_mode']=='episode_local_v1'
+ assert len(d['substeps'])==64 and len(d['boundary_states'])==32
+ kernel=ControlKernel(c);speed=np.zeros(kernel.env._num_thrusters)
+ proxy=ActuatorMemoryProxyV21(kernel.tau,1/60,mask)
+ states=np.asarray([d['observed_start_boundary']['state_11'][0]]+[r['state_11'][0] for r in d['boundary_states']])
+ assert np.all(np.asarray(d['observed_start_boundary']['actuator_speed_n'])==0)
+ assert np.all(np.asarray(d['observed_start_boundary']['old_actions'])==0)
+ control=[];proxies=[];speeds=[];pwm=[];errors=[]
+ for i,a in enumerate(actions(q)):
+  proxies.append(proxy.current());speeds.append(speed.copy());pair=[]
+  for j in range(2):
+   row=d['substeps'][2*i+j];cmd=kernel.command(a)
+   assert np.array_equal(np.array(a,dtype=np.float32),np.array(row['command']['telemetry']['raw_action_4'][0],dtype=np.float32))
+   assert np.max(np.abs(cmd['virtual_control']-row['command']['telemetry']['virtual_control_4'][0]))<=1e-6
+   assert np.max(np.abs(cmd['pwm']-row['command']['telemetry']['motor_pwm_n'][0]))<=1e-6
+   speed=estimate_speed(speed,cmd['pwm'],tau=kernel.tau,dt=1/120)
+   error=speed-np.asarray(row['command']['actuator_speed_n'][0]);assert np.max(np.abs(error))<=1e-3
+   errors.append(error);pwm.append(cmd['pwm']);pair.append(cmd['virtual_control'])
+  control.append(pair);proxy.advance(pair[-1])
+ control=np.asarray(control);speeds=np.asarray(speeds);pwm=np.asarray(pwm)
+ target=np.asarray([build_increment_target_v21(a,b) for a,b in zip(states[:-1],states[1:])])
+ role='fit' if q['seed']==8201 and q['excitation']=='prbs' else 'validation' if q['excitation']=='prbs' else 'out_of_family'
+ meta={'id':q['run_id'],'configuration':c,'seed':q['seed'],'excitation':q['excitation'],'role':role,
+       'trace_path':p.relative_to(root).as_posix(),'trace_sha256':sha,'intervals':32,
+       'known_zero_causal_estimate_error_max':float(np.max(np.abs(errors))),
+       'unique_raw_actions':len(np.unique(actions(q),axis=0)),
+       'pwm_deadzone_fraction_by_slot':np.mean(np.abs(pwm)<.02,axis=0).tolist(),
+       'pwm_saturation_fraction_by_slot':np.mean(np.abs(pwm)>=1,axis=0).tolist(),
+       'first_minus_last_control_max_by_axis':np.max(np.abs(control[:,0]-control[:,1]),axis=0).tolist(),
+       'thruster_slots':{'positions_body_m':d['topology']['thruster_com_offsets'],'orientations_body_wxyz':d['topology']['thruster_quats'],'allocation_B':kernel.B.numpy().tolist()},
+       'mask':mask}
+ episodes.append({'meta':meta,'states':states,'target':target,'controls':control,'proxy':np.asarray(proxies),'speed':speeds})
+
+def metrics(predicted,actual):
+ return {'depth':float(np.sqrt(np.mean((predicted[...,0]-actual[...,0])**2))),
+         'attitude':float(np.sqrt(np.mean(so3_geodesic_radians_v21(predicted[...,1:5],actual[...,1:5])**2))),
+         'linear_velocity':float(np.sqrt(np.mean((predicted[...,5:8]-actual[...,5:8])**2))),
+         'angular_velocity':float(np.sqrt(np.mean((predicted[...,8:11]-actual[...,8:11])**2)))}
+
+def evaluate(model,ep,variant,horizon):
+ endpoints=[];paths=[];failures=[]
+ memory=ep['speed' if variant.endswith('speed') else 'proxy'] if variant!='persistence' else None
+ for start in range(33-horizon):
+  if model is None:
+   predictions=np.tile(ep['states'][start],(horizon,1))
+  else:
+   r=rollout(model,ep['states'][start],memory[start:start+horizon],ep['controls'][start:start+horizon],variant=variant,mask=ep['meta']['mask'])
+   if r['status']!='success':failures.append({'start':start,**{k:v for k,v in r.items() if k!='predictions'}});continue
+   predictions=r['predictions']
+  endpoints.append(predictions[-1]);paths.append(predictions)
+ row={'horizon':horizon,'origins':33-horizon,'successes':len(endpoints),'failures':failures,'endpoint_rmse':None,'path_rmse':None}
+ if not failures:
+  row['endpoint_rmse']=metrics(np.asarray(endpoints),ep['states'][horizon:])
+  truth=np.asarray([ep['states'][s+1:s+1+horizon] for s in range(33-horizon)])
+  row['path_rmse']=metrics(np.asarray(paths),truth)
+ return row
+
+def correlation(residual,history):
+ r=residual-residual.mean(0);h=history-history.mean(0)
+ den=np.linalg.norm(r,axis=0)[:,None]*np.linalg.norm(h,axis=0)[None,:]
+ result=np.divide(r.T@h,den,out=np.zeros_like(den),where=den>1e-12)
+ return {'matrix':result.tolist(),'undefined_zero_variance':(den<=1e-12).tolist(),'max_abs':float(np.max(np.abs(result)))}
+
+results=[];fitted=[]
+for c in ['base','uuv4','uuv6']:
+ train=next(e for e in episodes if e['meta']['configuration']==c and e['meta']['role']=='fit')
+ validation=[e for e in episodes if e['meta']['configuration']==c and e['meta']['role']!='fit']
+ for ep in validation:
+  results.append({'episode':ep['meta']['id'],'configuration':c,'role':ep['meta']['role'],'variant':'persistence','horizons':[evaluate(None,ep,'persistence',h) for h in [1,5,20,32]]})
+ for variant in VARIANTS:
+  key='speed' if variant.endswith('speed') else 'proxy'
+  design=np.asarray([features(x,m,u,variant=variant,mask=train['meta']['mask']) for x,m,u in zip(train['states'][:-1],train[key],train['controls'])])
+  model=fit(design,train['target'])
+  model_record={'configuration':c,'variant':variant,'fit_episode':train['meta']['id'],'audit':model.audit,
+                'mean':model.mean.tolist(),'scale':model.scale.tolist(),'intercept':model.intercept.tolist(),'coefficient':model.coefficient.tolist()}
+  fitted.append(model_record)
+  for ep in validation:
+   design=np.asarray([features(x,m,u,variant=variant,mask=ep['meta']['mask']) for x,m,u in zip(ep['states'][:-1],ep[key],ep['controls'])])
+   residual=model.predict(design)-ep['target']
+   history=np.column_stack((ep['controls'][:,0]-ep['controls'][:,1],ep['speed']))
+   result={'episode':ep['meta']['id'],'configuration':c,'role':ep['meta']['role'],'variant':variant,
+           'increment_rmse_by_channel':np.sqrt(np.mean(residual**2,axis=0)).tolist(),
+           'residual_history_correlation':correlation(residual,history),
+           'horizons':[evaluate(model,ep,variant,h) for h in [1,5,20,32]]}
+   results.append(result)
+summary=[]
+for result in results:
+ baseline=next(r for r in results if r['episode']==result['episode'] and r['variant']=='persistence')
+ for item,b in zip(result['horizons'],baseline['horizons']):
+  item['ratio_to_persistence_floor_001']={k:v/max(b['endpoint_rmse'][k],.01) for k,v in item['endpoint_rmse'].items()} if item['endpoint_rmse'] else None
+for role in ['validation','out_of_family']:
+ for variant in ('persistence',*VARIANTS):
+  for h in [1,5,20,32]:
+   group=[r for r in results if r['role']==role and r['variant']==variant]
+   entries=[next(e for e in r['horizons'] if e['horizon']==h) for r in group]
+   ok=all(e['endpoint_rmse'] is not None for e in entries)
+   summary.append({'role':role,'variant':variant,'horizon':h,'episodes':len(entries),'complete':ok,
+                   'macro_rmse':{k:float(np.mean([e['endpoint_rmse'][k] for e in entries])) for k in entries[0]['endpoint_rmse']} if ok else None,
+                   'macro_ratio':{k:float(np.mean([e['ratio_to_persistence_floor_001'][k] for e in entries])) for k in entries[0]['ratio_to_persistence_floor_001']} if ok else None,
+                   'failed_origins':sum(len(e['failures']) for e in entries)})
+report={'status':'bounded_representation_assay_completed','evidence_level':'exploratory_fit_on_accepted_real_traces',
+ 'protocol_sha256':hashlib.sha256(protocol.read_bytes()).hexdigest(),'fits':len(fitted),'fit_role_episodes':3,'evaluation_role_episodes':9,
+ 'teacher_forcing_during_recursion':False,'measured_actuator_feedback':False,'model_handoff':False,
+ 'episodes':[e['meta'] for e in episodes],'models':fitted,'results':results,'summary':summary,
+ 'limits':['32 intervals and one fit episode per configuration','only three configurations and one evaluation PRBS seed','all fits exploratory, no OOD or formal test claim','different representation dimensions and excitation coverage confound comparisons','future commands available only for this preset-action controller','endpoint and path metrics reported; macro requires every origin, not survivor averaging','no60 or512-step prediction evidence']}
+(out/'report.json').write_text(json.dumps(report,indent=2,allow_nan=False)+'\n')
+(out/'analysis-script.py.txt').write_text(Path(__file__).read_text())
+(out/'protocol.md').write_bytes(protocol.read_bytes())
+(out/'representation_probe_v23.py.txt').write_bytes((root/'koopman/representation_probe_v23.py').read_bytes())
+print(json.dumps({'fits':len(fitted),'validation20':[r for r in summary if r['role']=='validation' and r['horizon']==20],
+                 'out_of_family20':[r for r in summary if r['role']=='out_of_family' and r['horizon']==20],
+                 'fit_ranks':[{k:m[k] for k in ['configuration','variant','audit']} for m in fitted]},indent=2))

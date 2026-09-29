@@ -1,0 +1,58 @@
+.........................FFF.                                            [100%]
+================================== FAILURES ===================================
+_ test_reset_observation_cannot_be_reused_after_mutation_before_binding[rotor] _
+
+bridge = <function bridge.<locals>.create at 0x000002960636D4E0>
+field = 'rotor'
+
+    @pytest.mark.parametrize('field', ['rotor', 'clock', 'state'])
+    def test_reset_observation_cannot_be_reused_after_mutation_before_binding(bridge, field):
+        env, s, run, _ = bridge(bind=False)
+        try:
+            s.reset_observation()
+            if field == 'rotor': env.thruster_dynamics.state[0, 0] = 1.
+            if field == 'clock': env._thruster_dynamics_time_s[0] = 1.
+            if field == 'state': env.x[0, 0] += .01
+>           with pytest.raises((ValueError, RuntimeError), match='reset'):
+E           Failed: DID NOT RAISE any of (<class 'ValueError'>, <class 'RuntimeError'>)
+
+tests\test_isaac_execution_v55.py:283: Failed
+_ test_reset_observation_cannot_be_reused_after_mutation_before_binding[clock] _
+
+bridge = <function bridge.<locals>.create at 0x000002960636E200>
+field = 'clock'
+
+    @pytest.mark.parametrize('field', ['rotor', 'clock', 'state'])
+    def test_reset_observation_cannot_be_reused_after_mutation_before_binding(bridge, field):
+        env, s, run, _ = bridge(bind=False)
+        try:
+            s.reset_observation()
+            if field == 'rotor': env.thruster_dynamics.state[0, 0] = 1.
+            if field == 'clock': env._thruster_dynamics_time_s[0] = 1.
+            if field == 'state': env.x[0, 0] += .01
+>           with pytest.raises((ValueError, RuntimeError), match='reset'):
+E           Failed: DID NOT RAISE any of (<class 'ValueError'>, <class 'RuntimeError'>)
+
+tests\test_isaac_execution_v55.py:283: Failed
+_ test_reset_observation_cannot_be_reused_after_mutation_before_binding[state] _
+
+bridge = <function bridge.<locals>.create at 0x000002960636E660>
+field = 'state'
+
+    @pytest.mark.parametrize('field', ['rotor', 'clock', 'state'])
+    def test_reset_observation_cannot_be_reused_after_mutation_before_binding(bridge, field):
+        env, s, run, _ = bridge(bind=False)
+        try:
+            s.reset_observation()
+            if field == 'rotor': env.thruster_dynamics.state[0, 0] = 1.
+            if field == 'clock': env._thruster_dynamics_time_s[0] = 1.
+            if field == 'state': env.x[0, 0] += .01
+>           with pytest.raises((ValueError, RuntimeError), match='reset'):
+E           Failed: DID NOT RAISE any of (<class 'ValueError'>, <class 'RuntimeError'>)
+
+tests\test_isaac_execution_v55.py:283: Failed
+=========================== short test summary info ===========================
+FAILED tests/test_isaac_execution_v55.py::test_reset_observation_cannot_be_reused_after_mutation_before_binding[rotor]
+FAILED tests/test_isaac_execution_v55.py::test_reset_observation_cannot_be_reused_after_mutation_before_binding[clock]
+FAILED tests/test_isaac_execution_v55.py::test_reset_observation_cannot_be_reused_after_mutation_before_binding[state]
+3 failed, 26 passed in 9.87s

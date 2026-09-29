@@ -1,0 +1,31 @@
+FF                                                                       [100%]
+================================== FAILURES ===================================
+__________ test_startup_binding_accepts_equivalent_quaternion_signs ___________
+
+    def test_startup_binding_accepts_equivalent_quaternion_signs():
+        policy=make_policy();x=initial();ref=x[:5].copy();policy.prepare_startup(x,ref)
+        x[1:5]*=-1;ref[1:5]*=-1
+>       assert policy.decide(x,ref,previous=None)['status']=='ready'
+E       AssertionError: assert 'no_command' == 'ready'
+E         
+E         - ready
+E         + no_command
+
+tests\test_bounded_feedback_v46.py:141: AssertionError
+_____ test_swapped_prepared_configuration_cannot_be_used_with_old_domain ______
+
+    def test_swapped_prepared_configuration_cannot_be_used_with_old_domain():
+        from koopman.bounded_feedback_v46 import PreparedSteadyMap
+        policy=make_policy();policy.steady=PreparedSteadyMap('uuv6',context('uuv6'))
+        result=policy.decide(initial(),initial()[:5],previous=np.zeros(4))
+>       assert result['status']=='no_command' and result['reason']=='policy_binding_changed'
+E       AssertionError: assert ('ready' == 'no_command'
+E         
+E         - no_command
+E         + ready)
+
+tests\test_bounded_feedback_v46.py:148: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_bounded_feedback_v46.py::test_startup_binding_accepts_equivalent_quaternion_signs
+FAILED tests/test_bounded_feedback_v46.py::test_swapped_prepared_configuration_cannot_be_used_with_old_domain
+2 failed, 53 deselected in 4.14s

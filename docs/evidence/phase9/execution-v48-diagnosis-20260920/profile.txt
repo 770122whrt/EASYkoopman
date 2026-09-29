@@ -1,0 +1,43 @@
+         1670 function calls (1628 primitive calls) in 0.011 seconds
+
+   Ordered by: cumulative time
+   List reduced from 203 to 35 due to restriction <35>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.011    0.011 E:\code for project\Agentic AUV\EasyUUV\workflows\diagnose_execution_ledger_v48.py:64(interval)
+        2    0.000    0.000    0.006    0.003 E:\code for project\Agentic AUV\EasyUUV\koopman\execution_ledger_v48.py:242(acknowledge)
+        2    0.000    0.000    0.004    0.002 E:\code for project\Agentic AUV\EasyUUV\koopman\command_state_v39.py:68(record_issued)
+        2    0.000    0.000    0.004    0.002 E:\code for project\Agentic AUV\EasyUUV\.pytest-tmp\phase84-projected-formal-v38-20260920-r23\source\workflows\control_seam_v23.py:84(command)
+        1    0.000    0.000    0.003    0.003 E:\code for project\Agentic AUV\EasyUUV\koopman\execution_ledger_v48.py:177(capture)
+        2    0.002    0.001    0.003    0.001 E:\code for project\Agentic AUV\EasyUUV\.pytest-tmp\phase84-projected-formal-v38-20260920-r23\source\easyuuv_nc\env\easyuuv_env.py:2163(_pid_control)
+        3    0.000    0.000    0.002    0.001 E:\code for project\Agentic AUV\EasyUUV\koopman\execution_ledger_v48.py:163(_checked_command)
+        3    0.000    0.000    0.001    0.000 E:\code for project\Agentic AUV\EasyUUV\koopman\bounded_feedback_v46.py:107(inspect)
+        1    0.000    0.000    0.001    0.001 E:\code for project\Agentic AUV\EasyUUV\koopman\execution_ledger_v48.py:206(reserve)
+        5    0.000    0.000    0.001    0.000 E:\code for project\Agentic AUV\EasyUUV\koopman\execution_ledger_v48.py:156(_binding_check)
+        1    0.000    0.000    0.001    0.001 E:\code for project\Agentic AUV\EasyUUV\koopman\command_state_v39.py:84(snapshot)
+        5    0.000    0.000    0.001    0.000 E:\code for project\Agentic AUV\EasyUUV\koopman\bounded_mpc_v44.py:78(identity)
+        3    0.000    0.000    0.001    0.000 E:\code for project\Agentic AUV\EasyUUV\koopman\bounded_feedback_v46.py:93(evaluate)
+        3    0.000    0.000    0.001    0.000 E:\code for project\Agentic AUV\EasyUUV\.venv\Lib\site-packages\numpy\core\numeric.py:2170(allclose)
+        1    0.000    0.000    0.001    0.001 E:\code for project\Agentic AUV\EasyUUV\koopman\bounded_mpc_v44.py:82(check_states)
+       97    0.001    0.000    0.001    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+        6    0.000    0.000    0.001    0.000 E:\anaconda\Lib\json\__init__.py:183(dumps)
+        1    0.000    0.000    0.001    0.001 E:\code for project\Agentic AUV\EasyUUV\koopman\bounded_feedback_v46.py:185(_same_pose_values)
+        3    0.000    0.000    0.001    0.000 E:\code for project\Agentic AUV\EasyUUV\.venv\Lib\site-packages\numpy\core\numeric.py:2249(isclose)
+        6    0.000    0.000    0.001    0.000 E:\anaconda\Lib\json\encoder.py:183(encode)
+        6    0.001    0.000    0.001    0.000 E:\anaconda\Lib\json\encoder.py:205(iterencode)
+     45/3    0.000    0.000    0.001    0.000 E:\anaconda\Lib\copy.py:118(deepcopy)
+       45    0.000    0.000    0.001    0.000 E:\code for project\Agentic AUV\EasyUUV\.venv\Lib\site-packages\numpy\core\fromnumeric.py:71(_wrapreduction)
+        1    0.000    0.000    0.001    0.001 E:\code for project\Agentic AUV\EasyUUV\koopman\control_objective_v44.py:36(state_features)
+        3    0.000    0.000    0.001    0.000 E:\code for project\Agentic AUV\EasyUUV\.venv\Lib\site-packages\numpy\core\numeric.py:2330(within_tol)
+        3    0.000    0.000    0.000    0.000 E:\anaconda\Lib\copy.py:247(_reconstruct)
+        2    0.000    0.000    0.000    0.000 E:\code for project\Agentic AUV\EasyUUV\.pytest-tmp\phase84-projected-formal-v38-20260920-r23\source\workflows\actuator_replay_v28.py:13(advance_pwm)
+       40    0.000    0.000    0.000    0.000 {method 'all' of 'numpy.ndarray' objects}
+        1    0.000    0.000    0.000    0.000 E:\code for project\Agentic AUV\EasyUUV\.pytest-tmp\phase84-projected-formal-v38-20260920-r23\source\koopman\command_prediction_v37.py:16(validate_context)
+        3    0.000    0.000    0.000    0.000 E:\code for project\Agentic AUV\EasyUUV\koopman\prepared_allocation_v42.py:59(command)
+       40    0.000    0.000    0.000    0.000 E:\code for project\Agentic AUV\EasyUUV\.venv\Lib\site-packages\numpy\core\_methods.py:61(_all)
+       18    0.000    0.000    0.000    0.000 E:\code for project\Agentic AUV\EasyUUV\.venv\Lib\site-packages\numpy\core\fromnumeric.py:2322(any)
+        8    0.000    0.000    0.000    0.000 E:\anaconda\Lib\contextlib.py:141(__exit__)
+       13    0.000    0.000    0.000    0.000 E:\code for project\Agentic AUV\EasyUUV\.venv\Lib\site-packages\numpy\linalg\linalg.py:2383(norm)
+       18    0.000    0.000    0.000    0.000 E:\code for project\Agentic AUV\EasyUUV\.venv\Lib\site-packages\numpy\core\numeric.py:2378(array_equal)
+
+

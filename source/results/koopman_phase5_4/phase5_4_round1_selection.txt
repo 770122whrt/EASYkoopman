@@ -1,0 +1,605 @@
+{
+  "selection_status": "no_selection",
+  "selected_profile_id": null,
+  "best_track_r_candidate": null,
+  "best_track_rm_candidate": null,
+  "pareto_frontier": [
+    "r_pwm030",
+    "r_pwm035",
+    "r_pwm030_action_smooth",
+    "rm_timeout14",
+    "rm_timeout16",
+    "rm_midweights",
+    "rm_midweights_timeout14",
+    "rm_lightweights_timeout14",
+    "rm_horizon4_timeout14"
+  ],
+  "scores": [
+    {
+      "profile_id": "r_pwm025",
+      "track": "R",
+      "parent_profile_id": "reward_v1_only",
+      "reward_profile": "koopman_mpc_stability_v1",
+      "adapter_profile": "heuristic_reference_delta_v0_default",
+      "mpc_profile": "mpc_default_v0",
+      "changed_axis": "reward",
+      "sweep_round": "round1",
+      "candidate_metrics": {
+        "pwm_saturation_rate_mean": 0.1625,
+        "fallback_rate_mean": 0.26380952380952377,
+        "policy_action_clip_rate_mean": 0.1964285714285714,
+        "depth_rmse_mean": 1.1043649182789859,
+        "attitude_rmse_mean": 0.7596421778704251,
+        "latency_ms_mean": 11.952011567496116,
+        "latency_ms_max": 14.16041236370802,
+        "latency_budget_violation_rate": 0.0,
+        "fallback_reason_counts": {
+          "no_cost_improvement": 28.0,
+          "timeout": 249.0
+        }
+      },
+      "comparison_baseline": "reward_v1_only",
+      "health_floor": "baseline_rerun",
+      "cross_reference": "cross_reward_v1_mpc_health",
+      "improvements": {
+        "pwm_saturation_rate_mean": 0.5190274841437632,
+        "fallback_rate_mean": -1.0,
+        "policy_action_clip_rate_mean": -0.41025641025641024,
+        "depth_rmse_mean": -0.17987151020970862,
+        "attitude_rmse_mean": -0.021884000985051704
+      },
+      "health_score": -0.24545711315578816,
+      "hard_gate_passed": true,
+      "fallback_reason_gate_passed": true,
+      "selection_status": "no_selection",
+      "failure_reasons": [],
+      "protected_strength_failures": [
+        "lost_reward_fallback_strength"
+      ],
+      "remaining_bottlenecks": [],
+      "parameter_distance_from_parent": 0.9999999999999998,
+      "changed_parameter_count": 1,
+      "parameter_step_count": {
+        "phase5_2_w_pwm_sat": 0.9999999999999998
+      },
+      "nearest_smaller_candidate_id": null,
+      "minimal_parameter_selected": false
+    },
+    {
+      "profile_id": "r_pwm030",
+      "track": "R",
+      "parent_profile_id": "reward_v1_only",
+      "reward_profile": "koopman_mpc_stability_v1",
+      "adapter_profile": "heuristic_reference_delta_v0_default",
+      "mpc_profile": "mpc_default_v0",
+      "changed_axis": "reward",
+      "sweep_round": "round1",
+      "candidate_metrics": {
+        "pwm_saturation_rate_mean": 0.155,
+        "fallback_rate_mean": 0.2219047619047619,
+        "policy_action_clip_rate_mean": 0.4664285714285714,
+        "depth_rmse_mean": 0.5909220601468442,
+        "attitude_rmse_mean": 0.7835408002628196,
+        "latency_ms_mean": 11.889627398479552,
+        "latency_ms_max": 13.344055972993374,
+        "latency_budget_violation_rate": 0.0,
+        "fallback_reason_counts": {
+          "no_cost_improvement": 34.0,
+          "timeout": 199.0
+        }
+      },
+      "comparison_baseline": "reward_v1_only",
+      "health_floor": "baseline_rerun",
+      "cross_reference": "cross_reward_v1_mpc_health",
+      "improvements": {
+        "pwm_saturation_rate_mean": 0.5412262156448203,
+        "fallback_rate_mean": -0.7786259541984735,
+        "policy_action_clip_rate_mean": -1.0,
+        "depth_rmse_mean": 0.3686759765891451,
+        "attitude_rmse_mean": -0.054032847612860604
+      },
+      "health_score": -0.20101802408187033,
+      "hard_gate_passed": true,
+      "fallback_reason_gate_passed": true,
+      "selection_status": "no_selection",
+      "failure_reasons": [],
+      "protected_strength_failures": [
+        "lost_reward_fallback_strength"
+      ],
+      "remaining_bottlenecks": [],
+      "parameter_distance_from_parent": 1.9999999999999996,
+      "changed_parameter_count": 1,
+      "parameter_step_count": {
+        "phase5_2_w_pwm_sat": 1.9999999999999996
+      },
+      "nearest_smaller_candidate_id": "r_pwm025",
+      "minimal_parameter_selected": false
+    },
+    {
+      "profile_id": "r_pwm035",
+      "track": "R",
+      "parent_profile_id": "reward_v1_only",
+      "reward_profile": "koopman_mpc_stability_v1",
+      "adapter_profile": "heuristic_reference_delta_v0_default",
+      "mpc_profile": "mpc_default_v0",
+      "changed_axis": "reward",
+      "sweep_round": "round1",
+      "candidate_metrics": {
+        "pwm_saturation_rate_mean": 0.09333333333333334,
+        "fallback_rate_mean": 0.2895238095238095,
+        "policy_action_clip_rate_mean": 0.0,
+        "depth_rmse_mean": 0.8238834360958331,
+        "attitude_rmse_mean": 0.723142838159854,
+        "latency_ms_mean": 11.910323994677691,
+        "latency_ms_max": 13.406451791524887,
+        "latency_budget_violation_rate": 0.0,
+        "fallback_reason_counts": {
+          "no_cost_improvement": 95.0,
+          "timeout": 209.0
+        }
+      },
+      "comparison_baseline": "reward_v1_only",
+      "health_floor": "baseline_rerun",
+      "cross_reference": "cross_reward_v1_mpc_health",
+      "improvements": {
+        "pwm_saturation_rate_mean": 0.7237491190979564,
+        "fallback_rate_mean": -1.0,
+        "policy_action_clip_rate_mean": 1.0,
+        "depth_rmse_mean": 0.11978678614853686,
+        "attitude_rmse_mean": 0.027215551914067344
+      },
+      "health_score": 0.14261619219560323,
+      "hard_gate_passed": true,
+      "fallback_reason_gate_passed": true,
+      "selection_status": "no_selection",
+      "failure_reasons": [],
+      "protected_strength_failures": [
+        "lost_reward_fallback_strength"
+      ],
+      "remaining_bottlenecks": [],
+      "parameter_distance_from_parent": 2.999999999999999,
+      "changed_parameter_count": 1,
+      "parameter_step_count": {
+        "phase5_2_w_pwm_sat": 2.999999999999999
+      },
+      "nearest_smaller_candidate_id": "r_pwm030",
+      "minimal_parameter_selected": false
+    },
+    {
+      "profile_id": "r_pwm030_action_smooth",
+      "track": "R",
+      "parent_profile_id": "reward_v1_only",
+      "reward_profile": "koopman_mpc_stability_v1",
+      "adapter_profile": "heuristic_reference_delta_v0_default",
+      "mpc_profile": "mpc_default_v0",
+      "changed_axis": "reward",
+      "sweep_round": "round1",
+      "candidate_metrics": {
+        "pwm_saturation_rate_mean": 0.09845238095238096,
+        "fallback_rate_mean": 0.24190476190476193,
+        "policy_action_clip_rate_mean": 0.2654761904761905,
+        "depth_rmse_mean": 0.4837642556304891,
+        "attitude_rmse_mean": 0.7610166813658181,
+        "latency_ms_mean": 11.8193071237987,
+        "latency_ms_max": 18.900438211858273,
+        "latency_budget_violation_rate": 0.0,
+        "fallback_reason_counts": {
+          "no_cost_improvement": 96.0,
+          "timeout": 158.0
+        }
+      },
+      "comparison_baseline": "reward_v1_only",
+      "health_floor": "baseline_rerun",
+      "cross_reference": "cross_reward_v1_mpc_health",
+      "improvements": {
+        "pwm_saturation_rate_mean": 0.7085976039464411,
+        "fallback_rate_mean": -0.938931297709924,
+        "policy_action_clip_rate_mean": -0.9059829059829063,
+        "depth_rmse_mean": 0.483160272995896,
+        "attitude_rmse_mean": -0.023733007230568204
+      },
+      "health_score": -0.16452125076132962,
+      "hard_gate_passed": true,
+      "fallback_reason_gate_passed": true,
+      "selection_status": "no_selection",
+      "failure_reasons": [],
+      "protected_strength_failures": [
+        "lost_reward_fallback_strength"
+      ],
+      "remaining_bottlenecks": [],
+      "parameter_distance_from_parent": 3.999999999999999,
+      "changed_parameter_count": 3,
+      "parameter_step_count": {
+        "phase5_2_w_pwm_sat": 1.9999999999999996,
+        "phase5_2_w_action": 0.9999999999999998,
+        "phase5_2_w_delta_action": 0.9999999999999998
+      },
+      "nearest_smaller_candidate_id": "r_pwm030",
+      "minimal_parameter_selected": false
+    },
+    {
+      "profile_id": "r_pwm030_fallback025",
+      "track": "R",
+      "parent_profile_id": "reward_v1_only",
+      "reward_profile": "koopman_mpc_stability_v1",
+      "adapter_profile": "heuristic_reference_delta_v0_default",
+      "mpc_profile": "mpc_default_v0",
+      "changed_axis": "reward",
+      "sweep_round": "round1",
+      "candidate_metrics": {
+        "pwm_saturation_rate_mean": 0.2198809523809524,
+        "fallback_rate_mean": 0.3047619047619048,
+        "policy_action_clip_rate_mean": 0.17095238095238097,
+        "depth_rmse_mean": 1.3556085356203553,
+        "attitude_rmse_mean": 0.7999596148096496,
+        "latency_ms_mean": 11.941061965411619,
+        "latency_ms_max": 14.1772935166955,
+        "latency_budget_violation_rate": 0.0,
+        "fallback_reason_counts": {
+          "no_cost_improvement": 34.0,
+          "timeout": 286.0
+        }
+      },
+      "comparison_baseline": "reward_v1_only",
+      "health_floor": "baseline_rerun",
+      "cross_reference": "cross_reward_v1_mpc_health",
+      "improvements": {
+        "pwm_saturation_rate_mean": 0.3491895701198026,
+        "fallback_rate_mean": -1.0,
+        "policy_action_clip_rate_mean": -0.22735042735042765,
+        "depth_rmse_mean": -0.4482929181308048,
+        "attitude_rmse_mean": -0.07611972534203292
+      },
+      "health_score": -0.32044324910049915,
+      "hard_gate_passed": true,
+      "fallback_reason_gate_passed": true,
+      "selection_status": "no_selection",
+      "failure_reasons": [],
+      "protected_strength_failures": [
+        "lost_reward_fallback_strength"
+      ],
+      "remaining_bottlenecks": [],
+      "parameter_distance_from_parent": 2.999999999999999,
+      "changed_parameter_count": 2,
+      "parameter_step_count": {
+        "phase5_2_w_pwm_sat": 1.9999999999999996,
+        "phase5_2_w_fallback": 0.9999999999999998
+      },
+      "nearest_smaller_candidate_id": "r_pwm025",
+      "minimal_parameter_selected": false
+    },
+    {
+      "profile_id": "rm_timeout14",
+      "track": "RM",
+      "parent_profile_id": "cross_reward_v1_mpc_health",
+      "reward_profile": "koopman_mpc_stability_v1",
+      "adapter_profile": "heuristic_reference_delta_v0_default",
+      "mpc_profile": "mpc_health_v1",
+      "changed_axis": "reward_mpc",
+      "sweep_round": "round1",
+      "candidate_metrics": {
+        "pwm_saturation_rate_mean": 0.1155952380952381,
+        "fallback_rate_mean": 0.09714285714285714,
+        "policy_action_clip_rate_mean": 0.26857142857142857,
+        "depth_rmse_mean": 1.0880134589130173,
+        "attitude_rmse_mean": 0.769627659748262,
+        "latency_ms_mean": 11.964716014585326,
+        "latency_ms_max": 15.481014735996723,
+        "latency_budget_violation_rate": 0.0,
+        "fallback_reason_counts": {
+          "no_cost_improvement": 79.0,
+          "timeout": 23.0
+        }
+      },
+      "comparison_baseline": "reward_v1_only",
+      "health_floor": "baseline_rerun",
+      "cross_reference": "cross_reward_v1_mpc_health",
+      "improvements": {
+        "pwm_saturation_rate_mean": 0.6578576462297393,
+        "fallback_rate_mean": 0.22137404580152667,
+        "policy_action_clip_rate_mean": -0.9282051282051286,
+        "depth_rmse_mean": -0.16240208435514308,
+        "attitude_rmse_mean": -0.03531664660472161
+      },
+      "health_score": -0.006845184164710012,
+      "hard_gate_passed": true,
+      "fallback_reason_gate_passed": true,
+      "selection_status": "no_selection",
+      "failure_reasons": [],
+      "protected_strength_failures": [
+        "lost_mpc_clip_strength",
+        "lost_mpc_depth_strength",
+        "lost_mpc_attitude_strength"
+      ],
+      "remaining_bottlenecks": [],
+      "parameter_distance_from_parent": 1.0,
+      "changed_parameter_count": 1,
+      "parameter_step_count": {
+        "mpc_timeout_ms": 1.0
+      },
+      "nearest_smaller_candidate_id": null,
+      "minimal_parameter_selected": false
+    },
+    {
+      "profile_id": "rm_timeout16",
+      "track": "RM",
+      "parent_profile_id": "cross_reward_v1_mpc_health",
+      "reward_profile": "koopman_mpc_stability_v1",
+      "adapter_profile": "heuristic_reference_delta_v0_default",
+      "mpc_profile": "mpc_health_v1",
+      "changed_axis": "reward_mpc",
+      "sweep_round": "round1",
+      "candidate_metrics": {
+        "pwm_saturation_rate_mean": 0.3352380952380953,
+        "fallback_rate_mean": 0.11714285714285715,
+        "policy_action_clip_rate_mean": 0.14619047619047618,
+        "depth_rmse_mean": 0.6523596006929165,
+        "attitude_rmse_mean": 0.8755420262989814,
+        "latency_ms_mean": 12.174434943922927,
+        "latency_ms_max": 20.7449272274971,
+        "latency_budget_violation_rate": 0.0009523809523809524,
+        "fallback_reason_counts": {
+          "no_cost_improvement": 93.0,
+          "timeout": 30.0
+        }
+      },
+      "comparison_baseline": "reward_v1_only",
+      "health_floor": "baseline_rerun",
+      "cross_reference": "cross_reward_v1_mpc_health",
+      "improvements": {
+        "pwm_saturation_rate_mean": 0.007751937984495998,
+        "fallback_rate_mean": 0.06106870229007626,
+        "policy_action_clip_rate_mean": -0.049572649572649646,
+        "depth_rmse_mean": 0.30303788672603293,
+        "attitude_rmse_mean": -0.17779451290233
+      },
+      "health_score": 0.04011875620908672,
+      "hard_gate_passed": true,
+      "fallback_reason_gate_passed": false,
+      "selection_status": "no_selection",
+      "failure_reasons": [
+        "no_cost_improvement fallback materially increased after timeout change"
+      ],
+      "protected_strength_failures": [],
+      "remaining_bottlenecks": [
+        "no_cost_improvement fallback materially increased after timeout change"
+      ],
+      "parameter_distance_from_parent": 2.0,
+      "changed_parameter_count": 1,
+      "parameter_step_count": {
+        "mpc_timeout_ms": 2.0
+      },
+      "nearest_smaller_candidate_id": "rm_timeout14",
+      "minimal_parameter_selected": false
+    },
+    {
+      "profile_id": "rm_midweights",
+      "track": "RM",
+      "parent_profile_id": "cross_reward_v1_mpc_health",
+      "reward_profile": "koopman_mpc_stability_v1",
+      "adapter_profile": "heuristic_reference_delta_v0_default",
+      "mpc_profile": "mpc_health_v1",
+      "changed_axis": "reward_mpc",
+      "sweep_round": "round1",
+      "candidate_metrics": {
+        "pwm_saturation_rate_mean": 0.23047619047619047,
+        "fallback_rate_mean": 0.19714285714285715,
+        "policy_action_clip_rate_mean": 0.060238095238095236,
+        "depth_rmse_mean": 0.8739412674134686,
+        "attitude_rmse_mean": 0.7874288594137179,
+        "latency_ms_mean": 11.810788862584602,
+        "latency_ms_max": 14.107371680438519,
+        "latency_budget_violation_rate": 0.0,
+        "fallback_reason_counts": {
+          "no_cost_improvement": 76.0,
+          "timeout": 131.0
+        }
+      },
+      "comparison_baseline": "reward_v1_only",
+      "health_floor": "baseline_rerun",
+      "cross_reference": "cross_reward_v1_mpc_health",
+      "improvements": {
+        "pwm_saturation_rate_mean": 0.3178294573643411,
+        "fallback_rate_mean": -0.5801526717557253,
+        "policy_action_clip_rate_mean": 0.5675213675213675,
+        "depth_rmse_mean": 0.06630644821223065,
+        "attitude_rmse_mean": -0.05926313307742601
+      },
+      "health_score": 0.03692511290779765,
+      "hard_gate_passed": true,
+      "fallback_reason_gate_passed": true,
+      "selection_status": "no_selection",
+      "failure_reasons": [],
+      "protected_strength_failures": [
+        "lost_mpc_pwm_strength",
+        "lost_mpc_clip_strength",
+        "lost_mpc_depth_strength",
+        "lost_mpc_attitude_strength"
+      ],
+      "remaining_bottlenecks": [
+        "fallback above full reward_v1 fallback target"
+      ],
+      "parameter_distance_from_parent": 3.666666666666667,
+      "changed_parameter_count": 2,
+      "parameter_step_count": {
+        "mpc_control_weight": 1.9999999999999996,
+        "mpc_smoothness_weight": 1.6666666666666672
+      },
+      "nearest_smaller_candidate_id": null,
+      "minimal_parameter_selected": false
+    },
+    {
+      "profile_id": "rm_midweights_timeout14",
+      "track": "RM",
+      "parent_profile_id": "cross_reward_v1_mpc_health",
+      "reward_profile": "koopman_mpc_stability_v1",
+      "adapter_profile": "heuristic_reference_delta_v0_default",
+      "mpc_profile": "mpc_health_v1",
+      "changed_axis": "reward_mpc",
+      "sweep_round": "round1",
+      "candidate_metrics": {
+        "pwm_saturation_rate_mean": 0.2938095238095238,
+        "fallback_rate_mean": 0.12476190476190475,
+        "policy_action_clip_rate_mean": 0.009047619047619047,
+        "depth_rmse_mean": 1.157327037563354,
+        "attitude_rmse_mean": 0.7318741265295299,
+        "latency_ms_mean": 11.956150283416113,
+        "latency_ms_max": 14.5357521250844,
+        "latency_budget_violation_rate": 0.0,
+        "fallback_reason_counts": {
+          "no_cost_improvement": 100.0,
+          "timeout": 31.0
+        }
+      },
+      "comparison_baseline": "reward_v1_only",
+      "health_floor": "baseline_rerun",
+      "cross_reference": "cross_reward_v1_mpc_health",
+      "improvements": {
+        "pwm_saturation_rate_mean": 0.13037350246652576,
+        "fallback_rate_mean": 0.0,
+        "policy_action_clip_rate_mean": 0.9350427350427349,
+        "depth_rmse_mean": -0.236454705338122,
+        "attitude_rmse_mean": 0.015470069431813015
+      },
+      "health_score": 0.150524655167402,
+      "hard_gate_passed": true,
+      "fallback_reason_gate_passed": false,
+      "selection_status": "no_selection",
+      "failure_reasons": [
+        "no_cost_improvement fallback materially increased after timeout change",
+        "no_cost_improvement fallback materially increased after MPC weight reduction"
+      ],
+      "protected_strength_failures": [],
+      "remaining_bottlenecks": [
+        "no_cost_improvement fallback materially increased after timeout change",
+        "no_cost_improvement fallback materially increased after MPC weight reduction"
+      ],
+      "parameter_distance_from_parent": 4.666666666666667,
+      "changed_parameter_count": 3,
+      "parameter_step_count": {
+        "mpc_control_weight": 1.9999999999999996,
+        "mpc_smoothness_weight": 1.6666666666666672,
+        "mpc_timeout_ms": 1.0
+      },
+      "nearest_smaller_candidate_id": "rm_midweights",
+      "minimal_parameter_selected": false
+    },
+    {
+      "profile_id": "rm_lightweights_timeout14",
+      "track": "RM",
+      "parent_profile_id": "cross_reward_v1_mpc_health",
+      "reward_profile": "koopman_mpc_stability_v1",
+      "adapter_profile": "heuristic_reference_delta_v0_default",
+      "mpc_profile": "mpc_health_v1",
+      "changed_axis": "reward_mpc",
+      "sweep_round": "round1",
+      "candidate_metrics": {
+        "pwm_saturation_rate_mean": 0.42190476190476184,
+        "fallback_rate_mean": 0.08857142857142856,
+        "policy_action_clip_rate_mean": 0.13857142857142857,
+        "depth_rmse_mean": 2.111179226134072,
+        "attitude_rmse_mean": 0.7936247603262633,
+        "latency_ms_mean": 12.006302555756909,
+        "latency_ms_max": 16.470877453684807,
+        "latency_budget_violation_rate": 0.0,
+        "fallback_reason_counts": {
+          "no_cost_improvement": 57.0,
+          "timeout": 36.0
+        }
+      },
+      "comparison_baseline": "reward_v1_only",
+      "health_floor": "baseline_rerun",
+      "cross_reference": "cross_reward_v1_mpc_health",
+      "improvements": {
+        "pwm_saturation_rate_mean": -0.24876673713882996,
+        "fallback_rate_mean": 0.2900763358778626,
+        "policy_action_clip_rate_mean": 0.005128205128204991,
+        "depth_rmse_mean": -1.0,
+        "attitude_rmse_mean": -0.06759796781760392
+      },
+      "health_score": -0.2287400894046946,
+      "hard_gate_passed": true,
+      "fallback_reason_gate_passed": true,
+      "selection_status": "no_selection",
+      "failure_reasons": [],
+      "protected_strength_failures": [
+        "lost_mpc_pwm_strength",
+        "lost_mpc_clip_strength",
+        "lost_mpc_depth_strength",
+        "lost_mpc_attitude_strength"
+      ],
+      "remaining_bottlenecks": [],
+      "parameter_distance_from_parent": 6.666666666666668,
+      "changed_parameter_count": 3,
+      "parameter_step_count": {
+        "mpc_control_weight": 3.0,
+        "mpc_smoothness_weight": 2.6666666666666674,
+        "mpc_timeout_ms": 1.0
+      },
+      "nearest_smaller_candidate_id": "rm_midweights_timeout14",
+      "minimal_parameter_selected": false
+    },
+    {
+      "profile_id": "rm_horizon4_timeout14",
+      "track": "RM",
+      "parent_profile_id": "cross_reward_v1_mpc_health",
+      "reward_profile": "koopman_mpc_stability_v1",
+      "adapter_profile": "heuristic_reference_delta_v0_default",
+      "mpc_profile": "mpc_health_v1",
+      "changed_axis": "reward_mpc",
+      "sweep_round": "round1",
+      "candidate_metrics": {
+        "pwm_saturation_rate_mean": 0.020595238095238097,
+        "fallback_rate_mean": 0.23904761904761904,
+        "policy_action_clip_rate_mean": 0.07261904761904762,
+        "depth_rmse_mean": 0.5289181335180504,
+        "attitude_rmse_mean": 0.7391463225579943,
+        "latency_ms_mean": 9.96965724353989,
+        "latency_ms_max": 14.704655855894089,
+        "latency_budget_violation_rate": 0.0,
+        "fallback_reason_counts": {
+          "no_cost_improvement": 244.0,
+          "timeout": 7.0
+        }
+      },
+      "comparison_baseline": "reward_v1_only",
+      "health_floor": "baseline_rerun",
+      "cross_reference": "cross_reward_v1_mpc_health",
+      "improvements": {
+        "pwm_saturation_rate_mean": 0.9390415785764622,
+        "fallback_rate_mean": -0.916030534351145,
+        "policy_action_clip_rate_mean": 0.4786324786324785,
+        "depth_rmse_mean": 0.43491917694763926,
+        "attitude_rmse_mean": 0.005687383596295334
+      },
+      "health_score": 0.16069849719864904,
+      "hard_gate_passed": true,
+      "fallback_reason_gate_passed": false,
+      "selection_status": "no_selection",
+      "failure_reasons": [
+        "no_cost_improvement fallback materially increased after timeout change",
+        "no_cost_improvement fallback materially increased after MPC weight reduction"
+      ],
+      "protected_strength_failures": [],
+      "remaining_bottlenecks": [
+        "no_cost_improvement fallback materially increased after timeout change",
+        "no_cost_improvement fallback materially increased after MPC weight reduction"
+      ],
+      "parameter_distance_from_parent": 5.666666666666667,
+      "changed_parameter_count": 4,
+      "parameter_step_count": {
+        "mpc_horizon": 1.0,
+        "mpc_control_weight": 1.9999999999999996,
+        "mpc_smoothness_weight": 1.6666666666666672,
+        "mpc_timeout_ms": 1.0
+      },
+      "nearest_smaller_candidate_id": "rm_midweights_timeout14",
+      "minimal_parameter_selected": false
+    }
+  ],
+  "final_selection_blocked": false,
+  "allowed_claims": [],
+  "disallowed_claims": [
+    "No Phase 5.4 profile passed the Pareto gates."
+  ]
+}

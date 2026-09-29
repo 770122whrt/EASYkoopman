@@ -1,4 +1,4 @@
-from omni.isaac.lab.utils.math import quat_from_euler_xyz
+from isaaclab_compat import quat_from_euler_xyz
 from dataclasses import dataclass
 from abc import ABC, abstractmethod
 import numpy as np 

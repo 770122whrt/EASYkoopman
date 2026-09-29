@@ -1,0 +1,93 @@
+{
+  "status": "local_fallback_assay_complete",
+  "seconds": 11.093284700007644,
+  "local_gate": "GO",
+  "ready": 120,
+  "target_attained": 78,
+  "tracking_limited": 42,
+  "static_reference_outside_support": 12,
+  "complete_budget_passes": 120,
+  "min_ms": 1.5291000017896295,
+  "max_ms": 7.860600017011166,
+  "max_source_difference": 0.0,
+  "by_configuration": [
+    {
+      "configuration": "base",
+      "ready": 15,
+      "limited": 9
+    },
+    {
+      "configuration": "long_body",
+      "ready": 15,
+      "limited": 9
+    },
+    {
+      "configuration": "heavy_moderate",
+      "ready": 15,
+      "limited": 12
+    },
+    {
+      "configuration": "asymmetric",
+      "ready": 15,
+      "limited": 0
+    },
+    {
+      "configuration": "uuv6",
+      "ready": 15,
+      "limited": 3
+    },
+    {
+      "configuration": "uuv6_angled",
+      "ready": 15,
+      "limited": 3
+    },
+    {
+      "configuration": "uuv4",
+      "ready": 15,
+      "limited": 3
+    },
+    {
+      "configuration": "uuv4_angled",
+      "ready": 15,
+      "limited": 3
+    }
+  ],
+  "new_measured_seconds": 60.9673112,
+  "cumulative_measured_seconds": 299.2564713000013,
+  "remaining_measured_seconds": 900.7435286999987,
+  "elapsed_basis": "test and pilot native process elapsed; pilot inner time not double counted",
+  "phase84_preserved": {
+    "formal-closeout.json": "ca77ecc765bd63e87e41f04ddb33bda322ad8dda09a8d2e8b0e8bc01053bf4ec",
+    "prediction-control-handoff-v2.json": "5d8c4aa1264d93307dc0cf692757441509e75809206ed80006543ca5e4239632",
+    "live-budget.json": "916d99370b36fa191152f137ca7a5b8fba3103126129ff03a526856ae8d7ef29"
+  },
+  "v46_result_preserved": true,
+  "tests": {
+    "focused_in_related": 39,
+    "related_including_focused": 198,
+    "native_exits": [
+      {
+        "exit_code": 0,
+        "seconds": 6.7446629,
+        "stage": "focused-01"
+      },
+      {
+        "seconds": 12.2184769,
+        "exit_code": 0,
+        "stage": "pilot-native"
+      },
+      {
+        "stage": "red",
+        "exit_code": 1,
+        "seconds": 6.7865543
+      },
+      {
+        "stage": "related",
+        "seconds": 35.2176171,
+        "exit_code": 0
+      }
+    ]
+  },
+  "source_bindings_valid": true,
+  "new_output_bytes": 1948992
+}

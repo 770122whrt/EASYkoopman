@@ -3,7 +3,9 @@
 **创建日期:** 2026-06-10  
 **读者:** 后续实现 Koopman+MPC 控制器的开发者和研究者  
 **源事实:** 当前 EasyUUV 代码、README、EasyUUV/TIE 论文笔记、Koopman-Sim2Real 论文笔记  
-**状态:** 方案和计划文档，尚未开始代码实现
+**状态:** 历史迁移设计，Phase 1 至 Phase 5.4 已按后续 SPEC/PLAN 实施；阶段编号和当前结论以 `.planning/ROADMAP.md`、`.planning/STATE.md` 和 `docs/Agentic_AUV_project_handover.md` 为准
+
+> **阅读提示：** 本文保留 2026-06-10 的初始迁移判断，用于解释项目为什么选择“保留 EasyUUV 物理链并替换低层控制器”。文中的五阶段 GSD 表已经被后续实验扩展，不能作为当前执行顺序。当前下一阶段是 Phase 5.5；LLM 已后置为可选 Phase 9 supervisor。
 
 ## 结论
 

@@ -1,0 +1,158 @@
+[
+  {
+    "configuration": "base",
+    "controller": "feedback",
+    "components": {
+      "tracking_integral": 0.00089042939494914,
+      "terminal": 3.283513217698159e-05,
+      "effort": 9.20621410309938e-06,
+      "slew": 3.030326167527105e-06
+    },
+    "total": 0.000935501067396748,
+    "terminal_angle": 0.001011691231195839,
+    "source": "v78 historical development; new actual PWM gate not retroactively passed"
+  },
+  {
+    "configuration": "base",
+    "controller": "projected_koopman",
+    "components": {
+      "tracking_integral": 0.0009690328355818309,
+      "terminal": 0.00011994923742170305,
+      "effort": 8.626617368245891e-06,
+      "slew": 4.463512946247003e-06
+    },
+    "total": 0.0011020722033180269,
+    "terminal_angle": 0.0012472976743033496,
+    "source": "v78 historical development; new actual PWM gate not retroactively passed"
+  },
+  {
+    "configuration": "base",
+    "controller": "nominal_physics",
+    "components": {
+      "tracking_integral": 0.0009363507195287512,
+      "terminal": 4.6259442457765554e-05,
+      "effort": 1.4069512485192626e-05,
+      "slew": 3.275971216469437e-06
+    },
+    "total": 0.0009999556456881788,
+    "terminal_angle": 0.002770166109725419,
+    "source": "v78 historical development; new actual PWM gate not retroactively passed"
+  },
+  {
+    "configuration": "uuv4",
+    "controller": "feedback",
+    "components": {
+      "tracking_integral": 0.0008381672540129371,
+      "terminal": 2.3440014813984447e-05,
+      "effort": 0.0002272258616526292,
+      "slew": 5.175847036864481e-06
+    },
+    "total": 0.0010940089775164153,
+    "terminal_angle": 0.00016078224002242966,
+    "source": "v78 historical development; new actual PWM gate not retroactively passed"
+  },
+  {
+    "configuration": "uuv4",
+    "controller": "projected_koopman",
+    "components": {
+      "tracking_integral": 0.0007669708320813468,
+      "terminal": 3.824405684527359e-06,
+      "effort": 0.00021942436973180351,
+      "slew": 9.167648896272128e-06
+    },
+    "total": 0.0009993872563939497,
+    "terminal_angle": 0.0013196275555862151,
+    "source": "v78 historical development; new actual PWM gate not retroactively passed"
+  },
+  {
+    "configuration": "uuv4",
+    "controller": "nominal_physics",
+    "components": {
+      "tracking_integral": 0.0007780386586553696,
+      "terminal": 3.243026082516473e-06,
+      "effort": 0.00023136759480175763,
+      "slew": 9.953275396763712e-06
+    },
+    "total": 0.0010226025549364074,
+    "terminal_angle": 0.0011281957032124347,
+    "source": "v78 historical development; new actual PWM gate not retroactively passed"
+  },
+  {
+    "configuration": "long_body",
+    "controller": "feedback",
+    "components": {
+      "tracking_integral": 0.0008267314474172309,
+      "terminal": 9.126553412150216e-06,
+      "effort": 1.3435147865844973e-05,
+      "slew": 6.687857752310286e-06
+    },
+    "total": 0.0008559810064475364,
+    "terminal_angle": 9.085744733106881e-05,
+    "source": "v78 historical development; new actual PWM gate not retroactively passed"
+  },
+  {
+    "configuration": "long_body",
+    "controller": "projected_koopman",
+    "components": {
+      "tracking_integral": 0.0008537471462602639,
+      "terminal": 6.521907517733974e-05,
+      "effort": 1.606686860209569e-05,
+      "slew": 6.934318790745106e-06
+    },
+    "total": 0.0009419674088304444,
+    "terminal_angle": 0.007398836451163112,
+    "source": "v78 historical development; new actual PWM gate not retroactively passed"
+  },
+  {
+    "configuration": "long_body",
+    "controller": "nominal_physics",
+    "components": {
+      "tracking_integral": 0.0008578045299637433,
+      "terminal": 6.200630759279587e-05,
+      "effort": 1.58952081860487e-05,
+      "slew": 6.591482857173247e-06
+    },
+    "total": 0.0009422975285997611,
+    "terminal_angle": 0.007069001134334964,
+    "source": "v78 historical development; new actual PWM gate not retroactively passed"
+  },
+  {
+    "configuration": "uuv6",
+    "controller": "feedback",
+    "components": {
+      "tracking_integral": 0.0008178883203332856,
+      "terminal": 4.486673381364402e-06,
+      "effort": 0.00034505246383946764,
+      "slew": 7.113906658996972e-06
+    },
+    "total": 0.0011745413642131146,
+    "terminal_angle": 0.0001627897622474859,
+    "source": "v78 historical development; new actual PWM gate not retroactively passed"
+  },
+  {
+    "configuration": "uuv6",
+    "controller": "projected_koopman",
+    "components": {
+      "tracking_integral": 0.0008601747896782875,
+      "terminal": 9.262316269522253e-06,
+      "effort": 0.00034421523732136995,
+      "slew": 1.589231332647878e-05
+    },
+    "total": 0.0012295446565956584,
+    "terminal_angle": 0.0017704158701184135,
+    "source": "v78 historical development; new actual PWM gate not retroactively passed"
+  },
+  {
+    "configuration": "uuv6",
+    "controller": "nominal_physics",
+    "components": {
+      "tracking_integral": 0.0008584040807457023,
+      "terminal": 8.331888926644855e-06,
+      "effort": 0.0003492938806960293,
+      "slew": 1.3148658278811723e-05
+    },
+    "total": 0.0012291785086471882,
+    "terminal_angle": 0.002649864557158741,
+    "source": "v78 historical development; new actual PWM gate not retroactively passed"
+  }
+]

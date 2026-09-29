@@ -1,0 +1,75 @@
+{
+  "scope": "algebraic_equivalence_plus_synthetic_numerical_crosscheck_not_closed_loop",
+  "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+  "seed": 760924,
+  "damping": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.002421851141914999
+  ],
+  "quadratic": [
+    0.9999997137409122,
+    0.9999993515002474,
+    1.0000007182008586,
+    1.0011463306853665,
+    1.001160201065181,
+    1.0151965368447955
+  ],
+  "angular_damping": 0.05000000074505806,
+  "results": [
+    {
+      "configuration": "base",
+      "states": 100,
+      "max_projected_identified_difference": 1.1102230246251565e-16,
+      "max_projected_nominal_difference": 8.0955523762416e-06
+    },
+    {
+      "configuration": "long_body",
+      "states": 100,
+      "max_projected_identified_difference": 8.326672684688674e-17,
+      "max_projected_nominal_difference": 1.770166756334679e-05
+    },
+    {
+      "configuration": "heavy_moderate",
+      "states": 100,
+      "max_projected_identified_difference": 8.326672684688674e-17,
+      "max_projected_nominal_difference": 5.107808348614462e-06
+    },
+    {
+      "configuration": "asymmetric",
+      "states": 100,
+      "max_projected_identified_difference": 1.1102230246251565e-16,
+      "max_projected_nominal_difference": 7.91649225470592e-06
+    },
+    {
+      "configuration": "uuv6",
+      "states": 100,
+      "max_projected_identified_difference": 8.326672684688674e-17,
+      "max_projected_nominal_difference": 7.327337732010442e-06
+    },
+    {
+      "configuration": "uuv6_angled",
+      "states": 100,
+      "max_projected_identified_difference": 8.326672684688674e-17,
+      "max_projected_nominal_difference": 7.778560011634239e-06
+    },
+    {
+      "configuration": "uuv4",
+      "states": 100,
+      "max_projected_identified_difference": 5.551115123125783e-17,
+      "max_projected_nominal_difference": 9.622049861018889e-06
+    },
+    {
+      "configuration": "uuv4_angled",
+      "states": 100,
+      "max_projected_identified_difference": 5.551115123125783e-17,
+      "max_projected_nominal_difference": 7.5216101581288e-06
+    }
+  ],
+  "new_fits": 0,
+  "new_physics": 0,
+  "explanation": "validate_matrix binds the six velocity output columns to core_matrix(D,Q); projected control only consumes these columns and known pose integration. Direct identified-physics equations implement the same map."
+}

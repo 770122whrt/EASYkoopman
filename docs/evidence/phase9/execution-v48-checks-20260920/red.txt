@@ -1,0 +1,643 @@
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF                                    [100%]
+================================== FAILURES ===================================
+_ test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original[base] _
+
+name = 'base'
+
+    @pytest.mark.parametrize('name',SUPPORTED_EMBODIMENTS)
+    def test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original(name):
+>       ledger,command,ref=setup(name)
+                           ^^^^^^^^^^^
+
+tests\test_execution_ledger_v48.py:52: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+_ test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original[long_body] _
+
+name = 'long_body'
+
+    @pytest.mark.parametrize('name',SUPPORTED_EMBODIMENTS)
+    def test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original(name):
+>       ledger,command,ref=setup(name)
+                           ^^^^^^^^^^^
+
+tests\test_execution_ledger_v48.py:52: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'long_body', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+_ test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original[heavy_moderate] _
+
+name = 'heavy_moderate'
+
+    @pytest.mark.parametrize('name',SUPPORTED_EMBODIMENTS)
+    def test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original(name):
+>       ledger,command,ref=setup(name)
+                           ^^^^^^^^^^^
+
+tests\test_execution_ledger_v48.py:52: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'heavy_moderate', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+_ test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original[asymmetric] _
+
+name = 'asymmetric'
+
+    @pytest.mark.parametrize('name',SUPPORTED_EMBODIMENTS)
+    def test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original(name):
+>       ledger,command,ref=setup(name)
+                           ^^^^^^^^^^^
+
+tests\test_execution_ledger_v48.py:52: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'asymmetric', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+_ test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original[uuv6] _
+
+name = 'uuv6'
+
+    @pytest.mark.parametrize('name',SUPPORTED_EMBODIMENTS)
+    def test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original(name):
+>       ledger,command,ref=setup(name)
+                           ^^^^^^^^^^^
+
+tests\test_execution_ledger_v48.py:52: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv6', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+_ test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original[uuv6_angled] _
+
+name = 'uuv6_angled'
+
+    @pytest.mark.parametrize('name',SUPPORTED_EMBODIMENTS)
+    def test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original(name):
+>       ledger,command,ref=setup(name)
+                           ^^^^^^^^^^^
+
+tests\test_execution_ledger_v48.py:52: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv6_angled', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+_ test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original[uuv4] _
+
+name = 'uuv4'
+
+    @pytest.mark.parametrize('name',SUPPORTED_EMBODIMENTS)
+    def test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original(name):
+>       ledger,command,ref=setup(name)
+                           ^^^^^^^^^^^
+
+tests\test_execution_ledger_v48.py:52: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+_ test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original[uuv4_angled] _
+
+name = 'uuv4_angled'
+
+    @pytest.mark.parametrize('name',SUPPORTED_EMBODIMENTS)
+    def test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original(name):
+>       ledger,command,ref=setup(name)
+                           ^^^^^^^^^^^
+
+tests\test_execution_ledger_v48.py:52: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4_angled', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+_________ test_an_outstanding_dispatch_cannot_be_reissued_or_replaced _________
+
+    def test_an_outstanding_dispatch_cannot_be_reissued_or_replaced():
+>       ledger,u,_=setup();cap=capture(ledger);token=reserve(ledger,u,startup=True,cap=cap)
+                   ^^^^^^^
+
+tests\test_execution_ledger_v48.py:75: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+_____ test_untrusted_ack_stops_without_committing_a_guess[not_dispatched] _____
+
+bad = 'not_dispatched'
+
+    @pytest.mark.parametrize('bad',['not_dispatched','skip','wrong_episode','wrong_reset','wrong_ticket','changed_command','nan_command'])
+    def test_untrusted_ack_stops_without_committing_a_guess(bad):
+>       ledger,u,_=setup();token=reserve(ledger,u,startup=True)
+                   ^^^^^^^
+
+tests\test_execution_ledger_v48.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+__________ test_untrusted_ack_stops_without_committing_a_guess[skip] __________
+
+bad = 'skip'
+
+    @pytest.mark.parametrize('bad',['not_dispatched','skip','wrong_episode','wrong_reset','wrong_ticket','changed_command','nan_command'])
+    def test_untrusted_ack_stops_without_committing_a_guess(bad):
+>       ledger,u,_=setup();token=reserve(ledger,u,startup=True)
+                   ^^^^^^^
+
+tests\test_execution_ledger_v48.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+_____ test_untrusted_ack_stops_without_committing_a_guess[wrong_episode] ______
+
+bad = 'wrong_episode'
+
+    @pytest.mark.parametrize('bad',['not_dispatched','skip','wrong_episode','wrong_reset','wrong_ticket','changed_command','nan_command'])
+    def test_untrusted_ack_stops_without_committing_a_guess(bad):
+>       ledger,u,_=setup();token=reserve(ledger,u,startup=True)
+                   ^^^^^^^
+
+tests\test_execution_ledger_v48.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+______ test_untrusted_ack_stops_without_committing_a_guess[wrong_reset] _______
+
+bad = 'wrong_reset'
+
+    @pytest.mark.parametrize('bad',['not_dispatched','skip','wrong_episode','wrong_reset','wrong_ticket','changed_command','nan_command'])
+    def test_untrusted_ack_stops_without_committing_a_guess(bad):
+>       ledger,u,_=setup();token=reserve(ledger,u,startup=True)
+                   ^^^^^^^
+
+tests\test_execution_ledger_v48.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+______ test_untrusted_ack_stops_without_committing_a_guess[wrong_ticket] ______
+
+bad = 'wrong_ticket'
+
+    @pytest.mark.parametrize('bad',['not_dispatched','skip','wrong_episode','wrong_reset','wrong_ticket','changed_command','nan_command'])
+    def test_untrusted_ack_stops_without_committing_a_guess(bad):
+>       ledger,u,_=setup();token=reserve(ledger,u,startup=True)
+                   ^^^^^^^
+
+tests\test_execution_ledger_v48.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+____ test_untrusted_ack_stops_without_committing_a_guess[changed_command] _____
+
+bad = 'changed_command'
+
+    @pytest.mark.parametrize('bad',['not_dispatched','skip','wrong_episode','wrong_reset','wrong_ticket','changed_command','nan_command'])
+    def test_untrusted_ack_stops_without_committing_a_guess(bad):
+>       ledger,u,_=setup();token=reserve(ledger,u,startup=True)
+                   ^^^^^^^
+
+tests\test_execution_ledger_v48.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+______ test_untrusted_ack_stops_without_committing_a_guess[nan_command] _______
+
+bad = 'nan_command'
+
+    @pytest.mark.parametrize('bad',['not_dispatched','skip','wrong_episode','wrong_reset','wrong_ticket','changed_command','nan_command'])
+    def test_untrusted_ack_stops_without_committing_a_guess(bad):
+>       ledger,u,_=setup();token=reserve(ledger,u,startup=True)
+                   ^^^^^^^
+
+tests\test_execution_ledger_v48.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+_ test_duplicate_or_changed_second_hold_ack_preserves_only_confirmed_first_substep _
+
+    def test_duplicate_or_changed_second_hold_ack_preserves_only_confirmed_first_substep():
+        for duplicate in (True,False):
+>           ledger,u,_=setup();token=reserve(ledger,u,startup=True);ledger.dispatch(token);ack(ledger,token,0,u)
+                       ^^^^^^^
+
+tests\test_execution_ledger_v48.py:101: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+___ test_uncertain_execution_aborts_and_cannot_be_rearmed_by_worker_restart ___
+
+    def test_uncertain_execution_aborts_and_cannot_be_rearmed_by_worker_restart():
+>       ledger,u,_=setup();token=reserve(ledger,u,startup=True);ledger.dispatch(token)
+                   ^^^^^^^
+
+tests\test_execution_ledger_v48.py:108: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+______ test_worker_generation_and_reference_changes_do_not_rearm_startup ______
+
+    def test_worker_generation_and_reference_changes_do_not_rearm_startup():
+>       ledger,u,ref=setup('heavy_moderate');cap=capture(ledger)
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_execution_ledger_v48.py:115: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'heavy_moderate', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+____ test_worker_restart_does_not_discard_in_flight_execution_confirmation ____
+
+    def test_worker_restart_does_not_discard_in_flight_execution_confirmation():
+>       ledger,u,_=setup();token=reserve(ledger,u,startup=True);ledger.dispatch(token)
+                   ^^^^^^^
+
+tests\test_execution_ledger_v48.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+_ test_startup_command_cannot_be_borrowed_for_a_different_reference_or_changed_command _
+
+    def test_startup_command_cannot_be_borrowed_for_a_different_reference_or_changed_command():
+>       ledger,u,ref=setup('heavy_moderate');ref[0]+=.05
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_execution_ledger_v48.py:135: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'heavy_moderate', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+__ test_bad_reset_or_unqualified_startup_cannot_construct_live_ledger[state] __
+
+bad = 'state'
+
+    @pytest.mark.parametrize('bad',['state','rotors','rotor_count','index','episode','startup_command','unverified'])
+    def test_bad_reset_or_unqualified_startup_cannot_construct_live_ledger(bad):
+>       from koopman.execution_ledger_v48 import ExecutionLedger,ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:145: ModuleNotFoundError
+_ test_bad_reset_or_unqualified_startup_cannot_construct_live_ledger[rotors] __
+
+bad = 'rotors'
+
+    @pytest.mark.parametrize('bad',['state','rotors','rotor_count','index','episode','startup_command','unverified'])
+    def test_bad_reset_or_unqualified_startup_cannot_construct_live_ledger(bad):
+>       from koopman.execution_ledger_v48 import ExecutionLedger,ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:145: ModuleNotFoundError
+_ test_bad_reset_or_unqualified_startup_cannot_construct_live_ledger[rotor_count] _
+
+bad = 'rotor_count'
+
+    @pytest.mark.parametrize('bad',['state','rotors','rotor_count','index','episode','startup_command','unverified'])
+    def test_bad_reset_or_unqualified_startup_cannot_construct_live_ledger(bad):
+>       from koopman.execution_ledger_v48 import ExecutionLedger,ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:145: ModuleNotFoundError
+__ test_bad_reset_or_unqualified_startup_cannot_construct_live_ledger[index] __
+
+bad = 'index'
+
+    @pytest.mark.parametrize('bad',['state','rotors','rotor_count','index','episode','startup_command','unverified'])
+    def test_bad_reset_or_unqualified_startup_cannot_construct_live_ledger(bad):
+>       from koopman.execution_ledger_v48 import ExecutionLedger,ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:145: ModuleNotFoundError
+_ test_bad_reset_or_unqualified_startup_cannot_construct_live_ledger[episode] _
+
+bad = 'episode'
+
+    @pytest.mark.parametrize('bad',['state','rotors','rotor_count','index','episode','startup_command','unverified'])
+    def test_bad_reset_or_unqualified_startup_cannot_construct_live_ledger(bad):
+>       from koopman.execution_ledger_v48 import ExecutionLedger,ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:145: ModuleNotFoundError
+_ test_bad_reset_or_unqualified_startup_cannot_construct_live_ledger[startup_command] _
+
+bad = 'startup_command'
+
+    @pytest.mark.parametrize('bad',['state','rotors','rotor_count','index','episode','startup_command','unverified'])
+    def test_bad_reset_or_unqualified_startup_cannot_construct_live_ledger(bad):
+>       from koopman.execution_ledger_v48 import ExecutionLedger,ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:145: ModuleNotFoundError
+_ test_bad_reset_or_unqualified_startup_cannot_construct_live_ledger[unverified] _
+
+bad = 'unverified'
+
+    @pytest.mark.parametrize('bad',['state','rotors','rotor_count','index','episode','startup_command','unverified'])
+    def test_bad_reset_or_unqualified_startup_cannot_construct_live_ledger(bad):
+>       from koopman.execution_ledger_v48 import ExecutionLedger,ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:145: ModuleNotFoundError
+___ test_normal_command_rechecks_constraints_at_unique_issue_boundary[slew] ___
+
+bad = 'slew'
+
+    @pytest.mark.parametrize('bad',['slew','mask','support','pwm','deadzone'])
+    def test_normal_command_rechecks_constraints_at_unique_issue_boundary(bad):
+>       name='uuv4' if bad=='mask' else 'base';ledger,u,_=setup(name);execute(ledger,u,startup=True)
+                                                          ^^^^^^^^^^^
+
+tests\test_execution_ledger_v48.py:160: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+___ test_normal_command_rechecks_constraints_at_unique_issue_boundary[mask] ___
+
+bad = 'mask'
+
+    @pytest.mark.parametrize('bad',['slew','mask','support','pwm','deadzone'])
+    def test_normal_command_rechecks_constraints_at_unique_issue_boundary(bad):
+>       name='uuv4' if bad=='mask' else 'base';ledger,u,_=setup(name);execute(ledger,u,startup=True)
+                                                          ^^^^^^^^^^^
+
+tests\test_execution_ledger_v48.py:160: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+_ test_normal_command_rechecks_constraints_at_unique_issue_boundary[support] __
+
+bad = 'support'
+
+    @pytest.mark.parametrize('bad',['slew','mask','support','pwm','deadzone'])
+    def test_normal_command_rechecks_constraints_at_unique_issue_boundary(bad):
+>       name='uuv4' if bad=='mask' else 'base';ledger,u,_=setup(name);execute(ledger,u,startup=True)
+                                                          ^^^^^^^^^^^
+
+tests\test_execution_ledger_v48.py:160: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+___ test_normal_command_rechecks_constraints_at_unique_issue_boundary[pwm] ____
+
+bad = 'pwm'
+
+    @pytest.mark.parametrize('bad',['slew','mask','support','pwm','deadzone'])
+    def test_normal_command_rechecks_constraints_at_unique_issue_boundary(bad):
+>       name='uuv4' if bad=='mask' else 'base';ledger,u,_=setup(name);execute(ledger,u,startup=True)
+                                                          ^^^^^^^^^^^
+
+tests\test_execution_ledger_v48.py:160: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+_ test_normal_command_rechecks_constraints_at_unique_issue_boundary[deadzone] _
+
+bad = 'deadzone'
+
+    @pytest.mark.parametrize('bad',['slew','mask','support','pwm','deadzone'])
+    def test_normal_command_rechecks_constraints_at_unique_issue_boundary(bad):
+>       name='uuv4' if bad=='mask' else 'base';ledger,u,_=setup(name);execute(ledger,u,startup=True)
+                                                          ^^^^^^^^^^^
+
+tests\test_execution_ledger_v48.py:160: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+_____ test_recorded_actual_rounding_not_planned_value_advances_estimator ______
+
+    def test_recorded_actual_rounding_not_planned_value_advances_estimator():
+>       ledger,u,_=setup('heavy_moderate');actual=u.copy();actual[3]=np.nextafter(actual[3],np.float32(1))
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_execution_ledger_v48.py:173: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'heavy_moderate', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+___ test_snapshots_inputs_and_ticket_outputs_do_not_alias_committed_history ___
+
+    def test_snapshots_inputs_and_ticket_outputs_do_not_alias_committed_history():
+>       from koopman.execution_ledger_v48 import BoundaryObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:186: ModuleNotFoundError
+_________ test_history_is_bounded_and_stale_capture_does_not_reserve __________
+
+    def test_history_is_bounded_and_stale_capture_does_not_reserve():
+>       ledger,u,_=setup(history_limit=2);old=capture(ledger)
+                   ^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_execution_ledger_v48.py:202: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 2
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+_____________ test_lock_busy_returns_without_waiting_or_advancing _____________
+
+    def test_lock_busy_returns_without_waiting_or_advancing():
+>       ledger,u,_=setup()
+                   ^^^^^^^
+
+tests\test_execution_ledger_v48.py:212: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def setup(name='base', history_limit=256):
+>       from koopman.execution_ledger_v48 import ExecutionLedger, ResetObservation
+E       ModuleNotFoundError: No module named 'koopman.execution_ledger_v48'
+
+tests\test_execution_ledger_v48.py:17: ModuleNotFoundError
+=========================== short test summary info ===========================
+FAILED tests/test_execution_ledger_v48.py::test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original[base]
+FAILED tests/test_execution_ledger_v48.py::test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original[long_body]
+FAILED tests/test_execution_ledger_v48.py::test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original[heavy_moderate]
+FAILED tests/test_execution_ledger_v48.py::test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original[asymmetric]
+FAILED tests/test_execution_ledger_v48.py::test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original[uuv6]
+FAILED tests/test_execution_ledger_v48.py::test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original[uuv6_angled]
+FAILED tests/test_execution_ledger_v48.py::test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original[uuv4]
+FAILED tests/test_execution_ledger_v48.py::test_startup_permission_is_consumed_only_by_first_ack_and_history_matches_original[uuv4_angled]
+FAILED tests/test_execution_ledger_v48.py::test_an_outstanding_dispatch_cannot_be_reissued_or_replaced
+FAILED tests/test_execution_ledger_v48.py::test_untrusted_ack_stops_without_committing_a_guess[not_dispatched]
+FAILED tests/test_execution_ledger_v48.py::test_untrusted_ack_stops_without_committing_a_guess[skip]
+FAILED tests/test_execution_ledger_v48.py::test_untrusted_ack_stops_without_committing_a_guess[wrong_episode]
+FAILED tests/test_execution_ledger_v48.py::test_untrusted_ack_stops_without_committing_a_guess[wrong_reset]
+FAILED tests/test_execution_ledger_v48.py::test_untrusted_ack_stops_without_committing_a_guess[wrong_ticket]
+FAILED tests/test_execution_ledger_v48.py::test_untrusted_ack_stops_without_committing_a_guess[changed_command]
+FAILED tests/test_execution_ledger_v48.py::test_untrusted_ack_stops_without_committing_a_guess[nan_command]
+FAILED tests/test_execution_ledger_v48.py::test_duplicate_or_changed_second_hold_ack_preserves_only_confirmed_first_substep
+FAILED tests/test_execution_ledger_v48.py::test_uncertain_execution_aborts_and_cannot_be_rearmed_by_worker_restart
+FAILED tests/test_execution_ledger_v48.py::test_worker_generation_and_reference_changes_do_not_rearm_startup
+FAILED tests/test_execution_ledger_v48.py::test_worker_restart_does_not_discard_in_flight_execution_confirmation
+FAILED tests/test_execution_ledger_v48.py::test_startup_command_cannot_be_borrowed_for_a_different_reference_or_changed_command
+FAILED tests/test_execution_ledger_v48.py::test_bad_reset_or_unqualified_startup_cannot_construct_live_ledger[state]
+FAILED tests/test_execution_ledger_v48.py::test_bad_reset_or_unqualified_startup_cannot_construct_live_ledger[rotors]
+FAILED tests/test_execution_ledger_v48.py::test_bad_reset_or_unqualified_startup_cannot_construct_live_ledger[rotor_count]
+FAILED tests/test_execution_ledger_v48.py::test_bad_reset_or_unqualified_startup_cannot_construct_live_ledger[index]
+FAILED tests/test_execution_ledger_v48.py::test_bad_reset_or_unqualified_startup_cannot_construct_live_ledger[episode]
+FAILED tests/test_execution_ledger_v48.py::test_bad_reset_or_unqualified_startup_cannot_construct_live_ledger[startup_command]
+FAILED tests/test_execution_ledger_v48.py::test_bad_reset_or_unqualified_startup_cannot_construct_live_ledger[unverified]
+FAILED tests/test_execution_ledger_v48.py::test_normal_command_rechecks_constraints_at_unique_issue_boundary[slew]
+FAILED tests/test_execution_ledger_v48.py::test_normal_command_rechecks_constraints_at_unique_issue_boundary[mask]
+FAILED tests/test_execution_ledger_v48.py::test_normal_command_rechecks_constraints_at_unique_issue_boundary[support]
+FAILED tests/test_execution_ledger_v48.py::test_normal_command_rechecks_constraints_at_unique_issue_boundary[pwm]
+FAILED tests/test_execution_ledger_v48.py::test_normal_command_rechecks_constraints_at_unique_issue_boundary[deadzone]
+FAILED tests/test_execution_ledger_v48.py::test_recorded_actual_rounding_not_planned_value_advances_estimator
+FAILED tests/test_execution_ledger_v48.py::test_snapshots_inputs_and_ticket_outputs_do_not_alias_committed_history
+FAILED tests/test_execution_ledger_v48.py::test_history_is_bounded_and_stale_capture_does_not_reserve
+FAILED tests/test_execution_ledger_v48.py::test_lock_busy_returns_without_waiting_or_advancing
+37 failed in 7.49s

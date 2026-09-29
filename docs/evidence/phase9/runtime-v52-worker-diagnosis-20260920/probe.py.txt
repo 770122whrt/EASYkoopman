@@ -1,0 +1,82 @@
+import cProfile,hashlib,json,os,pstats,sys,time
+from pathlib import Path
+root=Path.cwd();sys.path.insert(0,str(root));out=root/'docs/evidence/phase9/runtime-v52-worker-diagnosis-20260920'
+for key in ('OMP_NUM_THREADS','MKL_NUM_THREADS','OPENBLAS_NUM_THREADS','NUMBA_NUM_THREADS'):os.environ[key]='1'
+def dump(p,v):p.write_text(json.dumps(v,indent=2,default=lambda a:a.tolist())+'\n',encoding='utf-8')
+def main():
+    started=time.perf_counter();worker=None
+    import numpy as np,torch
+    torch.set_num_threads(1);torch.set_num_interop_threads(1)
+    from dataclasses import replace
+    from workflows.identify_sparse_world_v30 import load_fit_cache
+    from koopman.bounded_mpc_v44 import load_fit_domains
+    from koopman.bounded_feedback_v46 import FeedbackConfig
+    from koopman.bounded_feedback_v47 import TrackingFeedback
+    from koopman.execution_ledger_v48 import ResetObservation,BoundaryObservation
+    from koopman.prepared_execution_v49 import PreparedExecutionLedger
+    from koopman.recovery_solver_v50 import FrozenWorkerSpec
+    from koopman.recovery_solver_v51 import frozen_model_factory
+    from koopman.solver_worker_v49 import IsolatedSolverWorker,WorkerLimits
+    from koopman.bounded_mpc_v44 import SearchConfig
+    from koopman.runtime_coordinator_v52 import RuntimeCoordinator,RuntimeConfig,SafetyObservation
+    hpath=root/'docs/evidence/phase8_4/server-projected-formal-v38-r23/prediction-control-handoff-v2.json'
+    handoff=json.loads(hpath.read_text());entry=handoff['eligible_models']['nonlinear__pooled'];frozen=Path(handoff['frozen_source_directory'])
+    old=json.loads((root/'docs/evidence/phase9/runtime-v52-fixture-20260920/protocol.json').read_text())
+    for name,digest in old['sources'].items():assert hashlib.sha256((root/name).read_bytes()).hexdigest()==digest
+    e=next(e for e in load_fit_cache(root) if e.case['configuration']=='base' and e.case['excitation']=='prbs')
+    domain=load_fit_domains(root,frozen/entry['path'])['base'];x=e.states[0].copy();ref=np.array([5.5,1.,0,0,0])
+    policy=TrackingFeedback(domain,e.context,config=FeedbackConfig(timeout_ms=1000));seed=policy.prepare_startup(x,ref)
+    ledger=PreparedExecutionLedger(domain,e.context,ResetObservation('fixture-base','zero',0,x,np.zeros(8)),
+        reference=ref,reference_id='ref',startup_command=seed['command'])
+    spec=FrozenWorkerSpec(str(root),'base',e.context,'nonlinear__pooled',entry['sha256'],
+        hashlib.sha256(hpath.read_bytes()).hexdigest(),domain.identity,str(root/'.pytest-tmp/phase9-numba-v43'),config=SearchConfig(timeout_ms=1000))
+    events=[];admissions=[];choices=[];rows=[];error=None
+    try:
+        worker=IsolatedSolverWorker(frozen_model_factory,spec,limits=WorkerLimits(request_timeout_ms=1000));worker.start();ready=None
+        while ready is None:
+            if time.perf_counter()-started>=60:raise TimeoutError('diagnosis_budget')
+            ready=worker.poll()
+            if ready is None:time.sleep(.001)
+        assert ready['status']=='ready',ready
+        run=RuntimeCoordinator(ledger,policy,worker,config=RuntimeConfig(control_compute_budget_s=1.))
+        poll=worker.poll;ingest=run.arbiter.ingest;choose=run.arbiter.choose
+        def logged_poll():
+            event=poll()
+            if event is not None:
+                events.append(dict(event,control=ledger.physics_index//2))
+            return event
+        def logged_ingest(event):
+            result=ingest(event);admissions.append(dict(result,control=ledger.physics_index//2));return result
+        def logged_choose(cap):
+            result=choose(cap);choices.append(dict(result,control=ledger.physics_index//2));return result
+        worker.poll=logged_poll;run.arbiter.ingest=logged_ingest;run.arbiter.choose=logged_choose
+        def safety(i):return SafetyObservation('fixture-base','zero',i,np.zeros(2),4.,False)
+        epoch=time.perf_counter();profile=cProfile.Profile()
+        for control in range(2):
+            wait=epoch+control/60-time.perf_counter()
+            if wait>0:time.sleep(wait)
+            if control==1:profile.enable()
+            i=ledger.physics_index
+            decision=run.step(BoundaryObservation('fixture-base','zero',i,x),ref,reference_id='ref',safety=safety(i))
+            acks=[]
+            if decision['status']=='dispatch':
+                p=decision['packet']
+                for j in range(2):
+                    a=run.acknowledge(p['ticket'],p['command'],physics_index=i+j,episode_id='fixture-base',reset_id='zero',safety=safety(i+j+1))
+                    acks.append(a)
+                    if a['status']!='acknowledged':break
+            if control==1:profile.disable()
+            rows.append(dict(control=control,decision=decision,acks=acks))
+            if decision['status']!='dispatch' or any(a['status']!='acknowledged' for a in acks):break
+        until=time.perf_counter()+2
+        while worker.state=='busy' and time.perf_counter()<until:
+            worker.poll();time.sleep(.001)
+        with (out/'profile.txt').open('w') as f:pstats.Stats(profile,stream=f).strip_dirs().sort_stats('cumtime').print_stats(45)
+    except Exception as exc:error=type(exc).__name__+':'+str(exc)
+    finally:
+        closed=None if worker is None else worker.close()
+    result=dict(error=error,seconds=time.perf_counter()-started,events=events,admissions=admissions,choices=choices,rows=rows,closed=closed,qualification=False)
+    dump(out/'result.json',result)
+    print(json.dumps(dict(error=error,seconds=result['seconds'],events=[{k:v for k,v in e.items() if k!='payload'} for e in events],admissions=admissions)))
+    assert error is None and result['seconds']<60
+if __name__=='__main__':main()

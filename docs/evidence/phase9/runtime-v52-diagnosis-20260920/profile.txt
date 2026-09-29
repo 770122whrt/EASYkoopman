@@ -1,0 +1,53 @@
+         5583 function calls (5332 primitive calls) in 0.030 seconds
+
+   Ordered by: cumulative time
+   List reduced from 270 to 45 due to restriction <45>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+      2/1    0.000    0.000    0.012    0.012 runtime_coordinator_v52.py:133(step)
+       15    0.002    0.000    0.010    0.001 bounded_feedback_v46.py:107(inspect)
+        1    0.001    0.001    0.009    0.009 plan_arbiter_v52.py:78(register)
+       11    0.001    0.000    0.009    0.001 execution_ledger_v48.py:163(_checked_command)
+        1    0.000    0.000    0.007    0.007 bounded_feedback_v47.py:142(decide)
+       15    0.002    0.000    0.006    0.000 bounded_feedback_v46.py:93(evaluate)
+        1    0.000    0.000    0.003    0.003 execution_ledger_v48.py:177(capture)
+        1    0.000    0.000    0.003    0.003 bounded_feedback_v47.py:75(limit_tracking_command)
+       17    0.001    0.000    0.003    0.000 prepared_allocation_v42.py:59(command)
+        2    0.000    0.000    0.003    0.002 runtime_coordinator_v52.py:182(acknowledge)
+      174    0.001    0.000    0.003    0.000 fromnumeric.py:71(_wrapreduction)
+      311    0.003    0.000    0.003    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+        2    0.000    0.000    0.003    0.001 execution_ledger_v48.py:242(acknowledge)
+    239/5    0.001    0.000    0.002    0.000 copy.py:118(deepcopy)
+        2    0.000    0.000    0.002    0.001 recovery_solver_v50.py:34(__post_init__)
+     11/5    0.000    0.000    0.002    0.000 copy.py:247(_reconstruct)
+     11/5    0.000    0.000    0.002    0.000 copy.py:217(_deepcopy_dict)
+        2    0.000    0.000    0.002    0.001 bounded_mpc_v44.py:82(check_states)
+        3    0.000    0.000    0.002    0.001 bounded_feedback_v46.py:185(_same_pose_values)
+      107    0.000    0.000    0.002    0.000 {method 'all' of 'numpy.ndarray' objects}
+        7    0.000    0.000    0.002    0.000 execution_ledger_v48.py:156(_binding_check)
+        1    0.000    0.000    0.002    0.002 bounded_feedback_v46.py:47(feedback_demand)
+        8    0.000    0.000    0.001    0.000 bounded_mpc_v44.py:78(identity)
+        2    0.000    0.000    0.001    0.001 control_objective_v44.py:36(state_features)
+       77    0.000    0.000    0.001    0.000 fromnumeric.py:2421(all)
+      107    0.000    0.000    0.001    0.000 _methods.py:61(_all)
+       64    0.000    0.000    0.001    0.000 fromnumeric.py:2322(any)
+        1    0.000    0.000    0.001    0.001 execution_ledger_v48.py:206(reserve)
+       44    0.001    0.000    0.001    0.000 linalg.py:2383(norm)
+        8    0.000    0.000    0.001    0.000 __init__.py:183(dumps)
+        5    0.001    0.000    0.001    0.000 projected_edmd_v24.py:35(rotation)
+        1    0.000    0.000    0.001    0.001 plan_arbiter_v52.py:44(_same_identity)
+        8    0.000    0.000    0.001    0.000 encoder.py:183(encode)
+        2    0.000    0.000    0.001    0.000 command_state_v39.py:68(record_issued)
+        8    0.001    0.000    0.001    0.000 encoder.py:205(iterencode)
+        1    0.000    0.000    0.001    0.001 command_state_v39.py:84(snapshot)
+       15    0.000    0.000    0.001    0.000 feedback_inverse_v28.py:15(deadzone_distance)
+        5    0.000    0.000    0.001    0.000 numeric.py:2170(allclose)
+       38    0.000    0.000    0.001    0.000 fromnumeric.py:2100(clip)
+        7    0.001    0.000    0.001    0.000 index_tricks.py:326(__getitem__)
+        1    0.000    0.000    0.001    0.001 runtime_coordinator_v52.py:70(observe)
+        1    0.000    0.000    0.001    0.001 bounded_feedback_v47.py:34(static_inverse)
+        2    0.000    0.000    0.001    0.000 command_prediction_v37.py:16(validate_context)
+       41    0.000    0.000    0.001    0.000 fromnumeric.py:53(_wrapfunc)
+        1    0.000    0.000    0.001    0.001 control_objective_v44.py:43(tracking_terms)
+
+

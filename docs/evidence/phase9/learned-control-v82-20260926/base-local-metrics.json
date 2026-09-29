@@ -1,0 +1,74 @@
+[
+  {
+    "case": "base-learned-0.001-on-r1",
+    "metrics": {
+      "normalized_tracking_score": 0.1575916562139488,
+      "depth_rmse_m": 0.00019067601199993487,
+      "attitude_rmse_rad": 0.015874546310874815,
+      "terminal_depth_error_m": 0.00025272369384765625,
+      "terminal_attitude_error_rad": 0.0008683110379318433,
+      "control_squared_integral": 0.0011279914323523179,
+      "actual_objective": 0.0007184168915993534,
+      "cycle_median_ms": 25087.737573310733,
+      "cycle_p95_ms": 28697.506658919156,
+      "cycle_max_ms": 30065.304145216942,
+      "solve_status_counts": {
+        "optimized": 29,
+        "recovered": 5,
+        "warm_retained": 22,
+        "preview_retained": 3
+      },
+      "selected_reference_counts": {
+        "worker": 34,
+        "warm": 22,
+        "preview": 3
+      },
+      "nlp_return_status_counts": {
+        "Maximum_Iterations_Exceeded": 32,
+        "Solved_To_Acceptable_Level": 4,
+        "Solve_Succeeded": 23
+      },
+      "control_effort_is_not_energy_in_joules": true,
+      "normalized_gain_vs_physical_percent": -2.968871099160242,
+      "objective_gain_vs_physical_percent": 0.8584893374774083
+    },
+    "trace_sha256": "c47804af3f8be480ec985cf01c7142a57380c9ccb4c33fe1f2f91b2613bb968f"
+  },
+  {
+    "case": "base-learned-0.1-on-r1",
+    "metrics": {
+      "normalized_tracking_score": 0.1803978185546272,
+      "depth_rmse_m": 0.0016038928158599716,
+      "attitude_rmse_rad": 0.016683723236386255,
+      "terminal_depth_error_m": 0.0008692741394042969,
+      "terminal_attitude_error_rad": 0.0011820110444469255,
+      "control_squared_integral": 0.0010987316935538065,
+      "actual_objective": 0.0007886649399274447,
+      "cycle_median_ms": 13006.381504237652,
+      "cycle_p95_ms": 27502.825099788606,
+      "cycle_max_ms": 29003.553856164217,
+      "solve_status_counts": {
+        "optimized": 22,
+        "recovered": 2,
+        "preview_retained": 1,
+        "warm_retained": 6,
+        "baseline_retained": 28
+      },
+      "selected_reference_counts": {
+        "worker": 24,
+        "preview": 1,
+        "warm": 6,
+        "held": 28
+      },
+      "nlp_return_status_counts": {
+        "Maximum_Iterations_Exceeded": 23,
+        "Solve_Succeeded": 35,
+        "Solved_To_Acceptable_Level": 1
+      },
+      "control_effort_is_not_energy_in_joules": true,
+      "normalized_gain_vs_physical_percent": -17.870198026873418,
+      "objective_gain_vs_physical_percent": -8.835739339184645
+    },
+    "trace_sha256": "5ef1b1d1b8c4d667e44c37c75e26de32ff9865a60819cc7371bad72f062f7c86"
+  }
+]

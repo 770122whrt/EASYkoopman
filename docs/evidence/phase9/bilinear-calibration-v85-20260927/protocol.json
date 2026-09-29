@@ -1,0 +1,46 @@
+{
+  "schema": "source-only-bilinear-ridge-calibration-v85",
+  "ridge_grid": [
+    1e-08,
+    1e-06,
+    0.0001,
+    0.001,
+    0.1
+  ],
+  "maximum_seconds": 600,
+  "maximum_bytes": 134217728,
+  "gate": {
+    "horizon_physics": 80,
+    "max_window_z_rmse_m": 0.002,
+    "max_window_attitude_rmse_rad": 0.004
+  },
+  "selection": "lexicographic: number of failed 80-step windows; maximum over complete windows of z_RMSE/.002 + attitude_RMSE/.004; larger ridge on exact ties",
+  "source_development": "alphabetically last outer source configuration, excluded from inner fitting",
+  "outer_target_used_for_selection": false,
+  "blind_test": false,
+  "dictionary_changed": false,
+  "input_features_changed": false,
+  "propagation_changed": true,
+  "interaction_features": "shared a_i*z_j; no height or constant",
+  "user_authorized": "2026-09-27 bilinear extension as distinct comparison",
+  "fixed_AB_comparator": "docs/evidence/phase9/lifted-calibration-v84-20260927/report.json",
+  "origins": [
+    256,
+    384,
+    512
+  ],
+  "horizons": [
+    1,
+    80,
+    128
+  ],
+  "solver_runs": 0,
+  "physics_runs": 0,
+  "source_sha256": {
+    "workflows\\calibrate_bilinear_v85.py": "9a30dca2e05f43145da83ae51cd425b4a9bf247d6b3d22c710862c23a9e9411f",
+    "koopman\\bilinear_lifted_v85.py": "858c5bad82355f8cbe81367574db5a2e5fe20d136795fe3c8800b2c8a36ee0d7",
+    "koopman\\lifted_propagation_v84.py": "6fafdff448ecb3fd49de0904d2197c3885dad76890eb20de04f68c0349c05bde",
+    "workflows\\calibrate_lifted_v84.py": "192ef4b3f04182a736e6ffddd5ae71ecc4b0515e6d800b72de5e8d6036c83128",
+    "workflows\\compare_models_v84.py": "dc0f7250c55b1d38802c1f3917390a545f20ed5e52e605918c0272d449f973ee"
+  }
+}

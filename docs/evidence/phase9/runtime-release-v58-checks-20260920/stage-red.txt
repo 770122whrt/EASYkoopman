@@ -1,0 +1,72 @@
+FFFFFFFFs                                                                [100%]
+================================== FAILURES ===================================
+__________ test_stage_requires_new_approval_before_creating_attempt ___________
+
+tmp_path = WindowsPath('E:/code for project/Agentic AUV/EasyUUV/.pytest-tmp/v58-stage-red/test_stage_requires_new_approv0')
+
+    def test_stage_requires_new_approval_before_creating_attempt(tmp_path):
+>       from workflows.run_runtime_v58 import run_stage
+E       ModuleNotFoundError: No module named 'workflows.run_runtime_v58'
+
+tests\test_runtime_stage_v58.py:9: ModuleNotFoundError
+________ test_nonzero_collection_stops_before_validation_and_next_case ________
+
+    def test_nonzero_collection_stops_before_validation_and_next_case():
+>       from workflows.run_runtime_v58 import run_sequence
+E       ModuleNotFoundError: No module named 'workflows.run_runtime_v58'
+
+tests\test_runtime_stage_v58.py:15: ModuleNotFoundError
+___________ test_zero_native_exit_does_not_skip_semantic_validation ___________
+
+    def test_zero_native_exit_does_not_skip_semantic_validation():
+>       from workflows.run_runtime_v58 import run_sequence
+E       ModuleNotFoundError: No module named 'workflows.run_runtime_v58'
+
+tests\test_runtime_stage_v58.py:24: ModuleNotFoundError
+_________ test_eight_cases_strictly_sequential_with_no_refit_or_retry _________
+
+    def test_eight_cases_strictly_sequential_with_no_refit_or_retry():
+>       from workflows.run_runtime_v58 import run_sequence
+E       ModuleNotFoundError: No module named 'workflows.run_runtime_v58'
+
+tests\test_runtime_stage_v58.py:34: ModuleNotFoundError
+__ test_collection_does_not_advance_until_semantic_artifact_readback_passes ___
+
+    def test_collection_does_not_advance_until_semantic_artifact_readback_passes():
+>       from workflows.run_runtime_v58 import run_sequence
+E       ModuleNotFoundError: No module named 'workflows.run_runtime_v58'
+
+tests\test_runtime_stage_v58.py:45: ModuleNotFoundError
+_____ test_unconfirmed_process_group_cleanup_stops_even_after_native_zero _____
+
+    def test_unconfirmed_process_group_cleanup_stops_even_after_native_zero():
+>       from workflows.run_runtime_v58 import run_sequence
+E       ModuleNotFoundError: No module named 'workflows.run_runtime_v58'
+
+tests\test_runtime_stage_v58.py:54: ModuleNotFoundError
+________ test_stage_time_exhaustion_stops_without_issuing_another_case ________
+
+    def test_stage_time_exhaustion_stops_without_issuing_another_case():
+>       from workflows.run_runtime_v58 import run_sequence
+E       ModuleNotFoundError: No module named 'workflows.run_runtime_v58'
+
+tests\test_runtime_stage_v58.py:62: ModuleNotFoundError
+__ test_full_size_inventory_rejects_symlinks_and_counts_release_and_results ___
+
+tmp_path = WindowsPath('E:/code for project/Agentic AUV/EasyUUV/.pytest-tmp/v58-stage-red/test_full_size_inventory_rejec0')
+
+    def test_full_size_inventory_rejects_symlinks_and_counts_release_and_results(tmp_path):
+>       from workflows.run_runtime_v58 import disk_bytes
+E       ModuleNotFoundError: No module named 'workflows.run_runtime_v58'
+
+tests\test_runtime_stage_v58.py:70: ModuleNotFoundError
+=========================== short test summary info ===========================
+FAILED tests/test_runtime_stage_v58.py::test_stage_requires_new_approval_before_creating_attempt
+FAILED tests/test_runtime_stage_v58.py::test_nonzero_collection_stops_before_validation_and_next_case
+FAILED tests/test_runtime_stage_v58.py::test_zero_native_exit_does_not_skip_semantic_validation
+FAILED tests/test_runtime_stage_v58.py::test_eight_cases_strictly_sequential_with_no_refit_or_retry
+FAILED tests/test_runtime_stage_v58.py::test_collection_does_not_advance_until_semantic_artifact_readback_passes
+FAILED tests/test_runtime_stage_v58.py::test_unconfirmed_process_group_cleanup_stops_even_after_native_zero
+FAILED tests/test_runtime_stage_v58.py::test_stage_time_exhaustion_stops_without_issuing_another_case
+FAILED tests/test_runtime_stage_v58.py::test_full_size_inventory_rejects_symlinks_and_counts_release_and_results
+8 failed, 1 skipped in 0.36s

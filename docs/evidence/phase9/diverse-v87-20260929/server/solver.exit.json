@@ -1,0 +1,23 @@
+{
+  "native_exit": 0,
+  "group_stopped": true,
+  "seconds": 174.5334246661514,
+  "command": [
+    "/root/shared-nvme/agentic-auv/runtime/bin/python",
+    "-B",
+    "-m",
+    "workflows.solve_disturbance_v87",
+    "--data",
+    "data",
+    "--manifest",
+    "v87-manifest.json",
+    "--model",
+    "model.json",
+    "--model-sha",
+    "5857a0e8d09cd04e33112b457b6a60f8b4147f3819815634edb6149ac95e137e",
+    "--assets",
+    "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+    "--output",
+    "solver.json"
+  ]
+}

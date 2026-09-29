@@ -1,0 +1,89 @@
+{
+  "status": "independent_command_interface_equivalence_verified",
+  "cases": 8,
+  "physics_ticks": 64,
+  "maximum_independently_recomputed_difference": 0.0,
+  "old_v36_completed_cases_array_exact": 4,
+  "forecast_function_ast_unchanged": true,
+  "mass_roundtrip": [
+    {
+      "configuration": "base",
+      "authored_mass": 22.701000213623047,
+      "observed_mass": 22.701000213623047,
+      "reciprocal_roundtrip_mass": 22.701000213623047
+    },
+    {
+      "configuration": "long_body",
+      "authored_mass": 22.701000213623047,
+      "observed_mass": 22.701000213623047,
+      "reciprocal_roundtrip_mass": 22.701000213623047
+    },
+    {
+      "configuration": "heavy_moderate",
+      "authored_mass": 45.402000427246094,
+      "observed_mass": 45.402000427246094,
+      "reciprocal_roundtrip_mass": 45.402000427246094
+    },
+    {
+      "configuration": "asymmetric",
+      "authored_mass": 22.701000213623047,
+      "observed_mass": 22.701000213623047,
+      "reciprocal_roundtrip_mass": 22.701000213623047
+    },
+    {
+      "configuration": "uuv6",
+      "authored_mass": 29.700000762939453,
+      "observed_mass": 29.69999885559082,
+      "reciprocal_roundtrip_mass": 29.69999885559082
+    },
+    {
+      "configuration": "uuv6_angled",
+      "authored_mass": 31.68000030517578,
+      "observed_mass": 31.680002212524414,
+      "reciprocal_roundtrip_mass": 31.680002212524414
+    },
+    {
+      "configuration": "uuv4",
+      "authored_mass": 21.780000686645508,
+      "observed_mass": 21.780000686645508,
+      "reciprocal_roundtrip_mass": 21.780000686645508
+    },
+    {
+      "configuration": "uuv4_angled",
+      "authored_mass": 23.760000228881836,
+      "observed_mass": 23.760000228881836,
+      "reciprocal_roundtrip_mass": 23.760000228881836
+    }
+  ],
+  "sources_unchanged": 492,
+  "inputs_unchanged": 46,
+  "old_v36_artifacts_unchanged": 13,
+  "old_formal_artifacts_unchanged": 145,
+  "model_handoff": false,
+  "independent_validation": false,
+  "seconds": 8.28100000001723,
+  "shared_v36_v37_charged_seconds": 170.375,
+  "artifact_sha256": {
+    "budget.json": "d73f7de9a9477485a0861e929a49f121bd466243e0eade019074f0e06983e8fc",
+    "cases/i29-asymmetric-fit-8729-prbs.json": "300c83b8d576d300697d9cef6681bc5f785bfc15ce189895db26ba057ccc67a1",
+    "cases/i29-asymmetric-fit-8729-prbs.npz": "bda5df1d8412000ac1e9f5ac797613cfc888e1b1357597f6d5e49e6d29a9735f",
+    "cases/i29-base-fit-8720-prbs.json": "ad0173ec36856e191652b69d4681690888a79665b1373d104b043606eb91dd15",
+    "cases/i29-base-fit-8720-prbs.npz": "0bd4bcebffa8fcc6567bff0f08a9915f39b7c0f04a4f9085919ce121e42261fe",
+    "cases/i29-heavy_moderate-fit-8726-prbs.json": "74288a7ed091fd7da66a50709b422537f126f90dc1405d627ed12214e30edbcb",
+    "cases/i29-heavy_moderate-fit-8726-prbs.npz": "dc0a1b7fe003311459d156985a41268daf6661b1ae860c3cffb9b2066c0c8fdc",
+    "cases/i29-long_body-fit-8723-prbs.json": "966ca88055617b806eeb7745a5904e4a5cc0150b78cbce55ae91643b44926fba",
+    "cases/i29-long_body-fit-8723-prbs.npz": "0452a9d05ee40aa37e5d54087d0f090ff85b88ea24ace5179fdd9c35a0204ac4",
+    "cases/i29-uuv4-fit-8738-prbs.json": "68c45ae6d6311a31ddcbca76a473533e3a465530e761e85088a3b603e05fc706",
+    "cases/i29-uuv4-fit-8738-prbs.npz": "1578d342f77a2079f5ebc5087a99c30d33f3995a7873d9ec5894812c20a18b44",
+    "cases/i29-uuv4_angled-fit-8741-prbs.json": "c124d78c3d96afe61f75b4e3777eaae2f677ef645dce3df9075732e86fb0b667",
+    "cases/i29-uuv4_angled-fit-8741-prbs.npz": "f68094148b82186b549bc9b83c1da5793254a03a4aae54619d53cdcd2770cb00",
+    "cases/i29-uuv6-fit-8732-prbs.json": "13568a6611add6004e163f1f222464db4b99ebaefee9ce6bb17f3de5cd40bf8c",
+    "cases/i29-uuv6-fit-8732-prbs.npz": "bf583015c801d7b5b6d40289588e6edfc330a06b4bfdfd086b3c38939e193c0d",
+    "cases/i29-uuv6_angled-fit-8735-prbs.json": "8335577d463e82863b40c9f25e7ecf9f6a668543231bb53e781a4e5cfbe3af1c",
+    "cases/i29-uuv6_angled-fit-8735-prbs.npz": "9faae1644d98102b1a3f959b6ddbb1c48d2c86ee894ae6134c9f6c5e134cb490",
+    "freeze.json": "cdc7f663a5f746f0819e5c43159d8f326d48345ec310a996c14b941931f89ec4",
+    "native-exit.txt": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+    "native-worker.log": "0b1afb2fd5a924cd645037ff8b3c673378a71316af023222ab952c34077e1fed",
+    "status.json": "7404303f9c146415fd4850804df89168b47ed607fcc7aa68e0dea71b7713645b"
+  }
+}

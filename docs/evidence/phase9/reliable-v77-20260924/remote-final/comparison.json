@@ -1,0 +1,1305 @@
+{
+  "schema": "v77-all-attempts",
+  "cases": [
+    {
+      "name": "base-pitch-feedback-repair-r1",
+      "configuration": "base",
+      "controller": "feedback",
+      "profile": "repair",
+      "controls": 60,
+      "seed": 19760,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0.0,
+        0.01999866669333308,
+        0.0
+      ],
+      "task": "pitch_0.04_rad",
+      "accepted": true,
+      "status": "completed_pending_independent_acceptance",
+      "reason": null,
+      "physics_steps": 240,
+      "trace_sha256": "37c55becf4c473b1671579cc470e2df48e56d9f68d92e0345f2476010aa94f08",
+      "source_manifest_sha256": "cd828b28e419e12536683c00ca809123651cccdfa637c22902e4812ed7a8e45c",
+      "baseline_path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/base-pitch-feedback-r1",
+      "baseline_score": 0.23357443494671923,
+      "statuses": {},
+      "solver_statuses": {},
+      "warm_starts": 0,
+      "physical_initializations": 0,
+      "feedback_unavailable": 0,
+      "single_thread_environment_observed": false,
+      "metrics": {
+        "depth_rmse_m": 0.002784724627111971,
+        "attitude_rmse_rad": 0.0185121671048901,
+        "normalized_tracking_score": 0.23357443494671923,
+        "maximum_angular_speed": 0.05000787228345871,
+        "maximum_cycle_ms": 58.919090777635574
+      },
+      "improvement_percent": 0.0,
+      "submetric_improvement_percent": {
+        "depth_rmse_m": 0.0,
+        "attitude_rmse_rad": 0.0
+      }
+    },
+    {
+      "name": "base-pitch-nominal_physics-repair-r1",
+      "configuration": "base",
+      "controller": "nominal_physics",
+      "profile": "repair",
+      "controls": 60,
+      "seed": 19760,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0.0,
+        0.01999866669333308,
+        0.0
+      ],
+      "task": "pitch_0.04_rad",
+      "accepted": true,
+      "status": "completed_pending_independent_acceptance",
+      "reason": null,
+      "physics_steps": 240,
+      "trace_sha256": "3b77334fb1c7d02bd585199593d07e60f8f88d6853255117591693d701401ed9",
+      "source_manifest_sha256": "c68c2a7cc0f6f2b1f2a9f6cf150b3573735ea039ce36e1f9aca1ff1859272e0c",
+      "baseline_path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/base-pitch-feedback-r1",
+      "baseline_score": 0.23357443494671923,
+      "statuses": {
+        "optimized": 19,
+        "baseline_retained": 32,
+        "warm_retained": 8
+      },
+      "solver_statuses": {
+        "Solve_Succeeded": 59
+      },
+      "warm_starts": 58,
+      "physical_initializations": 0,
+      "feedback_unavailable": 1,
+      "single_thread_environment_observed": true,
+      "max_internal_constraint_violation": 0.0,
+      "elapsed_seconds": {
+        "median": 1.3251386098563671,
+        "maximum": 3.0843209698796272,
+        "total": 81.04145013913512
+      },
+      "worker_cpu_seconds": {
+        "median": 1.17339694799999,
+        "maximum": 2.9494743930000005,
+        "total": 71.90550113599997
+      },
+      "metrics": {
+        "depth_rmse_m": 0.0013726204621256715,
+        "attitude_rmse_rad": 0.018723411552711372,
+        "normalized_tracking_score": 0.2238140549402438,
+        "maximum_angular_speed": 0.0518159531757931,
+        "maximum_cycle_ms": 3138.6252604424953
+      },
+      "improvement_percent": 4.178702180614014,
+      "submetric_improvement_percent": {
+        "depth_rmse_m": 50.70893370346599,
+        "attitude_rmse_rad": -1.1411113924391536
+      }
+    },
+    {
+      "name": "base-pitch-nominal_physics-repair-r4",
+      "configuration": "base",
+      "controller": "nominal_physics",
+      "profile": "repair",
+      "controls": 60,
+      "seed": 19760,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0.0,
+        0.01999866669333308,
+        0.0
+      ],
+      "task": "pitch_0.04_rad",
+      "accepted": true,
+      "status": "completed_pending_independent_acceptance",
+      "reason": null,
+      "physics_steps": 240,
+      "trace_sha256": "8cd28ec9f01c0ab803deb18f528e97398991343a9a679e62e811e0e39d3c3f0e",
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "baseline_path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/base-pitch-feedback-r1",
+      "baseline_score": 0.23357443494671923,
+      "statuses": {
+        "optimized": 15,
+        "baseline_retained": 30,
+        "warm_retained": 14
+      },
+      "solver_statuses": {
+        "Solve_Succeeded": 57,
+        "Maximum_Iterations_Exceeded": 2
+      },
+      "warm_starts": 38,
+      "physical_initializations": 20,
+      "feedback_unavailable": 1,
+      "single_thread_environment_observed": true,
+      "max_internal_constraint_violation": 0.0,
+      "elapsed_seconds": {
+        "median": 1.4484924040734768,
+        "maximum": 9.444794543087482,
+        "total": 116.95856837555766
+      },
+      "worker_cpu_seconds": {
+        "median": 1.2980464940000012,
+        "maximum": 9.289383530999999,
+        "total": 108.00226083400003
+      },
+      "metrics": {
+        "depth_rmse_m": 0.0032835658262803918,
+        "attitude_rmse_rad": 0.01806524288082734,
+        "normalized_tracking_score": 0.23092513655334285,
+        "maximum_angular_speed": 0.05230127910617506,
+        "maximum_cycle_ms": 9500.02720579505
+      },
+      "improvement_percent": 1.1342415936832828,
+      "submetric_improvement_percent": {
+        "depth_rmse_m": -17.913483951401243,
+        "attitude_rmse_rad": 2.4142188298673095
+      }
+    },
+    {
+      "name": "base-pitch-projected_koopman-repair-r1",
+      "configuration": "base",
+      "controller": "projected_koopman",
+      "profile": "repair",
+      "controls": 60,
+      "seed": 19760,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0.0,
+        0.01999866669333308,
+        0.0
+      ],
+      "task": "pitch_0.04_rad",
+      "accepted": false,
+      "status": "failed",
+      "reason": "ValueError:runtime_feedback_no_admissible_limited_command",
+      "physics_steps": 136,
+      "trace_sha256": "d033f4491b089dc0147d3765fbaaee47ced03d52d540b352ccd765a6406e3a78",
+      "source_manifest_sha256": "cd828b28e419e12536683c00ca809123651cccdfa637c22902e4812ed7a8e45c",
+      "baseline_path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/base-pitch-feedback-r1",
+      "baseline_score": 0.23357443494671923,
+      "statuses": {
+        "optimized": 13,
+        "baseline_retained": 17,
+        "warm_retained": 3
+      },
+      "solver_statuses": {
+        "Solve_Succeeded": 33
+      },
+      "warm_starts": 32,
+      "physical_initializations": 0,
+      "feedback_unavailable": 0,
+      "single_thread_environment_observed": false,
+      "max_internal_constraint_violation": 0.0,
+      "elapsed_seconds": {
+        "median": 2.0524647273123264,
+        "maximum": 5.653428193181753,
+        "total": 73.91392534226179
+      },
+      "worker_cpu_seconds": {
+        "median": 18.78665257100002,
+        "maximum": 54.518398384,
+        "total": 679.1492746869999
+      }
+    },
+    {
+      "name": "base-pitch-projected_koopman-repair-r2",
+      "configuration": "base",
+      "controller": "projected_koopman",
+      "profile": "repair",
+      "controls": 60,
+      "seed": 19760,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0.0,
+        0.01999866669333308,
+        0.0
+      ],
+      "task": "pitch_0.04_rad",
+      "accepted": true,
+      "status": "completed_pending_independent_acceptance",
+      "reason": null,
+      "physics_steps": 240,
+      "trace_sha256": "25341edc1dded170dccb3fa007b1c387daa957931dce17719d5cd3ba2761b5dd",
+      "source_manifest_sha256": "48bd0c58d103b91cd09f663b7d11c22b1207c1704c422cc5ef8fae6c95dd0234",
+      "baseline_path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/base-pitch-feedback-r1",
+      "baseline_score": 0.23357443494671923,
+      "statuses": {
+        "optimized": 19,
+        "baseline_retained": 32,
+        "warm_retained": 8
+      },
+      "solver_statuses": {
+        "Solve_Succeeded": 59
+      },
+      "warm_starts": 58,
+      "physical_initializations": 0,
+      "feedback_unavailable": 1,
+      "single_thread_environment_observed": false,
+      "max_internal_constraint_violation": 0.0,
+      "elapsed_seconds": {
+        "median": 1.9050586335361004,
+        "maximum": 5.499981876462698,
+        "total": 121.2732644379139
+      },
+      "worker_cpu_seconds": {
+        "median": 17.455609046000063,
+        "maximum": 52.985947618,
+        "total": 1105.4684810570004
+      },
+      "metrics": {
+        "depth_rmse_m": 0.0013729058604196691,
+        "attitude_rmse_rad": 0.018723416700545836,
+        "normalized_tracking_score": 0.22381613434286082,
+        "maximum_angular_speed": 0.051816101341549216,
+        "maximum_cycle_ms": 5554.235689342022
+      },
+      "improvement_percent": 4.177811927955377,
+      "submetric_improvement_percent": {
+        "depth_rmse_m": 50.698684995524836,
+        "attitude_rmse_rad": -1.1411392002826926
+      }
+    },
+    {
+      "name": "base-pitch-projected_koopman-repair-r3",
+      "configuration": "base",
+      "controller": "projected_koopman",
+      "profile": "repair",
+      "controls": 60,
+      "seed": 19760,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0.0,
+        0.01999866669333308,
+        0.0
+      ],
+      "task": "pitch_0.04_rad",
+      "accepted": true,
+      "status": "completed_pending_independent_acceptance",
+      "reason": null,
+      "physics_steps": 240,
+      "trace_sha256": "d1aa8f277eb72ed94ea07bebfab7da5a072e9e92a6df73feed8a251d8aafa7fc",
+      "source_manifest_sha256": "c68c2a7cc0f6f2b1f2a9f6cf150b3573735ea039ce36e1f9aca1ff1859272e0c",
+      "baseline_path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/base-pitch-feedback-r1",
+      "baseline_score": 0.23357443494671923,
+      "statuses": {
+        "optimized": 19,
+        "baseline_retained": 32,
+        "warm_retained": 8
+      },
+      "solver_statuses": {
+        "Solve_Succeeded": 59
+      },
+      "warm_starts": 58,
+      "physical_initializations": 0,
+      "feedback_unavailable": 1,
+      "single_thread_environment_observed": true,
+      "max_internal_constraint_violation": 0.0,
+      "elapsed_seconds": {
+        "median": 1.2428521998226643,
+        "maximum": 3.389695167541504,
+        "total": 77.19955594837666
+      },
+      "worker_cpu_seconds": {
+        "median": 1.1266960359999985,
+        "maximum": 3.2676949109999995,
+        "total": 70.333235818
+      },
+      "metrics": {
+        "depth_rmse_m": 0.0013729058604196691,
+        "attitude_rmse_rad": 0.018723416700545836,
+        "normalized_tracking_score": 0.22381613434286082,
+        "maximum_angular_speed": 0.051816101341549216,
+        "maximum_cycle_ms": 3444.4123432040215
+      },
+      "improvement_percent": 4.177811927955377,
+      "submetric_improvement_percent": {
+        "depth_rmse_m": 50.698684995524836,
+        "attitude_rmse_rad": -1.1411392002826926
+      }
+    },
+    {
+      "name": "base-pitch-projected_koopman-repair-r4",
+      "configuration": "base",
+      "controller": "projected_koopman",
+      "profile": "repair",
+      "controls": 60,
+      "seed": 19760,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0.0,
+        0.01999866669333308,
+        0.0
+      ],
+      "task": "pitch_0.04_rad",
+      "accepted": true,
+      "status": "completed_pending_independent_acceptance",
+      "reason": null,
+      "physics_steps": 240,
+      "trace_sha256": "95a0e67d161d4979799c4f471f36df2c536640476cb4f83e3430f2d7d4a5172b",
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "baseline_path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/base-pitch-feedback-r1",
+      "baseline_score": 0.23357443494671923,
+      "statuses": {
+        "optimized": 15,
+        "baseline_retained": 30,
+        "warm_retained": 14
+      },
+      "solver_statuses": {
+        "Solve_Succeeded": 56,
+        "Solved_To_Acceptable_Level": 2,
+        "Maximum_Iterations_Exceeded": 1
+      },
+      "warm_starts": 38,
+      "physical_initializations": 20,
+      "feedback_unavailable": 1,
+      "single_thread_environment_observed": true,
+      "max_internal_constraint_violation": 0.0,
+      "elapsed_seconds": {
+        "median": 1.350913293659687,
+        "maximum": 9.059394001960754,
+        "total": 114.1245180927217
+      },
+      "worker_cpu_seconds": {
+        "median": 1.2374921319999999,
+        "maximum": 8.940659651000004,
+        "total": 107.28803913500003
+      },
+      "metrics": {
+        "depth_rmse_m": 0.003312005407587383,
+        "attitude_rmse_rad": 0.01809246604634131,
+        "normalized_tracking_score": 0.23200927932347834,
+        "maximum_angular_speed": 0.052301785022580705,
+        "maximum_cycle_ms": 9115.568935871124
+      },
+      "improvement_percent": 0.6700885837946813,
+      "submetric_improvement_percent": {
+        "depth_rmse_m": -18.934754817112864,
+        "attitude_rmse_rad": 2.267163299524899
+      }
+    },
+    {
+      "name": "long_body-pitch-nominal_physics-repair-r1",
+      "configuration": "long_body",
+      "controller": "nominal_physics",
+      "profile": "repair",
+      "controls": 60,
+      "seed": 19760,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0.0,
+        0.01999866669333308,
+        0.0
+      ],
+      "task": "pitch_0.04_rad",
+      "accepted": true,
+      "status": "completed_pending_independent_acceptance",
+      "reason": null,
+      "physics_steps": 240,
+      "trace_sha256": "1ae907cc15a9fec7bac50d590f644664f17c5fbb72f67a227c84f3dc0e9e8c69",
+      "source_manifest_sha256": "c68c2a7cc0f6f2b1f2a9f6cf150b3573735ea039ce36e1f9aca1ff1859272e0c",
+      "baseline_path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/long_body-pitch-feedback-r3",
+      "baseline_score": 0.21012086267038343,
+      "statuses": {
+        "baseline_retained": 24,
+        "optimized": 20,
+        "warm_retained": 15
+      },
+      "solver_statuses": {
+        "Maximum_Iterations_Exceeded": 21,
+        "Solve_Succeeded": 35,
+        "Solved_To_Acceptable_Level": 3
+      },
+      "warm_starts": 58,
+      "physical_initializations": 0,
+      "feedback_unavailable": 0,
+      "single_thread_environment_observed": true,
+      "max_internal_constraint_violation": 0.0,
+      "elapsed_seconds": {
+        "median": 1.899283241480589,
+        "maximum": 9.418872695416212,
+        "total": 237.43506932258606
+      },
+      "worker_cpu_seconds": {
+        "median": 1.7449151920000006,
+        "maximum": 9.132960493000013,
+        "total": 228.18863770200002
+      },
+      "metrics": {
+        "depth_rmse_m": 0.0014177466615286852,
+        "attitude_rmse_rad": 0.017904148083460667,
+        "normalized_tracking_score": 0.20537408811224447,
+        "maximum_angular_speed": 0.05425204945546717,
+        "maximum_cycle_ms": 9475.713428109884
+      },
+      "improvement_percent": 2.259068660680885,
+      "submetric_improvement_percent": {
+        "depth_rmse_m": -27.328592461058633,
+        "attitude_rmse_rad": 1.62470635814278
+      }
+    },
+    {
+      "name": "long_body-pitch-nominal_physics-repair-r4",
+      "configuration": "long_body",
+      "controller": "nominal_physics",
+      "profile": "repair",
+      "controls": 60,
+      "seed": 19760,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0.0,
+        0.01999866669333308,
+        0.0
+      ],
+      "task": "pitch_0.04_rad",
+      "accepted": true,
+      "status": "completed_pending_independent_acceptance",
+      "reason": null,
+      "physics_steps": 240,
+      "trace_sha256": "b8bd7d49e6e3fd62b5f6e4673de3f3df5c16a382a3ef48b667a4c9d245bc0dc8",
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "baseline_path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/long_body-pitch-feedback-r3",
+      "baseline_score": 0.21012086267038343,
+      "statuses": {
+        "baseline_retained": 36,
+        "optimized": 19,
+        "warm_retained": 4
+      },
+      "solver_statuses": {
+        "Maximum_Iterations_Exceeded": 14,
+        "Solve_Succeeded": 41,
+        "Solved_To_Acceptable_Level": 4
+      },
+      "warm_starts": 35,
+      "physical_initializations": 23,
+      "feedback_unavailable": 0,
+      "single_thread_environment_observed": true,
+      "max_internal_constraint_violation": 0.0,
+      "elapsed_seconds": {
+        "median": 2.107034135609865,
+        "maximum": 8.949480149894953,
+        "total": 202.3614739216864
+      },
+      "worker_cpu_seconds": {
+        "median": 1.9566628179999839,
+        "maximum": 8.785527123999998,
+        "total": 193.11524805500002
+      },
+      "metrics": {
+        "depth_rmse_m": 0.0018633494945141057,
+        "attitude_rmse_rad": 0.017992955034073797,
+        "normalized_tracking_score": 0.2110216976331409,
+        "maximum_angular_speed": 0.05425204945546717,
+        "maximum_cycle_ms": 9009.357500821352
+      },
+      "improvement_percent": -0.42872228455039796,
+      "submetric_improvement_percent": {
+        "depth_rmse_m": -67.34842326744266,
+        "attitude_rmse_rad": 1.1367518459660775
+      }
+    },
+    {
+      "name": "long_body-pitch-projected_koopman-repair-r1",
+      "configuration": "long_body",
+      "controller": "projected_koopman",
+      "profile": "repair",
+      "controls": 60,
+      "seed": 19760,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0.0,
+        0.01999866669333308,
+        0.0
+      ],
+      "task": "pitch_0.04_rad",
+      "accepted": true,
+      "status": "completed_pending_independent_acceptance",
+      "reason": null,
+      "physics_steps": 240,
+      "trace_sha256": "cc7ed5b94b8fb00587acb27fdb8feef455d144cacf295fd3f905445fe674bfac",
+      "source_manifest_sha256": "c68c2a7cc0f6f2b1f2a9f6cf150b3573735ea039ce36e1f9aca1ff1859272e0c",
+      "baseline_path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/long_body-pitch-feedback-r3",
+      "baseline_score": 0.21012086267038343,
+      "statuses": {
+        "baseline_retained": 39,
+        "optimized": 13,
+        "warm_retained": 7
+      },
+      "solver_statuses": {
+        "Maximum_Iterations_Exceeded": 30,
+        "Solve_Succeeded": 29
+      },
+      "warm_starts": 58,
+      "physical_initializations": 0,
+      "feedback_unavailable": 0,
+      "single_thread_environment_observed": true,
+      "max_internal_constraint_violation": 0.0,
+      "elapsed_seconds": {
+        "median": 6.961878918111324,
+        "maximum": 10.040945272892714,
+        "total": 327.0047027878463
+      },
+      "worker_cpu_seconds": {
+        "median": 6.846488317999999,
+        "maximum": 9.924303758000008,
+        "total": 320.0114577149999
+      },
+      "metrics": {
+        "depth_rmse_m": 0.0020271619810428147,
+        "attitude_rmse_rad": 0.01825436583514731,
+        "normalized_tracking_score": 0.21853713427058447,
+        "maximum_angular_speed": 0.0544061920907787,
+        "maximum_cycle_ms": 10101.640217006207
+      },
+      "improvement_percent": -4.005443102241424,
+      "submetric_improvement_percent": {
+        "depth_rmse_m": -82.06051104958314,
+        "attitude_rmse_rad": -0.2995837002371049
+      }
+    },
+    {
+      "name": "long_body-pitch-projected_koopman-repair-r4",
+      "configuration": "long_body",
+      "controller": "projected_koopman",
+      "profile": "repair",
+      "controls": 60,
+      "seed": 19760,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0.0,
+        0.01999866669333308,
+        0.0
+      ],
+      "task": "pitch_0.04_rad",
+      "accepted": true,
+      "status": "completed_pending_independent_acceptance",
+      "reason": null,
+      "physics_steps": 240,
+      "trace_sha256": "5541b20f4a7f73388dc82a3863b213165a407b36ce34d45c486a78d6e138b403",
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "baseline_path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/long_body-pitch-feedback-r3",
+      "baseline_score": 0.21012086267038343,
+      "statuses": {
+        "baseline_retained": 39,
+        "optimized": 13,
+        "warm_retained": 7
+      },
+      "solver_statuses": {
+        "Maximum_Iterations_Exceeded": 29,
+        "Solve_Succeeded": 30
+      },
+      "warm_starts": 43,
+      "physical_initializations": 15,
+      "feedback_unavailable": 0,
+      "single_thread_environment_observed": true,
+      "max_internal_constraint_violation": 0.0,
+      "elapsed_seconds": {
+        "median": 6.703842855989933,
+        "maximum": 9.467512037605047,
+        "total": 309.6984997577965
+      },
+      "worker_cpu_seconds": {
+        "median": 6.489089491999998,
+        "maximum": 9.352222132999998,
+        "total": 302.4758420649998
+      },
+      "metrics": {
+        "depth_rmse_m": 0.0020271619810428147,
+        "attitude_rmse_rad": 0.01825436583514731,
+        "normalized_tracking_score": 0.21853713427058447,
+        "maximum_angular_speed": 0.0544061920907787,
+        "maximum_cycle_ms": 9520.08892223239
+      },
+      "improvement_percent": -4.005443102241424,
+      "submetric_improvement_percent": {
+        "depth_rmse_m": -82.06051104958314,
+        "attitude_rmse_rad": -0.2995837002371049
+      }
+    },
+    {
+      "name": "uuv4-pitch-nominal_physics-depth4_h20-r4",
+      "configuration": "uuv4",
+      "controller": "nominal_physics",
+      "profile": "depth4_h20",
+      "controls": 60,
+      "seed": 19760,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0.0,
+        0.01999866669333308,
+        0.0
+      ],
+      "task": "pitch_0.04_rad",
+      "accepted": true,
+      "status": "completed_pending_independent_acceptance",
+      "reason": null,
+      "physics_steps": 240,
+      "trace_sha256": "23852e63881cf0954f10d9246ea7ab91eef47ea5613fd0857c78697d757bba69",
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "baseline_path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv4-pitch-feedback-r3",
+      "baseline_score": 0.21393032095951076,
+      "statuses": {
+        "recovered": 6,
+        "warm_retained": 14,
+        "baseline_retained": 4,
+        "optimized": 35
+      },
+      "solver_statuses": {
+        "Solve_Succeeded": 17,
+        "Maximum_Iterations_Exceeded": 36,
+        "Solved_To_Acceptable_Level": 6
+      },
+      "warm_starts": 57,
+      "physical_initializations": 0,
+      "feedback_unavailable": 1,
+      "single_thread_environment_observed": true,
+      "max_internal_constraint_violation": 0.0,
+      "elapsed_seconds": {
+        "median": 16.741855569183826,
+        "maximum": 18.433088809251785,
+        "total": 823.0403871275485
+      },
+      "worker_cpu_seconds": {
+        "median": 16.437058994999973,
+        "maximum": 18.13657541699999,
+        "total": 805.3332312029995
+      },
+      "metrics": {
+        "depth_rmse_m": 0.0006738152248103447,
+        "attitude_rmse_rad": 0.017439706367759458,
+        "normalized_tracking_score": 0.1912246662640092,
+        "maximum_angular_speed": 0.06394956428364698,
+        "maximum_cycle_ms": 18547.6525016129
+      },
+      "improvement_percent": 10.613574828319416,
+      "submetric_improvement_percent": {
+        "depth_rmse_m": 60.19940497016223,
+        "attitude_rmse_rad": 4.117183371983257
+      }
+    },
+    {
+      "name": "uuv4-pitch-nominal_physics-repair-r1",
+      "configuration": "uuv4",
+      "controller": "nominal_physics",
+      "profile": "repair",
+      "controls": 60,
+      "seed": 19760,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0.0,
+        0.01999866669333308,
+        0.0
+      ],
+      "task": "pitch_0.04_rad",
+      "accepted": false,
+      "status": "failed",
+      "reason": "ValueError:runtime_continuous_no_exact_plan:no_exact_feasible_solution_found",
+      "physics_steps": 192,
+      "trace_sha256": "ff15eb726973560932f2304e0ce212b53d168a8c2fa03e39d69802bec440f4f7",
+      "source_manifest_sha256": "c68c2a7cc0f6f2b1f2a9f6cf150b3573735ea039ce36e1f9aca1ff1859272e0c",
+      "baseline_path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv4-pitch-feedback-r3",
+      "baseline_score": 0.21393032095951076,
+      "statuses": {
+        "optimized": 12,
+        "warm_retained": 27,
+        "baseline_retained": 5,
+        "recovered": 3,
+        "no_plan": 1
+      },
+      "solver_statuses": {
+        "Solve_Succeeded": 39,
+        "Solved_To_Acceptable_Level": 1,
+        "Maximum_Iterations_Exceeded": 7,
+        "Infeasible_Problem_Detected": 1
+      },
+      "warm_starts": 46,
+      "physical_initializations": 0,
+      "feedback_unavailable": 0,
+      "single_thread_environment_observed": true,
+      "max_internal_constraint_violation": 0.00023766319496711097,
+      "elapsed_seconds": {
+        "median": 1.2184990979731083,
+        "maximum": 5.46268467605114,
+        "total": 117.52626634389162
+      },
+      "worker_cpu_seconds": {
+        "median": 1.0644280834999993,
+        "maximum": 5.305588376000003,
+        "total": 109.94886225699999
+      }
+    },
+    {
+      "name": "uuv4-pitch-nominal_physics-repair-r4",
+      "configuration": "uuv4",
+      "controller": "nominal_physics",
+      "profile": "repair",
+      "controls": 60,
+      "seed": 19760,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0.0,
+        0.01999866669333308,
+        0.0
+      ],
+      "task": "pitch_0.04_rad",
+      "accepted": true,
+      "status": "completed_pending_independent_acceptance",
+      "reason": null,
+      "physics_steps": 240,
+      "trace_sha256": "7fca552a47bbacfdec8b9359a246d7d3e958eb158212270046832ce760f983fc",
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "baseline_path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv4-pitch-feedback-r3",
+      "baseline_score": 0.21393032095951076,
+      "statuses": {
+        "optimized": 24,
+        "warm_retained": 16,
+        "baseline_retained": 6,
+        "recovered": 13
+      },
+      "solver_statuses": {
+        "Solve_Succeeded": 42,
+        "Solved_To_Acceptable_Level": 2,
+        "Maximum_Iterations_Exceeded": 15
+      },
+      "warm_starts": 57,
+      "physical_initializations": 1,
+      "feedback_unavailable": 0,
+      "single_thread_environment_observed": true,
+      "max_internal_constraint_violation": 0.0,
+      "elapsed_seconds": {
+        "median": 3.0725957341492176,
+        "maximum": 6.099072556942701,
+        "total": 185.10756109654903
+      },
+      "worker_cpu_seconds": {
+        "median": 2.915372749000003,
+        "maximum": 5.9405808930000035,
+        "total": 175.84172903000007
+      },
+      "metrics": {
+        "depth_rmse_m": 0.019285628217613038,
+        "attitude_rmse_rad": 0.017990138462461138,
+        "normalized_tracking_score": 1.1321168155565577,
+        "maximum_angular_speed": 0.09233006843982264,
+        "maximum_cycle_ms": 6158.234469592571
+      },
+      "improvement_percent": -429.1988580575384,
+      "submetric_improvement_percent": {
+        "depth_rmse_m": -1039.1542522674151,
+        "attitude_rmse_rad": 1.090929460964174
+      }
+    },
+    {
+      "name": "uuv4-pitch-projected_koopman-depth4-r4",
+      "configuration": "uuv4",
+      "controller": "projected_koopman",
+      "profile": "depth4",
+      "controls": 60,
+      "seed": 19760,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0.0,
+        0.01999866669333308,
+        0.0
+      ],
+      "task": "pitch_0.04_rad",
+      "accepted": true,
+      "status": "completed_pending_independent_acceptance",
+      "reason": null,
+      "physics_steps": 240,
+      "trace_sha256": "205e3021ab04279e888b2db469b1888b1725dc1295d71b9d4989ca0237331e44",
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "baseline_path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv4-pitch-feedback-r3",
+      "baseline_score": 0.21393032095951076,
+      "statuses": {
+        "optimized": 47,
+        "baseline_retained": 4,
+        "warm_retained": 4,
+        "recovered": 4
+      },
+      "solver_statuses": {
+        "Solve_Succeeded": 55,
+        "Solved_To_Acceptable_Level": 2,
+        "Maximum_Iterations_Exceeded": 2
+      },
+      "warm_starts": 57,
+      "physical_initializations": 1,
+      "feedback_unavailable": 1,
+      "single_thread_environment_observed": true,
+      "max_internal_constraint_violation": 0.0,
+      "elapsed_seconds": {
+        "median": 1.0855056792497635,
+        "maximum": 6.486195266246796,
+        "total": 105.98301126435399
+      },
+      "worker_cpu_seconds": {
+        "median": 0.9625291030000014,
+        "maximum": 6.363521333999998,
+        "total": 98.94391945999996
+      },
+      "metrics": {
+        "depth_rmse_m": 0.005197597888576509,
+        "attitude_rmse_rad": 0.016715455760877983,
+        "normalized_tracking_score": 0.2421665978370056,
+        "maximum_angular_speed": 0.06511110812425777,
+        "maximum_cycle_ms": 6545.664820820093
+      },
+      "improvement_percent": -13.198819480497548,
+      "submetric_improvement_percent": {
+        "depth_rmse_m": -207.00922311365022,
+        "attitude_rmse_rad": 8.099084596004147
+      }
+    },
+    {
+      "name": "uuv4-pitch-projected_koopman-depth4_h20-r4",
+      "configuration": "uuv4",
+      "controller": "projected_koopman",
+      "profile": "depth4_h20",
+      "controls": 60,
+      "seed": 19760,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0.0,
+        0.01999866669333308,
+        0.0
+      ],
+      "task": "pitch_0.04_rad",
+      "accepted": true,
+      "status": "completed_pending_independent_acceptance",
+      "reason": null,
+      "physics_steps": 240,
+      "trace_sha256": "b87e7fce61d49f8cf86da38516f7a7e86ce3d7d33cea9893f5970c2dc9ed4076",
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "baseline_path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv4-pitch-feedback-r3",
+      "baseline_score": 0.21393032095951076,
+      "statuses": {
+        "recovered": 6,
+        "warm_retained": 9,
+        "baseline_retained": 1,
+        "optimized": 43
+      },
+      "solver_statuses": {
+        "Solve_Succeeded": 29,
+        "Solved_To_Acceptable_Level": 4,
+        "Maximum_Iterations_Exceeded": 26
+      },
+      "warm_starts": 57,
+      "physical_initializations": 0,
+      "feedback_unavailable": 1,
+      "single_thread_environment_observed": true,
+      "max_internal_constraint_violation": 0.0,
+      "elapsed_seconds": {
+        "median": 13.813982032239437,
+        "maximum": 19.08927285671234,
+        "total": 685.5505806282163
+      },
+      "worker_cpu_seconds": {
+        "median": 13.549583257000052,
+        "maximum": 18.853879670000026,
+        "total": 671.904507777
+      },
+      "metrics": {
+        "depth_rmse_m": 0.00041065244141101176,
+        "attitude_rmse_rad": 0.017321501449284314,
+        "normalized_tracking_score": 0.18794309635506615,
+        "maximum_angular_speed": 0.06309210479140202,
+        "maximum_cycle_ms": 19208.33444222808
+      },
+      "improvement_percent": 12.147518167545336,
+      "submetric_improvement_percent": {
+        "depth_rmse_m": 75.74377823948075,
+        "attitude_rmse_rad": 4.767069343895869
+      }
+    },
+    {
+      "name": "uuv4-pitch-projected_koopman-repair-r1",
+      "configuration": "uuv4",
+      "controller": "projected_koopman",
+      "profile": "repair",
+      "controls": 60,
+      "seed": 19760,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0.0,
+        0.01999866669333308,
+        0.0
+      ],
+      "task": "pitch_0.04_rad",
+      "accepted": false,
+      "status": "failed",
+      "reason": "ValueError:runtime_continuous_no_exact_plan:no_exact_feasible_solution_found",
+      "physics_steps": 192,
+      "trace_sha256": "9f85a81359088f34d1bf152998ea83f503b4c440b25af3d5a144d04be6d46885",
+      "source_manifest_sha256": "c68c2a7cc0f6f2b1f2a9f6cf150b3573735ea039ce36e1f9aca1ff1859272e0c",
+      "baseline_path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv4-pitch-feedback-r3",
+      "baseline_score": 0.21393032095951076,
+      "statuses": {
+        "optimized": 11,
+        "warm_retained": 28,
+        "baseline_retained": 5,
+        "recovered": 3,
+        "no_plan": 1
+      },
+      "solver_statuses": {
+        "Solve_Succeeded": 36,
+        "Solved_To_Acceptable_Level": 1,
+        "Maximum_Iterations_Exceeded": 10,
+        "Infeasible_Problem_Detected": 1
+      },
+      "warm_starts": 46,
+      "physical_initializations": 0,
+      "feedback_unavailable": 0,
+      "single_thread_environment_observed": true,
+      "max_internal_constraint_violation": 0.0002546986055618483,
+      "elapsed_seconds": {
+        "median": 1.119439024478197,
+        "maximum": 5.353644046932459,
+        "total": 108.07746967673302
+      },
+      "worker_cpu_seconds": {
+        "median": 1.008270165,
+        "maximum": 5.239779900000002,
+        "total": 102.571247206
+      }
+    },
+    {
+      "name": "uuv4-pitch-projected_koopman-repair-r4",
+      "configuration": "uuv4",
+      "controller": "projected_koopman",
+      "profile": "repair",
+      "controls": 60,
+      "seed": 19760,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0.0,
+        0.01999866669333308,
+        0.0
+      ],
+      "task": "pitch_0.04_rad",
+      "accepted": true,
+      "status": "completed_pending_independent_acceptance",
+      "reason": null,
+      "physics_steps": 240,
+      "trace_sha256": "f4999dc2775bcb35fb30d6cde8bf51b8729b388ca90628633daa71e45446df43",
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "baseline_path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv4-pitch-feedback-r3",
+      "baseline_score": 0.21393032095951076,
+      "statuses": {
+        "optimized": 22,
+        "warm_retained": 17,
+        "baseline_retained": 5,
+        "recovered": 15
+      },
+      "solver_statuses": {
+        "Solve_Succeeded": 39,
+        "Solved_To_Acceptable_Level": 4,
+        "Maximum_Iterations_Exceeded": 16
+      },
+      "warm_starts": 57,
+      "physical_initializations": 1,
+      "feedback_unavailable": 1,
+      "single_thread_environment_observed": true,
+      "max_internal_constraint_violation": 0.0,
+      "elapsed_seconds": {
+        "median": 2.256011627614498,
+        "maximum": 6.349350333213806,
+        "total": 165.73099963366985
+      },
+      "worker_cpu_seconds": {
+        "median": 2.1406380949999857,
+        "maximum": 6.235185435999995,
+        "total": 158.71094719000004
+      },
+      "metrics": {
+        "depth_rmse_m": 0.01686880446618997,
+        "attitude_rmse_rad": 0.01773355233506226,
+        "normalized_tracking_score": 0.9079407093091217,
+        "maximum_angular_speed": 0.09230589918661794,
+        "maximum_cycle_ms": 6411.383170634508
+      },
+      "improvement_percent": -324.409548509471,
+      "submetric_improvement_percent": {
+        "depth_rmse_m": -896.3984642604623,
+        "attitude_rmse_rad": 2.5016298525809444
+      }
+    },
+    {
+      "name": "uuv6-pitch-nominal_physics-repair-r1",
+      "configuration": "uuv6",
+      "controller": "nominal_physics",
+      "profile": "repair",
+      "controls": 60,
+      "seed": 19760,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0.0,
+        0.01999866669333308,
+        0.0
+      ],
+      "task": "pitch_0.04_rad",
+      "accepted": true,
+      "status": "completed_pending_independent_acceptance",
+      "reason": null,
+      "physics_steps": 240,
+      "trace_sha256": "e4affbd8fe2091bf810a6f31edcd704037cded5fd3c15962661c1bc5df94c2e1",
+      "source_manifest_sha256": "c68c2a7cc0f6f2b1f2a9f6cf150b3573735ea039ce36e1f9aca1ff1859272e0c",
+      "baseline_path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv6-pitch-feedback-r3",
+      "baseline_score": 0.2102945134930649,
+      "statuses": {
+        "optimized": 22,
+        "warm_retained": 21,
+        "baseline_retained": 3,
+        "recovered": 13
+      },
+      "solver_statuses": {
+        "Solve_Succeeded": 44,
+        "Maximum_Iterations_Exceeded": 11,
+        "Solved_To_Acceptable_Level": 4
+      },
+      "warm_starts": 55,
+      "physical_initializations": 0,
+      "feedback_unavailable": 0,
+      "single_thread_environment_observed": true,
+      "max_internal_constraint_violation": 0.0,
+      "elapsed_seconds": {
+        "median": 2.1633436009287834,
+        "maximum": 8.504375584423542,
+        "total": 191.64737498015165
+      },
+      "worker_cpu_seconds": {
+        "median": 1.9560711080000033,
+        "maximum": 8.355811788000011,
+        "total": 181.53985990699996
+      },
+      "metrics": {
+        "depth_rmse_m": 0.036727516992376245,
+        "attitude_rmse_rad": 0.02201239169393771,
+        "normalized_tracking_score": 3.675117128617801,
+        "maximum_angular_speed": 0.13715982149438086,
+        "maximum_cycle_ms": 8561.108205467463
+      },
+      "improvement_percent": -1647.604855482356,
+      "submetric_improvement_percent": {
+        "depth_rmse_m": -2365.724942877113,
+        "attitude_rmse_rad": -21.617926250086516
+      }
+    },
+    {
+      "name": "uuv6-pitch-nominal_physics-repair-r4",
+      "configuration": "uuv6",
+      "controller": "nominal_physics",
+      "profile": "repair",
+      "controls": 60,
+      "seed": 19760,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0.0,
+        0.01999866669333308,
+        0.0
+      ],
+      "task": "pitch_0.04_rad",
+      "accepted": true,
+      "status": "completed_pending_independent_acceptance",
+      "reason": null,
+      "physics_steps": 240,
+      "trace_sha256": "8bdc45fe22c8840ee1a2bf02783a2dffeb25629069a9267e563d182707bd47b0",
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "baseline_path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv6-pitch-feedback-r3",
+      "baseline_score": 0.2102945134930649,
+      "statuses": {
+        "optimized": 22,
+        "warm_retained": 21,
+        "baseline_retained": 3,
+        "recovered": 13
+      },
+      "solver_statuses": {
+        "Solve_Succeeded": 44,
+        "Maximum_Iterations_Exceeded": 11,
+        "Solved_To_Acceptable_Level": 4
+      },
+      "warm_starts": 55,
+      "physical_initializations": 0,
+      "feedback_unavailable": 0,
+      "single_thread_environment_observed": true,
+      "max_internal_constraint_violation": 0.0,
+      "elapsed_seconds": {
+        "median": 2.1049886904656887,
+        "maximum": 8.283081647008657,
+        "total": 188.96246803551912
+      },
+      "worker_cpu_seconds": {
+        "median": 1.9528103160000114,
+        "maximum": 8.130023403000024,
+        "total": 179.17834974400003
+      },
+      "metrics": {
+        "depth_rmse_m": 0.036727516992376245,
+        "attitude_rmse_rad": 0.02201239169393771,
+        "normalized_tracking_score": 3.675117128617801,
+        "maximum_angular_speed": 0.13715982149438086,
+        "maximum_cycle_ms": 8347.064841538668
+      },
+      "improvement_percent": -1647.604855482356,
+      "submetric_improvement_percent": {
+        "depth_rmse_m": -2365.724942877113,
+        "attitude_rmse_rad": -21.617926250086516
+      }
+    },
+    {
+      "name": "uuv6-pitch-projected_koopman-repair-r1",
+      "configuration": "uuv6",
+      "controller": "projected_koopman",
+      "profile": "repair",
+      "controls": 60,
+      "seed": 19760,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0.0,
+        0.01999866669333308,
+        0.0
+      ],
+      "task": "pitch_0.04_rad",
+      "accepted": true,
+      "status": "completed_pending_independent_acceptance",
+      "reason": null,
+      "physics_steps": 240,
+      "trace_sha256": "22229c5679c39811225fc3fba26c9c1981ec3c6903acc400b76428c0fffbcf75",
+      "source_manifest_sha256": "c68c2a7cc0f6f2b1f2a9f6cf150b3573735ea039ce36e1f9aca1ff1859272e0c",
+      "baseline_path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv6-pitch-feedback-r3",
+      "baseline_score": 0.2102945134930649,
+      "statuses": {
+        "optimized": 31,
+        "warm_retained": 8,
+        "baseline_retained": 2,
+        "recovered": 18
+      },
+      "solver_statuses": {
+        "Solve_Succeeded": 56,
+        "Maximum_Iterations_Exceeded": 2,
+        "Solved_To_Acceptable_Level": 1
+      },
+      "warm_starts": 46,
+      "physical_initializations": 0,
+      "feedback_unavailable": 0,
+      "single_thread_environment_observed": true,
+      "max_internal_constraint_violation": 0.0,
+      "elapsed_seconds": {
+        "median": 1.5511138923466206,
+        "maximum": 6.6891369335353374,
+        "total": 126.05297706276178
+      },
+      "worker_cpu_seconds": {
+        "median": 1.4336784380000012,
+        "maximum": 6.548656893000004,
+        "total": 118.94367831799998
+      },
+      "metrics": {
+        "depth_rmse_m": 0.02037676298509533,
+        "attitude_rmse_rad": 0.017294259722165493,
+        "normalized_tracking_score": 1.2249633114629503,
+        "maximum_angular_speed": 0.05970081135870478,
+        "maximum_cycle_ms": 6769.03335377574
+      },
+      "improvement_percent": -482.49893975638463,
+      "submetric_improvement_percent": {
+        "depth_rmse_m": -1268.0067933226742,
+        "attitude_rmse_rad": 4.449637609373502
+      }
+    },
+    {
+      "name": "uuv6-pitch-projected_koopman-repair-r4",
+      "configuration": "uuv6",
+      "controller": "projected_koopman",
+      "profile": "repair",
+      "controls": 60,
+      "seed": 19760,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0.0,
+        0.01999866669333308,
+        0.0
+      ],
+      "task": "pitch_0.04_rad",
+      "accepted": true,
+      "status": "completed_pending_independent_acceptance",
+      "reason": null,
+      "physics_steps": 240,
+      "trace_sha256": "81ad96bf0ac6eeaaa75af388ad25438fb0b633fc563a16ef6d076eaae592abe7",
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "baseline_path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv6-pitch-feedback-r3",
+      "baseline_score": 0.2102945134930649,
+      "statuses": {
+        "optimized": 31,
+        "warm_retained": 8,
+        "baseline_retained": 2,
+        "recovered": 18
+      },
+      "solver_statuses": {
+        "Solve_Succeeded": 56,
+        "Maximum_Iterations_Exceeded": 2,
+        "Solved_To_Acceptable_Level": 1
+      },
+      "warm_starts": 46,
+      "physical_initializations": 0,
+      "feedback_unavailable": 0,
+      "single_thread_environment_observed": true,
+      "max_internal_constraint_violation": 0.0,
+      "elapsed_seconds": {
+        "median": 1.5263514555990696,
+        "maximum": 6.463660441339016,
+        "total": 126.16627008095384
+      },
+      "worker_cpu_seconds": {
+        "median": 1.4119011929999914,
+        "maximum": 6.3500308850000025,
+        "total": 119.271726145
+      },
+      "metrics": {
+        "depth_rmse_m": 0.02037676298509533,
+        "attitude_rmse_rad": 0.017294259722165493,
+        "normalized_tracking_score": 1.2249633114629503,
+        "maximum_angular_speed": 0.05970081135870478,
+        "maximum_cycle_ms": 6522.929225116968
+      },
+      "improvement_percent": -482.49893975638463,
+      "submetric_improvement_percent": {
+        "depth_rmse_m": -1268.0067933226742,
+        "attitude_rmse_rad": 4.449637609373502
+      }
+    }
+  ],
+  "starts": 22,
+  "native_wall_seconds": 6217.33110922575,
+  "complete": 19,
+  "limitations": [
+    "two-second single-seed development task",
+    "frozen v76 feedback references outside base repeat",
+    "predeclared profile ablations are development evidence, not independent tests",
+    "projected model equivalent to identified physics"
+  ]
+}

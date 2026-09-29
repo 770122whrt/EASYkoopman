@@ -1,0 +1,133 @@
+{
+  "schema": "bounded-mpc-v44-local-diagnostic-v1",
+  "configurations": {
+    "base": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "long_body": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "heavy_moderate": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "asymmetric": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "uuv6": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "uuv6_angled": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "uuv4": {
+      "control_mask": [
+        1,
+        1,
+        0,
+        1
+      ]
+    },
+    "uuv4_angled": {
+      "control_mask": [
+        1,
+        1,
+        0,
+        1
+      ]
+    }
+  },
+  "origin_control": 128,
+  "horizon": 20,
+  "model": "nonlinear__pooled",
+  "perturbation": [
+    0.002,
+    0.002,
+    0.002,
+    0.002
+  ],
+  "slew": [
+    0.01,
+    0.01,
+    0.01,
+    0.01
+  ],
+  "maximum_raw_pwm": 0.95,
+  "weights": {
+    "depth": 1.0,
+    "attitude": 1.0,
+    "vertical_speed": 0.1,
+    "angular_speed": 0.1,
+    "effort": 0.01,
+    "slew": 0.05,
+    "terminal": 1.0
+  },
+  "reference": [
+    5.5,
+    1.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "baseline": "repeat_last_past_issued_command_no_future_truth",
+  "warmups": 1,
+  "repetitions": 3,
+  "solve_limit_ms": 100.0,
+  "maximum_seconds": 180,
+  "output_limit_bytes": 33554432,
+  "fallback_calls_per_configuration": 1,
+  "fallback_child_limit_seconds": 10,
+  "fallback_low_level_limit_ms": 16.666666666666668,
+  "sources": {
+    "koopman/command_state_v39.py": "2e1a1709d9704c76f4b90c7cbe0b2ecf849db052e60204d876796c188f47135b",
+    "koopman/prepared_projected_v40.py": "2974dccdee1af5fc57efc8aa9f0e336abad1f33669514127f0c9159f967d538b",
+    "koopman/prepared_allocation_v42.py": "a6675e7cfc5941c5d43b53e861945e550fae10a718bd89b264495f0b0490d068",
+    "koopman/command_batch_v42.py": "0fd49fc06b187c0051525f0364039862efe6dcd7d2a1257c9d0ebd0472e9d48c",
+    "koopman/compiled_projected_v43.py": "c204e3fec8a80c4ef130bfb98d3d2d5cd1ff668ed3bafc5b3fafbdfa8bbdb531",
+    "koopman/control_objective_v44.py": "9a92b17f36d51b743a0807d6cc10aada5c7c686ed06a8751729da52fb6841747",
+    "koopman/bounded_mpc_v44.py": "be32f56d2779481a53580850b58fa36578a843831ae4862645580b26740c9b6c",
+    "workflows/benchmark_bounded_mpc_v44.py": "232823a9fe6a47d95a9b819ddb45575abdf8d85e2294f66db873b6968b11f4be",
+    "workflows/benchmark_command_state_v39.py": "2585e6f9e5680863b59c65779860b302f0760f43ff93738a6cd2b7d03121043a",
+    "tests/test_bounded_mpc_v44.py": "5f8706b7f1394dd33036762325367460bab78f2568a539767bdda187cf4ca252",
+    "tests/test_prepared_projected_v40.py": "8aebe1bce28c9d1ad273d8b7ac724615f4a7c142c315ece20bb5ecbd816bc31a",
+    "tests/test_command_batch_v41.py": "a81a8156cade0931d761cdecf8eebc45e2b5fb4d29a124633120b99266a95278"
+  },
+  "handoff_sha256": "5d8c4aa1264d93307dc0cf692757441509e75809206ed80006543ca5e4239632",
+  "prior_result_sha256": "d43abe375c5aa55671831312fed62c74c971104d9c437198646b2060ab44ab05",
+  "compiler_directory": "E:\\code for project\\Agentic AUV\\EasyUUV\\.pytest-tmp\\phase9-numba-v43",
+  "processes_concurrent": 1,
+  "compute_threads": 1,
+  "new_fits": 0,
+  "formal_test_access": false,
+  "new_server_runs": 0,
+  "gate": "all_three_measured_solves_per_configuration_feasible_and_total_ms<=100_and_all_fallback_ms<=16.67; diagnose_fixed_cases_even_after_rejection"
+}

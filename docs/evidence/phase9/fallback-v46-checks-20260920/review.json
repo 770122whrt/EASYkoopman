@@ -1,0 +1,57 @@
+{
+  "status": "verified_local_fallback_no_go_and_limit_counterexamples",
+  "created_at": "2026-09-20T14:52:22.351213+08:00",
+  "native_exits_observed": {
+    "pilot": 0,
+    "diagnosis": 0
+  },
+  "focused_tests_passed": 55,
+  "related_including_focused": 159,
+  "measured_samples": 120,
+  "ready_and_complete_budget_pass": 75,
+  "rejection_counts": {
+    "inverse_infeasible": 25,
+    "timeout": 20
+  },
+  "full_call_ms_range": [
+    1.493599993409589,
+    10.975199984386563
+  ],
+  "ready_source_max_difference": 0.0,
+  "diagnosis_unlimited_residual_passes": 4,
+  "diagnosis_direct_limited_residual_passes": 0,
+  "global_infeasibility_proven": false,
+  "source_hashes": {
+    "koopman/command_state_v39.py": "2e1a1709d9704c76f4b90c7cbe0b2ecf849db052e60204d876796c188f47135b",
+    "koopman/prepared_projected_v40.py": "2974dccdee1af5fc57efc8aa9f0e336abad1f33669514127f0c9159f967d538b",
+    "koopman/prepared_allocation_v42.py": "a6675e7cfc5941c5d43b53e861945e550fae10a718bd89b264495f0b0490d068",
+    "koopman/command_batch_v42.py": "0fd49fc06b187c0051525f0364039862efe6dcd7d2a1257c9d0ebd0472e9d48c",
+    "koopman/control_objective_v44.py": "9a92b17f36d51b743a0807d6cc10aada5c7c686ed06a8751729da52fb6841747",
+    "koopman/bounded_mpc_v44.py": "67f318914e18e966367d3d4bb18f27877871fe50ed95d04343a35631b687fec2",
+    "koopman/prepared_commands_v45.py": "3545140a08190d3f7edb757f8aab8322f11f7517b49ab49baadcc601b5b53e0d",
+    "koopman/bounded_feedback_v46.py": "cc707af95e63697638fa6f98a7e6a7d1a0edee5d475aa4310b95b9a0f1b83af7",
+    "tests/test_bounded_feedback_v46.py": "aebed73f2620f6ff5a10f1d10d4b9430b7e6013fc33a0605638df956a81974e0",
+    "workflows/benchmark_bounded_feedback_v46.py": "23903549a0f1dbfb5c8fa1bbdae25ec9c1a212e78bb16476c17f53255e2b3a8f"
+  },
+  "source_archives_intact": true,
+  "current_source_matches": true,
+  "v45_reference_unchanged": true,
+  "frozen_evidence_sha256": {
+    "formal-closeout.json": "ca77ecc765bd63e87e41f04ddb33bda322ad8dda09a8d2e8b0e8bc01053bf4ec",
+    "prediction-control-handoff-v2.json": "5d8c4aa1264d93307dc0cf692757441509e75809206ed80006543ca5e4239632",
+    "live-budget.json": "916d99370b36fa191152f137ca7a5b8fba3103126129ff03a526856ae8d7ef29"
+  },
+  "v46_measured_seconds": 102.71306860000261,
+  "local_stage_cumulative_seconds": 238.2891601000013,
+  "local_stage_limit_seconds": 1200,
+  "local_stage_remaining_seconds": 961.7108398999987,
+  "local_stage_limit_bytes": 134217728,
+  "result_sha256": {
+    "pilot": "afe93b67b14e961ef18f21371f3e3d203807de467edf565a774a71316c0045a9",
+    "diagnosis": "c431a4cb7843d39b1dfa70cd1b4361ecc4a333f1e9316d98070fbccac6ebe032"
+  },
+  "new_fits": 0,
+  "new_server_runs": 0,
+  "formal_test_access": false,
+  "controller_promoted": false
+}

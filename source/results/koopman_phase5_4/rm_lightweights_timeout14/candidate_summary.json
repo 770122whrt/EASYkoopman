@@ -1,0 +1,147 @@
+{
+  "checkpoint_found": true,
+  "checkpoint_path": "/root/IsaacLab/logs/rsl_rl/phase54_rm_lightweights_timeout14/2026-07-05_18-28-05_rm_lightweights_timeout14_candidate_200/model_199.pt",
+  "selected_checkpoint": "/root/IsaacLab/logs/rsl_rl/phase54_rm_lightweights_timeout14/2026-07-05_18-28-05_rm_lightweights_timeout14_candidate_200/model_199.pt",
+  "selected_rule": "latest_mtime_model_pt",
+  "checkpoint_provenance": "phase5_4_pareto_candidate",
+  "training_iterations": 200,
+  "save_interval": 50,
+  "num_envs": 1,
+  "result_bucket": "retrained_ppo_koopman_mpc",
+  "ppo_evidence_level": "phase5_4_pareto_candidate",
+  "profile_id": "rm_lightweights_timeout14",
+  "reward_profile": "koopman_mpc_stability_v1",
+  "adapter_profile": "heuristic_reference_delta_v0_default",
+  "mpc_profile": "mpc_health_v1",
+  "changed_axis": "reward_mpc",
+  "source_baseline_manifest": "",
+  "phase5_2_profile_contract_valid": true,
+  "phase5_3_profile_contract_valid": false,
+  "phase5_4_profile_contract_valid": true,
+  "phase5_4_track": "RM",
+  "sweep_round": "round1",
+  "parent_profile_id": "cross_reward_v1_mpc_health",
+  "parameter_distance_from_parent": 6.666666666666668,
+  "changed_parameter_count": 3,
+  "parameter_step_count": {
+    "mpc_control_weight": 3.0,
+    "mpc_smoothness_weight": 2.6666666666666674,
+    "mpc_timeout_ms": 1.0
+  },
+  "protected_strengths": [
+    "mpc_pwm",
+    "mpc_clip",
+    "mpc_depth",
+    "mpc_attitude"
+  ],
+  "nearest_smaller_candidate_id": "rm_midweights_timeout14",
+  "reward_overrides": {},
+  "mpc_overrides": {
+    "mpc_control_weight": 0.015,
+    "mpc_smoothness_weight": 0.06,
+    "mpc_timeout_ms": 14.0
+  },
+  "risk_level": "not_applicable",
+  "sentinel_required": false,
+  "candidate_requires_review": false,
+  "training_ladder_stage": "candidate",
+  "comparison_baseline": "reward_v1_only",
+  "health_floor": "baseline_rerun",
+  "source_phase5_2_summary_path": "/root/EASYkoopman/source/results/koopman_phase5_2/phase5_2_experiment_summary.json",
+  "source_phase5_3_summary_path": "/root/EASYkoopman/source/results/koopman_phase5_3/phase5_3_cross_selection.json",
+  "adapter_profile_values": {
+    "policy_action_limit": 1.0,
+    "rpy_delta_scale": 0.35,
+    "depth_delta_scale": 0.5,
+    "depth_min": -3.0,
+    "depth_max": 3.0
+  },
+  "mpc_profile_values": {
+    "horizon": 5,
+    "timeout_ms": 14.0,
+    "delta_pwm_limit": 0.35,
+    "depth_weight": 1.0,
+    "attitude_weight": 1.0,
+    "control_weight": 0.015,
+    "smoothness_weight": 0.06
+  },
+  "reward_profile_values": {
+    "w_fallback": 0.3,
+    "w_pwm_sat": 0.2,
+    "w_action": 0.01,
+    "w_delta_action": 0.02,
+    "w_latency": 0.05
+  },
+  "controller_path": "koopman_mpc/direct_state",
+  "adapter_mode": "heuristic_reference_delta_v0",
+  "koopman_backend": "direct_state",
+  "koopman_manifest_path": "/root/EASYkoopman/source/results/koopman_phase2_5_verify_20260701_231802/selected_model_manifest.json",
+  "observation_dim": 9,
+  "action_dim": 4,
+  "pwm_dim": 8,
+  "log_dir": "/root/IsaacLab/logs/rsl_rl/phase54_rm_lightweights_timeout14/2026-07-05_18-28-05_rm_lightweights_timeout14_candidate_200",
+  "source_git_commit": "c69448b1c97aaaef5d6d17636879f5d17b0c5175",
+  "source_git_dirty": true,
+  "source_checkpoint_mtime": 1783247476.1676292,
+  "training_loop_fallback_rate": "unavailable",
+  "training_loop_latency_ms_mean": "unavailable",
+  "training_loop_latency_ms_max": "unavailable",
+  "training_loop_pwm_min": "unavailable",
+  "training_loop_pwm_max": "unavailable",
+  "nonfinite_observation_count": 0,
+  "nonfinite_action_count": 0,
+  "nonfinite_reward_count": 0,
+  "episode_reward_mean_start": "unavailable",
+  "episode_reward_mean_end": "unavailable",
+  "episode_reward_nan_count": 0,
+  "training_reference_source": "env_goal_quat_plus_zero_depth",
+  "training_goal_distribution": "single_env_easyuuv_default_goal_distribution",
+  "training_latency_warning_threshold_ms": 20.0,
+  "control_loop_budget_ms": "unavailable",
+  "latency_budget_violation_rate": "unavailable",
+  "selected_weight_status": "candidate_only",
+  "completion_status": "completed",
+  "allowed_claims": [
+    "RSL-RL PPO can train inside the Koopman-MPC closed-loop path",
+    "A retrained checkpoint can be generated and loaded for smoke evaluation"
+  ],
+  "disallowed_claims": [
+    "PPO convergence is proven",
+    "PPO+Koopman-MPC superiority is proven",
+    "old PPO semantics are losslessly migrated"
+  ],
+  "adapter_refresh_path": "Phase5KoopmanReferenceWrapper.step",
+  "adapter_refresh_count": 4800,
+  "adapter_refresh_before_env_step": true,
+  "base_reference_source": "env_goal_quat_plus_zero_depth",
+  "depth_reference_source": "zero_depth_default",
+  "base_reference_goal_match_max_error": 0.0,
+  "policy_action_clip_rate": 0.25,
+  "phase5_2_reward_components_available": true,
+  "phase5_2_last_reward_components": {
+    "legacy_reward": [
+      0.2797714173793793
+    ],
+    "fallback_penalty": [
+      0.0
+    ],
+    "pwm_saturation_penalty": [
+      0.07500001788139343
+    ],
+    "latency_penalty": [
+      0.0
+    ],
+    "action_penalty": [
+      0.014549443498253822
+    ],
+    "delta_action_penalty": [
+      0.0
+    ],
+    "health_penalty": [
+      0.0895494595170021
+    ],
+    "total_reward": [
+      0.19022196531295776
+    ]
+  }
+}

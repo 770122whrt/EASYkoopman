@@ -1,0 +1,67 @@
+{
+  "status": "verified_local_compiled_execution_not_controller_qualification",
+  "created_at": "2026-09-20T13:08:45+08:00",
+  "result_sha256": "d43abe375c5aa55671831312fed62c74c971104d9c437198646b2060ab44ab05",
+  "protocol_sha256": "800c5569e273a1650dc99df91f2c16ea659c737e5205f3dcee83b5a7d7ae185b",
+  "working_and_archived_sources_verified": true,
+  "frozen_v38_bindings": {
+    "formal-closeout.json": "ca77ecc765bd63e87e41f04ddb33bda322ad8dda09a8d2e8b0e8bc01053bf4ec",
+    "prediction-control-handoff-v2.json": "5d8c4aa1264d93307dc0cf692757441509e75809206ed80006543ca5e4239632",
+    "live-budget.json": "916d99370b36fa191152f137ca7a5b8fba3103126129ff03a526856ae8d7ef29"
+  },
+  "dependency_inventory_sha256": "55445fd580c6892e0c0ff920c1ad71e67d7b5d46abeb623246c0f611da176f0b",
+  "dependency_bytes": 118057494,
+  "first_preparation_seconds": 12.415286100003868,
+  "jit_signatures": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "focused_passed": 38,
+  "combined_related_passed": 183,
+  "check_records": {
+    "dependency-install": {
+      "seconds": 10.110000000015134,
+      "exit_code": 1,
+      "error": null,
+      "bytes": 0
+    },
+    "dependency-install-02": {
+      "seconds": 70.04699999999139,
+      "exit_code": 0,
+      "error": null,
+      "bytes": 118057494
+    },
+    "red": {
+      "seconds": 9.6864516,
+      "exit_code": 1,
+      "stage": "red"
+    },
+    "focused": {
+      "stage": "focused",
+      "exit_code": 0,
+      "seconds": 22.0164025
+    },
+    "related": {
+      "seconds": 81.7828767,
+      "exit_code": 0,
+      "stage": "related"
+    }
+  },
+  "native_assay_exit": 0,
+  "maximum_difference": 2.7755575615628914e-16,
+  "median_speedup": 1.9494441262372275,
+  "stage_measured_seconds": 232.76773080000652,
+  "stage_limit_seconds": 1200,
+  "stage_remaining_seconds": 967.2322691999934,
+  "prior_stage_conservative_seconds": 1650.1267292999946,
+  "model_fits": 0,
+  "formal_test_access": false,
+  "server_runs": 0,
+  "controller_promoted": false
+}

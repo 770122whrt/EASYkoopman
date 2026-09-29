@@ -1,0 +1,64 @@
+{
+  "runs": [
+    {
+      "sample_count": 350,
+      "fallback_count": 36,
+      "fallback_rate": 0.10285714285714286,
+      "fallback_reason_counts": {
+        "no_cost_improvement": 23,
+        "timeout": 13
+      },
+      "latency_ms_mean": 11.76521712648017,
+      "latency_ms_max": 12.365746311843395,
+      "policy_action_clip_rate_mean": 0.12214285714285714,
+      "policy_action_clip_rate_max": 0.5,
+      "pwm_saturation_threshold": 0.99,
+      "pwm_saturation_rate": 0.39071428571428574,
+      "pwm_abs_mean": 0.7589435740613512,
+      "pwm_abs_max": 1.0,
+      "depth_rmse": 1.142562133245487,
+      "attitude_rmse": 0.7479257292873568,
+      "path": "source/results/koopman_phase5_2/adapter_soft_v1_only/eval/ppo_step.jsonl"
+    },
+    {
+      "sample_count": 350,
+      "fallback_count": 41,
+      "fallback_rate": 0.11714285714285715,
+      "fallback_reason_counts": {
+        "no_cost_improvement": 13,
+        "timeout": 28
+      },
+      "latency_ms_mean": 11.795489279819387,
+      "latency_ms_max": 13.113323599100113,
+      "policy_action_clip_rate_mean": 0.11857142857142858,
+      "policy_action_clip_rate_max": 0.5,
+      "pwm_saturation_threshold": 0.99,
+      "pwm_saturation_rate": 0.395,
+      "pwm_abs_mean": 0.7509363953088012,
+      "pwm_abs_max": 1.0,
+      "depth_rmse": 0.9808563271480473,
+      "attitude_rmse": 0.7492790226964813,
+      "path": "source/results/koopman_phase5_2/adapter_soft_v1_only/eval/ppo_sine.jsonl"
+    },
+    {
+      "sample_count": 350,
+      "fallback_count": 40,
+      "fallback_rate": 0.11428571428571428,
+      "fallback_reason_counts": {
+        "no_cost_improvement": 24,
+        "timeout": 16
+      },
+      "latency_ms_mean": 11.766904488738094,
+      "latency_ms_max": 12.37204298377037,
+      "policy_action_clip_rate_mean": 0.08571428571428572,
+      "policy_action_clip_rate_max": 0.5,
+      "pwm_saturation_threshold": 0.99,
+      "pwm_saturation_rate": 0.4032142857142857,
+      "pwm_abs_mean": 0.788443557058461,
+      "pwm_abs_max": 1.0,
+      "depth_rmse": 0.8987332906523589,
+      "attitude_rmse": 0.7373861603287009,
+      "path": "source/results/koopman_phase5_2/adapter_soft_v1_only/eval/ppo_irregular.jsonl"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "runs": [
+    {
+      "sample_count": 350,
+      "fallback_count": 112,
+      "fallback_rate": 0.32,
+      "fallback_reason_counts": {
+        "no_cost_improvement": 13,
+        "timeout": 99
+      },
+      "latency_ms_mean": 11.977192142180034,
+      "latency_ms_max": 14.11912776529789,
+      "latency_budget_ms": 20.0,
+      "latency_budget_violation_rate": 0.0,
+      "policy_action_clip_rate_mean": 0.14214285714285715,
+      "policy_action_clip_rate_max": 0.25,
+      "pwm_saturation_threshold": 0.99,
+      "pwm_saturation_rate": 0.12928571428571428,
+      "pwm_abs_mean": 0.5156183178213625,
+      "pwm_abs_max": 1.0,
+      "depth_rmse": 1.0401889786473308,
+      "attitude_rmse": 0.7181369008809149,
+      "fallback_reason_counts_by_trajectory": {
+        "step": {
+          "no_cost_improvement": 13,
+          "timeout": 99
+        }
+      },
+      "path": "/root/EASYkoopman/source/results/koopman_phase5_4/r_pwm025/eval_candidate/step.jsonl"
+    },
+    {
+      "sample_count": 350,
+      "fallback_count": 79,
+      "fallback_rate": 0.2257142857142857,
+      "fallback_reason_counts": {
+        "no_cost_improvement": 13,
+        "timeout": 66
+      },
+      "latency_ms_mean": 11.827201209962368,
+      "latency_ms_max": 14.16041236370802,
+      "latency_budget_ms": 20.0,
+      "latency_budget_violation_rate": 0.0,
+      "policy_action_clip_rate_mean": 0.2571428571428571,
+      "policy_action_clip_rate_max": 0.5,
+      "pwm_saturation_threshold": 0.99,
+      "pwm_saturation_rate": 0.2425,
+      "pwm_abs_mean": 0.6897759355095082,
+      "pwm_abs_max": 1.0,
+      "depth_rmse": 1.4032581648771452,
+      "attitude_rmse": 0.8127934441629711,
+      "fallback_reason_counts_by_trajectory": {
+        "sine": {
+          "no_cost_improvement": 13,
+          "timeout": 66
+        }
+      },
+      "path": "/root/EASYkoopman/source/results/koopman_phase5_4/r_pwm025/eval_candidate/sine.jsonl"
+    },
+    {
+      "sample_count": 350,
+      "fallback_count": 86,
+      "fallback_rate": 0.24571428571428572,
+      "fallback_reason_counts": {
+        "no_cost_improvement": 2,
+        "timeout": 84
+      },
+      "latency_ms_mean": 12.051641350345951,
+      "latency_ms_max": 12.480119243264198,
+      "latency_budget_ms": 20.0,
+      "latency_budget_violation_rate": 0.0,
+      "policy_action_clip_rate_mean": 0.19,
+      "policy_action_clip_rate_max": 0.5,
+      "pwm_saturation_threshold": 0.99,
+      "pwm_saturation_rate": 0.11571428571428571,
+      "pwm_abs_mean": 0.6018514078232858,
+      "pwm_abs_max": 1.0,
+      "depth_rmse": 0.8696476113124817,
+      "attitude_rmse": 0.7479961885673896,
+      "fallback_reason_counts_by_trajectory": {
+        "irregular": {
+          "no_cost_improvement": 2,
+          "timeout": 84
+        }
+      },
+      "path": "/root/EASYkoopman/source/results/koopman_phase5_4/r_pwm025/eval_candidate/irregular.jsonl"
+    }
+  ]
+}

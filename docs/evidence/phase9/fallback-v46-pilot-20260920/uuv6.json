@@ -1,0 +1,2073 @@
+[
+  {
+    "configuration": "uuv6",
+    "episode_id": "i29-uuv6-fit-8732-prbs",
+    "role": "fit",
+    "trace_sha256": "dda5a0f164d3ae8dde72e84fc1cd4107bd33ef08887eafd6a9dff2000ee7a5a1",
+    "request": {
+      "label": "hold-o0",
+      "origin": 0,
+      "z": 5.5
+    },
+    "state": [
+      5.5,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "reference": [
+      5.5,
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "previous": null,
+    "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+    "prepare_before_ready_ms": 35.71090000332333,
+    "seed_status": "prepared",
+    "warmup": {
+      "total_ms": 4.256400017766282,
+      "packet": {
+        "status": "ready",
+        "command": [
+          6.4347571715472895e-09,
+          1.2338618127216705e-08,
+          9.925857913373193e-10,
+          -0.13247455656528473
+        ],
+        "reason": null,
+        "startup_exception_requested": true,
+        "runtime_eligible": false,
+        "actual_history_advanced": false,
+        "configuration": "uuv6",
+        "context_key": [
+          29.69999885559082,
+          0.4840756058692932,
+          1.2690629959106445,
+          1.5568917989730835,
+          0.0,
+          0.0,
+          0.009999999776482582,
+          0.029999999329447746,
+          1.0,
+          997.0,
+          0.001306,
+          9.81
+        ],
+        "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+        "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+        "demand": {
+          "target_wrench": [
+            0.0,
+            0.0,
+            -2.06010466827081,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "desired_vertical_acceleration": 0.0,
+          "desired_angular_acceleration": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "unallocated_torque": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+        },
+        "inspection": {
+          "command": [
+            6.4347571715472895e-09,
+            1.2338618127216705e-08,
+            9.925857913373193e-10,
+            -0.13247455656528473
+          ],
+          "target_wrench": [
+            0.0,
+            0.0,
+            -2.06010466827081,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "steady_wrench": [
+            7.613116395077668e-06,
+            0.0,
+            -2.0601110458374023,
+            -7.450580596923828e-09,
+            -1.9371509552001953e-07,
+            -2.842170943040401e-14
+          ],
+          "acceleration_error": [
+            2.5633389523328385e-07,
+            0.0,
+            -2.1473289016519262e-07,
+            -1.5391357272681042e-08,
+            -1.5264419193076774e-07,
+            -1.8255417267372594e-14
+          ],
+          "pwm_raw": [
+            -0.0331186018884182,
+            -0.0331186018884182,
+            -0.03311867266893387,
+            -0.03311866894364357,
+            -2.38339765701312e-07,
+            -2.444908773213683e-07
+          ],
+          "pwm_headroom": 0.9668813273310661,
+          "minimum_deadzone_distance_pwm": 0.013118602335453033,
+          "physical_residual_accepted": true,
+          "command_constraints_accepted": true
+        },
+        "iterations": 0,
+        "evaluations": 1,
+        "elapsed_ms": 3.952500002924353
+      },
+      "passes": true,
+      "source_check": {
+        "checked_ready": true,
+        "maximum_difference": 0.0,
+        "seconds": 0.0034798000124283135
+      }
+    },
+    "samples": [
+      {
+        "total_ms": 2.7910000062547624,
+        "packet": {
+          "status": "ready",
+          "command": [
+            6.4347571715472895e-09,
+            1.2338618127216705e-08,
+            9.925857913373193e-10,
+            -0.13247455656528473
+          ],
+          "reason": null,
+          "startup_exception_requested": true,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv6",
+          "context_key": [
+            29.69999885559082,
+            0.4840756058692932,
+            1.2690629959106445,
+            1.5568917989730835,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.029999999329447746,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -2.06010466827081,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "desired_vertical_acceleration": 0.0,
+            "desired_angular_acceleration": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              6.4347571715472895e-09,
+              1.2338618127216705e-08,
+              9.925857913373193e-10,
+              -0.13247455656528473
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -2.06010466827081,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "steady_wrench": [
+              7.613116395077668e-06,
+              0.0,
+              -2.0601110458374023,
+              -7.450580596923828e-09,
+              -1.9371509552001953e-07,
+              -2.842170943040401e-14
+            ],
+            "acceleration_error": [
+              2.5633389523328385e-07,
+              0.0,
+              -2.1473289016519262e-07,
+              -1.5391357272681042e-08,
+              -1.5264419193076774e-07,
+              -1.8255417267372594e-14
+            ],
+            "pwm_raw": [
+              -0.0331186018884182,
+              -0.0331186018884182,
+              -0.03311867266893387,
+              -0.03311866894364357,
+              -2.38339765701312e-07,
+              -2.444908773213683e-07
+            ],
+            "pwm_headroom": 0.9668813273310661,
+            "minimum_deadzone_distance_pwm": 0.013118602335453033,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "iterations": 0,
+          "evaluations": 1,
+          "elapsed_ms": 2.580800006398931
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.0029172000067774206
+        }
+      },
+      {
+        "total_ms": 2.5384000036865473,
+        "packet": {
+          "status": "ready",
+          "command": [
+            6.4347571715472895e-09,
+            1.2338618127216705e-08,
+            9.925857913373193e-10,
+            -0.13247455656528473
+          ],
+          "reason": null,
+          "startup_exception_requested": true,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv6",
+          "context_key": [
+            29.69999885559082,
+            0.4840756058692932,
+            1.2690629959106445,
+            1.5568917989730835,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.029999999329447746,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -2.06010466827081,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "desired_vertical_acceleration": 0.0,
+            "desired_angular_acceleration": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              6.4347571715472895e-09,
+              1.2338618127216705e-08,
+              9.925857913373193e-10,
+              -0.13247455656528473
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -2.06010466827081,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "steady_wrench": [
+              7.613116395077668e-06,
+              0.0,
+              -2.0601110458374023,
+              -7.450580596923828e-09,
+              -1.9371509552001953e-07,
+              -2.842170943040401e-14
+            ],
+            "acceleration_error": [
+              2.5633389523328385e-07,
+              0.0,
+              -2.1473289016519262e-07,
+              -1.5391357272681042e-08,
+              -1.5264419193076774e-07,
+              -1.8255417267372594e-14
+            ],
+            "pwm_raw": [
+              -0.0331186018884182,
+              -0.0331186018884182,
+              -0.03311867266893387,
+              -0.03311866894364357,
+              -2.38339765701312e-07,
+              -2.444908773213683e-07
+            ],
+            "pwm_headroom": 0.9668813273310661,
+            "minimum_deadzone_distance_pwm": 0.013118602335453033,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "iterations": 0,
+          "evaluations": 1,
+          "elapsed_ms": 2.33499999740161
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.0030772000027354807
+        }
+      },
+      {
+        "total_ms": 2.3899000079836696,
+        "packet": {
+          "status": "ready",
+          "command": [
+            6.4347571715472895e-09,
+            1.2338618127216705e-08,
+            9.925857913373193e-10,
+            -0.13247455656528473
+          ],
+          "reason": null,
+          "startup_exception_requested": true,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv6",
+          "context_key": [
+            29.69999885559082,
+            0.4840756058692932,
+            1.2690629959106445,
+            1.5568917989730835,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.029999999329447746,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -2.06010466827081,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "desired_vertical_acceleration": 0.0,
+            "desired_angular_acceleration": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              6.4347571715472895e-09,
+              1.2338618127216705e-08,
+              9.925857913373193e-10,
+              -0.13247455656528473
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -2.06010466827081,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "steady_wrench": [
+              7.613116395077668e-06,
+              0.0,
+              -2.0601110458374023,
+              -7.450580596923828e-09,
+              -1.9371509552001953e-07,
+              -2.842170943040401e-14
+            ],
+            "acceleration_error": [
+              2.5633389523328385e-07,
+              0.0,
+              -2.1473289016519262e-07,
+              -1.5391357272681042e-08,
+              -1.5264419193076774e-07,
+              -1.8255417267372594e-14
+            ],
+            "pwm_raw": [
+              -0.0331186018884182,
+              -0.0331186018884182,
+              -0.03311867266893387,
+              -0.03311866894364357,
+              -2.38339765701312e-07,
+              -2.444908773213683e-07
+            ],
+            "pwm_headroom": 0.9668813273310661,
+            "minimum_deadzone_distance_pwm": 0.013118602335453033,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "iterations": 0,
+          "evaluations": 1,
+          "elapsed_ms": 2.154499990865588
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.002871200005756691
+        }
+      }
+    ]
+  },
+  {
+    "configuration": "uuv6",
+    "episode_id": "i29-uuv6-fit-8732-prbs",
+    "role": "fit",
+    "trace_sha256": "dda5a0f164d3ae8dde72e84fc1cd4107bd33ef08887eafd6a9dff2000ee7a5a1",
+    "request": {
+      "label": "hold-o64",
+      "origin": 64,
+      "z": 5.5
+    },
+    "state": [
+      5.504922866821289,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      2.5524104785290547e-07,
+      0.0,
+      0.004807666409760714,
+      -1.0197105382303562e-07,
+      -1.974981600483261e-08,
+      -1.154152457199381e-13
+    ],
+    "reference": [
+      5.5,
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "previous": [
+      -2.5303379391772296e-09,
+      1.5615119863809923e-08,
+      -2.487766936898339e-10,
+      -0.13247373700141907
+    ],
+    "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+    "prepare_before_ready_ms": 35.71090000332333,
+    "seed_status": "prepared",
+    "warmup": {
+      "total_ms": 2.9346000228542835,
+      "packet": {
+        "status": "ready",
+        "command": [
+          -2.5303379391772296e-09,
+          1.5615119863809923e-08,
+          -2.487766936898339e-10,
+          -0.13247373700141907
+        ],
+        "reason": null,
+        "startup_exception_requested": false,
+        "runtime_eligible": false,
+        "actual_history_advanced": false,
+        "configuration": "uuv6",
+        "context_key": [
+          29.69999885559082,
+          0.4840756058692932,
+          1.2690629959106445,
+          1.5568917989730835,
+          0.0,
+          0.0,
+          0.009999999776482582,
+          0.029999999329447746,
+          1.0,
+          997.0,
+          0.001306,
+          9.81
+        ],
+        "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+        "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+        "demand": {
+          "target_wrench": [
+            0.0,
+            0.0,
+            -2.491889180965245,
+            2.9617019796309765e-07,
+            1.503825640066612e-07,
+            1.0781342972270095e-12
+          ],
+          "desired_vertical_acceleration": -0.01453819964081049,
+          "desired_angular_acceleration": [
+            6.118263229382137e-07,
+            1.1849889602899566e-07,
+            6.924914743196287e-13
+          ],
+          "unallocated_torque": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+        },
+        "inspection": {
+          "command": [
+            -2.5303379391772296e-09,
+            1.5615119863809923e-08,
+            -2.487766936898339e-10,
+            -0.13247373700141907
+          ],
+          "target_wrench": [
+            0.0,
+            0.0,
+            -2.491889180965245,
+            2.9617019796309765e-07,
+            1.503825640066612e-07,
+            1.0781342972270095e-12
+          ],
+          "steady_wrench": [
+            7.613046363985632e-06,
+            0.0,
+            -2.0600922107696533,
+            2.2351741790771484e-07,
+            -1.341104507446289e-07,
+            7.958078640513122e-13
+          ],
+          "acceleration_error": [
+            2.563315372839662e-07,
+            0.0,
+            0.014538619085310466,
+            -1.5008560475778241e-07,
+            -2.2417564428875794e-07,
+            -1.8133979083319606e-13
+          ],
+          "pwm_raw": [
+            -0.033118393272161484,
+            -0.033118415623903275,
+            -0.03311844915151596,
+            -0.03311846777796745,
+            -2.4218735461545293e-07,
+            -2.406403325494466e-07
+          ],
+          "pwm_headroom": 0.9668815322220325,
+          "minimum_deadzone_distance_pwm": 0.01311839371919632,
+          "physical_residual_accepted": true,
+          "command_constraints_accepted": true
+        },
+        "iterations": 0,
+        "evaluations": 2,
+        "elapsed_ms": 2.7008000179193914
+      },
+      "passes": true,
+      "source_check": {
+        "checked_ready": true,
+        "maximum_difference": 0.0,
+        "seconds": 0.0032368999964091927
+      }
+    },
+    "samples": [
+      {
+        "total_ms": 2.856400009477511,
+        "packet": {
+          "status": "ready",
+          "command": [
+            -2.5303379391772296e-09,
+            1.5615119863809923e-08,
+            -2.487766936898339e-10,
+            -0.13247373700141907
+          ],
+          "reason": null,
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv6",
+          "context_key": [
+            29.69999885559082,
+            0.4840756058692932,
+            1.2690629959106445,
+            1.5568917989730835,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.029999999329447746,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -2.491889180965245,
+              2.9617019796309765e-07,
+              1.503825640066612e-07,
+              1.0781342972270095e-12
+            ],
+            "desired_vertical_acceleration": -0.01453819964081049,
+            "desired_angular_acceleration": [
+              6.118263229382137e-07,
+              1.1849889602899566e-07,
+              6.924914743196287e-13
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              -2.5303379391772296e-09,
+              1.5615119863809923e-08,
+              -2.487766936898339e-10,
+              -0.13247373700141907
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -2.491889180965245,
+              2.9617019796309765e-07,
+              1.503825640066612e-07,
+              1.0781342972270095e-12
+            ],
+            "steady_wrench": [
+              7.613046363985632e-06,
+              0.0,
+              -2.0600922107696533,
+              2.2351741790771484e-07,
+              -1.341104507446289e-07,
+              7.958078640513122e-13
+            ],
+            "acceleration_error": [
+              2.563315372839662e-07,
+              0.0,
+              0.014538619085310466,
+              -1.5008560475778241e-07,
+              -2.2417564428875794e-07,
+              -1.8133979083319606e-13
+            ],
+            "pwm_raw": [
+              -0.033118393272161484,
+              -0.033118415623903275,
+              -0.03311844915151596,
+              -0.03311846777796745,
+              -2.4218735461545293e-07,
+              -2.406403325494466e-07
+            ],
+            "pwm_headroom": 0.9668815322220325,
+            "minimum_deadzone_distance_pwm": 0.01311839371919632,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "iterations": 0,
+          "evaluations": 2,
+          "elapsed_ms": 2.627500012749806
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.003128399985143915
+        }
+      },
+      {
+        "total_ms": 3.0135000124573708,
+        "packet": {
+          "status": "ready",
+          "command": [
+            -2.5303379391772296e-09,
+            1.5615119863809923e-08,
+            -2.487766936898339e-10,
+            -0.13247373700141907
+          ],
+          "reason": null,
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv6",
+          "context_key": [
+            29.69999885559082,
+            0.4840756058692932,
+            1.2690629959106445,
+            1.5568917989730835,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.029999999329447746,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -2.491889180965245,
+              2.9617019796309765e-07,
+              1.503825640066612e-07,
+              1.0781342972270095e-12
+            ],
+            "desired_vertical_acceleration": -0.01453819964081049,
+            "desired_angular_acceleration": [
+              6.118263229382137e-07,
+              1.1849889602899566e-07,
+              6.924914743196287e-13
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              -2.5303379391772296e-09,
+              1.5615119863809923e-08,
+              -2.487766936898339e-10,
+              -0.13247373700141907
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -2.491889180965245,
+              2.9617019796309765e-07,
+              1.503825640066612e-07,
+              1.0781342972270095e-12
+            ],
+            "steady_wrench": [
+              7.613046363985632e-06,
+              0.0,
+              -2.0600922107696533,
+              2.2351741790771484e-07,
+              -1.341104507446289e-07,
+              7.958078640513122e-13
+            ],
+            "acceleration_error": [
+              2.563315372839662e-07,
+              0.0,
+              0.014538619085310466,
+              -1.5008560475778241e-07,
+              -2.2417564428875794e-07,
+              -1.8133979083319606e-13
+            ],
+            "pwm_raw": [
+              -0.033118393272161484,
+              -0.033118415623903275,
+              -0.03311844915151596,
+              -0.03311846777796745,
+              -2.4218735461545293e-07,
+              -2.406403325494466e-07
+            ],
+            "pwm_headroom": 0.9668815322220325,
+            "minimum_deadzone_distance_pwm": 0.01311839371919632,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "iterations": 0,
+          "evaluations": 2,
+          "elapsed_ms": 2.7780999953392893
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.0028836000128649175
+        }
+      },
+      {
+        "total_ms": 2.8469999961089343,
+        "packet": {
+          "status": "ready",
+          "command": [
+            -2.5303379391772296e-09,
+            1.5615119863809923e-08,
+            -2.487766936898339e-10,
+            -0.13247373700141907
+          ],
+          "reason": null,
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv6",
+          "context_key": [
+            29.69999885559082,
+            0.4840756058692932,
+            1.2690629959106445,
+            1.5568917989730835,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.029999999329447746,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -2.491889180965245,
+              2.9617019796309765e-07,
+              1.503825640066612e-07,
+              1.0781342972270095e-12
+            ],
+            "desired_vertical_acceleration": -0.01453819964081049,
+            "desired_angular_acceleration": [
+              6.118263229382137e-07,
+              1.1849889602899566e-07,
+              6.924914743196287e-13
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              -2.5303379391772296e-09,
+              1.5615119863809923e-08,
+              -2.487766936898339e-10,
+              -0.13247373700141907
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -2.491889180965245,
+              2.9617019796309765e-07,
+              1.503825640066612e-07,
+              1.0781342972270095e-12
+            ],
+            "steady_wrench": [
+              7.613046363985632e-06,
+              0.0,
+              -2.0600922107696533,
+              2.2351741790771484e-07,
+              -1.341104507446289e-07,
+              7.958078640513122e-13
+            ],
+            "acceleration_error": [
+              2.563315372839662e-07,
+              0.0,
+              0.014538619085310466,
+              -1.5008560475778241e-07,
+              -2.2417564428875794e-07,
+              -1.8133979083319606e-13
+            ],
+            "pwm_raw": [
+              -0.033118393272161484,
+              -0.033118415623903275,
+              -0.03311844915151596,
+              -0.03311846777796745,
+              -2.4218735461545293e-07,
+              -2.406403325494466e-07
+            ],
+            "pwm_headroom": 0.9668815322220325,
+            "minimum_deadzone_distance_pwm": 0.01311839371919632,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "iterations": 0,
+          "evaluations": 2,
+          "elapsed_ms": 2.6177999970968813
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.0027914000093005598
+        }
+      }
+    ]
+  },
+  {
+    "configuration": "uuv6",
+    "episode_id": "i29-uuv6-fit-8732-prbs",
+    "role": "fit",
+    "trace_sha256": "dda5a0f164d3ae8dde72e84fc1cd4107bd33ef08887eafd6a9dff2000ee7a5a1",
+    "request": {
+      "label": "hold-o128",
+      "origin": 128,
+      "z": 5.5
+    },
+    "state": [
+      5.509991645812988,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      5.285872930471669e-07,
+      0.0,
+      0.004697898402810097,
+      -6.688988918313044e-08,
+      -1.330392418452675e-08,
+      -5.516832311618612e-14
+    ],
+    "reference": [
+      5.5,
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "previous": [
+      1.964232776430208e-09,
+      1.3092815720483486e-08,
+      -2.487603456557963e-10,
+      -0.13247373700141907
+    ],
+    "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+    "prepare_before_ready_ms": 35.71090000332333,
+    "seed_status": "prepared",
+    "warmup": {
+      "total_ms": 3.101099980995059,
+      "packet": {
+        "status": "ready",
+        "command": [
+          1.964232776430208e-09,
+          1.3092815720483486e-08,
+          -2.487603456557963e-10,
+          -0.13247373700141907
+        ],
+        "reason": null,
+        "startup_exception_requested": false,
+        "runtime_eligible": false,
+        "actual_history_advanced": false,
+        "configuration": "uuv6",
+        "context_key": [
+          29.69999885559082,
+          0.4840756058692932,
+          1.2690629959106445,
+          1.5568917989730835,
+          0.0,
+          0.0,
+          0.009999999776482582,
+          0.029999999329447746,
+          1.0,
+          997.0,
+          0.001306,
+          9.81
+        ],
+        "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+        "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+        "demand": {
+          "target_wrench": [
+            0.0,
+            0.0,
+            -2.635911691856336,
+            1.942785817971225e-07,
+            1.0130110729790157e-07,
+            5.153466589361242e-13
+          ],
+          "desired_vertical_acceleration": -0.019387442618608475,
+          "desired_angular_acceleration": [
+            4.013393350987826e-07,
+            7.98235451071605e-08,
+            3.3100993869711673e-13
+          ],
+          "unallocated_torque": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+        },
+        "inspection": {
+          "command": [
+            1.964232776430208e-09,
+            1.3092815720483486e-08,
+            -2.487603456557963e-10,
+            -0.13247373700141907
+          ],
+          "target_wrench": [
+            0.0,
+            0.0,
+            -2.635911691856336,
+            1.942785817971225e-07,
+            1.0130110729790157e-07,
+            5.153466589361242e-13
+          ],
+          "steady_wrench": [
+            7.613046363985632e-06,
+            0.0,
+            -2.0600922107696533,
+            6.705522537231445e-08,
+            -1.9371509552001953e-07,
+            2.5579538487363607e-13
+          ],
+          "acceleration_error": [
+            2.563315372839662e-07,
+            0.0,
+            0.01938786206310875,
+            -2.628171196446532e-07,
+            -2.3246773703792824e-07,
+            -1.667111832907634e-13
+          ],
+          "pwm_raw": [
+            -0.03311839699745178,
+            -0.03311840444803238,
+            -0.033118460327386856,
+            -0.033118464052677155,
+            -2.4218735461545293e-07,
+            -2.406403325494466e-07
+          ],
+          "pwm_headroom": 0.9668815359473228,
+          "minimum_deadzone_distance_pwm": 0.013118397444486618,
+          "physical_residual_accepted": true,
+          "command_constraints_accepted": true
+        },
+        "iterations": 0,
+        "evaluations": 2,
+        "elapsed_ms": 2.8574999887496233
+      },
+      "passes": true,
+      "source_check": {
+        "checked_ready": true,
+        "maximum_difference": 0.0,
+        "seconds": 0.0035789999819826335
+      }
+    },
+    "samples": [
+      {
+        "total_ms": 3.0746000120416284,
+        "packet": {
+          "status": "ready",
+          "command": [
+            1.964232776430208e-09,
+            1.3092815720483486e-08,
+            -2.487603456557963e-10,
+            -0.13247373700141907
+          ],
+          "reason": null,
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv6",
+          "context_key": [
+            29.69999885559082,
+            0.4840756058692932,
+            1.2690629959106445,
+            1.5568917989730835,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.029999999329447746,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -2.635911691856336,
+              1.942785817971225e-07,
+              1.0130110729790157e-07,
+              5.153466589361242e-13
+            ],
+            "desired_vertical_acceleration": -0.019387442618608475,
+            "desired_angular_acceleration": [
+              4.013393350987826e-07,
+              7.98235451071605e-08,
+              3.3100993869711673e-13
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              1.964232776430208e-09,
+              1.3092815720483486e-08,
+              -2.487603456557963e-10,
+              -0.13247373700141907
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -2.635911691856336,
+              1.942785817971225e-07,
+              1.0130110729790157e-07,
+              5.153466589361242e-13
+            ],
+            "steady_wrench": [
+              7.613046363985632e-06,
+              0.0,
+              -2.0600922107696533,
+              6.705522537231445e-08,
+              -1.9371509552001953e-07,
+              2.5579538487363607e-13
+            ],
+            "acceleration_error": [
+              2.563315372839662e-07,
+              0.0,
+              0.01938786206310875,
+              -2.628171196446532e-07,
+              -2.3246773703792824e-07,
+              -1.667111832907634e-13
+            ],
+            "pwm_raw": [
+              -0.03311839699745178,
+              -0.03311840444803238,
+              -0.033118460327386856,
+              -0.033118464052677155,
+              -2.4218735461545293e-07,
+              -2.406403325494466e-07
+            ],
+            "pwm_headroom": 0.9668815359473228,
+            "minimum_deadzone_distance_pwm": 0.013118397444486618,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "iterations": 0,
+          "evaluations": 2,
+          "elapsed_ms": 2.840700006345287
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.0028815999976359308
+        }
+      },
+      {
+        "total_ms": 2.8673999768216163,
+        "packet": {
+          "status": "ready",
+          "command": [
+            1.964232776430208e-09,
+            1.3092815720483486e-08,
+            -2.487603456557963e-10,
+            -0.13247373700141907
+          ],
+          "reason": null,
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv6",
+          "context_key": [
+            29.69999885559082,
+            0.4840756058692932,
+            1.2690629959106445,
+            1.5568917989730835,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.029999999329447746,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -2.635911691856336,
+              1.942785817971225e-07,
+              1.0130110729790157e-07,
+              5.153466589361242e-13
+            ],
+            "desired_vertical_acceleration": -0.019387442618608475,
+            "desired_angular_acceleration": [
+              4.013393350987826e-07,
+              7.98235451071605e-08,
+              3.3100993869711673e-13
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              1.964232776430208e-09,
+              1.3092815720483486e-08,
+              -2.487603456557963e-10,
+              -0.13247373700141907
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -2.635911691856336,
+              1.942785817971225e-07,
+              1.0130110729790157e-07,
+              5.153466589361242e-13
+            ],
+            "steady_wrench": [
+              7.613046363985632e-06,
+              0.0,
+              -2.0600922107696533,
+              6.705522537231445e-08,
+              -1.9371509552001953e-07,
+              2.5579538487363607e-13
+            ],
+            "acceleration_error": [
+              2.563315372839662e-07,
+              0.0,
+              0.01938786206310875,
+              -2.628171196446532e-07,
+              -2.3246773703792824e-07,
+              -1.667111832907634e-13
+            ],
+            "pwm_raw": [
+              -0.03311839699745178,
+              -0.03311840444803238,
+              -0.033118460327386856,
+              -0.033118464052677155,
+              -2.4218735461545293e-07,
+              -2.406403325494466e-07
+            ],
+            "pwm_headroom": 0.9668815359473228,
+            "minimum_deadzone_distance_pwm": 0.013118397444486618,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "iterations": 0,
+          "evaluations": 2,
+          "elapsed_ms": 2.6421000075060874
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.003366100019775331
+        }
+      },
+      {
+        "total_ms": 3.056199988350272,
+        "packet": {
+          "status": "ready",
+          "command": [
+            1.964232776430208e-09,
+            1.3092815720483486e-08,
+            -2.487603456557963e-10,
+            -0.13247373700141907
+          ],
+          "reason": null,
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv6",
+          "context_key": [
+            29.69999885559082,
+            0.4840756058692932,
+            1.2690629959106445,
+            1.5568917989730835,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.029999999329447746,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -2.635911691856336,
+              1.942785817971225e-07,
+              1.0130110729790157e-07,
+              5.153466589361242e-13
+            ],
+            "desired_vertical_acceleration": -0.019387442618608475,
+            "desired_angular_acceleration": [
+              4.013393350987826e-07,
+              7.98235451071605e-08,
+              3.3100993869711673e-13
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              1.964232776430208e-09,
+              1.3092815720483486e-08,
+              -2.487603456557963e-10,
+              -0.13247373700141907
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -2.635911691856336,
+              1.942785817971225e-07,
+              1.0130110729790157e-07,
+              5.153466589361242e-13
+            ],
+            "steady_wrench": [
+              7.613046363985632e-06,
+              0.0,
+              -2.0600922107696533,
+              6.705522537231445e-08,
+              -1.9371509552001953e-07,
+              2.5579538487363607e-13
+            ],
+            "acceleration_error": [
+              2.563315372839662e-07,
+              0.0,
+              0.01938786206310875,
+              -2.628171196446532e-07,
+              -2.3246773703792824e-07,
+              -1.667111832907634e-13
+            ],
+            "pwm_raw": [
+              -0.03311839699745178,
+              -0.03311840444803238,
+              -0.033118460327386856,
+              -0.033118464052677155,
+              -2.4218735461545293e-07,
+              -2.406403325494466e-07
+            ],
+            "pwm_headroom": 0.9668815359473228,
+            "minimum_deadzone_distance_pwm": 0.013118397444486618,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "iterations": 0,
+          "evaluations": 2,
+          "elapsed_ms": 2.8306000167503953
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.002830699988408014
+        }
+      }
+    ]
+  },
+  {
+    "configuration": "uuv6",
+    "episode_id": "i29-uuv6-fit-8732-prbs",
+    "role": "fit",
+    "trace_sha256": "dda5a0f164d3ae8dde72e84fc1cd4107bd33ef08887eafd6a9dff2000ee7a5a1",
+    "request": {
+      "label": "depth-minus-o128",
+      "origin": 128,
+      "z": 5.45
+    },
+    "state": [
+      5.509991645812988,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      5.285872930471669e-07,
+      0.0,
+      0.004697898402810097,
+      -6.688988918313044e-08,
+      -1.330392418452675e-08,
+      -5.516832311618612e-14
+    ],
+    "reference": [
+      5.45,
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "previous": [
+      1.964232776430208e-09,
+      1.3092815720483486e-08,
+      -2.487603456557963e-10,
+      -0.13247373700141907
+    ],
+    "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+    "prepare_before_ready_ms": 35.71090000332333,
+    "seed_status": "prepared",
+    "warmup": {
+      "total_ms": 10.745400009909645,
+      "packet": {
+        "status": "no_command",
+        "command": null,
+        "reason": "timeout",
+        "startup_exception_requested": false,
+        "runtime_eligible": false,
+        "actual_history_advanced": false,
+        "configuration": "uuv6",
+        "context_key": [
+          29.69999885559082,
+          0.4840756058692932,
+          1.2690629959106445,
+          1.5568917989730835,
+          0.0,
+          0.0,
+          0.009999999776482582,
+          0.029999999329447746,
+          1.0,
+          997.0,
+          0.001306,
+          9.81
+        ],
+        "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+        "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+        "demand": {
+          "target_wrench": [
+            0.0,
+            0.0,
+            -4.120911634635831,
+            1.942785817971225e-07,
+            1.0130110729790157e-07,
+            5.153466589361242e-13
+          ],
+          "desired_vertical_acceleration": -0.0693874426186083,
+          "desired_angular_acceleration": [
+            4.013393350987826e-07,
+            7.98235451071605e-08,
+            3.3100993869711673e-13
+          ],
+          "unallocated_torque": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+        },
+        "inspection": null,
+        "iterations": 0,
+        "evaluations": 0,
+        "elapsed_ms": 10.612500016577542
+      },
+      "passes": false,
+      "source_check": {
+        "checked_ready": false,
+        "seconds": 1.2999807950109243e-06
+      }
+    },
+    "samples": [
+      {
+        "total_ms": 10.53870000760071,
+        "packet": {
+          "status": "no_command",
+          "command": null,
+          "reason": "timeout",
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv6",
+          "context_key": [
+            29.69999885559082,
+            0.4840756058692932,
+            1.2690629959106445,
+            1.5568917989730835,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.029999999329447746,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -4.120911634635831,
+              1.942785817971225e-07,
+              1.0130110729790157e-07,
+              5.153466589361242e-13
+            ],
+            "desired_vertical_acceleration": -0.0693874426186083,
+            "desired_angular_acceleration": [
+              4.013393350987826e-07,
+              7.98235451071605e-08,
+              3.3100993869711673e-13
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": null,
+          "iterations": 0,
+          "evaluations": 0,
+          "elapsed_ms": 10.355900012655184
+        },
+        "passes": false,
+        "source_check": {
+          "checked_ready": false,
+          "seconds": 1.5999830793589354e-06
+        }
+      },
+      {
+        "total_ms": 10.28090002364479,
+        "packet": {
+          "status": "no_command",
+          "command": null,
+          "reason": "timeout",
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv6",
+          "context_key": [
+            29.69999885559082,
+            0.4840756058692932,
+            1.2690629959106445,
+            1.5568917989730835,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.029999999329447746,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -4.120911634635831,
+              1.942785817971225e-07,
+              1.0130110729790157e-07,
+              5.153466589361242e-13
+            ],
+            "desired_vertical_acceleration": -0.0693874426186083,
+            "desired_angular_acceleration": [
+              4.013393350987826e-07,
+              7.98235451071605e-08,
+              3.3100993869711673e-13
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": null,
+          "iterations": 0,
+          "evaluations": 0,
+          "elapsed_ms": 10.123199986992404
+        },
+        "passes": false,
+        "source_check": {
+          "checked_ready": false,
+          "seconds": 1.500011421740055e-06
+        }
+      },
+      {
+        "total_ms": 10.209400003077462,
+        "packet": {
+          "status": "no_command",
+          "command": null,
+          "reason": "timeout",
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv6",
+          "context_key": [
+            29.69999885559082,
+            0.4840756058692932,
+            1.2690629959106445,
+            1.5568917989730835,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.029999999329447746,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -4.120911634635831,
+              1.942785817971225e-07,
+              1.0130110729790157e-07,
+              5.153466589361242e-13
+            ],
+            "desired_vertical_acceleration": -0.0693874426186083,
+            "desired_angular_acceleration": [
+              4.013393350987826e-07,
+              7.98235451071605e-08,
+              3.3100993869711673e-13
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": null,
+          "iterations": 0,
+          "evaluations": 0,
+          "elapsed_ms": 10.078399995109066
+        },
+        "passes": false,
+        "source_check": {
+          "checked_ready": false,
+          "seconds": 1.300009898841381e-06
+        }
+      }
+    ]
+  },
+  {
+    "configuration": "uuv6",
+    "episode_id": "i29-uuv6-fit-8732-prbs",
+    "role": "fit",
+    "trace_sha256": "dda5a0f164d3ae8dde72e84fc1cd4107bd33ef08887eafd6a9dff2000ee7a5a1",
+    "request": {
+      "label": "depth-plus-o128",
+      "origin": 128,
+      "z": 5.55
+    },
+    "state": [
+      5.509991645812988,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      5.285872930471669e-07,
+      0.0,
+      0.004697898402810097,
+      -6.688988918313044e-08,
+      -1.330392418452675e-08,
+      -5.516832311618612e-14
+    ],
+    "reference": [
+      5.55,
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "previous": [
+      1.964232776430208e-09,
+      1.3092815720483486e-08,
+      -2.487603456557963e-10,
+      -0.13247373700141907
+    ],
+    "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+    "prepare_before_ready_ms": 35.71090000332333,
+    "seed_status": "prepared",
+    "warmup": {
+      "total_ms": 9.307600004831329,
+      "packet": {
+        "status": "ready",
+        "command": [
+          5.592068585968946e-09,
+          -6.064256652393851e-09,
+          -2.487603456557963e-10,
+          -0.12247373908758163
+        ],
+        "reason": null,
+        "startup_exception_requested": false,
+        "runtime_eligible": false,
+        "actual_history_advanced": false,
+        "configuration": "uuv6",
+        "context_key": [
+          29.69999885559082,
+          0.4840756058692932,
+          1.2690629959106445,
+          1.5568917989730835,
+          0.0,
+          0.0,
+          0.009999999776482582,
+          0.029999999329447746,
+          1.0,
+          997.0,
+          0.001306,
+          9.81
+        ],
+        "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+        "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+        "demand": {
+          "target_wrench": [
+            0.0,
+            0.0,
+            -1.1509117490767835,
+            1.942785817971225e-07,
+            1.0130110729790157e-07,
+            5.153466589361242e-13
+          ],
+          "desired_vertical_acceleration": 0.030612557381391348,
+          "desired_angular_acceleration": [
+            4.013393350987826e-07,
+            7.98235451071605e-08,
+            3.3100993869711673e-13
+          ],
+          "unallocated_torque": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+        },
+        "inspection": {
+          "command": [
+            5.592068585968946e-09,
+            -6.064256652393851e-09,
+            -2.487603456557963e-10,
+            -0.12247373908758163
+          ],
+          "target_wrench": [
+            0.0,
+            0.0,
+            -1.1509117490767835,
+            1.942785817971225e-07,
+            1.0130110729790157e-07,
+            5.153466589361242e-13
+          ],
+          "steady_wrench": [
+            6.7854480221285485e-06,
+            0.0,
+            -1.836143970489502,
+            -2.9802322387695312e-08,
+            -5.140900611877441e-07,
+            -1.1368683772161603e-13
+          ],
+          "acceleration_error": [
+            2.2846627217466154e-07,
+            0.0,
+            -0.02307179285576734,
+            -4.629047641895068e-07,
+            -4.849177467695826e-07,
+            -4.040316077666071e-13
+          ],
+          "pwm_raw": [
+            -0.030618369579315186,
+            -0.030618369579315186,
+            -0.030618498101830482,
+            -0.030618492513895035,
+            -2.2396372401090048e-07,
+            -2.224169293185696e-07
+          ],
+          "pwm_headroom": 0.9693815018981695,
+          "minimum_deadzone_distance_pwm": 0.010618370026350021,
+          "physical_residual_accepted": true,
+          "command_constraints_accepted": true
+        },
+        "iterations": 1,
+        "evaluations": 13,
+        "elapsed_ms": 8.993600000394508
+      },
+      "passes": true,
+      "source_check": {
+        "checked_ready": true,
+        "maximum_difference": 0.0,
+        "seconds": 0.0038101999962236732
+      }
+    },
+    "samples": [
+      {
+        "total_ms": 10.307900025509298,
+        "packet": {
+          "status": "no_command",
+          "command": null,
+          "reason": "timeout",
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv6",
+          "context_key": [
+            29.69999885559082,
+            0.4840756058692932,
+            1.2690629959106445,
+            1.5568917989730835,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.029999999329447746,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.1509117490767835,
+              1.942785817971225e-07,
+              1.0130110729790157e-07,
+              5.153466589361242e-13
+            ],
+            "desired_vertical_acceleration": 0.030612557381391348,
+            "desired_angular_acceleration": [
+              4.013393350987826e-07,
+              7.98235451071605e-08,
+              3.3100993869711673e-13
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": null,
+          "iterations": 0,
+          "evaluations": 0,
+          "elapsed_ms": 10.106799978530034
+        },
+        "passes": false,
+        "source_check": {
+          "checked_ready": false,
+          "seconds": 2.0999868866056204e-06
+        }
+      },
+      {
+        "total_ms": 10.752400005003437,
+        "packet": {
+          "status": "no_command",
+          "command": null,
+          "reason": "timeout",
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv6",
+          "context_key": [
+            29.69999885559082,
+            0.4840756058692932,
+            1.2690629959106445,
+            1.5568917989730835,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.029999999329447746,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.1509117490767835,
+              1.942785817971225e-07,
+              1.0130110729790157e-07,
+              5.153466589361242e-13
+            ],
+            "desired_vertical_acceleration": 0.030612557381391348,
+            "desired_angular_acceleration": [
+              4.013393350987826e-07,
+              7.98235451071605e-08,
+              3.3100993869711673e-13
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": null,
+          "iterations": 0,
+          "evaluations": 0,
+          "elapsed_ms": 10.538200003793463
+        },
+        "passes": false,
+        "source_check": {
+          "checked_ready": false,
+          "seconds": 2.00001522898674e-06
+        }
+      },
+      {
+        "total_ms": 10.185099992668256,
+        "packet": {
+          "status": "ready",
+          "command": [
+            5.592068585968946e-09,
+            -6.064256652393851e-09,
+            -2.487603456557963e-10,
+            -0.12247373908758163
+          ],
+          "reason": null,
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv6",
+          "context_key": [
+            29.69999885559082,
+            0.4840756058692932,
+            1.2690629959106445,
+            1.5568917989730835,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.029999999329447746,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "f1b3ea5fef50d005c7935a7667c058a09018917b12cdde6b89e5b2397e868f7e",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.1509117490767835,
+              1.942785817971225e-07,
+              1.0130110729790157e-07,
+              5.153466589361242e-13
+            ],
+            "desired_vertical_acceleration": 0.030612557381391348,
+            "desired_angular_acceleration": [
+              4.013393350987826e-07,
+              7.98235451071605e-08,
+              3.3100993869711673e-13
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              5.592068585968946e-09,
+              -6.064256652393851e-09,
+              -2.487603456557963e-10,
+              -0.12247373908758163
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.1509117490767835,
+              1.942785817971225e-07,
+              1.0130110729790157e-07,
+              5.153466589361242e-13
+            ],
+            "steady_wrench": [
+              6.7854480221285485e-06,
+              0.0,
+              -1.836143970489502,
+              -2.9802322387695312e-08,
+              -5.140900611877441e-07,
+              -1.1368683772161603e-13
+            ],
+            "acceleration_error": [
+              2.2846627217466154e-07,
+              0.0,
+              -0.02307179285576734,
+              -4.629047641895068e-07,
+              -4.849177467695826e-07,
+              -4.040316077666071e-13
+            ],
+            "pwm_raw": [
+              -0.030618369579315186,
+              -0.030618369579315186,
+              -0.030618498101830482,
+              -0.030618492513895035,
+              -2.2396372401090048e-07,
+              -2.224169293185696e-07
+            ],
+            "pwm_headroom": 0.9693815018981695,
+            "minimum_deadzone_distance_pwm": 0.010618370026350021,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "iterations": 1,
+          "evaluations": 13,
+          "elapsed_ms": 9.928599989507347
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.003457299986621365
+        }
+      }
+    ]
+  }
+]

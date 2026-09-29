@@ -1,0 +1,248 @@
+{
+  "status": "partial_source_runtime_inventory_pullback_verified_original_stage_failed",
+  "source_commit": "fe6f829654e5f2377683e825524dc200c859a51b",
+  "archive_sha256": "0c268802deb3d78dfc99eabf9f14df29a191a57fe8c736a6e58b162cd75b32f2",
+  "files": 80,
+  "cases": [
+    {
+      "status": "calibration_semantics_passed_not_training_data",
+      "run_id": "c28-base-excitation-8600",
+      "source_commit": "fe6f829654e5f2377683e825524dc200c859a51b",
+      "physics_ticks": 640,
+      "contact_ticks": 0,
+      "first_contact_index": null,
+      "impulse_ticks": 0,
+      "first_impulse_index": null,
+      "rejected_ticks": 0,
+      "minimum_hull_clearance_m": 5.148093412320506,
+      "maximum_velocity_balance_residual_m_s": 4.307173616287726e-08,
+      "maximum_control_pwm_speed_wrench_errors": [
+        0.0,
+        0.0,
+        1.0510194385915383e-05,
+        1.8839806159576256e-06
+      ],
+      "maximum_motion": {
+        "linear_speed_m_s": 0.08565721163179471,
+        "angular_speed_rad_s": 0.5399508476258765,
+        "tilt_rad": 0.09464335529532468,
+        "horizontal_displacement_m": 0.0005165324493539564,
+        "vertical_displacement_m": 0.10113525390625
+      },
+      "tail": {
+        "eligible_for_excitation": true,
+        "tail_physics_ticks": 64,
+        "maximum": {
+          "linear_speed_m_s": 0.08554985984818635,
+          "angular_speed_rad_s": 0.01855821348232557,
+          "tilt_rad": 0.005880842553172676
+        },
+        "limits": {
+          "linear_speed_m_s": 0.5,
+          "angular_speed_rad_s": 0.5,
+          "tilt_rad": 0.5235987755982988
+        },
+        "claim": "bounded motion only, not exact hovering"
+      },
+      "model_handoff": false,
+      "training_eligible": false,
+      "minimum_pwm_headroom": 0.8664346486330032,
+      "maximum_allocation_acceleration_error_6": [
+        1.8819180377934082e-06,
+        1.2603070007029153e-07,
+        0.021333832604328206,
+        0.09785897462160047,
+        0.07567217738131811,
+        0.06913254769911012
+      ],
+      "controller_state_replayed": true
+    },
+    {
+      "status": "rejected_allocation_stop_verified_only",
+      "run_id": "c28-long_body-excitation-8601",
+      "physics_ticks_recorded": 288,
+      "reasons": [
+        "feedback_allocation_rejected"
+      ],
+      "eligible_for_excitation": false,
+      "prefix_semantically_accepted": false,
+      "training_eligible": false,
+      "model_handoff": false
+    },
+    {
+      "status": "calibration_semantics_passed_not_training_data",
+      "run_id": "c28-heavy_moderate-excitation-8602",
+      "source_commit": "fe6f829654e5f2377683e825524dc200c859a51b",
+      "physics_ticks": 640,
+      "contact_ticks": 0,
+      "first_contact_index": null,
+      "impulse_ticks": 0,
+      "first_impulse_index": null,
+      "rejected_ticks": 0,
+      "minimum_hull_clearance_m": 4.615675325658204,
+      "maximum_velocity_balance_residual_m_s": 4.6248508504213165e-08,
+      "maximum_control_pwm_speed_wrench_errors": [
+        0.0,
+        0.0,
+        9.489117485372844e-05,
+        0.0001368887262174212
+      ],
+      "maximum_motion": {
+        "linear_speed_m_s": 0.453962057831182,
+        "angular_speed_rad_s": 0.5879472494127898,
+        "tilt_rad": 0.10886326588970635,
+        "horizontal_displacement_m": 0.1300359180534355,
+        "vertical_displacement_m": 0.6331911087036133
+      },
+      "tail": {
+        "eligible_for_excitation": true,
+        "tail_physics_ticks": 64,
+        "maximum": {
+          "linear_speed_m_s": 0.12733210029688807,
+          "angular_speed_rad_s": 0.02566858699855581,
+          "tilt_rad": 0.004115321938262964
+        },
+        "limits": {
+          "linear_speed_m_s": 0.5,
+          "angular_speed_rad_s": 0.5,
+          "tilt_rad": 0.5235987755982988
+        },
+        "claim": "bounded motion only, not exact hovering"
+      },
+      "model_handoff": false,
+      "training_eligible": false,
+      "minimum_pwm_headroom": 0.3955642580986023,
+      "maximum_allocation_acceleration_error_6": [
+        1.9991094157912802e-05,
+        1.2603070007029153e-07,
+        9.83633694371822e-07,
+        8.972784241848506e-06,
+        1.0195965639850812e-05,
+        0.0342799686711637
+      ],
+      "controller_state_replayed": true
+    },
+    {
+      "status": "calibration_semantics_passed_not_training_data",
+      "run_id": "c28-asymmetric-excitation-8603",
+      "source_commit": "fe6f829654e5f2377683e825524dc200c859a51b",
+      "physics_ticks": 640,
+      "contact_ticks": 0,
+      "first_contact_index": null,
+      "impulse_ticks": 0,
+      "first_impulse_index": null,
+      "rejected_ticks": 0,
+      "minimum_hull_clearance_m": 5.0751949581232125,
+      "maximum_velocity_balance_residual_m_s": 4.434782407969351e-08,
+      "maximum_control_pwm_speed_wrench_errors": [
+        0.0,
+        0.0,
+        4.04673855598503e-05,
+        2.009791940693617e-05
+      ],
+      "maximum_motion": {
+        "linear_speed_m_s": 0.0891522686906942,
+        "angular_speed_rad_s": 1.5591960529512174,
+        "tilt_rad": 0.28743579208118336,
+        "horizontal_displacement_m": 0.009542422830019184,
+        "vertical_displacement_m": 0.026833057403564453
+      },
+      "tail": {
+        "eligible_for_excitation": true,
+        "tail_physics_ticks": 64,
+        "maximum": {
+          "linear_speed_m_s": 0.0891522686906942,
+          "angular_speed_rad_s": 0.01909196692285438,
+          "tilt_rad": 0.003936413647558346
+        },
+        "limits": {
+          "linear_speed_m_s": 0.5,
+          "angular_speed_rad_s": 0.5,
+          "tilt_rad": 0.5235987755982988
+        },
+        "claim": "bounded motion only, not exact hovering"
+      },
+      "model_handoff": false,
+      "training_eligible": false,
+      "minimum_pwm_headroom": 0.5284201204776764,
+      "maximum_allocation_acceleration_error_6": [
+        1.8819181980497307e-06,
+        1.6804093342705536e-07,
+        0.0047365445436433565,
+        0.0006504921682426068,
+        0.00026898288390361005,
+        0.06913113775779069
+      ],
+      "controller_state_replayed": true
+    },
+    {
+      "status": "calibration_semantics_passed_not_training_data",
+      "run_id": "c28-uuv6-excitation-8604",
+      "source_commit": "fe6f829654e5f2377683e825524dc200c859a51b",
+      "physics_ticks": 640,
+      "contact_ticks": 0,
+      "first_contact_index": null,
+      "impulse_ticks": 0,
+      "first_impulse_index": null,
+      "rejected_ticks": 0,
+      "minimum_hull_clearance_m": 5.213830657078894,
+      "maximum_velocity_balance_residual_m_s": 4.722443049942592e-08,
+      "maximum_control_pwm_speed_wrench_errors": [
+        0.0,
+        8.195638656616211e-08,
+        4.221706331009045e-05,
+        4.398842129660352e-06
+      ],
+      "maximum_motion": {
+        "linear_speed_m_s": 0.08655593392514042,
+        "angular_speed_rad_s": 0.5465604490111258,
+        "tilt_rad": 0.09897580497715681,
+        "horizontal_displacement_m": 0.003641352438405796,
+        "vertical_displacement_m": 0.07606697082519531
+      },
+      "tail": {
+        "eligible_for_excitation": true,
+        "tail_physics_ticks": 64,
+        "maximum": {
+          "linear_speed_m_s": 0.08655593392514042,
+          "angular_speed_rad_s": 0.021029912171368414,
+          "tilt_rad": 0.0052138036734331065
+        },
+        "limits": {
+          "linear_speed_m_s": 0.5,
+          "angular_speed_rad_s": 0.5,
+          "tilt_rad": 0.5235987755982988
+        },
+        "claim": "bounded motion only, not exact hovering"
+      },
+      "model_handoff": false,
+      "training_eligible": false,
+      "minimum_pwm_headroom": 0.8372484147548676,
+      "maximum_allocation_acceleration_error_6": [
+        0.008633203758324421,
+        0.0,
+        0.007495014631488018,
+        0.06822174759045137,
+        0.04149478311766245,
+        0.014676280024116894
+      ],
+      "controller_state_replayed": true
+    },
+    {
+      "run_id": "c28-uuv6_angled-excitation-8605",
+      "status": "not_accepted_cpu_gpu_deadzone_branch_mismatch",
+      "physics_ticks_recorded": 640
+    },
+    {
+      "run_id": "c28-uuv4-excitation-8606",
+      "status": "not_run_after_stage_failure"
+    },
+    {
+      "run_id": "c28-uuv4_angled-excitation-8607",
+      "status": "not_run_after_stage_failure"
+    }
+  ],
+  "model_fits": 0,
+  "model_handoff": false,
+  "training_eligible": false
+}

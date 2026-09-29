@@ -1,0 +1,32 @@
+{
+  "schema": "command-state-v39-profile-v1",
+  "evidence_level": "local_fit_performance_diagnosis",
+  "origin": 128,
+  "horizon": 20,
+  "scope": "nonlinear__pooled",
+  "configurations": [
+    "base",
+    "long_body",
+    "heavy_moderate",
+    "asymmetric",
+    "uuv6",
+    "uuv6_angled",
+    "uuv4",
+    "uuv4_angled"
+  ],
+  "unprofiled_repetitions": 3,
+  "profiled_calls_per_configuration": 1,
+  "warmups": 1,
+  "maximum_seconds": 180,
+  "output_limit_bytes": 16777216,
+  "processes": 1,
+  "threads": 1,
+  "new_fits": 0,
+  "new_server_runs": 0,
+  "formal_test_access": false,
+  "candidate_sha256": "2e1a1709d9704c76f4b90c7cbe0b2ecf849db052e60204d876796c188f47135b",
+  "runner_sha256": "41215086b0171446fe3bbed04a6f83dd0a2d2d78a903a327d8f7279c2781f6b1",
+  "handoff_sha256": "5d8c4aa1264d93307dc0cf692757441509e75809206ed80006543ca5e4239632",
+  "baseline_result_sha256": "04ae40aad9e3d1f048bd5ea3af2219743d72eaad640e69a54a93654ee2d2bfdc",
+  "helper_sha256": "2585e6f9e5680863b59c65779860b302f0760f43ff93738a6cd2b7d03121043a"
+}

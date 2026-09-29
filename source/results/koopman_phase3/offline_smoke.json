@@ -1,0 +1,42 @@
+{
+  "average_latency_ms": 11.130049999337643,
+  "backend_is_paper_style_lifted_edmd": false,
+  "backend_reason": "selected manifest model_class is direct_state",
+  "backend_used": "direct_state",
+  "fallback_count": 0,
+  "fallback_rate": 0.0,
+  "first_commands": [
+    [
+      0.35,
+      0.35,
+      0.35,
+      0.35,
+      0.35,
+      0.35,
+      0.35,
+      0.35
+    ],
+    [
+      0.7,
+      0.7,
+      0.7,
+      0.7,
+      0.7,
+      0.7,
+      0.7,
+      0.7
+    ]
+  ],
+  "horizon": 5,
+  "known_limitations": [
+    "selected backend is direct_state, not paper_lifted_edmd",
+    "Phase 2.5 is an offline model gate, not closed-loop control evidence",
+    "Phase 4 must compare legacy and Koopman MPC before performance claims"
+  ],
+  "manifest_path": "source\\results\\koopman_phase2_5_verify_20260701_231802\\selected_model_manifest.json",
+  "max_latency_ms": 11.533299999427982,
+  "mean_tracking_cost": 2.2490058354445708,
+  "pwm_max": 0.7,
+  "pwm_min": 0.35,
+  "sample_count": 2
+}

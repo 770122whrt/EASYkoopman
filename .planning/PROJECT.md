@@ -1,67 +1,37 @@
 # EASYkoopman
 
-## What This Is
+## 项目目标
 
-EASYkoopman 是基于 EasyUUV Isaac Sim/Lab 仿真环境的控制器迁移项目。项目目标是在保留 EasyUUV 现有 AUV 资产、推进器模型、水动力模型和评估脚本的基础上，将底层控制器从 `Ssurface`/`PID` 逐步替换为 Koopman 模型预测控制（Koopman Model Predictive Control, Koopman+MPC）。
+以 EasyUUV / Isaac 仿真建立 Koopman-UUV 与后续 Agentic-AUV 的可复现证据：先验证预测与有界控制，再研究跨构型、环境适应及上层 Agent 的增量作用。普通线性、persistence、物理模型和分构型模型可作对照或必要 fallback，不能因其局部表现更好而自动替换研究目标。
 
-该项目首先服务于研究和仿真验证：在 Isaac Sim/Lab 中构建可复现的姿态与深度控制闭环，再为后续 Sim2Real 和真实 UUV 部署保留接口。
+v1.0 冻结于 tag `v1.0`。v2.0 已完成八构型接入与拓扑无关数据/控制接口；Phase 8.2 以 `VERIFIED / NO_SELECTION` 结束，没有向 Phase 9 交付合格模型。Phase 9 保持开放，阶段证据与当前工作见[研究索引](../docs/phase9_research_index.md)、[STATE](STATE.md)和[ROADMAP](ROADMAP.md)。
 
-## Core Value
+## 当前授权范围：v87（2026-09-29）
 
-在不破坏 EasyUUV 原始仿真基线的前提下，建立一个可验证、可迭代的 Koopman+MPC 控制闭环。
+用户要求扩大含扰动场景重新离线训练与独立测试，继续比较三臂：冻结物理、完整提升 Koopman、冻结物理＋自主提升学习部分。物理基线不利用新增扰动数据重新校准，也不读取隐藏扰动真值。结合策略保留，但其整体优势和闭环收益仍需实验。
 
-## Requirements
+本轮固定 base 构型与额外 20% 二次阻力，扩大输入类型、幅值和轨迹时长。训练、验证、测试按整条轨迹分离；模型在测试时全部冻结，不能反复使用测试结果调到获胜。数据数量、信号、参数与门限由[v87运行说明](../docs/phase9_diverse_v87_runbook.md)及版本化协议统一管理，不在入口文档重复维护。
 
-### Validated
+允许审查并修复共同控制链、数据校验和求解器问题。先完成预测与求解验证，再按准入条件执行相同任务、初态和扰动下的 2 秒配对闭环；之后才考虑更长时间与更多构型。本轮不开展在线自进化、Agent 或额外模型家族。
 
-- EasyUUV 当前代码已提供 Isaac Lab `DirectRLEnv` 环境、8 推进器布局、浮力/阻力水动力计算和 RSL-RL 训练/评估脚本。
-- 当前控制链路已经分层：4D action 进入 `_pid_control()`，再转为 8D PWM，最后由 `_compute_dynamics()` 转换成作用于刚体的 force/torque。
+## 必须保持的控制与证据边界
 
-### Active
+- 完整非线性提升状态在预测时域内自行传播；实际控制边界可根据当前状态及因果历史初始化，预测内部不得不断解码再重提升，不得读取未来真值。
+- 高层策略不能绕过有界低层控制直接输出 PWM。三臂共用可控轴掩码、TAM、PWM、死区、执行器记忆和实际 Isaac plant；PWM 受 `[-1,1]` 及更严格的任务约束限制。
+- 控制接口为 TAM 前 `virtual_control_4 = [roll,pitch,yaw,depth]`；它是四维虚拟命令，不是四维物理 wrench。`uuv4*` 不可控偏航必须显式处理，不能计作可行跟踪目标。
+- 求解状态、原始最后候选、独立可行性、最终所选计划与 fallback 分别记录。超时候选可经独立验收使用，超时本身不能改写成收敛，历史 fallback 不能算新候选。
+- 模型、checkpoint、来源与版本不一致时拒绝准入；`no_selection` 是有效结果。局部收益不自动升级为普遍模型优势或未见构型泛化。
+- 本地测试、合成数据、离线求解、真实 Isaac 轨迹与闭环效果分开报告。模型内部预测代价不跨模型比较，也不替代实际任务收益。
+- 原始实验材料、失败证据、v1.0 和 Phase 8/8.1/8.2 冻结结果保留；新增证据使用独立版本目录，不覆盖旧测试。
 
-- [ ] 保留原始 `Ssurface`/`PID` 行为作为回归基线。
-- [ ] 建立控制器边界，使 legacy controller 和 Koopman+MPC controller 可以在同一环境内切换。
-- [ ] 建立仿真数据采集格式，记录 Koopman 辨识需要的状态、参考、控制量和下一步状态。
-- [ ] 实现离线扩展动态模态分解（Extended Dynamic Mode Decomposition, EDMD）训练流程。
-- [ ] 实现 Koopman+MPC 闭环控制，优先覆盖姿态和深度控制。
-- [ ] 复用现有 step、sine、irregular 三类评估脚本，对比 legacy controller 与 Koopman+MPC。
-- [ ] 整理 Isaac Sim/Lab 运行、验证和后续 Sim2Real 扩展文档。
+## 后续里程碑与未证明范围
 
-### Out of Scope
+八个支持构型为 `base`、`long_body`、`heavy_moderate`、`asymmetric`、`uuv6`、`uuv6_angled`、`uuv4`、`uuv4_angled`。配置接入不等于 Koopman 迁移成功；它们共享 USD 外观，机械参数或推进器拓扑不同。
 
-- 原生 Isaac Sim app 重写 - 第一阶段保留 Isaac Lab 任务形态，避免同时迁移仿真框架和控制器。
-- 真实硬件部署 - 当前先在仿真中建立闭环和数据管线。
-- LLM 直接控制推进器 - EasyUUV 论文中 LLM 是低频调参器，不能替代实时控制器。
-- 一开始实现完整 6-DOF 全空间 MPC - 先覆盖姿态与深度，降低模型维度和求解压力。
-- 大规模重构训练框架 - PPO 训练和 RSL-RL workflow 保持可运行，后续按阶段接入。
+跨构型闭环迁移、长时稳定、实时 30Hz、真实传感器状态估计、在线 RLS/KF、自适应和 Agent 增量均须另行验证。在线更新若后续获准，仍须参数边界、非有限值拒绝、冻结先验与回滚。Agent 只能是低频 allow-list supervisor，不能进入 PWM 或实时 `env.step()` 控制环。当前不作 Sim2Real、硬件或普遍六自由度成功声明。
 
-## Context
+## 历史与文档分工
 
-- EasyUUV 源代码位于本目录，核心环境文件是 `easyuuv_env.py`。
-- README 说明项目基于 Isaac Sim/Lab，原始测试环境为 Isaac Sim 4.0.0 和 Isaac Lab 1.0.0。目标本机 Isaac Sim/Lab 版本待确认。
-- `_pid_control()` 是当前 4D action 到 8D PWM 的控制分配入口。
-- `_compute_dynamics()` 包含推进器死区、多项式推力映射、推进器几何、浮力和阻力模型，应尽量保留。
-- `workflows/play_controller.py` 已经提供不依赖 PPO 的直接控制入口，适合作为 Koopman+MPC 的第一版闭环验证脚本。
-- `workflows/play_eval.py`、`workflows/play_eval_step.py`、`workflows/play_eval_task2.py` 已提供 sine、step、irregular 信号评估轨迹。
+[STATE](STATE.md)只记录当前工作；[研究索引](../docs/phase9_research_index.md)负责代码入口与历史导航；[控制链合同](../docs/phase9_control_chain_contract.md)负责共同执行语义；版本运行说明负责精确协议，版本报告负责数字结论。旧文档中“当前”“下一步”只代表其版本时点。
 
-## Constraints
-
-- **Workspace**: 所有规划和文档产物必须写在 `E:\code for project\Agentic AUV\EasyUUV` 下。
-- **GitHub**: 远程目标为 `https://github.com/770122whrt/EASYkoopman.git`，初次发布允许覆盖 `main` 分支。
-- **Compatibility**: 保留 Isaac Lab `DirectRLEnv` 环境形态，不在第一阶段改成原生 Isaac Sim standalone app。
-- **Control Rate**: 当前仿真配置为 `dt=1/120`，`decimation=2`，控制闭环约 60 Hz。MPC 求解必须以该频率作为第一版预算。
-- **Safety**: 控制输出最终必须限制到 8D PWM 的 `[-1, 1]`，并复用原有推进器推力模型。
-- **Verification**: 每个阶段必须保留 legacy baseline，并给出可运行的回归或离线验证路径。
-
-## Key Decisions
-
-| Decision | Rationale | Outcome |
-|----------|-----------|---------|
-| 先保留 Isaac Lab 环境，不重写仿真框架 | 同时迁移仿真和控制器会放大不确定性 | Pending |
-| Koopman+MPC 第一版替换控制器层，而不是替换水动力层 | `_compute_dynamics()` 已包含经过项目验证的推进器和水动力逻辑 | Pending |
-| 第一版 MPC 优化 4D 虚拟控制量，后续再扩展到 8D PWM 或 6D wrench | 降低求解维度，方便复用现有 action 语义 | Pending |
-| 先做数据采集和基线验证，再实现 EDMD/MPC | 没有可靠数据和 baseline 时闭环调试不可解释 | Pending |
-| LLM 后续只作为调参或分析层，不进入实时控制环 | 控制闭环需要确定性和低延迟 | Pending |
-
----
-*Last updated: 2026-06-10 after GSD project initialization*
+本次整理前 PROJECT、STATE、README 与控制链合同原文完整保存在[历史档案](../docs/history/phase9_status_before_v87_20260929.md)。冻结里程碑见[MILESTONES](MILESTONES.md)、[v1.0总结](reports/MILESTONE_SUMMARY-v1.0.md)及[Phase 8.2验证](phases/08.2-phase-8-1-fresh-server-evaluation-and-closeout/08.2-VERIFICATION.md)。历史具体目录以研究索引链接核对为准。

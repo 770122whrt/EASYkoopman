@@ -1,0 +1,134 @@
+{
+  "status": "frozen_causal_cache_probe_completed_not_physics_or_model_validation",
+  "cap_seconds": 60,
+  "new_simulation_intervals": 0,
+  "model_fits": 0,
+  "records": [
+    {
+      "case": {
+        "run_id": "p38-base-preflight-9300-prbs",
+        "configuration": "base",
+        "role": "preflight",
+        "seed": 9300,
+        "excitation": "prbs",
+        "intervals": 256,
+        "training_eligible": false,
+        "starting_z_m": 5.5,
+        "mode": "direct_pre_tam_v24"
+      },
+      "trace_sha256": "4eeb470fc515d97a7fd10adff3a8319eb4242db43e8e6bb94df1146122989485",
+      "arrays_sha256": "0611e49873327e0580ffe62b4fe243e0c6fbc53b56b554bb10c7d065e79a3348"
+    },
+    {
+      "case": {
+        "run_id": "p38-long_body-preflight-9301-prbs",
+        "configuration": "long_body",
+        "role": "preflight",
+        "seed": 9301,
+        "excitation": "prbs",
+        "intervals": 256,
+        "training_eligible": false,
+        "starting_z_m": 5.5,
+        "mode": "direct_pre_tam_v24"
+      },
+      "trace_sha256": "eb7fdf0d8352b252aa6260d4e17e3a320b0518b1a5ad690e193e7befb7706c7e",
+      "arrays_sha256": "bd6f3d155e794d73398863aed03be737b2acbbedec87bbb7f0b3b09fc29e4087"
+    },
+    {
+      "case": {
+        "run_id": "p38-heavy_moderate-preflight-9302-prbs",
+        "configuration": "heavy_moderate",
+        "role": "preflight",
+        "seed": 9302,
+        "excitation": "prbs",
+        "intervals": 256,
+        "training_eligible": false,
+        "starting_z_m": 5.5,
+        "mode": "direct_pre_tam_v24"
+      },
+      "trace_sha256": "25886404b639516ef1fb3ac1b8cece104e5997cb63ccbc516a6a924cd109b9cd",
+      "arrays_sha256": "07e136ea321e72a5e6317d909db9b3e87779a1752a7f23ca03958468fa59909e"
+    },
+    {
+      "case": {
+        "run_id": "p38-asymmetric-preflight-9303-prbs",
+        "configuration": "asymmetric",
+        "role": "preflight",
+        "seed": 9303,
+        "excitation": "prbs",
+        "intervals": 256,
+        "training_eligible": false,
+        "starting_z_m": 5.5,
+        "mode": "direct_pre_tam_v24"
+      },
+      "trace_sha256": "28428112a8043d22eefeb23fe1bcd416ab6cf4230174675c73cde92b119aae26",
+      "arrays_sha256": "01f7e11ed211cd6334b5339e4a3a62d79b6b8f24c570e6ca08db600b47d53223"
+    },
+    {
+      "case": {
+        "run_id": "p38-uuv6-preflight-9304-prbs",
+        "configuration": "uuv6",
+        "role": "preflight",
+        "seed": 9304,
+        "excitation": "prbs",
+        "intervals": 256,
+        "training_eligible": false,
+        "starting_z_m": 5.5,
+        "mode": "direct_pre_tam_v24"
+      },
+      "trace_sha256": "04d182f3a385253a51eecc10eaf68b297b524169b1153c15a6facf3c045a99ff",
+      "arrays_sha256": "9432279d98fb320e3affa5d82480c3e9c3d46edce563fb1057226f7b4f96900a"
+    },
+    {
+      "case": {
+        "run_id": "p38-uuv6_angled-preflight-9305-prbs",
+        "configuration": "uuv6_angled",
+        "role": "preflight",
+        "seed": 9305,
+        "excitation": "prbs",
+        "intervals": 256,
+        "training_eligible": false,
+        "starting_z_m": 5.5,
+        "mode": "direct_pre_tam_v24"
+      },
+      "trace_sha256": "dd43533631f6029c48a66797911c67105c294b7c1e2a8ef89289280b7b6fc638",
+      "arrays_sha256": "cffacd5399bfa1801d94684b94c726745a64188eae5f15ca602ad2a7bf0010fc"
+    },
+    {
+      "case": {
+        "run_id": "p38-uuv4-preflight-9306-prbs",
+        "configuration": "uuv4",
+        "role": "preflight",
+        "seed": 9306,
+        "excitation": "prbs",
+        "intervals": 256,
+        "training_eligible": false,
+        "starting_z_m": 5.5,
+        "mode": "direct_pre_tam_v24"
+      },
+      "trace_sha256": "771b30e01c868f20531dc314dbe07122f6b26076f7c116d1b19f0a370ccff601",
+      "arrays_sha256": "226321cb467bde58af0c9d15b5353a67e9649350794b5015948fa3cb0a5af31a"
+    },
+    {
+      "case": {
+        "run_id": "p38-uuv4_angled-preflight-9307-prbs",
+        "configuration": "uuv4_angled",
+        "role": "preflight",
+        "seed": 9307,
+        "excitation": "prbs",
+        "intervals": 256,
+        "training_eligible": false,
+        "starting_z_m": 5.5,
+        "mode": "direct_pre_tam_v24"
+      },
+      "trace_sha256": "4cfa5f13ef54f957b7b45aeee74718b44ef90d99e0ebdf7036b6a2cc5ae4bbb0",
+      "arrays_sha256": "2d4721fe67db2904ce3f8141d1dd924805d42a4e585340b5853839e4667758b7"
+    }
+  ],
+  "numpy": "1.26.0",
+  "torch": "2.7.0+cu128",
+  "python": "3.11.13 | packaged by conda-forge | (main, Jun  4 2025, 14:48:23) [GCC 13.3.0]",
+  "source_commit": "1ba1d0e3dc8dcbc83263e678b7eea259672a8f83",
+  "native_exit": 0,
+  "seconds": 5.180933636147529
+}

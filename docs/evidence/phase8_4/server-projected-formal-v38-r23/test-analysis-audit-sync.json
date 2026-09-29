@@ -1,0 +1,40 @@
+{
+  "status": "formal_test_GO_independent_audit_and_final_budget_synchronized",
+  "source_commit": "bfe1659f2aee45760b66dbb98884f37fd20ad391",
+  "freeze_sha256": "6a6274f9466894871621148573dac6a2fb366cd63442b28a52cac36d29ad37a4",
+  "audit_sha256": "ea6fadc79a14bfa3cca667b4935946d0786df3e0174900d6919bc8a6b4b08b8d",
+  "budget_sha256": "916d99370b36fa191152f137ca7a5b8fba3103126129ff03a526856ae8d7ef29",
+  "charged_seconds": {
+    "collector": 2704.78218785394,
+    "analysis": 3296.516435761215
+  },
+  "attempts": 125,
+  "prior_failures": [
+    17,
+    68
+  ],
+  "storage": {
+    "logical_bytes": 1998718840,
+    "unique_file_bytes": 1924563774,
+    "hardlink_groups": [
+      {
+        "bytes": 46387855,
+        "paths": [
+          "/root/EASYkoopman-phase8-4-projected-formal-v38-r22/easyuuv_nc/data/embodiment/embodiment.usd",
+          "/root/EASYkoopman-phase8-4-projected-formal-v38-r23/easyuuv_nc/data/embodiment/embodiment.usd"
+        ]
+      },
+      {
+        "bytes": 27767211,
+        "paths": [
+          "/root/EASYkoopman-phase8-4-projected-formal-v38-r22/easyuuv_nc/data/embodiment/Props/instanceable_meshes.usd",
+          "/root/EASYkoopman-phase8-4-projected-formal-v38-r23/easyuuv_nc/data/embodiment/Props/instanceable_meshes.usd"
+        ]
+      }
+    ]
+  },
+  "parent_r22_source_unchanged": true,
+  "model_fits": 0,
+  "active_simulation_or_analysis": false,
+  "verified_utc": "2026-09-19T17:56:55.489680+00:00"
+}

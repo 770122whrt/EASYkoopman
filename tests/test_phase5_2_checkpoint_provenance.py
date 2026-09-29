@@ -1,0 +1,75 @@
+import json
+from pathlib import Path
+
+import pytest
+
+from workflows.validate_phase5_2_checkpoint_provenance import validate_phase5_2_checkpoint_provenance
+
+
+def write_phase5_2_summary(path: Path, checkpoint: Path, **overrides):
+    payload = {
+        "checkpoint_found": True,
+        "checkpoint_path": str(checkpoint),
+        "selected_checkpoint": str(checkpoint),
+        "selected_rule": "latest_valid_after_phase5_2_health_validator",
+        "checkpoint_provenance": "phase5_2_health_candidate",
+        "result_bucket": "retrained_ppo_koopman_mpc",
+        "ppo_evidence_level": "phase5_2_health_candidate",
+        "controller_path": "koopman_mpc/direct_state",
+        "adapter_mode": "heuristic_reference_delta_v0",
+        "koopman_backend": "direct_state",
+        "profile_id": "reward_v1_only",
+        "reward_profile": "koopman_mpc_stability_v1",
+        "adapter_profile": "heuristic_reference_delta_v0_default",
+        "mpc_profile": "mpc_default_v0",
+        "changed_axis": "reward",
+        "source_baseline_manifest": "/root/EASYkoopman/source/results/koopman_phase5_1/selected_checkpoint.json",
+        "observation_dim": 9,
+        "action_dim": 4,
+        "source_git_commit": "abc123",
+        "source_git_dirty": False,
+        "source_checkpoint_mtime": checkpoint.stat().st_mtime,
+        "adapter_refresh_count": 10,
+        "adapter_refresh_before_env_step": True,
+        "nonfinite_observation_count": 0,
+        "nonfinite_action_count": 0,
+        "completion_status": "completed",
+    }
+    payload.update(overrides)
+    path.write_text(json.dumps(payload), encoding="utf-8")
+    return path
+
+
+def test_validate_phase5_2_checkpoint_provenance_accepts_health_candidate(tmp_path):
+    checkpoint = tmp_path / "model_200.pt"
+    checkpoint.write_text("checkpoint", encoding="utf-8")
+    summary_path = write_phase5_2_summary(tmp_path / "summary.json", checkpoint)
+
+    result = validate_phase5_2_checkpoint_provenance(
+        checkpoint,
+        summary_path,
+        expected_evidence_level="phase5_2_health_candidate",
+    )
+
+    assert result["checkpoint_provenance_valid"] is True
+    assert result["checkpoint_provenance"] == "phase5_2_health_candidate"
+    assert result["source_profile_id"] == "reward_v1_only"
+    assert result["source_reward_profile"] == "koopman_mpc_stability_v1"
+
+
+def test_validate_phase5_2_checkpoint_provenance_rejects_phase5_1_candidate(tmp_path):
+    checkpoint = tmp_path / "model_199.pt"
+    checkpoint.write_text("checkpoint", encoding="utf-8")
+    summary_path = write_phase5_2_summary(
+        tmp_path / "summary.json",
+        checkpoint,
+        checkpoint_provenance="phase5_1_stability_candidate",
+        ppo_evidence_level="stability_candidate",
+    )
+
+    with pytest.raises(ValueError, match="checkpoint_provenance"):
+        validate_phase5_2_checkpoint_provenance(
+            checkpoint,
+            summary_path,
+            expected_evidence_level="phase5_2_health_candidate",
+        )

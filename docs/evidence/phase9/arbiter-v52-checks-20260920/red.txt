@@ -1,0 +1,668 @@
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF                                       [100%]
+================================== FAILURES ===================================
+_ test_early_result_waits_and_activates_correct_index_without_advancing_history _
+
+    def test_early_result_waits_and_activates_correct_index_without_advancing_history():
+>       ledger,u,_,clock,arb,req,event=fixture()
+                                       ^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+_ test_current_state_compared_with_last_predicted_physics_step_at_activation __
+
+    def test_current_state_compared_with_last_predicted_physics_step_at_activation():
+>       ledger,u,_,clock,arb,_,event=fixture();event['payload']['predictions'][15,0]+=.04
+                                     ^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:64: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+_ test_only_real_acknowledged_prefix_is_accepted_with_small_command_tolerance _
+
+    def test_only_real_acknowledged_prefix_is_accepted_with_small_command_tolerance():
+>       ledger,u,_,clock,arb,_,event=fixture();arb.ingest(event)
+                                     ^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:71: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+_________ test_prefix_age_and_activation_rejections[different_prefix] _________
+
+why = 'different_prefix'
+
+    @pytest.mark.parametrize('why',['different_prefix','expired_history','missing_reply','missed_activation','wall_age'])
+    def test_prefix_age_and_activation_rejections(why):
+>       ledger,u,_,clock,arb,_,event=fixture(history_limit=2 if why=='expired_history' else 256)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+_________ test_prefix_age_and_activation_rejections[expired_history] __________
+
+why = 'expired_history'
+
+    @pytest.mark.parametrize('why',['different_prefix','expired_history','missing_reply','missed_activation','wall_age'])
+    def test_prefix_age_and_activation_rejections(why):
+>       ledger,u,_,clock,arb,_,event=fixture(history_limit=2 if why=='expired_history' else 256)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 2
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+__________ test_prefix_age_and_activation_rejections[missing_reply] ___________
+
+why = 'missing_reply'
+
+    @pytest.mark.parametrize('why',['different_prefix','expired_history','missing_reply','missed_activation','wall_age'])
+    def test_prefix_age_and_activation_rejections(why):
+>       ledger,u,_,clock,arb,_,event=fixture(history_limit=2 if why=='expired_history' else 256)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+________ test_prefix_age_and_activation_rejections[missed_activation] _________
+
+why = 'missed_activation'
+
+    @pytest.mark.parametrize('why',['different_prefix','expired_history','missing_reply','missed_activation','wall_age'])
+    def test_prefix_age_and_activation_rejections(why):
+>       ledger,u,_,clock,arb,_,event=fixture(history_limit=2 if why=='expired_history' else 256)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+_____________ test_prefix_age_and_activation_rejections[wall_age] _____________
+
+why = 'wall_age'
+
+    @pytest.mark.parametrize('why',['different_prefix','expired_history','missing_reply','missed_activation','wall_age'])
+    def test_prefix_age_and_activation_rejections(why):
+>       ledger,u,_,clock,arb,_,event=fixture(history_limit=2 if why=='expired_history' else 256)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+__ test_transport_mismatch_or_late_result_cannot_be_staged[generation-wrong] __
+
+field = 'generation', value = 'wrong'
+
+    @pytest.mark.parametrize('field,value', [('generation','wrong'),('key','wrong'),('request_id','wrong'),('elapsed_ms',101.)])
+    def test_transport_mismatch_or_late_result_cannot_be_staged(field,value):
+>       _,_,_,clock,arb,_,event=fixture();event[field]=value
+                                ^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:90: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+_____ test_transport_mismatch_or_late_result_cannot_be_staged[key-wrong] ______
+
+field = 'key', value = 'wrong'
+
+    @pytest.mark.parametrize('field,value', [('generation','wrong'),('key','wrong'),('request_id','wrong'),('elapsed_ms',101.)])
+    def test_transport_mismatch_or_late_result_cannot_be_staged(field,value):
+>       _,_,_,clock,arb,_,event=fixture();event[field]=value
+                                ^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:90: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+__ test_transport_mismatch_or_late_result_cannot_be_staged[request_id-wrong] __
+
+field = 'request_id', value = 'wrong'
+
+    @pytest.mark.parametrize('field,value', [('generation','wrong'),('key','wrong'),('request_id','wrong'),('elapsed_ms',101.)])
+    def test_transport_mismatch_or_late_result_cannot_be_staged(field,value):
+>       _,_,_,clock,arb,_,event=fixture();event[field]=value
+                                ^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:90: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+__ test_transport_mismatch_or_late_result_cannot_be_staged[elapsed_ms-101.0] __
+
+field = 'elapsed_ms', value = 101.0
+
+    @pytest.mark.parametrize('field,value', [('generation','wrong'),('key','wrong'),('request_id','wrong'),('elapsed_ms',101.)])
+    def test_transport_mismatch_or_late_result_cannot_be_staged(field,value):
+>       _,_,_,clock,arb,_,event=fixture();event[field]=value
+                                ^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:90: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+_ test_worker_cannot_relabel_a_plan_as_another_request[reset_id-another-reset] _
+
+field = 'reset_id', value = 'another-reset'
+
+    @pytest.mark.parametrize('field,value',[('reset_id','another-reset'),('history_digest','a'*64),
+        ('worker_generation',99),('reference_revision',99),('model_id','b'*64),('support_id','bad')])
+    def test_worker_cannot_relabel_a_plan_as_another_request(field,value):
+>       _,_,_,_,arb,_,event=fixture();event['payload']['binding'][field]=value
+                            ^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+_ test_worker_cannot_relabel_a_plan_as_another_request[history_digest-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa] _
+
+field = 'history_digest'
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+
+    @pytest.mark.parametrize('field,value',[('reset_id','another-reset'),('history_digest','a'*64),
+        ('worker_generation',99),('reference_revision',99),('model_id','b'*64),('support_id','bad')])
+    def test_worker_cannot_relabel_a_plan_as_another_request(field,value):
+>       _,_,_,_,arb,_,event=fixture();event['payload']['binding'][field]=value
+                            ^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+_ test_worker_cannot_relabel_a_plan_as_another_request[worker_generation-99] __
+
+field = 'worker_generation', value = 99
+
+    @pytest.mark.parametrize('field,value',[('reset_id','another-reset'),('history_digest','a'*64),
+        ('worker_generation',99),('reference_revision',99),('model_id','b'*64),('support_id','bad')])
+    def test_worker_cannot_relabel_a_plan_as_another_request(field,value):
+>       _,_,_,_,arb,_,event=fixture();event['payload']['binding'][field]=value
+                            ^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+_ test_worker_cannot_relabel_a_plan_as_another_request[reference_revision-99] _
+
+field = 'reference_revision', value = 99
+
+    @pytest.mark.parametrize('field,value',[('reset_id','another-reset'),('history_digest','a'*64),
+        ('worker_generation',99),('reference_revision',99),('model_id','b'*64),('support_id','bad')])
+    def test_worker_cannot_relabel_a_plan_as_another_request(field,value):
+>       _,_,_,_,arb,_,event=fixture();event['payload']['binding'][field]=value
+                            ^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+_ test_worker_cannot_relabel_a_plan_as_another_request[model_id-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb] _
+
+field = 'model_id'
+value = 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'
+
+    @pytest.mark.parametrize('field,value',[('reset_id','another-reset'),('history_digest','a'*64),
+        ('worker_generation',99),('reference_revision',99),('model_id','b'*64),('support_id','bad')])
+    def test_worker_cannot_relabel_a_plan_as_another_request(field,value):
+>       _,_,_,_,arb,_,event=fixture();event['payload']['binding'][field]=value
+                            ^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+____ test_worker_cannot_relabel_a_plan_as_another_request[support_id-bad] _____
+
+field = 'support_id', value = 'bad'
+
+    @pytest.mark.parametrize('field,value',[('reset_id','another-reset'),('history_digest','a'*64),
+        ('worker_generation',99),('reference_revision',99),('model_id','b'*64),('support_id','bad')])
+    def test_worker_cannot_relabel_a_plan_as_another_request(field,value):
+>       _,_,_,_,arb,_,event=fixture();event['payload']['binding'][field]=value
+                            ^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+___ test_malformed_or_physically_inadmissible_worker_plan_rejected[prefix] ____
+
+bad = 'prefix'
+
+    @pytest.mark.parametrize('bad',['prefix','shape','nan','deadzone','slew','masked_axis','support','metadata'])
+    def test_malformed_or_physically_inadmissible_worker_plan_rejected(bad):
+>       _,_,_,_,arb,_,event=fixture('uuv4');p=event['payload']
+                            ^^^^^^^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+____ test_malformed_or_physically_inadmissible_worker_plan_rejected[shape] ____
+
+bad = 'shape'
+
+    @pytest.mark.parametrize('bad',['prefix','shape','nan','deadzone','slew','masked_axis','support','metadata'])
+    def test_malformed_or_physically_inadmissible_worker_plan_rejected(bad):
+>       _,_,_,_,arb,_,event=fixture('uuv4');p=event['payload']
+                            ^^^^^^^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+_____ test_malformed_or_physically_inadmissible_worker_plan_rejected[nan] _____
+
+bad = 'nan'
+
+    @pytest.mark.parametrize('bad',['prefix','shape','nan','deadzone','slew','masked_axis','support','metadata'])
+    def test_malformed_or_physically_inadmissible_worker_plan_rejected(bad):
+>       _,_,_,_,arb,_,event=fixture('uuv4');p=event['payload']
+                            ^^^^^^^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+__ test_malformed_or_physically_inadmissible_worker_plan_rejected[deadzone] ___
+
+bad = 'deadzone'
+
+    @pytest.mark.parametrize('bad',['prefix','shape','nan','deadzone','slew','masked_axis','support','metadata'])
+    def test_malformed_or_physically_inadmissible_worker_plan_rejected(bad):
+>       _,_,_,_,arb,_,event=fixture('uuv4');p=event['payload']
+                            ^^^^^^^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+____ test_malformed_or_physically_inadmissible_worker_plan_rejected[slew] _____
+
+bad = 'slew'
+
+    @pytest.mark.parametrize('bad',['prefix','shape','nan','deadzone','slew','masked_axis','support','metadata'])
+    def test_malformed_or_physically_inadmissible_worker_plan_rejected(bad):
+>       _,_,_,_,arb,_,event=fixture('uuv4');p=event['payload']
+                            ^^^^^^^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+_ test_malformed_or_physically_inadmissible_worker_plan_rejected[masked_axis] _
+
+bad = 'masked_axis'
+
+    @pytest.mark.parametrize('bad',['prefix','shape','nan','deadzone','slew','masked_axis','support','metadata'])
+    def test_malformed_or_physically_inadmissible_worker_plan_rejected(bad):
+>       _,_,_,_,arb,_,event=fixture('uuv4');p=event['payload']
+                            ^^^^^^^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+___ test_malformed_or_physically_inadmissible_worker_plan_rejected[support] ___
+
+bad = 'support'
+
+    @pytest.mark.parametrize('bad',['prefix','shape','nan','deadzone','slew','masked_axis','support','metadata'])
+    def test_malformed_or_physically_inadmissible_worker_plan_rejected(bad):
+>       _,_,_,_,arb,_,event=fixture('uuv4');p=event['payload']
+                            ^^^^^^^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+__ test_malformed_or_physically_inadmissible_worker_plan_rejected[metadata] ___
+
+bad = 'metadata'
+
+    @pytest.mark.parametrize('bad',['prefix','shape','nan','deadzone','slew','masked_axis','support','metadata'])
+    def test_malformed_or_physically_inadmissible_worker_plan_rejected(bad):
+>       _,_,_,_,arb,_,event=fixture('uuv4');p=event['payload']
+                            ^^^^^^^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+_ test_change_of_reference_invalidates_pending_and_active_without_rearming_startup _
+
+    def test_change_of_reference_invalidates_pending_and_active_without_rearming_startup():
+>       ledger,u,ref,clock,arb,_,event=fixture();arb.ingest(event);advance(ledger,u)
+                                       ^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:116: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+_______ test_worker_restart_and_explicit_fallback_invalidate_old_plans ________
+
+    def test_worker_restart_and_explicit_fallback_invalidate_old_plans():
+>       ledger,u,_,clock,arb,_,event=fixture();arb.ingest(event);ledger.restart_worker_generation()
+                                     ^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+_ test_current_attitude_gate_retains_controllability_and_quaternion_sign[uuv4] _
+
+name = 'uuv4'
+
+    @pytest.mark.parametrize('name',['uuv4','uuv4_angled','base'])
+    def test_current_attitude_gate_retains_controllability_and_quaternion_sign(name):
+>       ledger,u,_,clock,arb,_,event=fixture(name);arb.ingest(event);advance(ledger,u);clock.now=.133
+                                     ^^^^^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:132: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+_ test_current_attitude_gate_retains_controllability_and_quaternion_sign[uuv4_angled] _
+
+name = 'uuv4_angled'
+
+    @pytest.mark.parametrize('name',['uuv4','uuv4_angled','base'])
+    def test_current_attitude_gate_retains_controllability_and_quaternion_sign(name):
+>       ledger,u,_,clock,arb,_,event=fixture(name);arb.ingest(event);advance(ledger,u);clock.now=.133
+                                     ^^^^^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:132: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4_angled', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+_ test_current_attitude_gate_retains_controllability_and_quaternion_sign[base] _
+
+name = 'base'
+
+    @pytest.mark.parametrize('name',['uuv4','uuv4_angled','base'])
+    def test_current_attitude_gate_retains_controllability_and_quaternion_sign(name):
+>       ledger,u,_,clock,arb,_,event=fixture(name);arb.ingest(event);advance(ledger,u);clock.now=.133
+                                     ^^^^^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:132: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+_____________ test_no_reply_prefix_still_has_measured_drift_guard _____________
+
+    def test_no_reply_prefix_still_has_measured_drift_guard():
+>       ledger,_,_,_,arb,_,_=fixture();x=initial();x[5]=.03
+                             ^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:139: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+_ test_staged_result_owns_arrays_and_an_active_plan_cannot_replay_after_fallback _
+
+    def test_staged_result_owns_arrays_and_an_active_plan_cannot_replay_after_fallback():
+>       ledger,u,_,clock,arb,_,event=fixture();arb.ingest(event)
+                                     ^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:145: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+______________ test_second_request_cannot_overwrite_pending_slot ______________
+
+    def test_second_request_cannot_overwrite_pending_slot():
+>       _,_,_,_,arb,req,_=fixture()
+                          ^^^^^^^^^
+
+tests\test_plan_arbiter_v52.py:155: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base', history_limit = 256
+
+    def fixture(name='base',history_limit=256):
+>       from koopman.plan_arbiter_v52 import PlanArbiter
+E       ModuleNotFoundError: No module named 'koopman.plan_arbiter_v52'
+
+tests\test_plan_arbiter_v52.py:20: ModuleNotFoundError
+=========================== short test summary info ===========================
+FAILED tests/test_plan_arbiter_v52.py::test_early_result_waits_and_activates_correct_index_without_advancing_history
+FAILED tests/test_plan_arbiter_v52.py::test_current_state_compared_with_last_predicted_physics_step_at_activation
+FAILED tests/test_plan_arbiter_v52.py::test_only_real_acknowledged_prefix_is_accepted_with_small_command_tolerance
+FAILED tests/test_plan_arbiter_v52.py::test_prefix_age_and_activation_rejections[different_prefix]
+FAILED tests/test_plan_arbiter_v52.py::test_prefix_age_and_activation_rejections[expired_history]
+FAILED tests/test_plan_arbiter_v52.py::test_prefix_age_and_activation_rejections[missing_reply]
+FAILED tests/test_plan_arbiter_v52.py::test_prefix_age_and_activation_rejections[missed_activation]
+FAILED tests/test_plan_arbiter_v52.py::test_prefix_age_and_activation_rejections[wall_age]
+FAILED tests/test_plan_arbiter_v52.py::test_transport_mismatch_or_late_result_cannot_be_staged[generation-wrong]
+FAILED tests/test_plan_arbiter_v52.py::test_transport_mismatch_or_late_result_cannot_be_staged[key-wrong]
+FAILED tests/test_plan_arbiter_v52.py::test_transport_mismatch_or_late_result_cannot_be_staged[request_id-wrong]
+FAILED tests/test_plan_arbiter_v52.py::test_transport_mismatch_or_late_result_cannot_be_staged[elapsed_ms-101.0]
+FAILED tests/test_plan_arbiter_v52.py::test_worker_cannot_relabel_a_plan_as_another_request[reset_id-another-reset]
+FAILED tests/test_plan_arbiter_v52.py::test_worker_cannot_relabel_a_plan_as_another_request[history_digest-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa]
+FAILED tests/test_plan_arbiter_v52.py::test_worker_cannot_relabel_a_plan_as_another_request[worker_generation-99]
+FAILED tests/test_plan_arbiter_v52.py::test_worker_cannot_relabel_a_plan_as_another_request[reference_revision-99]
+FAILED tests/test_plan_arbiter_v52.py::test_worker_cannot_relabel_a_plan_as_another_request[model_id-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb]
+FAILED tests/test_plan_arbiter_v52.py::test_worker_cannot_relabel_a_plan_as_another_request[support_id-bad]
+FAILED tests/test_plan_arbiter_v52.py::test_malformed_or_physically_inadmissible_worker_plan_rejected[prefix]
+FAILED tests/test_plan_arbiter_v52.py::test_malformed_or_physically_inadmissible_worker_plan_rejected[shape]
+FAILED tests/test_plan_arbiter_v52.py::test_malformed_or_physically_inadmissible_worker_plan_rejected[nan]
+FAILED tests/test_plan_arbiter_v52.py::test_malformed_or_physically_inadmissible_worker_plan_rejected[deadzone]
+FAILED tests/test_plan_arbiter_v52.py::test_malformed_or_physically_inadmissible_worker_plan_rejected[slew]
+FAILED tests/test_plan_arbiter_v52.py::test_malformed_or_physically_inadmissible_worker_plan_rejected[masked_axis]
+FAILED tests/test_plan_arbiter_v52.py::test_malformed_or_physically_inadmissible_worker_plan_rejected[support]
+FAILED tests/test_plan_arbiter_v52.py::test_malformed_or_physically_inadmissible_worker_plan_rejected[metadata]
+FAILED tests/test_plan_arbiter_v52.py::test_change_of_reference_invalidates_pending_and_active_without_rearming_startup
+FAILED tests/test_plan_arbiter_v52.py::test_worker_restart_and_explicit_fallback_invalidate_old_plans
+FAILED tests/test_plan_arbiter_v52.py::test_current_attitude_gate_retains_controllability_and_quaternion_sign[uuv4]
+FAILED tests/test_plan_arbiter_v52.py::test_current_attitude_gate_retains_controllability_and_quaternion_sign[uuv4_angled]
+FAILED tests/test_plan_arbiter_v52.py::test_current_attitude_gate_retains_controllability_and_quaternion_sign[base]
+FAILED tests/test_plan_arbiter_v52.py::test_no_reply_prefix_still_has_measured_drift_guard
+FAILED tests/test_plan_arbiter_v52.py::test_staged_result_owns_arrays_and_an_active_plan_cannot_replay_after_fallback
+FAILED tests/test_plan_arbiter_v52.py::test_second_request_cannot_overwrite_pending_slot
+34 failed in 3.71s

@@ -1,0 +1,47 @@
+{
+  "schema": "phase9-learned-velocity-v81-protocol",
+  "ridge_candidates": [
+    0.001,
+    0.1
+  ],
+  "configurations": [
+    "base",
+    "long_body",
+    "heavy_moderate",
+    "asymmetric",
+    "uuv6",
+    "uuv6_angled",
+    "uuv4",
+    "uuv4_angled"
+  ],
+  "training_only_role": "fit",
+  "evaluation": "retrospective_LOCO_on_historical_fit_episodes",
+  "pooled_is_resubstitution": true,
+  "blind_test": false,
+  "closed_loop": false,
+  "origins": [
+    256,
+    384,
+    512
+  ],
+  "horizons_physics": [
+    1,
+    80,
+    128
+  ],
+  "startup_training_weight": 0.3333333333333333,
+  "same_data_physical_center_refit_per_fold": true,
+  "heldout_scaling_or_support_used": false,
+  "forecast_input": "recorded_causal_actuator_derived_acceleration; no future state feedback",
+  "candidate_selection": "none; retain both fixed candidates and every failure",
+  "maximum_seconds": 900,
+  "maximum_bytes": 134217728,
+  "failure_envelope": {
+    "z_m": [
+      3.5,
+      7.5
+    ],
+    "linear_speed_m_s": 1.5,
+    "angular_speed_rad_s": 3
+  }
+}

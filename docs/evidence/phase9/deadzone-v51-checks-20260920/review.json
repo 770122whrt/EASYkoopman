@@ -1,0 +1,153 @@
+{
+  "created_at": "2026-09-20T16:31:15.634962+08:00",
+  "prior_protocol_sources_verified": [
+    "docs\\evidence\\phase9\\prepared-commands-v45-pilot-20260920\\protocol.json",
+    "docs\\evidence\\phase9\\fallback-v47-pilot-20260920\\protocol.json",
+    "docs\\evidence\\phase9\\execution-v48-replay-20260920\\protocol.json",
+    "docs\\evidence\\phase9\\recovery-v50-worker-20260920\\protocol.json",
+    "docs\\evidence\\phase9\\recovery-v51-worker-20260920\\protocol.json"
+  ],
+  "frozen_phase84_hashes_verified": {
+    "formal-closeout.json": "ca77ecc765bd63e87e41f04ddb33bda322ad8dda09a8d2e8b0e8bc01053bf4ec",
+    "prediction-control-handoff-v2.json": "5d8c4aa1264d93307dc0cf692757441509e75809206ed80006543ca5e4239632",
+    "live-budget.json": "916d99370b36fa191152f137ca7a5b8fba3103126129ff03a526856ae8d7ef29"
+  },
+  "native_runs": [
+    {
+      "path": "docs\\evidence\\phase9\\recovery-v50-checks-20260920\\focused-01-native.json",
+      "seconds": 5.4235611,
+      "stage": "focused-01",
+      "exit_code": 1
+    },
+    {
+      "path": "docs\\evidence\\phase9\\recovery-v50-checks-20260920\\focused-02-native.json",
+      "exit_code": 0,
+      "seconds": 5.3079964,
+      "stage": "focused-02"
+    },
+    {
+      "path": "docs\\evidence\\phase9\\recovery-v50-checks-20260920\\red-native.json",
+      "seconds": 15.1149642,
+      "stage": "red",
+      "exit_code": 1
+    },
+    {
+      "path": "docs\\evidence\\phase9\\recovery-v50-checks-20260920\\related-native.json",
+      "exit_code": 0,
+      "stage": "related",
+      "seconds": 15.9251832
+    },
+    {
+      "path": "docs\\evidence\\phase9\\recovery-v50-checks-20260920\\worker-native.json",
+      "stage": "worker",
+      "seconds": 90.7206285,
+      "exit_code": 0
+    },
+    {
+      "path": "docs\\evidence\\phase9\\recovery-v50-diagnosis-20260920\\native.json",
+      "seconds": 3.9046743,
+      "stage": "diagnosis",
+      "exit_code": 0
+    },
+    {
+      "path": "docs\\evidence\\phase9\\deadzone-v51-checks-20260920\\focused-native.json",
+      "seconds": 5.801962,
+      "exit_code": 0,
+      "stage": "focused"
+    },
+    {
+      "path": "docs\\evidence\\phase9\\deadzone-v51-checks-20260920\\red-native.json",
+      "seconds": 4.5482759,
+      "exit_code": 1,
+      "stage": "red"
+    },
+    {
+      "path": "docs\\evidence\\phase9\\deadzone-v51-checks-20260920\\related-native.json",
+      "stage": "related",
+      "exit_code": 0,
+      "seconds": 15.8993802
+    },
+    {
+      "path": "docs\\evidence\\phase9\\deadzone-v51-checks-20260920\\worker-native.json",
+      "exit_code": 0,
+      "stage": "worker",
+      "seconds": 78.6932675
+    }
+  ],
+  "new_measured_seconds": 241.3398933,
+  "stage_measured_seconds": 697.7631079000013,
+  "stage_remaining_seconds": 502.2368920999987,
+  "stage_output_bytes": 8443977,
+  "stage_output_directories": [
+    "deadzone-v49-probe-20260920",
+    "deadzone-v51-checks-20260920",
+    "execution-v48-checks-20260920",
+    "execution-v48-diagnosis-20260920",
+    "execution-v48-replay-20260920",
+    "execution-v49-checks-20260920",
+    "fallback-v46-checks-20260920",
+    "fallback-v46-limit-diagnosis-20260920",
+    "fallback-v46-pilot-20260920",
+    "fallback-v47-checks-20260920",
+    "fallback-v47-pilot-20260920",
+    "prepared-commands-v45-checks-20260920",
+    "prepared-commands-v45-pilot-20260920",
+    "recovery-v50-checks-20260920",
+    "recovery-v50-diagnosis-20260920",
+    "recovery-v50-worker-20260920",
+    "recovery-v51-worker-20260920",
+    "worker-v49-checks-20260920"
+  ],
+  "regression_related_tests_passed": 116,
+  "strict_requests_passed": 8,
+  "strict_requests_total": 8,
+  "request_ms_range": [
+    23.14699999988079,
+    29.391299991402775
+  ],
+  "unchanged_legal_configuration_outputs_rtol_atol_1e_12": [
+    "heavy_moderate",
+    "asymmetric",
+    "uuv6",
+    "uuv6_angled",
+    "uuv4",
+    "uuv4_angled"
+  ],
+  "repaired_selections": [
+    {
+      "configuration": "base",
+      "old_selected": 8,
+      "new_selected": 3,
+      "new_rejections": [
+        {
+          "index": 8,
+          "feasible": false,
+          "cost": null,
+          "rejection": {
+            "reason": "raw_pwm_deadzone_margin",
+            "index": 8
+          }
+        }
+      ]
+    },
+    {
+      "configuration": "long_body",
+      "old_selected": 8,
+      "new_selected": 4,
+      "new_rejections": [
+        {
+          "index": 8,
+          "feasible": false,
+          "cost": null,
+          "rejection": {
+            "reason": "raw_pwm_deadzone_margin",
+            "index": 8
+          }
+        }
+      ]
+    }
+  ],
+  "runtime_arbiter_implemented": false,
+  "isaac_ack_adapter_implemented": false,
+  "live_system_qualified": false
+}

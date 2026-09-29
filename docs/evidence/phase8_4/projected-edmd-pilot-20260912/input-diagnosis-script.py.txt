@@ -1,0 +1,28 @@
+"""Posthoc algebraic diagnosis only: no new fit or model promotion."""
+from pathlib import Path
+import hashlib,json
+import numpy as np
+from easyuuv_nc.control_v24 import ActuatorState
+from workflows.control_seam_v23 import ControlKernel
+from workflows.pilot_control_v24 import commands
+root=Path.cwd();p=root/'docs/evidence/phase8_4/projected-edmd-pilot-20260912'
+models=json.loads((p/'models.json').read_text());records=json.loads((p/'reconstruction.json').read_text())
+op=next(m['operator'] for m in models if m['model_id']=='nonlinear_physical__heldout-uuv6')
+gain=np.asarray(op['coefficient'])[58:,7:13]*np.asarray(op['scale'])[7:13]/np.asarray(op['input_scale'])[:,None]
+collections={};descriptors={}
+for rec in records:
+ q=json.loads((root/'docs/evidence/phase8_4/server-fresh-pilot-20260912-r7/raw/requests'/(rec['run_id']+'.json')).read_text())
+ c=rec['configuration'];k=ControlKernel(c);ct=rec['context'];factors=np.r_[np.repeat(ct['mass'],3),ct['inertia']]
+ est=ActuatorState(k.env._num_thrusters,tau=k.tau,dt=k.dt,clock='float32_accumulated_v1');a=[]
+ for u in np.repeat(commands(q),2,axis=0):
+  speed=est.advance_pwm(k.command(u,pre_tam=True)['pwm']);a.append(k.B.numpy()@(.001*np.abs(speed)*speed)/factors)
+ collections[rec['run_id']]=np.array(a);descriptors[rec['run_id']]=rec
+source=np.concatenate([v for n,v in collections.items() if descriptors[n]['configuration'] in ('base','uuv4') and descriptors[n]['role']=='fit'])
+target=np.concatenate([v for n,v in collections.items() if descriptors[n]['configuration']=='uuv6' and descriptors[n]['role']=='validation'])
+coefficient=float(np.dot(source[:,2],source[:,0])/np.dot(source[:,2],source[:,2]))
+null_residual=source[:,0]-coefficient*source[:,2]
+physical_gain=1/120*np.eye(6)
+result={'status':'posthoc_algebraic_input_identifiability_diagnosis','fits_added':0,'model_scores_replaced':False,'model_id':'nonlinear_physical__heldout-uuv6','operator_file_sha256':hashlib.sha256((p/'nonlinear_physical__heldout-uuv6-operator.json').read_bytes()).hexdigest(),'physical_input_order':['Fx/m','Fy/m','Fz/m','Mx/Ix','My/Iy','Mz/Iz'],'output_order':['vx','vy','vz','wx','wy','wz'],'source_rows':len(source),'source_input_std':source.std(0).tolist(),'source_abs_max':np.abs(source).max(0).tolist(),'target_validation_abs_max':np.abs(target).max(0).tolist(),'target_max_abs_fit_normalized':np.max(np.abs((target-op['input_mean'])/op['input_scale']),axis=0).tolist(),'source_Fx_over_Fz_least_squares':coefficient,'source_Fx_Fz_correlation':float(np.corrcoef(source[:,0],source[:,2])[0,1]),'source_Fx_minus_slopeFz_abs_max':float(np.abs(null_residual).max()),'learned_physical_input_gain_to_nu':gain.tolist(),'rigid_body_instantaneous_input_dt_gain_reference':physical_gain.tolist(),'wrong_Fx_to_vz_gain':float(gain[0,2]),'max_one_tick_spurious_vz_from_target_Fx':float(np.abs(target[:,0]*gain[0,2]).max()),'limits':['coefficient decomposition proves this fitted operator response, not complete long-rollout causal attribution','training physical inputs have near-null coupled direction despite acceptable regularized condition','reference dtI is known instantaneous body force relation; full finite-step kinematic/gyroscopic behavior still needs source verification','no repaired candidate or fresh validation claim']}
+(p/'input-identifiability-diagnosis.json').write_text(json.dumps(result,indent=2)+'\n')
+(p/'input-diagnosis-script.py.txt').write_bytes(Path(__file__).read_bytes())
+print(json.dumps(result,indent=2))

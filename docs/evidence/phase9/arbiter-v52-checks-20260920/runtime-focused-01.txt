@@ -1,0 +1,311 @@
+....................................FFFFFFFFFFFF...                      [100%]
+================================== FAILURES ===================================
+___ test_coordinator_startup_prefix_plan_activation_and_ack_form_one_chain ____
+
+    def test_coordinator_startup_prefix_plan_activation_and_ack_form_one_chain():
+>       run,clock,worker=setup();d=step(run)
+                         ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:71: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_runtime_coordinator_v52.py:47: in setup
+    run=RuntimeCoordinator(ledger,policy,worker,clock=clock)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+koopman\runtime_coordinator_v52.py:99: in __init__
+    if (feedback.domain.identity!=ledger._domain.identity or feedback.context!=ledger._context
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+other = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+
+>   ???
+E   ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+
+<string>:4: ValueError
+____ test_worker_failure_keeps_qualified_feedback_without_wait_or_restart _____
+
+    def test_worker_failure_keeps_qualified_feedback_without_wait_or_restart():
+>       run,clock,worker=setup();ack(run,step(run));clock.now=1/60;ack(run,step(run))
+                         ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:90: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_runtime_coordinator_v52.py:47: in setup
+    run=RuntimeCoordinator(ledger,policy,worker,clock=clock)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+koopman\runtime_coordinator_v52.py:99: in __init__
+    if (feedback.domain.identity!=ledger._domain.identity or feedback.context!=ledger._context
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+other = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+
+>   ???
+E   ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+
+<string>:4: ValueError
+__ test_runtime_safety_rejects_before_any_dispatch_or_model_request[contact] __
+
+bad = 'contact'
+
+    @pytest.mark.parametrize('bad',['contact','clearance','xy','identity','missing'])
+    def test_runtime_safety_rejects_before_any_dispatch_or_model_request(bad):
+>       run,_,worker=setup();s=safety()
+                     ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:100: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_runtime_coordinator_v52.py:47: in setup
+    run=RuntimeCoordinator(ledger,policy,worker,clock=clock)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+koopman\runtime_coordinator_v52.py:99: in __init__
+    if (feedback.domain.identity!=ledger._domain.identity or feedback.context!=ledger._context
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+other = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+
+>   ???
+E   ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+
+<string>:4: ValueError
+_ test_runtime_safety_rejects_before_any_dispatch_or_model_request[clearance] _
+
+bad = 'clearance'
+
+    @pytest.mark.parametrize('bad',['contact','clearance','xy','identity','missing'])
+    def test_runtime_safety_rejects_before_any_dispatch_or_model_request(bad):
+>       run,_,worker=setup();s=safety()
+                     ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:100: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_runtime_coordinator_v52.py:47: in setup
+    run=RuntimeCoordinator(ledger,policy,worker,clock=clock)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+koopman\runtime_coordinator_v52.py:99: in __init__
+    if (feedback.domain.identity!=ledger._domain.identity or feedback.context!=ledger._context
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+other = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+
+>   ???
+E   ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+
+<string>:4: ValueError
+____ test_runtime_safety_rejects_before_any_dispatch_or_model_request[xy] _____
+
+bad = 'xy'
+
+    @pytest.mark.parametrize('bad',['contact','clearance','xy','identity','missing'])
+    def test_runtime_safety_rejects_before_any_dispatch_or_model_request(bad):
+>       run,_,worker=setup();s=safety()
+                     ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:100: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_runtime_coordinator_v52.py:47: in setup
+    run=RuntimeCoordinator(ledger,policy,worker,clock=clock)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+koopman\runtime_coordinator_v52.py:99: in __init__
+    if (feedback.domain.identity!=ledger._domain.identity or feedback.context!=ledger._context
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+other = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+
+>   ???
+E   ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+
+<string>:4: ValueError
+_ test_runtime_safety_rejects_before_any_dispatch_or_model_request[identity] __
+
+bad = 'identity'
+
+    @pytest.mark.parametrize('bad',['contact','clearance','xy','identity','missing'])
+    def test_runtime_safety_rejects_before_any_dispatch_or_model_request(bad):
+>       run,_,worker=setup();s=safety()
+                     ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:100: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_runtime_coordinator_v52.py:47: in setup
+    run=RuntimeCoordinator(ledger,policy,worker,clock=clock)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+koopman\runtime_coordinator_v52.py:99: in __init__
+    if (feedback.domain.identity!=ledger._domain.identity or feedback.context!=ledger._context
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+other = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+
+>   ???
+E   ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+
+<string>:4: ValueError
+__ test_runtime_safety_rejects_before_any_dispatch_or_model_request[missing] __
+
+bad = 'missing'
+
+    @pytest.mark.parametrize('bad',['contact','clearance','xy','identity','missing'])
+    def test_runtime_safety_rejects_before_any_dispatch_or_model_request(bad):
+>       run,_,worker=setup();s=safety()
+                     ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:100: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_runtime_coordinator_v52.py:47: in setup
+    run=RuntimeCoordinator(ledger,policy,worker,clock=clock)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+koopman\runtime_coordinator_v52.py:99: in __init__
+    if (feedback.domain.identity!=ledger._domain.identity or feedback.context!=ledger._context
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+other = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+
+>   ???
+E   ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+
+<string>:4: ValueError
+____ test_unsafe_first_substep_preserves_actual_partial_history_and_stops _____
+
+    def test_unsafe_first_substep_preserves_actual_partial_history_and_stops():
+>       run,_,_=setup();p=step(run)['packet']
+                ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:112: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_runtime_coordinator_v52.py:47: in setup
+    run=RuntimeCoordinator(ledger,policy,worker,clock=clock)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+koopman\runtime_coordinator_v52.py:99: in __init__
+    if (feedback.domain.identity!=ledger._domain.identity or feedback.context!=ledger._context
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+other = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+
+>   ???
+E   ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+
+<string>:4: ValueError
+_______ test_feedback_failure_never_falls_back_to_zero_or_last_command ________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000029EA5344410>
+
+    def test_feedback_failure_never_falls_back_to_zero_or_last_command(monkeypatch):
+>       run,_,_=setup();monkeypatch.setattr(run.feedback,'decide',lambda *a,**k:dict(status='no_command',reason='timeout'))
+                ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_runtime_coordinator_v52.py:47: in setup
+    run=RuntimeCoordinator(ledger,policy,worker,clock=clock)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+koopman\runtime_coordinator_v52.py:99: in __init__
+    if (feedback.domain.identity!=ledger._domain.identity or feedback.context!=ledger._context
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+other = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+
+>   ???
+E   ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+
+<string>:4: ValueError
+_______________ test_unacknowledged_dispatch_is_not_sent_again ________________
+
+    def test_unacknowledged_dispatch_is_not_sent_again():
+>       run,_,worker=setup();d=step(run);got=step(run)
+                     ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:126: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_runtime_coordinator_v52.py:47: in setup
+    run=RuntimeCoordinator(ledger,policy,worker,clock=clock)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+koopman\runtime_coordinator_v52.py:99: in __init__
+    if (feedback.domain.identity!=ledger._domain.identity or feedback.context!=ledger._context
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+other = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+
+>   ???
+E   ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+
+<string>:4: ValueError
+_______ test_control_decision_deadline_does_not_return_a_late_dispatch ________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000029EA5347D10>
+
+    def test_control_decision_deadline_does_not_return_a_late_dispatch(monkeypatch):
+>       run,clock,_=setup();original=run.feedback.decide
+                    ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:132: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_runtime_coordinator_v52.py:47: in setup
+    run=RuntimeCoordinator(ledger,policy,worker,clock=clock)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+koopman\runtime_coordinator_v52.py:99: in __init__
+    if (feedback.domain.identity!=ledger._domain.identity or feedback.context!=ledger._context
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+other = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+
+>   ???
+E   ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+
+<string>:4: ValueError
+________ test_worker_replacement_preserves_startup_and_causal_history _________
+
+    def test_worker_replacement_preserves_startup_and_causal_history():
+>       run,clock,worker=setup();ack(run,step(run));old=run.ledger.physics_index
+                         ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:141: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_runtime_coordinator_v52.py:47: in setup
+    run=RuntimeCoordinator(ledger,policy,worker,clock=clock)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+koopman\runtime_coordinator_v52.py:99: in __init__
+    if (feedback.domain.identity!=ledger._domain.identity or feedback.context!=ledger._context
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+other = PhysicalContext(mass=22.701000213623047, inertia=array([0.37      , 0.97000003, 1.19000006]), cob=array([0.  , 0.  , 0.01]), volume=0.022747844457626343, drag_multiplier=1.0, rho=997.0, beta=0.001306, gravity=9.81)
+
+>   ???
+E   ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+
+<string>:4: ValueError
+=========================== short test summary info ===========================
+FAILED tests/test_runtime_coordinator_v52.py::test_coordinator_startup_prefix_plan_activation_and_ack_form_one_chain
+FAILED tests/test_runtime_coordinator_v52.py::test_worker_failure_keeps_qualified_feedback_without_wait_or_restart
+FAILED tests/test_runtime_coordinator_v52.py::test_runtime_safety_rejects_before_any_dispatch_or_model_request[contact]
+FAILED tests/test_runtime_coordinator_v52.py::test_runtime_safety_rejects_before_any_dispatch_or_model_request[clearance]
+FAILED tests/test_runtime_coordinator_v52.py::test_runtime_safety_rejects_before_any_dispatch_or_model_request[xy]
+FAILED tests/test_runtime_coordinator_v52.py::test_runtime_safety_rejects_before_any_dispatch_or_model_request[identity]
+FAILED tests/test_runtime_coordinator_v52.py::test_runtime_safety_rejects_before_any_dispatch_or_model_request[missing]
+FAILED tests/test_runtime_coordinator_v52.py::test_unsafe_first_substep_preserves_actual_partial_history_and_stops
+FAILED tests/test_runtime_coordinator_v52.py::test_feedback_failure_never_falls_back_to_zero_or_last_command
+FAILED tests/test_runtime_coordinator_v52.py::test_unacknowledged_dispatch_is_not_sent_again
+FAILED tests/test_runtime_coordinator_v52.py::test_control_decision_deadline_does_not_return_a_late_dispatch
+FAILED tests/test_runtime_coordinator_v52.py::test_worker_replacement_preserves_startup_and_causal_history
+12 failed, 39 passed in 12.99s

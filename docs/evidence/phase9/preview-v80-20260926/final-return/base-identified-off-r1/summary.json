@@ -1,0 +1,2639 @@
+{
+  "schema": "preview-control-v80",
+  "collector_pid": 5169,
+  "case": {
+    "configuration": "base",
+    "controller": "identified_physics",
+    "profile": "depth4_h20",
+    "preview_enabled": false,
+    "controls": 60,
+    "seed": 19760,
+    "reference": [
+      5.5,
+      0.9998000066665778,
+      0.0,
+      0.01999866669333308,
+      0.0
+    ],
+    "task": "pitch_pos"
+  },
+  "status": "completed_pending_independent_acceptance",
+  "cleanup_errors": [],
+  "model_fits": 0,
+  "real_time_qualified": false,
+  "timing_mode": "synchronous_nonrealtime",
+  "contact_authoring": [
+    {
+      "body_path": "/World/envs/env_0/Robot/base_link",
+      "before": {
+        "physics:angularVelocity": "(0, 0, 0)",
+        "physics:centerOfMass": "(-inf, -inf, -inf)",
+        "physics:density": "0.0",
+        "physics:diagonalInertia": "(0.37, 0.97, 1.19)",
+        "physics:kinematicEnabled": "False",
+        "physics:mass": "22.799999237060547",
+        "physics:principalAxes": "(1, 0, 0, 0)",
+        "physics:rigidBodyEnabled": "True",
+        "physics:startsAsleep": "False",
+        "physics:velocity": "(0, 0, 0)",
+        "physxArticulation:articulationEnabled": "False",
+        "physxArticulation:enabledSelfCollisions": "False",
+        "physxArticulation:sleepThreshold": "4.999999873689376e-05",
+        "physxArticulation:solverPositionIterationCount": "32",
+        "physxArticulation:solverVelocityIterationCount": "1",
+        "physxArticulation:stabilizationThreshold": "9.999999747378752e-06",
+        "physxRigidBody:angularDamping": "0.05000000074505806",
+        "physxRigidBody:cfmScale": "0.02500000037252903",
+        "physxRigidBody:contactSlopCoefficient": "0.0",
+        "physxRigidBody:disableGravity": "False",
+        "physxRigidBody:enableCCD": "False",
+        "physxRigidBody:enableGyroscopicForces": "True",
+        "physxRigidBody:enableSpeculativeCCD": "False",
+        "physxRigidBody:linearDamping": "0.0",
+        "physxRigidBody:lockedPosAxis": "0",
+        "physxRigidBody:lockedRotAxis": "0",
+        "physxRigidBody:maxAngularVelocity": "5729.580078125",
+        "physxRigidBody:maxContactImpulse": "inf",
+        "physxRigidBody:maxDepenetrationVelocity": "10.0",
+        "physxRigidBody:maxLinearVelocity": "inf",
+        "physxRigidBody:retainAccelerations": "False",
+        "physxRigidBody:sleepThreshold": "4.999999873689376e-05",
+        "physxRigidBody:solveContact": "True",
+        "physxRigidBody:solverPositionIterationCount": "16",
+        "physxRigidBody:solverVelocityIterationCount": "1",
+        "physxRigidBody:stabilizationThreshold": "9.999999747378752e-06"
+      },
+      "after": {
+        "physics:angularVelocity": "(0, 0, 0)",
+        "physics:centerOfMass": "(-inf, -inf, -inf)",
+        "physics:density": "0.0",
+        "physics:diagonalInertia": "(0.37, 0.97, 1.19)",
+        "physics:kinematicEnabled": "False",
+        "physics:mass": "22.799999237060547",
+        "physics:principalAxes": "(1, 0, 0, 0)",
+        "physics:rigidBodyEnabled": "True",
+        "physics:startsAsleep": "False",
+        "physics:velocity": "(0, 0, 0)",
+        "physxArticulation:articulationEnabled": "False",
+        "physxArticulation:enabledSelfCollisions": "False",
+        "physxArticulation:sleepThreshold": "4.999999873689376e-05",
+        "physxArticulation:solverPositionIterationCount": "32",
+        "physxArticulation:solverVelocityIterationCount": "1",
+        "physxArticulation:stabilizationThreshold": "9.999999747378752e-06",
+        "physxContactReport:threshold": "0.0",
+        "physxRigidBody:angularDamping": "0.05000000074505806",
+        "physxRigidBody:cfmScale": "0.02500000037252903",
+        "physxRigidBody:contactSlopCoefficient": "0.0",
+        "physxRigidBody:disableGravity": "False",
+        "physxRigidBody:enableCCD": "False",
+        "physxRigidBody:enableGyroscopicForces": "True",
+        "physxRigidBody:enableSpeculativeCCD": "False",
+        "physxRigidBody:linearDamping": "0.0",
+        "physxRigidBody:lockedPosAxis": "0",
+        "physxRigidBody:lockedRotAxis": "0",
+        "physxRigidBody:maxAngularVelocity": "5729.580078125",
+        "physxRigidBody:maxContactImpulse": "inf",
+        "physxRigidBody:maxDepenetrationVelocity": "10.0",
+        "physxRigidBody:maxLinearVelocity": "inf",
+        "physxRigidBody:retainAccelerations": "False",
+        "physxRigidBody:sleepThreshold": "4.999999873689376e-05",
+        "physxRigidBody:solveContact": "True",
+        "physxRigidBody:solverPositionIterationCount": "16",
+        "physxRigidBody:solverVelocityIterationCount": "1",
+        "physxRigidBody:stabilizationThreshold": "9.999999747378752e-06"
+      },
+      "changed_attributes": [
+        "physxContactReport:threshold"
+      ]
+    }
+  ],
+  "source_manifest_sha256": "9f3449e65d819697d91d5af4d64d0870c24bc33af26e15577e4e6fa64668e2e1",
+  "physical_steps": 240,
+  "completed_controls": 60,
+  "solver_process_pid": 5356,
+  "model": {
+    "kind": "identified_physics",
+    "frozen_parameter_source_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+    "common_support_id": "2beb7816cf9bf5896c9976c16efa41688a09cb065737a2a39baba7e563644998",
+    "horizon_macro_steps": 20,
+    "weights": {
+      "depth": 4.0,
+      "attitude": 1.0,
+      "vertical_speed": 0.1,
+      "angular_speed": 0.1,
+      "effort": 0.01,
+      "slew": 0.05,
+      "terminal": 1.0
+    },
+    "pwm_planning_margin": 3e-06,
+    "pwm_optimizer_margin": 4e-06,
+    "model_identity": {
+      "kind": "identified_physics",
+      "symbolic_proxy": "projected_koopman",
+      "unique_koopman_representation_claimed": false,
+      "pwm_planning_margin": 3e-06,
+      "pwm_optimizer_margin": 4e-06
+    }
+  },
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "geometry": {
+    "body_path": "/World/envs/env_0/Robot/base_link",
+    "collider_path": "/World/envs/env_0/Robot/base_link/collisions",
+    "ground_path": "/World/ground/geometry/mesh",
+    "body_local_corners_m": [
+      [
+        -0.5,
+        -0.5,
+        -0.25
+      ],
+      [
+        -0.5,
+        -0.5,
+        0.25
+      ],
+      [
+        -0.5,
+        0.5,
+        -0.25
+      ],
+      [
+        -0.5,
+        0.5,
+        0.25
+      ],
+      [
+        0.5,
+        -0.5,
+        -0.25
+      ],
+      [
+        0.5,
+        -0.5,
+        0.25
+      ],
+      [
+        0.5,
+        0.5,
+        -0.25
+      ],
+      [
+        0.5,
+        0.5,
+        0.25
+      ]
+    ],
+    "ground_world_corners_m": [
+      [
+        -50.0,
+        -50.0,
+        -0.10000000074505806
+      ],
+      [
+        -50.0,
+        -50.0,
+        -7.450580569168253e-10
+      ],
+      [
+        -50.0,
+        50.0,
+        -0.10000000074505806
+      ],
+      [
+        -50.0,
+        50.0,
+        -7.450580569168253e-10
+      ],
+      [
+        50.0,
+        -50.0,
+        -0.10000000074505806
+      ],
+      [
+        50.0,
+        -50.0,
+        -7.450580569168253e-10
+      ],
+      [
+        50.0,
+        50.0,
+        -0.10000000074505806
+      ],
+      [
+        50.0,
+        50.0,
+        -7.450580569168253e-10
+      ]
+    ],
+    "ground_world_z_m": -7.450580569168253e-10,
+    "meters_per_unit": 1.0,
+    "initial_clearance_m": 5.250000000745058,
+    "minimum_clearance_m": 0.1,
+    "body_physics_attributes": {
+      "physics:angularVelocity": "(0, 0, 0)",
+      "physics:centerOfMass": "(-inf, -inf, -inf)",
+      "physics:density": "0.0",
+      "physics:diagonalInertia": "(0.37, 0.97, 1.19)",
+      "physics:kinematicEnabled": "False",
+      "physics:mass": "22.701000213623047",
+      "physics:principalAxes": "(1, 0, 0, 0)",
+      "physics:rigidBodyEnabled": "True",
+      "physics:startsAsleep": "False",
+      "physics:velocity": "(0, 0, 0)",
+      "physxArticulation:articulationEnabled": "False",
+      "physxArticulation:enabledSelfCollisions": "False",
+      "physxArticulation:sleepThreshold": "4.999999873689376e-05",
+      "physxArticulation:solverPositionIterationCount": "32",
+      "physxArticulation:solverVelocityIterationCount": "1",
+      "physxArticulation:stabilizationThreshold": "9.999999747378752e-06",
+      "physxContactReport:threshold": "0.0",
+      "physxRigidBody:angularDamping": "0.05000000074505806",
+      "physxRigidBody:cfmScale": "0.02500000037252903",
+      "physxRigidBody:contactSlopCoefficient": "0.0",
+      "physxRigidBody:disableGravity": "False",
+      "physxRigidBody:enableCCD": "False",
+      "physxRigidBody:enableGyroscopicForces": "True",
+      "physxRigidBody:enableSpeculativeCCD": "False",
+      "physxRigidBody:linearDamping": "0.0",
+      "physxRigidBody:lockedPosAxis": "0",
+      "physxRigidBody:lockedRotAxis": "0",
+      "physxRigidBody:maxAngularVelocity": "5729.580078125",
+      "physxRigidBody:maxContactImpulse": "inf",
+      "physxRigidBody:maxDepenetrationVelocity": "10.0",
+      "physxRigidBody:maxLinearVelocity": "inf",
+      "physxRigidBody:retainAccelerations": "False",
+      "physxRigidBody:sleepThreshold": "4.999999873689376e-05",
+      "physxRigidBody:solveContact": "True",
+      "physxRigidBody:solverPositionIterationCount": "16",
+      "physxRigidBody:solverVelocityIterationCount": "1",
+      "physxRigidBody:stabilizationThreshold": "9.999999747378752e-06"
+    },
+    "algorithm": "actual_USD_cuboid_ground_top_v76"
+  },
+  "math_preparation": {
+    "physics_steps": 0,
+    "calls": 56,
+    "startup_seconds": 0.6315001491457224,
+    "preparation": "private_math_inputs_only",
+    "measurements": [
+      {
+        "name": "quat_conjugate",
+        "repeat": 0,
+        "seconds": 0.03747991845011711
+      },
+      {
+        "name": "quat_conjugate",
+        "repeat": 1,
+        "seconds": 0.00010124035179615021
+      },
+      {
+        "name": "quat_conjugate",
+        "repeat": 2,
+        "seconds": 7.49099999666214e-05
+      },
+      {
+        "name": "quat_conjugate",
+        "repeat": 3,
+        "seconds": 7.385946810245514e-05
+      },
+      {
+        "name": "quat_conjugate",
+        "repeat": 4,
+        "seconds": 7.374025881290436e-05
+      },
+      {
+        "name": "quat_conjugate",
+        "repeat": 5,
+        "seconds": 8.337199687957764e-05
+      },
+      {
+        "name": "quat_conjugate",
+        "repeat": 6,
+        "seconds": 7.855892181396484e-05
+      },
+      {
+        "name": "quat_conjugate",
+        "repeat": 7,
+        "seconds": 7.446110248565674e-05
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 0,
+        "seconds": 0.03677755035459995
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 1,
+        "seconds": 0.00015082210302352905
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 2,
+        "seconds": 0.0001269206404685974
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 3,
+        "seconds": 0.00012562982738018036
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 4,
+        "seconds": 0.00012506172060966492
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 5,
+        "seconds": 0.00012541934847831726
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 6,
+        "seconds": 0.00012399256229400635
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 7,
+        "seconds": 0.00012334249913692474
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 0,
+        "seconds": 0.00019738078117370605
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 1,
+        "seconds": 0.03769581951200962
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 2,
+        "seconds": 0.00048253312706947327
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 3,
+        "seconds": 0.0001370217651128769
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 4,
+        "seconds": 0.00012999214231967926
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 5,
+        "seconds": 0.00012848153710365295
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 6,
+        "seconds": 0.0001544225960969925
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 7,
+        "seconds": 0.0001277625560760498
+      },
+      {
+        "name": "quat_error",
+        "repeat": 0,
+        "seconds": 0.009061746299266815
+      },
+      {
+        "name": "quat_error",
+        "repeat": 1,
+        "seconds": 0.21283935569226742
+      },
+      {
+        "name": "quat_error",
+        "repeat": 2,
+        "seconds": 0.00023354031145572662
+      },
+      {
+        "name": "quat_error",
+        "repeat": 3,
+        "seconds": 0.00020393170416355133
+      },
+      {
+        "name": "quat_error",
+        "repeat": 4,
+        "seconds": 0.00020088069140911102
+      },
+      {
+        "name": "quat_error",
+        "repeat": 5,
+        "seconds": 0.0001989714801311493
+      },
+      {
+        "name": "quat_error",
+        "repeat": 6,
+        "seconds": 0.00020433217287063599
+      },
+      {
+        "name": "quat_error",
+        "repeat": 7,
+        "seconds": 0.00021593086421489716
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 0,
+        "seconds": 0.00048352405428886414
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 1,
+        "seconds": 0.00031340308487415314
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 2,
+        "seconds": 0.0002854112535715103
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 3,
+        "seconds": 0.00028304383158683777
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 4,
+        "seconds": 0.0002910792827606201
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 5,
+        "seconds": 0.0002816729247570038
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 6,
+        "seconds": 0.00028244219720363617
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 7,
+        "seconds": 0.00028354115784168243
+      },
+      {
+        "name": "drag",
+        "repeat": 0,
+        "seconds": 0.0012161266058683395
+      },
+      {
+        "name": "drag",
+        "repeat": 1,
+        "seconds": 0.0007424540817737579
+      },
+      {
+        "name": "drag",
+        "repeat": 2,
+        "seconds": 0.000751866027712822
+      },
+      {
+        "name": "drag",
+        "repeat": 3,
+        "seconds": 0.0007382519543170929
+      },
+      {
+        "name": "drag",
+        "repeat": 4,
+        "seconds": 0.000765552744269371
+      },
+      {
+        "name": "drag",
+        "repeat": 5,
+        "seconds": 0.0007300954312086105
+      },
+      {
+        "name": "drag",
+        "repeat": 6,
+        "seconds": 0.0007432270795106888
+      },
+      {
+        "name": "drag",
+        "repeat": 7,
+        "seconds": 0.0007395632565021515
+      },
+      {
+        "name": "reward",
+        "repeat": 0,
+        "seconds": 0.016139796003699303
+      },
+      {
+        "name": "reward",
+        "repeat": 1,
+        "seconds": 0.25963092781603336
+      },
+      {
+        "name": "reward",
+        "repeat": 2,
+        "seconds": 0.0003031119704246521
+      },
+      {
+        "name": "reward",
+        "repeat": 3,
+        "seconds": 0.0002768710255622864
+      },
+      {
+        "name": "reward",
+        "repeat": 4,
+        "seconds": 0.0002751629799604416
+      },
+      {
+        "name": "reward",
+        "repeat": 5,
+        "seconds": 0.00027746520936489105
+      },
+      {
+        "name": "reward",
+        "repeat": 6,
+        "seconds": 0.00027324259281158447
+      },
+      {
+        "name": "reward",
+        "repeat": 7,
+        "seconds": 0.0002852305769920349
+      }
+    ],
+    "allocation": {
+      "physics_steps": 0,
+      "calls": 0,
+      "startup_seconds": 0.0,
+      "reason": "legacy_no_matrix_allocation"
+    }
+  },
+  "context_audit": {
+    "accepted": true,
+    "configuration": "base",
+    "observed_context_key": [
+      22.701000213623047,
+      0.3700000047683716,
+      0.9700000286102295,
+      1.190000057220459,
+      0.0,
+      0.0,
+      0.009999999776482582,
+      0.022747844457626343,
+      1.0,
+      997.0,
+      0.001306,
+      9.81
+    ],
+    "fit_context_key": [
+      22.701000213623047,
+      0.3700000047683716,
+      0.9700000286102295,
+      1.190000057220459,
+      0.0,
+      0.0,
+      0.009999999776482582,
+      0.022747844457626343,
+      1.0,
+      997.0,
+      0.001306,
+      9.81
+    ],
+    "absolute_difference": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "absolute_tolerances": [
+      1e-05,
+      1e-06,
+      1e-06,
+      1e-06,
+      1e-06,
+      1e-06,
+      1e-06,
+      1e-08,
+      1e-06,
+      1e-05,
+      1e-09,
+      1e-06
+    ],
+    "actuator_tau_s": 0.05
+  },
+  "metrics": {
+    "depth_rmse_m": 0.0032715401470781555,
+    "attitude_rmse_rad": 0.020275738028876916,
+    "normalized_tracking_score": 0.2836984077196389,
+    "maximum_angular_speed": 0.05611072235014918,
+    "maximum_cycle_ms": 25168.534507974982
+  },
+  "stats": {
+    "requests": 59,
+    "mpc_activations": 37,
+    "confirmed_controls": 60,
+    "dispatches": 60,
+    "rejected_replies": 0,
+    "worker_failures": 0
+  },
+  "backend_audit": [
+    {
+      "physics_index": 0,
+      "command": [
+        0.0,
+        0.03774262219667435,
+        0.0,
+        0.0001022400610963814
+      ],
+      "pwm_raw": [
+        -0.03764038160443306,
+        -0.03764038160443306,
+        0.037844862788915634,
+        0.037844862788915634,
+        0.0,
+        -0.0,
+        -0.0,
+        0.0
+      ],
+      "pwm": [
+        -0.03764038160443306,
+        -0.03764038160443306,
+        0.037844862788915634,
+        0.037844862788915634,
+        0.0,
+        -0.0,
+        -0.0,
+        0.0
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 0.017640382051467896,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 4,
+      "command": [
+        -3.149023768855841e-06,
+        0.03789082169532776,
+        0.019995329901576042,
+        0.013373596593737602
+      ],
+      "pwm_raw": [
+        -0.024514077231287956,
+        -0.024520372971892357,
+        0.05126756429672241,
+        0.05126126855611801,
+        0.019995329901576042,
+        -0.019995329901576042,
+        -0.019995329901576042,
+        0.019995329901576042
+      ],
+      "pwm": [
+        -0.024514077231287956,
+        -0.024520372971892357,
+        0.05126756429672241,
+        0.05126126855611801,
+        0.019995329901576042,
+        -0.019995329901576042,
+        -0.019995329901576042,
+        0.019995329901576042
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.669651389122009e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 8,
+      "command": [
+        -4.0011802204809044e-10,
+        0.02000403217971325,
+        0.03999532386660576,
+        -1.280559658312086e-09
+      ],
+      "pwm_raw": [
+        -0.0200040340423584,
+        -0.0200040340423584,
+        0.0200040303170681,
+        0.0200040303170681,
+        0.03999532386660576,
+        -0.03999532386660576,
+        -0.03999532386660576,
+        0.03999532386660576
+      ],
+      "pwm": [
+        -0.0200040340423584,
+        -0.0200040340423584,
+        0.0200040303170681,
+        0.0200040303170681,
+        0.03999532386660576,
+        -0.03999532386660576,
+        -0.03999532386660576,
+        0.03999532386660576
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.030764102935791e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 12,
+      "command": [
+        4.005687060271157e-06,
+        0.02000400610268116,
+        0.0399959571659565,
+        -4.007742063549813e-06
+      ],
+      "pwm_raw": [
+        -0.0200120210647583,
+        -0.02000400796532631,
+        0.01999599114060402,
+        0.02000400424003601,
+        0.0399959571659565,
+        -0.0399959571659565,
+        -0.0399959571659565,
+        0.0399959571659565
+      ],
+      "pwm": [
+        -0.0200120210647583,
+        -0.02000400796532631,
+        0.01999599114060402,
+        0.02000400424003601,
+        0.0399959571659565,
+        -0.0399959571659565,
+        -0.0399959571659565,
+        0.0399959571659565
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.004687070846558e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 16,
+      "command": [
+        -0.004443344660103321,
+        0.024447349831461906,
+        0.020005227997899055,
+        3.224884248531623e-10
+      ],
+      "pwm_raw": [
+        -0.02000400424003601,
+        -0.028890695422887802,
+        0.028890695422887802,
+        0.02000400424003601,
+        0.020005227997899055,
+        -0.020005227997899055,
+        -0.020005227997899055,
+        0.020005227997899055
+      ],
+      "pwm": [
+        -0.02000400424003601,
+        -0.028890695422887802,
+        0.028890695422887802,
+        0.02000400424003601,
+        0.020005227997899055,
+        -0.020005227997899055,
+        -0.020005227997899055,
+        0.020005227997899055
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.004687070846558e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 20,
+      "command": [
+        -1.9000999884610792e-08,
+        0.020004024729132652,
+        0.02970447950065136,
+        3.9587397249185585e-10
+      ],
+      "pwm_raw": [
+        -0.02000400610268116,
+        -0.020004043355584145,
+        0.020004043355584145,
+        0.02000400610268116,
+        0.02970447950065136,
+        -0.02970447950065136,
+        -0.02970447950065136,
+        0.02970447950065136
+      ],
+      "pwm": [
+        -0.02000400610268116,
+        -0.020004043355584145,
+        0.020004043355584145,
+        0.02000400610268116,
+        0.02970447950065136,
+        -0.02970447950065136,
+        -0.02970447950065136,
+        0.02970447950065136
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.0065497159957886e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 24,
+      "command": [
+        -1.259791204688554e-08,
+        0.020004019141197205,
+        0.010769996792078018,
+        3.214716826072106e-10
+      ],
+      "pwm_raw": [
+        -0.02000400610268116,
+        -0.02000403217971325,
+        0.02000403217971325,
+        0.02000400610268116,
+        0.010769996792078018,
+        -0.010769996792078018,
+        -0.010769996792078018,
+        0.010769996792078018
+      ],
+      "pwm": [
+        -0.02000400610268116,
+        -0.02000403217971325,
+        0.02000403217971325,
+        0.02000400610268116,
+        0.010769996792078018,
+        -0.010769996792078018,
+        -0.010769996792078018,
+        0.010769996792078018
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.0065497159957886e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 28,
+      "command": [
+        -3.1304943082233194e-09,
+        0.02000400610268116,
+        -0.0038468395359814167,
+        1.4216641752717862e-10
+      ],
+      "pwm_raw": [
+        -0.02000400237739086,
+        -0.02000400982797146,
+        0.02000400982797146,
+        0.02000400237739086,
+        -0.0038468395359814167,
+        0.0038468395359814167,
+        0.0038468395359814167,
+        -0.0038468395359814167
+      ],
+      "pwm": [
+        -0.02000400237739086,
+        -0.02000400982797146,
+        0.02000400982797146,
+        0.02000400237739086,
+        -0.0038468395359814167,
+        0.0038468395359814167,
+        0.0038468395359814167,
+        -0.0038468395359814167
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.002824425697327e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 32,
+      "command": [
+        4.0017516766965855e-06,
+        0.020004000514745712,
+        -0.02000405080616474,
+        -4.002306468464667e-06
+      ],
+      "pwm_raw": [
+        -0.020012004300951958,
+        -0.02000400237739086,
+        0.019995996728539467,
+        0.020003998652100563,
+        -0.02000405080616474,
+        0.02000405080616474,
+        0.02000405080616474,
+        -0.02000405080616474
+      ],
+      "pwm": [
+        -0.020012004300951958,
+        -0.02000400237739086,
+        0.019995996728539467,
+        0.020003998652100563,
+        -0.02000405080616474,
+        0.02000405080616474,
+        0.02000405080616474,
+        -0.02000405080616474
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 3.999099135398865e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 36,
+      "command": [
+        -0.00018138786253985018,
+        0.02018538862466812,
+        -0.014283734373748302,
+        1.0813424461408871e-10
+      ],
+      "pwm_raw": [
+        -0.020004000514745712,
+        -0.02036677673459053,
+        0.02036677673459053,
+        0.020004000514745712,
+        -0.014283734373748302,
+        0.014283734373748302,
+        0.014283734373748302,
+        -0.014283734373748302
+      ],
+      "pwm": [
+        -0.020004000514745712,
+        -0.02036677673459053,
+        0.02036677673459053,
+        0.020004000514745712,
+        -0.014283734373748302,
+        0.014283734373748302,
+        0.014283734373748302,
+        -0.014283734373748302
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.000961780548096e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 40,
+      "command": [
+        -1.4698789740918983e-08,
+        0.020004015415906906,
+        -0.014284876175224781,
+        1.115242620475243e-10
+      ],
+      "pwm_raw": [
+        -0.020004000514745712,
+        -0.0200040303170681,
+        0.0200040303170681,
+        0.020004000514745712,
+        -0.014284876175224781,
+        0.014284876175224781,
+        0.014284876175224781,
+        -0.014284876175224781
+      ],
+      "pwm": [
+        -0.020004000514745712,
+        -0.0200040303170681,
+        0.0200040303170681,
+        0.020004000514745712,
+        -0.014284876175224781,
+        0.014284876175224781,
+        0.014284876175224781,
+        -0.014284876175224781
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.000961780548096e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 44,
+      "command": [
+        -2.954046729453097e-12,
+        4.015415925096022e-06,
+        -0.02356575056910515,
+        0.019991986453533173
+      ],
+      "pwm_raw": [
+        0.01998797059059143,
+        0.01998797059059143,
+        0.019996002316474915,
+        0.019996002316474915,
+        -0.02356575056910515,
+        0.02356575056910515,
+        0.02356575056910515,
+        -0.02356575056910515
+      ],
+      "pwm": [
+        0.01998797059059143,
+        0.01998797059059143,
+        0.019996002316474915,
+        0.019996002316474915,
+        -0.02356575056910515,
+        0.02356575056910515,
+        0.02356575056910515,
+        -0.02356575056910515
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 3.997236490249634e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 48,
+      "command": [
+        6.849143119325163e-07,
+        2.15025465877261e-06,
+        -0.02000400610268116,
+        0.010727042332291603
+      ],
+      "pwm_raw": [
+        0.010724207386374474,
+        0.010725577361881733,
+        0.010728507302701473,
+        0.010729877278208733,
+        -0.02000400610268116,
+        0.02000400610268116,
+        0.02000400610268116,
+        -0.02000400610268116
+      ],
+      "pwm": [
+        0.010724207386374474,
+        0.010725577361881733,
+        0.010728507302701473,
+        0.010729877278208733,
+        -0.02000400610268116,
+        0.02000400610268116,
+        0.02000400610268116,
+        -0.02000400610268116
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.0065497159957886e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 52,
+      "command": [
+        0.00032953894697129726,
+        3.4871491152443923e-06,
+        -0.02000400424003601,
+        0.005444774404168129
+      ],
+      "pwm_raw": [
+        0.005111748352646828,
+        0.005770826246589422,
+        0.005118722561746836,
+        0.00577780045568943,
+        -0.02000400424003601,
+        0.02000400424003601,
+        0.02000400424003601,
+        -0.02000400424003601
+      ],
+      "pwm": [
+        0.005111748352646828,
+        0.005770826246589422,
+        0.005118722561746836,
+        0.00577780045568943,
+        -0.02000400424003601,
+        0.02000400424003601,
+        0.02000400424003601,
+        -0.02000400424003601
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.004687070846558e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 56,
+      "command": [
+        0.0007849416579119861,
+        1.2855837212555343e-06,
+        -0.02000400424003601,
+        0.0023336082231253386
+      ],
+      "pwm_raw": [
+        0.0015473810490220785,
+        0.003117264248430729,
+        0.0015499521978199482,
+        0.0031198353972285986,
+        -0.02000400424003601,
+        0.02000400424003601,
+        0.02000400424003601,
+        -0.02000400424003601
+      ],
+      "pwm": [
+        0.0015473810490220785,
+        0.003117264248430729,
+        0.0015499521978199482,
+        0.0031198353972285986,
+        -0.02000400424003601,
+        0.02000400424003601,
+        0.02000400424003601,
+        -0.02000400424003601
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.004687070846558e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 60,
+      "command": [
+        0.0015353087801486254,
+        3.2812179142638342e-06,
+        -0.02000400237739086,
+        0.00013987033162266016
+      ],
+      "pwm_raw": [
+        -0.0013987196143716574,
+        0.0016718979459255934,
+        -0.001392157282680273,
+        0.0016784602776169777,
+        -0.02000400237739086,
+        0.02000400237739086,
+        0.02000400237739086,
+        -0.02000400237739086
+      ],
+      "pwm": [
+        -0.0013987196143716574,
+        0.0016718979459255934,
+        -0.001392157282680273,
+        0.0016784602776169777,
+        -0.02000400237739086,
+        0.02000400237739086,
+        0.02000400237739086,
+        -0.02000400237739086
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.002824425697327e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 64,
+      "command": [
+        0.0029004912357777357,
+        1.6865786847120035e-06,
+        -0.02000400237739086,
+        -0.0020054702181369066
+      ],
+      "pwm_raw": [
+        -0.004907648079097271,
+        0.0008933343924582005,
+        -0.004904274828732014,
+        0.0008967076428234577,
+        -0.02000400237739086,
+        0.02000400237739086,
+        0.02000400237739086,
+        -0.02000400237739086
+      ],
+      "pwm": [
+        -0.004907648079097271,
+        0.0008933343924582005,
+        -0.004904274828732014,
+        0.0008967076428234577,
+        -0.02000400237739086,
+        0.02000400237739086,
+        0.02000400237739086,
+        -0.02000400237739086
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.002824425697327e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 68,
+      "command": [
+        0.005424569360911846,
+        7.041805929475231e-07,
+        -0.02000400237739086,
+        -0.0049509285017848015
+      ],
+      "pwm_raw": [
+        -0.010376201942563057,
+        0.0004729367792606354,
+        -0.010374793782830238,
+        0.000474344938993454,
+        -0.02000400237739086,
+        0.02000400237739086,
+        0.02000400237739086,
+        -0.02000400237739086
+      ],
+      "pwm": [
+        -0.010376201942563057,
+        0.0004729367792606354,
+        -0.010374793782830238,
+        0.000474344938993454,
+        -0.02000400237739086,
+        0.02000400237739086,
+        0.02000400237739086,
+        -0.02000400237739086
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.002824425697327e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 72,
+      "command": [
+        0.010121713392436504,
+        9.710237058868643e-09,
+        -0.02000400237739086,
+        -0.009882357902824879
+      ],
+      "pwm_raw": [
+        -0.02000408060848713,
+        0.00023934617638587952,
+        -0.020004061982035637,
+        0.00023936480283737183,
+        -0.02000400237739086,
+        0.02000400237739086,
+        0.02000400237739086,
+        -0.02000400237739086
+      ],
+      "pwm": [
+        -0.02000408060848713,
+        0.00023934617638587952,
+        -0.020004061982035637,
+        0.00023936480283737183,
+        -0.02000400237739086,
+        0.02000400237739086,
+        0.02000400237739086,
+        -0.02000400237739086
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.002824425697327e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 76,
+      "command": [
+        -0.004111345857381821,
+        0.008329411968588829,
+        -0.02000400237739086,
+        0.004212731495499611
+      ],
+      "pwm_raw": [
+        -5.334615707397461e-06,
+        -0.008228026330471039,
+        0.01665348932147026,
+        0.00843079760670662,
+        -0.02000400237739086,
+        0.02000400237739086,
+        0.02000400237739086,
+        -0.02000400237739086
+      ],
+      "pwm": [
+        -5.334615707397461e-06,
+        -0.008228026330471039,
+        0.01665348932147026,
+        0.00843079760670662,
+        -0.02000400237739086,
+        0.02000400237739086,
+        0.02000400237739086,
+        -0.02000400237739086
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.002824425697327e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 80,
+      "command": [
+        -0.002055673161521554,
+        0.004164706449955702,
+        -4.002377409051405e-06,
+        0.012104365043342113
+      ],
+      "pwm_raw": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "pwm": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 0.0016752555966377258,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 84,
+      "command": [
+        -0.002055673161521554,
+        0.004164706449955702,
+        -4.002377409051405e-06,
+        0.012104365043342113
+      ],
+      "pwm_raw": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "pwm": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 0.0016752555966377258,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 88,
+      "command": [
+        -0.002055673161521554,
+        0.004164706449955702,
+        -4.002377409051405e-06,
+        0.012104365043342113
+      ],
+      "pwm_raw": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "pwm": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 0.0016752555966377258,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 92,
+      "command": [
+        -0.002055673161521554,
+        0.004164706449955702,
+        -4.002377409051405e-06,
+        0.012104365043342113
+      ],
+      "pwm_raw": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "pwm": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 0.0016752555966377258,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 96,
+      "command": [
+        -0.002055673161521554,
+        0.004164706449955702,
+        -4.002377409051405e-06,
+        0.012104365043342113
+      ],
+      "pwm_raw": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "pwm": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 0.0016752555966377258,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 100,
+      "command": [
+        -0.002055673161521554,
+        0.004164706449955702,
+        -4.002377409051405e-06,
+        0.012104365043342113
+      ],
+      "pwm_raw": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "pwm": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 0.0016752555966377258,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 104,
+      "command": [
+        -0.002055673161521554,
+        0.004164706449955702,
+        -4.002377409051405e-06,
+        0.012104365043342113
+      ],
+      "pwm_raw": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "pwm": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 0.0016752555966377258,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 108,
+      "command": [
+        -0.002055673161521554,
+        0.004164706449955702,
+        -4.002377409051405e-06,
+        0.012104365043342113
+      ],
+      "pwm_raw": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "pwm": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 0.0016752555966377258,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 112,
+      "command": [
+        -0.002055673161521554,
+        0.004164706449955702,
+        -4.002377409051405e-06,
+        0.012104365043342113
+      ],
+      "pwm_raw": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "pwm": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 0.0016752555966377258,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 116,
+      "command": [
+        -0.002055673161521554,
+        0.004164706449955702,
+        -4.002377409051405e-06,
+        0.012104365043342113
+      ],
+      "pwm_raw": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "pwm": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 0.0016752555966377258,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 120,
+      "command": [
+        -0.002055673161521554,
+        0.004164706449955702,
+        -4.002377409051405e-06,
+        0.012104365043342113
+      ],
+      "pwm_raw": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "pwm": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 0.0016752555966377258,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 124,
+      "command": [
+        -0.002055673161521554,
+        0.004164706449955702,
+        -4.002377409051405e-06,
+        0.012104365043342113
+      ],
+      "pwm_raw": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "pwm": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 0.0016752555966377258,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 128,
+      "command": [
+        -0.002055673161521554,
+        0.004164706449955702,
+        -4.002377409051405e-06,
+        0.012104365043342113
+      ],
+      "pwm_raw": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "pwm": [
+        0.00999533198773861,
+        0.005883985199034214,
+        0.01832474395632744,
+        0.014213398098945618,
+        -4.002377409051405e-06,
+        4.002377409051405e-06,
+        4.002377409051405e-06,
+        -4.002377409051405e-06
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 0.0016752555966377258,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 132,
+      "command": [
+        1.4379230606209603e-06,
+        0.008140161633491516,
+        0.00823097862303257,
+        0.02814636565744877
+      ],
+      "pwm_raw": [
+        0.020004766061902046,
+        0.02000764198601246,
+        0.03628508746623993,
+        0.03628796339035034,
+        0.00823097862303257,
+        -0.00823097862303257,
+        -0.00823097862303257,
+        0.00823097862303257
+      ],
+      "pwm": [
+        0.020004766061902046,
+        0.02000764198601246,
+        0.03628508746623993,
+        0.03628796339035034,
+        0.00823097862303257,
+        -0.00823097862303257,
+        -0.00823097862303257,
+        0.00823097862303257
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.766508936882019e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 136,
+      "command": [
+        0.00011373302550055087,
+        0.0022250881884247065,
+        0.00823097862303257,
+        0.020341897383332253
+      ],
+      "pwm_raw": [
+        0.018003076314926147,
+        0.018230542540550232,
+        0.022453252226114273,
+        0.022680718451738358,
+        0.00823097862303257,
+        -0.00823097862303257,
+        -0.00823097862303257,
+        0.00823097862303257
+      ],
+      "pwm": [
+        0.018003076314926147,
+        0.018230542540550232,
+        0.022453252226114273,
+        0.022680718451738358,
+        0.00823097862303257,
+        -0.00823097862303257,
+        -0.00823097862303257,
+        0.00823097862303257
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 0.0017694570124149323,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 140,
+      "command": [
+        -0.005151068791747093,
+        0.021657396107912064,
+        0.004410161171108484,
+        0.03143435716629028
+      ],
+      "pwm_raw": [
+        0.014928029850125313,
+        0.004625892266631126,
+        0.05824282020330429,
+        0.0479406863451004,
+        0.004410161171108484,
+        -0.004410161171108484,
+        -0.004410161171108484,
+        0.004410161171108484
+      ],
+      "pwm": [
+        0.014928029850125313,
+        0.004625892266631126,
+        0.05824282020330429,
+        0.0479406863451004,
+        0.004410161171108484,
+        -0.004410161171108484,
+        -0.004410161171108484,
+        0.004410161171108484
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 0.005071969702839851,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 144,
+      "command": [
+        0.0064195613376796246,
+        0.010570948012173176,
+        0.0024602722842246294,
+        0.01585276611149311
+      ],
+      "pwm_raw": [
+        -0.0011377427726984024,
+        0.011701378971338272,
+        0.02000415325164795,
+        0.03284327685832977,
+        0.0024602722842246294,
+        -0.0024602722842246294,
+        -0.0024602722842246294,
+        0.0024602722842246294
+      ],
+      "pwm": [
+        -0.0011377427726984024,
+        0.011701378971338272,
+        0.02000415325164795,
+        0.03284327685832977,
+        0.0024602722842246294,
+        -0.0024602722842246294,
+        -0.0024602722842246294,
+        0.0024602722842246294
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.153698682785034e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 148,
+      "command": [
+        0.003875909373164177,
+        0.010762286372482777,
+        0.0010529611026868224,
+        0.013117717579007149
+      ],
+      "pwm_raw": [
+        -0.0015204781666398048,
+        0.006231340579688549,
+        0.020004093647003174,
+        0.027755912393331528,
+        0.0010529611026868224,
+        -0.0010529611026868224,
+        -0.0010529611026868224,
+        0.0010529611026868224
+      ],
+      "pwm": [
+        -0.0015204781666398048,
+        0.006231340579688549,
+        0.020004093647003174,
+        0.027755912393331528,
+        0.0010529611026868224,
+        -0.0010529611026868224,
+        -0.0010529611026868224,
+        0.0010529611026868224
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.0940940380096436e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 152,
+      "command": [
+        0.0014230492524802685,
+        0.009717238135635853,
+        0.0005579281714744866,
+        0.011709886603057384
+      ],
+      "pwm_raw": [
+        0.0005695996806025505,
+        0.003415697254240513,
+        0.02000407502055168,
+        0.022850174456834793,
+        0.0005579281714744866,
+        -0.0005579281714744866,
+        -0.0005579281714744866,
+        0.0005579281714744866
+      ],
+      "pwm": [
+        0.0005695996806025505,
+        0.003415697254240513,
+        0.02000407502055168,
+        0.022850174456834793,
+        0.0005579281714744866,
+        -0.0005579281714744866,
+        -0.0005579281714744866,
+        0.0005579281714744866
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.075467586517334e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 156,
+      "command": [
+        5.652422601087892e-07,
+        0.009472309611737728,
+        0.00029400072526186705,
+        0.010532268323004246
+      ],
+      "pwm_raw": [
+        0.001059393398463726,
+        0.0010605240240693092,
+        0.020004011690616608,
+        0.02000514417886734,
+        0.00029400072526186705,
+        -0.00029400072526186705,
+        -0.00029400072526186705,
+        0.00029400072526186705
+      ],
+      "pwm": [
+        0.001059393398463726,
+        0.0010605240240693092,
+        0.020004011690616608,
+        0.02000514417886734,
+        0.00029400072526186705,
+        -0.00029400072526186705,
+        -0.00029400072526186705,
+        0.00029400072526186705
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.0121376514434814e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 160,
+      "command": [
+        4.2584190396155464e-07,
+        0.009711739607155323,
+        0.0001969952863873914,
+        0.01029269676655531
+      ],
+      "pwm_raw": [
+        0.000580531544983387,
+        0.0005813827738165855,
+        0.020004011690616608,
+        0.020004861056804657,
+        0.0001969952863873914,
+        -0.0001969952863873914,
+        -0.0001969952863873914,
+        0.0001969952863873914
+      ],
+      "pwm": [
+        0.000580531544983387,
+        0.0005813827738165855,
+        0.020004011690616608,
+        0.020004861056804657,
+        0.0001969952863873914,
+        -0.0001969952863873914,
+        -0.0001969952863873914,
+        0.0001969952863873914
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.0121376514434814e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 164,
+      "command": [
+        2.3157522264227737e-06,
+        0.009294779039919376,
+        -0.00011157230619573966,
+        0.01071158517152071
+      ],
+      "pwm_raw": [
+        0.001414489932358265,
+        0.0014191223308444023,
+        0.020004048943519592,
+        0.02000867947936058,
+        -0.00011157230619573966,
+        0.00011157230619573966,
+        0.00011157230619573966,
+        -0.00011157230619573966
+      ],
+      "pwm": [
+        0.001414489932358265,
+        0.0014191223308444023,
+        0.020004048943519592,
+        0.02000867947936058,
+        -0.00011157230619573966,
+        0.00011157230619573966,
+        0.00011157230619573966,
+        -0.00011157230619573966
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.049390554428101e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 168,
+      "command": [
+        2.3565027262861804e-08,
+        0.00959720741957426,
+        0.0002954651426989585,
+        0.010406824760138988
+      ],
+      "pwm_raw": [
+        0.0008095940575003624,
+        0.0008096406236290932,
+        0.02000400796532631,
+        0.02000405639410019,
+        0.0002954651426989585,
+        -0.0002954651426989585,
+        -0.0002954651426989585,
+        0.0002954651426989585
+      ],
+      "pwm": [
+        0.0008095940575003624,
+        0.0008096406236290932,
+        0.02000400796532631,
+        0.02000405639410019,
+        0.0002954651426989585,
+        -0.0002954651426989585,
+        -0.0002954651426989585,
+        0.0002954651426989585
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.0084123611450195e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 172,
+      "command": [
+        1.9095477199471134e-08,
+        0.009788338094949722,
+        0.0003778451355174184,
+        0.010215693153440952
+      ],
+      "pwm_raw": [
+        0.0004273355007171631,
+        0.00042737461626529694,
+        0.020004011690616608,
+        0.02000405080616474,
+        0.0003778451355174184,
+        -0.0003778451355174184,
+        -0.0003778451355174184,
+        0.0003778451355174184
+      ],
+      "pwm": [
+        0.0004273355007171631,
+        0.00042737461626529694,
+        0.020004011690616608,
+        0.02000405080616474,
+        0.0003778451355174184,
+        -0.0003778451355174184,
+        -0.0003778451355174184,
+        0.0003778451355174184
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.0121376514434814e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 176,
+      "command": [
+        9.825334323920742e-09,
+        0.009754965081810951,
+        0.0013815831625834107,
+        0.010249052196741104
+      ],
+      "pwm_raw": [
+        0.0004940768703818321,
+        0.0004940973594784737,
+        0.02000400796532631,
+        0.0200040265917778,
+        0.0013815831625834107,
+        -0.0013815831625834107,
+        -0.0013815831625834107,
+        0.0013815831625834107
+      ],
+      "pwm": [
+        0.0004940768703818321,
+        0.0004940973594784737,
+        0.02000400796532631,
+        0.0200040265917778,
+        0.0013815831625834107,
+        -0.0013815831625834107,
+        -0.0013815831625834107,
+        0.0013815831625834107
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.0084123611450195e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 180,
+      "command": [
+        0.0010520988143980503,
+        0.009141149930655956,
+        0.0022352321539074183,
+        0.009810859337449074
+      ],
+      "pwm_raw": [
+        -0.0003823898732662201,
+        0.0017218086868524551,
+        0.017899909988045692,
+        0.020004108548164368,
+        0.0022352321539074183,
+        -0.0022352321539074183,
+        -0.0022352321539074183,
+        0.0022352321539074183
+      ],
+      "pwm": [
+        -0.0003823898732662201,
+        0.0017218086868524551,
+        0.017899909988045692,
+        0.020004108548164368,
+        0.0022352321539074183,
+        -0.0022352321539074183,
+        -0.0022352321539074183,
+        0.0022352321539074183
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.108995199203491e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 184,
+      "command": [
+        -0.0019171320600435138,
+        0.008334965445101261,
+        0.0034027667716145515,
+        0.009739000350236893
+      ],
+      "pwm_raw": [
+        0.003321167081594467,
+        -0.000513097271323204,
+        0.01999109797179699,
+        0.016156833618879318,
+        0.0034027667716145515,
+        -0.0034027667716145515,
+        -0.0034027667716145515,
+        0.0034027667716145515
+      ],
+      "pwm": [
+        0.003321167081594467,
+        -0.000513097271323204,
+        0.01999109797179699,
+        0.016156833618879318,
+        0.0034027667716145515,
+        -0.0034027667716145515,
+        -0.0034027667716145515,
+        0.0034027667716145515
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 8.901581168174744e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 188,
+      "command": [
+        -0.006819885689765215,
+        0.012185456231236458,
+        0.005918990354984999,
+        0.014638443477451801
+      ],
+      "pwm_raw": [
+        0.009272873401641846,
+        -0.004366897977888584,
+        0.03364378586411476,
+        0.020004013553261757,
+        0.005918990354984999,
+        -0.005918990354984999,
+        -0.005918990354984999,
+        0.005918990354984999
+      ],
+      "pwm": [
+        0.009272873401641846,
+        -0.004366897977888584,
+        0.03364378586411476,
+        0.020004013553261757,
+        0.005918990354984999,
+        -0.005918990354984999,
+        -0.005918990354984999,
+        0.005918990354984999
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.014000296592712e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 192,
+      "command": [
+        -0.002707773121073842,
+        0.009361973963677883,
+        0.010798798874020576,
+        0.013349809683859348
+      ],
+      "pwm_raw": [
+        0.0066956086084246635,
+        0.0012800628319382668,
+        0.025419555604457855,
+        0.020004011690616608,
+        0.010798798874020576,
+        -0.010798798874020576,
+        -0.010798798874020576,
+        0.010798798874020576
+      ],
+      "pwm": [
+        0.0066956086084246635,
+        0.0012800628319382668,
+        0.025419555604457855,
+        0.020004011690616608,
+        0.010798798874020576,
+        -0.010798798874020576,
+        -0.010798798874020576,
+        0.010798798874020576
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.0121376514434814e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 196,
+      "command": [
+        -5.5929305631252646e-08,
+        0.006287051364779472,
+        0.020004035905003548,
+        0.013717013411223888
+      ],
+      "pwm_raw": [
+        0.007430017925798893,
+        0.007429906167089939,
+        0.020004119724035263,
+        0.02000400796532631,
+        0.020004035905003548,
+        -0.020004035905003548,
+        -0.020004035905003548,
+        0.020004035905003548
+      ],
+      "pwm": [
+        0.007430017925798893,
+        0.007429906167089939,
+        0.020004119724035263,
+        0.02000400796532631,
+        0.020004035905003548,
+        -0.020004035905003548,
+        -0.020004035905003548,
+        0.020004035905003548
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.0084123611450195e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 200,
+      "command": [
+        -2.4289509070740678e-08,
+        0.002901298925280571,
+        0.020004024729132652,
+        0.017102733254432678
+      ],
+      "pwm_raw": [
+        0.014201458543539047,
+        0.014201410114765167,
+        0.02000405639410019,
+        0.02000400796532631,
+        0.020004024729132652,
+        -0.020004024729132652,
+        -0.020004024729132652,
+        0.020004024729132652
+      ],
+      "pwm": [
+        0.014201458543539047,
+        0.014201410114765167,
+        0.02000405639410019,
+        0.02000400796532631,
+        0.020004024729132652,
+        -0.020004024729132652,
+        -0.020004024729132652,
+        0.020004024729132652
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.0084123611450195e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 204,
+      "command": [
+        0.007496820762753487,
+        -0.007491461466997862,
+        0.012767557986080647,
+        0.019998647272586823
+      ],
+      "pwm_raw": [
+        0.019993288442492485,
+        0.03498692810535431,
+        0.005010364577174187,
+        0.02000400610268116,
+        0.012767557986080647,
+        -0.012767557986080647,
+        -0.012767557986080647,
+        0.012767557986080647
+      ],
+      "pwm": [
+        0.019993288442492485,
+        0.03498692810535431,
+        0.005010364577174187,
+        0.02000400610268116,
+        0.012767557986080647,
+        -0.012767557986080647,
+        -0.012767557986080647,
+        0.012767557986080647
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.0065497159957886e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 208,
+      "command": [
+        -8.339287482783675e-09,
+        0.002671529771760106,
+        0.010636263526976109,
+        0.01733248494565487
+      ],
+      "pwm_raw": [
+        0.014660963788628578,
+        0.014660947024822235,
+        0.020004022866487503,
+        0.02000400610268116,
+        0.010636263526976109,
+        -0.010636263526976109,
+        -0.010636263526976109,
+        0.010636263526976109
+      ],
+      "pwm": [
+        0.014660963788628578,
+        0.014660947024822235,
+        0.020004022866487503,
+        0.02000400610268116,
+        0.010636263526976109,
+        -0.010636263526976109,
+        -0.010636263526976109,
+        0.010636263526976109
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.0065497159957886e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 212,
+      "command": [
+        -4.7166848204938105e-09,
+        0.006160249002277851,
+        0.012765384279191494,
+        0.013843761757016182
+      ],
+      "pwm_raw": [
+        0.007683517411351204,
+        0.007683508098125458,
+        0.020004015415906906,
+        0.02000400610268116,
+        0.012765384279191494,
+        -0.012765384279191494,
+        -0.012765384279191494,
+        0.012765384279191494
+      ],
+      "pwm": [
+        0.007683517411351204,
+        0.007683508098125458,
+        0.020004015415906906,
+        0.02000400610268116,
+        0.012765384279191494,
+        -0.012765384279191494,
+        -0.012765384279191494,
+        0.012765384279191494
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.0065497159957886e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 216,
+      "command": [
+        -2.8123401385471425e-09,
+        0.008111721836030483,
+        0.02000400796532631,
+        0.0118922870606184
+      ],
+      "pwm_raw": [
+        0.003780568018555641,
+        0.0037805624306201935,
+        0.020004011690616608,
+        0.02000400610268116,
+        0.02000400796532631,
+        -0.02000400796532631,
+        -0.02000400796532631,
+        0.02000400796532631
+      ],
+      "pwm": [
+        0.003780568018555641,
+        0.0037805624306201935,
+        0.020004011690616608,
+        0.02000400610268116,
+        0.02000400796532631,
+        -0.02000400796532631,
+        -0.02000400796532631,
+        0.02000400796532631
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.0065497159957886e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 220,
+      "command": [
+        -1.7279910835554801e-09,
+        0.00930810160934925,
+        0.02000400424003601,
+        0.010695905424654484
+      ],
+      "pwm_raw": [
+        0.0013878056779503822,
+        0.0013878019526600838,
+        0.02000400796532631,
+        0.02000400424003601,
+        0.02000400424003601,
+        -0.02000400424003601,
+        -0.02000400424003601,
+        0.02000400424003601
+      ],
+      "pwm": [
+        0.0013878056779503822,
+        0.0013878019526600838,
+        0.02000400796532631,
+        0.02000400424003601,
+        0.02000400424003601,
+        -0.02000400424003601,
+        -0.02000400424003601,
+        0.02000400424003601
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.004687070846558e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 224,
+      "command": [
+        6.494089710429307e-09,
+        0.01014370284974575,
+        0.02000400424003601,
+        0.009860306978225708
+      ],
+      "pwm_raw": [
+        -0.00028340239077806473,
+        -0.0002833893522620201,
+        0.02000400424003601,
+        0.020004015415906906,
+        0.02000400424003601,
+        -0.02000400424003601,
+        -0.02000400424003601,
+        0.02000400424003601
+      ],
+      "pwm": [
+        -0.00028340239077806473,
+        -0.0002833893522620201,
+        0.02000400424003601,
+        0.020004015415906906,
+        0.02000400424003601,
+        -0.02000400424003601,
+        -0.02000400424003601,
+        0.02000400424003601
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.004687070846558e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 228,
+      "command": [
+        2.0485286356120014e-08,
+        0.0110299838706851,
+        0.02000400982797146,
+        0.008974048309028149
+      ],
+      "pwm_raw": [
+        -0.0020559560507535934,
+        -0.0020559150725603104,
+        0.020004011690616608,
+        0.02000405266880989,
+        0.02000400982797146,
+        -0.02000400982797146,
+        -0.02000400982797146,
+        0.02000400982797146
+      ],
+      "pwm": [
+        -0.0020559560507535934,
+        -0.0020559150725603104,
+        0.020004011690616608,
+        0.02000405266880989,
+        0.02000400982797146,
+        -0.02000400982797146,
+        -0.02000400982797146,
+        0.02000400982797146
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.0102750062942505e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 232,
+      "command": [
+        7.535419399573584e-09,
+        0.012326865456998348,
+        0.02000400237739086,
+        0.007677145302295685
+      ],
+      "pwm_raw": [
+        -0.00464972760528326,
+        -0.0046497127041220665,
+        0.02000400424003601,
+        0.020004019141197205,
+        0.02000400237739086,
+        -0.02000400237739086,
+        -0.02000400237739086,
+        0.02000400237739086
+      ],
+      "pwm": [
+        -0.00464972760528326,
+        -0.0046497127041220665,
+        0.02000400424003601,
+        0.020004019141197205,
+        0.02000400237739086,
+        -0.02000400237739086,
+        -0.02000400237739086,
+        0.02000400237739086
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.002824425697327e-06,
+      "required_margin": 2e-06
+    },
+    {
+      "physics_index": 236,
+      "command": [
+        8.616695801322294e-09,
+        0.014553487300872803,
+        0.02000400237739086,
+        0.005450524389743805
+      ],
+      "pwm_raw": [
+        -0.00910297129303217,
+        -0.009102954529225826,
+        0.02000400424003601,
+        0.020004019141197205,
+        0.02000400237739086,
+        -0.02000400237739086,
+        -0.02000400237739086,
+        0.02000400237739086
+      ],
+      "pwm": [
+        -0.00910297129303217,
+        -0.009102954529225826,
+        0.02000400424003601,
+        0.020004019141197205,
+        0.02000400237739086,
+        -0.02000400237739086,
+        -0.02000400237739086,
+        0.02000400237739086
+      ],
+      "accepted": true,
+      "reason": null,
+      "minimum_margin": 4.002824425697327e-06,
+      "required_margin": 2e-06
+    }
+  ],
+  "cleanup_completed": {
+    "worker": true,
+    "environment": true,
+    "simulation_app": true
+  },
+  "worker_closed": {
+    "process_stopped": true,
+    "io_threads_stopped": true
+  },
+  "native_alias_release": {
+    "robot_alias_present": true,
+    "robot_released": true
+  },
+  "native_dependents_gc_collected": 0,
+  "wall_seconds": 647.1687474921346
+}

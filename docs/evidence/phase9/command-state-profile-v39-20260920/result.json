@@ -1,0 +1,4578 @@
+{
+  "status": "local_profile_complete",
+  "error": null,
+  "rows": [
+    {
+      "configuration": "base",
+      "episode_id": "i29-base-fit-8720-prbs",
+      "role": "fit",
+      "trace_sha256": "e713f82299dede5095a0d054fe89a027280b340b6ac7561236621b4cf647d33d",
+      "unprofiled_ms": [
+        94.79829997872002,
+        272.63249998213723,
+        199.52389999525622
+      ],
+      "p50_ms": 199.52389999525622,
+      "maximum_absolute_difference": {
+        "predictions": 0.0,
+        "pwm": 0.0,
+        "rotor_speed": 0.0,
+        "acceleration": 0.0,
+        "physics_time_s": 0.0,
+        "origin_rotor_speed": 0.0,
+        "requested_commands": 0.0,
+        "applied_control": 0.0,
+        "issued_commands": 0.0,
+        "control_mask": 0.0,
+        "origin_actuator_time_s": 0.0
+      },
+      "profiled_total_ms": 297.0426000000002,
+      "by_cumulative": [
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\workflows\\profile_command_state_v39.py",
+          "line": 97,
+          "function": "call",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 0.0704,
+          "cumulative_ms": 297.02729999999997
+        },
+        {
+          "file": "candidate/koopman/command_state_v39.py",
+          "line": 105,
+          "function": "forecast",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 5.0806000000000004,
+          "cumulative_ms": 296.9569
+        },
+        {
+          "file": "workflows/identify_sparse_world_v30.py",
+          "line": 36,
+          "function": "__call__",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 0.17930000000000001,
+          "cumulative_ms": 220.54520000000002
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 67,
+          "function": "predict_projected",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 7.381600000000001,
+          "cumulative_ms": 220.3659
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 29,
+          "function": "lift",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 3.9038000000000004,
+          "cumulative_ms": 109.4407
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 35,
+          "function": "rotation",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 44.028200000000005,
+          "cumulative_ms": 83.44669999999999
+        },
+        {
+          "file": "koopman/physical_prediction_v29.py",
+          "line": 13,
+          "function": "advance_old_frame_velocity",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.4008000000000003,
+          "cumulative_ms": 75.0099
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 18,
+          "function": "state_terms",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 12.584900000000001,
+          "cumulative_ms": 71.9376
+        },
+        {
+          "file": "workflows/control_seam_v23.py",
+          "line": 84,
+          "function": "command",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 2.4040000000000004,
+          "cumulative_ms": 45.5238
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 72,
+          "function": "known_pose_step",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 8.635,
+          "cumulative_ms": 36.8881
+        },
+        {
+          "file": "easyuuv_nc/env/easyuuv_env.py",
+          "line": 2163,
+          "function": "_pid_control",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 23.6191,
+          "cumulative_ms": 35.6237
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1468,
+          "function": "cross",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 11.8763,
+          "cumulative_ms": 31.805699999999998
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1393,
+          "function": "moveaxis",
+          "calls": 720,
+          "primitive_calls": 720,
+          "self_ms": 9.5257,
+          "cumulative_ms": 26.9099
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 10,
+          "function": "validate_states",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 9.459700000000002,
+          "cumulative_ms": 23.4297
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\linalg\\linalg.py",
+          "line": 2383,
+          "function": "norm",
+          "calls": 521,
+          "primitive_calls": 521,
+          "self_ms": 11.2329,
+          "cumulative_ms": 21.6258
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+          "calls": 1209,
+          "primitive_calls": 1209,
+          "self_ms": 16.9295,
+          "cumulative_ms": 16.9295
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\shape_base.py",
+          "line": 372,
+          "function": "stack",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 12.553700000000001,
+          "cumulative_ms": 14.5266
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1330,
+          "function": "normalize_axis_tuple",
+          "calls": 1600,
+          "primitive_calls": 1600,
+          "self_ms": 9.6536,
+          "cumulative_ms": 14.367
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1129,
+          "function": "roll",
+          "calls": 320,
+          "primitive_calls": 160,
+          "self_ms": 10.225900000000001,
+          "cumulative_ms": 12.223600000000001
+        },
+        {
+          "file": "workflows/actuator_replay_v28.py",
+          "line": 13,
+          "function": "advance_pwm",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 7.065200000000001,
+          "cumulative_ms": 11.5466
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\einsumfunc.py",
+          "line": 1009,
+          "function": "einsum",
+          "calls": 320,
+          "primitive_calls": 320,
+          "self_ms": 0.8369,
+          "cumulative_ms": 7.3625
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'all' of 'numpy.ndarray' objects>",
+          "calls": 365,
+          "primitive_calls": 365,
+          "self_ms": 1.0199,
+          "cumulative_ms": 6.6865000000000006
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.core._multiarray_umath.c_einsum>",
+          "calls": 320,
+          "primitive_calls": 320,
+          "self_ms": 6.525600000000001,
+          "cumulative_ms": 6.525600000000001
+        },
+        {
+          "file": "workflows/identification_prediction_v32.py",
+          "line": 7,
+          "function": "valid_predictions",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 2.9661,
+          "cumulative_ms": 6.3137
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\fromnumeric.py",
+          "line": 2322,
+          "function": "any",
+          "calls": 202,
+          "primitive_calls": 202,
+          "self_ms": 2.0423,
+          "cumulative_ms": 5.890700000000001
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\_methods.py",
+          "line": 61,
+          "function": "_all",
+          "calls": 365,
+          "primitive_calls": 365,
+          "self_ms": 0.5645,
+          "cumulative_ms": 5.6666
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 16,
+          "function": "feature_names",
+          "calls": 80,
+          "primitive_calls": 80,
+          "self_ms": 5.6294,
+          "cumulative_ms": 5.6294
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\fromnumeric.py",
+          "line": 71,
+          "function": "_wrapreduction",
+          "calls": 283,
+          "primitive_calls": 283,
+          "self_ms": 2.0654000000000003,
+          "cumulative_ms": 5.3301
+        },
+        {
+          "file": "workflows/control_seam_v23.py",
+          "line": 56,
+          "function": "__init__",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 0.1409,
+          "cumulative_ms": 4.3472
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 32,
+          "function": "<lambda>",
+          "calls": 80,
+          "primitive_calls": 80,
+          "self_ms": 0.7334,
+          "cumulative_ms": 4.0829
+        }
+      ],
+      "by_self": [
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 35,
+          "function": "rotation",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 44.028200000000005,
+          "cumulative_ms": 83.44669999999999
+        },
+        {
+          "file": "easyuuv_nc/env/easyuuv_env.py",
+          "line": 2163,
+          "function": "_pid_control",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 23.6191,
+          "cumulative_ms": 35.6237
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+          "calls": 1209,
+          "primitive_calls": 1209,
+          "self_ms": 16.9295,
+          "cumulative_ms": 16.9295
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 18,
+          "function": "state_terms",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 12.584900000000001,
+          "cumulative_ms": 71.9376
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\shape_base.py",
+          "line": 372,
+          "function": "stack",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 12.553700000000001,
+          "cumulative_ms": 14.5266
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1468,
+          "function": "cross",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 11.8763,
+          "cumulative_ms": 31.805699999999998
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\linalg\\linalg.py",
+          "line": 2383,
+          "function": "norm",
+          "calls": 521,
+          "primitive_calls": 521,
+          "self_ms": 11.2329,
+          "cumulative_ms": 21.6258
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1129,
+          "function": "roll",
+          "calls": 320,
+          "primitive_calls": 160,
+          "self_ms": 10.225900000000001,
+          "cumulative_ms": 12.223600000000001
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1330,
+          "function": "normalize_axis_tuple",
+          "calls": 1600,
+          "primitive_calls": 1600,
+          "self_ms": 9.6536,
+          "cumulative_ms": 14.367
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1393,
+          "function": "moveaxis",
+          "calls": 720,
+          "primitive_calls": 720,
+          "self_ms": 9.5257,
+          "cumulative_ms": 26.9099
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 10,
+          "function": "validate_states",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 9.459700000000002,
+          "cumulative_ms": 23.4297
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 72,
+          "function": "known_pose_step",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 8.635,
+          "cumulative_ms": 36.8881
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 67,
+          "function": "predict_projected",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 7.381600000000001,
+          "cumulative_ms": 220.3659
+        },
+        {
+          "file": "workflows/actuator_replay_v28.py",
+          "line": 13,
+          "function": "advance_pwm",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 7.065200000000001,
+          "cumulative_ms": 11.5466
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.core._multiarray_umath.c_einsum>",
+          "calls": 320,
+          "primitive_calls": 320,
+          "self_ms": 6.525600000000001,
+          "cumulative_ms": 6.525600000000001
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 16,
+          "function": "feature_names",
+          "calls": 80,
+          "primitive_calls": 80,
+          "self_ms": 5.6294,
+          "cumulative_ms": 5.6294
+        },
+        {
+          "file": "candidate/koopman/command_state_v39.py",
+          "line": 105,
+          "function": "forecast",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 5.0806000000000004,
+          "cumulative_ms": 296.9569
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.len>",
+          "calls": 5644,
+          "primitive_calls": 5644,
+          "self_ms": 3.9938000000000007,
+          "cumulative_ms": 3.9938000000000007
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 29,
+          "function": "lift",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 3.9038000000000004,
+          "cumulative_ms": 109.4407
+        },
+        {
+          "file": "workflows/identification_prediction_v32.py",
+          "line": 7,
+          "function": "valid_predictions",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 2.9661,
+          "cumulative_ms": 6.3137
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.array>",
+          "calls": 369,
+          "primitive_calls": 369,
+          "self_ms": 2.8259000000000003,
+          "cumulative_ms": 2.8259000000000003
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'copy' of 'numpy.ndarray' objects>",
+          "calls": 441,
+          "primitive_calls": 441,
+          "self_ms": 2.8145000000000002,
+          "cumulative_ms": 2.8145000000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.clip>",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.6736000000000004,
+          "cumulative_ms": 2.6736000000000004
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.isfinite>",
+          "calls": 21,
+          "primitive_calls": 21,
+          "self_ms": 2.6257,
+          "cumulative_ms": 2.6257
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\lib\\index_tricks.py",
+          "line": 326,
+          "function": "__getitem__",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 2.4763,
+          "cumulative_ms": 3.0930000000000004
+        },
+        {
+          "file": "workflows/control_seam_v23.py",
+          "line": 84,
+          "function": "command",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 2.4040000000000004,
+          "cumulative_ms": 45.5238
+        },
+        {
+          "file": "koopman/physical_prediction_v29.py",
+          "line": 13,
+          "function": "advance_old_frame_velocity",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.4008000000000003,
+          "cumulative_ms": 75.0099
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.core._multiarray_umath.normalize_axis_index>",
+          "calls": 2360,
+          "primitive_calls": 2360,
+          "self_ms": 2.3653000000000004,
+          "cumulative_ms": 2.3653000000000004
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'numpy' of 'torch._C.TensorBase' objects>",
+          "calls": 100,
+          "primitive_calls": 100,
+          "self_ms": 2.3393,
+          "cumulative_ms": 2.3393
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'astype' of 'numpy.ndarray' objects>",
+          "calls": 420,
+          "primitive_calls": 420,
+          "self_ms": 2.2789,
+          "cumulative_ms": 2.2789
+        }
+      ]
+    },
+    {
+      "configuration": "long_body",
+      "episode_id": "i29-long_body-fit-8723-prbs",
+      "role": "fit",
+      "trace_sha256": "e136c29a7b33157e856b73022d762d2d4eeedcce7ef618b1252839675b4f110c",
+      "unprofiled_ms": [
+        168.0153000052087,
+        149.58149997983128,
+        140.90379999834113
+      ],
+      "p50_ms": 149.58149997983128,
+      "maximum_absolute_difference": {
+        "predictions": 0.0,
+        "pwm": 0.0,
+        "rotor_speed": 0.0,
+        "acceleration": 0.0,
+        "physics_time_s": 0.0,
+        "origin_rotor_speed": 0.0,
+        "requested_commands": 0.0,
+        "applied_control": 0.0,
+        "issued_commands": 0.0,
+        "control_mask": 0.0,
+        "origin_actuator_time_s": 0.0
+      },
+      "profiled_total_ms": 266.89509999999996,
+      "by_cumulative": [
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\workflows\\profile_command_state_v39.py",
+          "line": 97,
+          "function": "call",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 0.06810000000000001,
+          "cumulative_ms": 266.86690000000004
+        },
+        {
+          "file": "candidate/koopman/command_state_v39.py",
+          "line": 105,
+          "function": "forecast",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 4.981400000000001,
+          "cumulative_ms": 266.7988
+        },
+        {
+          "file": "workflows/identify_sparse_world_v30.py",
+          "line": 36,
+          "function": "__call__",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 0.12460000000000002,
+          "cumulative_ms": 183.845
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 67,
+          "function": "predict_projected",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 4.478000000000001,
+          "cumulative_ms": 183.7204
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 29,
+          "function": "lift",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 4.1089,
+          "cumulative_ms": 87.9534
+        },
+        {
+          "file": "koopman/physical_prediction_v29.py",
+          "line": 13,
+          "function": "advance_old_frame_velocity",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.6613,
+          "cumulative_ms": 67.05910000000002
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 35,
+          "function": "rotation",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 36.596000000000004,
+          "cumulative_ms": 65.71360000000001
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 18,
+          "function": "state_terms",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 9.466099999999999,
+          "cumulative_ms": 59.353100000000005
+        },
+        {
+          "file": "workflows/control_seam_v23.py",
+          "line": 84,
+          "function": "command",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 2.2898,
+          "cumulative_ms": 49.112300000000005
+        },
+        {
+          "file": "easyuuv_nc/env/easyuuv_env.py",
+          "line": 2163,
+          "function": "_pid_control",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 26.114500000000003,
+          "cumulative_ms": 38.5625
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 72,
+          "function": "known_pose_step",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 8.5966,
+          "cumulative_ms": 31.742600000000003
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1468,
+          "function": "cross",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 11.7672,
+          "cumulative_ms": 30.0481
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1393,
+          "function": "moveaxis",
+          "calls": 720,
+          "primitive_calls": 720,
+          "self_ms": 8.3138,
+          "cumulative_ms": 23.7038
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 10,
+          "function": "validate_states",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 8.491700000000002,
+          "cumulative_ms": 20.465400000000002
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\linalg\\linalg.py",
+          "line": 2383,
+          "function": "norm",
+          "calls": 521,
+          "primitive_calls": 521,
+          "self_ms": 10.302400000000002,
+          "cumulative_ms": 18.324
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+          "calls": 1209,
+          "primitive_calls": 1209,
+          "self_ms": 13.381,
+          "cumulative_ms": 13.381
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1330,
+          "function": "normalize_axis_tuple",
+          "calls": 1600,
+          "primitive_calls": 1600,
+          "self_ms": 10.3352,
+          "cumulative_ms": 12.728000000000002
+        },
+        {
+          "file": "workflows/actuator_replay_v28.py",
+          "line": 13,
+          "function": "advance_pwm",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 7.9477,
+          "cumulative_ms": 11.5691
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1129,
+          "function": "roll",
+          "calls": 320,
+          "primitive_calls": 160,
+          "self_ms": 7.522500000000001,
+          "cumulative_ms": 10.7145
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\shape_base.py",
+          "line": 372,
+          "function": "stack",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 8.556000000000001,
+          "cumulative_ms": 10.3777
+        },
+        {
+          "file": "workflows/identification_prediction_v32.py",
+          "line": 7,
+          "function": "valid_predictions",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 2.5691,
+          "cumulative_ms": 6.7774
+        },
+        {
+          "file": "workflows/control_seam_v23.py",
+          "line": 56,
+          "function": "__init__",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 0.2044,
+          "cumulative_ms": 6.392500000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'all' of 'numpy.ndarray' objects>",
+          "calls": 365,
+          "primitive_calls": 365,
+          "self_ms": 1.0063000000000002,
+          "cumulative_ms": 5.9636000000000005
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\einsumfunc.py",
+          "line": 1009,
+          "function": "einsum",
+          "calls": 320,
+          "primitive_calls": 320,
+          "self_ms": 0.5316000000000001,
+          "cumulative_ms": 5.0203
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\_methods.py",
+          "line": 61,
+          "function": "_all",
+          "calls": 365,
+          "primitive_calls": 365,
+          "self_ms": 0.4282,
+          "cumulative_ms": 4.9573
+        },
+        {
+          "file": "easyuuv_nc/env/thruster_dynamics.py",
+          "line": 14,
+          "function": "get_thruster_com_and_orientations",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 0.5849000000000001,
+          "cumulative_ms": 4.822900000000001
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\fromnumeric.py",
+          "line": 71,
+          "function": "_wrapreduction",
+          "calls": 283,
+          "primitive_calls": 283,
+          "self_ms": 1.8879000000000001,
+          "cumulative_ms": 4.8062000000000005
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\fromnumeric.py",
+          "line": 2322,
+          "function": "any",
+          "calls": 202,
+          "primitive_calls": 202,
+          "self_ms": 1.2685000000000002,
+          "cumulative_ms": 4.7342
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.core._multiarray_umath.c_einsum>",
+          "calls": 320,
+          "primitive_calls": 320,
+          "self_ms": 4.4887,
+          "cumulative_ms": 4.4887
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 16,
+          "function": "feature_names",
+          "calls": 80,
+          "primitive_calls": 80,
+          "self_ms": 4.143,
+          "cumulative_ms": 4.143
+        }
+      ],
+      "by_self": [
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 35,
+          "function": "rotation",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 36.596000000000004,
+          "cumulative_ms": 65.71360000000001
+        },
+        {
+          "file": "easyuuv_nc/env/easyuuv_env.py",
+          "line": 2163,
+          "function": "_pid_control",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 26.114500000000003,
+          "cumulative_ms": 38.5625
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+          "calls": 1209,
+          "primitive_calls": 1209,
+          "self_ms": 13.381,
+          "cumulative_ms": 13.381
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1468,
+          "function": "cross",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 11.7672,
+          "cumulative_ms": 30.0481
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1330,
+          "function": "normalize_axis_tuple",
+          "calls": 1600,
+          "primitive_calls": 1600,
+          "self_ms": 10.3352,
+          "cumulative_ms": 12.728000000000002
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\linalg\\linalg.py",
+          "line": 2383,
+          "function": "norm",
+          "calls": 521,
+          "primitive_calls": 521,
+          "self_ms": 10.302400000000002,
+          "cumulative_ms": 18.324
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 18,
+          "function": "state_terms",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 9.466099999999999,
+          "cumulative_ms": 59.353100000000005
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 72,
+          "function": "known_pose_step",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 8.5966,
+          "cumulative_ms": 31.742600000000003
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\shape_base.py",
+          "line": 372,
+          "function": "stack",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 8.556000000000001,
+          "cumulative_ms": 10.3777
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 10,
+          "function": "validate_states",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 8.491700000000002,
+          "cumulative_ms": 20.465400000000002
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1393,
+          "function": "moveaxis",
+          "calls": 720,
+          "primitive_calls": 720,
+          "self_ms": 8.3138,
+          "cumulative_ms": 23.7038
+        },
+        {
+          "file": "workflows/actuator_replay_v28.py",
+          "line": 13,
+          "function": "advance_pwm",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 7.9477,
+          "cumulative_ms": 11.5691
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1129,
+          "function": "roll",
+          "calls": 320,
+          "primitive_calls": 160,
+          "self_ms": 7.522500000000001,
+          "cumulative_ms": 10.7145
+        },
+        {
+          "file": "candidate/koopman/command_state_v39.py",
+          "line": 105,
+          "function": "forecast",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 4.981400000000001,
+          "cumulative_ms": 266.7988
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.core._multiarray_umath.c_einsum>",
+          "calls": 320,
+          "primitive_calls": 320,
+          "self_ms": 4.4887,
+          "cumulative_ms": 4.4887
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 67,
+          "function": "predict_projected",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 4.478000000000001,
+          "cumulative_ms": 183.7204
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 16,
+          "function": "feature_names",
+          "calls": 80,
+          "primitive_calls": 80,
+          "self_ms": 4.143,
+          "cumulative_ms": 4.143
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 29,
+          "function": "lift",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 4.1089,
+          "cumulative_ms": 87.9534
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.zeros_like>",
+          "calls": 60,
+          "primitive_calls": 60,
+          "self_ms": 4.0281,
+          "cumulative_ms": 4.0281
+        },
+        {
+          "file": "koopman/physical_prediction_v29.py",
+          "line": 13,
+          "function": "advance_old_frame_velocity",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.6613,
+          "cumulative_ms": 67.05910000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.isfinite>",
+          "calls": 21,
+          "primitive_calls": 21,
+          "self_ms": 2.5752,
+          "cumulative_ms": 2.5752
+        },
+        {
+          "file": "workflows/identification_prediction_v32.py",
+          "line": 7,
+          "function": "valid_predictions",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 2.5691,
+          "cumulative_ms": 6.7774
+        },
+        {
+          "file": "workflows/control_seam_v23.py",
+          "line": 84,
+          "function": "command",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 2.2898,
+          "cumulative_ms": 49.112300000000005
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\lib\\index_tricks.py",
+          "line": 326,
+          "function": "__getitem__",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 2.1775,
+          "cumulative_ms": 3.3194
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'numpy' of 'torch._C.TensorBase' objects>",
+          "calls": 100,
+          "primitive_calls": 100,
+          "self_ms": 2.027,
+          "cumulative_ms": 2.027
+        },
+        {
+          "file": "easyuuv_nc/env/thruster_dynamics.py",
+          "line": 26,
+          "function": "create_tf_quat",
+          "calls": 8,
+          "primitive_calls": 8,
+          "self_ms": 1.9970999999999999,
+          "cumulative_ms": 1.9970999999999999
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.len>",
+          "calls": 5644,
+          "primitive_calls": 5644,
+          "self_ms": 1.9524000000000001,
+          "cumulative_ms": 1.9524000000000001
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\fromnumeric.py",
+          "line": 71,
+          "function": "_wrapreduction",
+          "calls": 283,
+          "primitive_calls": 283,
+          "self_ms": 1.8879000000000001,
+          "cumulative_ms": 4.8062000000000005
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reshape' of 'numpy.ndarray' objects>",
+          "calls": 566,
+          "primitive_calls": 566,
+          "self_ms": 1.836,
+          "cumulative_ms": 1.836
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.asarray>",
+          "calls": 1489,
+          "primitive_calls": 1489,
+          "self_ms": 1.817,
+          "cumulative_ms": 1.817
+        }
+      ]
+    },
+    {
+      "configuration": "heavy_moderate",
+      "episode_id": "i29-heavy_moderate-fit-8726-prbs",
+      "role": "fit",
+      "trace_sha256": "6ccde4b51c4433d2011d2457739c27c19a57b09fc7c431b11ac1a56c5177e31e",
+      "unprofiled_ms": [
+        232.7037999930326,
+        196.0399999807123,
+        241.89580001984723
+      ],
+      "p50_ms": 232.7037999930326,
+      "maximum_absolute_difference": {
+        "predictions": 0.0,
+        "pwm": 0.0,
+        "rotor_speed": 0.0,
+        "acceleration": 0.0,
+        "physics_time_s": 0.0,
+        "origin_rotor_speed": 0.0,
+        "requested_commands": 0.0,
+        "applied_control": 0.0,
+        "issued_commands": 0.0,
+        "control_mask": 0.0,
+        "origin_actuator_time_s": 0.0
+      },
+      "profiled_total_ms": 239.33210000000003,
+      "by_cumulative": [
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\workflows\\profile_command_state_v39.py",
+          "line": 97,
+          "function": "call",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 0.0981,
+          "cumulative_ms": 239.2894
+        },
+        {
+          "file": "candidate/koopman/command_state_v39.py",
+          "line": 105,
+          "function": "forecast",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 4.4099,
+          "cumulative_ms": 239.1913
+        },
+        {
+          "file": "workflows/identify_sparse_world_v30.py",
+          "line": 36,
+          "function": "__call__",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 0.14900000000000002,
+          "cumulative_ms": 163.9384
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 67,
+          "function": "predict_projected",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 4.2743,
+          "cumulative_ms": 163.7894
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 29,
+          "function": "lift",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 5.2945,
+          "cumulative_ms": 85.03580000000001
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 35,
+          "function": "rotation",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 31.100500000000004,
+          "cumulative_ms": 58.371100000000006
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 18,
+          "function": "state_terms",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 9.253,
+          "cumulative_ms": 54.5187
+        },
+        {
+          "file": "koopman/physical_prediction_v29.py",
+          "line": 13,
+          "function": "advance_old_frame_velocity",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.382,
+          "cumulative_ms": 53.958600000000004
+        },
+        {
+          "file": "workflows/control_seam_v23.py",
+          "line": 84,
+          "function": "command",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 2.212,
+          "cumulative_ms": 40.026900000000005
+        },
+        {
+          "file": "easyuuv_nc/env/easyuuv_env.py",
+          "line": 2163,
+          "function": "_pid_control",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 21.671100000000003,
+          "cumulative_ms": 30.994400000000002
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 72,
+          "function": "known_pose_step",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 5.9301,
+          "cumulative_ms": 27.297700000000003
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1468,
+          "function": "cross",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 9.3005,
+          "cumulative_ms": 24.1086
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1393,
+          "function": "moveaxis",
+          "calls": 720,
+          "primitive_calls": 720,
+          "self_ms": 6.1728,
+          "cumulative_ms": 18.4207
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 10,
+          "function": "validate_states",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 6.6987000000000005,
+          "cumulative_ms": 17.9433
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\linalg\\linalg.py",
+          "line": 2383,
+          "function": "norm",
+          "calls": 521,
+          "primitive_calls": 521,
+          "self_ms": 10.555100000000001,
+          "cumulative_ms": 17.7981
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+          "calls": 1209,
+          "primitive_calls": 1209,
+          "self_ms": 12.3901,
+          "cumulative_ms": 12.3901
+        },
+        {
+          "file": "workflows/control_seam_v23.py",
+          "line": 56,
+          "function": "__init__",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 0.21960000000000002,
+          "cumulative_ms": 11.8939
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1129,
+          "function": "roll",
+          "calls": 320,
+          "primitive_calls": 160,
+          "self_ms": 8.3286,
+          "cumulative_ms": 9.8382
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1330,
+          "function": "normalize_axis_tuple",
+          "calls": 1600,
+          "primitive_calls": 1600,
+          "self_ms": 7.3994,
+          "cumulative_ms": 9.599100000000002
+        },
+        {
+          "file": "easyuuv_nc/env/thruster_dynamics.py",
+          "line": 14,
+          "function": "get_thruster_com_and_orientations",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 0.718,
+          "cumulative_ms": 9.447000000000001
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\shape_base.py",
+          "line": 372,
+          "function": "stack",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 8.242700000000001,
+          "cumulative_ms": 9.075300000000002
+        },
+        {
+          "file": "workflows/actuator_replay_v28.py",
+          "line": 13,
+          "function": "advance_pwm",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 6.0355,
+          "cumulative_ms": 8.7539
+        },
+        {
+          "file": "easyuuv_nc/env/thruster_dynamics.py",
+          "line": 31,
+          "function": "create_tf_rpyquat",
+          "calls": 8,
+          "primitive_calls": 8,
+          "self_ms": 5.155600000000001,
+          "cumulative_ms": 8.4517
+        },
+        {
+          "file": "workflows/identification_prediction_v32.py",
+          "line": 7,
+          "function": "valid_predictions",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 2.5695,
+          "cumulative_ms": 6.9765
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'all' of 'numpy.ndarray' objects>",
+          "calls": 365,
+          "primitive_calls": 365,
+          "self_ms": 1.2088,
+          "cumulative_ms": 5.825
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\einsumfunc.py",
+          "line": 1009,
+          "function": "einsum",
+          "calls": 320,
+          "primitive_calls": 320,
+          "self_ms": 0.4807,
+          "cumulative_ms": 5.5706
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.core._multiarray_umath.c_einsum>",
+          "calls": 320,
+          "primitive_calls": 320,
+          "self_ms": 5.0899,
+          "cumulative_ms": 5.0899
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\_methods.py",
+          "line": 61,
+          "function": "_all",
+          "calls": 365,
+          "primitive_calls": 365,
+          "self_ms": 0.44550000000000006,
+          "cumulative_ms": 4.6162
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\fromnumeric.py",
+          "line": 71,
+          "function": "_wrapreduction",
+          "calls": 283,
+          "primitive_calls": 283,
+          "self_ms": 1.8276000000000001,
+          "cumulative_ms": 4.5579
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\fromnumeric.py",
+          "line": 2322,
+          "function": "any",
+          "calls": 202,
+          "primitive_calls": 202,
+          "self_ms": 0.9645000000000001,
+          "cumulative_ms": 4.2179
+        }
+      ],
+      "by_self": [
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 35,
+          "function": "rotation",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 31.100500000000004,
+          "cumulative_ms": 58.371100000000006
+        },
+        {
+          "file": "easyuuv_nc/env/easyuuv_env.py",
+          "line": 2163,
+          "function": "_pid_control",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 21.671100000000003,
+          "cumulative_ms": 30.994400000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+          "calls": 1209,
+          "primitive_calls": 1209,
+          "self_ms": 12.3901,
+          "cumulative_ms": 12.3901
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\linalg\\linalg.py",
+          "line": 2383,
+          "function": "norm",
+          "calls": 521,
+          "primitive_calls": 521,
+          "self_ms": 10.555100000000001,
+          "cumulative_ms": 17.7981
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1468,
+          "function": "cross",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 9.3005,
+          "cumulative_ms": 24.1086
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 18,
+          "function": "state_terms",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 9.253,
+          "cumulative_ms": 54.5187
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1129,
+          "function": "roll",
+          "calls": 320,
+          "primitive_calls": 160,
+          "self_ms": 8.3286,
+          "cumulative_ms": 9.8382
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\shape_base.py",
+          "line": 372,
+          "function": "stack",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 8.242700000000001,
+          "cumulative_ms": 9.075300000000002
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1330,
+          "function": "normalize_axis_tuple",
+          "calls": 1600,
+          "primitive_calls": 1600,
+          "self_ms": 7.3994,
+          "cumulative_ms": 9.599100000000002
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 10,
+          "function": "validate_states",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 6.6987000000000005,
+          "cumulative_ms": 17.9433
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1393,
+          "function": "moveaxis",
+          "calls": 720,
+          "primitive_calls": 720,
+          "self_ms": 6.1728,
+          "cumulative_ms": 18.4207
+        },
+        {
+          "file": "workflows/actuator_replay_v28.py",
+          "line": 13,
+          "function": "advance_pwm",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 6.0355,
+          "cumulative_ms": 8.7539
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 72,
+          "function": "known_pose_step",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 5.9301,
+          "cumulative_ms": 27.297700000000003
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 29,
+          "function": "lift",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 5.2945,
+          "cumulative_ms": 85.03580000000001
+        },
+        {
+          "file": "easyuuv_nc/env/thruster_dynamics.py",
+          "line": 31,
+          "function": "create_tf_rpyquat",
+          "calls": 8,
+          "primitive_calls": 8,
+          "self_ms": 5.155600000000001,
+          "cumulative_ms": 8.4517
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.core._multiarray_umath.c_einsum>",
+          "calls": 320,
+          "primitive_calls": 320,
+          "self_ms": 5.0899,
+          "cumulative_ms": 5.0899
+        },
+        {
+          "file": "candidate/koopman/command_state_v39.py",
+          "line": 105,
+          "function": "forecast",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 4.4099,
+          "cumulative_ms": 239.1913
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 67,
+          "function": "predict_projected",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 4.2743,
+          "cumulative_ms": 163.7894
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 16,
+          "function": "feature_names",
+          "calls": 80,
+          "primitive_calls": 80,
+          "self_ms": 3.935,
+          "cumulative_ms": 3.935
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.isfinite>",
+          "calls": 21,
+          "primitive_calls": 21,
+          "self_ms": 3.0265,
+          "cumulative_ms": 3.0265
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reshape' of 'numpy.ndarray' objects>",
+          "calls": 566,
+          "primitive_calls": 566,
+          "self_ms": 2.9878,
+          "cumulative_ms": 2.9878
+        },
+        {
+          "file": "workflows/identification_prediction_v32.py",
+          "line": 7,
+          "function": "valid_predictions",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 2.5695,
+          "cumulative_ms": 6.9765
+        },
+        {
+          "file": "koopman/physical_prediction_v29.py",
+          "line": 13,
+          "function": "advance_old_frame_velocity",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.382,
+          "cumulative_ms": 53.958600000000004
+        },
+        {
+          "file": "workflows/control_seam_v23.py",
+          "line": 84,
+          "function": "command",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 2.212,
+          "cumulative_ms": 40.026900000000005
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\lib\\index_tricks.py",
+          "line": 326,
+          "function": "__getitem__",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 2.1828,
+          "cumulative_ms": 2.8072000000000004
+        },
+        {
+          "file": "easyuuv_nc/env/thruster_dynamics.py",
+          "line": 26,
+          "function": "create_tf_quat",
+          "calls": 8,
+          "primitive_calls": 8,
+          "self_ms": 1.9742000000000002,
+          "cumulative_ms": 1.9742000000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'astype' of 'numpy.ndarray' objects>",
+          "calls": 420,
+          "primitive_calls": 420,
+          "self_ms": 1.9302000000000001,
+          "cumulative_ms": 1.9302000000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'clone' of 'torch._C.TensorBase' objects>",
+          "calls": 120,
+          "primitive_calls": 120,
+          "self_ms": 1.9263000000000001,
+          "cumulative_ms": 1.9263000000000001
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\fromnumeric.py",
+          "line": 71,
+          "function": "_wrapreduction",
+          "calls": 283,
+          "primitive_calls": 283,
+          "self_ms": 1.8276000000000001,
+          "cumulative_ms": 4.5579
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.asarray>",
+          "calls": 1489,
+          "primitive_calls": 1489,
+          "self_ms": 1.6158000000000001,
+          "cumulative_ms": 1.6158000000000001
+        }
+      ]
+    },
+    {
+      "configuration": "asymmetric",
+      "episode_id": "i29-asymmetric-fit-8729-prbs",
+      "role": "fit",
+      "trace_sha256": "ce3b222de866cabe4f5c3d11109f03169681e5ca50e01aadee99e28042df67ca",
+      "unprofiled_ms": [
+        194.02419999823906,
+        185.87150002713315,
+        172.34540000208654
+      ],
+      "p50_ms": 185.87150002713315,
+      "maximum_absolute_difference": {
+        "predictions": 0.0,
+        "pwm": 0.0,
+        "rotor_speed": 0.0,
+        "acceleration": 0.0,
+        "physics_time_s": 0.0,
+        "origin_rotor_speed": 0.0,
+        "requested_commands": 0.0,
+        "applied_control": 0.0,
+        "issued_commands": 0.0,
+        "control_mask": 0.0,
+        "origin_actuator_time_s": 0.0
+      },
+      "profiled_total_ms": 235.01549999999997,
+      "by_cumulative": [
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\workflows\\profile_command_state_v39.py",
+          "line": 97,
+          "function": "call",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 0.055600000000000004,
+          "cumulative_ms": 234.99710000000002
+        },
+        {
+          "file": "candidate/koopman/command_state_v39.py",
+          "line": 105,
+          "function": "forecast",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 3.2161000000000004,
+          "cumulative_ms": 234.94150000000002
+        },
+        {
+          "file": "workflows/identify_sparse_world_v30.py",
+          "line": 36,
+          "function": "__call__",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 0.1164,
+          "cumulative_ms": 162.1053
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 67,
+          "function": "predict_projected",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 4.315300000000001,
+          "cumulative_ms": 161.98890000000003
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 29,
+          "function": "lift",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 3.9139000000000004,
+          "cumulative_ms": 77.5791
+        },
+        {
+          "file": "koopman/physical_prediction_v29.py",
+          "line": 13,
+          "function": "advance_old_frame_velocity",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.1012,
+          "cumulative_ms": 57.339
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 35,
+          "function": "rotation",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 31.5025,
+          "cumulative_ms": 56.647600000000004
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 18,
+          "function": "state_terms",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 8.482800000000001,
+          "cumulative_ms": 50.408
+        },
+        {
+          "file": "workflows/control_seam_v23.py",
+          "line": 84,
+          "function": "command",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 2.5252,
+          "cumulative_ms": 41.5304
+        },
+        {
+          "file": "easyuuv_nc/env/easyuuv_env.py",
+          "line": 2163,
+          "function": "_pid_control",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 21.681,
+          "cumulative_ms": 32.2013
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 72,
+          "function": "known_pose_step",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 7.6375,
+          "cumulative_ms": 31.116800000000005
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1468,
+          "function": "cross",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 9.8128,
+          "cumulative_ms": 23.6436
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1393,
+          "function": "moveaxis",
+          "calls": 720,
+          "primitive_calls": 720,
+          "self_ms": 6.4868,
+          "cumulative_ms": 18.0308
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 10,
+          "function": "validate_states",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 6.453100000000001,
+          "cumulative_ms": 17.1502
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\linalg\\linalg.py",
+          "line": 2383,
+          "function": "norm",
+          "calls": 521,
+          "primitive_calls": 521,
+          "self_ms": 7.896800000000001,
+          "cumulative_ms": 15.170100000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+          "calls": 1209,
+          "primitive_calls": 1209,
+          "self_ms": 12.879100000000001,
+          "cumulative_ms": 12.879100000000001
+        },
+        {
+          "file": "workflows/actuator_replay_v28.py",
+          "line": 13,
+          "function": "advance_pwm",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 7.9281999999999995,
+          "cumulative_ms": 10.8625
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1330,
+          "function": "normalize_axis_tuple",
+          "calls": 1600,
+          "primitive_calls": 1600,
+          "self_ms": 7.043200000000001,
+          "cumulative_ms": 9.363600000000002
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\shape_base.py",
+          "line": 372,
+          "function": "stack",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 8.3686,
+          "cumulative_ms": 9.241900000000001
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1129,
+          "function": "roll",
+          "calls": 320,
+          "primitive_calls": 160,
+          "self_ms": 7.3311,
+          "cumulative_ms": 8.8965
+        },
+        {
+          "file": "workflows/control_seam_v23.py",
+          "line": 56,
+          "function": "__init__",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 0.1381,
+          "cumulative_ms": 8.6265
+        },
+        {
+          "file": "easyuuv_nc/env/thruster_dynamics.py",
+          "line": 14,
+          "function": "get_thruster_com_and_orientations",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 0.4778,
+          "cumulative_ms": 7.5071
+        },
+        {
+          "file": "easyuuv_nc/env/thruster_dynamics.py",
+          "line": 31,
+          "function": "create_tf_rpyquat",
+          "calls": 8,
+          "primitive_calls": 8,
+          "self_ms": 4.519,
+          "cumulative_ms": 6.8581
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 16,
+          "function": "feature_names",
+          "calls": 80,
+          "primitive_calls": 80,
+          "self_ms": 5.618,
+          "cumulative_ms": 5.618
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'all' of 'numpy.ndarray' objects>",
+          "calls": 365,
+          "primitive_calls": 365,
+          "self_ms": 0.8635,
+          "cumulative_ms": 5.4856
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\fromnumeric.py",
+          "line": 71,
+          "function": "_wrapreduction",
+          "calls": 283,
+          "primitive_calls": 283,
+          "self_ms": 1.9633000000000003,
+          "cumulative_ms": 4.9964
+        },
+        {
+          "file": "workflows/identification_prediction_v32.py",
+          "line": 7,
+          "function": "valid_predictions",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 2.6595,
+          "cumulative_ms": 4.9945
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\_methods.py",
+          "line": 61,
+          "function": "_all",
+          "calls": 365,
+          "primitive_calls": 365,
+          "self_ms": 0.38280000000000003,
+          "cumulative_ms": 4.6221000000000005
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\einsumfunc.py",
+          "line": 1009,
+          "function": "einsum",
+          "calls": 320,
+          "primitive_calls": 320,
+          "self_ms": 0.5062000000000001,
+          "cumulative_ms": 4.5301
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.core._multiarray_umath.c_einsum>",
+          "calls": 320,
+          "primitive_calls": 320,
+          "self_ms": 4.0239,
+          "cumulative_ms": 4.0239
+        }
+      ],
+      "by_self": [
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 35,
+          "function": "rotation",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 31.5025,
+          "cumulative_ms": 56.647600000000004
+        },
+        {
+          "file": "easyuuv_nc/env/easyuuv_env.py",
+          "line": 2163,
+          "function": "_pid_control",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 21.681,
+          "cumulative_ms": 32.2013
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+          "calls": 1209,
+          "primitive_calls": 1209,
+          "self_ms": 12.879100000000001,
+          "cumulative_ms": 12.879100000000001
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1468,
+          "function": "cross",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 9.8128,
+          "cumulative_ms": 23.6436
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 18,
+          "function": "state_terms",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 8.482800000000001,
+          "cumulative_ms": 50.408
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\shape_base.py",
+          "line": 372,
+          "function": "stack",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 8.3686,
+          "cumulative_ms": 9.241900000000001
+        },
+        {
+          "file": "workflows/actuator_replay_v28.py",
+          "line": 13,
+          "function": "advance_pwm",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 7.9281999999999995,
+          "cumulative_ms": 10.8625
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\linalg\\linalg.py",
+          "line": 2383,
+          "function": "norm",
+          "calls": 521,
+          "primitive_calls": 521,
+          "self_ms": 7.896800000000001,
+          "cumulative_ms": 15.170100000000001
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 72,
+          "function": "known_pose_step",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 7.6375,
+          "cumulative_ms": 31.116800000000005
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1129,
+          "function": "roll",
+          "calls": 320,
+          "primitive_calls": 160,
+          "self_ms": 7.3311,
+          "cumulative_ms": 8.8965
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1330,
+          "function": "normalize_axis_tuple",
+          "calls": 1600,
+          "primitive_calls": 1600,
+          "self_ms": 7.043200000000001,
+          "cumulative_ms": 9.363600000000002
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1393,
+          "function": "moveaxis",
+          "calls": 720,
+          "primitive_calls": 720,
+          "self_ms": 6.4868,
+          "cumulative_ms": 18.0308
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 10,
+          "function": "validate_states",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 6.453100000000001,
+          "cumulative_ms": 17.1502
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 16,
+          "function": "feature_names",
+          "calls": 80,
+          "primitive_calls": 80,
+          "self_ms": 5.618,
+          "cumulative_ms": 5.618
+        },
+        {
+          "file": "easyuuv_nc/env/thruster_dynamics.py",
+          "line": 31,
+          "function": "create_tf_rpyquat",
+          "calls": 8,
+          "primitive_calls": 8,
+          "self_ms": 4.519,
+          "cumulative_ms": 6.8581
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 67,
+          "function": "predict_projected",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 4.315300000000001,
+          "cumulative_ms": 161.98890000000003
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.core._multiarray_umath.c_einsum>",
+          "calls": 320,
+          "primitive_calls": 320,
+          "self_ms": 4.0239,
+          "cumulative_ms": 4.0239
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 29,
+          "function": "lift",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 3.9139000000000004,
+          "cumulative_ms": 77.5791
+        },
+        {
+          "file": "candidate/koopman/command_state_v39.py",
+          "line": 105,
+          "function": "forecast",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 3.2161000000000004,
+          "cumulative_ms": 234.94150000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.isfinite>",
+          "calls": 21,
+          "primitive_calls": 21,
+          "self_ms": 3.0008,
+          "cumulative_ms": 3.0008
+        },
+        {
+          "file": "workflows/identification_prediction_v32.py",
+          "line": 7,
+          "function": "valid_predictions",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 2.6595,
+          "cumulative_ms": 4.9945
+        },
+        {
+          "file": "workflows/control_seam_v23.py",
+          "line": 84,
+          "function": "command",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 2.5252,
+          "cumulative_ms": 41.5304
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\lib\\index_tricks.py",
+          "line": 326,
+          "function": "__getitem__",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 2.2967,
+          "cumulative_ms": 2.9323
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.rsub>",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 2.2757000000000005,
+          "cumulative_ms": 2.2757000000000005
+        },
+        {
+          "file": "koopman/physical_prediction_v29.py",
+          "line": 13,
+          "function": "advance_old_frame_velocity",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.1012,
+          "cumulative_ms": 57.339
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\_methods.py",
+          "line": 101,
+          "function": "_mean",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.0278,
+          "cumulative_ms": 3.0817
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'numpy' of 'torch._C.TensorBase' objects>",
+          "calls": 100,
+          "primitive_calls": 100,
+          "self_ms": 2.0064,
+          "cumulative_ms": 2.0064
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\fromnumeric.py",
+          "line": 71,
+          "function": "_wrapreduction",
+          "calls": 283,
+          "primitive_calls": 283,
+          "self_ms": 1.9633000000000003,
+          "cumulative_ms": 4.9964
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reshape' of 'numpy.ndarray' objects>",
+          "calls": 566,
+          "primitive_calls": 566,
+          "self_ms": 1.7003000000000001,
+          "cumulative_ms": 1.7003000000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.len>",
+          "calls": 5644,
+          "primitive_calls": 5644,
+          "self_ms": 1.5639,
+          "cumulative_ms": 1.5639
+        }
+      ]
+    },
+    {
+      "configuration": "uuv6",
+      "episode_id": "i29-uuv6-fit-8732-prbs",
+      "role": "fit",
+      "trace_sha256": "dda5a0f164d3ae8dde72e84fc1cd4107bd33ef08887eafd6a9dff2000ee7a5a1",
+      "unprofiled_ms": [
+        175.79960002331063,
+        235.6963999918662,
+        254.8038000240922
+      ],
+      "p50_ms": 235.6963999918662,
+      "maximum_absolute_difference": {
+        "predictions": 0.0,
+        "pwm": 0.0,
+        "rotor_speed": 0.0,
+        "acceleration": 0.0,
+        "physics_time_s": 0.0,
+        "origin_rotor_speed": 0.0,
+        "requested_commands": 0.0,
+        "applied_control": 0.0,
+        "issued_commands": 0.0,
+        "control_mask": 0.0,
+        "origin_actuator_time_s": 0.0
+      },
+      "profiled_total_ms": 267.68309999999997,
+      "by_cumulative": [
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\workflows\\profile_command_state_v39.py",
+          "line": 97,
+          "function": "call",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 0.06670000000000001,
+          "cumulative_ms": 267.66300000000007
+        },
+        {
+          "file": "candidate/koopman/command_state_v39.py",
+          "line": 105,
+          "function": "forecast",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 7.922000000000001,
+          "cumulative_ms": 267.5963
+        },
+        {
+          "file": "workflows/identify_sparse_world_v30.py",
+          "line": 36,
+          "function": "__call__",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 0.32130000000000003,
+          "cumulative_ms": 184.19750000000002
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 67,
+          "function": "predict_projected",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 5.5541,
+          "cumulative_ms": 183.8762
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 29,
+          "function": "lift",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 3.036,
+          "cumulative_ms": 89.5096
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 35,
+          "function": "rotation",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 32.7481,
+          "cumulative_ms": 62.3027
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 18,
+          "function": "state_terms",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 9.342400000000001,
+          "cumulative_ms": 60.8995
+        },
+        {
+          "file": "koopman/physical_prediction_v29.py",
+          "line": 13,
+          "function": "advance_old_frame_velocity",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.9546000000000006,
+          "cumulative_ms": 57.684200000000004
+        },
+        {
+          "file": "workflows/control_seam_v23.py",
+          "line": 84,
+          "function": "command",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 2.3892,
+          "cumulative_ms": 51.1602
+        },
+        {
+          "file": "easyuuv_nc/env/easyuuv_env.py",
+          "line": 2163,
+          "function": "_pid_control",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 4.5157,
+          "cumulative_ms": 39.962900000000005
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 72,
+          "function": "known_pose_step",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 6.3569,
+          "cumulative_ms": 30.8911
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1468,
+          "function": "cross",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 13.171700000000001,
+          "cumulative_ms": 29.7417
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 10,
+          "function": "validate_states",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 9.3004,
+          "cumulative_ms": 22.825000000000003
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1393,
+          "function": "moveaxis",
+          "calls": 720,
+          "primitive_calls": 720,
+          "self_ms": 6.5120000000000005,
+          "cumulative_ms": 21.0618
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\linalg\\linalg.py",
+          "line": 2383,
+          "function": "norm",
+          "calls": 521,
+          "primitive_calls": 521,
+          "self_ms": 9.8645,
+          "cumulative_ms": 16.443800000000003
+        },
+        {
+          "file": "easyuuv_nc/thrust_allocation.py",
+          "line": 126,
+          "function": "allocate",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 0.30960000000000004,
+          "cumulative_ms": 15.5227
+        },
+        {
+          "file": "workflows/actuator_replay_v28.py",
+          "line": 13,
+          "function": "advance_pwm",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 10.2056,
+          "cumulative_ms": 13.961500000000001
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\shape_base.py",
+          "line": 372,
+          "function": "stack",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 12.918000000000001,
+          "cumulative_ms": 13.765600000000001
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1129,
+          "function": "roll",
+          "calls": 320,
+          "primitive_calls": 160,
+          "self_ms": 11.6288,
+          "cumulative_ms": 13.1956
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+          "calls": 1209,
+          "primitive_calls": 1209,
+          "self_ms": 12.25,
+          "cumulative_ms": 12.25
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1330,
+          "function": "normalize_axis_tuple",
+          "calls": 1600,
+          "primitive_calls": 1600,
+          "self_ms": 8.395700000000001,
+          "cumulative_ms": 10.7687
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._C._linalg.linalg_pinv>",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 10.3719,
+          "cumulative_ms": 10.3719
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\fromnumeric.py",
+          "line": 71,
+          "function": "_wrapreduction",
+          "calls": 283,
+          "primitive_calls": 283,
+          "self_ms": 2.6546,
+          "cumulative_ms": 6.110600000000001
+        },
+        {
+          "file": "easyuuv_nc/thrust_allocation.py",
+          "line": 104,
+          "function": "control_channels_to_wrench",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 5.580300000000001,
+          "cumulative_ms": 5.978000000000001
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\fromnumeric.py",
+          "line": 2322,
+          "function": "any",
+          "calls": 202,
+          "primitive_calls": 202,
+          "self_ms": 0.8455,
+          "cumulative_ms": 5.436800000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'all' of 'numpy.ndarray' objects>",
+          "calls": 365,
+          "primitive_calls": 365,
+          "self_ms": 1.0048000000000001,
+          "cumulative_ms": 5.3493
+        },
+        {
+          "file": "workflows/identification_prediction_v32.py",
+          "line": 7,
+          "function": "valid_predictions",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 2.6811000000000003,
+          "cumulative_ms": 5.264600000000001
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\einsumfunc.py",
+          "line": 1009,
+          "function": "einsum",
+          "calls": 320,
+          "primitive_calls": 320,
+          "self_ms": 0.449,
+          "cumulative_ms": 4.7831
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\torch\\functional.py",
+          "line": 225,
+          "function": "einsum",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 1.3798000000000001,
+          "cumulative_ms": 4.680200000000001
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 16,
+          "function": "feature_names",
+          "calls": 80,
+          "primitive_calls": 80,
+          "self_ms": 4.6555,
+          "cumulative_ms": 4.6555
+        }
+      ],
+      "by_self": [
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 35,
+          "function": "rotation",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 32.7481,
+          "cumulative_ms": 62.3027
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1468,
+          "function": "cross",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 13.171700000000001,
+          "cumulative_ms": 29.7417
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\shape_base.py",
+          "line": 372,
+          "function": "stack",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 12.918000000000001,
+          "cumulative_ms": 13.765600000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+          "calls": 1209,
+          "primitive_calls": 1209,
+          "self_ms": 12.25,
+          "cumulative_ms": 12.25
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1129,
+          "function": "roll",
+          "calls": 320,
+          "primitive_calls": 160,
+          "self_ms": 11.6288,
+          "cumulative_ms": 13.1956
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._C._linalg.linalg_pinv>",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 10.3719,
+          "cumulative_ms": 10.3719
+        },
+        {
+          "file": "workflows/actuator_replay_v28.py",
+          "line": 13,
+          "function": "advance_pwm",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 10.2056,
+          "cumulative_ms": 13.961500000000001
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\linalg\\linalg.py",
+          "line": 2383,
+          "function": "norm",
+          "calls": 521,
+          "primitive_calls": 521,
+          "self_ms": 9.8645,
+          "cumulative_ms": 16.443800000000003
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 18,
+          "function": "state_terms",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 9.342400000000001,
+          "cumulative_ms": 60.8995
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 10,
+          "function": "validate_states",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 9.3004,
+          "cumulative_ms": 22.825000000000003
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1330,
+          "function": "normalize_axis_tuple",
+          "calls": 1600,
+          "primitive_calls": 1600,
+          "self_ms": 8.395700000000001,
+          "cumulative_ms": 10.7687
+        },
+        {
+          "file": "candidate/koopman/command_state_v39.py",
+          "line": 105,
+          "function": "forecast",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 7.922000000000001,
+          "cumulative_ms": 267.5963
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1393,
+          "function": "moveaxis",
+          "calls": 720,
+          "primitive_calls": 720,
+          "self_ms": 6.5120000000000005,
+          "cumulative_ms": 21.0618
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 72,
+          "function": "known_pose_step",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 6.3569,
+          "cumulative_ms": 30.8911
+        },
+        {
+          "file": "easyuuv_nc/thrust_allocation.py",
+          "line": 104,
+          "function": "control_channels_to_wrench",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 5.580300000000001,
+          "cumulative_ms": 5.978000000000001
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 67,
+          "function": "predict_projected",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 5.5541,
+          "cumulative_ms": 183.8762
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 16,
+          "function": "feature_names",
+          "calls": 80,
+          "primitive_calls": 80,
+          "self_ms": 4.6555,
+          "cumulative_ms": 4.6555
+        },
+        {
+          "file": "easyuuv_nc/env/easyuuv_env.py",
+          "line": 2163,
+          "function": "_pid_control",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 4.5157,
+          "cumulative_ms": 39.962900000000005
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.core._multiarray_umath.c_einsum>",
+          "calls": 320,
+          "primitive_calls": 320,
+          "self_ms": 4.3341,
+          "cumulative_ms": 4.3341
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.isfinite>",
+          "calls": 21,
+          "primitive_calls": 21,
+          "self_ms": 4.1794,
+          "cumulative_ms": 4.1794
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reshape' of 'numpy.ndarray' objects>",
+          "calls": 566,
+          "primitive_calls": 566,
+          "self_ms": 3.088,
+          "cumulative_ms": 3.088
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.einsum>",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 3.0858,
+          "cumulative_ms": 3.0858
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 29,
+          "function": "lift",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 3.036,
+          "cumulative_ms": 89.5096
+        },
+        {
+          "file": "koopman/physical_prediction_v29.py",
+          "line": 13,
+          "function": "advance_old_frame_velocity",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.9546000000000006,
+          "cumulative_ms": 57.684200000000004
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'clone' of 'torch._C.TensorBase' objects>",
+          "calls": 120,
+          "primitive_calls": 120,
+          "self_ms": 2.9398000000000004,
+          "cumulative_ms": 2.9398000000000004
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'mean' of 'torch._C.TensorBase' objects>",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 2.8771,
+          "cumulative_ms": 2.8771
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'transpose' of 'numpy.ndarray' objects>",
+          "calls": 800,
+          "primitive_calls": 800,
+          "self_ms": 2.865,
+          "cumulative_ms": 2.865
+        },
+        {
+          "file": "workflows/identification_prediction_v32.py",
+          "line": 7,
+          "function": "valid_predictions",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 2.6811000000000003,
+          "cumulative_ms": 5.264600000000001
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\fromnumeric.py",
+          "line": 71,
+          "function": "_wrapreduction",
+          "calls": 283,
+          "primitive_calls": 283,
+          "self_ms": 2.6546,
+          "cumulative_ms": 6.110600000000001
+        },
+        {
+          "file": "workflows/control_seam_v23.py",
+          "line": 84,
+          "function": "command",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 2.3892,
+          "cumulative_ms": 51.1602
+        }
+      ]
+    },
+    {
+      "configuration": "uuv6_angled",
+      "episode_id": "i29-uuv6_angled-fit-8735-prbs",
+      "role": "fit",
+      "trace_sha256": "39a128e14dd29007e1b8fa348e24685973aced3a08abac7f2ce5f78f72b4dd44",
+      "unprofiled_ms": [
+        278.439099987736,
+        184.10109999240376,
+        155.1366999919992
+      ],
+      "p50_ms": 184.10109999240376,
+      "maximum_absolute_difference": {
+        "predictions": 0.0,
+        "pwm": 0.0,
+        "rotor_speed": 0.0,
+        "acceleration": 0.0,
+        "physics_time_s": 0.0,
+        "origin_rotor_speed": 0.0,
+        "requested_commands": 0.0,
+        "applied_control": 0.0,
+        "issued_commands": 0.0,
+        "control_mask": 0.0,
+        "origin_actuator_time_s": 0.0
+      },
+      "profiled_total_ms": 199.85839999999996,
+      "by_cumulative": [
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\workflows\\profile_command_state_v39.py",
+          "line": 97,
+          "function": "call",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 0.07840000000000001,
+          "cumulative_ms": 199.8204
+        },
+        {
+          "file": "candidate/koopman/command_state_v39.py",
+          "line": 105,
+          "function": "forecast",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 2.8417000000000003,
+          "cumulative_ms": 199.742
+        },
+        {
+          "file": "workflows/identify_sparse_world_v30.py",
+          "line": 36,
+          "function": "__call__",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 0.11030000000000001,
+          "cumulative_ms": 143.0403
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 67,
+          "function": "predict_projected",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 3.3014000000000006,
+          "cumulative_ms": 142.93
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 29,
+          "function": "lift",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.1620000000000004,
+          "cumulative_ms": 66.71820000000001
+        },
+        {
+          "file": "koopman/physical_prediction_v29.py",
+          "line": 13,
+          "function": "advance_old_frame_velocity",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.3317000000000005,
+          "cumulative_ms": 51.0934
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 35,
+          "function": "rotation",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 26.7371,
+          "cumulative_ms": 50.11710000000001
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 18,
+          "function": "state_terms",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 7.5482000000000005,
+          "cumulative_ms": 45.715500000000006
+        },
+        {
+          "file": "workflows/control_seam_v23.py",
+          "line": 84,
+          "function": "command",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 2.2762000000000002,
+          "cumulative_ms": 36.9666
+        },
+        {
+          "file": "easyuuv_nc/env/easyuuv_env.py",
+          "line": 2163,
+          "function": "_pid_control",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 3.7454000000000005,
+          "cumulative_ms": 28.5652
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 72,
+          "function": "known_pose_step",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 7.038600000000001,
+          "cumulative_ms": 25.2604
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1468,
+          "function": "cross",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 8.3457,
+          "cumulative_ms": 20.259100000000004
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 10,
+          "function": "validate_states",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 7.899400000000001,
+          "cumulative_ms": 17.1449
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1393,
+          "function": "moveaxis",
+          "calls": 720,
+          "primitive_calls": 720,
+          "self_ms": 6.153700000000001,
+          "cumulative_ms": 16.5863
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\linalg\\linalg.py",
+          "line": 2383,
+          "function": "norm",
+          "calls": 521,
+          "primitive_calls": 521,
+          "self_ms": 6.9426000000000005,
+          "cumulative_ms": 12.884000000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+          "calls": 1209,
+          "primitive_calls": 1209,
+          "self_ms": 10.5176,
+          "cumulative_ms": 10.5176
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1129,
+          "function": "roll",
+          "calls": 320,
+          "primitive_calls": 160,
+          "self_ms": 8.6952,
+          "cumulative_ms": 10.0546
+        },
+        {
+          "file": "easyuuv_nc/thrust_allocation.py",
+          "line": 126,
+          "function": "allocate",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 0.2459,
+          "cumulative_ms": 9.8511
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\shape_base.py",
+          "line": 372,
+          "function": "stack",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 8.3821,
+          "cumulative_ms": 9.1077
+        },
+        {
+          "file": "workflows/actuator_replay_v28.py",
+          "line": 13,
+          "function": "advance_pwm",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 5.541300000000001,
+          "cumulative_ms": 8.0435
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1330,
+          "function": "normalize_axis_tuple",
+          "calls": 1600,
+          "primitive_calls": 1600,
+          "self_ms": 6.0284,
+          "cumulative_ms": 8.035200000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._C._linalg.linalg_pinv>",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 5.9997,
+          "cumulative_ms": 5.9997
+        },
+        {
+          "file": "workflows/identification_prediction_v32.py",
+          "line": 7,
+          "function": "valid_predictions",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 2.5682,
+          "cumulative_ms": 5.1814
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'all' of 'numpy.ndarray' objects>",
+          "calls": 365,
+          "primitive_calls": 365,
+          "self_ms": 0.7771000000000001,
+          "cumulative_ms": 4.6552
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\einsumfunc.py",
+          "line": 1009,
+          "function": "einsum",
+          "calls": 320,
+          "primitive_calls": 320,
+          "self_ms": 0.5418000000000001,
+          "cumulative_ms": 4.0406
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\lib\\index_tricks.py",
+          "line": 326,
+          "function": "__getitem__",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 2.0267000000000004,
+          "cumulative_ms": 4.0217
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\_methods.py",
+          "line": 61,
+          "function": "_all",
+          "calls": 365,
+          "primitive_calls": 365,
+          "self_ms": 0.37450000000000006,
+          "cumulative_ms": 3.8781000000000003
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\fromnumeric.py",
+          "line": 71,
+          "function": "_wrapreduction",
+          "calls": 283,
+          "primitive_calls": 283,
+          "self_ms": 1.5237,
+          "cumulative_ms": 3.8626000000000005
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.core._multiarray_umath.c_einsum>",
+          "calls": 320,
+          "primitive_calls": 320,
+          "self_ms": 3.4988,
+          "cumulative_ms": 3.4988
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\torch\\functional.py",
+          "line": 225,
+          "function": "einsum",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 0.9817,
+          "cumulative_ms": 3.4668000000000005
+        }
+      ],
+      "by_self": [
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 35,
+          "function": "rotation",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 26.7371,
+          "cumulative_ms": 50.11710000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+          "calls": 1209,
+          "primitive_calls": 1209,
+          "self_ms": 10.5176,
+          "cumulative_ms": 10.5176
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1129,
+          "function": "roll",
+          "calls": 320,
+          "primitive_calls": 160,
+          "self_ms": 8.6952,
+          "cumulative_ms": 10.0546
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\shape_base.py",
+          "line": 372,
+          "function": "stack",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 8.3821,
+          "cumulative_ms": 9.1077
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1468,
+          "function": "cross",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 8.3457,
+          "cumulative_ms": 20.259100000000004
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 10,
+          "function": "validate_states",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 7.899400000000001,
+          "cumulative_ms": 17.1449
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 18,
+          "function": "state_terms",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 7.5482000000000005,
+          "cumulative_ms": 45.715500000000006
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 72,
+          "function": "known_pose_step",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 7.038600000000001,
+          "cumulative_ms": 25.2604
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\linalg\\linalg.py",
+          "line": 2383,
+          "function": "norm",
+          "calls": 521,
+          "primitive_calls": 521,
+          "self_ms": 6.9426000000000005,
+          "cumulative_ms": 12.884000000000002
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1393,
+          "function": "moveaxis",
+          "calls": 720,
+          "primitive_calls": 720,
+          "self_ms": 6.153700000000001,
+          "cumulative_ms": 16.5863
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1330,
+          "function": "normalize_axis_tuple",
+          "calls": 1600,
+          "primitive_calls": 1600,
+          "self_ms": 6.0284,
+          "cumulative_ms": 8.035200000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._C._linalg.linalg_pinv>",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 5.9997,
+          "cumulative_ms": 5.9997
+        },
+        {
+          "file": "workflows/actuator_replay_v28.py",
+          "line": 13,
+          "function": "advance_pwm",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 5.541300000000001,
+          "cumulative_ms": 8.0435
+        },
+        {
+          "file": "easyuuv_nc/env/easyuuv_env.py",
+          "line": 2163,
+          "function": "_pid_control",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 3.7454000000000005,
+          "cumulative_ms": 28.5652
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.core._multiarray_umath.c_einsum>",
+          "calls": 320,
+          "primitive_calls": 320,
+          "self_ms": 3.4988,
+          "cumulative_ms": 3.4988
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 67,
+          "function": "predict_projected",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 3.3014000000000006,
+          "cumulative_ms": 142.93
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 16,
+          "function": "feature_names",
+          "calls": 80,
+          "primitive_calls": 80,
+          "self_ms": 3.2174,
+          "cumulative_ms": 3.2174
+        },
+        {
+          "file": "easyuuv_nc/thrust_allocation.py",
+          "line": 104,
+          "function": "control_channels_to_wrench",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 2.9761,
+          "cumulative_ms": 3.3231
+        },
+        {
+          "file": "candidate/koopman/command_state_v39.py",
+          "line": 105,
+          "function": "forecast",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 2.8417000000000003,
+          "cumulative_ms": 199.742
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'detach' of 'torch._C.TensorBase' objects>",
+          "calls": 140,
+          "primitive_calls": 140,
+          "self_ms": 2.8411,
+          "cumulative_ms": 2.8411
+        },
+        {
+          "file": "workflows/identification_prediction_v32.py",
+          "line": 7,
+          "function": "valid_predictions",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 2.5682,
+          "cumulative_ms": 5.1814
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.isfinite>",
+          "calls": 21,
+          "primitive_calls": 21,
+          "self_ms": 2.4494,
+          "cumulative_ms": 2.4494
+        },
+        {
+          "file": "koopman/physical_prediction_v29.py",
+          "line": 13,
+          "function": "advance_old_frame_velocity",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.3317000000000005,
+          "cumulative_ms": 51.0934
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'clone' of 'torch._C.TensorBase' objects>",
+          "calls": 120,
+          "primitive_calls": 120,
+          "self_ms": 2.3287,
+          "cumulative_ms": 2.3287
+        },
+        {
+          "file": "workflows/control_seam_v23.py",
+          "line": 84,
+          "function": "command",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 2.2762000000000002,
+          "cumulative_ms": 36.9666
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 29,
+          "function": "lift",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.1620000000000004,
+          "cumulative_ms": 66.71820000000001
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\lib\\index_tricks.py",
+          "line": 326,
+          "function": "__getitem__",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 2.0267000000000004,
+          "cumulative_ms": 4.0217
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.einsum>",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 1.9865,
+          "cumulative_ms": 1.9865
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'append' of 'list' objects>",
+          "calls": 438,
+          "primitive_calls": 438,
+          "self_ms": 1.7251,
+          "cumulative_ms": 1.7251
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'numpy' of 'torch._C.TensorBase' objects>",
+          "calls": 100,
+          "primitive_calls": 100,
+          "self_ms": 1.7156,
+          "cumulative_ms": 1.7156
+        }
+      ]
+    },
+    {
+      "configuration": "uuv4",
+      "episode_id": "i29-uuv4-fit-8738-prbs",
+      "role": "fit",
+      "trace_sha256": "a99954360bd03e57df70d53e3d7945f2c69a095b478b550a766aa2b6d8595af1",
+      "unprofiled_ms": [
+        49.480300018331036,
+        45.63830001279712,
+        46.363000001292676
+      ],
+      "p50_ms": 46.363000001292676,
+      "maximum_absolute_difference": {
+        "predictions": 0.0,
+        "pwm": 0.0,
+        "rotor_speed": 0.0,
+        "acceleration": 0.0,
+        "physics_time_s": 0.0,
+        "origin_rotor_speed": 0.0,
+        "requested_commands": 0.0,
+        "applied_control": 0.0,
+        "issued_commands": 0.0,
+        "control_mask": 0.0,
+        "origin_actuator_time_s": 0.0
+      },
+      "profiled_total_ms": 68.4225,
+      "by_cumulative": [
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\workflows\\profile_command_state_v39.py",
+          "line": 97,
+          "function": "call",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 0.0297,
+          "cumulative_ms": 68.4047
+        },
+        {
+          "file": "candidate/koopman/command_state_v39.py",
+          "line": 105,
+          "function": "forecast",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 1.2915,
+          "cumulative_ms": 68.375
+        },
+        {
+          "file": "workflows/identify_sparse_world_v30.py",
+          "line": 36,
+          "function": "__call__",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 0.07560000000000001,
+          "cumulative_ms": 48.974500000000006
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 67,
+          "function": "predict_projected",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 1.4483,
+          "cumulative_ms": 48.898900000000005
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 29,
+          "function": "lift",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 0.9888,
+          "cumulative_ms": 23.2506
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 35,
+          "function": "rotation",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 9.318100000000001,
+          "cumulative_ms": 17.4353
+        },
+        {
+          "file": "koopman/physical_prediction_v29.py",
+          "line": 13,
+          "function": "advance_old_frame_velocity",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 0.7467000000000001,
+          "cumulative_ms": 16.8734
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 18,
+          "function": "state_terms",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.4865,
+          "cumulative_ms": 15.410100000000002
+        },
+        {
+          "file": "workflows/control_seam_v23.py",
+          "line": 84,
+          "function": "command",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 0.8956000000000001,
+          "cumulative_ms": 12.1145
+        },
+        {
+          "file": "easyuuv_nc/env/easyuuv_env.py",
+          "line": 2163,
+          "function": "_pid_control",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 1.2325000000000002,
+          "cumulative_ms": 8.885800000000001
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 72,
+          "function": "known_pose_step",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 1.9095000000000002,
+          "cumulative_ms": 8.5686
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1468,
+          "function": "cross",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 3.0128000000000004,
+          "cumulative_ms": 7.6419
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1393,
+          "function": "moveaxis",
+          "calls": 720,
+          "primitive_calls": 720,
+          "self_ms": 2.2583,
+          "cumulative_ms": 6.4838000000000005
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 10,
+          "function": "validate_states",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 1.8749,
+          "cumulative_ms": 5.1764
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\linalg\\linalg.py",
+          "line": 2383,
+          "function": "norm",
+          "calls": 521,
+          "primitive_calls": 521,
+          "self_ms": 2.2977000000000003,
+          "cumulative_ms": 3.9697000000000005
+        },
+        {
+          "file": "easyuuv_nc/thrust_allocation.py",
+          "line": 126,
+          "function": "allocate",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 0.2583,
+          "cumulative_ms": 3.9233000000000002
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1330,
+          "function": "normalize_axis_tuple",
+          "calls": 1600,
+          "primitive_calls": 1600,
+          "self_ms": 2.5602000000000005,
+          "cumulative_ms": 3.4188
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\shape_base.py",
+          "line": 372,
+          "function": "stack",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 2.7012,
+          "cumulative_ms": 3.0495
+        },
+        {
+          "file": "workflows/actuator_replay_v28.py",
+          "line": 13,
+          "function": "advance_pwm",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.027,
+          "cumulative_ms": 3.0477
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+          "calls": 1209,
+          "primitive_calls": 1209,
+          "self_ms": 2.8193,
+          "cumulative_ms": 2.8193
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1129,
+          "function": "roll",
+          "calls": 320,
+          "primitive_calls": 160,
+          "self_ms": 2.1838,
+          "cumulative_ms": 2.6833
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._C._linalg.linalg_pinv>",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 2.3912,
+          "cumulative_ms": 2.3912
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 16,
+          "function": "feature_names",
+          "calls": 80,
+          "primitive_calls": 80,
+          "self_ms": 1.6342,
+          "cumulative_ms": 1.6342
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'all' of 'numpy.ndarray' objects>",
+          "calls": 365,
+          "primitive_calls": 365,
+          "self_ms": 0.3567,
+          "cumulative_ms": 1.5889
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\fromnumeric.py",
+          "line": 71,
+          "function": "_wrapreduction",
+          "calls": 283,
+          "primitive_calls": 283,
+          "self_ms": 0.8385,
+          "cumulative_ms": 1.4837
+        },
+        {
+          "file": "workflows/identification_prediction_v32.py",
+          "line": 7,
+          "function": "valid_predictions",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 0.7171000000000001,
+          "cumulative_ms": 1.4735
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\einsumfunc.py",
+          "line": 1009,
+          "function": "einsum",
+          "calls": 320,
+          "primitive_calls": 320,
+          "self_ms": 0.1666,
+          "cumulative_ms": 1.3638000000000001
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\fromnumeric.py",
+          "line": 2322,
+          "function": "any",
+          "calls": 202,
+          "primitive_calls": 202,
+          "self_ms": 0.27040000000000003,
+          "cumulative_ms": 1.3548000000000002
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\_methods.py",
+          "line": 61,
+          "function": "_all",
+          "calls": 365,
+          "primitive_calls": 365,
+          "self_ms": 0.16570000000000001,
+          "cumulative_ms": 1.2322000000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.core._multiarray_umath.c_einsum>",
+          "calls": 320,
+          "primitive_calls": 320,
+          "self_ms": 1.1972,
+          "cumulative_ms": 1.1972
+        }
+      ],
+      "by_self": [
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 35,
+          "function": "rotation",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 9.318100000000001,
+          "cumulative_ms": 17.4353
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1468,
+          "function": "cross",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 3.0128000000000004,
+          "cumulative_ms": 7.6419
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+          "calls": 1209,
+          "primitive_calls": 1209,
+          "self_ms": 2.8193,
+          "cumulative_ms": 2.8193
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\shape_base.py",
+          "line": 372,
+          "function": "stack",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 2.7012,
+          "cumulative_ms": 3.0495
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1330,
+          "function": "normalize_axis_tuple",
+          "calls": 1600,
+          "primitive_calls": 1600,
+          "self_ms": 2.5602000000000005,
+          "cumulative_ms": 3.4188
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 18,
+          "function": "state_terms",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.4865,
+          "cumulative_ms": 15.410100000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._C._linalg.linalg_pinv>",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 2.3912,
+          "cumulative_ms": 2.3912
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\linalg\\linalg.py",
+          "line": 2383,
+          "function": "norm",
+          "calls": 521,
+          "primitive_calls": 521,
+          "self_ms": 2.2977000000000003,
+          "cumulative_ms": 3.9697000000000005
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1393,
+          "function": "moveaxis",
+          "calls": 720,
+          "primitive_calls": 720,
+          "self_ms": 2.2583,
+          "cumulative_ms": 6.4838000000000005
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1129,
+          "function": "roll",
+          "calls": 320,
+          "primitive_calls": 160,
+          "self_ms": 2.1838,
+          "cumulative_ms": 2.6833
+        },
+        {
+          "file": "workflows/actuator_replay_v28.py",
+          "line": 13,
+          "function": "advance_pwm",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.027,
+          "cumulative_ms": 3.0477
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 72,
+          "function": "known_pose_step",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 1.9095000000000002,
+          "cumulative_ms": 8.5686
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 10,
+          "function": "validate_states",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 1.8749,
+          "cumulative_ms": 5.1764
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 16,
+          "function": "feature_names",
+          "calls": 80,
+          "primitive_calls": 80,
+          "self_ms": 1.6342,
+          "cumulative_ms": 1.6342
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 67,
+          "function": "predict_projected",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 1.4483,
+          "cumulative_ms": 48.898900000000005
+        },
+        {
+          "file": "candidate/koopman/command_state_v39.py",
+          "line": 105,
+          "function": "forecast",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 1.2915,
+          "cumulative_ms": 68.375
+        },
+        {
+          "file": "easyuuv_nc/env/easyuuv_env.py",
+          "line": 2163,
+          "function": "_pid_control",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 1.2325000000000002,
+          "cumulative_ms": 8.885800000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.core._multiarray_umath.c_einsum>",
+          "calls": 320,
+          "primitive_calls": 320,
+          "self_ms": 1.1972,
+          "cumulative_ms": 1.1972
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 29,
+          "function": "lift",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 0.9888,
+          "cumulative_ms": 23.2506
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.isfinite>",
+          "calls": 21,
+          "primitive_calls": 21,
+          "self_ms": 0.9118,
+          "cumulative_ms": 0.9118
+        },
+        {
+          "file": "easyuuv_nc/thrust_allocation.py",
+          "line": 104,
+          "function": "control_channels_to_wrench",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 0.8991,
+          "cumulative_ms": 1.0069000000000001
+        },
+        {
+          "file": "workflows/control_seam_v23.py",
+          "line": 84,
+          "function": "command",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 0.8956000000000001,
+          "cumulative_ms": 12.1145
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\fromnumeric.py",
+          "line": 71,
+          "function": "_wrapreduction",
+          "calls": 283,
+          "primitive_calls": 283,
+          "self_ms": 0.8385,
+          "cumulative_ms": 1.4837
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\lib\\index_tricks.py",
+          "line": 326,
+          "function": "__getitem__",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 0.7484000000000001,
+          "cumulative_ms": 0.9888
+        },
+        {
+          "file": "koopman/physical_prediction_v29.py",
+          "line": 13,
+          "function": "advance_old_frame_velocity",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 0.7467000000000001,
+          "cumulative_ms": 16.8734
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.einsum>",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 0.7387,
+          "cumulative_ms": 0.7387
+        },
+        {
+          "file": "workflows/identification_prediction_v32.py",
+          "line": 7,
+          "function": "valid_predictions",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 0.7171000000000001,
+          "cumulative_ms": 1.4735
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.len>",
+          "calls": 5706,
+          "primitive_calls": 5706,
+          "self_ms": 0.6934,
+          "cumulative_ms": 0.6934
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'numpy' of 'torch._C.TensorBase' objects>",
+          "calls": 100,
+          "primitive_calls": 100,
+          "self_ms": 0.5806,
+          "cumulative_ms": 0.5806
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.asarray>",
+          "calls": 1489,
+          "primitive_calls": 1489,
+          "self_ms": 0.49720000000000003,
+          "cumulative_ms": 0.49720000000000003
+        }
+      ]
+    },
+    {
+      "configuration": "uuv4_angled",
+      "episode_id": "i29-uuv4_angled-fit-8741-prbs",
+      "role": "fit",
+      "trace_sha256": "fdd45f54c88449d0f3e5962cd393592e9c561e601c227176a10de48c64f9f79d",
+      "unprofiled_ms": [
+        49.13480000686832,
+        51.72869999660179,
+        52.00569998123683
+      ],
+      "p50_ms": 51.72869999660179,
+      "maximum_absolute_difference": {
+        "predictions": 0.0,
+        "pwm": 0.0,
+        "rotor_speed": 0.0,
+        "acceleration": 0.0,
+        "physics_time_s": 0.0,
+        "origin_rotor_speed": 0.0,
+        "requested_commands": 0.0,
+        "applied_control": 0.0,
+        "issued_commands": 0.0,
+        "control_mask": 0.0,
+        "origin_actuator_time_s": 0.0
+      },
+      "profiled_total_ms": 77.1558,
+      "by_cumulative": [
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\workflows\\profile_command_state_v39.py",
+          "line": 97,
+          "function": "call",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 0.0511,
+          "cumulative_ms": 77.13260000000001
+        },
+        {
+          "file": "candidate/koopman/command_state_v39.py",
+          "line": 105,
+          "function": "forecast",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 1.4173,
+          "cumulative_ms": 77.0815
+        },
+        {
+          "file": "workflows/identify_sparse_world_v30.py",
+          "line": 36,
+          "function": "__call__",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 0.0669,
+          "cumulative_ms": 54.43620000000001
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 67,
+          "function": "predict_projected",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 1.5587000000000002,
+          "cumulative_ms": 54.3693
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 29,
+          "function": "lift",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 1.1385,
+          "cumulative_ms": 26.168400000000002
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 35,
+          "function": "rotation",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 9.9544,
+          "cumulative_ms": 19.0573
+        },
+        {
+          "file": "koopman/physical_prediction_v29.py",
+          "line": 13,
+          "function": "advance_old_frame_velocity",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 0.7527,
+          "cumulative_ms": 18.366600000000002
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 18,
+          "function": "state_terms",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.9186000000000005,
+          "cumulative_ms": 17.505300000000002
+        },
+        {
+          "file": "workflows/control_seam_v23.py",
+          "line": 84,
+          "function": "command",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 0.9596,
+          "cumulative_ms": 14.1919
+        },
+        {
+          "file": "easyuuv_nc/env/easyuuv_env.py",
+          "line": 2163,
+          "function": "_pid_control",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 1.4340000000000002,
+          "cumulative_ms": 10.382200000000001
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 72,
+          "function": "known_pose_step",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 1.9297000000000002,
+          "cumulative_ms": 9.465900000000001
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1468,
+          "function": "cross",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 3.5480000000000005,
+          "cumulative_ms": 8.6768
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1393,
+          "function": "moveaxis",
+          "calls": 720,
+          "primitive_calls": 720,
+          "self_ms": 2.4389000000000003,
+          "cumulative_ms": 6.991300000000001
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 10,
+          "function": "validate_states",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 2.0300000000000002,
+          "cumulative_ms": 5.6154
+        },
+        {
+          "file": "easyuuv_nc/thrust_allocation.py",
+          "line": 126,
+          "function": "allocate",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 0.39080000000000004,
+          "cumulative_ms": 4.609800000000001
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\linalg\\linalg.py",
+          "line": 2383,
+          "function": "norm",
+          "calls": 521,
+          "primitive_calls": 521,
+          "self_ms": 2.5935,
+          "cumulative_ms": 4.516800000000001
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1330,
+          "function": "normalize_axis_tuple",
+          "calls": 1600,
+          "primitive_calls": 1600,
+          "self_ms": 2.7996000000000003,
+          "cumulative_ms": 3.7268000000000003
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\shape_base.py",
+          "line": 372,
+          "function": "stack",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 3.2461,
+          "cumulative_ms": 3.6301
+        },
+        {
+          "file": "workflows/actuator_replay_v28.py",
+          "line": 13,
+          "function": "advance_pwm",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.3554,
+          "cumulative_ms": 3.6271000000000004
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1129,
+          "function": "roll",
+          "calls": 320,
+          "primitive_calls": 160,
+          "self_ms": 2.6629,
+          "cumulative_ms": 3.2388
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+          "calls": 1209,
+          "primitive_calls": 1209,
+          "self_ms": 3.1955,
+          "cumulative_ms": 3.1955
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._C._linalg.linalg_pinv>",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 2.6492,
+          "cumulative_ms": 2.6492
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 16,
+          "function": "feature_names",
+          "calls": 80,
+          "primitive_calls": 80,
+          "self_ms": 1.9874000000000003,
+          "cumulative_ms": 1.9874000000000003
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'all' of 'numpy.ndarray' objects>",
+          "calls": 365,
+          "primitive_calls": 365,
+          "self_ms": 0.38480000000000003,
+          "cumulative_ms": 1.7599
+        },
+        {
+          "file": "workflows/identification_prediction_v32.py",
+          "line": 7,
+          "function": "valid_predictions",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 0.8801000000000001,
+          "cumulative_ms": 1.7531
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\fromnumeric.py",
+          "line": 71,
+          "function": "_wrapreduction",
+          "calls": 283,
+          "primitive_calls": 283,
+          "self_ms": 0.7692,
+          "cumulative_ms": 1.5193
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\einsumfunc.py",
+          "line": 1009,
+          "function": "einsum",
+          "calls": 320,
+          "primitive_calls": 320,
+          "self_ms": 0.18830000000000002,
+          "cumulative_ms": 1.5011
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\fromnumeric.py",
+          "line": 2322,
+          "function": "any",
+          "calls": 202,
+          "primitive_calls": 202,
+          "self_ms": 0.39460000000000006,
+          "cumulative_ms": 1.4588
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\torch\\functional.py",
+          "line": 225,
+          "function": "einsum",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 0.39430000000000004,
+          "cumulative_ms": 1.4041000000000001
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\_methods.py",
+          "line": 61,
+          "function": "_all",
+          "calls": 365,
+          "primitive_calls": 365,
+          "self_ms": 0.1832,
+          "cumulative_ms": 1.3751000000000002
+        }
+      ],
+      "by_self": [
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 35,
+          "function": "rotation",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 9.9544,
+          "cumulative_ms": 19.0573
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1468,
+          "function": "cross",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 3.5480000000000005,
+          "cumulative_ms": 8.6768
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\shape_base.py",
+          "line": 372,
+          "function": "stack",
+          "calls": 240,
+          "primitive_calls": 240,
+          "self_ms": 3.2461,
+          "cumulative_ms": 3.6301
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+          "calls": 1209,
+          "primitive_calls": 1209,
+          "self_ms": 3.1955,
+          "cumulative_ms": 3.1955
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 18,
+          "function": "state_terms",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.9186000000000005,
+          "cumulative_ms": 17.505300000000002
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1330,
+          "function": "normalize_axis_tuple",
+          "calls": 1600,
+          "primitive_calls": 1600,
+          "self_ms": 2.7996000000000003,
+          "cumulative_ms": 3.7268000000000003
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1129,
+          "function": "roll",
+          "calls": 320,
+          "primitive_calls": 160,
+          "self_ms": 2.6629,
+          "cumulative_ms": 3.2388
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._C._linalg.linalg_pinv>",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 2.6492,
+          "cumulative_ms": 2.6492
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\linalg\\linalg.py",
+          "line": 2383,
+          "function": "norm",
+          "calls": 521,
+          "primitive_calls": 521,
+          "self_ms": 2.5935,
+          "cumulative_ms": 4.516800000000001
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\numeric.py",
+          "line": 1393,
+          "function": "moveaxis",
+          "calls": 720,
+          "primitive_calls": 720,
+          "self_ms": 2.4389000000000003,
+          "cumulative_ms": 6.991300000000001
+        },
+        {
+          "file": "workflows/actuator_replay_v28.py",
+          "line": 13,
+          "function": "advance_pwm",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 2.3554,
+          "cumulative_ms": 3.6271000000000004
+        },
+        {
+          "file": "koopman/physical_terms_v26.py",
+          "line": 10,
+          "function": "validate_states",
+          "calls": 160,
+          "primitive_calls": 160,
+          "self_ms": 2.0300000000000002,
+          "cumulative_ms": 5.6154
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 16,
+          "function": "feature_names",
+          "calls": 80,
+          "primitive_calls": 80,
+          "self_ms": 1.9874000000000003,
+          "cumulative_ms": 1.9874000000000003
+        },
+        {
+          "file": "koopman/projected_edmd_v24.py",
+          "line": 72,
+          "function": "known_pose_step",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 1.9297000000000002,
+          "cumulative_ms": 9.465900000000001
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 67,
+          "function": "predict_projected",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 1.5587000000000002,
+          "cumulative_ms": 54.3693
+        },
+        {
+          "file": "easyuuv_nc/env/easyuuv_env.py",
+          "line": 2163,
+          "function": "_pid_control",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 1.4340000000000002,
+          "cumulative_ms": 10.382200000000001
+        },
+        {
+          "file": "candidate/koopman/command_state_v39.py",
+          "line": 105,
+          "function": "forecast",
+          "calls": 1,
+          "primitive_calls": 1,
+          "self_ms": 1.4173,
+          "cumulative_ms": 77.0815
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.core._multiarray_umath.c_einsum>",
+          "calls": 320,
+          "primitive_calls": 320,
+          "self_ms": 1.3128,
+          "cumulative_ms": 1.3128
+        },
+        {
+          "file": "easyuuv_nc/thrust_allocation.py",
+          "line": 104,
+          "function": "control_channels_to_wrench",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 1.1454,
+          "cumulative_ms": 1.2635
+        },
+        {
+          "file": "koopman/sparse_world_edmd_v30.py",
+          "line": 29,
+          "function": "lift",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 1.1385,
+          "cumulative_ms": 26.168400000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.isfinite>",
+          "calls": 21,
+          "primitive_calls": 21,
+          "self_ms": 1.0821,
+          "cumulative_ms": 1.0821
+        },
+        {
+          "file": "workflows/control_seam_v23.py",
+          "line": 84,
+          "function": "command",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 0.9596,
+          "cumulative_ms": 14.1919
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.einsum>",
+          "calls": 20,
+          "primitive_calls": 20,
+          "self_ms": 0.9390000000000001,
+          "cumulative_ms": 0.9390000000000001
+        },
+        {
+          "file": "workflows/identification_prediction_v32.py",
+          "line": 7,
+          "function": "valid_predictions",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 0.8801000000000001,
+          "cumulative_ms": 1.7531
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\lib\\index_tricks.py",
+          "line": 326,
+          "function": "__getitem__",
+          "calls": 41,
+          "primitive_calls": 41,
+          "self_ms": 0.8591,
+          "cumulative_ms": 1.1147000000000002
+        },
+        {
+          "file": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Lib\\site-packages\\numpy\\core\\fromnumeric.py",
+          "line": 71,
+          "function": "_wrapreduction",
+          "calls": 283,
+          "primitive_calls": 283,
+          "self_ms": 0.7692,
+          "cumulative_ms": 1.5193
+        },
+        {
+          "file": "koopman/physical_prediction_v29.py",
+          "line": 13,
+          "function": "advance_old_frame_velocity",
+          "calls": 40,
+          "primitive_calls": 40,
+          "self_ms": 0.7527,
+          "cumulative_ms": 18.366600000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.len>",
+          "calls": 5706,
+          "primitive_calls": 5706,
+          "self_ms": 0.7333000000000001,
+          "cumulative_ms": 0.7333000000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'numpy' of 'torch._C.TensorBase' objects>",
+          "calls": 100,
+          "primitive_calls": 100,
+          "self_ms": 0.6742,
+          "cumulative_ms": 0.6742
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.asarray>",
+          "calls": 1489,
+          "primitive_calls": 1489,
+          "self_ms": 0.5959,
+          "cumulative_ms": 0.5959
+        }
+      ]
+    }
+  ],
+  "seconds": 25.687999999994645,
+  "created_at": "2026-09-20T11:36:52.731420+08:00",
+  "protocol_sha256": "c001c69a64519dab5491830bd6a7d14db52f532c8bde83993b6a2e9f39556584",
+  "cpu": "12th Gen Intel(R) Core(TM) i7-12700H",
+  "python": "3.12.4 | packaged by Anaconda, Inc. | (main, Jun 18 2024, 15:03:56) [MSC v.1929 64 bit (AMD64)]",
+  "controller_promoted": false,
+  "limitations": [
+    "fit_PRBS_only",
+    "cProfile_overhead_not_real_time_cost",
+    "three_repetitions_descriptive_only",
+    "no_new_model_fit_or_Isaac_run"
+  ]
+}

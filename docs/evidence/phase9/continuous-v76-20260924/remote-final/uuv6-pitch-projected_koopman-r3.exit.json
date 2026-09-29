@@ -1,0 +1,21 @@
+{
+  "native_exit": 1,
+  "group_stopped": true,
+  "seconds": 358.100262966007,
+  "command": [
+    "/root/shared-nvme/agentic-auv/runtime/bin/python",
+    "-B",
+    "-m",
+    "workflows.collect_continuous_v76",
+    "--configuration",
+    "uuv6",
+    "--controller",
+    "projected_koopman",
+    "--assets",
+    "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+    "--manifest",
+    "continuous-source-r3.json",
+    "--output",
+    "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv6-pitch-projected_koopman-r3"
+  ]
+}

@@ -1,0 +1,324 @@
+FFFFFFFFFFFFFFFF                                                         [100%]
+================================== FAILURES ===================================
+________ test_better_cost_cannot_select_a_command_at_deadzone_boundary ________
+
+    def test_better_cost_cannot_select_a_command_at_deadzone_boundary():
+>       live,old,new,args=solvers();cfg=replace(old.config,perturbation=(.002,)*4)
+                          ^^^^^^^^^
+
+tests\test_deadzone_mpc_v51.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base'
+
+    def solvers(name='base'):
+        from koopman.bounded_mpc_v45 import BoundedMPC as Old
+>       from koopman.bounded_mpc_v51 import BoundedMPC as New
+E       ModuleNotFoundError: No module named 'koopman.bounded_mpc_v51'
+
+tests\test_deadzone_mpc_v51.py:13: ModuleNotFoundError
+_________ test_ambiguous_baseline_rejects_before_any_model_call[0.02] _________
+
+u = 0.02
+
+    @pytest.mark.parametrize('u',[.02,-.02,.020001,-.020001,.019999,-.019999])
+    def test_ambiguous_baseline_rejects_before_any_model_call(u):
+>       _,_,solver,args=solvers();args['previous'][3]=u;args['baseline'][:,3]=u
+                        ^^^^^^^^^
+
+tests\test_deadzone_mpc_v51.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base'
+
+    def solvers(name='base'):
+        from koopman.bounded_mpc_v45 import BoundedMPC as Old
+>       from koopman.bounded_mpc_v51 import BoundedMPC as New
+E       ModuleNotFoundError: No module named 'koopman.bounded_mpc_v51'
+
+tests\test_deadzone_mpc_v51.py:13: ModuleNotFoundError
+________ test_ambiguous_baseline_rejects_before_any_model_call[-0.02] _________
+
+u = -0.02
+
+    @pytest.mark.parametrize('u',[.02,-.02,.020001,-.020001,.019999,-.019999])
+    def test_ambiguous_baseline_rejects_before_any_model_call(u):
+>       _,_,solver,args=solvers();args['previous'][3]=u;args['baseline'][:,3]=u
+                        ^^^^^^^^^
+
+tests\test_deadzone_mpc_v51.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base'
+
+    def solvers(name='base'):
+        from koopman.bounded_mpc_v45 import BoundedMPC as Old
+>       from koopman.bounded_mpc_v51 import BoundedMPC as New
+E       ModuleNotFoundError: No module named 'koopman.bounded_mpc_v51'
+
+tests\test_deadzone_mpc_v51.py:13: ModuleNotFoundError
+_______ test_ambiguous_baseline_rejects_before_any_model_call[0.020001] _______
+
+u = 0.020001
+
+    @pytest.mark.parametrize('u',[.02,-.02,.020001,-.020001,.019999,-.019999])
+    def test_ambiguous_baseline_rejects_before_any_model_call(u):
+>       _,_,solver,args=solvers();args['previous'][3]=u;args['baseline'][:,3]=u
+                        ^^^^^^^^^
+
+tests\test_deadzone_mpc_v51.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base'
+
+    def solvers(name='base'):
+        from koopman.bounded_mpc_v45 import BoundedMPC as Old
+>       from koopman.bounded_mpc_v51 import BoundedMPC as New
+E       ModuleNotFoundError: No module named 'koopman.bounded_mpc_v51'
+
+tests\test_deadzone_mpc_v51.py:13: ModuleNotFoundError
+______ test_ambiguous_baseline_rejects_before_any_model_call[-0.020001] _______
+
+u = -0.020001
+
+    @pytest.mark.parametrize('u',[.02,-.02,.020001,-.020001,.019999,-.019999])
+    def test_ambiguous_baseline_rejects_before_any_model_call(u):
+>       _,_,solver,args=solvers();args['previous'][3]=u;args['baseline'][:,3]=u
+                        ^^^^^^^^^
+
+tests\test_deadzone_mpc_v51.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base'
+
+    def solvers(name='base'):
+        from koopman.bounded_mpc_v45 import BoundedMPC as Old
+>       from koopman.bounded_mpc_v51 import BoundedMPC as New
+E       ModuleNotFoundError: No module named 'koopman.bounded_mpc_v51'
+
+tests\test_deadzone_mpc_v51.py:13: ModuleNotFoundError
+_______ test_ambiguous_baseline_rejects_before_any_model_call[0.019999] _______
+
+u = 0.019999
+
+    @pytest.mark.parametrize('u',[.02,-.02,.020001,-.020001,.019999,-.019999])
+    def test_ambiguous_baseline_rejects_before_any_model_call(u):
+>       _,_,solver,args=solvers();args['previous'][3]=u;args['baseline'][:,3]=u
+                        ^^^^^^^^^
+
+tests\test_deadzone_mpc_v51.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base'
+
+    def solvers(name='base'):
+        from koopman.bounded_mpc_v45 import BoundedMPC as Old
+>       from koopman.bounded_mpc_v51 import BoundedMPC as New
+E       ModuleNotFoundError: No module named 'koopman.bounded_mpc_v51'
+
+tests\test_deadzone_mpc_v51.py:13: ModuleNotFoundError
+______ test_ambiguous_baseline_rejects_before_any_model_call[-0.019999] _______
+
+u = -0.019999
+
+    @pytest.mark.parametrize('u',[.02,-.02,.020001,-.020001,.019999,-.019999])
+    def test_ambiguous_baseline_rejects_before_any_model_call(u):
+>       _,_,solver,args=solvers();args['previous'][3]=u;args['baseline'][:,3]=u
+                        ^^^^^^^^^
+
+tests\test_deadzone_mpc_v51.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base'
+
+    def solvers(name='base'):
+        from koopman.bounded_mpc_v45 import BoundedMPC as Old
+>       from koopman.bounded_mpc_v51 import BoundedMPC as New
+E       ModuleNotFoundError: No module named 'koopman.bounded_mpc_v51'
+
+tests\test_deadzone_mpc_v51.py:13: ModuleNotFoundError
+_ test_legal_source_cases_keep_existing_predictions_selection_and_cost[base] __
+
+name = 'base'
+
+    @pytest.mark.parametrize('name',SUPPORTED_EMBODIMENTS)
+    def test_legal_source_cases_keep_existing_predictions_selection_and_cost(name):
+>       _,old,new,args=solvers(name)
+                       ^^^^^^^^^^^^^
+
+tests\test_deadzone_mpc_v51.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base'
+
+    def solvers(name='base'):
+        from koopman.bounded_mpc_v45 import BoundedMPC as Old
+>       from koopman.bounded_mpc_v51 import BoundedMPC as New
+E       ModuleNotFoundError: No module named 'koopman.bounded_mpc_v51'
+
+tests\test_deadzone_mpc_v51.py:13: ModuleNotFoundError
+_ test_legal_source_cases_keep_existing_predictions_selection_and_cost[long_body] _
+
+name = 'long_body'
+
+    @pytest.mark.parametrize('name',SUPPORTED_EMBODIMENTS)
+    def test_legal_source_cases_keep_existing_predictions_selection_and_cost(name):
+>       _,old,new,args=solvers(name)
+                       ^^^^^^^^^^^^^
+
+tests\test_deadzone_mpc_v51.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'long_body'
+
+    def solvers(name='base'):
+        from koopman.bounded_mpc_v45 import BoundedMPC as Old
+>       from koopman.bounded_mpc_v51 import BoundedMPC as New
+E       ModuleNotFoundError: No module named 'koopman.bounded_mpc_v51'
+
+tests\test_deadzone_mpc_v51.py:13: ModuleNotFoundError
+_ test_legal_source_cases_keep_existing_predictions_selection_and_cost[heavy_moderate] _
+
+name = 'heavy_moderate'
+
+    @pytest.mark.parametrize('name',SUPPORTED_EMBODIMENTS)
+    def test_legal_source_cases_keep_existing_predictions_selection_and_cost(name):
+>       _,old,new,args=solvers(name)
+                       ^^^^^^^^^^^^^
+
+tests\test_deadzone_mpc_v51.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'heavy_moderate'
+
+    def solvers(name='base'):
+        from koopman.bounded_mpc_v45 import BoundedMPC as Old
+>       from koopman.bounded_mpc_v51 import BoundedMPC as New
+E       ModuleNotFoundError: No module named 'koopman.bounded_mpc_v51'
+
+tests\test_deadzone_mpc_v51.py:13: ModuleNotFoundError
+_ test_legal_source_cases_keep_existing_predictions_selection_and_cost[asymmetric] _
+
+name = 'asymmetric'
+
+    @pytest.mark.parametrize('name',SUPPORTED_EMBODIMENTS)
+    def test_legal_source_cases_keep_existing_predictions_selection_and_cost(name):
+>       _,old,new,args=solvers(name)
+                       ^^^^^^^^^^^^^
+
+tests\test_deadzone_mpc_v51.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'asymmetric'
+
+    def solvers(name='base'):
+        from koopman.bounded_mpc_v45 import BoundedMPC as Old
+>       from koopman.bounded_mpc_v51 import BoundedMPC as New
+E       ModuleNotFoundError: No module named 'koopman.bounded_mpc_v51'
+
+tests\test_deadzone_mpc_v51.py:13: ModuleNotFoundError
+_ test_legal_source_cases_keep_existing_predictions_selection_and_cost[uuv6] __
+
+name = 'uuv6'
+
+    @pytest.mark.parametrize('name',SUPPORTED_EMBODIMENTS)
+    def test_legal_source_cases_keep_existing_predictions_selection_and_cost(name):
+>       _,old,new,args=solvers(name)
+                       ^^^^^^^^^^^^^
+
+tests\test_deadzone_mpc_v51.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv6'
+
+    def solvers(name='base'):
+        from koopman.bounded_mpc_v45 import BoundedMPC as Old
+>       from koopman.bounded_mpc_v51 import BoundedMPC as New
+E       ModuleNotFoundError: No module named 'koopman.bounded_mpc_v51'
+
+tests\test_deadzone_mpc_v51.py:13: ModuleNotFoundError
+_ test_legal_source_cases_keep_existing_predictions_selection_and_cost[uuv6_angled] _
+
+name = 'uuv6_angled'
+
+    @pytest.mark.parametrize('name',SUPPORTED_EMBODIMENTS)
+    def test_legal_source_cases_keep_existing_predictions_selection_and_cost(name):
+>       _,old,new,args=solvers(name)
+                       ^^^^^^^^^^^^^
+
+tests\test_deadzone_mpc_v51.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv6_angled'
+
+    def solvers(name='base'):
+        from koopman.bounded_mpc_v45 import BoundedMPC as Old
+>       from koopman.bounded_mpc_v51 import BoundedMPC as New
+E       ModuleNotFoundError: No module named 'koopman.bounded_mpc_v51'
+
+tests\test_deadzone_mpc_v51.py:13: ModuleNotFoundError
+_ test_legal_source_cases_keep_existing_predictions_selection_and_cost[uuv4] __
+
+name = 'uuv4'
+
+    @pytest.mark.parametrize('name',SUPPORTED_EMBODIMENTS)
+    def test_legal_source_cases_keep_existing_predictions_selection_and_cost(name):
+>       _,old,new,args=solvers(name)
+                       ^^^^^^^^^^^^^
+
+tests\test_deadzone_mpc_v51.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4'
+
+    def solvers(name='base'):
+        from koopman.bounded_mpc_v45 import BoundedMPC as Old
+>       from koopman.bounded_mpc_v51 import BoundedMPC as New
+E       ModuleNotFoundError: No module named 'koopman.bounded_mpc_v51'
+
+tests\test_deadzone_mpc_v51.py:13: ModuleNotFoundError
+_ test_legal_source_cases_keep_existing_predictions_selection_and_cost[uuv4_angled] _
+
+name = 'uuv4_angled'
+
+    @pytest.mark.parametrize('name',SUPPORTED_EMBODIMENTS)
+    def test_legal_source_cases_keep_existing_predictions_selection_and_cost(name):
+>       _,old,new,args=solvers(name)
+                       ^^^^^^^^^^^^^
+
+tests\test_deadzone_mpc_v51.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4_angled'
+
+    def solvers(name='base'):
+        from koopman.bounded_mpc_v45 import BoundedMPC as Old
+>       from koopman.bounded_mpc_v51 import BoundedMPC as New
+E       ModuleNotFoundError: No module named 'koopman.bounded_mpc_v51'
+
+tests\test_deadzone_mpc_v51.py:13: ModuleNotFoundError
+___ test_recovery_worker_uses_candidate_filter_and_retains_final_validation ___
+
+    def test_recovery_worker_uses_candidate_filter_and_retains_final_validation():
+>       from koopman.recovery_solver_v51 import RecoverySolver
+E       ModuleNotFoundError: No module named 'koopman.recovery_solver_v51'
+
+tests\test_deadzone_mpc_v51.py:48: ModuleNotFoundError
+=========================== short test summary info ===========================
+FAILED tests/test_deadzone_mpc_v51.py::test_better_cost_cannot_select_a_command_at_deadzone_boundary
+FAILED tests/test_deadzone_mpc_v51.py::test_ambiguous_baseline_rejects_before_any_model_call[0.02]
+FAILED tests/test_deadzone_mpc_v51.py::test_ambiguous_baseline_rejects_before_any_model_call[-0.02]
+FAILED tests/test_deadzone_mpc_v51.py::test_ambiguous_baseline_rejects_before_any_model_call[0.020001]
+FAILED tests/test_deadzone_mpc_v51.py::test_ambiguous_baseline_rejects_before_any_model_call[-0.020001]
+FAILED tests/test_deadzone_mpc_v51.py::test_ambiguous_baseline_rejects_before_any_model_call[0.019999]
+FAILED tests/test_deadzone_mpc_v51.py::test_ambiguous_baseline_rejects_before_any_model_call[-0.019999]
+FAILED tests/test_deadzone_mpc_v51.py::test_legal_source_cases_keep_existing_predictions_selection_and_cost[base]
+FAILED tests/test_deadzone_mpc_v51.py::test_legal_source_cases_keep_existing_predictions_selection_and_cost[long_body]
+FAILED tests/test_deadzone_mpc_v51.py::test_legal_source_cases_keep_existing_predictions_selection_and_cost[heavy_moderate]
+FAILED tests/test_deadzone_mpc_v51.py::test_legal_source_cases_keep_existing_predictions_selection_and_cost[asymmetric]
+FAILED tests/test_deadzone_mpc_v51.py::test_legal_source_cases_keep_existing_predictions_selection_and_cost[uuv6]
+FAILED tests/test_deadzone_mpc_v51.py::test_legal_source_cases_keep_existing_predictions_selection_and_cost[uuv6_angled]
+FAILED tests/test_deadzone_mpc_v51.py::test_legal_source_cases_keep_existing_predictions_selection_and_cost[uuv4]
+FAILED tests/test_deadzone_mpc_v51.py::test_legal_source_cases_keep_existing_predictions_selection_and_cost[uuv4_angled]
+FAILED tests/test_deadzone_mpc_v51.py::test_recovery_worker_uses_candidate_filter_and_retains_final_validation
+16 failed in 3.37s

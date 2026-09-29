@@ -1,0 +1,21 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+____________ test_collector_and_validator_share_one_case_deadline _____________
+
+    def test_collector_and_validator_share_one_case_deadline():
+        from workflows.run_runtime_v58 import run_sequence
+        now=[0.];calls=[]
+        def launch(q,kind,remaining):
+            calls.append(kind);now[0]+=179.
+            return {'native_exit':0,'group_stopped':True}
+        r=run_sequence(launch,lambda q:None,clock=lambda:now[0])
+>       assert calls==['collector'] and r['accepted']==[] and r['status']=='stopped_runtime_no_go'
+E       AssertionError: assert (['collector',...lidator', ...] == ['collector']
+E         
+E         Left contains 10 more items, first extra item: 'validator'
+E         Use -v to get more diff)
+
+tests\test_runtime_stage_v58.py:76: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_runtime_stage_v58.py::test_collector_and_validator_share_one_case_deadline
+1 failed in 4.27s

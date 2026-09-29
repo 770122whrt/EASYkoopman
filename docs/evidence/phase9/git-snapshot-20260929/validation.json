@@ -1,0 +1,43 @@
+{
+  "scope": "162 newly checkpointed test files; local Windows runtime; no Isaac or new training",
+  "tests": 1807,
+  "passed": 1747,
+  "failed": 5,
+  "skipped": 55,
+  "seconds": 250.574,
+  "exit_code": 1,
+  "failures": [
+    {
+      "class": "tests.test_rate30_v67",
+      "name": "test_solver_pairing_and_causal_origin[None]",
+      "reason": "local numba dependency unavailable"
+    },
+    {
+      "class": "tests.test_rate30_v67",
+      "name": "test_solver_pairing_and_causal_origin[baseline]",
+      "reason": "local numba dependency unavailable"
+    },
+    {
+      "class": "tests.test_rate30_v67",
+      "name": "test_solver_pairing_and_causal_origin[prefix]",
+      "reason": "local numba dependency unavailable"
+    },
+    {
+      "class": "tests.test_rate30_v67",
+      "name": "test_solver_pairing_and_causal_origin[origin]",
+      "reason": "local numba dependency unavailable"
+    },
+    {
+      "class": "tests.test_rate30_v67",
+      "name": "test_solver_pairing_and_causal_origin[float_origin]",
+      "reason": "local numba dependency unavailable"
+    }
+  ],
+  "syntax_errors": 0,
+  "missing_local_imports": 0,
+  "credential_pattern_findings": 0,
+  "independent_review": "two-step direction aligned; temporary fixtures excluded; source inventory complete at path level",
+  "whitespace_note": "Eight existing extra blank EOF lines in validator scripts preserved to avoid altering historical source hashes.",
+  "evidence_original_bytes_checked": 3587,
+  "evidence_byte_mismatches": 0
+}

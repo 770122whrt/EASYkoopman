@@ -1,0 +1,422 @@
+{
+  "schema": "koopman-mpc-v82-descriptive-control-report/1",
+  "status": "all_ten_native_runtime_accepted_local_scope_reported",
+  "scope": "two_known_configurations_one_2s_development_task_each",
+  "common_source_files": 674,
+  "unseen_configuration_closed_loop_proven": false,
+  "statistical_significance_claimed": false,
+  "real_time_qualified": false,
+  "pairings": [
+    {
+      "physical": "base-identified-on-r1",
+      "learned": "base-learned-0.001-on-r1",
+      "matched_prior": true,
+      "matched_task_reset_mechanics": true,
+      "prediction_file_sha256": "8f973c20e66eb06ef8077723ca172d3513ea434e167d106a6c35ac72f7ef5180",
+      "physical_trajectory_explicitly_reused": true
+    },
+    {
+      "physical": "base-identified-on-r1",
+      "learned": "base-learned-0.1-on-r1",
+      "matched_prior": true,
+      "matched_task_reset_mechanics": true,
+      "prediction_file_sha256": "7753e54624deaa72f6b234dc681a8dcfdfc74782117b2d6993cd0a25a2f60447",
+      "physical_trajectory_explicitly_reused": true
+    },
+    {
+      "physical": "uuv4-identified-on-r1",
+      "learned": "uuv4-learned-0.001-on-r1",
+      "matched_prior": true,
+      "matched_task_reset_mechanics": true,
+      "prediction_file_sha256": "8f973c20e66eb06ef8077723ca172d3513ea434e167d106a6c35ac72f7ef5180",
+      "physical_trajectory_explicitly_reused": true
+    },
+    {
+      "physical": "uuv4-identified-on-r1",
+      "learned": "uuv4-learned-0.1-on-r1",
+      "matched_prior": true,
+      "matched_task_reset_mechanics": true,
+      "prediction_file_sha256": "7753e54624deaa72f6b234dc681a8dcfdfc74782117b2d6993cd0a25a2f60447",
+      "physical_trajectory_explicitly_reused": true
+    }
+  ],
+  "rows": [
+    {
+      "case": "base-feedback-r1",
+      "configuration": "base",
+      "arm": "feedback",
+      "trace": "docs\\evidence\\phase9\\preview-v80-20260926\\final-return\\base-feedback-r1\\trace.json.gz",
+      "trace_sha256": "3797bca28aa96c9aeefdc5bc1644542913b381fd8b2d93899d183e5d8ae2a05a",
+      "validation_scope": "original_server_and_full_local_portable_recheck",
+      "server_acceptance_sha256": "fd0cb7e39e933ea5b71129078e77afa974c5577c1758be4c53b7f6f824368002",
+      "independent_recheck_sha256": "f98bfcb945927ea360daeec2496a54ac0a64bc037f16e8b62d0bd91db2110150",
+      "normalized_tracking_score": 0.23357443494671923,
+      "depth_rmse_m": 0.002784724627111971,
+      "attitude_rmse_rad": 0.0185121671048901,
+      "terminal_depth_error_m": 0.0021257400512695312,
+      "terminal_attitude_error_rad": 0.001011691231195839,
+      "control_squared_integral": 0.000920621410309938,
+      "actual_objective": 0.0009355010673967479,
+      "cycle_median_ms": 48.60190488398075,
+      "cycle_p95_ms": 50.83709228783846,
+      "cycle_max_ms": 55.08655123412609,
+      "solve_status_counts": {},
+      "selected_reference_counts": {},
+      "nlp_return_status_counts": {},
+      "control_effort_is_not_energy_in_joules": true,
+      "normalized_tracking_score_gain_vs_feedback_percent": 0.0,
+      "normalized_tracking_score_gain_vs_physical_on_percent": -52.61528726772222,
+      "actual_objective_gain_vs_feedback_percent": 0.0,
+      "actual_objective_gain_vs_physical_on_percent": -29.099120764881835
+    },
+    {
+      "case": "base-identified-off-r1",
+      "configuration": "base",
+      "arm": "identified-off",
+      "trace": "docs\\evidence\\phase9\\preview-v80-20260926\\final-return\\base-identified-off-r1\\trace.json.gz",
+      "trace_sha256": "59741079640f9ce04f2ad7eac261b68398f3f4e155465119e8ee64f119668c99",
+      "validation_scope": "original_server_and_full_local_portable_recheck",
+      "server_acceptance_sha256": "1eb93100c75078e67dcd801b9cd3e96f4637b5250decae7e37b28e49c4bd0614",
+      "independent_recheck_sha256": "4d200ebb508a968679210803b056de9141a2facd2fe55416e1d859be7832d9a8",
+      "normalized_tracking_score": 0.2836984077196389,
+      "depth_rmse_m": 0.0032715401470781555,
+      "attitude_rmse_rad": 0.020275738028876916,
+      "terminal_depth_error_m": 0.002903461456298828,
+      "terminal_attitude_error_rad": 0.009576683240464751,
+      "control_squared_integral": 0.0010767081850255233,
+      "actual_objective": 0.0012579353617363169,
+      "cycle_median_ms": 5612.478392198682,
+      "cycle_p95_ms": 22757.93526992201,
+      "cycle_max_ms": 25168.534507974982,
+      "solve_status_counts": {
+        "optimized": 37,
+        "warm_retained": 7,
+        "baseline_retained": 15
+      },
+      "selected_reference_counts": {
+        "worker": 37,
+        "warm": 7,
+        "held": 15
+      },
+      "nlp_return_status_counts": {
+        "Solve_Succeeded": 45,
+        "Maximum_Iterations_Exceeded": 12,
+        "Solved_To_Acceptable_Level": 2
+      },
+      "control_effort_is_not_energy_in_joules": true,
+      "normalized_tracking_score_gain_vs_feedback_percent": -21.459528644200066,
+      "normalized_tracking_score_gain_vs_physical_on_percent": -85.3658085543673,
+      "actual_objective_gain_vs_feedback_percent": -34.46648064622933,
+      "actual_objective_gain_vs_physical_on_percent": -73.59504423776207
+    },
+    {
+      "case": "base-identified-on-r1",
+      "configuration": "base",
+      "arm": "identified-on",
+      "trace": "docs\\evidence\\phase9\\preview-v80-20260926\\final-return\\base-identified-on-r1\\trace.json.gz",
+      "trace_sha256": "d30646ea9b9292956cbc5a6b81b0e985e3ed5b427caad86bd6819fd74a75ba37",
+      "validation_scope": "original_server_and_full_local_portable_recheck",
+      "server_acceptance_sha256": "c3619180cb1e713b8755c9a349c629444ca34f40215a8f05a01e17bafa158a8e",
+      "independent_recheck_sha256": "95017bb3b3f9d48e9346366ce367adb46eb6922cc7649beda44b93c781657887",
+      "normalized_tracking_score": 0.1530478624575637,
+      "depth_rmse_m": 0.00027406679399518064,
+      "attitude_rmse_rad": 0.01563892993467963,
+      "terminal_depth_error_m": 5.9604644775390625e-05,
+      "terminal_attitude_error_rad": 0.002287566401372631,
+      "control_squared_integral": 0.0009997885089603556,
+      "actual_objective": 0.0007246378301061423,
+      "cycle_median_ms": 23147.39788323641,
+      "cycle_p95_ms": 27053.674397431314,
+      "cycle_max_ms": 28511.47455535829,
+      "solve_status_counts": {
+        "optimized": 31,
+        "recovered": 3,
+        "warm_retained": 20,
+        "preview_retained": 5
+      },
+      "selected_reference_counts": {
+        "worker": 34,
+        "warm": 20,
+        "preview": 5
+      },
+      "nlp_return_status_counts": {
+        "Maximum_Iterations_Exceeded": 35,
+        "Solved_To_Acceptable_Level": 2,
+        "Solve_Succeeded": 22
+      },
+      "control_effort_is_not_energy_in_joules": true,
+      "normalized_tracking_score_gain_vs_feedback_percent": 34.475764656146765,
+      "normalized_tracking_score_gain_vs_physical_on_percent": 0.0,
+      "actual_objective_gain_vs_feedback_percent": 22.54013861014421,
+      "actual_objective_gain_vs_physical_on_percent": 0.0
+    },
+    {
+      "case": "uuv4-feedback-r1",
+      "configuration": "uuv4",
+      "arm": "feedback",
+      "trace": "docs\\evidence\\phase9\\preview-v80-20260926\\final-return\\uuv4-feedback-r1\\trace.json.gz",
+      "trace_sha256": "16d0ac97727f2fe111cacc766b0c67c4a84cb1b31ea5b6bbd7c59eae046701d0",
+      "validation_scope": "original_server_and_full_local_portable_recheck",
+      "server_acceptance_sha256": "07d178eb7619990f4494fdd46b96df46b2fd021a30b09ce8e95aad2930b18690",
+      "independent_recheck_sha256": "cbf72d9ae753b6c2e833189b3161ad23302484dd36587615ca12aa8cf09dfb68",
+      "normalized_tracking_score": 0.21393032095951076,
+      "depth_rmse_m": 0.0016929777665514747,
+      "attitude_rmse_rad": 0.018188562853152162,
+      "terminal_depth_error_m": 0.002231121063232422,
+      "terminal_attitude_error_rad": 0.00016078224002242966,
+      "control_squared_integral": 0.022722586165262917,
+      "actual_objective": 0.0010940089775164153,
+      "cycle_median_ms": 56.249070912599564,
+      "cycle_p95_ms": 65.92207364737988,
+      "cycle_max_ms": 76.35822333395481,
+      "solve_status_counts": {},
+      "selected_reference_counts": {},
+      "nlp_return_status_counts": {},
+      "control_effort_is_not_energy_in_joules": true,
+      "normalized_tracking_score_gain_vs_feedback_percent": 0.0,
+      "normalized_tracking_score_gain_vs_physical_on_percent": -43.69935051791891,
+      "actual_objective_gain_vs_feedback_percent": 0.0,
+      "actual_objective_gain_vs_physical_on_percent": -21.181400740408197
+    },
+    {
+      "case": "uuv4-identified-off-r1",
+      "configuration": "uuv4",
+      "arm": "identified-off",
+      "trace": "docs\\evidence\\phase9\\preview-v80-20260926\\final-return\\uuv4-identified-off-r1\\trace.json.gz",
+      "trace_sha256": "2a8f2e2e92616f78d760d0c08652d117b6bf556effed309b2bec790034dc82b4",
+      "validation_scope": "original_server_and_full_local_portable_recheck",
+      "server_acceptance_sha256": "38a21aa5ab0b7a1c68e2ca7aa4d86ac6a3d5a4c2532255808c5c878b56c12d41",
+      "independent_recheck_sha256": "0a1f335e6207ebf724b6670eb014a3d6cbda00ef5cf3bf33ef5f44c79af3ea7f",
+      "normalized_tracking_score": 0.20128505325569387,
+      "depth_rmse_m": 0.0008683943092987903,
+      "attitude_rmse_rad": 0.01786168106599768,
+      "terminal_depth_error_m": 0.0007290840148925781,
+      "terminal_attitude_error_rad": 0.0006969440482932368,
+      "control_squared_integral": 0.01861504296327776,
+      "actual_objective": 0.0010412276218957953,
+      "cycle_median_ms": 16413.62871043384,
+      "cycle_p95_ms": 19185.553857311606,
+      "cycle_max_ms": 19848.660439252853,
+      "solve_status_counts": {
+        "recovered": 18,
+        "warm_retained": 8,
+        "optimized": 33
+      },
+      "selected_reference_counts": {
+        "worker": 51,
+        "warm": 8
+      },
+      "nlp_return_status_counts": {
+        "Solve_Succeeded": 22,
+        "Maximum_Iterations_Exceeded": 30,
+        "Solved_To_Acceptable_Level": 6,
+        "Error_In_Step_Computation": 1
+      },
+      "control_effort_is_not_energy_in_joules": true,
+      "normalized_tracking_score_gain_vs_feedback_percent": 5.910928215832556,
+      "normalized_tracking_score_gain_vs_physical_on_percent": -35.20538506218711,
+      "actual_objective_gain_vs_feedback_percent": 4.824581580714494,
+      "actual_objective_gain_vs_physical_on_percent": -15.334905201034621
+    },
+    {
+      "case": "uuv4-identified-on-r1",
+      "configuration": "uuv4",
+      "arm": "identified-on",
+      "trace": "docs\\evidence\\phase9\\preview-v80-20260926\\final-return\\uuv4-identified-on-r1\\trace.json.gz",
+      "trace_sha256": "6faf47ba0938720a087282227d7f2ad1ed882abfeceb20a82dcc0652c164b13d",
+      "validation_scope": "original_server_and_full_local_portable_recheck",
+      "server_acceptance_sha256": "cdaa55142e358146798a6ea21fa6265bf3916796956b6fdb098a2b09d9732eea",
+      "independent_recheck_sha256": "dc437d1b0c271110e516011f859ae724bda9cc4cefb1ef4a2b4e54dbf7639427",
+      "normalized_tracking_score": 0.14887354757587037,
+      "depth_rmse_m": 0.00037776631880347453,
+      "attitude_rmse_rad": 0.01541514990374415,
+      "terminal_depth_error_m": 0.0003223419189453125,
+      "terminal_attitude_error_rad": 0.002018184354691248,
+      "control_squared_integral": 0.02085481216806622,
+      "actual_objective": 0.0009027862121019499,
+      "cycle_median_ms": 17922.471445053816,
+      "cycle_p95_ms": 19869.037609547377,
+      "cycle_max_ms": 20122.142581269145,
+      "solve_status_counts": {
+        "recovered": 8,
+        "optimized": 46,
+        "warm_retained": 5
+      },
+      "selected_reference_counts": {
+        "worker": 54,
+        "warm": 5
+      },
+      "nlp_return_status_counts": {
+        "Maximum_Iterations_Exceeded": 32,
+        "Solve_Succeeded": 27
+      },
+      "control_effort_is_not_energy_in_joules": true,
+      "normalized_tracking_score_gain_vs_feedback_percent": 30.410263066895162,
+      "normalized_tracking_score_gain_vs_physical_on_percent": 0.0,
+      "actual_objective_gain_vs_feedback_percent": 17.479085578307895,
+      "actual_objective_gain_vs_physical_on_percent": 0.0
+    },
+    {
+      "case": "base-learned-0.001-on-r1",
+      "configuration": "base",
+      "arm": "learned_0.001",
+      "trace": "docs\\evidence\\phase9\\learned-control-v82-20260926\\final-return\\base-learned-0.001-on-r1\\trace.json.gz",
+      "trace_sha256": "c47804af3f8be480ec985cf01c7142a57380c9ccb4c33fe1f2f91b2613bb968f",
+      "validation_scope": "original_server_and_full_local_portable_recheck",
+      "server_acceptance_sha256": "56d700541126e5b2b9661e10188dce92893db18da32b17b5d3cd5525414e7ca6",
+      "independent_recheck_sha256": "76b96aa8b05f02b218a1dad073333f757a776b4424a7f465f1c5ffb3cfa636c7",
+      "normalized_tracking_score": 0.1575916562139488,
+      "depth_rmse_m": 0.00019067601199993487,
+      "attitude_rmse_rad": 0.015874546310874815,
+      "terminal_depth_error_m": 0.00025272369384765625,
+      "terminal_attitude_error_rad": 0.0008683110379318433,
+      "control_squared_integral": 0.0011279914323523179,
+      "actual_objective": 0.0007184168915993534,
+      "cycle_median_ms": 25087.737573310733,
+      "cycle_p95_ms": 28697.506658919156,
+      "cycle_max_ms": 30065.304145216942,
+      "solve_status_counts": {
+        "optimized": 29,
+        "recovered": 5,
+        "warm_retained": 22,
+        "preview_retained": 3
+      },
+      "selected_reference_counts": {
+        "worker": 34,
+        "warm": 22,
+        "preview": 3
+      },
+      "nlp_return_status_counts": {
+        "Maximum_Iterations_Exceeded": 32,
+        "Solved_To_Acceptable_Level": 4,
+        "Solve_Succeeded": 23
+      },
+      "control_effort_is_not_energy_in_joules": true,
+      "normalized_tracking_score_gain_vs_feedback_percent": 32.53043457007737,
+      "normalized_tracking_score_gain_vs_physical_on_percent": -2.968871099160242,
+      "actual_objective_gain_vs_feedback_percent": 23.205123261000903,
+      "actual_objective_gain_vs_physical_on_percent": 0.8584893374774083
+    },
+    {
+      "case": "base-learned-0.1-on-r1",
+      "configuration": "base",
+      "arm": "learned_0.1",
+      "trace": "docs\\evidence\\phase9\\learned-control-v82-20260926\\final-return\\base-learned-0.1-on-r1\\trace.json.gz",
+      "trace_sha256": "5ef1b1d1b8c4d667e44c37c75e26de32ff9865a60819cc7371bad72f062f7c86",
+      "validation_scope": "original_server_and_full_local_portable_recheck",
+      "server_acceptance_sha256": "3ba962b8878a5375d779cd7e3ee97057b6dd885dac989b1aab421fed70e4d6de",
+      "independent_recheck_sha256": "c6371f58630dcfbca6c195273e781a5bcd50be3f9d2b379c1eae35818556f95d",
+      "normalized_tracking_score": 0.1803978185546272,
+      "depth_rmse_m": 0.0016038928158599716,
+      "attitude_rmse_rad": 0.016683723236386255,
+      "terminal_depth_error_m": 0.0008692741394042969,
+      "terminal_attitude_error_rad": 0.0011820110444469255,
+      "control_squared_integral": 0.0010987316935538065,
+      "actual_objective": 0.0007886649399274447,
+      "cycle_median_ms": 13006.381504237652,
+      "cycle_p95_ms": 27502.825099788606,
+      "cycle_max_ms": 29003.553856164217,
+      "solve_status_counts": {
+        "optimized": 22,
+        "recovered": 2,
+        "preview_retained": 1,
+        "warm_retained": 6,
+        "baseline_retained": 28
+      },
+      "selected_reference_counts": {
+        "worker": 24,
+        "preview": 1,
+        "warm": 6,
+        "held": 28
+      },
+      "nlp_return_status_counts": {
+        "Maximum_Iterations_Exceeded": 23,
+        "Solve_Succeeded": 35,
+        "Solved_To_Acceptable_Level": 1
+      },
+      "control_effort_is_not_energy_in_joules": true,
+      "normalized_tracking_score_gain_vs_feedback_percent": 22.7664540446056,
+      "normalized_tracking_score_gain_vs_physical_on_percent": -17.870198026873418,
+      "actual_objective_gain_vs_feedback_percent": 15.69598716524283,
+      "actual_objective_gain_vs_physical_on_percent": -8.835739339184645
+    },
+    {
+      "case": "uuv4-learned-0.001-on-r1",
+      "configuration": "uuv4",
+      "arm": "learned_0.001",
+      "trace": "docs\\evidence\\phase9\\learned-control-v82-20260926\\final-return\\uuv4-learned-0.001-on-r1\\trace.json.gz",
+      "trace_sha256": "d90fd2627964f400ee6c4b5185d6d4fc12fa9ec587a9475dbf2ccd0628277207",
+      "validation_scope": "original_server_and_strict_same_runtime_recheck_windows_causal_preview_failed",
+      "server_acceptance_sha256": "f09e1c507f16df1c07f6e4ed1270d19bf58073d19d8c47784913ba8630283685",
+      "independent_recheck_sha256": "38f3d0e82730770ebe7d0c927e396f34d413b89c50735cd5c31b0f9a889db008",
+      "normalized_tracking_score": 0.1314229461708843,
+      "depth_rmse_m": 0.00035238832056035433,
+      "attitude_rmse_rad": 0.014483784165733258,
+      "terminal_depth_error_m": 0.00026798248291015625,
+      "terminal_attitude_error_rad": 0.0022257236242781155,
+      "control_squared_integral": 0.019399347826193996,
+      "actual_objective": 0.0008802375289623113,
+      "cycle_median_ms": 9881.54798001051,
+      "cycle_p95_ms": 20575.476323626935,
+      "cycle_max_ms": 21141.656218096614,
+      "solve_status_counts": {
+        "recovered": 5,
+        "warm_retained": 6,
+        "optimized": 48
+      },
+      "selected_reference_counts": {
+        "worker": 53,
+        "warm": 6
+      },
+      "nlp_return_status_counts": {
+        "Solved_To_Acceptable_Level": 4,
+        "Solve_Succeeded": 38,
+        "Maximum_Iterations_Exceeded": 17
+      },
+      "control_effort_is_not_energy_in_joules": true,
+      "normalized_tracking_score_gain_vs_feedback_percent": 38.56740569479261,
+      "normalized_tracking_score_gain_vs_physical_on_percent": 11.721760977108941,
+      "actual_objective_gain_vs_feedback_percent": 19.540191437861974,
+      "actual_objective_gain_vs_physical_on_percent": 2.4976769513502695
+    },
+    {
+      "case": "uuv4-learned-0.1-on-r1",
+      "configuration": "uuv4",
+      "arm": "learned_0.1",
+      "trace": "docs\\evidence\\phase9\\learned-control-v82-20260926\\final-return\\uuv4-learned-0.1-on-r1\\trace.json.gz",
+      "trace_sha256": "b4e19b9bb75188f30a974daa7a1502ba3491f63317e552456f6a82cc596b4dfe",
+      "validation_scope": "original_server_and_full_local_portable_recheck",
+      "server_acceptance_sha256": "5fcf7e0858048df8f8fdce57f617adb9fd67c039101a7800a2f492b14aa7996b",
+      "independent_recheck_sha256": "1a0d6c8d49ef2b87e8fd1aa29cd046bf3393686d6694607cdd9eea5f174393d4",
+      "normalized_tracking_score": 0.1343343958656436,
+      "depth_rmse_m": 0.0003058388285262054,
+      "attitude_rmse_rad": 0.014647896908051088,
+      "terminal_depth_error_m": 9.107589721679688e-05,
+      "terminal_attitude_error_rad": 0.0027349585513916884,
+      "control_squared_integral": 0.020193322168548886,
+      "actual_objective": 0.0008929692403893334,
+      "cycle_median_ms": 18750.933531671762,
+      "cycle_p95_ms": 21297.055516391993,
+      "cycle_max_ms": 21507.311737164855,
+      "solve_status_counts": {
+        "recovered": 6,
+        "warm_retained": 5,
+        "optimized": 48
+      },
+      "selected_reference_counts": {
+        "worker": 54,
+        "warm": 5
+      },
+      "nlp_return_status_counts": {
+        "Maximum_Iterations_Exceeded": 26,
+        "Solved_To_Acceptable_Level": 4,
+        "Solve_Succeeded": 29
+      },
+      "control_effort_is_not_energy_in_joules": true,
+      "normalized_tracking_score_gain_vs_feedback_percent": 37.20647205915788,
+      "normalized_tracking_score_gain_vs_physical_on_percent": 9.766108181721933,
+      "actual_objective_gain_vs_feedback_percent": 18.376424806264012,
+      "actual_objective_gain_vs_physical_on_percent": 1.0874082458303902
+    }
+  ]
+}

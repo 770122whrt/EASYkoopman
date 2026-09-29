@@ -1,0 +1,53 @@
+"""Independent saved-output arithmetic and fit-role audit; no fitting."""
+from pathlib import Path
+import hashlib,json,sys
+import numpy as np
+from koopman.projected_edmd_v24 import PhysicalContext,observable
+root=Path.cwd();structured='--structured' in sys.argv
+name='structured-edmd-pilot-20260912' if structured else 'projected-edmd-pilot-20260912'
+rawname='server-structured-pilot-20260912-r7' if structured else 'server-fresh-pilot-20260912-r7'
+directory=root/'docs/evidence/phase8_4'/name;raw=root/'docs/evidence/phase8_4'/rawname/'raw'
+models=json.loads((directory/'models.json').read_text());scores=json.loads((directory/'scores.json').read_text());meta=json.loads((directory/'reconstruction.json').read_text());decision=json.loads((directory/'decision.json').read_text())
+assert len(models)==(28 if structured else 21) and len(scores)==(684 if structured else 468)
+lookup={e['run_id']:e for e in meta};expected_seeds={8431,8432,8433} if structured else {8411,8412,8413}
+for model in models:
+ dictionary=model['family'].split('_')[0]
+ names=[n for n in lookup if lookup[n]['role']=='fit' and lookup[n]['configuration'] in model['fit_configurations']]
+ assert set(model['fit_episode_hashes'])==set(names)
+ assert set(lookup[n]['seed'] for n in names)==expected_seeds
+ features=[]
+ for n in names:
+  path=raw/'results'/n/'trace.json';assert hashlib.sha256(path.read_bytes()).hexdigest()==model['fit_episode_hashes'][n]
+  data=json.loads(path.read_text());context=PhysicalContext(**lookup[n]['context'])
+  features.append(observable(np.asarray([r['before']['state_11'][0] for r in data['substeps']]),context,dictionary))
+ a=np.concatenate(features)
+ if model['status']=='fit_complete':
+  op=model['operator'];np.testing.assert_allclose(op['mean'],a.mean(0),atol=1e-12,rtol=0)
+  np.testing.assert_allclose(op['scale'],np.maximum(a.std(0),1e-6),atol=1e-12,rtol=0)
+  assert op['audit']['fit_rows']==len(a)
+  if structured and model['family'].endswith('_fixed'):
+   assert op['audit']['learned_force_coefficients']==0 and np.asarray(op['coefficient']).shape==(a.shape[1],a.shape[1])
+complete=failed=0
+for score in scores:
+ h=score['horizon_control_intervals'];count=129-h
+ assert score['origins']==count and score['origin_control_indices']==list(range(count))
+ assert len(score['first_failure_physics_tick'])==count
+ assert score['failed_origins']==sum(t!=-1 for t in score['first_failure_physics_tick'])
+ if score['complete_aggregate']:
+  complete+=1;assert score['failed_origins']==0
+  for field,origin in [('endpoint_rmse','per_origin_endpoint_squared_error'),('path_rmse','per_origin_path_mean_squared_error')]:
+   values=np.asarray(score[origin]);assert values.shape==(count,4) and np.isfinite(values).all() and np.all(values>=0)
+   np.testing.assert_allclose(score[field],np.sqrt(values.mean(0)),atol=1e-12,rtol=0)
+  assert len(score['final_predictions'])==count
+ else:
+  failed+=1;assert score['failed_origins']>0
+  assert all(score[k] is None for k in ['endpoint_rmse','path_rmse','per_origin_endpoint_squared_error','per_origin_path_mean_squared_error','final_predictions'])
+  assert all(t==-1 or 1<=t<=2*h for t in score['first_failure_physics_tick'])
+primary='nonlinear_fixed' if structured else 'nonlinear_physical'
+rows=[s for s in scores if s['family']==primary and s['scope'].startswith('heldout-') and s['mode']=='projected' and s['horizon_control_intervals']==128]
+stable=len(rows)==9 and all(s['complete_aggregate'] for s in rows)
+assert decision['primary_128_stable']==stable
+if not stable:assert decision['decision']=='NO_GO' and not decision['formal_d23_permitted_to_prepare']
+out=root/'docs/evidence/phase8_4'/('structured-pilot-integrity-audit-20260912' if structured else 'pilot-integrity-audit-20260912');out.mkdir(exist_ok=False)
+result={'status':'saved_score_arithmetic_and_fit_role_checks_pass','models':len(models),'scores':len(scores),'complete_score_records':complete,'incomplete_score_records':failed,'fit_seeds':sorted(expected_seeds),'fit_normalizers_recomputed':True,'survivor_only_aggregation':False,'primary_128_stability_matches_decision':True,'fits_added':0,'model_claim_promoted':False,'checked_files_sha256':{n:hashlib.sha256((directory/n).read_bytes()).hexdigest() for n in ['models.json','scores.json','reconstruction.json','decision.json']},'limits':'independent arithmetic and source-role recomputation; not an independent scientific reviewer or rerun of physics'}
+(out/'verification.json').write_text(json.dumps(result,indent=2)+'\n');(out/'verification-script.py.txt').write_bytes(Path(__file__).read_bytes());print(json.dumps(result,indent=2))

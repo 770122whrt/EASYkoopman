@@ -1,0 +1,269 @@
+..................................F.FFFFFFFFFFFFFFF                      [100%]
+================================== FAILURES ===================================
+________ test_reply_validation_itself_cannot_cross_admission_deadline _________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002C175BED190>
+
+    def test_reply_validation_itself_cannot_cross_admission_deadline(monkeypatch):
+        ledger,_,_,clock,arb,_,event=fixture();original=ledger._checked_command
+        def delayed(*args,**kwargs):
+            clock.now+=.01
+            return original(*args,**kwargs)
+        monkeypatch.setattr(ledger,'_checked_command',delayed)
+>       assert arb.ingest(event)['status']=='rejected'
+E       AssertionError: assert 'staged' == 'rejected'
+E         
+E         - rejected
+E         + staged
+
+tests\test_plan_arbiter_v52.py:165: AssertionError
+___ test_coordinator_startup_prefix_plan_activation_and_ack_form_one_chain ____
+
+    def test_coordinator_startup_prefix_plan_activation_and_ack_form_one_chain():
+>       run,clock,worker=setup();d=step(run)
+                         ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:71: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+worker = True
+
+    def setup(worker=True):
+>       from koopman.runtime_coordinator_v52 import RuntimeCoordinator
+E       ModuleNotFoundError: No module named 'koopman.runtime_coordinator_v52'
+
+tests\test_runtime_coordinator_v52.py:40: ModuleNotFoundError
+____ test_worker_failure_keeps_qualified_feedback_without_wait_or_restart _____
+
+    def test_worker_failure_keeps_qualified_feedback_without_wait_or_restart():
+>       run,clock,worker=setup();ack(run,step(run));clock.now=1/60;ack(run,step(run))
+                         ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:90: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+worker = True
+
+    def setup(worker=True):
+>       from koopman.runtime_coordinator_v52 import RuntimeCoordinator
+E       ModuleNotFoundError: No module named 'koopman.runtime_coordinator_v52'
+
+tests\test_runtime_coordinator_v52.py:40: ModuleNotFoundError
+__ test_runtime_safety_rejects_before_any_dispatch_or_model_request[contact] __
+
+bad = 'contact'
+
+    @pytest.mark.parametrize('bad',['contact','clearance','xy','identity','missing'])
+    def test_runtime_safety_rejects_before_any_dispatch_or_model_request(bad):
+>       run,_,worker=setup();s=safety()
+                     ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:100: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+worker = True
+
+    def setup(worker=True):
+>       from koopman.runtime_coordinator_v52 import RuntimeCoordinator
+E       ModuleNotFoundError: No module named 'koopman.runtime_coordinator_v52'
+
+tests\test_runtime_coordinator_v52.py:40: ModuleNotFoundError
+_ test_runtime_safety_rejects_before_any_dispatch_or_model_request[clearance] _
+
+bad = 'clearance'
+
+    @pytest.mark.parametrize('bad',['contact','clearance','xy','identity','missing'])
+    def test_runtime_safety_rejects_before_any_dispatch_or_model_request(bad):
+>       run,_,worker=setup();s=safety()
+                     ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:100: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+worker = True
+
+    def setup(worker=True):
+>       from koopman.runtime_coordinator_v52 import RuntimeCoordinator
+E       ModuleNotFoundError: No module named 'koopman.runtime_coordinator_v52'
+
+tests\test_runtime_coordinator_v52.py:40: ModuleNotFoundError
+____ test_runtime_safety_rejects_before_any_dispatch_or_model_request[xy] _____
+
+bad = 'xy'
+
+    @pytest.mark.parametrize('bad',['contact','clearance','xy','identity','missing'])
+    def test_runtime_safety_rejects_before_any_dispatch_or_model_request(bad):
+>       run,_,worker=setup();s=safety()
+                     ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:100: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+worker = True
+
+    def setup(worker=True):
+>       from koopman.runtime_coordinator_v52 import RuntimeCoordinator
+E       ModuleNotFoundError: No module named 'koopman.runtime_coordinator_v52'
+
+tests\test_runtime_coordinator_v52.py:40: ModuleNotFoundError
+_ test_runtime_safety_rejects_before_any_dispatch_or_model_request[identity] __
+
+bad = 'identity'
+
+    @pytest.mark.parametrize('bad',['contact','clearance','xy','identity','missing'])
+    def test_runtime_safety_rejects_before_any_dispatch_or_model_request(bad):
+>       run,_,worker=setup();s=safety()
+                     ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:100: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+worker = True
+
+    def setup(worker=True):
+>       from koopman.runtime_coordinator_v52 import RuntimeCoordinator
+E       ModuleNotFoundError: No module named 'koopman.runtime_coordinator_v52'
+
+tests\test_runtime_coordinator_v52.py:40: ModuleNotFoundError
+__ test_runtime_safety_rejects_before_any_dispatch_or_model_request[missing] __
+
+bad = 'missing'
+
+    @pytest.mark.parametrize('bad',['contact','clearance','xy','identity','missing'])
+    def test_runtime_safety_rejects_before_any_dispatch_or_model_request(bad):
+>       run,_,worker=setup();s=safety()
+                     ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:100: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+worker = True
+
+    def setup(worker=True):
+>       from koopman.runtime_coordinator_v52 import RuntimeCoordinator
+E       ModuleNotFoundError: No module named 'koopman.runtime_coordinator_v52'
+
+tests\test_runtime_coordinator_v52.py:40: ModuleNotFoundError
+____ test_unsafe_first_substep_preserves_actual_partial_history_and_stops _____
+
+    def test_unsafe_first_substep_preserves_actual_partial_history_and_stops():
+>       run,_,_=setup();p=step(run)['packet']
+                ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:112: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+worker = True
+
+    def setup(worker=True):
+>       from koopman.runtime_coordinator_v52 import RuntimeCoordinator
+E       ModuleNotFoundError: No module named 'koopman.runtime_coordinator_v52'
+
+tests\test_runtime_coordinator_v52.py:40: ModuleNotFoundError
+_______ test_feedback_failure_never_falls_back_to_zero_or_last_command ________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002C175C45250>
+
+    def test_feedback_failure_never_falls_back_to_zero_or_last_command(monkeypatch):
+>       run,_,_=setup();monkeypatch.setattr(run.feedback,'decide',lambda *a,**k:dict(status='no_command',reason='timeout'))
+                ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+worker = True
+
+    def setup(worker=True):
+>       from koopman.runtime_coordinator_v52 import RuntimeCoordinator
+E       ModuleNotFoundError: No module named 'koopman.runtime_coordinator_v52'
+
+tests\test_runtime_coordinator_v52.py:40: ModuleNotFoundError
+_______________ test_unacknowledged_dispatch_is_not_sent_again ________________
+
+    def test_unacknowledged_dispatch_is_not_sent_again():
+>       run,_,worker=setup();d=step(run);got=step(run)
+                     ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:126: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+worker = True
+
+    def setup(worker=True):
+>       from koopman.runtime_coordinator_v52 import RuntimeCoordinator
+E       ModuleNotFoundError: No module named 'koopman.runtime_coordinator_v52'
+
+tests\test_runtime_coordinator_v52.py:40: ModuleNotFoundError
+_______ test_control_decision_deadline_does_not_return_a_late_dispatch ________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002C175C57830>
+
+    def test_control_decision_deadline_does_not_return_a_late_dispatch(monkeypatch):
+>       run,clock,_=setup();original=run.feedback.decide
+                    ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:132: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+worker = True
+
+    def setup(worker=True):
+>       from koopman.runtime_coordinator_v52 import RuntimeCoordinator
+E       ModuleNotFoundError: No module named 'koopman.runtime_coordinator_v52'
+
+tests\test_runtime_coordinator_v52.py:40: ModuleNotFoundError
+________ test_worker_replacement_preserves_startup_and_causal_history _________
+
+    def test_worker_replacement_preserves_startup_and_causal_history():
+>       run,clock,worker=setup();ack(run,step(run));old=run.ledger.physics_index
+                         ^^^^^^^
+
+tests\test_runtime_coordinator_v52.py:141: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+worker = True
+
+    def setup(worker=True):
+>       from koopman.runtime_coordinator_v52 import RuntimeCoordinator
+E       ModuleNotFoundError: No module named 'koopman.runtime_coordinator_v52'
+
+tests\test_runtime_coordinator_v52.py:40: ModuleNotFoundError
+_ test_progress_guard_stops_persistent_measured_error_on_confirmed_intervals __
+
+    def test_progress_guard_stops_persistent_measured_error_on_confirmed_intervals():
+>       from koopman.runtime_coordinator_v52 import ProgressGuard,RuntimeConfig
+E       ModuleNotFoundError: No module named 'koopman.runtime_coordinator_v52'
+
+tests\test_runtime_coordinator_v52.py:149: ModuleNotFoundError
+_ test_progress_guard_recognizes_measured_improvement_not_static_wrench_label _
+
+    def test_progress_guard_recognizes_measured_improvement_not_static_wrench_label():
+>       from koopman.runtime_coordinator_v52 import ProgressGuard,RuntimeConfig
+E       ModuleNotFoundError: No module named 'koopman.runtime_coordinator_v52'
+
+tests\test_runtime_coordinator_v52.py:159: ModuleNotFoundError
+_______ test_zero_progress_limit_and_duplicate_observation_fail_closed ________
+
+    def test_zero_progress_limit_and_duplicate_observation_fail_closed():
+>       from koopman.runtime_coordinator_v52 import ProgressGuard,RuntimeConfig
+E       ModuleNotFoundError: No module named 'koopman.runtime_coordinator_v52'
+
+tests\test_runtime_coordinator_v52.py:169: ModuleNotFoundError
+=========================== short test summary info ===========================
+FAILED tests/test_plan_arbiter_v52.py::test_reply_validation_itself_cannot_cross_admission_deadline
+FAILED tests/test_runtime_coordinator_v52.py::test_coordinator_startup_prefix_plan_activation_and_ack_form_one_chain
+FAILED tests/test_runtime_coordinator_v52.py::test_worker_failure_keeps_qualified_feedback_without_wait_or_restart
+FAILED tests/test_runtime_coordinator_v52.py::test_runtime_safety_rejects_before_any_dispatch_or_model_request[contact]
+FAILED tests/test_runtime_coordinator_v52.py::test_runtime_safety_rejects_before_any_dispatch_or_model_request[clearance]
+FAILED tests/test_runtime_coordinator_v52.py::test_runtime_safety_rejects_before_any_dispatch_or_model_request[xy]
+FAILED tests/test_runtime_coordinator_v52.py::test_runtime_safety_rejects_before_any_dispatch_or_model_request[identity]
+FAILED tests/test_runtime_coordinator_v52.py::test_runtime_safety_rejects_before_any_dispatch_or_model_request[missing]
+FAILED tests/test_runtime_coordinator_v52.py::test_unsafe_first_substep_preserves_actual_partial_history_and_stops
+FAILED tests/test_runtime_coordinator_v52.py::test_feedback_failure_never_falls_back_to_zero_or_last_command
+FAILED tests/test_runtime_coordinator_v52.py::test_unacknowledged_dispatch_is_not_sent_again
+FAILED tests/test_runtime_coordinator_v52.py::test_control_decision_deadline_does_not_return_a_late_dispatch
+FAILED tests/test_runtime_coordinator_v52.py::test_worker_replacement_preserves_startup_and_causal_history
+FAILED tests/test_runtime_coordinator_v52.py::test_progress_guard_stops_persistent_measured_error_on_confirmed_intervals
+FAILED tests/test_runtime_coordinator_v52.py::test_progress_guard_recognizes_measured_improvement_not_static_wrench_label
+FAILED tests/test_runtime_coordinator_v52.py::test_zero_progress_limit_and_duplicate_observation_fail_closed
+16 failed, 35 passed in 13.01s

@@ -1,0 +1,52 @@
+{
+  "bundle_dir": "docs_new/figure/phase56_fm_bundle_obs12_v1",
+  "bundle_pt": "docs_new/figure/phase56_fm_bundle_obs12_v1/bundle.pt",
+  "feature_columns": [
+    "goal_quat_w",
+    "goal_quat_x",
+    "goal_quat_y",
+    "goal_quat_z",
+    "true_world_z",
+    "root_quat_w",
+    "root_quat_x",
+    "root_quat_y",
+    "root_quat_z",
+    "root_ang_vel_x",
+    "root_ang_vel_y",
+    "root_ang_vel_z"
+  ],
+  "feature_dim": 12,
+  "fm_profile": "m160_i16_s128",
+  "fm_summary": {
+    "config": {
+      "batch_size": 128,
+      "depth": 2,
+      "device": "cpu",
+      "hidden_dim": 64,
+      "integration_steps": 16,
+      "learning_rate": 0.001,
+      "num_steps": 160,
+      "seed": 0,
+      "weight_decay": 1e-05
+    },
+    "feature_dim": 12,
+    "loss_final": 0.9398508071899414,
+    "loss_initial": 2.1756985187530518,
+    "loss_min": 0.9344046115875244,
+    "path_curvature": 0.009905293583869934,
+    "source_size": 256,
+    "target_size": 256,
+    "terminal_mean_gap_l2": 0.2589597702026367,
+    "terminal_mmd": 0.05461867153644562
+  },
+  "max_samples": 256,
+  "metadata_json": "docs_new/figure/phase56_fm_bundle_obs12_v1/metadata.json",
+  "npz": "docs_new/figure/fm_dataset_obs12_core_v1/fm_dataset_obs12_v1.npz",
+  "online_allowed": false,
+  "source_rows": 7721,
+  "source_tag": 0,
+  "target_alpha": 0.25,
+  "target_index": 4,
+  "target_rows": 246598,
+  "target_tag": 2
+}

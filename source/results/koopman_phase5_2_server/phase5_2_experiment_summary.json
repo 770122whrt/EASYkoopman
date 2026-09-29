@@ -1,0 +1,341 @@
+{
+  "phase": "05.2",
+  "selection": {
+    "recommended_profile": "reward_v1_only",
+    "status": "best_balanced_candidate_but_not_full_promotion",
+    "reason": "reward_v1_only gives large fallback reduction versus the Phase 5.2 rerun baseline with smaller depth and saturation regression than adapter_soft_v1_only; mpc_health_v1_only is rejected due to large depth and action clipping regression.",
+    "do_not_promote_as_final": "No candidate improves PWM saturation; none beats the old Phase 5.1 baseline across fallback/depth. Treat this as a next-candidate parameter set, not a final controller claim."
+  },
+  "profiles": {
+    "baseline_rerun": {
+      "checkpoint": "/root/IsaacLab/logs/rsl_rl/phase52_baseline_rerun/2026-07-05_10-20-59_baseline_rerun_200/model_199.pt",
+      "profile_id": "baseline_rerun",
+      "reward_profile": "legacy_easyuuv_v0",
+      "adapter_profile": "heuristic_reference_delta_v0_default",
+      "mpc_profile": "mpc_default_v0",
+      "ppo": {
+        "max_iterations": 200,
+        "save_interval": 50,
+        "runner_num_steps_per_env": 24,
+        "learning_rate": 0.0005,
+        "num_learning_epochs": 5,
+        "num_mini_batches": 4,
+        "clip_param": 0.2,
+        "gamma": 0.99,
+        "lam": 0.95,
+        "desired_kl": 0.01
+      },
+      "averages": {
+        "fallback_rate": 0.2333333333333333,
+        "pwm_saturation_rate": 0.2292857142857143,
+        "policy_action_clip_rate_mean": 0.051666666666666666,
+        "latency_ms_mean": 11.89904440283066,
+        "depth_rmse": 0.8563918385301346,
+        "attitude_rmse": 0.8135436035643305
+      },
+      "trajectories": {
+        "step": {
+          "fallback_rate": 0.14857142857142858,
+          "pwm_saturation_rate": 0.3489285714285714,
+          "policy_action_clip_rate_mean": 0.04285714285714286,
+          "latency_ms_mean": 11.929521728307009,
+          "latency_ms_max": 12.38095574080944,
+          "depth_rmse": 0.7932207539925704,
+          "attitude_rmse": 0.8882466078575434,
+          "fallback_reason_counts": {
+            "no_cost_improvement": 15,
+            "timeout": 37
+          }
+        },
+        "sine": {
+          "fallback_rate": 0.30857142857142855,
+          "pwm_saturation_rate": 0.25535714285714284,
+          "policy_action_clip_rate_mean": 0.03785714285714286,
+          "latency_ms_mean": 11.721233901168619,
+          "latency_ms_max": 12.397264130413532,
+          "depth_rmse": 0.7222584544675595,
+          "attitude_rmse": 0.8054049203897072,
+          "fallback_reason_counts": {
+            "no_cost_improvement": 93,
+            "timeout": 15
+          }
+        },
+        "irregular": {
+          "fallback_rate": 0.24285714285714285,
+          "pwm_saturation_rate": 0.08357142857142857,
+          "policy_action_clip_rate_mean": 0.07428571428571429,
+          "latency_ms_mean": 12.046377579016346,
+          "latency_ms_max": 12.590277008712292,
+          "depth_rmse": 1.0536963071302736,
+          "attitude_rmse": 0.7469792824457407,
+          "fallback_reason_counts": {
+            "no_cost_improvement": 13,
+            "timeout": 72
+          }
+        }
+      },
+      "hard_gate": {
+        "jsonl_validator_passed": true,
+        "checkpoint_provenance_passed": true,
+        "latency_mean_under_20ms": true,
+        "nonfinite_counts_zero": true
+      },
+      "promotion_vs_phase52_baseline": "baseline"
+    },
+    "reward_v1_only": {
+      "checkpoint": "/root/IsaacLab/logs/rsl_rl/phase52_reward_v1_only/2026-07-05_10-24-46_reward_v1_only_200/model_199.pt",
+      "profile_id": "reward_v1_only",
+      "reward_profile": "koopman_mpc_stability_v1",
+      "adapter_profile": "heuristic_reference_delta_v0_default",
+      "mpc_profile": "mpc_default_v0",
+      "ppo": {
+        "max_iterations": 200,
+        "save_interval": 50,
+        "runner_num_steps_per_env": 24,
+        "learning_rate": 0.0005,
+        "num_learning_epochs": 5,
+        "num_mini_batches": 4,
+        "clip_param": 0.2,
+        "gamma": 0.99,
+        "lam": 0.95,
+        "desired_kl": 0.01
+      },
+      "averages": {
+        "fallback_rate": 0.12476190476190475,
+        "pwm_saturation_rate": 0.33785714285714286,
+        "policy_action_clip_rate_mean": 0.13928571428571426,
+        "latency_ms_mean": 11.722479943363439,
+        "depth_rmse": 0.9360043943112905,
+        "attitude_rmse": 0.7433741766562184
+      },
+      "trajectories": {
+        "step": {
+          "fallback_rate": 0.12571428571428572,
+          "pwm_saturation_rate": 0.38357142857142856,
+          "policy_action_clip_rate_mean": 0.15857142857142856,
+          "latency_ms_mean": 11.643795730280024,
+          "latency_ms_max": 12.353848665952682,
+          "depth_rmse": 1.0937445439339972,
+          "attitude_rmse": 0.7663190366434415,
+          "fallback_reason_counts": {
+            "no_cost_improvement": 28,
+            "timeout": 16
+          }
+        },
+        "sine": {
+          "fallback_rate": 0.13428571428571429,
+          "pwm_saturation_rate": 0.2714285714285714,
+          "policy_action_clip_rate_mean": 0.14357142857142857,
+          "latency_ms_mean": 11.673044067408357,
+          "latency_ms_max": 13.903059996664524,
+          "depth_rmse": 0.8763112964986591,
+          "attitude_rmse": 0.7594603564255643,
+          "fallback_reason_counts": {
+            "no_cost_improvement": 27,
+            "timeout": 20
+          }
+        },
+        "irregular": {
+          "fallback_rate": 0.11428571428571428,
+          "pwm_saturation_rate": 0.3585714285714286,
+          "policy_action_clip_rate_mean": 0.11571428571428571,
+          "latency_ms_mean": 11.850600032401937,
+          "latency_ms_max": 13.827831484377384,
+          "depth_rmse": 0.8379573425012151,
+          "attitude_rmse": 0.7043431368996498,
+          "fallback_reason_counts": {
+            "no_cost_improvement": 17,
+            "timeout": 23
+          }
+        }
+      },
+      "hard_gate": {
+        "jsonl_validator_passed": true,
+        "checkpoint_provenance_passed": true,
+        "latency_mean_under_20ms": true,
+        "nonfinite_counts_zero": true
+      },
+      "promotion_vs_phase52_baseline": {
+        "fallback_abs_improvement": 0.10857142857142855,
+        "fallback_rel_improvement": 0.46530612244897956,
+        "depth_rel_regression": 0.09296276797522808,
+        "pwm_saturation_abs_regression": 0.10857142857142857,
+        "clip_abs_regression": 0.0876190476190476,
+        "passes_fallback_improvement_gate": true,
+        "passes_depth_guard_20pct": true,
+        "passes_pwm_saturation_guard_5pct_abs": false,
+        "passes_clip_guard_10pct_abs": true
+      }
+    },
+    "adapter_soft_v1_only": {
+      "checkpoint": "/root/IsaacLab/logs/rsl_rl/phase52_adapter_soft_v1_only/2026-07-05_10-28-20_adapter_soft_v1_only_200/model_199.pt",
+      "profile_id": "adapter_soft_v1_only",
+      "reward_profile": "legacy_easyuuv_v0",
+      "adapter_profile": "adapter_scale_soft_v1",
+      "mpc_profile": "mpc_default_v0",
+      "ppo": {
+        "max_iterations": 200,
+        "save_interval": 50,
+        "runner_num_steps_per_env": 24,
+        "learning_rate": 0.0005,
+        "num_learning_epochs": 5,
+        "num_mini_batches": 4,
+        "clip_param": 0.2,
+        "gamma": 0.99,
+        "lam": 0.95,
+        "desired_kl": 0.01
+      },
+      "averages": {
+        "fallback_rate": 0.11142857142857143,
+        "pwm_saturation_rate": 0.3963095238095238,
+        "policy_action_clip_rate_mean": 0.1088095238095238,
+        "latency_ms_mean": 11.775870298345884,
+        "depth_rmse": 1.0073839170152976,
+        "attitude_rmse": 0.744863637437513
+      },
+      "trajectories": {
+        "step": {
+          "fallback_rate": 0.10285714285714286,
+          "pwm_saturation_rate": 0.39071428571428574,
+          "policy_action_clip_rate_mean": 0.12214285714285714,
+          "latency_ms_mean": 11.76521712648017,
+          "latency_ms_max": 12.365746311843395,
+          "depth_rmse": 1.142562133245487,
+          "attitude_rmse": 0.7479257292873568,
+          "fallback_reason_counts": {
+            "no_cost_improvement": 23,
+            "timeout": 13
+          }
+        },
+        "sine": {
+          "fallback_rate": 0.11714285714285715,
+          "pwm_saturation_rate": 0.395,
+          "policy_action_clip_rate_mean": 0.11857142857142858,
+          "latency_ms_mean": 11.795489279819387,
+          "latency_ms_max": 13.113323599100113,
+          "depth_rmse": 0.9808563271480473,
+          "attitude_rmse": 0.7492790226964813,
+          "fallback_reason_counts": {
+            "no_cost_improvement": 13,
+            "timeout": 28
+          }
+        },
+        "irregular": {
+          "fallback_rate": 0.11428571428571428,
+          "pwm_saturation_rate": 0.4032142857142857,
+          "policy_action_clip_rate_mean": 0.08571428571428572,
+          "latency_ms_mean": 11.766904488738094,
+          "latency_ms_max": 12.37204298377037,
+          "depth_rmse": 0.8987332906523589,
+          "attitude_rmse": 0.7373861603287009,
+          "fallback_reason_counts": {
+            "no_cost_improvement": 24,
+            "timeout": 16
+          }
+        }
+      },
+      "hard_gate": {
+        "jsonl_validator_passed": true,
+        "checkpoint_provenance_passed": true,
+        "latency_mean_under_20ms": true,
+        "nonfinite_counts_zero": true
+      },
+      "promotion_vs_phase52_baseline": {
+        "fallback_abs_improvement": 0.12190476190476188,
+        "fallback_rel_improvement": 0.5224489795918367,
+        "depth_rel_regression": 0.1763119073440936,
+        "pwm_saturation_abs_regression": 0.1670238095238095,
+        "clip_abs_regression": 0.057142857142857134,
+        "passes_fallback_improvement_gate": true,
+        "passes_depth_guard_20pct": true,
+        "passes_pwm_saturation_guard_5pct_abs": false,
+        "passes_clip_guard_10pct_abs": true
+      }
+    },
+    "mpc_health_v1_only": {
+      "checkpoint": "/root/IsaacLab/logs/rsl_rl/phase52_mpc_health_v1_only/2026-07-05_10-31-49_mpc_health_v1_only_200/model_199.pt",
+      "profile_id": "mpc_health_v1_only",
+      "reward_profile": "legacy_easyuuv_v0",
+      "adapter_profile": "heuristic_reference_delta_v0_default",
+      "mpc_profile": "mpc_health_v1",
+      "ppo": {
+        "max_iterations": 200,
+        "save_interval": 50,
+        "runner_num_steps_per_env": 24,
+        "learning_rate": 0.0005,
+        "num_learning_epochs": 5,
+        "num_mini_batches": 4,
+        "clip_param": 0.2,
+        "gamma": 0.99,
+        "lam": 0.95,
+        "desired_kl": 0.01
+      },
+      "averages": {
+        "fallback_rate": 0.15238095238095237,
+        "pwm_saturation_rate": 0.3730952380952381,
+        "policy_action_clip_rate_mean": 0.49523809523809526,
+        "latency_ms_mean": 11.74582007030646,
+        "depth_rmse": 2.057263268424378,
+        "attitude_rmse": 0.7004435027970967
+      },
+      "trajectories": {
+        "step": {
+          "fallback_rate": 0.10285714285714286,
+          "pwm_saturation_rate": 0.45821428571428574,
+          "policy_action_clip_rate_mean": 0.5235714285714286,
+          "latency_ms_mean": 11.686590361808028,
+          "latency_ms_max": 13.131389394402504,
+          "depth_rmse": 2.2726033121993328,
+          "attitude_rmse": 0.6924803646916001,
+          "fallback_reason_counts": {
+            "no_cost_improvement": 23,
+            "timeout": 13
+          }
+        },
+        "sine": {
+          "fallback_rate": 0.12,
+          "pwm_saturation_rate": 0.43107142857142855,
+          "policy_action_clip_rate_mean": 0.4828571428571429,
+          "latency_ms_mean": 11.785896928714854,
+          "latency_ms_max": 13.999463990330696,
+          "depth_rmse": 2.1314054637402027,
+          "attitude_rmse": 0.7053252844724974,
+          "fallback_reason_counts": {
+            "no_cost_improvement": 26,
+            "timeout": 16
+          }
+        },
+        "irregular": {
+          "fallback_rate": 0.2342857142857143,
+          "pwm_saturation_rate": 0.23,
+          "policy_action_clip_rate_mean": 0.47928571428571426,
+          "latency_ms_mean": 11.764972920396499,
+          "latency_ms_max": 12.437984347343445,
+          "depth_rmse": 1.7677810293335987,
+          "attitude_rmse": 0.7035248592271921,
+          "fallback_reason_counts": {
+            "no_cost_improvement": 8,
+            "timeout": 74
+          }
+        }
+      },
+      "hard_gate": {
+        "jsonl_validator_passed": true,
+        "checkpoint_provenance_passed": true,
+        "latency_mean_under_20ms": true,
+        "nonfinite_counts_zero": true
+      },
+      "promotion_vs_phase52_baseline": {
+        "fallback_abs_improvement": 0.08095238095238094,
+        "fallback_rel_improvement": 0.3469387755102041,
+        "depth_rel_regression": 1.4022452992491794,
+        "pwm_saturation_abs_regression": 0.1438095238095238,
+        "clip_abs_regression": 0.4435714285714286,
+        "passes_fallback_improvement_gate": true,
+        "passes_depth_guard_20pct": false,
+        "passes_pwm_saturation_guard_5pct_abs": false,
+        "passes_clip_guard_10pct_abs": false
+      }
+    }
+  }
+}

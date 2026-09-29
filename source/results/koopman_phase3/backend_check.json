@@ -1,0 +1,39 @@
+{
+  "backend_reason": "direct_state kept for first Isaac smoke because it is the selected Phase 2.5 backend or safer offline",
+  "backend_used": "direct_state",
+  "direct_state_metrics": {
+    "average_latency_ms": 11.214449994440656,
+    "backend_used": "direct_state",
+    "candidate_id": "direct_state_selected_quadratic_ridge_0p0001_norm_off",
+    "command_bounded": true,
+    "fallback_count": 0,
+    "fallback_rate": 0.0,
+    "finite_prediction_count": 2,
+    "max_latency_ms": 11.378099996363744,
+    "mean_horizon_cost": 6.590278035585754,
+    "pwm_max": 0.7,
+    "pwm_min": 0.35,
+    "sample_count": 2
+  },
+  "known_limitations": [
+    "selected backend is direct_state, not paper_lifted_edmd",
+    "Phase 2.5 is an offline model gate, not closed-loop performance evidence",
+    "Phase 4 must compare closed-loop performance before superiority claims"
+  ],
+  "paper_alignment_note": "A direct_state smoke validates fallback-safe engineering integration. A paper_lifted_edmd smoke is closer to the Koopman-Sim2Real algorithmic form, but Phase 4 is still required before performance or full-paper-equivalence claims.",
+  "paper_lifted_edmd_metrics": {
+    "average_latency_ms": 11.138400004711002,
+    "backend_used": "paper_lifted_edmd",
+    "candidate_id": "paper_lifted_edmd_selected_quadratic_ridge_0p01_norm_off",
+    "command_bounded": true,
+    "fallback_count": 0,
+    "fallback_rate": 0.0,
+    "finite_prediction_count": 2,
+    "max_latency_ms": 11.721500006387942,
+    "mean_horizon_cost": 6.791790503837989,
+    "pwm_max": 0.7,
+    "pwm_min": 0.35,
+    "sample_count": 2
+  },
+  "recommended_manifest_path": "source\\results\\koopman_phase2_5_verify_20260701_231802\\selected_model_manifest.json"
+}

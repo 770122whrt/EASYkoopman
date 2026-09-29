@@ -1,0 +1,131 @@
+{
+  "schema": "prepared-commands-v45-complete-solver-v1",
+  "configurations": {
+    "base": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "long_body": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "heavy_moderate": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "asymmetric": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "uuv6": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "uuv6_angled": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "uuv4": {
+      "control_mask": [
+        1,
+        1,
+        0,
+        1
+      ]
+    },
+    "uuv4_angled": {
+      "control_mask": [
+        1,
+        1,
+        0,
+        1
+      ]
+    }
+  },
+  "origin_control": 128,
+  "horizon": 20,
+  "model": "nonlinear__pooled",
+  "reference": [
+    5.5,
+    1.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "baseline": "repeat_last_past_issued_command_no_future_truth",
+  "warmups_per_path": 1,
+  "interleaved_repetitions": 3,
+  "comparison_diagnostic_limit_ms": 1000.0,
+  "strict_repetitions": 3,
+  "strict_limit_ms": 100.0,
+  "perturbation": [
+    0.002,
+    0.002,
+    0.002,
+    0.002
+  ],
+  "slew": [
+    0.01,
+    0.01,
+    0.01,
+    0.01
+  ],
+  "maximum_raw_pwm": 0.95,
+  "weights": "unchanged_v44_ObjectiveWeights",
+  "rtol": 1e-12,
+  "atol": 1e-12,
+  "speedup_median_minimum": 1.5,
+  "per_configuration_speedup_minimum": 1.0,
+  "gate": "all_equivalent_and_no_configuration_p50_regression_and_median_speedup>=1.5_and_all_24_strict_complete_ms<=100",
+  "maximum_seconds": 180,
+  "output_limit_bytes": 33554432,
+  "processes": 1,
+  "compute_threads": 1,
+  "formal_test_access": false,
+  "new_fits": 0,
+  "new_server_runs": 0,
+  "initialization": "geometry_and_compiler_prepared_before_worker_ready_measured_separately",
+  "sources": {
+    "koopman/command_state_v39.py": "2e1a1709d9704c76f4b90c7cbe0b2ecf849db052e60204d876796c188f47135b",
+    "koopman/prepared_projected_v40.py": "2974dccdee1af5fc57efc8aa9f0e336abad1f33669514127f0c9159f967d538b",
+    "koopman/prepared_allocation_v42.py": "a6675e7cfc5941c5d43b53e861945e550fae10a718bd89b264495f0b0490d068",
+    "koopman/command_batch_v42.py": "0fd49fc06b187c0051525f0364039862efe6dcd7d2a1257c9d0ebd0472e9d48c",
+    "koopman/compiled_projected_v43.py": "c204e3fec8a80c4ef130bfb98d3d2d5cd1ff668ed3bafc5b3fafbdfa8bbdb531",
+    "koopman/control_objective_v44.py": "9a92b17f36d51b743a0807d6cc10aada5c7c686ed06a8751729da52fb6841747",
+    "koopman/bounded_mpc_v44.py": "67f318914e18e966367d3d4bb18f27877871fe50ed95d04343a35631b687fec2",
+    "koopman/prepared_commands_v45.py": "3545140a08190d3f7edb757f8aab8322f11f7517b49ab49baadcc601b5b53e0d",
+    "koopman/command_batch_v45.py": "ba88b806a671ce00f6db2dc13e2431805e18f0f7aadf977a4461c782d5b70b63",
+    "koopman/bounded_mpc_v45.py": "c25d8342bca86e95ba376ecba657ebbb0006dc1004e9c659500e22cb4a2a7216",
+    "tests/test_prepared_commands_v45.py": "e506e8205327553e950b944c63caec08f43d1833b6e4ee45aea9a5fb94ff92f8",
+    "tests/test_bounded_mpc_v45.py": "95b8429458e0c9194333f7c1b30a5695dbd2ddec36554db4c34c4dde04f97d82",
+    "workflows/benchmark_prepared_commands_v45.py": "c2e0216ff33064027bb9073b152ef3eca9d086d671dd9ffb505ed53b2d0dfd7d",
+    "workflows/benchmark_command_state_v39.py": "2585e6f9e5680863b59c65779860b302f0760f43ff93738a6cd2b7d03121043a"
+  },
+  "prior_result_sha256": "aae47d7bcde17950c5e6bcb13d173aa76cf36d67a42d82ced1dae17d3d6ad6d5",
+  "handoff_sha256": "5d8c4aa1264d93307dc0cf692757441509e75809206ed80006543ca5e4239632",
+  "compiler_directory": "E:\\code for project\\Agentic AUV\\EasyUUV\\.pytest-tmp\\phase9-numba-v43"
+}

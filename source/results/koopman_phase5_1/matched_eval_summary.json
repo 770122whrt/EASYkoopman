@@ -1,0 +1,59 @@
+{
+  "phase": "05.1",
+  "selected_checkpoint": "/root/IsaacLab/logs/rsl_rl/easyuuv_koopman_mpc/2026-07-05_00-28-00/model_199.pt",
+  "source_training_summary_path": "/root/EASYkoopman/source/results/koopman_phase5_1/stability_candidate_summary.json",
+  "ppo_evidence_level": "matched_stability_eval",
+  "checkpoint_provenance": "phase5_1_stability_candidate",
+  "matched_eval_status": "pass",
+  "trajectories": {
+    "step": {
+      "samples": 350,
+      "fallback_rate": 0.13428571428571429,
+      "latency_ms_mean": 11.808777621814183,
+      "latency_ms_max": 13.743781484663486,
+      "pwm_min": -1.0,
+      "pwm_max": 1.0,
+      "policy_action_clip_rate_mean": 0.07857142857142857,
+      "policy_action_clip_rate_max": 0.5,
+      "depth_rmse": 0.7056714364368618,
+      "depth_abs_mean": 0.6196268583940608
+    },
+    "sine": {
+      "samples": 350,
+      "fallback_rate": 0.03142857142857143,
+      "latency_ms_mean": 11.571347865142993,
+      "latency_ms_max": 12.295453809201717,
+      "pwm_min": -1.0,
+      "pwm_max": 1.0,
+      "policy_action_clip_rate_mean": 0.23642857142857143,
+      "policy_action_clip_rate_max": 0.5,
+      "depth_rmse": 0.5350117510657202,
+      "depth_abs_mean": 0.4017045602841037
+    },
+    "irregular": {
+      "samples": 350,
+      "fallback_rate": 0.09714285714285714,
+      "latency_ms_mean": 11.759597611214433,
+      "latency_ms_max": 12.598644942045212,
+      "pwm_min": -1.0,
+      "pwm_max": 1.0,
+      "policy_action_clip_rate_mean": 0.12357142857142857,
+      "policy_action_clip_rate_max": 0.5,
+      "depth_rmse": 0.5736814223247741,
+      "depth_abs_mean": 0.46087696768982067
+    }
+  },
+  "allowed_claims": [
+    "A Koopman-MPC-conditioned PPO checkpoint completed Phase 5.1 sentinel training",
+    "The selected checkpoint completed a 200-iteration stability candidate run",
+    "The selected checkpoint passed matched step, sine and irregular evaluation schema gates",
+    "This is candidate-only stable-training evidence"
+  ],
+  "disallowed_claims": [
+    "PPO convergence is proven",
+    "PPO+Koopman-MPC is superior to legacy/Ssurface",
+    "The policy is deployable",
+    "The reward profile is final"
+  ],
+  "next_recommendation": "Phase 5.2 should target fallback/PWM saturation and reward/adapter tuning before any superiority claim."
+}

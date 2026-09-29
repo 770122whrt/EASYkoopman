@@ -1,0 +1,23 @@
+{
+  "native_exit": 0,
+  "group_stopped": true,
+  "seconds": 243.90887028723955,
+  "command": [
+    "/root/shared-nvme/agentic-auv/runtime/bin/python",
+    "-B",
+    "-m",
+    "workflows.collect_reliable_v77",
+    "--configuration",
+    "uuv4",
+    "--controller",
+    "projected_koopman",
+    "--profile",
+    "repair",
+    "--assets",
+    "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+    "--manifest",
+    "reliable-source-r4.json",
+    "--output",
+    "/root/shared-nvme/agentic-auv/experiments/reliable-v77-20260924/uuv4-pitch-projected_koopman-repair-r4"
+  ]
+}

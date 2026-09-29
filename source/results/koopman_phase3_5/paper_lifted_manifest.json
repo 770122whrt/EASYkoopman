@@ -1,0 +1,119 @@
+{
+  "baselines": {
+    "persistence": {
+      "model_class": "persistence",
+      "status": "fail",
+      "validation_metrics": {
+        "attitude_angle_rmse": 0.002990852648598891,
+        "depth_rmse": 0.0029404456396562666,
+        "diverged": true,
+        "divergence_rate@20": 0.0,
+        "divergence_rate@5": 0.0,
+        "divergence_rate@60": 0.0,
+        "max_error": 4.020940780639648,
+        "multi_step_horizon": 60,
+        "multi_step_horizon@20": 20,
+        "multi_step_horizon@5": 5,
+        "multi_step_horizon@60": 60,
+        "multi_step_rmse": 0.4368572266908946,
+        "multi_step_rmse@20": 0.1136448686013989,
+        "multi_step_rmse@5": 0.042843511267357824,
+        "multi_step_rmse@60": 0.4368572266908946,
+        "nonfinite_count": 0,
+        "one_step_rmse": 0.0423395273854912,
+        "sample_count": 1400,
+        "velocity_rmse": 0.05727476100936092
+      }
+    },
+    "simple_linear": {
+      "model_class": "simple_linear",
+      "status": "fail",
+      "validation_metrics": {
+        "attitude_angle_rmse": 0.05095188371453934,
+        "depth_rmse": 0.04249722244430156,
+        "diverged": true,
+        "divergence_rate@20": 0.0,
+        "divergence_rate@5": 0.0,
+        "divergence_rate@60": 0.6,
+        "max_error": 411386.88967191236,
+        "multi_step_horizon": 60,
+        "multi_step_horizon@20": 20,
+        "multi_step_horizon@5": 5,
+        "multi_step_horizon@60": 60,
+        "multi_step_rmse": 27066.162929656064,
+        "multi_step_rmse@20": 0.5779894743482727,
+        "multi_step_rmse@5": 0.010371878815936299,
+        "multi_step_rmse@60": 27066.162929656064,
+        "nonfinite_count": 0,
+        "one_step_rmse": 1.4424704048435066,
+        "sample_count": 1400,
+        "velocity_rmse": 1.9526993480715384
+      }
+    }
+  },
+  "control_dim": 8,
+  "dt": 0.016666666666666607,
+  "gate_status": "pass",
+  "known_limitations": [
+    "paper_lifted_edmd is a paper-aligned comparison backend, not yet the primary selected controller backend",
+    "Phase 3.5 must run offline MPC replay and Isaac smoke before Phase 4 performance claims",
+    "Online adaptation remains deferred"
+  ],
+  "lifting_config": {
+    "control_dim": 8,
+    "include_bias": true,
+    "reference_dim": 5,
+    "state_dim": 11,
+    "variant": "selected_quadratic"
+  },
+  "lifting_variant": "selected_quadratic",
+  "metrics": {
+    "validation": {
+      "attitude_angle_rmse": 0.06999825388465816,
+      "depth_rmse": 0.0031467435476319975,
+      "diverged": false,
+      "divergence_rate@20": 0.0,
+      "divergence_rate@5": 0.0,
+      "divergence_rate@60": 0.0,
+      "max_error": 4.029385198710112,
+      "multi_step_horizon": 60,
+      "multi_step_horizon@20": 20,
+      "multi_step_horizon@5": 5,
+      "multi_step_horizon@60": 60,
+      "multi_step_rmse": 0.40471676785448213,
+      "multi_step_rmse@20": 0.007752891544435229,
+      "multi_step_rmse@5": 0.005343607357811145,
+      "multi_step_rmse@60": 0.40471676785448213,
+      "nonfinite_count": 0,
+      "one_step_rmse": 0.21148111155015506,
+      "sample_count": 1400,
+      "velocity_rmse": 0.2819971476976798
+    }
+  },
+  "model_class": "paper_lifted_edmd",
+  "model_path": "source/results/koopman_phase2_5_verify_20260701_231802/sweep/models/paper_lifted_edmd_selected_quadratic_ridge_0p01_norm_off.json",
+  "normalization": "off",
+  "normalizer_path": null,
+  "observable_config": {
+    "control_dim": 8,
+    "include_bias": true,
+    "reference_dim": 5,
+    "state_dim": 11,
+    "variant": "selected_quadratic"
+  },
+  "reference_dim": 5,
+  "ridge": 0.01,
+  "selected_candidate_id": "paper_lifted_edmd_selected_quadratic_ridge_0p01_norm_off",
+  "selection_role": "paper_style_comparison_backend",
+  "state_dim": 11,
+  "sweep_results_path": "source/results/koopman_phase2_5_verify_20260701_231802/sweep/sweep_results.json",
+  "test_logs": [
+    "source/results/koopman_phase1/koopman_irregular_long.jsonl"
+  ],
+  "train_logs": [
+    "source/results/koopman_phase1/koopman_step_long.jsonl"
+  ],
+  "validation_logs": [
+    "source/results/koopman_phase1/koopman_sine_long.jsonl"
+  ]
+}

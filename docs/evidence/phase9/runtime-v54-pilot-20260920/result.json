@@ -1,0 +1,3401 @@
+{
+  "status": "complete",
+  "error": null,
+  "seconds": 42.46730300001218,
+  "created_at": "2026-09-20T17:20:24.889561+08:00",
+  "protocol_sha256": "e395f49cdbfc161f4ec65c4226cec474a84fe0bc0976a3be67a20a5ca849310e",
+  "rows": [
+    {
+      "configuration": "base",
+      "evidence_level": "synthetic_execution_receipt_real_model_worker",
+      "fit_source_trace_sha256": "e713f82299dede5095a0d054fe89a027280b340b6ac7561236621b4cf647d33d",
+      "support_id": "2beb7816cf9bf5896c9976c16efa41688a09cb065737a2a39baba7e563644998",
+      "ready": {
+        "status": "ready",
+        "generation": "0cbd7eeddc0048a6b665a9bcbb9b3053"
+      },
+      "prepare_seconds": 18.61708890000591,
+      "steps": [
+        {
+          "control": 0,
+          "external_compute_ms": 13.874500000383705,
+          "start_lag_ms": 0.01610000617802143,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "d921cb66d3a44b8f98f99d41fc69beae",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 0,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": true,
+              "source": "fallback",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 10.995699994964525,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 1,
+                "history_digest": "fda42e4ac8720f6d650b329dab6fedd9e07157f3a8232bf81dad28e8c3171eb7",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 12.128899979870766,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 2,
+                "history_digest": "7bea3ddfe85e5cb831b702f04c25f2c280661e2599d4c91151694d4d4abb1405",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 13.337999989744276,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 2
+        },
+        {
+          "control": 1,
+          "external_compute_ms": 16.63540001027286,
+          "start_lag_ms": 1.3896333402954042,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "b2c014d7461749b6b5369b7f8bf0bca7",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 2,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 13.77140000113286,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 3,
+                "history_digest": "0a96091321080ea35677e623c0c9557c32f47fcbdc1896775171e6d087e7e598",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 14.907100005075336,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 4,
+                "history_digest": "29987e544cd1240bd9e32c1c359642027b3d5fcc888518d3d25459f95c8388e1",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 16.03270001942292,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 4
+        },
+        {
+          "control": 2,
+          "external_compute_ms": 7.832800009055063,
+          "start_lag_ms": 1.5106666833162308,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "297db9330ad04aa6aa2dca6a336eddea",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 4,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 5.145900009665638,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 5,
+                "history_digest": "aed821332cbedb674b9ffb37ae0f802b4e2a84322517d74a33c38995f869de1f",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.414900009986013,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 6,
+                "history_digest": "ff6fc0439c16bef02bccb9d7e4e2633592a56252e2c91ec959f88ee40ee955d2",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 7.474200014257804,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 6
+        },
+        {
+          "control": 3,
+          "external_compute_ms": 7.076599984429777,
+          "start_lag_ms": 0.6724000268150121,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "f66849086b5c48368ae0ff49b9c7a74f",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 6,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 5.043799988925457,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 7,
+                "history_digest": "aecc119a18678948b257b2d9087cdfbb35ac08ca9e86f425dc0c67716b22e244",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 5.916599999181926,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 8,
+                "history_digest": "251f290622e7fc7d23effc910449597f62d43facc002887b9bf94df7ca829e05",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.782100012060255,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 8
+        },
+        {
+          "control": 4,
+          "external_compute_ms": 7.2188000194728374,
+          "start_lag_ms": 0.7985333213582635,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "4ad1d4c484164f4db9e8f1bb76a66f3a",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 8,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 4.6208999992813915,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 9,
+                "history_digest": "983495f3924d78e5c30ee62353e8ba32e31d015965fa212b737c13c9a276e667",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 5.778499995358288,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 10,
+                "history_digest": "82e6afa598a2a31b15415a3585b9b2371463184fc18f083609f8bcf1450b72e3",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.8153999745845795,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 10
+        },
+        {
+          "control": 5,
+          "external_compute_ms": 6.882499990751967,
+          "start_lag_ms": 1.1372666631359607,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "2bbde0a3b50c4804be7a8af5f38349a4",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 10,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 4.258999979356304,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 11,
+                "history_digest": "bace9b4192b65b5f19c15df8020575f4aafa4139ca863ff1e1a9a318320dc43b",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 5.417199980001897,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 12,
+                "history_digest": "73dd4b6d494ee7aad96163880c0292e4c2cc29d2731ddd22507174915eff4259",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.5323999733664095,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 12
+        },
+        {
+          "control": 6,
+          "external_compute_ms": 6.447299994761124,
+          "start_lag_ms": 0.2339000056963414,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "c6addcbddddd4f818e0166f2537a100f",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 12,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 4.355000011855736,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 13,
+                "history_digest": "cb3ad93718a7f21bc39d91eecb94c9a36a0b5ecc3e4847c41446d8f6396e5937",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 5.248700006632134,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 14,
+                "history_digest": "b0195d090c5deac69962ebe6530a1d598c99a878dc517704ed6d279de4bde130",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.121900019934401,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 14
+        },
+        {
+          "control": 7,
+          "external_compute_ms": 9.52380002127029,
+          "start_lag_ms": 0.33673332654871047,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "f210563e6e86492b8724c9dd8e42bce2",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 14,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 7.345399993937463,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 15,
+                "history_digest": "a7cd020c7b6fd7f7eaf647652cfdf695fa1a6152ffa193c81c851bf5a4126d38",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 8.08369999867864,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 16,
+                "history_digest": "82a317e7c8f9baf5faab239a1019e4631ea18cb35dafe60f2d2ac16cc1717bb2",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 9.241399995516986,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 16
+        },
+        {
+          "control": 8,
+          "external_compute_ms": 7.67170000472106,
+          "start_lag_ms": 0.6802666757721454,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "ab1c15299fa0458d9f874b6523a7415c",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 16,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 5.839799996465445,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 17,
+                "history_digest": "47088381b81e2ffa4aac41a142ddc3a2996d9f789f4a1b48d6a60c94028d24ef",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.548200006363913,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 18,
+                "history_digest": "5469fb425c40a8557748a28a9ff0225fdabadfd48691bcce0db1faf47c7ac1ff",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 7.147399999666959,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 18
+        },
+        {
+          "control": 9,
+          "external_compute_ms": 10.026600008131936,
+          "start_lag_ms": 0.6541000038851053,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "412162a85a0144debfed619e32fe1124",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 18,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": false,
+              "source": "mpc",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 7.968499994603917,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 19,
+                "history_digest": "c34574079a6411d1c0380e23c285c31398663f798cd0a49d16d100b94826dd45",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 8.66139997378923,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 20,
+                "history_digest": "56e39326c25ad63ec2d5ea2169632f33e18c4f12c74e737cf0855f77b0e15f3e",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 9.320399956777692,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 20
+        },
+        {
+          "control": 10,
+          "external_compute_ms": 3.719100001035258,
+          "start_lag_ms": 0.442633347120136,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "7a03d1ed32dd4ff6b3c32601b2387ff9",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 20,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 2.4705999821890146,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 21,
+                "history_digest": "2f58f353f190c0984ac094aba5124b8c06de21c4eb4ef807417da9e7b3b3a979",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 2.9573999636340886,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 22,
+                "history_digest": "50417fa82acf426e279fc477382cc694a413fc8952ba099fd50afb0a71ed2150",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 3.4527999814599752,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 22
+        },
+        {
+          "control": 11,
+          "external_compute_ms": 4.01070000953041,
+          "start_lag_ms": 0.676466675940901,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "c2333df592c14d9b8720f7cc2885d9d4",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 22,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 2.7348999865353107,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 23,
+                "history_digest": "bd84824944e75a62400eff50216527ef235ebe12c66793b9e105e5ba0f72c945",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 3.245699976105243,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 24,
+                "history_digest": "f23a1ba83f6b21c687a4d815019794070651e47906ad45cd4db75318826304c5",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 3.7273999769240618,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 24
+        },
+        {
+          "control": 12,
+          "external_compute_ms": 4.212400002870709,
+          "start_lag_ms": 0.5111999926157296,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "7f1424ed3ba54d1e85d667a8ea2ee516",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 24,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 2.553799975430593,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 25,
+                "history_digest": "05dc0b9fd27f4afa24d31cd76e4d3f1014be63863ff76a3b6fd62ac1c46b9418",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 3.19869996747002,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 26,
+                "history_digest": "6ec91b3d9f6d9702dda436db34da286d78710bed0fcf2343a730d9503a94e52d",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 3.930899954866618,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 26
+        },
+        {
+          "control": 13,
+          "external_compute_ms": 9.396999987075105,
+          "start_lag_ms": 0.590033334447071,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "2e929a8a697f4d4c8654130bc7fb1bb3",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 26,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 6.207300000824034,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 27,
+                "history_digest": "3dc1ea2e6018fea9b666f180beed04d9f096e71d75e736f4ec7c7a0128f5339d",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 7.500599982449785,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 28,
+                "history_digest": "d36ac7bad34db3597bad48a42d573896d268c74b27838690f8b8bc67519324d8",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 8.814399974653497,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 28
+        },
+        {
+          "control": 14,
+          "external_compute_ms": 5.244400002993643,
+          "start_lag_ms": 0.12896666885353625,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "3bf69ff0e64b4d45bdabd4e1f06936b9",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 28,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 3.654599975561723,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 29,
+                "history_digest": "bdc114d833b3d126454a8ba17db720ea558e250a192e07b6a140c1624e601ccd",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 4.2520999850239605,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 30,
+                "history_digest": "00011ec8b52692d43e1e3e251e2aed9f91e6a9fb5dfaa95862fa6d8d7242b9ed",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 4.83289998373948,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 30
+        },
+        {
+          "control": 15,
+          "external_compute_ms": 10.164400009671226,
+          "start_lag_ms": 0.7847000088077039,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "8d61477f351f4873874e8981640a2795",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 30,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 6.870699988212436,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 31,
+                "history_digest": "54dbf651411962f91ffdb7b45a354b11e86e6dc37793f6ff519c863b61b61ab2",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 8.256399974925444,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 32,
+                "history_digest": "2f1dabe6f7b6f474894dc025aa1f14487dc6463e537de5c05c6156043aecb1a9",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 9.412399987922981,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 32
+        },
+        {
+          "control": 16,
+          "external_compute_ms": 6.869900011224672,
+          "start_lag_ms": 0.11703334166668355,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "02c4d234710444d2a99c63c84505a857",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 32,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 5.018800002289936,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 33,
+                "history_digest": "683ca352295fbf85035b3e5b3bf959012b0b2d430cc7b6e79e955723dbe3b516",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 5.734100006520748,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 34,
+                "history_digest": "d9d4db1fbcc2cc493b7305b0d61c25e6e877f614f0a994db384cfad4ad81438c",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.395200005499646,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 34
+        },
+        {
+          "control": 17,
+          "external_compute_ms": 16.441699990537018,
+          "start_lag_ms": 0.45966668403707445,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "64da1137d70141f090b5e691d46e6b1c",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 34,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": false,
+              "source": "mpc",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 13.678000017534941,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 35,
+                "history_digest": "c220d9a96e148232a2fec6ac9c9f75e6aae1d417442a632836a01926ff56ccca",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 14.667100011138245,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 36,
+                "history_digest": "e53023c3f8d8bc3a91789ee7d72da0883b1ffc743202c7a3242a9ab2df4251c2",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 15.70210000500083,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 36
+        },
+        {
+          "control": 18,
+          "external_compute_ms": 8.289000019431114,
+          "start_lag_ms": 0.26160001289099455,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "9de247b5a6824183a1336670808212f2",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 36,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 5.49529999261722,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 37,
+                "history_digest": "a9cdd251ec8fca1ab2e6a74d767242356cf3f98e819b93291534189688b0ca36",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.6571999923326075,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 38,
+                "history_digest": "0e98aaf859ed6b0dcb7749e2e29e54613e88b1b25dc13e81f8fe7bad1dce1083",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 7.997100008651614,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 38
+        },
+        {
+          "control": 19,
+          "external_compute_ms": 7.044600002700463,
+          "start_lag_ms": 0.6495333218481392,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "39ee7bbdce7042a784eb285cb91201a4",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 38,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 4.582900000968948,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 39,
+                "history_digest": "69e7ca2e40170c59440222e07c4a9bceb5e4fa13c62966776f2312e508b17851",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 5.623000004561618,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 40,
+                "history_digest": "e940222f5efdd54af473104ce5ea101f1798811d193dbce19a82f7a49d460527",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.612800003495067,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 40
+        },
+        {
+          "control": 20,
+          "external_compute_ms": 7.6145000057294965,
+          "start_lag_ms": 0.8212666725739837,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "e9addca157c94a7f92388c7c6cd3fb69",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 40,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 5.017800023779273,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 41,
+                "history_digest": "fd82762726a852d3282a70a21e30feb81f4274991e8e413c9c02e9e501dbb42c",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.130700028734282,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 42,
+                "history_digest": "9a07d09183e415d744227d2c617f7403b9f4542e5dcbba9e895273b4d26ba8c5",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 7.245500019052997,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 42
+        },
+        {
+          "control": 21,
+          "external_compute_ms": 6.236800021724775,
+          "start_lag_ms": 2.364899992244318,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "88ae89a99464465096fedff914c0315e",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 42,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 4.206799989333376,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 43,
+                "history_digest": "897e91b4fbd9260473926bd31238ac43a62a13c966affbcd5ca2bb47b7fdc12c",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 5.039999989094213,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 44,
+                "history_digest": "f1cea337a459c5af6b18078faea2f71c96419954d3671d459c27f252068d792d",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 5.940999981248751,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 44
+        },
+        {
+          "control": 22,
+          "external_compute_ms": 8.788400009507313,
+          "start_lag_ms": 0.34623334067873657,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "7fb0a376d7b045afb53dac1bc4aa74d1",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 44,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 5.766799993580207,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 45,
+                "history_digest": "baff63c7e9e10336780aa3d87a863da03c93742f7bf783b0196baf70868eccca",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.876700004795566,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 46,
+                "history_digest": "31921db4dfdd163525a9a2e281185005e6f4bd40b3ab102256b6fefcaf85d6de",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 7.795899990014732,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 46
+        },
+        {
+          "control": 23,
+          "external_compute_ms": 9.598100004950538,
+          "start_lag_ms": 0.48136667464859784,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "eef8bf1a292b46a6a2991a7de8fdc412",
+              "execution_id": "ffdf0faefdb84d0ca401c1b209287f2f",
+              "episode_id": "synthetic-v54-base",
+              "reset_id": "fixture-zero",
+              "physics_index": 46,
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 7.448699994711205,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 47,
+                "history_digest": "b0abacc0377be81abed66584f2fb58503df16e403cb0aedfcac9147e14f41f62",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 8.042800007387996,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 48,
+                "history_digest": "775938680f07dec015d4ca9d30537db1f360560a03aaea86105d96a196d16756",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 8.600400004070252,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 48
+        }
+      ],
+      "passes": true,
+      "mpc_activations": 2,
+      "stop_reason": null,
+      "worker_events": [
+        {
+          "control": 7,
+          "status": "result",
+          "reason": null,
+          "elapsed_ms": 91.99650000664406,
+          "plan_status": "baseline",
+          "plan_reason": null,
+          "solver_ms": 87.45449999696575
+        },
+        {
+          "control": 13,
+          "status": "result",
+          "reason": null,
+          "elapsed_ms": 62.784999987343326,
+          "plan_status": "baseline",
+          "plan_reason": null,
+          "solver_ms": 39.5559000025969
+        },
+        {
+          "control": 23,
+          "status": "result",
+          "reason": null,
+          "elapsed_ms": 94.47110001929104,
+          "plan_status": "baseline",
+          "plan_reason": null,
+          "solver_ms": 83.76040001166984
+        }
+      ],
+      "arbitration": [
+        {
+          "control": 0,
+          "status": "fallback",
+          "source": null,
+          "reason": "no_plan"
+        },
+        {
+          "control": 1,
+          "status": "fallback",
+          "source": null,
+          "reason": "no_plan"
+        },
+        {
+          "control": 2,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 3,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 4,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 5,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 6,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 7,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 8,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 9,
+          "status": "proposal",
+          "source": "mpc",
+          "reason": null
+        },
+        {
+          "control": 10,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 11,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 12,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 13,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 14,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 15,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 16,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 17,
+          "status": "proposal",
+          "source": "mpc",
+          "reason": null
+        },
+        {
+          "control": 18,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 19,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 20,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 21,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 22,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 23,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        }
+      ],
+      "stats": {
+        "requests": 3,
+        "mpc_activations": 2,
+        "confirmed_controls": 24,
+        "dispatches": 24,
+        "rejected_replies": 0,
+        "worker_failures": 0
+      },
+      "maximum_rotor_difference": 0.0,
+      "maximum_compute_ms": 16.63540001027286,
+      "confirmed_physics_ticks": 48,
+      "closed": {
+        "process_stopped": true,
+        "io_threads_stopped": true
+      }
+    },
+    {
+      "configuration": "uuv6_angled",
+      "evidence_level": "synthetic_execution_receipt_real_model_worker",
+      "fit_source_trace_sha256": "39a128e14dd29007e1b8fa348e24685973aced3a08abac7f2ce5f78f72b4dd44",
+      "support_id": "e6820117b700a45e5f49768f78bea18867358868d6f0cf6b2b7ca605f22a3270",
+      "ready": {
+        "status": "ready",
+        "generation": "b718f308fa844949a3d7789e9109f62a"
+      },
+      "prepare_seconds": 18.929603500000667,
+      "steps": [
+        {
+          "control": 0,
+          "external_compute_ms": 6.392200011759996,
+          "start_lag_ms": 0.13199998647905886,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "13e39c6473df49e9b9f16d6a4e997d1a",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 0,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.13834649324417114
+              ],
+              "startup_exception": true,
+              "source": "fallback",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 4.9915999989025295,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 1,
+                "history_digest": "a667efd290584ebd9015baa6bfc57714afedbfec0c3df45781719a8da6c5fef1",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 5.573100002948195,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 2,
+                "history_digest": "2539ec5fb990fd342ec3c8ecc73e4d166085fa49e08b8c542dbf370d32d1c638",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.079299986595288,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 2
+        },
+        {
+          "control": 1,
+          "external_compute_ms": 12.797600007615983,
+          "start_lag_ms": 0.1223333238158375,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "a59698261ee4412c8ac9a3e84808d544",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 2,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.13834649324417114
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 8.738100004848093,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 3,
+                "history_digest": "9b093cad4cbc52bc791e0d4df3ec37e46f9c712c72a72a03f9ebc8e0226a6ed2",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 10.135499993339181,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 4,
+                "history_digest": "c9064abc2162842cf9e0d74059ca8281a47a5cd4f3a08b5f06292d1aa70c9c2e",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 12.204699974972755,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 4
+        },
+        {
+          "control": 2,
+          "external_compute_ms": 8.523900003638119,
+          "start_lag_ms": 0.1673666702117771,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "308ca3a85738419a94c6213948448410",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 4,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.13834649324417114
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 5.592200002865866,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 5,
+                "history_digest": "3b10d951b6fc2a828f8375707eebdae7e6ef15dfe6aea0903f1a47cf2bf8065e",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.942099978914484,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 6,
+                "history_digest": "00103d6bc808d2b363e38ed82880375f4b571d89e7f7f6489b2c4c0342e926b4",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 8.164399972883984,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 6
+        },
+        {
+          "control": 3,
+          "external_compute_ms": 7.054399990011007,
+          "start_lag_ms": 0.41450001299381256,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "6843dd20afbb43b091b08740352efe88",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 6,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.13834649324417114
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 4.128300002776086,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 7,
+                "history_digest": "ada6325f5a4c2e9cd089b226800dd44423ead1681b55b756d3fa77ff4570c782",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 5.5429999774787575,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 8,
+                "history_digest": "ef945c3a6de315e08b7fcf3de311c3ac24ebfda7f64cf89f5bd6f6894a2a0aab",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.689999980153516,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 8
+        },
+        {
+          "control": 4,
+          "external_compute_ms": 6.8795999977737665,
+          "start_lag_ms": 0.7518333150073886,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "a4d3c95454324535b6020bc567f68fd6",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 8,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.13834649324417114
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 3.853800008073449,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 9,
+                "history_digest": "c51cb8bf2299587a418e579d7b024fecdfe0d434494a749adbdd3ce10b1c4371",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 4.993300011847168,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 10,
+                "history_digest": "0811a0fbef7b014f25075eecc05781157c8eb8f5b66bbc93acd191d464387a5c",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.435799994505942,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 10
+        },
+        {
+          "control": 5,
+          "external_compute_ms": 6.92349998280406,
+          "start_lag_ms": 0.7129666628316045,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "3148f3a49fac40708b1bdb2cddd35af9",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 10,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.13834649324417114
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 4.458000010345131,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 11,
+                "history_digest": "8b1735b93cd561df774e32edcab55153d51443b9c5784fc83ea745832ab43cee",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 5.546300031710416,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 12,
+                "history_digest": "8a28f92ff508866d86f06b121ae63e87e0a461ad8dea8f6a8fb72a28188f0344",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.600300024729222,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 12
+        },
+        {
+          "control": 6,
+          "external_compute_ms": 7.166199997300282,
+          "start_lag_ms": 0.10579999070614576,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "814e27eabaf841d792ff2083b78aceae",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 12,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.13834649324417114
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 3.8933999894652516,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 13,
+                "history_digest": "9a9cb4343879a0c40dac5e6d09db632ad750564e641d5da1842aa0ba4b52e9bb",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 4.965000000083819,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 14,
+                "history_digest": "266e77504c0fa47160ebc9745244fcae57a687d38cf0c3242974d413a8301ec4",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.836400018073618,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 14
+        },
+        {
+          "control": 7,
+          "external_compute_ms": 10.557100002188236,
+          "start_lag_ms": 0.7063333177939057,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "2a22efe4a48b42d9921e6edfd8663460",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 14,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.13834649324417114
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 8.100699982605875,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 15,
+                "history_digest": "2876d83e56b2b1ce1131f0827ec8cb0af60bf0e48b8980842b48e9674427ae0a",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 8.923299988964573,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 16,
+                "history_digest": "d1eef22dc07b657c9217f615ed6e9b3e151c179eb573a76dd6526a2e1ae5b613",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 10.150999994948506,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 16
+        },
+        {
+          "control": 8,
+          "external_compute_ms": 7.656399975530803,
+          "start_lag_ms": 0.4393666749820113,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "4e24a83b8f76420fb968b5380f978ffb",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 16,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.13834649324417114
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 4.511800012551248,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 17,
+                "history_digest": "966b6d672211cace5ba9a7414c3f659b89168b2bb776b3ac2f3e7fc0319e5cd1",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 5.795800010673702,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 18,
+                "history_digest": "73e22e88cd5b1cbf7aeecd37a129d70bdb00b556df4c95929ad0d1685f51ec6c",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.748400017386302,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 18
+        },
+        {
+          "control": 9,
+          "external_compute_ms": 12.959299987414852,
+          "start_lag_ms": 0.5945000157225877,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "8d9d2248af4445219a42d5edade6c14d",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 18,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.1363464891910553
+              ],
+              "startup_exception": false,
+              "source": "mpc",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 8.687000023201108,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 19,
+                "history_digest": "c44082921e262daed4e227b9a6bc563ea6cad0b27e4dcb052ad250d91da2e09c",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 10.608100012177601,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 20,
+                "history_digest": "99d296ca2b7e4bfaad64d40a366a53030eb99172768e6ba001a5b00c90d875dc",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 12.396200007060543,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 20
+        },
+        {
+          "control": 10,
+          "external_compute_ms": 9.272099996451288,
+          "start_lag_ms": 0.3641333314590156,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "3833620c2f1e4cf39ad41f1586060c79",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 20,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.1363464891910553
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 5.242299987003207,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 21,
+                "history_digest": "e21ed89164c044a9896fd945450ecf36d85f817f87befff4c8078d60d83a7de1",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.755999987944961,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 22,
+                "history_digest": "dbaf70de73cfd0c43c7049f95ad096f9b05c0501019f27aea20a025e53e4ec29",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 8.851799997501075,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 22
+        },
+        {
+          "control": 11,
+          "external_compute_ms": 6.966400018427521,
+          "start_lag_ms": 0.20866666454821825,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "2a3d91bd94424a7d91bf1f575cb6cad6",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 22,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.1363464891910553
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 3.4349000197835267,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 23,
+                "history_digest": "9257c955d0e66344f5ec5db2298f366647b3245ef1c4b0cd8e2cbcada3cf15b3",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 5.042900011176243,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 24,
+                "history_digest": "b4df51a04db48ffdcfbacb050d19969d4c46aa6944445d9ec0ab9fe58b3cb04f",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.632700009504333,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 24
+        },
+        {
+          "control": 12,
+          "external_compute_ms": 8.529299986548722,
+          "start_lag_ms": 0.5036999937146902,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "25e6295564ac44bdbb30b8432e994708",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 24,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.1363464891910553
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 4.603899986250326,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 25,
+                "history_digest": "d899945c1546dd9fed6b7c5919956709715426c38a0ae04f6e084e6e7e54b3b0",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.580999994184822,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 26,
+                "history_digest": "2232c4e1e48e68718acc362317f56bd1d114b15d54d2c602bcf088b91c05f24d",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 7.956999994348735,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 26
+        },
+        {
+          "control": 13,
+          "external_compute_ms": 8.076600002823398,
+          "start_lag_ms": 2.086833323119208,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "e5907529bd904662852fc891edd0783b",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 26,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.1363464891910553
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 4.769699997268617,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 27,
+                "history_digest": "4491b3ced8ba8d5c2ef833d2d52465cf70e1e7a5a448040b5261316c0014b50c",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.31460000295192,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 28,
+                "history_digest": "886b1874faaefaa0e837a6afc9f6b6945391cb054c990ca73688990efc3326a9",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 7.59029999608174,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 28
+        },
+        {
+          "control": 14,
+          "external_compute_ms": 7.7717000094708055,
+          "start_lag_ms": 1.3067666441202164,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "a63725342abd4b90815781fd9a553132",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 28,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.1363464891910553
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 5.021599994506687,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 29,
+                "history_digest": "a789b067de4fde99fa410a7c486cb2509da180fb7ab714a9cf50a70ab16c8218",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.243600015295669,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 30,
+                "history_digest": "0ebaf8f3de7b81bb918239a4926c521f906330dfd934e53b002a97833113ad4b",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 7.440000015776604,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 30
+        },
+        {
+          "control": 15,
+          "external_compute_ms": 7.256300013978034,
+          "start_lag_ms": 1.5890999929979444,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "72582747e40349658c87f4351b5d1747",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 30,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.1363464891910553
+              ],
+              "startup_exception": false,
+              "source": "committed_prefix",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 4.882599983830005,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 31,
+                "history_digest": "6440336189e3be2b308dcb882acb4c14865ec53169f3543a305a711fb83c2ed2",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 5.942399991909042,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 32,
+                "history_digest": "32586a8010cfc305d1afc88ac02f52839178ca49a40b4c13f5acf1201d7b7d5b",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.962199986446649,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 32
+        },
+        {
+          "control": 16,
+          "external_compute_ms": 14.113999990513548,
+          "start_lag_ms": 0.30793334008194506,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "1805ea59b6a84a17b219e685992be76b",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 32,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.1363464891910553
+              ],
+              "startup_exception": false,
+              "source": "fallback",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 10.646499984432012,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 33,
+                "history_digest": "c073043f37210dbd79131b58e20bddeed95147cf20731c574fd119fcef06aa74",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 12.17419997556135,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 34,
+                "history_digest": "cfe3d2113ce9dc38a76ba134a88eeb18d40d47906784cf8d2cd937bbbdb1a5d9",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 13.481799978762865,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 34
+        },
+        {
+          "control": 17,
+          "external_compute_ms": 10.030099976575002,
+          "start_lag_ms": 0.8759666816331446,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "a390a027b3b9450eb2ed64b55188930e",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 34,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.1363464891910553
+              ],
+              "startup_exception": false,
+              "source": "fallback",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 6.956600002013147,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 35,
+                "history_digest": "baae6adb898bad5081c22a6af41cc2312b128635706eaa270983caf0ca9460e0",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 8.21100000757724,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 36,
+                "history_digest": "3b39f291c513835a14bfdf872476268b27b4f1965307652d9cdb6d309d1dc7c5",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 9.308100008638576,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 36
+        },
+        {
+          "control": 18,
+          "external_compute_ms": 7.644600002095103,
+          "start_lag_ms": 0.5467000009957701,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "f87114e45713413ba071e01ee869e3c5",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 36,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.1363464891910553
+              ],
+              "startup_exception": false,
+              "source": "fallback",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 5.172400007722899,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 37,
+                "history_digest": "c78e9aae8ce521ad5128c207e18aec8b49f9f4f42700fc1f50cf9d359b2cbca3",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.084300024667755,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 38,
+                "history_digest": "b00371479622b1bbc3e513a98940519e8b54b60737a0e4647c097b72fc8c979b",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 7.156600011512637,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 38
+        },
+        {
+          "control": 19,
+          "external_compute_ms": 7.011899986537173,
+          "start_lag_ms": 0.2256333245895803,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "5074db3e68ea438cabb863d79ac8d1cb",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 38,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.1363464891910553
+              ],
+              "startup_exception": false,
+              "source": "fallback",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 4.428399988682941,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 39,
+                "history_digest": "1a073c3b68c3d4c21bfd47327a909fb722fe21457f4154f2a1b65db56dbcfcb8",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 5.364699987694621,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 40,
+                "history_digest": "59f6c6470da112dd4cd0ccee8a55b17619833eb945f549570a72617bc4276291",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.5777999989222735,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 40
+        },
+        {
+          "control": 20,
+          "external_compute_ms": 8.65539998630993,
+          "start_lag_ms": 1.1224666668567806,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "2b31dfe83df04cc2a781c567a93fb0d9",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 40,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.1363464891910553
+              ],
+              "startup_exception": false,
+              "source": "fallback",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 6.117400014773011,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 41,
+                "history_digest": "d124e0b67cb46d377027888dd1557ba49f1bc49900f8da97675ce8556cd61d68",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 7.0683000376448035,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 42,
+                "history_digest": "270fcb2c444f528ee48a4e05c81201e3b71809e03017788587c72470911ebbe0",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 7.862300029955804,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 42
+        },
+        {
+          "control": 21,
+          "external_compute_ms": 8.134899981087074,
+          "start_lag_ms": 0.5152999947313219,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "380c9387b2ff42e2a354563af7c137cd",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 42,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.1363464891910553
+              ],
+              "startup_exception": false,
+              "source": "fallback",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 5.260400008410215,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 43,
+                "history_digest": "4c4e56c1c4b382a68812bce8a70f3fd505256b4a7acec6ccb06af503d23d735f",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 6.16350001655519,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 44,
+                "history_digest": "e67c4317cfd801536c6f23b6f008d0c8c1eebf620b00d8447863411be1f6f2b7",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 7.361000025412068,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 44
+        },
+        {
+          "control": 22,
+          "external_compute_ms": 9.375000023283064,
+          "start_lag_ms": 0.5840333178639412,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "946529084d7c4eb6948a9fbf50cec99b",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 44,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.1363464891910553
+              ],
+              "startup_exception": false,
+              "source": "fallback",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 6.8054999865125865,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 45,
+                "history_digest": "343ad0efbd102e36693c1d727b43da9724e154b42e95360b360cab43cc50ff0f",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 7.735899998806417,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 46,
+                "history_digest": "de7e028c562e5e04b18e53f2bda2bece51d7ae37fdd7e182a89889b69fe2c5de",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 8.762900019064546,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 46
+        },
+        {
+          "control": 23,
+          "external_compute_ms": 11.152399994898587,
+          "start_lag_ms": 0.50476667820476,
+          "decision": {
+            "status": "dispatch",
+            "reason": null,
+            "packet": {
+              "ticket": "a8896ddfa88244659abfd2310eaab9c5",
+              "execution_id": "06ce73ab7c0a4d3a9e0d67cd4897ff0c",
+              "episode_id": "synthetic-v54-uuv6_angled",
+              "reset_id": "fixture-zero",
+              "physics_index": 46,
+              "command": [
+                -3.198845410778972e-09,
+                4.724482582929568e-09,
+                2.1871603139711482e-10,
+                -0.1363464891910553
+              ],
+              "startup_exception": false,
+              "source": "fallback",
+              "actual_execution_confirmed": false,
+              "runtime_qualification": "adapter_and_closed_loop_still_required"
+            },
+            "progress": {
+              "status": "continue",
+              "reason": null,
+              "normalized_tracking_error": 0.0,
+              "controls_without_improvement": 0,
+              "zero_progress_controls": 0
+            },
+            "decision_compute_ms": 7.0284999965224415,
+            "actual_history_advanced": false
+          },
+          "acknowledgments": [
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 47,
+                "history_digest": "efcaa1c3f7513e1aa2534bed2a8203b748317629bcb7a288769ed434b784e25d",
+                "interval_complete": false,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 8.413300005486235,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            },
+            {
+              "status": "acknowledged",
+              "receipt": {
+                "physics_index": 48,
+                "history_digest": "8c300c1b36e487a76abd30cac1d51a73e7b26775f951837f6a230db2275ae63d",
+                "interval_complete": true,
+                "startup_consumed": true
+              },
+              "control_compute_ms": 10.59059999533929,
+              "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+              "actual_history_advanced": true
+            }
+          ],
+          "confirmed_physics_index": 48
+        }
+      ],
+      "passes": true,
+      "mpc_activations": 1,
+      "stop_reason": null,
+      "worker_events": [
+        {
+          "control": 7,
+          "status": "result",
+          "reason": null,
+          "elapsed_ms": 98.04060001624748,
+          "plan_status": "selected",
+          "plan_reason": null,
+          "solver_ms": 81.93690000916831
+        },
+        {
+          "control": 16,
+          "status": "timeout",
+          "reason": "worker_request_timeout",
+          "elapsed_ms": null,
+          "plan_status": null,
+          "plan_reason": null,
+          "solver_ms": null
+        }
+      ],
+      "arbitration": [
+        {
+          "control": 0,
+          "status": "fallback",
+          "source": null,
+          "reason": "no_plan"
+        },
+        {
+          "control": 1,
+          "status": "fallback",
+          "source": null,
+          "reason": "no_plan"
+        },
+        {
+          "control": 2,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 3,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 4,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 5,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 6,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 7,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 8,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 9,
+          "status": "proposal",
+          "source": "mpc",
+          "reason": null
+        },
+        {
+          "control": 10,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 11,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 12,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 13,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 14,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 15,
+          "status": "proposal",
+          "source": "committed_prefix",
+          "reason": null
+        },
+        {
+          "control": 16,
+          "status": "fallback",
+          "source": null,
+          "reason": "worker_worker_request_timeout"
+        },
+        {
+          "control": 17,
+          "status": "fallback",
+          "source": null,
+          "reason": "worker_worker_request_timeout"
+        },
+        {
+          "control": 18,
+          "status": "fallback",
+          "source": null,
+          "reason": "worker_worker_request_timeout"
+        },
+        {
+          "control": 19,
+          "status": "fallback",
+          "source": null,
+          "reason": "worker_worker_request_timeout"
+        },
+        {
+          "control": 20,
+          "status": "fallback",
+          "source": null,
+          "reason": "worker_worker_request_timeout"
+        },
+        {
+          "control": 21,
+          "status": "fallback",
+          "source": null,
+          "reason": "worker_worker_request_timeout"
+        },
+        {
+          "control": 22,
+          "status": "fallback",
+          "source": null,
+          "reason": "worker_worker_request_timeout"
+        },
+        {
+          "control": 23,
+          "status": "fallback",
+          "source": null,
+          "reason": "worker_worker_request_timeout"
+        }
+      ],
+      "stats": {
+        "requests": 2,
+        "mpc_activations": 1,
+        "confirmed_controls": 24,
+        "dispatches": 24,
+        "rejected_replies": 0,
+        "worker_failures": 1
+      },
+      "maximum_rotor_difference": 0.0,
+      "maximum_compute_ms": 14.113999990513548,
+      "confirmed_physics_ticks": 48,
+      "closed": {
+        "process_stopped": true,
+        "io_threads_stopped": true
+      }
+    }
+  ],
+  "configurations_passed": 2,
+  "configurations_total": 2,
+  "local_compute_gate": "GO",
+  "live_system_gate": "NOT_QUALIFIED",
+  "controller_promoted": false,
+  "new_isaac_steps": 0,
+  "limitations": [
+    "fixed_state_fixture_not_closed_loop",
+    "synthetic_safety_and_ack_not_real_adapter",
+    "few_samples_no_latency_tail_guarantee",
+    "simulator_execution_time_excluded",
+    "activation_not_control_benefit"
+  ]
+}

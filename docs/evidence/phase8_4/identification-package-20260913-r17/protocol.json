@@ -1,0 +1,598 @@
+{
+  "experiment": "phase8.4-feedback-identification-v29-20260913-r17",
+  "version": "fresh-feedback-identification-v29",
+  "cases": [
+    {
+      "run_id": "i29-base-preflight-8710-prbs",
+      "configuration": "base",
+      "role": "preflight",
+      "seed": 8710,
+      "excitation": "prbs",
+      "intervals": 256,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-base-fit-8720-prbs",
+      "configuration": "base",
+      "role": "fit",
+      "seed": 8720,
+      "excitation": "prbs",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-base-fit-8721-multisine",
+      "configuration": "base",
+      "role": "fit",
+      "seed": 8721,
+      "excitation": "multisine",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-base-fit-8722-chirp",
+      "configuration": "base",
+      "role": "fit",
+      "seed": 8722,
+      "excitation": "chirp",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-base-validation-8800-prbs",
+      "configuration": "base",
+      "role": "validation",
+      "seed": 8800,
+      "excitation": "prbs",
+      "intervals": 320,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-base-validation-8801-multisine",
+      "configuration": "base",
+      "role": "validation",
+      "seed": 8801,
+      "excitation": "multisine",
+      "intervals": 320,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-long_body-preflight-8711-prbs",
+      "configuration": "long_body",
+      "role": "preflight",
+      "seed": 8711,
+      "excitation": "prbs",
+      "intervals": 256,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-long_body-fit-8723-prbs",
+      "configuration": "long_body",
+      "role": "fit",
+      "seed": 8723,
+      "excitation": "prbs",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-long_body-fit-8724-multisine",
+      "configuration": "long_body",
+      "role": "fit",
+      "seed": 8724,
+      "excitation": "multisine",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-long_body-fit-8725-chirp",
+      "configuration": "long_body",
+      "role": "fit",
+      "seed": 8725,
+      "excitation": "chirp",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-long_body-validation-8802-prbs",
+      "configuration": "long_body",
+      "role": "validation",
+      "seed": 8802,
+      "excitation": "prbs",
+      "intervals": 320,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-long_body-validation-8803-multisine",
+      "configuration": "long_body",
+      "role": "validation",
+      "seed": 8803,
+      "excitation": "multisine",
+      "intervals": 320,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-heavy_moderate-preflight-8712-prbs",
+      "configuration": "heavy_moderate",
+      "role": "preflight",
+      "seed": 8712,
+      "excitation": "prbs",
+      "intervals": 256,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-heavy_moderate-fit-8726-prbs",
+      "configuration": "heavy_moderate",
+      "role": "fit",
+      "seed": 8726,
+      "excitation": "prbs",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-heavy_moderate-fit-8727-multisine",
+      "configuration": "heavy_moderate",
+      "role": "fit",
+      "seed": 8727,
+      "excitation": "multisine",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-heavy_moderate-fit-8728-chirp",
+      "configuration": "heavy_moderate",
+      "role": "fit",
+      "seed": 8728,
+      "excitation": "chirp",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-heavy_moderate-validation-8804-prbs",
+      "configuration": "heavy_moderate",
+      "role": "validation",
+      "seed": 8804,
+      "excitation": "prbs",
+      "intervals": 320,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-heavy_moderate-validation-8805-multisine",
+      "configuration": "heavy_moderate",
+      "role": "validation",
+      "seed": 8805,
+      "excitation": "multisine",
+      "intervals": 320,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-asymmetric-preflight-8713-prbs",
+      "configuration": "asymmetric",
+      "role": "preflight",
+      "seed": 8713,
+      "excitation": "prbs",
+      "intervals": 256,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-asymmetric-fit-8729-prbs",
+      "configuration": "asymmetric",
+      "role": "fit",
+      "seed": 8729,
+      "excitation": "prbs",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-asymmetric-fit-8730-multisine",
+      "configuration": "asymmetric",
+      "role": "fit",
+      "seed": 8730,
+      "excitation": "multisine",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-asymmetric-fit-8731-chirp",
+      "configuration": "asymmetric",
+      "role": "fit",
+      "seed": 8731,
+      "excitation": "chirp",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-asymmetric-validation-8806-prbs",
+      "configuration": "asymmetric",
+      "role": "validation",
+      "seed": 8806,
+      "excitation": "prbs",
+      "intervals": 320,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-asymmetric-validation-8807-multisine",
+      "configuration": "asymmetric",
+      "role": "validation",
+      "seed": 8807,
+      "excitation": "multisine",
+      "intervals": 320,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv6-preflight-8714-prbs",
+      "configuration": "uuv6",
+      "role": "preflight",
+      "seed": 8714,
+      "excitation": "prbs",
+      "intervals": 256,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv6-fit-8732-prbs",
+      "configuration": "uuv6",
+      "role": "fit",
+      "seed": 8732,
+      "excitation": "prbs",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv6-fit-8733-multisine",
+      "configuration": "uuv6",
+      "role": "fit",
+      "seed": 8733,
+      "excitation": "multisine",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv6-fit-8734-chirp",
+      "configuration": "uuv6",
+      "role": "fit",
+      "seed": 8734,
+      "excitation": "chirp",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv6-validation-8808-prbs",
+      "configuration": "uuv6",
+      "role": "validation",
+      "seed": 8808,
+      "excitation": "prbs",
+      "intervals": 320,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv6-validation-8809-multisine",
+      "configuration": "uuv6",
+      "role": "validation",
+      "seed": 8809,
+      "excitation": "multisine",
+      "intervals": 320,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv6_angled-preflight-8715-prbs",
+      "configuration": "uuv6_angled",
+      "role": "preflight",
+      "seed": 8715,
+      "excitation": "prbs",
+      "intervals": 256,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv6_angled-fit-8735-prbs",
+      "configuration": "uuv6_angled",
+      "role": "fit",
+      "seed": 8735,
+      "excitation": "prbs",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv6_angled-fit-8736-multisine",
+      "configuration": "uuv6_angled",
+      "role": "fit",
+      "seed": 8736,
+      "excitation": "multisine",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv6_angled-fit-8737-chirp",
+      "configuration": "uuv6_angled",
+      "role": "fit",
+      "seed": 8737,
+      "excitation": "chirp",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv6_angled-validation-8810-prbs",
+      "configuration": "uuv6_angled",
+      "role": "validation",
+      "seed": 8810,
+      "excitation": "prbs",
+      "intervals": 320,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv6_angled-validation-8811-multisine",
+      "configuration": "uuv6_angled",
+      "role": "validation",
+      "seed": 8811,
+      "excitation": "multisine",
+      "intervals": 320,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv4-preflight-8716-prbs",
+      "configuration": "uuv4",
+      "role": "preflight",
+      "seed": 8716,
+      "excitation": "prbs",
+      "intervals": 256,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv4-fit-8738-prbs",
+      "configuration": "uuv4",
+      "role": "fit",
+      "seed": 8738,
+      "excitation": "prbs",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv4-fit-8739-multisine",
+      "configuration": "uuv4",
+      "role": "fit",
+      "seed": 8739,
+      "excitation": "multisine",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv4-fit-8740-chirp",
+      "configuration": "uuv4",
+      "role": "fit",
+      "seed": 8740,
+      "excitation": "chirp",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv4-validation-8812-prbs",
+      "configuration": "uuv4",
+      "role": "validation",
+      "seed": 8812,
+      "excitation": "prbs",
+      "intervals": 320,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv4-validation-8813-multisine",
+      "configuration": "uuv4",
+      "role": "validation",
+      "seed": 8813,
+      "excitation": "multisine",
+      "intervals": 320,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv4_angled-preflight-8717-prbs",
+      "configuration": "uuv4_angled",
+      "role": "preflight",
+      "seed": 8717,
+      "excitation": "prbs",
+      "intervals": 256,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv4_angled-fit-8741-prbs",
+      "configuration": "uuv4_angled",
+      "role": "fit",
+      "seed": 8741,
+      "excitation": "prbs",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv4_angled-fit-8742-multisine",
+      "configuration": "uuv4_angled",
+      "role": "fit",
+      "seed": 8742,
+      "excitation": "multisine",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv4_angled-fit-8743-chirp",
+      "configuration": "uuv4_angled",
+      "role": "fit",
+      "seed": 8743,
+      "excitation": "chirp",
+      "intervals": 320,
+      "training_eligible": true,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv4_angled-validation-8814-prbs",
+      "configuration": "uuv4_angled",
+      "role": "validation",
+      "seed": 8814,
+      "excitation": "prbs",
+      "intervals": 320,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    },
+    {
+      "run_id": "i29-uuv4_angled-validation-8815-multisine",
+      "configuration": "uuv4_angled",
+      "role": "validation",
+      "seed": 8815,
+      "excitation": "multisine",
+      "intervals": 320,
+      "training_eligible": false,
+      "starting_z_m": 5.5,
+      "mode": "direct_pre_tam_v24"
+    }
+  ],
+  "physics_dt_s": 0.008333333333333333,
+  "control_dt_s": 0.016666666666666666,
+  "startup_control_intervals": 128,
+  "pulse_acceleration_4": [
+    2.0,
+    1.0,
+    0.5,
+    0.25
+  ],
+  "excitation": {
+    "prbs_pair_intervals": 24,
+    "prbs_sign_intervals": 12,
+    "prbs_first_four_pairs": "seed_permuted_signed_hadamard4",
+    "multisine_cycles_by_axis": [
+      [
+        1,
+        3,
+        5
+      ],
+      [
+        2,
+        4,
+        6
+      ],
+      [
+        3,
+        5,
+        7
+      ],
+      [
+        4,
+        6,
+        8
+      ]
+    ],
+    "chirp_cycles_start_end_by_axis": [
+      [
+        1.0,
+        4
+      ],
+      [
+        1.25,
+        5
+      ],
+      [
+        1.5,
+        6
+      ],
+      [
+        1.75,
+        7
+      ]
+    ]
+  },
+  "initialization": "identity_pose_zero_velocity_zero_rotors_complete_history",
+  "validation_access": "after_all_preflight_and_fit_acceptance_coverage_go_and_frozen_candidate_evaluation",
+  "resource_cap": {
+    "collector_seconds": 5400,
+    "native_case_seconds": 300,
+    "analysis_seconds": 3600,
+    "disk_bytes": 4294967296
+  },
+  "model_handoff": false,
+  "test_access": false
+}

@@ -1,0 +1,50 @@
+{
+  "schema": "rate30-worker-readiness-v67",
+  "physics_steps": 0,
+  "model_fits": 0,
+  "control_benefit_claim": false,
+  "release_sha256": "aa1efbb4c57b3d01225a3d1604f9b39a2adbc4d04e6e359b249afbfbabb7e3a9",
+  "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+  "workers": [
+    {
+      "configuration": "base",
+      "event": {
+        "status": "ready",
+        "generation": "07b5202e6b5e452ba66249c04921be80"
+      },
+      "state": "ready",
+      "cleanup": {
+        "process_stopped": true,
+        "io_threads_stopped": true
+      },
+      "seconds": 10.271076829638332
+    },
+    {
+      "configuration": "asymmetric",
+      "event": {
+        "status": "ready",
+        "generation": "865c40137bae4ec2b88d5a1bd4fdf458"
+      },
+      "state": "ready",
+      "cleanup": {
+        "process_stopped": true,
+        "io_threads_stopped": true
+      },
+      "seconds": 9.835915545001626
+    },
+    {
+      "configuration": "uuv4",
+      "event": {
+        "status": "ready",
+        "generation": "db617cd0fe174a6f91ad1083323b4f1d"
+      },
+      "state": "ready",
+      "cleanup": {
+        "process_stopped": true,
+        "io_threads_stopped": true
+      },
+      "seconds": 10.1204639300704
+    }
+  ],
+  "passed": true
+}

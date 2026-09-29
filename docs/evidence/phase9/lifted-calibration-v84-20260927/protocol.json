@@ -1,0 +1,41 @@
+{
+  "schema": "source-only-lk-ridge-calibration-v84",
+  "ridge_grid": [
+    1e-08,
+    1e-06,
+    0.0001,
+    0.001,
+    0.1
+  ],
+  "maximum_seconds": 600,
+  "maximum_bytes": 134217728,
+  "gate": {
+    "horizon_physics": 80,
+    "max_window_z_rmse_m": 0.002,
+    "max_window_attitude_rmse_rad": 0.004
+  },
+  "selection": "lexicographic: number of failed 80-step windows; maximum over complete windows of z_RMSE/.002 + attitude_RMSE/.004; larger ridge on exact ties",
+  "source_development": "alphabetically last outer source configuration, excluded from inner fitting",
+  "outer_target_used_for_selection": false,
+  "blind_test": false,
+  "dictionary_changed": false,
+  "input_features_changed": false,
+  "propagation_changed": false,
+  "origins": [
+    256,
+    384,
+    512
+  ],
+  "horizons": [
+    1,
+    80,
+    128
+  ],
+  "solver_runs": 0,
+  "physics_runs": 0,
+  "source_sha256": {
+    "workflows\\calibrate_lifted_v84.py": "192ef4b3f04182a736e6ffddd5ae71ecc4b0515e6d800b72de5e8d6036c83128",
+    "koopman\\lifted_propagation_v84.py": "6fafdff448ecb3fd49de0904d2197c3885dad76890eb20de04f68c0349c05bde",
+    "workflows\\compare_models_v84.py": "dc0f7250c55b1d38802c1f3917390a545f20ed5e52e605918c0272d449f973ee"
+  }
+}

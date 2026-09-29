@@ -1,0 +1,758 @@
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF                                    [100%]
+================================== FAILURES ===================================
+_ test_geometry_seed_reaches_known_static_target_from_zero_deadzone[-0.13-base] _
+
+name = 'base', depth = -0.13
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    @pytest.mark.parametrize('depth', [-.13, .13])
+    def test_geometry_seed_reaches_known_static_target_from_zero_deadzone(name, depth):
+        from koopman.bounded_feedback_v46 import FeedbackConfig
+>       m = mapping(name)
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_ test_geometry_seed_reaches_known_static_target_from_zero_deadzone[-0.13-long_body] _
+
+name = 'long_body', depth = -0.13
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    @pytest.mark.parametrize('depth', [-.13, .13])
+    def test_geometry_seed_reaches_known_static_target_from_zero_deadzone(name, depth):
+        from koopman.bounded_feedback_v46 import FeedbackConfig
+>       m = mapping(name)
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'long_body'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_ test_geometry_seed_reaches_known_static_target_from_zero_deadzone[-0.13-heavy_moderate] _
+
+name = 'heavy_moderate', depth = -0.13
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    @pytest.mark.parametrize('depth', [-.13, .13])
+    def test_geometry_seed_reaches_known_static_target_from_zero_deadzone(name, depth):
+        from koopman.bounded_feedback_v46 import FeedbackConfig
+>       m = mapping(name)
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'heavy_moderate'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_ test_geometry_seed_reaches_known_static_target_from_zero_deadzone[-0.13-asymmetric] _
+
+name = 'asymmetric', depth = -0.13
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    @pytest.mark.parametrize('depth', [-.13, .13])
+    def test_geometry_seed_reaches_known_static_target_from_zero_deadzone(name, depth):
+        from koopman.bounded_feedback_v46 import FeedbackConfig
+>       m = mapping(name)
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'asymmetric'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_ test_geometry_seed_reaches_known_static_target_from_zero_deadzone[-0.13-uuv6] _
+
+name = 'uuv6', depth = -0.13
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    @pytest.mark.parametrize('depth', [-.13, .13])
+    def test_geometry_seed_reaches_known_static_target_from_zero_deadzone(name, depth):
+        from koopman.bounded_feedback_v46 import FeedbackConfig
+>       m = mapping(name)
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv6'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_ test_geometry_seed_reaches_known_static_target_from_zero_deadzone[-0.13-uuv6_angled] _
+
+name = 'uuv6_angled', depth = -0.13
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    @pytest.mark.parametrize('depth', [-.13, .13])
+    def test_geometry_seed_reaches_known_static_target_from_zero_deadzone(name, depth):
+        from koopman.bounded_feedback_v46 import FeedbackConfig
+>       m = mapping(name)
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv6_angled'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_ test_geometry_seed_reaches_known_static_target_from_zero_deadzone[-0.13-uuv4] _
+
+name = 'uuv4', depth = -0.13
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    @pytest.mark.parametrize('depth', [-.13, .13])
+    def test_geometry_seed_reaches_known_static_target_from_zero_deadzone(name, depth):
+        from koopman.bounded_feedback_v46 import FeedbackConfig
+>       m = mapping(name)
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_ test_geometry_seed_reaches_known_static_target_from_zero_deadzone[-0.13-uuv4_angled] _
+
+name = 'uuv4_angled', depth = -0.13
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    @pytest.mark.parametrize('depth', [-.13, .13])
+    def test_geometry_seed_reaches_known_static_target_from_zero_deadzone(name, depth):
+        from koopman.bounded_feedback_v46 import FeedbackConfig
+>       m = mapping(name)
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4_angled'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_ test_geometry_seed_reaches_known_static_target_from_zero_deadzone[0.13-base] _
+
+name = 'base', depth = 0.13
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    @pytest.mark.parametrize('depth', [-.13, .13])
+    def test_geometry_seed_reaches_known_static_target_from_zero_deadzone(name, depth):
+        from koopman.bounded_feedback_v46 import FeedbackConfig
+>       m = mapping(name)
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_ test_geometry_seed_reaches_known_static_target_from_zero_deadzone[0.13-long_body] _
+
+name = 'long_body', depth = 0.13
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    @pytest.mark.parametrize('depth', [-.13, .13])
+    def test_geometry_seed_reaches_known_static_target_from_zero_deadzone(name, depth):
+        from koopman.bounded_feedback_v46 import FeedbackConfig
+>       m = mapping(name)
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'long_body'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_ test_geometry_seed_reaches_known_static_target_from_zero_deadzone[0.13-heavy_moderate] _
+
+name = 'heavy_moderate', depth = 0.13
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    @pytest.mark.parametrize('depth', [-.13, .13])
+    def test_geometry_seed_reaches_known_static_target_from_zero_deadzone(name, depth):
+        from koopman.bounded_feedback_v46 import FeedbackConfig
+>       m = mapping(name)
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'heavy_moderate'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_ test_geometry_seed_reaches_known_static_target_from_zero_deadzone[0.13-asymmetric] _
+
+name = 'asymmetric', depth = 0.13
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    @pytest.mark.parametrize('depth', [-.13, .13])
+    def test_geometry_seed_reaches_known_static_target_from_zero_deadzone(name, depth):
+        from koopman.bounded_feedback_v46 import FeedbackConfig
+>       m = mapping(name)
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'asymmetric'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_ test_geometry_seed_reaches_known_static_target_from_zero_deadzone[0.13-uuv6] _
+
+name = 'uuv6', depth = 0.13
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    @pytest.mark.parametrize('depth', [-.13, .13])
+    def test_geometry_seed_reaches_known_static_target_from_zero_deadzone(name, depth):
+        from koopman.bounded_feedback_v46 import FeedbackConfig
+>       m = mapping(name)
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv6'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_ test_geometry_seed_reaches_known_static_target_from_zero_deadzone[0.13-uuv6_angled] _
+
+name = 'uuv6_angled', depth = 0.13
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    @pytest.mark.parametrize('depth', [-.13, .13])
+    def test_geometry_seed_reaches_known_static_target_from_zero_deadzone(name, depth):
+        from koopman.bounded_feedback_v46 import FeedbackConfig
+>       m = mapping(name)
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv6_angled'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_ test_geometry_seed_reaches_known_static_target_from_zero_deadzone[0.13-uuv4] _
+
+name = 'uuv4', depth = 0.13
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    @pytest.mark.parametrize('depth', [-.13, .13])
+    def test_geometry_seed_reaches_known_static_target_from_zero_deadzone(name, depth):
+        from koopman.bounded_feedback_v46 import FeedbackConfig
+>       m = mapping(name)
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_ test_geometry_seed_reaches_known_static_target_from_zero_deadzone[0.13-uuv4_angled] _
+
+name = 'uuv4_angled', depth = 0.13
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    @pytest.mark.parametrize('depth', [-.13, .13])
+    def test_geometry_seed_reaches_known_static_target_from_zero_deadzone(name, depth):
+        from koopman.bounded_feedback_v46 import FeedbackConfig
+>       m = mapping(name)
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4_angled'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+__ test_limited_command_is_legal_but_does_not_relabel_original_target[base] ___
+
+name = 'base'
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    def test_limited_command_is_legal_but_does_not_relabel_original_target(name):
+>       m = mapping(name); full = np.array([0., 0, 0, .18]); previous = np.array([0., 0, 0, .10])
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_ test_limited_command_is_legal_but_does_not_relabel_original_target[long_body] _
+
+name = 'long_body'
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    def test_limited_command_is_legal_but_does_not_relabel_original_target(name):
+>       m = mapping(name); full = np.array([0., 0, 0, .18]); previous = np.array([0., 0, 0, .10])
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'long_body'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_ test_limited_command_is_legal_but_does_not_relabel_original_target[heavy_moderate] _
+
+name = 'heavy_moderate'
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    def test_limited_command_is_legal_but_does_not_relabel_original_target(name):
+>       m = mapping(name); full = np.array([0., 0, 0, .18]); previous = np.array([0., 0, 0, .10])
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'heavy_moderate'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_ test_limited_command_is_legal_but_does_not_relabel_original_target[asymmetric] _
+
+name = 'asymmetric'
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    def test_limited_command_is_legal_but_does_not_relabel_original_target(name):
+>       m = mapping(name); full = np.array([0., 0, 0, .18]); previous = np.array([0., 0, 0, .10])
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'asymmetric'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+__ test_limited_command_is_legal_but_does_not_relabel_original_target[uuv6] ___
+
+name = 'uuv6'
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    def test_limited_command_is_legal_but_does_not_relabel_original_target(name):
+>       m = mapping(name); full = np.array([0., 0, 0, .18]); previous = np.array([0., 0, 0, .10])
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv6'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_ test_limited_command_is_legal_but_does_not_relabel_original_target[uuv6_angled] _
+
+name = 'uuv6_angled'
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    def test_limited_command_is_legal_but_does_not_relabel_original_target(name):
+>       m = mapping(name); full = np.array([0., 0, 0, .18]); previous = np.array([0., 0, 0, .10])
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv6_angled'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+__ test_limited_command_is_legal_but_does_not_relabel_original_target[uuv4] ___
+
+name = 'uuv4'
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    def test_limited_command_is_legal_but_does_not_relabel_original_target(name):
+>       m = mapping(name); full = np.array([0., 0, 0, .18]); previous = np.array([0., 0, 0, .10])
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_ test_limited_command_is_legal_but_does_not_relabel_original_target[uuv4_angled] _
+
+name = 'uuv4_angled'
+
+    @pytest.mark.parametrize('name', SUPPORTED_EMBODIMENTS)
+    def test_limited_command_is_legal_but_does_not_relabel_original_target(name):
+>       m = mapping(name); full = np.array([0., 0, 0, .18]); previous = np.array([0., 0, 0, .10])
+            ^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4_angled'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_ test_internal_static_reference_can_exceed_fit_box_but_actual_command_cannot _
+
+    def test_internal_static_reference_can_exceed_fit_box_but_actual_command_cannot():
+>       m=mapping(); full=np.array([0.,0,0,.18]); old=np.array([0.,0,0,.149])
+          ^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:61: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+___ test_synthetic_command_sequence_crosses_deadzone_without_rate_violation ___
+
+    def test_synthetic_command_sequence_crosses_deadzone_without_rate_violation():
+        # Only command geometry is exercised; this is not a simulated hull rollout.
+>       m=mapping(); full=np.array([0.,0,0,.0301]);target=m.evaluate(full)['wrench']
+          ^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+__ test_support_boundary_hold_is_explicitly_zero_progress_not_target_success __
+
+    def test_support_boundary_hold_is_explicitly_zero_progress_not_target_success():
+>       m=mapping();full=np.array([0.,0,0,.18]);old=np.array([0.,0,0,.15])
+          ^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:88: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+______ test_limiter_rejects_invalid_or_unqualified_inputs[full_residual] ______
+
+bad = 'full_residual'
+
+    @pytest.mark.parametrize('bad', ['full_residual','full_pwm','previous_outside','target_nan','masked_axis','deadline'])
+    def test_limiter_rejects_invalid_or_unqualified_inputs(bad):
+>       m=mapping('uuv4');full=np.array([0.,0,0,.18]);old=np.array([0.,0,0,.10])
+          ^^^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:98: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+________ test_limiter_rejects_invalid_or_unqualified_inputs[full_pwm] _________
+
+bad = 'full_pwm'
+
+    @pytest.mark.parametrize('bad', ['full_residual','full_pwm','previous_outside','target_nan','masked_axis','deadline'])
+    def test_limiter_rejects_invalid_or_unqualified_inputs(bad):
+>       m=mapping('uuv4');full=np.array([0.,0,0,.18]);old=np.array([0.,0,0,.10])
+          ^^^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:98: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+____ test_limiter_rejects_invalid_or_unqualified_inputs[previous_outside] _____
+
+bad = 'previous_outside'
+
+    @pytest.mark.parametrize('bad', ['full_residual','full_pwm','previous_outside','target_nan','masked_axis','deadline'])
+    def test_limiter_rejects_invalid_or_unqualified_inputs(bad):
+>       m=mapping('uuv4');full=np.array([0.,0,0,.18]);old=np.array([0.,0,0,.10])
+          ^^^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:98: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_______ test_limiter_rejects_invalid_or_unqualified_inputs[target_nan] ________
+
+bad = 'target_nan'
+
+    @pytest.mark.parametrize('bad', ['full_residual','full_pwm','previous_outside','target_nan','masked_axis','deadline'])
+    def test_limiter_rejects_invalid_or_unqualified_inputs(bad):
+>       m=mapping('uuv4');full=np.array([0.,0,0,.18]);old=np.array([0.,0,0,.10])
+          ^^^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:98: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_______ test_limiter_rejects_invalid_or_unqualified_inputs[masked_axis] _______
+
+bad = 'masked_axis'
+
+    @pytest.mark.parametrize('bad', ['full_residual','full_pwm','previous_outside','target_nan','masked_axis','deadline'])
+    def test_limiter_rejects_invalid_or_unqualified_inputs(bad):
+>       m=mapping('uuv4');full=np.array([0.,0,0,.18]);old=np.array([0.,0,0,.10])
+          ^^^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:98: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+________ test_limiter_rejects_invalid_or_unqualified_inputs[deadline] _________
+
+bad = 'deadline'
+
+    @pytest.mark.parametrize('bad', ['full_residual','full_pwm','previous_outside','target_nan','masked_axis','deadline'])
+    def test_limiter_rejects_invalid_or_unqualified_inputs(bad):
+>       m=mapping('uuv4');full=np.array([0.,0,0,.18]);old=np.array([0.,0,0,.10])
+          ^^^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:98: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'uuv4'
+
+    def mapping(name='base'):
+>       from koopman.bounded_feedback_v47 import PreparedTrackingMap
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:16: ModuleNotFoundError
+_ test_policy_reports_depth_tracking_limitation_without_mutating_actual_history _
+
+    def test_policy_reports_depth_tracking_limitation_without_mutating_actual_history():
+>       p=policy();x=initial();ref=x[:5].copy();ref[0]+=.05
+          ^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:123: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base'
+
+    def policy(name='base'):
+>       from koopman.bounded_feedback_v47 import TrackingFeedback
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:115: ModuleNotFoundError
+____ test_startup_still_requires_preparation_and_matching_reset_reference _____
+
+    def test_startup_still_requires_preparation_and_matching_reset_reference():
+>       p=policy('heavy_moderate');x=initial();ref=x[:5].copy()
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:133: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'heavy_moderate'
+
+    def policy(name='base'):
+>       from koopman.bounded_feedback_v47 import TrackingFeedback
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:115: ModuleNotFoundError
+_ test_timeout_returns_no_command_even_if_internal_calculation_eventually_succeeds _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000026320AA6C00>
+
+    def test_timeout_returns_no_command_even_if_internal_calculation_eventually_succeeds(monkeypatch):
+>       p=policy();p.config=replace(p.config,timeout_ms=1)
+          ^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:145: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base'
+
+    def policy(name='base'):
+>       from koopman.bounded_feedback_v47 import TrackingFeedback
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:115: ModuleNotFoundError
+________________ test_policy_rejects_changed_geometry_binding _________________
+
+    def test_policy_rejects_changed_geometry_binding():
+>       p=policy();p.steady=mapping('uuv6')
+          ^^^^^^^^
+
+tests\test_bounded_feedback_v47.py:156: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'base'
+
+    def policy(name='base'):
+>       from koopman.bounded_feedback_v47 import TrackingFeedback
+E       ModuleNotFoundError: No module named 'koopman.bounded_feedback_v47'
+
+tests\test_bounded_feedback_v47.py:115: ModuleNotFoundError
+=========================== short test summary info ===========================
+FAILED tests/test_bounded_feedback_v47.py::test_geometry_seed_reaches_known_static_target_from_zero_deadzone[-0.13-base]
+FAILED tests/test_bounded_feedback_v47.py::test_geometry_seed_reaches_known_static_target_from_zero_deadzone[-0.13-long_body]
+FAILED tests/test_bounded_feedback_v47.py::test_geometry_seed_reaches_known_static_target_from_zero_deadzone[-0.13-heavy_moderate]
+FAILED tests/test_bounded_feedback_v47.py::test_geometry_seed_reaches_known_static_target_from_zero_deadzone[-0.13-asymmetric]
+FAILED tests/test_bounded_feedback_v47.py::test_geometry_seed_reaches_known_static_target_from_zero_deadzone[-0.13-uuv6]
+FAILED tests/test_bounded_feedback_v47.py::test_geometry_seed_reaches_known_static_target_from_zero_deadzone[-0.13-uuv6_angled]
+FAILED tests/test_bounded_feedback_v47.py::test_geometry_seed_reaches_known_static_target_from_zero_deadzone[-0.13-uuv4]
+FAILED tests/test_bounded_feedback_v47.py::test_geometry_seed_reaches_known_static_target_from_zero_deadzone[-0.13-uuv4_angled]
+FAILED tests/test_bounded_feedback_v47.py::test_geometry_seed_reaches_known_static_target_from_zero_deadzone[0.13-base]
+FAILED tests/test_bounded_feedback_v47.py::test_geometry_seed_reaches_known_static_target_from_zero_deadzone[0.13-long_body]
+FAILED tests/test_bounded_feedback_v47.py::test_geometry_seed_reaches_known_static_target_from_zero_deadzone[0.13-heavy_moderate]
+FAILED tests/test_bounded_feedback_v47.py::test_geometry_seed_reaches_known_static_target_from_zero_deadzone[0.13-asymmetric]
+FAILED tests/test_bounded_feedback_v47.py::test_geometry_seed_reaches_known_static_target_from_zero_deadzone[0.13-uuv6]
+FAILED tests/test_bounded_feedback_v47.py::test_geometry_seed_reaches_known_static_target_from_zero_deadzone[0.13-uuv6_angled]
+FAILED tests/test_bounded_feedback_v47.py::test_geometry_seed_reaches_known_static_target_from_zero_deadzone[0.13-uuv4]
+FAILED tests/test_bounded_feedback_v47.py::test_geometry_seed_reaches_known_static_target_from_zero_deadzone[0.13-uuv4_angled]
+FAILED tests/test_bounded_feedback_v47.py::test_limited_command_is_legal_but_does_not_relabel_original_target[base]
+FAILED tests/test_bounded_feedback_v47.py::test_limited_command_is_legal_but_does_not_relabel_original_target[long_body]
+FAILED tests/test_bounded_feedback_v47.py::test_limited_command_is_legal_but_does_not_relabel_original_target[heavy_moderate]
+FAILED tests/test_bounded_feedback_v47.py::test_limited_command_is_legal_but_does_not_relabel_original_target[asymmetric]
+FAILED tests/test_bounded_feedback_v47.py::test_limited_command_is_legal_but_does_not_relabel_original_target[uuv6]
+FAILED tests/test_bounded_feedback_v47.py::test_limited_command_is_legal_but_does_not_relabel_original_target[uuv6_angled]
+FAILED tests/test_bounded_feedback_v47.py::test_limited_command_is_legal_but_does_not_relabel_original_target[uuv4]
+FAILED tests/test_bounded_feedback_v47.py::test_limited_command_is_legal_but_does_not_relabel_original_target[uuv4_angled]
+FAILED tests/test_bounded_feedback_v47.py::test_internal_static_reference_can_exceed_fit_box_but_actual_command_cannot
+FAILED tests/test_bounded_feedback_v47.py::test_synthetic_command_sequence_crosses_deadzone_without_rate_violation
+FAILED tests/test_bounded_feedback_v47.py::test_support_boundary_hold_is_explicitly_zero_progress_not_target_success
+FAILED tests/test_bounded_feedback_v47.py::test_limiter_rejects_invalid_or_unqualified_inputs[full_residual]
+FAILED tests/test_bounded_feedback_v47.py::test_limiter_rejects_invalid_or_unqualified_inputs[full_pwm]
+FAILED tests/test_bounded_feedback_v47.py::test_limiter_rejects_invalid_or_unqualified_inputs[previous_outside]
+FAILED tests/test_bounded_feedback_v47.py::test_limiter_rejects_invalid_or_unqualified_inputs[target_nan]
+FAILED tests/test_bounded_feedback_v47.py::test_limiter_rejects_invalid_or_unqualified_inputs[masked_axis]
+FAILED tests/test_bounded_feedback_v47.py::test_limiter_rejects_invalid_or_unqualified_inputs[deadline]
+FAILED tests/test_bounded_feedback_v47.py::test_policy_reports_depth_tracking_limitation_without_mutating_actual_history
+FAILED tests/test_bounded_feedback_v47.py::test_startup_still_requires_preparation_and_matching_reset_reference
+FAILED tests/test_bounded_feedback_v47.py::test_timeout_returns_no_command_even_if_internal_calculation_eventually_succeeds
+FAILED tests/test_bounded_feedback_v47.py::test_policy_rejects_changed_geometry_binding
+37 failed in 5.25s

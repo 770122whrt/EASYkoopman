@@ -1,0 +1,568 @@
+{
+  "schema": "phase9-uuv4-pair-completion-v71",
+  "cases": [
+    {
+      "case_id": "uuv4-pitch-feedback",
+      "configuration": "uuv4",
+      "controller": "feedback",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0,
+        0.01999866669333308,
+        0
+      ],
+      "reference_id": "pitch-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    },
+    {
+      "case_id": "uuv4-pitch-mpc",
+      "configuration": "uuv4",
+      "controller": "mpc",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0,
+        0.01999866669333308,
+        0
+      ],
+      "reference_id": "pitch-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    },
+    {
+      "case_id": "uuv4-depth-feedback",
+      "configuration": "uuv4",
+      "controller": "feedback",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.48,
+        1,
+        0,
+        0,
+        0
+      ],
+      "reference_id": "depth-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    },
+    {
+      "case_id": "uuv4-depth-mpc",
+      "configuration": "uuv4",
+      "controller": "mpc",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.48,
+        1,
+        0,
+        0,
+        0
+      ],
+      "reference_id": "depth-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    },
+    {
+      "case_id": "long_body-pitch-feedback",
+      "configuration": "long_body",
+      "controller": "feedback",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0,
+        0.01999866669333308,
+        0
+      ],
+      "reference_id": "pitch-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    },
+    {
+      "case_id": "long_body-pitch-mpc",
+      "configuration": "long_body",
+      "controller": "mpc",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0,
+        0.01999866669333308,
+        0
+      ],
+      "reference_id": "pitch-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    },
+    {
+      "case_id": "long_body-depth-feedback",
+      "configuration": "long_body",
+      "controller": "feedback",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.48,
+        1,
+        0,
+        0,
+        0
+      ],
+      "reference_id": "depth-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    },
+    {
+      "case_id": "long_body-depth-mpc",
+      "configuration": "long_body",
+      "controller": "mpc",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.48,
+        1,
+        0,
+        0,
+        0
+      ],
+      "reference_id": "depth-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    },
+    {
+      "case_id": "uuv6-pitch-feedback",
+      "configuration": "uuv6",
+      "controller": "feedback",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0,
+        0.01999866669333308,
+        0
+      ],
+      "reference_id": "pitch-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    },
+    {
+      "case_id": "uuv6-pitch-mpc",
+      "configuration": "uuv6",
+      "controller": "mpc",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0,
+        0.01999866669333308,
+        0
+      ],
+      "reference_id": "pitch-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    },
+    {
+      "case_id": "uuv6-depth-feedback",
+      "configuration": "uuv6",
+      "controller": "feedback",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.48,
+        1,
+        0,
+        0,
+        0
+      ],
+      "reference_id": "depth-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    },
+    {
+      "case_id": "uuv6-depth-mpc",
+      "configuration": "uuv6",
+      "controller": "mpc",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.48,
+        1,
+        0,
+        0,
+        0
+      ],
+      "reference_id": "depth-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    },
+    {
+      "case_id": "uuv6_angled-pitch-feedback",
+      "configuration": "uuv6_angled",
+      "controller": "feedback",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0,
+        0.01999866669333308,
+        0
+      ],
+      "reference_id": "pitch-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    },
+    {
+      "case_id": "uuv6_angled-pitch-mpc",
+      "configuration": "uuv6_angled",
+      "controller": "mpc",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0,
+        0.01999866669333308,
+        0
+      ],
+      "reference_id": "pitch-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    },
+    {
+      "case_id": "uuv6_angled-depth-feedback",
+      "configuration": "uuv6_angled",
+      "controller": "feedback",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.48,
+        1,
+        0,
+        0,
+        0
+      ],
+      "reference_id": "depth-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    },
+    {
+      "case_id": "uuv6_angled-depth-mpc",
+      "configuration": "uuv6_angled",
+      "controller": "mpc",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.48,
+        1,
+        0,
+        0,
+        0
+      ],
+      "reference_id": "depth-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    },
+    {
+      "case_id": "uuv4_angled-pitch-feedback",
+      "configuration": "uuv4_angled",
+      "controller": "feedback",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0,
+        0.01999866669333308,
+        0
+      ],
+      "reference_id": "pitch-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    },
+    {
+      "case_id": "uuv4_angled-pitch-mpc",
+      "configuration": "uuv4_angled",
+      "controller": "mpc",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0,
+        0.01999866669333308,
+        0
+      ],
+      "reference_id": "pitch-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    },
+    {
+      "case_id": "uuv4_angled-depth-feedback",
+      "configuration": "uuv4_angled",
+      "controller": "feedback",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.48,
+        1,
+        0,
+        0,
+        0
+      ],
+      "reference_id": "depth-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    },
+    {
+      "case_id": "uuv4_angled-depth-mpc",
+      "configuration": "uuv4_angled",
+      "controller": "mpc",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.48,
+        1,
+        0,
+        0,
+        0
+      ],
+      "reference_id": "depth-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    },
+    {
+      "case_id": "heavy_moderate-pitch-feedback",
+      "configuration": "heavy_moderate",
+      "controller": "feedback",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0,
+        0.01999866669333308,
+        0
+      ],
+      "reference_id": "pitch-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    },
+    {
+      "case_id": "heavy_moderate-pitch-mpc",
+      "configuration": "heavy_moderate",
+      "controller": "mpc",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0,
+        0.01999866669333308,
+        0
+      ],
+      "reference_id": "pitch-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    },
+    {
+      "case_id": "heavy_moderate-depth-feedback",
+      "configuration": "heavy_moderate",
+      "controller": "feedback",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.48,
+        1,
+        0,
+        0,
+        0
+      ],
+      "reference_id": "depth-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    },
+    {
+      "case_id": "heavy_moderate-depth-mpc",
+      "configuration": "heavy_moderate",
+      "controller": "mpc",
+      "mode": "simulation_effect",
+      "controls": 60,
+      "control_rate_hz": 30,
+      "seed": 19500,
+      "reference": [
+        5.48,
+        1,
+        0,
+        0,
+        0
+      ],
+      "reference_id": "depth-v67",
+      "model_key": "nonlinear__pooled",
+      "strategy": "paired_rate30_inexact_v67",
+      "defer_gc": true
+    }
+  ],
+  "authorization": "User explicitly approved configuration-isolated support NO_GO, six further configurations, at most24cases/28minutes/zero_fit on2026-09-21",
+  "gc_policy": "collect before bounded episode, defer automatic GC within episode, restore and bound RSS growth64MiB",
+  "limits": {
+    "total_seconds": 300,
+    "case_seconds": 180,
+    "attempts": 3,
+    "new_bytes_per_host": 2097152,
+    "retained_research_bytes_per_host": 268435456
+  },
+  "no_fit": true,
+  "no_formal_test_access": true,
+  "physics_rate_hz": 120,
+  "prediction_grid_hz": 60,
+  "horizon_micro_controls": 20,
+  "committed_micro_controls": 8,
+  "macro_slew": 0.02,
+  "solve_deadline_ms": 100,
+  "feedback_deadline_ms": 10,
+  "first_cycle_deadline_ms": 100,
+  "steady_cycle_deadline_ms": 33.333333333333336,
+  "score": {
+    "primary": "mean(depth_squared/.02**2+controllable_attitude_squared/.04**2)",
+    "minimum_relative_improvement": 0.05,
+    "minimum_depth_rmse_improvement_m": 0.0002,
+    "minimum_attitude_rmse_improvement_rad": 0.0005,
+    "report_cost_tradeoff": true
+  },
+  "expansion_gate": "support_only_NO_GO_after_failed_prefix_reconstruction_isolates_configuration; any_other_failure_stops_all",
+  "runtime_claim": false,
+  "unique_koopman_claim": false,
+  "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+  "release_sha256": "aa1efbb4c57b3d01225a3d1604f9b39a2adbc4d04e6e359b249afbfbabb7e3a9",
+  "configuration_order": [
+    "uuv4",
+    "long_body",
+    "uuv6",
+    "uuv6_angled",
+    "uuv4_angled",
+    "heavy_moderate"
+  ],
+  "inherited_status": {
+    "base": "four_arms_accepted_r3",
+    "asymmetric": "support_no_go_at10physics_steps_r3"
+  },
+  "historical_files_sha256": {
+    "/root/EASYkoopman-phase9-rate30-v67-r3-20260921/results/base-pitch-feedback/native.json": "4441fb2ed014bd6ce326beec24ec571d933503432509897ed73bd61699e8fbde",
+    "/root/EASYkoopman-phase9-rate30-v67-r3-20260921/results/base-pitch-feedback/analysis.json": "a71355cd9bc9948f5e19ba4d228eacaca455f15829d4f219f1cd47b2562ae243",
+    "/root/EASYkoopman-phase9-rate30-v67-r3-20260921/results/base-pitch-feedback/output/diagnostic.json.gz": "f637aaaa5a200be357e66701de02a9655f2d5bbf2b1cc0e206dcfd77e0a1c067",
+    "/root/EASYkoopman-phase9-rate30-v67-r3-20260921/results/base-pitch-mpc/native.json": "c6844be907d850b403970076988da595528fcb27c924a3503e6c4d0669fa1d47",
+    "/root/EASYkoopman-phase9-rate30-v67-r3-20260921/results/base-pitch-mpc/analysis.json": "3002947d8eed1b05e27a8b5b3d5faf9ad86b38e06b18fd404379782378ae0a36",
+    "/root/EASYkoopman-phase9-rate30-v67-r3-20260921/results/base-pitch-mpc/output/diagnostic.json.gz": "df5183ada9a92770d36dea5abd0731c3eeb5c61373ff17bdba03233f0288b9df",
+    "/root/EASYkoopman-phase9-rate30-v67-r3-20260921/results/base-depth-feedback/native.json": "e48a615496015b7550109fd82324763fa630af6e1aa384c4b376e5c0886569ed",
+    "/root/EASYkoopman-phase9-rate30-v67-r3-20260921/results/base-depth-feedback/analysis.json": "4c6d979f4e8a34c224c15164d2d91d4d1154bc6d8f5c727807d9b0b4f646a2ea",
+    "/root/EASYkoopman-phase9-rate30-v67-r3-20260921/results/base-depth-feedback/output/diagnostic.json.gz": "7bc24920a854eceff0945fc5e851e94c322ee3cfc7cd4606d0ce00db30c6c4c0",
+    "/root/EASYkoopman-phase9-rate30-v67-r3-20260921/results/base-depth-mpc/native.json": "bbed74819bb5e57e5a78168391206678eb8ef596bcf48e481b98cbffe1dea255",
+    "/root/EASYkoopman-phase9-rate30-v67-r3-20260921/results/base-depth-mpc/analysis.json": "551d6590afbac33e5eded955e6c8e724c68c6a99f8564a99ab9ce216d9b1946e",
+    "/root/EASYkoopman-phase9-rate30-v67-r3-20260921/results/base-depth-mpc/output/diagnostic.json.gz": "fde4d29064d314687a7a1f84e5bd92363f8116d574e6c9426ac1e56b02a40367",
+    "/root/EASYkoopman-phase9-rate30-v67-r3-20260921/results/asymmetric-pitch-feedback/native.json": "3d8fdafbcc993a6a8cc1b3bbddd3ba9ff558724f9f021354397770bbebe41990",
+    "/root/EASYkoopman-phase9-rate30-v67-r3-20260921/results/asymmetric-pitch-feedback/output/diagnostic.json.gz": "0fc624d16ed67611d5a4f561f28bd7f08cc5c13ea3d285436060f147fa2f6733",
+    "/root/EASYkoopman-phase9-multiconfig-v68-20260921/results/cpu-check/readiness.json": "95ede4b8e4f5ef011fe2d2b1933065489cddaa21544110f94fbdedb316ada08a",
+    "/root/EASYkoopman-phase9-multiconfig-v68-20260921/results/cpu-check/native.json": "688da95bbec321c64366c87e12ddeb3e7dce076f28cdd17e868b3196cf7cf9a5",
+    "/root/EASYkoopman-phase9-multiconfig-v68-20260921/results/stage-result.json": "57d85f9e66b5ca621cdb87a18aeddef08598ca7bb6d908336902eb70d631d0d9",
+    "/root/EASYkoopman-phase9-multiconfig-v68-20260921/results/uuv4-pitch-feedback/native.json": "99bcd2ff1568d1e54cc05c4889db8b389593084cd414ffb7c5ae9c7e07ef1853",
+    "/root/EASYkoopman-phase9-multiconfig-v68-20260921/results/uuv4-pitch-feedback/output/diagnostic.json.gz": "62f44fe6b769a862388a0f15b900744a89e915d5d17b4f09ca063f2ed30a6da7",
+    "/root/EASYkoopman-phase9-lifecycle-v70-20260921/results/uuv4-pitch-feedback/native.json": "3e16b952f75432138f9bba3fa4d46a48e6f9d79e089caa81520f103d9b2b680a",
+    "/root/EASYkoopman-phase9-lifecycle-v70-20260921/results/uuv4-pitch-feedback/analysis.json": "6f74dba7ab6838f0f2ba8b42be79f994916868d4f7a0bb9c8d25cbde444e9902",
+    "/root/EASYkoopman-phase9-lifecycle-v70-20260921/results/uuv4-pitch-feedback/output/diagnostic.json.gz": "77e5c681fa6d1af0d2f484dad6c2365317b875a764f82f1aa60580a3769b3cd4"
+  },
+  "inherited_cpu_readiness_path": "/root/EASYkoopman-phase9-multiconfig-v68-20260921/results/cpu-check/readiness.json",
+  "preparation_change": "warm original topology-specific pinv/WLS on private tensors before unchanged reset snapshot gate; no state advance",
+  "historical_new_run_wall_seconds": 109.98449512990192,
+  "extra_allocation_probe_upper_seconds": 30.0,
+  "physical_starts_already_consumed": 7,
+  "native_fix": "Release closed EasyUUV extra _robot owner before SimulationApp.close; weakref confirms native owner destruction.",
+  "prior_seconds_conservative": 680,
+  "verification_only": false,
+  "execution_configuration_order": [
+    "uuv4"
+  ],
+  "inherited_case_paths": {
+    "uuv4-pitch-feedback": "/root/EASYkoopman-phase9-lifecycle-v70-20260921/results/uuv4-pitch-feedback"
+  },
+  "debugger_tool_root": "/root/EASYkoopman-phase9-debugger-v70-20260921"
+}

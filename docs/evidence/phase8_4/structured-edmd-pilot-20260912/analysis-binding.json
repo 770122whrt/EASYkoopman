@@ -1,0 +1,15 @@
+{
+  "source_commit": "b87ce2047ee828424094d0a307383694cec79adf",
+  "accepted_archive_sha256": "b8a5b133857d212313db658b3068dcb6f9a9a036b20d549d0253af95541793a3",
+  "files_sha256": {
+    "koopman/structured_edmd_v25.py": "978386da8ce0d564a3a3a0e9064b0c6eb6484b95c98ad89fa600080212bbceb6",
+    "koopman/projected_edmd_v24.py": "e05dd64a04bf6e55517ef95c6cf6cd330d856f839066cab619138f4ab01b6557",
+    "workflows/evaluate_projected_edmd_v24.py": "a126ae9df7e311b035fe0a1fa449b46b09ed658e6a4661e6274b1a1df9b89538",
+    "easyuuv_nc/control_v24.py": "0672472f2138e1a387f8f9890975b6cdfcfea1db06aef8300016553164c21ffa",
+    "workflows/control_seam_v23.py": "618a97026f0d8990794fb9b4487eeda2fad35fe39ecc1c705848cc4fb616cf71",
+    "workflows/pilot_control_v24.py": "3c2cdc6f8a35b99e59c4c4f6e8ad45f250c967a5cf120fc2fa859cfa4efce25a"
+  },
+  "gate_interpretation": "Require frozen thresholds on both endpoint and path metrics; paths include every physics tick. All control-boundary origins. This interpretation is recorded before fitting.",
+  "fit_count_expected": 28,
+  "failed_old_rows_used": 0
+}

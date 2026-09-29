@@ -1,0 +1,48 @@
+{
+  "both_gates_passed": true,
+  "buffer_injection_ready": true,
+  "bundle_dir": "docs_new/figure/phase56_fm_bundle_obs12_v1",
+  "domain_counts": {
+    "intermediate": 447387,
+    "source": 75347,
+    "target": 369329,
+    "total": 892063
+  },
+  "feature_dim": 12,
+  "gate1_not_hallucination": {
+    "bundle_target_index": 4,
+    "fm_beats_linear": true,
+    "fm_beats_source": true,
+    "fm_midpoint_index": 4,
+    "fm_midpoint_index_source": "bundle_target_index",
+    "fm_midpoint_total_steps": 17,
+    "meangap_fm_mid_to_ref": 1.3907760381698608,
+    "meangap_linear_mid_to_ref": 0.8992618322372437,
+    "meangap_source_to_ref": 1.569221019744873,
+    "mmd_fm_mid_to_ref": 0.025908976793289185,
+    "mmd_linear_mid_to_ref": 0.027885526418685913,
+    "mmd_source_to_ref": 0.030685588717460632,
+    "passed": true,
+    "reference": "real_intermediate"
+  },
+  "gate2_coverage_densification": {
+    "bbox_volume_proxy_after": 28.284568786621094,
+    "bbox_volume_proxy_before": 25.654129028320312,
+    "count_gain": 256,
+    "count_increased": true,
+    "intermediate_count_after": 512,
+    "intermediate_count_before": 256,
+    "mean_feature_std_after": 1.3204336166381836,
+    "mean_feature_std_before": 1.1540108919143677,
+    "passed": true,
+    "volume_increased": true
+  },
+  "held_out_vs_bundle_source": true,
+  "integration_steps": 16,
+  "max_samples": 256,
+  "npz_path": "docs_new/figure/fm_dataset_obs12_v1/fm_dataset_obs12_v1.npz",
+  "online_allowed": false,
+  "seed": 1,
+  "status": "ok",
+  "target_alpha": 0.25
+}

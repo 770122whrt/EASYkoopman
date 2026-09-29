@@ -1,0 +1,29 @@
+{
+  "status": "resource_only_amendment_user_approved_execution_revision_pending",
+  "timestamp": "2026-09-20T00:27:40+08:00",
+  "current_analysis_cap_seconds": 3600,
+  "proposed_analysis_cap_seconds": 4500,
+  "charged_analysis_seconds": 2290.4384071607847,
+  "remaining_current_analysis_seconds": 1309.5615928392153,
+  "same_protocol_test_estimate_seconds": 1509.5428333585508,
+  "estimate_components_seconds": {
+    "test_online_semantics": 92.37366592651233,
+    "test_archive": 34.55651579098776,
+    "test_pullback_physical_audit": 424.7180000000001,
+    "test_frozen_scoring": 335.58165164105594,
+    "test_independent_analysis_audit": 622.3129999999946
+  },
+  "projected_shortfall_seconds": 199.98124051933542,
+  "proposed_additional_seconds": 900,
+  "collection_cap_seconds": 5400,
+  "max_workers": 4,
+  "disk_cap_bytes": 4294967296,
+  "new_model_fits": 0,
+  "new_validation_cases": 0,
+  "remaining_test_cases": 24,
+  "model_count": 18,
+  "approval_received": true,
+  "scientific_source_changes_allowed": false,
+  "implementation_required_before_execution": "Freeze and test a resource-only execution revision. Preserve the r22 source, all previous attempts, costs and independent validation GO. Bind original validation scoring/audit identity separately from any new test execution identity; no in-place source or evidence rewrite.",
+  "approval_reference": "request_user_input_async call_sJQJ3xtYoXpGOmGFLbdYj1Hn question0"
+}

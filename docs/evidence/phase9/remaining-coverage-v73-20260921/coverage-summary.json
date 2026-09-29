@@ -1,0 +1,727 @@
+{
+  "status": "bounded_coverage_report_terminal_global_stop",
+  "phase9_complete": false,
+  "counts": {
+    "configurations_attempted": 8,
+    "complete_cases": 18,
+    "failed_cases": 4,
+    "not_run_cases": 10,
+    "complete_pairs": 8,
+    "pair_verdicts": {
+      "benefit_in_this_scenario": 1,
+      "no_material_benefit_in_this_scenario": 2,
+      "worse_in_this_scenario": 5
+    }
+  },
+  "configurations": {
+    "base": {
+      "complete": [
+        "base-pitch-feedback",
+        "base-pitch-mpc",
+        "base-depth-feedback",
+        "base-depth-mpc"
+      ],
+      "failed": [],
+      "not_run": []
+    },
+    "asymmetric": {
+      "complete": [],
+      "failed": [
+        "asymmetric-pitch-feedback"
+      ],
+      "not_run": [
+        "asymmetric-pitch-mpc",
+        "asymmetric-depth-feedback",
+        "asymmetric-depth-mpc"
+      ]
+    },
+    "uuv4": {
+      "complete": [
+        "uuv4-pitch-feedback"
+      ],
+      "failed": [
+        "uuv4-pitch-mpc"
+      ],
+      "not_run": [
+        "uuv4-depth-feedback",
+        "uuv4-depth-mpc"
+      ]
+    },
+    "long_body": {
+      "complete": [
+        "long_body-pitch-feedback",
+        "long_body-pitch-mpc",
+        "long_body-depth-feedback",
+        "long_body-depth-mpc"
+      ],
+      "failed": [],
+      "not_run": []
+    },
+    "uuv6": {
+      "complete": [
+        "uuv6-pitch-feedback",
+        "uuv6-pitch-mpc",
+        "uuv6-depth-feedback",
+        "uuv6-depth-mpc"
+      ],
+      "failed": [],
+      "not_run": []
+    },
+    "uuv6_angled": {
+      "complete": [
+        "uuv6_angled-pitch-feedback",
+        "uuv6_angled-pitch-mpc",
+        "uuv6_angled-depth-feedback",
+        "uuv6_angled-depth-mpc"
+      ],
+      "failed": [],
+      "not_run": []
+    },
+    "uuv4_angled": {
+      "complete": [
+        "uuv4_angled-pitch-feedback"
+      ],
+      "failed": [
+        "uuv4_angled-pitch-mpc"
+      ],
+      "not_run": [
+        "uuv4_angled-depth-feedback",
+        "uuv4_angled-depth-mpc"
+      ]
+    },
+    "heavy_moderate": {
+      "complete": [],
+      "failed": [
+        "heavy_moderate-pitch-feedback"
+      ],
+      "not_run": [
+        "heavy_moderate-pitch-mpc",
+        "heavy_moderate-depth-feedback",
+        "heavy_moderate-depth-mpc"
+      ]
+    }
+  },
+  "cases": {
+    "asymmetric-pitch-feedback": {
+      "configuration": "asymmetric",
+      "complete": false,
+      "exception": "RuntimeError:execution_bridge:actual_state_outside_support",
+      "physics_steps": 10,
+      "native_exit": 1,
+      "source": "docs\\evidence\\phase9\\rate30-primary-v67-20260921\\r3\\results\\asymmetric-pitch-feedback\\output\\diagnostic.json.gz",
+      "trace_sha256": "0fc624d16ed67611d5a4f561f28bd7f08cc5c13ea3d285436060f147fa2f6733"
+    },
+    "base-depth-feedback": {
+      "configuration": "base",
+      "complete": true,
+      "exception": null,
+      "physics_steps": 240,
+      "native_exit": 0,
+      "source": "docs\\evidence\\phase9\\rate30-primary-v67-20260921\\r3\\results\\base-depth-feedback\\output\\diagnostic.json.gz",
+      "trace_sha256": "7bc24920a854eceff0945fc5e851e94c322ee3cfc7cd4606d0ce00db30c6c4c0"
+    },
+    "base-depth-mpc": {
+      "configuration": "base",
+      "complete": true,
+      "exception": null,
+      "physics_steps": 240,
+      "native_exit": 0,
+      "source": "docs\\evidence\\phase9\\rate30-primary-v67-20260921\\r3\\results\\base-depth-mpc\\output\\diagnostic.json.gz",
+      "trace_sha256": "fde4d29064d314687a7a1f84e5bd92363f8116d574e6c9426ac1e56b02a40367"
+    },
+    "base-pitch-feedback": {
+      "configuration": "base",
+      "complete": true,
+      "exception": null,
+      "physics_steps": 240,
+      "native_exit": 0,
+      "source": "docs\\evidence\\phase9\\rate30-primary-v67-20260921\\r3\\results\\base-pitch-feedback\\output\\diagnostic.json.gz",
+      "trace_sha256": "f637aaaa5a200be357e66701de02a9655f2d5bbf2b1cc0e206dcfd77e0a1c067"
+    },
+    "base-pitch-mpc": {
+      "configuration": "base",
+      "complete": true,
+      "exception": null,
+      "physics_steps": 240,
+      "native_exit": 0,
+      "source": "docs\\evidence\\phase9\\rate30-primary-v67-20260921\\r3\\results\\base-pitch-mpc\\output\\diagnostic.json.gz",
+      "trace_sha256": "df5183ada9a92770d36dea5abd0731c3eeb5c61373ff17bdba03233f0288b9df"
+    },
+    "uuv4-pitch-feedback": {
+      "configuration": "uuv4",
+      "complete": true,
+      "exception": null,
+      "physics_steps": 240,
+      "native_exit": 0,
+      "source": "docs\\evidence\\phase9\\lifecycle-fix-v70-20260921\\results\\uuv4-pitch-feedback\\output\\diagnostic.json.gz",
+      "trace_sha256": "77e5c681fa6d1af0d2f484dad6c2365317b875a764f82f1aa60580a3769b3cd4"
+    },
+    "uuv4-pitch-mpc": {
+      "configuration": "uuv4",
+      "complete": false,
+      "exception": "RuntimeError:execution_bridge:actual_state_outside_support",
+      "physics_steps": 209,
+      "native_exit": 1,
+      "source": "docs\\evidence\\phase9\\uuv4-pairs-v71-20260921\\results\\uuv4-pitch-mpc\\output\\diagnostic.json.gz",
+      "trace_sha256": "8d73e69d07a58f448b13a7a40c6bff369afbd1e69a5d8d6f9904dac3638383c5"
+    },
+    "heavy_moderate-pitch-feedback": {
+      "configuration": "heavy_moderate",
+      "complete": false,
+      "exception": "ValueError:runtime_persistent_zero_progress",
+      "physics_steps": 80,
+      "native_exit": 1,
+      "source": "docs\\evidence\\phase9\\remaining-coverage-v73-20260921\\results\\heavy_moderate-pitch-feedback\\output\\diagnostic.json.gz",
+      "trace_sha256": "73f9aa5e70868fec5e66e18d32f65b9a825539665a3ddd9b015f18d24f2e558f"
+    },
+    "long_body-depth-feedback": {
+      "configuration": "long_body",
+      "complete": true,
+      "exception": null,
+      "physics_steps": 240,
+      "native_exit": 0,
+      "source": "docs\\evidence\\phase9\\remaining-coverage-v73-20260921\\results\\long_body-depth-feedback\\output\\diagnostic.json.gz",
+      "trace_sha256": "f23cd444ebc3ea86322585e366a5eaf43b3fbbbc322c53f81ebc625b3c426641"
+    },
+    "long_body-depth-mpc": {
+      "configuration": "long_body",
+      "complete": true,
+      "exception": null,
+      "physics_steps": 240,
+      "native_exit": 0,
+      "source": "docs\\evidence\\phase9\\remaining-coverage-v73-20260921\\results\\long_body-depth-mpc\\output\\diagnostic.json.gz",
+      "trace_sha256": "8cfe94c4a7477c3353fb1e74e3023a819d464daa4bd580e1196c61dd67e70e8a"
+    },
+    "long_body-pitch-feedback": {
+      "configuration": "long_body",
+      "complete": true,
+      "exception": null,
+      "physics_steps": 240,
+      "native_exit": 0,
+      "source": "docs\\evidence\\phase9\\remaining-coverage-v73-20260921\\results\\long_body-pitch-feedback\\output\\diagnostic.json.gz",
+      "trace_sha256": "0991675e9953a41bf66e3add90143ae79df411c5cb6fb0ef78729a9b054032d7"
+    },
+    "long_body-pitch-mpc": {
+      "configuration": "long_body",
+      "complete": true,
+      "exception": null,
+      "physics_steps": 240,
+      "native_exit": 0,
+      "source": "docs\\evidence\\phase9\\remaining-coverage-v73-20260921\\results\\long_body-pitch-mpc\\output\\diagnostic.json.gz",
+      "trace_sha256": "2c5e2cd591152a4f07263f0cb6ce2d76f15f45bcdcd0da6f83c76ac23f28c3f4"
+    },
+    "uuv4_angled-pitch-feedback": {
+      "configuration": "uuv4_angled",
+      "complete": true,
+      "exception": null,
+      "physics_steps": 240,
+      "native_exit": 0,
+      "source": "docs\\evidence\\phase9\\remaining-coverage-v73-20260921\\results\\uuv4_angled-pitch-feedback\\output\\diagnostic.json.gz",
+      "trace_sha256": "47a8f5338e615eccd98211d41e045a0469f1bf30c39639f1c415ea068ced1e32"
+    },
+    "uuv4_angled-pitch-mpc": {
+      "configuration": "uuv4_angled",
+      "complete": false,
+      "exception": "RuntimeError:execution_bridge:actual_state_outside_support",
+      "physics_steps": 212,
+      "native_exit": 1,
+      "source": "docs\\evidence\\phase9\\remaining-coverage-v73-20260921\\results\\uuv4_angled-pitch-mpc\\output\\diagnostic.json.gz",
+      "trace_sha256": "fbde8a75b110c94d640512e17d899b77bf78bf7bab628d90ae721bee4adbfcfb"
+    },
+    "uuv6-depth-feedback": {
+      "configuration": "uuv6",
+      "complete": true,
+      "exception": null,
+      "physics_steps": 240,
+      "native_exit": 0,
+      "source": "docs\\evidence\\phase9\\remaining-coverage-v73-20260921\\results\\uuv6-depth-feedback\\output\\diagnostic.json.gz",
+      "trace_sha256": "3947d0dde67eff0c22e2cfd879c5cab189ee17adaeedfc136d911110a8ccadf0"
+    },
+    "uuv6-depth-mpc": {
+      "configuration": "uuv6",
+      "complete": true,
+      "exception": null,
+      "physics_steps": 240,
+      "native_exit": 0,
+      "source": "docs\\evidence\\phase9\\remaining-coverage-v73-20260921\\results\\uuv6-depth-mpc\\output\\diagnostic.json.gz",
+      "trace_sha256": "3164cbc5bcbc0676ed0139c6235f5b73d3b6cb93e2c88841a177bf7cc68000ac"
+    },
+    "uuv6-pitch-feedback": {
+      "configuration": "uuv6",
+      "complete": true,
+      "exception": null,
+      "physics_steps": 240,
+      "native_exit": 0,
+      "source": "docs\\evidence\\phase9\\remaining-coverage-v73-20260921\\results\\uuv6-pitch-feedback\\output\\diagnostic.json.gz",
+      "trace_sha256": "f2a5469e7fa1b0e73aa653b0884f9611977514b427133230487e28fa82fbb085"
+    },
+    "uuv6-pitch-mpc": {
+      "configuration": "uuv6",
+      "complete": true,
+      "exception": null,
+      "physics_steps": 240,
+      "native_exit": 0,
+      "source": "docs\\evidence\\phase9\\remaining-coverage-v73-20260921\\results\\uuv6-pitch-mpc\\output\\diagnostic.json.gz",
+      "trace_sha256": "81000d8bfb774c45dd2871f18068be03ba5b4ffdf8b3957ec3afb8eb737ce824"
+    },
+    "uuv6_angled-depth-feedback": {
+      "configuration": "uuv6_angled",
+      "complete": true,
+      "exception": null,
+      "physics_steps": 240,
+      "native_exit": 0,
+      "source": "docs\\evidence\\phase9\\remaining-coverage-v73-20260921\\results\\uuv6_angled-depth-feedback\\output\\diagnostic.json.gz",
+      "trace_sha256": "6fc5eb7280d2b49dbc8b40a5d0887264a9bfa7eab94f4e3f1ebc849212339258"
+    },
+    "uuv6_angled-depth-mpc": {
+      "configuration": "uuv6_angled",
+      "complete": true,
+      "exception": null,
+      "physics_steps": 240,
+      "native_exit": 0,
+      "source": "docs\\evidence\\phase9\\remaining-coverage-v73-20260921\\results\\uuv6_angled-depth-mpc\\output\\diagnostic.json.gz",
+      "trace_sha256": "65e8c12317123812e8e8403acfef772730be9c1eed1cafad80c0667bf65c1d4c"
+    },
+    "uuv6_angled-pitch-feedback": {
+      "configuration": "uuv6_angled",
+      "complete": true,
+      "exception": null,
+      "physics_steps": 240,
+      "native_exit": 0,
+      "source": "docs\\evidence\\phase9\\remaining-coverage-v73-20260921\\results\\uuv6_angled-pitch-feedback\\output\\diagnostic.json.gz",
+      "trace_sha256": "9f646c1f0106acbea52ce5683ece0cd5a7032608ea7fe2dce746f5a68b14e30b"
+    },
+    "uuv6_angled-pitch-mpc": {
+      "configuration": "uuv6_angled",
+      "complete": true,
+      "exception": null,
+      "physics_steps": 240,
+      "native_exit": 0,
+      "source": "docs\\evidence\\phase9\\remaining-coverage-v73-20260921\\results\\uuv6_angled-pitch-mpc\\output\\diagnostic.json.gz",
+      "trace_sha256": "6c01f554a3907f926888e180058eec5c471aaac34ee6216dfb9d7e4ee1222aac"
+    }
+  },
+  "pairs": {
+    "base-pitch": {
+      "verdict": "benefit_in_this_scenario",
+      "score_relative_improvement": 0.18535462029128275,
+      "depth_rmse_improvement_m": 0.0014565718752646245,
+      "attitude_rmse_improvement_rad": 0.0012670931454397717,
+      "command_max_difference": 0.04527595825493336,
+      "statistical_significance_claim": false,
+      "unique_koopman_advantage_proven": false,
+      "runtime_qualified": false,
+      "cost_ratios_mpc_over_feedback": {
+        "command_variation": 1.8209063817120252,
+        "applied_force_squared_N2_s": 0.8097924054928285,
+        "applied_torque_squared_Nm2_s": 3.870800664268694
+      },
+      "feedback_metrics": {
+        "normalized_tracking_score": 0.23357443494671923,
+        "depth_rmse_m": 0.002784724627111971,
+        "attitude_rmse_rad": 0.018512167104890103,
+        "depth_iae_m_s": 0.004575045903523763,
+        "attitude_iae_rad_s": 0.02668333704627164,
+        "command_variation": 0.10699988475498982,
+        "applied_force_squared_N2_s": 0.2857615913697048,
+        "applied_torque_squared_Nm2_s": 0.016478136164942814,
+        "mpc_command_controls": 0,
+        "fallback_controls": 60,
+        "committed_prefix_controls": 0,
+        "mpc_activations": 0
+      },
+      "mpc_metrics": {
+        "normalized_tracking_score": 0.19028033424741916,
+        "depth_rmse_m": 0.0013281527518473465,
+        "attitude_rmse_rad": 0.01724507395945033,
+        "depth_iae_m_s": 0.00205766757329305,
+        "attitude_iae_rad_s": 0.025330676784056552,
+        "command_variation": 0.1948367729928122,
+        "applied_force_squared_N2_s": 0.23140756647273195,
+        "applied_torque_squared_Nm2_s": 0.06378358041317063,
+        "mpc_command_controls": 14,
+        "fallback_controls": 1,
+        "committed_prefix_controls": 45,
+        "mpc_activations": 14
+      }
+    },
+    "base-depth": {
+      "verdict": "no_material_benefit_in_this_scenario",
+      "score_relative_improvement": 0.0020913710487576336,
+      "depth_rmse_improvement_m": 1.560989274108221e-05,
+      "attitude_rmse_improvement_rad": 0.0,
+      "command_max_difference": 0.020004000514745712,
+      "statistical_significance_claim": false,
+      "unique_koopman_advantage_proven": false,
+      "runtime_qualified": false,
+      "cost_ratios_mpc_over_feedback": {
+        "command_variation": 1.0991009062391726,
+        "applied_force_squared_N2_s": 2.1807048254006776,
+        "applied_torque_squared_Nm2_s": 2.1429555579979187
+      },
+      "feedback_metrics": {
+        "normalized_tracking_score": 0.55652305749649,
+        "depth_rmse_m": 0.014920094604210659,
+        "attitude_rmse_rad": 0.0,
+        "depth_iae_m_s": 0.027934613227843387,
+        "attitude_iae_rad_s": 0.0,
+        "command_variation": 0.020020000636577606,
+        "applied_force_squared_N2_s": 0.09352375905880622,
+        "applied_torque_squared_Nm2_s": 1.150425772341163e-15,
+        "mpc_command_controls": 0,
+        "fallback_controls": 60,
+        "committed_prefix_controls": 0,
+        "mpc_activations": 0
+      },
+      "mpc_metrics": {
+        "normalized_tracking_score": 0.5553591612860758,
+        "depth_rmse_m": 0.014904484711469577,
+        "attitude_rmse_rad": 0.0,
+        "depth_iae_m_s": 0.027821261088052534,
+        "attitude_iae_rad_s": 0.0,
+        "command_variation": 0.02200400084257126,
+        "applied_force_squared_N2_s": 0.20394771266914904,
+        "applied_torque_squared_Nm2_s": 2.4653113029025435e-15,
+        "mpc_command_controls": 14,
+        "fallback_controls": 1,
+        "committed_prefix_controls": 45,
+        "mpc_activations": 14
+      }
+    },
+    "long_body-pitch": {
+      "verdict": "worse_in_this_scenario",
+      "score_relative_improvement": -0.11116115658474876,
+      "depth_rmse_improvement_m": 2.095799281020324e-05,
+      "attitude_rmse_improvement_rad": -0.0010040852800647752,
+      "command_max_difference": 0.07153237331658602,
+      "statistical_significance_claim": false,
+      "unique_koopman_advantage_proven": false,
+      "runtime_qualified": false,
+      "cost_ratios_mpc_over_feedback": {
+        "command_variation": 2.243812089447765,
+        "applied_force_squared_N2_s": 0.5275084838649401,
+        "applied_torque_squared_Nm2_s": 11.952071737407708
+      },
+      "feedback_metrics": {
+        "normalized_tracking_score": 0.21012086267038343,
+        "depth_rmse_m": 0.0011134550646684325,
+        "attitude_rmse_rad": 0.018199842074822253,
+        "depth_iae_m_s": 0.001937560240427653,
+        "attitude_iae_rad_s": 0.02699919396096465,
+        "command_variation": 0.20030252803987458,
+        "applied_force_squared_N2_s": 0.18536652767282605,
+        "applied_torque_squared_Nm2_s": 0.11344391528377488,
+        "mpc_command_controls": 0,
+        "fallback_controls": 60,
+        "committed_prefix_controls": 0,
+        "mpc_activations": 0
+      },
+      "mpc_metrics": {
+        "normalized_tracking_score": 0.23347814078740842,
+        "depth_rmse_m": 0.0010924970718582292,
+        "attitude_rmse_rad": 0.01920392735488703,
+        "depth_iae_m_s": 0.0018159747123718262,
+        "attitude_iae_rad_s": 0.03094557189585342,
+        "command_variation": 0.4494412339628205,
+        "applied_force_squared_N2_s": 0.09778241597200092,
+        "applied_torque_squared_Nm2_s": 1.3558898136440802,
+        "mpc_command_controls": 14,
+        "fallback_controls": 1,
+        "committed_prefix_controls": 45,
+        "mpc_activations": 14
+      }
+    },
+    "long_body-depth": {
+      "verdict": "no_material_benefit_in_this_scenario",
+      "score_relative_improvement": 0.0023107555957795163,
+      "depth_rmse_improvement_m": 1.7225132180904296e-05,
+      "attitude_rmse_improvement_rad": 0.0,
+      "command_max_difference": 0.020004000514745712,
+      "statistical_significance_claim": false,
+      "unique_koopman_advantage_proven": false,
+      "runtime_qualified": false,
+      "cost_ratios_mpc_over_feedback": {
+        "command_variation": 1.0986618771850252,
+        "applied_force_squared_N2_s": 1.947069872029438,
+        "applied_torque_squared_Nm2_s": 1.9185832120329938
+      },
+      "feedback_metrics": {
+        "normalized_tracking_score": 0.5550279964138635,
+        "depth_rmse_m": 0.014900040220266033,
+        "attitude_rmse_rad": 0.0,
+        "depth_iae_m_s": 0.027859257062275353,
+        "attitude_iae_rad_s": 0.0,
+        "command_variation": 0.020028000697493553,
+        "applied_force_squared_N2_s": 0.10474596500051311,
+        "applied_torque_squared_Nm2_s": 1.8434960589314153e-15,
+        "mpc_command_controls": 0,
+        "fallback_controls": 60,
+        "committed_prefix_controls": 0,
+        "mpc_activations": 0
+      },
+      "mpc_metrics": {
+        "normalized_tracking_score": 0.5537454623653358,
+        "depth_rmse_m": 0.014882815088085128,
+        "attitude_rmse_rad": 0.0,
+        "depth_iae_m_s": 0.027733681996662558,
+        "attitude_iae_rad_s": 0.0,
+        "command_variation": 0.02200400084257126,
+        "applied_force_squared_N2_s": 0.20394771266914904,
+        "applied_torque_squared_Nm2_s": 3.5369005901148e-15,
+        "mpc_command_controls": 14,
+        "fallback_controls": 1,
+        "committed_prefix_controls": 45,
+        "mpc_activations": 14
+      }
+    },
+    "uuv6-pitch": {
+      "verdict": "worse_in_this_scenario",
+      "score_relative_improvement": -0.16548573012693746,
+      "depth_rmse_improvement_m": -0.0023335441908678947,
+      "attitude_rmse_improvement_rad": -0.00016753054398057146,
+      "command_max_difference": 0.05986499786376953,
+      "statistical_significance_claim": false,
+      "unique_koopman_advantage_proven": false,
+      "runtime_qualified": false,
+      "cost_ratios_mpc_over_feedback": {
+        "command_variation": 6.022268521577669,
+        "applied_force_squared_N2_s": 0.968123507185147,
+        "applied_torque_squared_Nm2_s": 5.2093268413917375
+      },
+      "feedback_metrics": {
+        "normalized_tracking_score": 0.21029451349376563,
+        "depth_rmse_m": 0.0014895220611882611,
+        "attitude_rmse_rad": 0.018099627557133846,
+        "depth_iae_m_s": 0.0027620355288187665,
+        "attitude_iae_rad_s": 0.0263271357047549,
+        "command_variation": 0.08348243098079748,
+        "applied_force_squared_N2_s": 8.910733060984892,
+        "applied_torque_squared_Nm2_s": 0.034068252626588656,
+        "mpc_command_controls": 0,
+        "fallback_controls": 60,
+        "committed_prefix_controls": 0,
+        "mpc_activations": 0
+      },
+      "mpc_metrics": {
+        "normalized_tracking_score": 0.24509525460097054,
+        "depth_rmse_m": 0.003823066252056156,
+        "attitude_rmse_rad": 0.018267158101114418,
+        "depth_iae_m_s": 0.00672156810760498,
+        "attitude_iae_rad_s": 0.028041469744593286,
+        "command_variation": 0.502753616200437,
+        "applied_force_squared_N2_s": 8.626690142591334,
+        "applied_torque_squared_Nm2_s": 0.17747266284700286,
+        "mpc_command_controls": 14,
+        "fallback_controls": 1,
+        "committed_prefix_controls": 45,
+        "mpc_activations": 14
+      }
+    },
+    "uuv6-depth": {
+      "verdict": "worse_in_this_scenario",
+      "score_relative_improvement": -0.1266166230487305,
+      "depth_rmse_improvement_m": -0.000953121854940675,
+      "attitude_rmse_improvement_rad": 0.0,
+      "command_max_difference": 0.01599995046854019,
+      "statistical_significance_claim": false,
+      "unique_koopman_advantage_proven": false,
+      "runtime_qualified": false,
+      "cost_ratios_mpc_over_feedback": {
+        "command_variation": 0.7000014342307534,
+        "applied_force_squared_N2_s": 0.9862686894565411,
+        "applied_torque_squared_Nm2_s": 0.2357501621031581
+      },
+      "feedback_metrics": {
+        "normalized_tracking_score": 0.6019899172438914,
+        "depth_rmse_m": 0.015517601841056387,
+        "attitude_rmse_rad": 0.0,
+        "depth_iae_m_s": 0.028724164168039103,
+        "attitude_iae_rad_s": 0.0,
+        "command_variation": 0.03999999910627567,
+        "applied_force_squared_N2_s": 10.414129936320432,
+        "applied_torque_squared_Nm2_s": 1.1540129786704883e-12,
+        "mpc_command_controls": 0,
+        "fallback_controls": 60,
+        "committed_prefix_controls": 0,
+        "mpc_activations": 0
+      },
+      "mpc_metrics": {
+        "normalized_tracking_score": 0.6782118476746977,
+        "depth_rmse_m": 0.01647072369599706,
+        "attitude_rmse_rad": 0.0,
+        "depth_iae_m_s": 0.031613066196440796,
+        "attitude_iae_rad_s": 0.0,
+        "command_variation": 0.028000056743621826,
+        "applied_force_squared_N2_s": 10.271130284124885,
+        "applied_torque_squared_Nm2_s": 2.7205874679071597e-13,
+        "mpc_command_controls": 14,
+        "fallback_controls": 1,
+        "committed_prefix_controls": 45,
+        "mpc_activations": 14
+      }
+    },
+    "uuv6_angled-pitch": {
+      "verdict": "worse_in_this_scenario",
+      "score_relative_improvement": -0.2199184250865527,
+      "depth_rmse_improvement_m": -0.0024433670090514164,
+      "attitude_rmse_improvement_rad": -0.0005853425820176138,
+      "command_max_difference": 0.07426313310861588,
+      "statistical_significance_claim": false,
+      "unique_koopman_advantage_proven": false,
+      "runtime_qualified": false,
+      "cost_ratios_mpc_over_feedback": {
+        "command_variation": 5.574870353134789,
+        "applied_force_squared_N2_s": 0.9684904572926754,
+        "applied_torque_squared_Nm2_s": 5.072299660543019
+      },
+      "feedback_metrics": {
+        "normalized_tracking_score": 0.19951079795745802,
+        "depth_rmse_m": 0.001293458347317351,
+        "attitude_rmse_rad": 0.01767838054650236,
+        "depth_iae_m_s": 0.0021542112032572427,
+        "attitude_iae_rad_s": 0.024298501368504952,
+        "command_variation": 0.09247580669142734,
+        "applied_force_squared_N2_s": 10.135700062199158,
+        "applied_torque_squared_Nm2_s": 0.03993676284161706,
+        "mpc_command_controls": 0,
+        "fallback_controls": 60,
+        "committed_prefix_controls": 0,
+        "mpc_activations": 0
+      },
+      "mpc_metrics": {
+        "normalized_tracking_score": 0.2433868984320236,
+        "depth_rmse_m": 0.0037368253563687674,
+        "attitude_rmse_rad": 0.018263723128519975,
+        "depth_iae_m_s": 0.006579196453094483,
+        "attitude_iae_rad_s": 0.028019394300297207,
+        "command_variation": 0.515540633106262,
+        "applied_force_squared_N2_s": 9.81632878822066,
+        "applied_torque_squared_Nm2_s": 0.20257122860472127,
+        "mpc_command_controls": 14,
+        "fallback_controls": 1,
+        "committed_prefix_controls": 45,
+        "mpc_activations": 14
+      }
+    },
+    "uuv6_angled-depth": {
+      "verdict": "worse_in_this_scenario",
+      "score_relative_improvement": -0.12066202445929818,
+      "depth_rmse_improvement_m": -0.000908511848116857,
+      "attitude_rmse_improvement_rad": 0.0,
+      "command_max_difference": 0.01599995046854019,
+      "statistical_significance_claim": false,
+      "unique_koopman_advantage_proven": false,
+      "runtime_qualified": false,
+      "cost_ratios_mpc_over_feedback": {
+        "command_variation": 0.7000014342333479,
+        "applied_force_squared_N2_s": 0.9980692814674701,
+        "applied_torque_squared_Nm2_s": 0.2147990900368546
+      },
+      "feedback_metrics": {
+        "normalized_tracking_score": 0.6006334487631456,
+        "depth_rmse_m": 0.015500109015915283,
+        "attitude_rmse_rad": 0.0,
+        "depth_iae_m_s": 0.028650699456531942,
+        "attitude_iae_rad_s": 0.0,
+        "command_variation": 0.039999999106127414,
+        "applied_force_squared_N2_s": 11.809780161878427,
+        "applied_torque_squared_Nm2_s": 8.177288169731355e-13,
+        "mpc_command_controls": 0,
+        "fallback_controls": 60,
+        "committed_prefix_controls": 0,
+        "mpc_activations": 0
+      },
+      "mpc_metrics": {
+        "normalized_tracking_score": 0.6731070966488769,
+        "depth_rmse_m": 0.01640862086403214,
+        "attitude_rmse_rad": 0.0,
+        "depth_iae_m_s": 0.031412389278411015,
+        "attitude_iae_rad_s": 0.0,
+        "command_variation": 0.028000056743621826,
+        "applied_force_squared_N2_s": 11.786978800454785,
+        "applied_torque_squared_Nm2_s": 1.7564740578274313e-13,
+        "mpc_command_controls": 14,
+        "fallback_controls": 1,
+        "committed_prefix_controls": 45,
+        "mpc_activations": 14
+      }
+    }
+  },
+  "v73_stage_result": {
+    "status": "global_stop",
+    "configurations": {
+      "long_body": {
+        "status": "four_arms_accepted",
+        "cases": {
+          "long_body-pitch-feedback": "accepted",
+          "long_body-pitch-mpc": "accepted",
+          "long_body-depth-feedback": "accepted",
+          "long_body-depth-mpc": "accepted"
+        },
+        "not_run": []
+      },
+      "uuv6": {
+        "status": "four_arms_accepted",
+        "cases": {
+          "uuv6-pitch-feedback": "accepted",
+          "uuv6-pitch-mpc": "accepted",
+          "uuv6-depth-feedback": "accepted",
+          "uuv6-depth-mpc": "accepted"
+        },
+        "not_run": []
+      },
+      "uuv6_angled": {
+        "status": "four_arms_accepted",
+        "cases": {
+          "uuv6_angled-pitch-feedback": "accepted",
+          "uuv6_angled-pitch-mpc": "accepted",
+          "uuv6_angled-depth-feedback": "accepted",
+          "uuv6_angled-depth-mpc": "accepted"
+        },
+        "not_run": []
+      },
+      "uuv4_angled": {
+        "status": "configuration_support_no_go",
+        "cases": {
+          "uuv4_angled-pitch-feedback": "accepted",
+          "uuv4_angled-pitch-mpc": "configuration_no_go"
+        },
+        "not_run": [
+          "uuv4_angled-depth-feedback",
+          "uuv4_angled-depth-mpc"
+        ]
+      },
+      "heavy_moderate": {
+        "status": "running",
+        "cases": {
+          "heavy_moderate-pitch-feedback": "global_stop"
+        },
+        "not_run": []
+      }
+    },
+    "new_fits": 0,
+    "charged_seconds": 819.0902196061797,
+    "physical_starts": 15,
+    "manifest_sha256": "383ad20c2c345380e3b64198635dd99615e982c5006083ade08fd3bf9a3bdeae",
+    "inherited": {
+      "base": "four_arms_accepted_r3",
+      "asymmetric": "support_no_go_at10physics_steps_r3",
+      "uuv4": "pitch_feedback_passed_mpc_support_no_go209steps11activations_remaining_depth_skipped"
+    },
+    "exception": "ValueError:unclassified_or_integrity_failure:heavy_moderate-pitch-feedback",
+    "retained_bytes": 187093151,
+    "addon_bytes": 6707528,
+    "wall_seconds": 826.3470104727894
+  },
+  "verified_pulled_files": 180,
+  "physical_starts_v68_onward": 23,
+  "conservative_server_seconds": 1636.3470104727894,
+  "server_seconds_note": "Prior800s reserve plus complete v73 wall826.347s plus10s final audit reserve; cap2400s",
+  "server_retained_bytes_at_audit": 187097471,
+  "debugger_bytes": 21020723,
+  "new_fits": 0,
+  "background_processes": [],
+  "runtime_qualified": false,
+  "unseen_generalization_proven": false,
+  "unique_koopman_advantage_proven": false
+}

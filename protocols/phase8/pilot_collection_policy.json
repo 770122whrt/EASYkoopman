@@ -1,0 +1,32 @@
+{
+  "artifact_origin_level": "server_isaac_smoke",
+  "controller_mode": "legacy/Ssurface",
+  "entries": [
+    {"configuration": "base", "episode_id": "phase8-pilot-base-axis-pulse-s8101", "policy_kind": "axis_pulse", "scenario": "phase8-pilot-axis-pulse", "seed": 8101, "transition_count": 128},
+    {"configuration": "base", "episode_id": "phase8-pilot-base-bounded-multisine-s8102", "policy_kind": "bounded_multisine", "scenario": "phase8-pilot-bounded-multisine", "seed": 8102, "transition_count": 128},
+    {"configuration": "long_body", "episode_id": "phase8-pilot-long_body-axis-pulse-s8101", "policy_kind": "axis_pulse", "scenario": "phase8-pilot-axis-pulse", "seed": 8101, "transition_count": 128},
+    {"configuration": "long_body", "episode_id": "phase8-pilot-long_body-bounded-multisine-s8102", "policy_kind": "bounded_multisine", "scenario": "phase8-pilot-bounded-multisine", "seed": 8102, "transition_count": 128},
+    {"configuration": "heavy_moderate", "episode_id": "phase8-pilot-heavy_moderate-axis-pulse-s8101", "policy_kind": "axis_pulse", "scenario": "phase8-pilot-axis-pulse", "seed": 8101, "transition_count": 128},
+    {"configuration": "heavy_moderate", "episode_id": "phase8-pilot-heavy_moderate-bounded-multisine-s8102", "policy_kind": "bounded_multisine", "scenario": "phase8-pilot-bounded-multisine", "seed": 8102, "transition_count": 128},
+    {"configuration": "asymmetric", "episode_id": "phase8-pilot-asymmetric-axis-pulse-s8101", "policy_kind": "axis_pulse", "scenario": "phase8-pilot-axis-pulse", "seed": 8101, "transition_count": 128},
+    {"configuration": "asymmetric", "episode_id": "phase8-pilot-asymmetric-bounded-multisine-s8102", "policy_kind": "bounded_multisine", "scenario": "phase8-pilot-bounded-multisine", "seed": 8102, "transition_count": 128},
+    {"configuration": "uuv6", "episode_id": "phase8-pilot-uuv6-axis-pulse-s8101", "policy_kind": "axis_pulse", "scenario": "phase8-pilot-axis-pulse", "seed": 8101, "transition_count": 128},
+    {"configuration": "uuv6", "episode_id": "phase8-pilot-uuv6-bounded-multisine-s8102", "policy_kind": "bounded_multisine", "scenario": "phase8-pilot-bounded-multisine", "seed": 8102, "transition_count": 128},
+    {"configuration": "uuv6_angled", "episode_id": "phase8-pilot-uuv6_angled-axis-pulse-s8101", "policy_kind": "axis_pulse", "scenario": "phase8-pilot-axis-pulse", "seed": 8101, "transition_count": 128},
+    {"configuration": "uuv6_angled", "episode_id": "phase8-pilot-uuv6_angled-bounded-multisine-s8102", "policy_kind": "bounded_multisine", "scenario": "phase8-pilot-bounded-multisine", "seed": 8102, "transition_count": 128},
+    {"configuration": "uuv4", "episode_id": "phase8-pilot-uuv4-axis-pulse-s8101", "policy_kind": "axis_pulse", "scenario": "phase8-pilot-axis-pulse", "seed": 8101, "transition_count": 128},
+    {"configuration": "uuv4", "episode_id": "phase8-pilot-uuv4-bounded-multisine-s8102", "policy_kind": "bounded_multisine", "scenario": "phase8-pilot-bounded-multisine", "seed": 8102, "transition_count": 128},
+    {"configuration": "uuv4_angled", "episode_id": "phase8-pilot-uuv4_angled-axis-pulse-s8101", "policy_kind": "axis_pulse", "scenario": "phase8-pilot-axis-pulse", "seed": 8101, "transition_count": 128},
+    {"configuration": "uuv4_angled", "episode_id": "phase8-pilot-uuv4_angled-bounded-multisine-s8102", "policy_kind": "bounded_multisine", "scenario": "phase8-pilot-bounded-multisine", "seed": 8102, "transition_count": 128}
+  ],
+  "experiment_id": "phase8-identification-pilot-v1",
+  "policy_version": "phase8-pilot-collection-policy-v1",
+  "raw_action_abs_max": 0.25,
+  "runtime_contract": {
+    "isaac_lab_version": "2.2.1",
+    "isaac_sim_version": "5.0",
+    "python_entrypoint": "/root/IsaacLab/isaaclab.sh -p"
+  },
+  "task_id": "EasyUUV-Direct-v1",
+  "transition_schema_version": "easyuuv-koopman-transition-v2"
+}

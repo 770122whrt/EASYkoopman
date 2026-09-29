@@ -1,0 +1,31 @@
+{
+  "status": "failed_run_diagnostic_not_benefit_evidence",
+  "actual_steps": 209,
+  "simulated_seconds": 1.7416666666666667,
+  "violations": [
+    {
+      "index": 1,
+      "before": -0.04415533558473899,
+      "actual": -0.04439479623279929,
+      "lower": -0.04416094554122045,
+      "upper": 0.08161502281131304,
+      "teacher_forced_prediction": -0.044395512404086894
+    }
+  ],
+  "pitch_angle_rad": 0.04440939211700943,
+  "reference_pitch_rad": 0.04,
+  "partial_common_horizon_metrics": {
+    "feedback": {
+      "score": 0.24471674460142293,
+      "depth_rmse_m": 0.0017162925024376983,
+      "attitude_rmse_rad": 0.019487538365493506
+    },
+    "mpc": {
+      "score": 0.24462397614204842,
+      "depth_rmse_m": 0.0035076095511482486,
+      "attitude_rmse_rad": 0.018498244856581712
+    }
+  },
+  "teacher_forcing_uses_actual_wrench_not_online_forecast": true,
+  "mpc_activations": 11
+}

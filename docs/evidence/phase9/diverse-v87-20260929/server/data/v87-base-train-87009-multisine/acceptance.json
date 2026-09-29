@@ -1,0 +1,27 @@
+{
+  "status": "accepted_data_only",
+  "case": {
+    "run_id": "v87-base-train-87009-multisine",
+    "configuration": "base",
+    "role": "train",
+    "seed": 87009,
+    "excitation": "multisine",
+    "amplitude_scale": 1.5,
+    "controls": 320,
+    "hidden_drag_fraction": 0.2
+  },
+  "trace_sha256": "89b6b9be282f53d579c01f3da06000af74689010d3f31623f73b2213982eb902",
+  "states_shape": [
+    1281,
+    11
+  ],
+  "inputs_shape": [
+    1280,
+    6
+  ],
+  "max_linear_speed": 0.13408229680076494,
+  "max_angular_speed": 0.433140361962656,
+  "max_attitude_rad": 0.16435415203423248,
+  "prediction_benefit_established": false,
+  "closed_loop_benefit_established": false
+}

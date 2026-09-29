@@ -1,0 +1,98 @@
+from pathlib import Path
+import os,sys,json,hashlib,time
+for key in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS'):os.environ[key]='1'
+sys.path.insert(0,str(Path.cwd()))
+import numpy as np
+root=Path.cwd();read=lambda p:json.loads(p.read_text(encoding='utf8'));sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+base=root/'source/results/phase8.4-state-projection-v34-20260913';freeze=read(base/'freeze.json');status=read(base/'status.json')
+assert (base/'native-exit.txt').read_text().strip()=='0' and status['status'] in ('fit_screen_go','fit_screen_no_go')
+started=time.monotonic()
+for name,h in {**freeze['source_sha256'],**freeze['input_sha256']}.items():assert sha(root/name)==h,name
+from workflows.identification_protocol_v29 import cases
+qs={q['run_id']:q for q in cases() if q['role']=='fit'};configs=list(dict.fromkeys(q['configuration'] for q in qs.values()))
+scores=read(base/'scores.json');assert len(scores)==240
+ci={(r['run_id'],r['scope'],r['horizon_control_intervals']):r for r in scores}
+assert len(ci)==240 and set(ci)=={(q,s,h) for q in qs for s in ('pooled','heldout') for h in (1,20,60,128,320)}
+assert all(r['family']=='nonlinear_v34' and r['mode']=='full_state_projected' for r in scores)
+v33=root/'source/results/phase8.4-controlled-lift-v33-20260913'
+baseline=[r for r in read(v33/'scores.json') if r['mode']=='projected'];assert len(baseline)==720
+bi={(r['run_id'],r['family'],r['scope'],r['horizon_control_intervals']):r for r in baseline};assert len(bi)==720
+for r in scores+baseline:
+    assert r['role']=='fit_diagnostic' and r['configuration']==qs[r['run_id']]['configuration']
+    assert r['origins']==(1 if r['horizon_control_intervals']==320 else 193-r['horizon_control_intervals'])
+    assert r['complete_aggregate']==(r['failed_origins']==0)
+    for k in ('endpoint_rmse','path_rmse'):
+        if r['complete_aggregate']:assert np.isfinite(r[k]).all() and np.shape(r[k])==(4,) and min(r[k])>=0
+        else:assert r[k] is None
+gates=[]
+ratio=lambda a,b:1. if a<=1e-15 and b<=1e-15 else a/max(b,1e-15)
+for scope in ('pooled','heldout'):
+    for h in (20,60,128):
+        for metric in ('endpoint_rmse','path_rmse'):
+            rows=[r for q in qs for r in (ci[(q,scope,h)],bi[(q,'linear',scope,h)],bi[(q,'persistence','none',h)])]
+            passed=all(r['complete_aggregate'] for r in rows)
+            if passed:
+                cc=[];ll=[]
+                for cfg in configs:
+                    candidate=[];linear=[]
+                    for q in qs:
+                        if qs[q]['configuration']!=cfg:continue
+                        den=np.maximum(bi[(q,'persistence','none',h)][metric],.001)
+                        candidate.append(np.asarray(ci[(q,scope,h)][metric])/den)
+                        linear.append(np.asarray(bi[(q,'linear',scope,h)][metric])/den)
+                    cc.append(np.mean(candidate,0));ll.append(np.mean(linear,0))
+                cc=np.array(cc);ll=np.array(ll);rel=ratio(float(cc.mean()),float(ll.mean()))
+                passed=bool(cc.mean()<=.95 and max(cc.mean(1))<=1.05 and cc.max()<=1.25 and rel<=.95
+                    and max(ratio(float(a.mean()),float(b.mean())) for a,b in zip(cc,ll))<=1.05)
+            reported=next(g for g in status['gate']['gates'] if (g['scope'],g['horizon'],g['metric'])==(scope,h,metric))
+            assert passed==reported['pass'];gates.append(passed)
+complete=all(r['complete_aggregate'] for r in scores)
+assert status['gate']['pass']==bool(complete and all(gates))
+assert status['status']==('fit_screen_go' if complete and all(gates) else 'fit_screen_no_go')
+assert status['complete_scores']==sum(r['complete_aggregate'] for r in scores)
+for r in read(base/'summary.json'):
+    rows=[v for v in scores if v['scope']==r['scope'] and v['horizon_control_intervals']==r['horizon']]
+    assert len(rows)==24 and r['complete_records']==sum(v['complete_aggregate'] for v in rows)
+    for key,metric in [('mean_endpoint','endpoint_rmse'),('mean_path','path_rmse')]:
+        if r['complete_records']==24:np.testing.assert_allclose(r[key],np.mean([v[metric] for v in rows],0),rtol=1e-12,atol=1e-12)
+        else:assert r[key] is None
+# Recompute one real all-origin score without calling the new predictor or its scorer.
+from workflows.identify_sparse_world_v30 import load_fit_cache,from_record
+from koopman.sparse_world_edmd_v30 import lift
+from workflows.sparse_evaluation_v32 import decode_lift
+from workflows.identification_prediction_v32 import valid_predictions
+e=load_fit_cache(root)[0];old_path=root/'source/results/phase8.4-sparse-world-pilot-v30-20260913/models/nonlinear__pooled.json'
+parent=from_record(read(old_path));record=read(v33/'models/nonlinear__pooled.json');A=np.asarray(record['matrix'])
+origins=np.arange(256,640-40+1,2);x=e.states[origins].copy();alive=np.ones(len(x),dtype=bool);failed=np.full(len(x),-1,dtype=int)
+total=np.zeros((len(x),4));last=np.zeros_like(total)
+for tick in range(40):
+    ids=np.flatnonzero(alive)
+    if not len(ids):break
+    a=e.acceleration[origins[ids]+tick];initial=x[ids]
+    effect=lift(parent(initial,a,e.context),e.context,'nonlinear')-lift(parent(initial,np.zeros_like(a),e.context),e.context,'nonlinear')
+    y=decode_lift(lift(initial,e.context,'nonlinear')@A+effect);good=valid_predictions(y)
+    bad=ids[~good];alive[bad]=False;failed[bad]=tick+1;ids=ids[good]
+    if len(ids):
+        x[ids]=y[good];truth=e.states[origins[ids]+tick+1];pred=x[ids]
+        qa=truth[:,1:5]/np.linalg.norm(truth[:,1:5],axis=1,keepdims=True);qb=pred[:,1:5]/np.linalg.norm(pred[:,1:5],axis=1,keepdims=True)
+        angle=2*np.arccos(np.clip(np.abs(np.sum(qa*qb,axis=1)),0,1))
+        error=np.c_[(truth[:,0]-pred[:,0])**2,angle**2,np.mean((truth[:,5:8]-pred[:,5:8])**2,1),np.mean((truth[:,8:]-pred[:,8:])**2,1)]
+        total[ids]+=error;last[ids]=error
+reported=ci[(e.case['run_id'],'pooled',20)]
+assert reported['first_failure_physics_tick']==failed.tolist() and reported['complete_aggregate']==bool(alive.all())
+if alive.all():
+    np.testing.assert_allclose(reported['endpoint_rmse'],np.sqrt(last.mean(0)),rtol=1e-12,atol=1e-12)
+    np.testing.assert_allclose(reported['path_rmse'],np.sqrt(total.mean(0)/40),rtol=1e-12,atol=1e-12)
+historical=root/'source/results/phase8.4-structured-formal-v25-20260912'
+inventory=read(root/'docs/evidence/phase8_4/formal-validation-closeout-20260913/audit.json')['artifact_sha256']
+for name,h in inventory.items():assert sha(historical/name)==h,name
+result={'status':'independent_v34_roles_inventory_arithmetic_and_real_recurrence_verified','decision':status['status'],
+    'scores':240,'complete_scores':status['complete_scores'],'gate_passes':sum(gates),'gate_count':12,
+    'real_recurrence_recomputed':'base-fit8720,pooled,h20,all173origins; predictor and metric formulas expanded separately',
+    'sources_unchanged':len(freeze['source_sha256']),'inputs_unchanged':len(freeze['input_sha256']),'old_formal_artifacts_unchanged':len(inventory),
+    'seconds':time.monotonic()-started,'new_fits':0,'independent_validation':False,'model_handoff':False,
+    'artifact_sha256':{str(p.relative_to(base)).replace('\\','/'):sha(p) for p in sorted(base.rglob('*')) if p.is_file()}}
+out=root/'docs/evidence/phase8_4/state-projection-v34-20260913';out.mkdir(exist_ok=True)
+with (out/'audit.json').open('x',encoding='utf8') as handle:json.dump(result,handle,indent=2);handle.write('\n')
+with (out/'audit.py.txt').open('x',encoding='utf8') as handle:handle.write(Path(__file__).read_text(encoding='utf8'))
+print(json.dumps({k:v for k,v in result.items() if k!='artifact_sha256'}))

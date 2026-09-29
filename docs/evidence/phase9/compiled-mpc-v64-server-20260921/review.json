@@ -1,0 +1,137 @@
+{
+  "status": "equivalent_solver_acceleration_verified_full_cycle_no_go",
+  "rows": [
+    {
+      "configuration": "base",
+      "median_wall_ms": {
+        "original": 18.639788264408708,
+        "compiled": 10.970284463837743,
+        "shared": 10.710576549172401
+      },
+      "shared_reduction_percent": 42.53917267062817,
+      "compiled_to_shared_percent": 2.3673763020588767
+    },
+    {
+      "configuration": "long_body",
+      "median_wall_ms": {
+        "original": 18.59114319086075,
+        "compiled": 10.84431353956461,
+        "shared": 10.762751335278153
+      },
+      "shared_reduction_percent": 42.1081790141392,
+      "compiled_to_shared_percent": 0.7521195692920757
+    },
+    {
+      "configuration": "heavy_moderate",
+      "median_wall_ms": {
+        "original": 21.02252165786922,
+        "compiled": 12.78980285860598,
+        "shared": 12.612415943294764
+      },
+      "shared_reduction_percent": 40.00521845782643,
+      "compiled_to_shared_percent": 1.386940184084684
+    },
+    {
+      "configuration": "asymmetric",
+      "median_wall_ms": {
+        "original": 19.033065298572183,
+        "compiled": 10.7559934258461,
+        "shared": 10.72127535007894
+      },
+      "shared_reduction_percent": 43.67026444824299,
+      "compiled_to_shared_percent": 0.3227788860834857
+    },
+    {
+      "configuration": "uuv6",
+      "median_wall_ms": {
+        "original": 19.444484962150455,
+        "compiled": 11.28563191741705,
+        "shared": 11.220898013561964
+      },
+      "shared_reduction_percent": 42.292644750406424,
+      "compiled_to_shared_percent": 0.5735957395100022
+    },
+    {
+      "configuration": "uuv6_angled",
+      "median_wall_ms": {
+        "original": 19.475989509373903,
+        "compiled": 11.216502403840423,
+        "shared": 11.109399143606424
+      },
+      "shared_reduction_percent": 42.958486713810316,
+      "compiled_to_shared_percent": 0.9548721729630061
+    },
+    {
+      "configuration": "uuv4",
+      "median_wall_ms": {
+        "original": 17.782285111024976,
+        "compiled": 10.497075971215963,
+        "shared": 10.39891131222248
+      },
+      "shared_reduction_percent": 41.520950500477696,
+      "compiled_to_shared_percent": 0.9351619371209652
+    },
+    {
+      "configuration": "uuv4_angled",
+      "median_wall_ms": {
+        "original": 17.90757104754448,
+        "compiled": 10.537571040913463,
+        "shared": 10.394009295850992
+      },
+      "shared_reduction_percent": 41.95745884098425,
+      "compiled_to_shared_percent": 1.3623798549501909
+    }
+  ],
+  "workers": [
+    {
+      "variant": "original",
+      "round_trip_ms": 22.017879877239466
+    },
+    {
+      "variant": "compiled",
+      "round_trip_ms": 13.151658233255148
+    },
+    {
+      "variant": "shared",
+      "round_trip_ms": 14.694252982735634
+    }
+  ],
+  "max_result_difference": 1.3877787807814457e-16,
+  "direct_requests": 96,
+  "worker_requests": 3,
+  "files_hash_verified": 88,
+  "local_source_matches_tested_server": true,
+  "old_v38_hashes_unchanged": true,
+  "supervised_attempts": 4,
+  "auxiliary_diagnosis_invocations": 1,
+  "auxiliary_reserved_seconds": 30,
+  "seconds_used_including_reserve": 165.80905279889703,
+  "seconds_limit": 600,
+  "first_cycle_ms": 27.76700211688876,
+  "decision_ms": 2.6033218018710613,
+  "runtime_final": {
+    "stats": {
+      "requests": 0,
+      "mpc_activations": 0,
+      "confirmed_controls": 1,
+      "dispatches": 1,
+      "rejected_replies": 0,
+      "worker_failures": 0
+    },
+    "physics_index": 2
+  },
+  "native_exit": 1,
+  "runtime_qualified": false,
+  "local_related_tests_passed": 178,
+  "origin_tests_passed": 2,
+  "addon_related_tests_passed": 17,
+  "new_local_bytes": 2160276,
+  "remote_research_bytes": 170299485,
+  "environment_bytes": 322632915,
+  "combined_bytes": 716004802,
+  "gpu_required_for_solver": false,
+  "server_jobs_remaining": false,
+  "local_phase9_evidence_bytes": 69519244,
+  "local_research_bytes": 223072402,
+  "local_research_accounting": "Conservative prior v62 retained local research 220791728 bytes plus all v63/v64 evidence roots; includes prior release packages without double-counting only current evidence."
+}

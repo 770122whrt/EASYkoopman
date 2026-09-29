@@ -1,0 +1,712 @@
+{
+  "schema": "v81-pooled-eighty-step-absolute-error-diagnostic",
+  "role": "fit_resubstitution_not_independent_test",
+  "horizon_physics": 80,
+  "origin_physics": [
+    256,
+    384,
+    512
+  ],
+  "model_selection": "none",
+  "known_configurations": true,
+  "closed_loop": false,
+  "elapsed_seconds": 25.78100000001723,
+  "rows": [
+    {
+      "configuration": "base",
+      "model": "learned_ridge_0.001",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 8.359503525820797e-07,
+          "maximum": 3.2144579282800123e-06,
+          "rmse": 1.102890782175746e-06
+        },
+        "attitude_angle_rad": {
+          "mean": 8.208076077856749e-05,
+          "maximum": 0.00026986550272840214,
+          "rmse": 9.603310007474784e-05
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 2.445857026797215e-06,
+          "maximum": 1.3617170891044984e-05,
+          "rmse": 3.304263643420019e-06
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.00015770843255843124,
+          "maximum": 0.0006921963917582865,
+          "rmse": 0.00021473646389933435
+        }
+      }
+    },
+    {
+      "configuration": "base",
+      "model": "learned_ridge_0.1",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 8.338460667537777e-07,
+          "maximum": 3.228871190863458e-06,
+          "rmse": 1.1010970017208519e-06
+        },
+        "attitude_angle_rad": {
+          "mean": 8.348719271864385e-05,
+          "maximum": 0.00027931971463728293,
+          "rmse": 9.786978596194342e-05
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 2.445385416032169e-06,
+          "maximum": 1.330191461070271e-05,
+          "rmse": 3.2924681900115377e-06
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.00015583975735214328,
+          "maximum": 0.0006817385541245839,
+          "rmse": 0.00021313635373400536
+        }
+      }
+    },
+    {
+      "configuration": "base",
+      "model": "same_data_identified_physics",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 8.148704194225569e-07,
+          "maximum": 3.456618459019012e-06,
+          "rmse": 1.093907764396338e-06
+        },
+        "attitude_angle_rad": {
+          "mean": 7.193956682457177e-05,
+          "maximum": 0.00014951531099252396,
+          "rmse": 8.054873415185673e-05
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 2.389901528701443e-06,
+          "maximum": 1.1593936266167933e-05,
+          "rmse": 3.0975257842712296e-06
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.0001093027621346055,
+          "maximum": 0.0002849936211824933,
+          "rmse": 0.00013029316213694248
+        }
+      }
+    },
+    {
+      "configuration": "long_body",
+      "model": "learned_ridge_0.001",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 7.185378981243594e-07,
+          "maximum": 3.320424522890164e-06,
+          "rmse": 1.0461301398726601e-06
+        },
+        "attitude_angle_rad": {
+          "mean": 6.905186152500753e-05,
+          "maximum": 0.00023394565875138008,
+          "rmse": 7.938338150527092e-05
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 1.77669677597249e-06,
+          "maximum": 4.339398338830162e-06,
+          "rmse": 2.0391149002591043e-06
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.00027806963947448924,
+          "maximum": 0.0007817495075352608,
+          "rmse": 0.00033478488085508047
+        }
+      }
+    },
+    {
+      "configuration": "long_body",
+      "model": "learned_ridge_0.1",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 7.208392337340917e-07,
+          "maximum": 3.386730481835798e-06,
+          "rmse": 1.05317184211784e-06
+        },
+        "attitude_angle_rad": {
+          "mean": 6.951622423409538e-05,
+          "maximum": 0.00020225793741707965,
+          "rmse": 7.795843235336374e-05
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 1.7955852666123563e-06,
+          "maximum": 4.319020591190246e-06,
+          "rmse": 2.052411628227975e-06
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.00026836594534337645,
+          "maximum": 0.0007284474438482714,
+          "rmse": 0.00032356066069513714
+        }
+      }
+    },
+    {
+      "configuration": "long_body",
+      "model": "same_data_identified_physics",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 7.515682313398288e-07,
+          "maximum": 3.5775290623263345e-06,
+          "rmse": 1.0989215747689876e-06
+        },
+        "attitude_angle_rad": {
+          "mean": 6.324830293477873e-05,
+          "maximum": 0.00014317322593925967,
+          "rmse": 6.913690177737539e-05
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 1.8705640196475389e-06,
+          "maximum": 4.242174883190801e-06,
+          "rmse": 2.113716477559337e-06
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.0002500757305023564,
+          "maximum": 0.0005965978954230829,
+          "rmse": 0.00029667102721752845
+        }
+      }
+    },
+    {
+      "configuration": "heavy_moderate",
+      "model": "learned_ridge_0.001",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 8.534474338659257e-07,
+          "maximum": 5.128346518112892e-06,
+          "rmse": 1.2285217338081943e-06
+        },
+        "attitude_angle_rad": {
+          "mean": 7.966390712282449e-05,
+          "maximum": 0.00021911219933836476,
+          "rmse": 9.152934432074491e-05
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 8.975811758018427e-05,
+          "maximum": 0.00038527681019418663,
+          "rmse": 0.00011804379494063787
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.00010208799972125002,
+          "maximum": 0.00034472357136832837,
+          "rmse": 0.00012553795247143636
+        }
+      }
+    },
+    {
+      "configuration": "heavy_moderate",
+      "model": "learned_ridge_0.1",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 8.529020834739202e-07,
+          "maximum": 5.176714917176639e-06,
+          "rmse": 1.221532181877431e-06
+        },
+        "attitude_angle_rad": {
+          "mean": 7.966889536311631e-05,
+          "maximum": 0.00021821561455520174,
+          "rmse": 9.176412534434715e-05
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 8.958298987782551e-05,
+          "maximum": 0.0003860295669779545,
+          "rmse": 0.00011822401558818895
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.00010208223631106195,
+          "maximum": 0.0003619636070799972,
+          "rmse": 0.0001296841018882771
+        }
+      }
+    },
+    {
+      "configuration": "heavy_moderate",
+      "model": "same_data_identified_physics",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 7.738811725937427e-07,
+          "maximum": 4.902941070916711e-06,
+          "rmse": 1.0966927370766671e-06
+        },
+        "attitude_angle_rad": {
+          "mean": 8.16334074657353e-05,
+          "maximum": 0.0002138814781915008,
+          "rmse": 9.317221719769152e-05
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 8.889933488566089e-05,
+          "maximum": 0.0003826484158425854,
+          "rmse": 0.00011703673265976921
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.00011591648467820911,
+          "maximum": 0.0003939882699429914,
+          "rmse": 0.00014647188921706054
+        }
+      }
+    },
+    {
+      "configuration": "asymmetric",
+      "model": "learned_ridge_0.001",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 8.236670757444387e-07,
+          "maximum": 2.893089585676023e-06,
+          "rmse": 1.0466758322887506e-06
+        },
+        "attitude_angle_rad": {
+          "mean": 9.054155345296191e-05,
+          "maximum": 0.0002788964068973643,
+          "rmse": 0.00011114540267345593
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 1.5446994026991748e-06,
+          "maximum": 7.468674971726298e-06,
+          "rmse": 2.306457353257643e-06
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.00027229565760071193,
+          "maximum": 0.0009198089872990439,
+          "rmse": 0.00034385501790887025
+        }
+      }
+    },
+    {
+      "configuration": "asymmetric",
+      "model": "learned_ridge_0.1",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 8.212970092322555e-07,
+          "maximum": 2.8657108481766613e-06,
+          "rmse": 1.0435722248202177e-06
+        },
+        "attitude_angle_rad": {
+          "mean": 9.0053583515817e-05,
+          "maximum": 0.0002775189190562534,
+          "rmse": 0.0001107627355844146
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 1.5257762140197754e-06,
+          "maximum": 7.331417589722126e-06,
+          "rmse": 2.2735791774796746e-06
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.0002692220952467222,
+          "maximum": 0.0008643418240056011,
+          "rmse": 0.00033968737517794766
+        }
+      }
+    },
+    {
+      "configuration": "asymmetric",
+      "model": "same_data_identified_physics",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 8.312637778550169e-07,
+          "maximum": 2.833421203440878e-06,
+          "rmse": 1.0608485923587677e-06
+        },
+        "attitude_angle_rad": {
+          "mean": 8.468049850181583e-05,
+          "maximum": 0.0002966145650089956,
+          "rmse": 0.00010349274939354904
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 1.6107635442975726e-06,
+          "maximum": 7.395574287162962e-06,
+          "rmse": 2.2975985456936564e-06
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.0002284949141516362,
+          "maximum": 0.0009034613350399478,
+          "rmse": 0.0003040989232721313
+        }
+      }
+    },
+    {
+      "configuration": "uuv6",
+      "model": "learned_ridge_0.001",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 5.829646053273013e-07,
+          "maximum": 2.634497047182549e-06,
+          "rmse": 7.593609619417596e-07
+        },
+        "attitude_angle_rad": {
+          "mean": 8.761689258835498e-05,
+          "maximum": 0.0003577309851999294,
+          "rmse": 0.00011078090973320182
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 2.571255694786082e-06,
+          "maximum": 1.317216698833662e-05,
+          "rmse": 3.608424434194795e-06
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.00020173936896276473,
+          "maximum": 0.0008226542454331613,
+          "rmse": 0.0002685129005845413
+        }
+      }
+    },
+    {
+      "configuration": "uuv6",
+      "model": "learned_ridge_0.1",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 5.823543017048473e-07,
+          "maximum": 2.6272679276573285e-06,
+          "rmse": 7.588551789218106e-07
+        },
+        "attitude_angle_rad": {
+          "mean": 8.540840076949393e-05,
+          "maximum": 0.0003516183347110907,
+          "rmse": 0.00010708392779091448
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 2.6128884526811547e-06,
+          "maximum": 1.3461360570282562e-05,
+          "rmse": 3.702742013918236e-06
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.0001865687285878904,
+          "maximum": 0.0007619877556597727,
+          "rmse": 0.00025178302267030227
+        }
+      }
+    },
+    {
+      "configuration": "uuv6",
+      "model": "same_data_identified_physics",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 5.86758323341109e-07,
+          "maximum": 2.7088664440455545e-06,
+          "rmse": 7.734422328342196e-07
+        },
+        "attitude_angle_rad": {
+          "mean": 6.932358127982194e-05,
+          "maximum": 0.0001634626494121323,
+          "rmse": 7.988294379037687e-05
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 2.6733767347178424e-06,
+          "maximum": 1.2587161998673328e-05,
+          "rmse": 3.6615967822928517e-06
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.0001229968748468421,
+          "maximum": 0.00039807877658370734,
+          "rmse": 0.00015406269081562376
+        }
+      }
+    },
+    {
+      "configuration": "uuv6_angled",
+      "model": "learned_ridge_0.001",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 6.063015448982196e-07,
+          "maximum": 2.101482965422008e-06,
+          "rmse": 7.505948141321583e-07
+        },
+        "attitude_angle_rad": {
+          "mean": 7.545712128729034e-05,
+          "maximum": 0.00014780882951035532,
+          "rmse": 8.401350137586559e-05
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 1.472321429930499e-06,
+          "maximum": 8.006673976964708e-06,
+          "rmse": 2.1259633993022764e-06
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.00014769730731756614,
+          "maximum": 0.0003905863060593651,
+          "rmse": 0.00017871545573889822
+        }
+      }
+    },
+    {
+      "configuration": "uuv6_angled",
+      "model": "learned_ridge_0.1",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 6.112471302690794e-07,
+          "maximum": 2.119049122839556e-06,
+          "rmse": 7.555539280282454e-07
+        },
+        "attitude_angle_rad": {
+          "mean": 7.409217814816677e-05,
+          "maximum": 0.0001414808717993362,
+          "rmse": 8.250669991134564e-05
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 1.4765816801172993e-06,
+          "maximum": 8.224759029504948e-06,
+          "rmse": 2.156727616754024e-06
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.00015246713706436327,
+          "maximum": 0.00047642533189143235,
+          "rmse": 0.0001867464313677959
+        }
+      }
+    },
+    {
+      "configuration": "uuv6_angled",
+      "model": "same_data_identified_physics",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 6.302983440669646e-07,
+          "maximum": 2.428470082804779e-06,
+          "rmse": 7.95812328958988e-07
+        },
+        "attitude_angle_rad": {
+          "mean": 6.930034489081201e-05,
+          "maximum": 0.00014390042649810002,
+          "rmse": 7.790022318812106e-05
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 1.5668363144611415e-06,
+          "maximum": 8.379614762000672e-06,
+          "rmse": 2.239387997622467e-06
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.00011730088161475131,
+          "maximum": 0.0003308591172693997,
+          "rmse": 0.00014599246974760177
+        }
+      }
+    },
+    {
+      "configuration": "uuv4",
+      "model": "learned_ridge_0.001",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 6.200991769708984e-07,
+          "maximum": 1.9629187830716432e-06,
+          "rmse": 7.691802114415116e-07
+        },
+        "attitude_angle_rad": {
+          "mean": 7.49598966658095e-05,
+          "maximum": 0.00016737587616606672,
+          "rmse": 8.553887971209895e-05
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 1.9983040602011723e-06,
+          "maximum": 6.019923151991612e-06,
+          "rmse": 2.4897841278149723e-06
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.00011316744393671911,
+          "maximum": 0.00035803011251443707,
+          "rmse": 0.00014101786838389619
+        }
+      }
+    },
+    {
+      "configuration": "uuv4",
+      "model": "learned_ridge_0.1",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 6.212409156942162e-07,
+          "maximum": 1.967647888179158e-06,
+          "rmse": 7.708566247771402e-07
+        },
+        "attitude_angle_rad": {
+          "mean": 7.341201877721427e-05,
+          "maximum": 0.0001563706385992609,
+          "rmse": 8.319800638791637e-05
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 1.9713159605333173e-06,
+          "maximum": 5.973183057599782e-06,
+          "rmse": 2.455154733057932e-06
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.00010597886641787285,
+          "maximum": 0.00033889929894559515,
+          "rmse": 0.00013221789234559917
+        }
+      }
+    },
+    {
+      "configuration": "uuv4",
+      "model": "same_data_identified_physics",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 6.08584223787339e-07,
+          "maximum": 1.899457974907648e-06,
+          "rmse": 7.639894665166936e-07
+        },
+        "attitude_angle_rad": {
+          "mean": 7.221068627535969e-05,
+          "maximum": 0.0001564050184363626,
+          "rmse": 8.195541861278908e-05
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 2.02643289313048e-06,
+          "maximum": 5.944385739147518e-06,
+          "rmse": 2.5018390304469507e-06
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.00010476590570016746,
+          "maximum": 0.00034693069407932235,
+          "rmse": 0.00013384927471960659
+        }
+      }
+    },
+    {
+      "configuration": "uuv4_angled",
+      "model": "learned_ridge_0.001",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 9.013347859607477e-07,
+          "maximum": 3.5919776264492498e-06,
+          "rmse": 1.238196617290244e-06
+        },
+        "attitude_angle_rad": {
+          "mean": 7.083747189085984e-05,
+          "maximum": 0.0001619089110505257,
+          "rmse": 8.353031807215464e-05
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 2.5683907911793508e-06,
+          "maximum": 9.745016396336538e-06,
+          "rmse": 3.453009972468358e-06
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.0001040189136010397,
+          "maximum": 0.00033422656222598394,
+          "rmse": 0.00013072736215701336
+        }
+      }
+    },
+    {
+      "configuration": "uuv4_angled",
+      "model": "learned_ridge_0.1",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 9.041148915793033e-07,
+          "maximum": 3.603014238073854e-06,
+          "rmse": 1.243615978952898e-06
+        },
+        "attitude_angle_rad": {
+          "mean": 7.066021506374031e-05,
+          "maximum": 0.0001642806114856132,
+          "rmse": 8.318546830472987e-05
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 2.540563731970764e-06,
+          "maximum": 9.829687723455354e-06,
+          "rmse": 3.405398461388794e-06
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.00010595864197699933,
+          "maximum": 0.0003343139733678697,
+          "rmse": 0.00013361901785889505
+        }
+      }
+    },
+    {
+      "configuration": "uuv4_angled",
+      "model": "same_data_identified_physics",
+      "windows": 9,
+      "complete_windows": 9,
+      "failures": [],
+      "metrics": {
+        "absolute_depth_m": {
+          "mean": 8.852659226257467e-07,
+          "maximum": 3.4361584688724633e-06,
+          "rmse": 1.2104289284539478e-06
+        },
+        "attitude_angle_rad": {
+          "mean": 6.932193377042125e-05,
+          "maximum": 0.00014841571214255537,
+          "rmse": 8.088678004972487e-05
+        },
+        "linear_velocity_error_norm_m_s": {
+          "mean": 2.570367950238038e-06,
+          "maximum": 9.464620928307135e-06,
+          "rmse": 3.3713729310172432e-06
+        },
+        "angular_velocity_error_norm_rad_s": {
+          "mean": 0.00010679258443973611,
+          "maximum": 0.00033847016959893966,
+          "rmse": 0.00013370355742961572
+        }
+      }
+    }
+  ]
+}

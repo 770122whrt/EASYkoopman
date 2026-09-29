@@ -1,0 +1,1861 @@
+{
+  "status": "accepted_bounded_simulation_time_closed_loop",
+  "physics_steps": 240,
+  "replay_max_errors": [
+    0.0,
+    3.725290298461914e-08,
+    1.6704864584937695e-05,
+    1.6363100590055524e-06
+  ],
+  "plan_replay_max_error": 0.0,
+  "min_clearance_m": 5.230901357600359,
+  "normalized_tracking_score": 0.20128505325569387,
+  "case": {
+    "configuration": "uuv4",
+    "controller": "identified_physics",
+    "profile": "depth4_h20",
+    "preview_enabled": false,
+    "controls": 60,
+    "seed": 19760,
+    "reference": [
+      5.5,
+      0.9998000066665778,
+      0.0,
+      0.01999866669333308,
+      0.0
+    ],
+    "task": "pitch_pos"
+  },
+  "real_time_qualified": false,
+  "training_eligible": false,
+  "actual_pwm_checks": 240,
+  "backend_allocation_checks": 60,
+  "decision_audits": 59,
+  "decision_checks": [
+    {
+      "physics_index": 4,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 0.002026655382688722,
+      "references": {
+        "held": {
+          "feasible": false,
+          "reason": "predicted_state_out_of_support",
+          "cost": null
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.002026655382688722
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 8,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 0.0021397080360621534,
+      "references": {
+        "held": {
+          "feasible": false,
+          "reason": "predicted_state_out_of_support",
+          "cost": null
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.002139708160687439
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0021397080360621534
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 12,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 0.0010577739283529,
+      "references": {
+        "held": {
+          "feasible": false,
+          "reason": "predicted_state_out_of_support",
+          "cost": null
+        },
+        "warm": {
+          "feasible": false,
+          "reason": "predicted_state_out_of_support",
+          "cost": null
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0010577739283529
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 16,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 0.0009827552903622946,
+      "references": {
+        "held": {
+          "feasible": false,
+          "reason": "predicted_state_out_of_support",
+          "cost": null
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.001001773992780215
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0009827552903622946
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 20,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "warm",
+      "selected_cost": 0.0009210603133005078,
+      "references": {
+        "held": {
+          "feasible": false,
+          "reason": "predicted_state_out_of_support",
+          "cost": null
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0009210603133005078
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0009210603133005078
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 24,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 0.0008655660124419211,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0009325646946168258
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0008687408778118859
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0008655660124419211
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 28,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 0.0006032880974542243,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00940150320051629
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0008200137457698766
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0006032880974542243
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 32,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 0.0005471787431850085,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.003194299777391452
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0005474024567344165
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0005471787431850085
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 36,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 0.0004990808320780361,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.002744847063540578
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0004991782163000369
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0004990808320780361
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 40,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "warm",
+      "selected_cost": 0.0004592193225190016,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0006315310288885853
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0004592193225190016
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0004592193225190016
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 44,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 0.00036206991596072536,
+      "references": {
+        "held": {
+          "feasible": false,
+          "reason": "predicted_state_out_of_support",
+          "cost": null
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0004274922135713655
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00036206991596072536
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 48,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 0.00032815795613694743,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.012237287814037589
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0003298771657862458
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00032815795613694743
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 52,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 0.00029680311716157677,
+      "references": {
+        "held": {
+          "feasible": false,
+          "reason": "predicted_state_out_of_support",
+          "cost": null
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0002993348704736332
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00029680311716157677
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 56,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 0.0002695960045737898,
+      "references": {
+        "held": {
+          "feasible": false,
+          "reason": "predicted_state_out_of_support",
+          "cost": null
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0002722260470702829
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0002695960045737898
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 60,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 0.00024619325084058346,
+      "references": {
+        "held": {
+          "feasible": false,
+          "reason": "predicted_state_out_of_support",
+          "cost": null
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00024884060448641124
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00024619325084058346
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 64,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 0.00020839941017671929,
+      "references": {
+        "held": {
+          "feasible": false,
+          "reason": "predicted_state_out_of_support",
+          "cost": null
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00022961667372475896
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00020839941017671929
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 68,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 0.0001855143227153012,
+      "references": {
+        "held": {
+          "feasible": false,
+          "reason": "predicted_state_out_of_support",
+          "cost": null
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00019256472127622356
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0001855143227153012
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 72,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 0.0001706102501750233,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.001164058774033776
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00017183595379090233
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0001706102501750233
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 76,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 0.0001370945157479834,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0018478897883939741
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00015958676928299852
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0001370945157479834
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 80,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 0.0001144002117583593,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.007914787067622856
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00011792492789471472
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0001144002117583593
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 84,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "warm",
+      "selected_cost": 0.00010011764349422579,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00420958218490382
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00010011764349422579
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00010011764349422579
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 88,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 8.908298596384579e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.006714351855142268
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.581288716450635e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.908298596384579e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 92,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 8.593949628117866e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.002009309615855267
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.710751504584148e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.593949628117866e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 96,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "warm",
+      "selected_cost": 8.707373499410536e-05,
+      "references": {
+        "held": {
+          "feasible": false,
+          "reason": "predicted_state_out_of_support",
+          "cost": null
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.707373499410536e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.707373499410536e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 100,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 8.757597850789815e-05,
+      "references": {
+        "held": {
+          "feasible": false,
+          "reason": "predicted_state_out_of_support",
+          "cost": null
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.203826794084158e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.757597850789815e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 104,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 8.932022159258134e-05,
+      "references": {
+        "held": {
+          "feasible": false,
+          "reason": "predicted_state_out_of_support",
+          "cost": null
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.082402385398729e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.932022159258134e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 108,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 9.097377027312507e-05,
+      "references": {
+        "held": {
+          "feasible": false,
+          "reason": "predicted_state_out_of_support",
+          "cost": null
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.233398967817688e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.097377027312507e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 112,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 9.268081912435274e-05,
+      "references": {
+        "held": {
+          "feasible": false,
+          "reason": "predicted_state_out_of_support",
+          "cost": null
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.387988747197362e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.268081912435274e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 116,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 9.436608922397035e-05,
+      "references": {
+        "held": {
+          "feasible": false,
+          "reason": "predicted_state_out_of_support",
+          "cost": null
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.546901632388916e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.436608922397035e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 120,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 9.477913534980224e-05,
+      "references": {
+        "held": {
+          "feasible": false,
+          "reason": "predicted_state_out_of_support",
+          "cost": null
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.71655569397892e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.477913534980224e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 124,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 9.685924154839705e-05,
+      "references": {
+        "held": {
+          "feasible": false,
+          "reason": "predicted_state_out_of_support",
+          "cost": null
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.710398273195057e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.685924154839705e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 128,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 9.717582693726087e-05,
+      "references": {
+        "held": {
+          "feasible": false,
+          "reason": "predicted_state_out_of_support",
+          "cost": null
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.816575202593197e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.717582693726087e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 132,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 9.661775939576503e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.004457088714705155
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.803340891843883e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.661775939576503e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 136,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 9.61411177222587e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00033344257015718404
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.715445074615568e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.61411177222587e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 140,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 9.591272771928032e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0003084080280153836
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.668994600841644e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.591272771928032e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 144,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 9.499361556441628e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00022130881568095047
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.561458257303121e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.499361556441628e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 148,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 9.303760397712574e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00022385278496973174
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.424475828758013e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.303760397712574e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 152,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "warm",
+      "selected_cost": 9.080755095821957e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00031571200960711117
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.080755095821957e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.080755095821957e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 156,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "warm",
+      "selected_cost": 9.108518941478412e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0002943324195992862
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.108518941478412e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.108518941478412e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 160,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 8.77096709025216e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0002020402914366275
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.462852649154413e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.77096709025216e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 164,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "warm",
+      "selected_cost": 8.730432400887342e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00048566922061466845
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.730432400887342e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.730432400887342e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 168,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 8.30014279559106e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0001565178814720308
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.910124972616768e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.30014279559106e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 172,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "warm",
+      "selected_cost": 8.268324516489307e-05,
+      "references": {
+        "held": {
+          "feasible": false,
+          "reason": "predicted_state_out_of_support",
+          "cost": null
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.268324516489307e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.268324516489307e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 176,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 8.093941873101989e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.682970257674559e-05
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.52975754743837e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.093941873101989e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 180,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 8.071878969395054e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.271786843679311e-05
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.170643735370769e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.071878969395054e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 184,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 8.058884226545384e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.952589825167922e-05
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.156141875375911e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.058884226545384e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 188,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 8.05891492292425e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.501942555226414e-05
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.155363024541236e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.05891492292425e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 192,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 8.073825101243057e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.319463705031936e-05
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.169650657676336e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.073825101243057e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 196,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 8.10392343442038e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.442714635606779e-05
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.199465382022756e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.10392343442038e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 200,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 8.148313143408195e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.751974706293902e-05
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.242968119360778e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.148313143408195e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 204,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 8.206922368822466e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.112477363159413e-05
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.300961166195521e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.206922368822466e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 208,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 8.279594839816822e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.43007933775255e-05
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.373266225953293e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.279594839816822e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 212,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 8.366484170355286e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.678020083585238e-05
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.4598993164805e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.366484170355286e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 216,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 8.468795594317089e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.876713615914623e-05
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.561155641289389e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.468795594317089e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 220,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 8.587196895779238e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00010018278865166266
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.679487477012528e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.587196895779238e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 224,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 8.723041333226393e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00010146280727967769
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.815270488534755e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.723041333226393e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 228,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 8.877102018653298e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0001028778984567063
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.97013336454808e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 8.877102018653298e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 232,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 9.052932197551208e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00010491006717179655
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.14548926078604e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.052932197551208e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    },
+    {
+      "physics_index": 236,
+      "accepted": true,
+      "scope": "offline_single_decision",
+      "required_references": [
+        "held",
+        "warm",
+        "worker"
+      ],
+      "selected_reference": "worker",
+      "selected_cost": 9.251902113445404e-05,
+      "references": {
+        "held": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00010730615909464552
+        },
+        "warm": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.344391385257912e-05
+        },
+        "worker": {
+          "feasible": true,
+          "reason": null,
+          "cost": 9.251902113445404e-05
+        }
+      },
+      "preview_replayed": false,
+      "full_isaac_acceptance": false
+    }
+  ],
+  "acceptance_schema": "preview-control-v80-acceptance/1",
+  "trace_sha256": "2a8f2e2e92616f78d760d0c08652d117b6bf556effed309b2bec790034dc82b4"
+}

@@ -1,0 +1,53 @@
+{
+  "status": "ssh_restored_authenticated_gpu_observed",
+  "user_report": "server powered on; server execution/GPU/training authorized",
+  "checked_at": "2026-09-12T17:45:56+08:00",
+  "ssh_target": "agentic-AUV",
+  "resolved_endpoint": {
+    "user": "root",
+    "host": "183.147.142.40",
+    "port": 31348
+  },
+  "ssh_attempts": [
+    {
+      "connect_timeout_s": 15,
+      "exit_code": 1,
+      "error": "Connection timed out during banner exchange"
+    },
+    {
+      "connect_timeout_s": 30,
+      "exit_code": 1,
+      "error": "Connection timed out during banner exchange"
+    },
+    {
+      "invocation": "ssh -vv -o BatchMode=yes -o ConnectTimeout=30 -o ConnectionAttempts=1 -p31348 root@183.147.142.40",
+      "connect_timeout_s": 30,
+      "exit_code": 1,
+      "error": "Connection timed out during banner exchange",
+      "last_protocol_stage": "Connection established; Local version string SSH-2.0-OpenSSH_for_Windows_9.5; no remote version received"
+    }
+  ],
+  "transport_probe": {
+    "checked_at": "2026-09-12T17:43:34.4624041+08:00",
+    "tcp_connected": true,
+    "ssh_banner_received": false,
+    "banner_read_timeout_s": 5
+  },
+  "interpretation": "TCP port reachable; no SSH identification banner before timeout. Cannot distinguish stale forwarding endpoint from unready/unresponsive SSH service without current control-panel information.",
+  "server_authenticated": true,
+  "files_uploaded": false,
+  "isaac_started": false,
+  "training_started": false,
+  "gpu_observed": true,
+  "user_information_pending": null,
+  "user_endpoint_confirmed": true,
+  "restored_at": "2026-09-12T17:50:08+08:00",
+  "hostname": "gpufree-container",
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 4090",
+    "total_mib": 24564,
+    "used_mib_at_check": 617,
+    "utilization_percent_at_check": 5
+  },
+  "resolution": "Next bounded retry succeeded without changing local routes or server services. Prior failure cause remains unknown. The local route used Meta Tunnel; no causal attribution established."
+}

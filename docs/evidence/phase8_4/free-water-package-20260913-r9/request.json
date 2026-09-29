@@ -1,0 +1,133 @@
+{
+  "experiment": "phase8.4-free-water-microtrace-v26-20260913",
+  "source_commit": "8a73485b33306eb7fe420b87dcfe08df7323b4b2",
+  "cases": [
+    {
+      "run_id": "w26-base-8500-off",
+      "configuration": "base",
+      "seed": 8500,
+      "intervals": 32,
+      "role": "diagnostic",
+      "mode": "direct_pre_tam_v24",
+      "excitation": "prbs",
+      "amplitudes": [
+        0.04,
+        0.04,
+        0.08,
+        0.2
+      ],
+      "hold_intervals": 4,
+      "trace": true,
+      "replay_path": null,
+      "starting_z_m": 5.5,
+      "contact_observer": false,
+      "stop_on_rejection": true
+    },
+    {
+      "run_id": "w26-base-8500-on",
+      "configuration": "base",
+      "seed": 8500,
+      "intervals": 32,
+      "role": "diagnostic",
+      "mode": "direct_pre_tam_v24",
+      "excitation": "prbs",
+      "amplitudes": [
+        0.04,
+        0.04,
+        0.08,
+        0.2
+      ],
+      "hold_intervals": 4,
+      "trace": true,
+      "replay_path": null,
+      "starting_z_m": 5.5,
+      "contact_observer": true,
+      "stop_on_rejection": true
+    },
+    {
+      "run_id": "w26-heavy_moderate-8501-low",
+      "configuration": "heavy_moderate",
+      "seed": 8501,
+      "intervals": 128,
+      "role": "diagnostic",
+      "mode": "direct_pre_tam_v24",
+      "excitation": "chirp",
+      "amplitudes": [
+        0.04,
+        0.04,
+        0.08,
+        0.2
+      ],
+      "hold_intervals": 4,
+      "trace": true,
+      "replay_path": null,
+      "starting_z_m": 1.5,
+      "contact_observer": true,
+      "stop_on_rejection": false
+    },
+    {
+      "run_id": "w26-heavy_moderate-8501-high",
+      "configuration": "heavy_moderate",
+      "seed": 8501,
+      "intervals": 128,
+      "role": "diagnostic",
+      "mode": "direct_pre_tam_v24",
+      "excitation": "chirp",
+      "amplitudes": [
+        0.04,
+        0.04,
+        0.08,
+        0.2
+      ],
+      "hold_intervals": 4,
+      "trace": true,
+      "replay_path": null,
+      "starting_z_m": 5.5,
+      "contact_observer": true,
+      "stop_on_rejection": true
+    },
+    {
+      "run_id": "w26-asymmetric-8502-low",
+      "configuration": "asymmetric",
+      "seed": 8502,
+      "intervals": 256,
+      "role": "diagnostic",
+      "mode": "direct_pre_tam_v24",
+      "excitation": "chirp",
+      "amplitudes": [
+        0.04,
+        0.04,
+        0.08,
+        0.2
+      ],
+      "hold_intervals": 4,
+      "trace": true,
+      "replay_path": null,
+      "starting_z_m": 1.5,
+      "contact_observer": true,
+      "stop_on_rejection": false
+    },
+    {
+      "run_id": "w26-asymmetric-8502-high",
+      "configuration": "asymmetric",
+      "seed": 8502,
+      "intervals": 256,
+      "role": "diagnostic",
+      "mode": "direct_pre_tam_v24",
+      "excitation": "chirp",
+      "amplitudes": [
+        0.04,
+        0.04,
+        0.08,
+        0.2
+      ],
+      "hold_intervals": 4,
+      "trace": true,
+      "replay_path": null,
+      "starting_z_m": 5.5,
+      "contact_observer": true,
+      "stop_on_rejection": true
+    }
+  ],
+  "authorization": "user_server_powered_continue_data_adaptation_20260913"
+}

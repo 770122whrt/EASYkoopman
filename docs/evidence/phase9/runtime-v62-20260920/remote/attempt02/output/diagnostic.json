@@ -1,0 +1,4275 @@
+{
+  "schema": "phase9-runtime-profile-v60",
+  "diagnostic_only": true,
+  "profiler_enabled": false,
+  "runtime_qualified": false,
+  "model_fits": 0,
+  "training_eligible": false,
+  "release_sha256": "aa1efbb4c57b3d01225a3d1604f9b39a2adbc4d04e6e359b249afbfbabb7e3a9",
+  "case": {
+    "case_id": "p9-v59-base",
+    "configuration": "base",
+    "seed": 19000,
+    "controls": 32,
+    "reference": [
+      5.5,
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "reference_id": "upright-z5.5-v57",
+    "model_key": "nonlinear__pooled"
+  },
+  "diagnostic_source_sha256": "f74a3e35f77b76b720e05886634ae130e68438c3b4bb01c24b3b1636a06011a0",
+  "status": "diagnostic_exception",
+  "contact_authoring": [
+    {
+      "body_path": "/World/envs/env_0/Robot/base_link",
+      "before": {
+        "physics:angularVelocity": "(0, 0, 0)",
+        "physics:centerOfMass": "(-inf, -inf, -inf)",
+        "physics:density": "0.0",
+        "physics:diagonalInertia": "(0.37, 0.97, 1.19)",
+        "physics:kinematicEnabled": "False",
+        "physics:mass": "22.799999237060547",
+        "physics:principalAxes": "(1, 0, 0, 0)",
+        "physics:rigidBodyEnabled": "True",
+        "physics:startsAsleep": "False",
+        "physics:velocity": "(0, 0, 0)",
+        "physxArticulation:articulationEnabled": "False",
+        "physxArticulation:enabledSelfCollisions": "False",
+        "physxArticulation:sleepThreshold": "4.999999873689376e-05",
+        "physxArticulation:solverPositionIterationCount": "32",
+        "physxArticulation:solverVelocityIterationCount": "1",
+        "physxArticulation:stabilizationThreshold": "9.999999747378752e-06",
+        "physxRigidBody:angularDamping": "0.05000000074505806",
+        "physxRigidBody:cfmScale": "0.02500000037252903",
+        "physxRigidBody:contactSlopCoefficient": "0.0",
+        "physxRigidBody:disableGravity": "False",
+        "physxRigidBody:enableCCD": "False",
+        "physxRigidBody:enableGyroscopicForces": "True",
+        "physxRigidBody:enableSpeculativeCCD": "False",
+        "physxRigidBody:linearDamping": "0.0",
+        "physxRigidBody:lockedPosAxis": "0",
+        "physxRigidBody:lockedRotAxis": "0",
+        "physxRigidBody:maxAngularVelocity": "5729.580078125",
+        "physxRigidBody:maxContactImpulse": "inf",
+        "physxRigidBody:maxDepenetrationVelocity": "10.0",
+        "physxRigidBody:maxLinearVelocity": "inf",
+        "physxRigidBody:retainAccelerations": "False",
+        "physxRigidBody:sleepThreshold": "4.999999873689376e-05",
+        "physxRigidBody:solveContact": "True",
+        "physxRigidBody:solverPositionIterationCount": "16",
+        "physxRigidBody:solverVelocityIterationCount": "1",
+        "physxRigidBody:stabilizationThreshold": "9.999999747378752e-06"
+      },
+      "after": {
+        "physics:angularVelocity": "(0, 0, 0)",
+        "physics:centerOfMass": "(-inf, -inf, -inf)",
+        "physics:density": "0.0",
+        "physics:diagonalInertia": "(0.37, 0.97, 1.19)",
+        "physics:kinematicEnabled": "False",
+        "physics:mass": "22.799999237060547",
+        "physics:principalAxes": "(1, 0, 0, 0)",
+        "physics:rigidBodyEnabled": "True",
+        "physics:startsAsleep": "False",
+        "physics:velocity": "(0, 0, 0)",
+        "physxArticulation:articulationEnabled": "False",
+        "physxArticulation:enabledSelfCollisions": "False",
+        "physxArticulation:sleepThreshold": "4.999999873689376e-05",
+        "physxArticulation:solverPositionIterationCount": "32",
+        "physxArticulation:solverVelocityIterationCount": "1",
+        "physxArticulation:stabilizationThreshold": "9.999999747378752e-06",
+        "physxContactReport:threshold": "0.0",
+        "physxRigidBody:angularDamping": "0.05000000074505806",
+        "physxRigidBody:cfmScale": "0.02500000037252903",
+        "physxRigidBody:contactSlopCoefficient": "0.0",
+        "physxRigidBody:disableGravity": "False",
+        "physxRigidBody:enableCCD": "False",
+        "physxRigidBody:enableGyroscopicForces": "True",
+        "physxRigidBody:enableSpeculativeCCD": "False",
+        "physxRigidBody:linearDamping": "0.0",
+        "physxRigidBody:lockedPosAxis": "0",
+        "physxRigidBody:lockedRotAxis": "0",
+        "physxRigidBody:maxAngularVelocity": "5729.580078125",
+        "physxRigidBody:maxContactImpulse": "inf",
+        "physxRigidBody:maxDepenetrationVelocity": "10.0",
+        "physxRigidBody:maxLinearVelocity": "inf",
+        "physxRigidBody:retainAccelerations": "False",
+        "physxRigidBody:sleepThreshold": "4.999999873689376e-05",
+        "physxRigidBody:solveContact": "True",
+        "physxRigidBody:solverPositionIterationCount": "16",
+        "physxRigidBody:solverVelocityIterationCount": "1",
+        "physxRigidBody:stabilizationThreshold": "9.999999747378752e-06"
+      },
+      "changed_attributes": [
+        "physxContactReport:threshold"
+      ]
+    }
+  ],
+  "cleanup_errors": [],
+  "worker_closed": {
+    "process_stopped": true,
+    "io_threads_stopped": true
+  },
+  "assets": {
+    "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4"
+  },
+  "cuda_module_loading": "EAGER",
+  "runtime_provenance": {
+    "actual_isaac_sim": "5.0",
+    "actual_isaac_lab": "2.2.1",
+    "runtime_provenance": {
+      "isaac_sim_distribution": "5.0.0.0",
+      "isaac_lab_distribution": "0.45.9",
+      "isaac_lab_version_file": "2.2.1",
+      "isaac_lab_release_tag": "v2.2.1",
+      "isaac_lab_release_commit": "0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20",
+      "isaac_lab_repo_commit": "c91a125c73c8b574878419a9583afc0b63b99f0a",
+      "isaac_lab_repo_parent_commit": "0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20",
+      "isaac_lab_repo_patch_sha256": "d056adb8bb64fe7c9c34fffbd2478ef04155df8b60b071da942280952f829079",
+      "isaac_lab_repo_dirty_files": [
+        "source/isaaclab_mimic/setup.py",
+        "source/isaaclab_rl/setup.py"
+      ]
+    }
+  },
+  "loaded_sources": {
+    "EasyUUVEnv": {
+      "path": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/env/easyuuv_env.py",
+      "sha256": "577946b5f33493af34f2fe8571ba8f53e2cb4bcad2c452f7532198f3709868d0"
+    },
+    "DirectRLEnv": {
+      "path": "/root/IsaacLab/source/isaaclab/isaaclab/envs/direct_rl_env.py",
+      "sha256": "8d4c64aef3a4b9e258fb069211c5cae1293d7b5b742ce3b5c523dceaa298317c"
+    }
+  },
+  "asset_sha256": "40148fbe201b993448d2dfbac118ef48acdb71641c1ed88caa2b6168b9ae146d",
+  "loaded_project_sources": {
+    "koopman.dataset": {
+      "relative_path": "koopman/dataset.py",
+      "sha256": "b767d9e520a31a4d565e5331185dc1f8db90056d4405c75877367e2554608a61"
+    },
+    "koopman.lifting": {
+      "relative_path": "koopman/lifting.py",
+      "sha256": "1670f7eb3245c214988e1d9f9c67b5a14b3c6c51a78324ffaffbe04ecf39a1cd"
+    },
+    "koopman.normalization": {
+      "relative_path": "koopman/normalization.py",
+      "sha256": "69ecece63ddcda8f7bcc8cfc0960a478a34dbe3c6695c6a43c50ef8e38b8eb91"
+    },
+    "koopman.model": {
+      "relative_path": "koopman/model.py",
+      "sha256": "e33e72a0ce09d044c1bdd8b3860e99d3be88a25243b9057f88d9feff8fb004dd"
+    },
+    "koopman.edmd": {
+      "relative_path": "koopman/edmd.py",
+      "sha256": "21c6a52b5cd40db358026ea2cd808a5ac26e6d2b47508d29cd4484e008013acd"
+    },
+    "koopman.observables": {
+      "relative_path": "koopman/observables.py",
+      "sha256": "feffaa0e50e268186efe6e59e27fad5baff29d35ed1c0e24d22a2798b3254277"
+    },
+    "koopman.lifted_edmd": {
+      "relative_path": "koopman/lifted_edmd.py",
+      "sha256": "b009314559af88decdae7abf82b18c11654def6fb6a949f765d50ad15d079480"
+    },
+    "koopman.mpc": {
+      "relative_path": "koopman/mpc.py",
+      "sha256": "8ff18e468f85f2f12cf3c7584039071ad61a516966470c171604b29bf1354b8e"
+    },
+    "koopman.mpc_controller": {
+      "relative_path": "koopman/mpc_controller.py",
+      "sha256": "24079f457ef2640a999dcf17485a8464f5d6a805ff88b38d96cd5b790b2bb92c"
+    },
+    "koopman.runtime": {
+      "relative_path": "koopman/runtime.py",
+      "sha256": "558b6f5071705c76ed5744e34771729ef656be2e1146c44870618fdad95e578b"
+    },
+    "koopman": {
+      "relative_path": "koopman/__init__.py",
+      "sha256": "ba332bbaf672a22ecca1ebe7e86d99d7ca8ba2e99ab359304c363fac4af748db"
+    },
+    "easyuuv_nc.task_registration": {
+      "relative_path": "easyuuv_nc/task_registration.py",
+      "sha256": "7f6b66d6526f16c6221a0683b008838f12485bc07cbd541c828c707f96672cd2"
+    },
+    "easyuuv_nc": {
+      "relative_path": "easyuuv_nc/__init__.py",
+      "sha256": "857743cb20c99c91fe4f1c1719565400ee5eb812fa2e37047e57a1fb47e5c7d4"
+    },
+    "easyuuv_nc.embodiments": {
+      "relative_path": "easyuuv_nc/embodiments.py",
+      "sha256": "42fe7d0660cd336a12210b92e69e6cb6a2b181bedf8fe2ed3d2cf1789eae5182"
+    },
+    "koopman.projected_edmd_v24": {
+      "relative_path": "koopman/projected_edmd_v24.py",
+      "sha256": "e05dd64a04bf6e55517ef95c6cf6cd330d856f839066cab619138f4ab01b6557"
+    },
+    "easyuuv_nc.thrust_allocation": {
+      "relative_path": "easyuuv_nc/thrust_allocation.py",
+      "sha256": "9b67a7ab099716fdf37579defb5e7a8b3ece12454004f9a543eb43d0e1bdde4b"
+    },
+    "workflows.control_seam_v23": {
+      "relative_path": "workflows/control_seam_v23.py",
+      "sha256": "618a97026f0d8990794fb9b4487eeda2fad35fe39ecc1c705848cc4fb616cf71"
+    },
+    "workflows.workpoint_v27": {
+      "relative_path": "workflows/workpoint_v27.py",
+      "sha256": "299ccf99bc7f3a417f5055804a370113dc158a1d4cb55a1fd161676e778ce6c6"
+    },
+    "easyuuv_nc.control_v24": {
+      "relative_path": "easyuuv_nc/control_v24.py",
+      "sha256": "0672472f2138e1a387f8f9890975b6cdfcfea1db06aef8300016553164c21ffa"
+    },
+    "workflows.actuator_replay_v28": {
+      "relative_path": "workflows/actuator_replay_v28.py",
+      "sha256": "beb207d5da414c20011add7261622d4253f168526699ae877acebcdbbdb825b9"
+    },
+    "workflows.evaluate_projected_edmd_v24": {
+      "relative_path": "workflows/evaluate_projected_edmd_v24.py",
+      "sha256": "a126ae9df7e311b035fe0a1fa449b46b09ed658e6a4661e6274b1a1df9b89538"
+    },
+    "workflows.identification_prediction_v32": {
+      "relative_path": "workflows/identification_prediction_v32.py",
+      "sha256": "5497ef982aa3410066ed968d746afc12c248167467f80eac147cb97c22c4560f"
+    },
+    "koopman.command_prediction_v37": {
+      "relative_path": "koopman/command_prediction_v37.py",
+      "sha256": "cb2cb23df7fcc5e5df8eafcfb1c2146efd94ba92f24b651b1c62b08bd49d8f26"
+    },
+    "koopman.command_state_v39": {
+      "relative_path": "koopman/command_state_v39.py",
+      "sha256": "2e1a1709d9704c76f4b90c7cbe0b2ecf849db052e60204d876796c188f47135b"
+    },
+    "koopman.prepared_allocation_v42": {
+      "relative_path": "koopman/prepared_allocation_v42.py",
+      "sha256": "a6675e7cfc5941c5d43b53e861945e550fae10a718bd89b264495f0b0490d068"
+    },
+    "koopman.command_batch_v42": {
+      "relative_path": "koopman/command_batch_v42.py",
+      "sha256": "0fd49fc06b187c0051525f0364039862efe6dcd7d2a1257c9d0ebd0472e9d48c"
+    },
+    "koopman.physical_terms_v26": {
+      "relative_path": "koopman/physical_terms_v26.py",
+      "sha256": "faa0f8c16f65348cfcda0feca6d4595ebea0e8ccc1a1655d1c12eeaf351033ab"
+    },
+    "koopman.control_objective_v44": {
+      "relative_path": "koopman/control_objective_v44.py",
+      "sha256": "9a92b17f36d51b743a0807d6cc10aada5c7c686ed06a8751729da52fb6841747"
+    },
+    "koopman.physical_prediction_v29": {
+      "relative_path": "koopman/physical_prediction_v29.py",
+      "sha256": "0ef9a42180d80a4e093d91b877a3e938cb34cb68df7c69bb006601e70066143d"
+    },
+    "koopman.sparse_world_edmd_v30": {
+      "relative_path": "koopman/sparse_world_edmd_v30.py",
+      "sha256": "6fdc2657d24c0c2819864f376ca7f55350587af2a2d90436b721320101b48e0f"
+    },
+    "workflows.identification_protocol_v29": {
+      "relative_path": "workflows/identification_protocol_v29.py",
+      "sha256": "2c0a09a4a2ddc867e0959f3b6a7d679cb902283e2512569027f27a2f82768db9"
+    },
+    "workflows.identification_adapter_v29": {
+      "relative_path": "workflows/identification_adapter_v29.py",
+      "sha256": "7b7a88e9ef084896acd061841e4334311e3142b8e2ae048df452f0137598c783"
+    },
+    "workflows.identify_sparse_world_v30": {
+      "relative_path": "workflows/identify_sparse_world_v30.py",
+      "sha256": "59cdd9fc880154c76d2c95f06a9b280b8b51619b395bfdc9b3d0eb150419438f"
+    },
+    "koopman.prepared_projected_v40": {
+      "relative_path": "koopman/prepared_projected_v40.py",
+      "sha256": "2974dccdee1af5fc57efc8aa9f0e336abad1f33669514127f0c9159f967d538b"
+    },
+    "koopman.bounded_mpc_v44": {
+      "relative_path": "koopman/bounded_mpc_v44.py",
+      "sha256": "67f318914e18e966367d3d4bb18f27877871fe50ed95d04343a35631b687fec2"
+    },
+    "koopman.prepared_commands_v45": {
+      "relative_path": "koopman/prepared_commands_v45.py",
+      "sha256": "3545140a08190d3f7edb757f8aab8322f11f7517b49ab49baadcc601b5b53e0d"
+    },
+    "workflows.feedback_inverse_v28": {
+      "relative_path": "workflows/feedback_inverse_v28.py",
+      "sha256": "24d3daf7c83ae116f423912f4e36a0415b353f0949e7db3cdedd6d0244add086"
+    },
+    "koopman.bounded_feedback_v46": {
+      "relative_path": "koopman/bounded_feedback_v46.py",
+      "sha256": "cc707af95e63697638fa6f98a7e6a7d1a0edee5d475aa4310b95b9a0f1b83af7"
+    },
+    "workflows.runtime_assets_v56": {
+      "relative_path": "workflows/runtime_assets_v56.py",
+      "sha256": "1276fff81d70e6011691c8be05961ea30aed1f7b1cae6bcdff2f43d8989f8350"
+    },
+    "workflows.phase9_preflight_v59": {
+      "relative_path": "workflows/phase9_preflight_v59.py",
+      "sha256": "f7a8dac6eb8355622fa690ce6291d59a4aee725c56d11bbe0d27bd5cb2e145c2"
+    },
+    "workflows.collect_runtime_v59": {
+      "relative_path": "workflows/collect_runtime_v59.py",
+      "sha256": "e0627978dec09559c06daf6ff6c6f5feadde9ba0a6a271e93836515761353c55"
+    },
+    "workflows.control_trace_v23": {
+      "relative_path": "workflows/control_trace_v23.py",
+      "sha256": "445241c63cb95c8dbf4628fe6bee83e9adbe95c890e797bbb940abcb07fb4af9"
+    },
+    "workflows.free_water_v26": {
+      "relative_path": "workflows/free_water_v26.py",
+      "sha256": "e7f8c11bc6e6ee46acba0a71d130ed3e14abf29c3885f32e2ef7c8fb1adb585e"
+    },
+    "workflows.free_water_trace_v26": {
+      "relative_path": "workflows/free_water_trace_v26.py",
+      "sha256": "5c51fcba2135f269241904ffa1c598a8a098af803c64456606cc4613b9f77b54"
+    },
+    "workflows.free_water_microtrace_v26": {
+      "relative_path": "workflows/free_water_microtrace_v26.py",
+      "sha256": "e75a7a7c6d3ec3a2fa4273dcf409c420d58fab4cf5d8f60d17acc358ba802eba"
+    },
+    "workflows.free_water_runtime_v26": {
+      "relative_path": "workflows/free_water_runtime_v26.py",
+      "sha256": "321816c0e58f46c2d426f7e5a4aa705a956f2a7d9562f0f3855e993c3ef1c229"
+    },
+    "workflows.validate_control_trace_v23": {
+      "relative_path": "workflows/validate_control_trace_v23.py",
+      "sha256": "685f5d20f5d0fca2c21b39ef025b74d2d4d8eb08d462797f10fa2c4866668926"
+    },
+    "koopman.actuator_memory_v21": {
+      "relative_path": "koopman/actuator_memory_v21.py",
+      "sha256": "0306104bbb38ce46470997322c27e38a7613fdce631f5f385ee38a9e5a06424f"
+    },
+    "koopman.contracts_v21": {
+      "relative_path": "koopman/contracts_v21.py",
+      "sha256": "d828433635906fa4d8f2a6437ab8f075956052699dc9c4049a4bb2033f64bc84"
+    },
+    "koopman.evidence_v2": {
+      "relative_path": "koopman/evidence_v2.py",
+      "sha256": "1904373a84e1fc97ad5748adceed73d490a05d2bf8e45ffe4e2715b057d8e097"
+    },
+    "koopman.so3_v21": {
+      "relative_path": "koopman/so3_v21.py",
+      "sha256": "1b064da4ffc8686096c16b3a5626fe5d0d3fdc199bfd08c1f4c54f1c7717c9ec"
+    },
+    "koopman.metrics_v21": {
+      "relative_path": "koopman/metrics_v21.py",
+      "sha256": "8c3f191d3a5c6450d5d9c6d1c653b15ea8e53330743c1167137673cebf50e982"
+    },
+    "koopman.diagnostics_v23": {
+      "relative_path": "koopman/diagnostics_v23.py",
+      "sha256": "7facdb946b5b72c5ef6ebe97fc2512745090bef0a2e0f9c54890a8866aab380f"
+    },
+    "workflows.pilot_control_v24": {
+      "relative_path": "workflows/pilot_control_v24.py",
+      "sha256": "3c2cdc6f8a35b99e59c4c4f6e8ad45f250c967a5cf120fc2fa859cfa4efce25a"
+    },
+    "workflows.formal_contract_v25": {
+      "relative_path": "workflows/formal_contract_v25.py",
+      "sha256": "73277f084f98ea05c7013d791136cd68984b279e2135cef2879908884f80f251"
+    },
+    "workflows.collect_formal_v25": {
+      "relative_path": "workflows/collect_formal_v25.py",
+      "sha256": "c7874b9c09d73ea1ae8c115f97064e98bdbe7077b06911990196abffc323758d"
+    },
+    "workflows.validate_formal_trace_v25": {
+      "relative_path": "workflows/validate_formal_trace_v25.py",
+      "sha256": "14eef6fcef502b9aebb700f1bd83391703241119bd700f56f5448f3eaecf6604"
+    },
+    "workflows.validate_free_water_v26": {
+      "relative_path": "workflows/validate_free_water_v26.py",
+      "sha256": "29cba1b71d08d6ce311d6bca44c99e189f0c10a35a5bed0a0f24ffeb2cc09cf9"
+    },
+    "workflows.calibration_trace_v27": {
+      "relative_path": "workflows/calibration_trace_v27.py",
+      "sha256": "305ef903ffc9c72176822c63cf82bafb4e9a0698cce886d13ec5cb9f5de01d01"
+    },
+    "workflows.feedback_v28": {
+      "relative_path": "workflows/feedback_v28.py",
+      "sha256": "a95e447803fa72c76d16bf16c41f508f80899df9f08b77f31da2c4259f857801"
+    },
+    "workflows.feedback_inverse_v31": {
+      "relative_path": "workflows/feedback_inverse_v31.py",
+      "sha256": "236fc8aad172e8d5fd93432bc2803f50176f1904c46d8927cfaae6fe298dd052"
+    },
+    "workflows.feedback_v31": {
+      "relative_path": "workflows/feedback_v31.py",
+      "sha256": "2a12a3a9f470b0b751f8c84e7f3769b06e5c3533529e4fd9739f8159382d28ec"
+    },
+    "workflows.projected_protocol_v38": {
+      "relative_path": "workflows/projected_protocol_v38.py",
+      "sha256": "1ea6fbd3bb18f44b17292367b6ebc989441c31fec4fc7f67f42baa8bf69c8c61"
+    },
+    "workflows.projected_evaluation_v38": {
+      "relative_path": "workflows/projected_evaluation_v38.py",
+      "sha256": "6213b6933eb4f53451d6586092258712c778e6917e609f3a1abdf0493eef2e1e"
+    },
+    "workflows.projected_models_v38": {
+      "relative_path": "workflows/projected_models_v38.py",
+      "sha256": "04a7016806c3d4eee346d8fb009b0be55ccd86fda987bbace379d745145aaec2"
+    },
+    "workflows.projected_resource_v38": {
+      "relative_path": "workflows/projected_resource_v38.py",
+      "sha256": "2dd836db58fde2c818d88d049647bd444f444219dc3cf8cbe29909461b4d3cf3"
+    },
+    "workflows.projected_release_v38": {
+      "relative_path": "workflows/projected_release_v38.py",
+      "sha256": "13ebcf2df2cbd3c3a1dd6d45896aeeb2eb1350520b1c001a29320757d8bc45fd"
+    },
+    "workflows.projected_budget_v38": {
+      "relative_path": "workflows/projected_budget_v38.py",
+      "sha256": "2931733e5d73e6bc551b0fd865fcd9c4e07d75dbc48f68ce19a4acf8a6a802db"
+    },
+    "koopman.solver_worker_v49": {
+      "relative_path": "koopman/solver_worker_v49.py",
+      "sha256": "7495e4bcd2d63cb22c198dca1f0de8660e4453cd7e9747b4b4ba3e0bb5519d31"
+    },
+    "easyuuv_nc.env.assets": {
+      "relative_path": "easyuuv_nc/env/assets/__init__.py",
+      "sha256": "2d60caeebfc79c437cdc3aaa1977317f83e7a3e7d3ebd843426dcc110044b926"
+    },
+    "easyuuv_nc.package_paths": {
+      "relative_path": "easyuuv_nc/package_paths.py",
+      "sha256": "c425fe7daec080db6002d9b17d4921523d16c6fe70502c585ae1da2495f5a766"
+    },
+    "easyuuv_nc.env.assets.warpauv": {
+      "relative_path": "easyuuv_nc/env/assets/warpauv.py",
+      "sha256": "6014c30e1640ed0efb6b3ea0ed3777ce08073facd1a056142b2454de2e6ece99"
+    },
+    "easyuuv_nc.env.rigid_body_hydrodynamics": {
+      "relative_path": "easyuuv_nc/env/rigid_body_hydrodynamics.py",
+      "sha256": "8956b2bf76246808f3f640295f61dffadbc14375ace4b86ce0aa96bb3c55a985"
+    },
+    "easyuuv_nc.env.boundary_effects": {
+      "relative_path": "easyuuv_nc/env/boundary_effects.py",
+      "sha256": "c4d2b55675a57e925c7ff480de8c5a6c0f32d2193dbfffaeaa4c5a1124dc32af"
+    },
+    "easyuuv_nc.env.thruster_dynamics": {
+      "relative_path": "easyuuv_nc/env/thruster_dynamics.py",
+      "sha256": "b754552c67cfcb2780027af814ead7d956cf8818b9fa3dd872d10936de2f568c"
+    },
+    "easyuuv_nc.env.wave_disturbance_manager": {
+      "relative_path": "easyuuv_nc/env/wave_disturbance_manager.py",
+      "sha256": "57c2fbf58684f95dda1b9797d0102802bb4d958dde4f0dde3817133dee5d3c6e"
+    },
+    "easyuuv_nc.env.easyuuv_env": {
+      "relative_path": "easyuuv_nc/env/easyuuv_env.py",
+      "sha256": "577946b5f33493af34f2fe8571ba8f53e2cb4bcad2c452f7532198f3709868d0"
+    },
+    "easyuuv_nc.env.agents.rsl_rl_ppo_cfg": {
+      "relative_path": "easyuuv_nc/env/agents/rsl_rl_ppo_cfg.py",
+      "sha256": "d61497cafd7a58095c979400efc253acd09efb55441cdee6acbd314592f75dd8"
+    },
+    "easyuuv_nc.env.agents": {
+      "relative_path": "easyuuv_nc/env/agents/__init__.py",
+      "sha256": "b45979460be7dd0937d176d164542a5d984264751e68cbe97ac876a1935eb4db"
+    },
+    "easyuuv_nc.env": {
+      "relative_path": "easyuuv_nc/env/__init__.py",
+      "sha256": "3d1223bd790e03dff90a845f6a77e920e601bb4dc8be8e55ed8e7ab5b88f896a"
+    },
+    "workflows.easyuuv_v2_qualification_artifact": {
+      "relative_path": "workflows/easyuuv_v2_qualification_artifact.py",
+      "sha256": "7cd3d9947223b8260259653f51511cb9b26df7024fa8cb0df08fe20bb0bcb69a"
+    },
+    "workflows.qualify_easyuuv_v2": {
+      "relative_path": "workflows/qualify_easyuuv_v2.py",
+      "sha256": "6bccaeb36814b31228434e8ea8a74f893fb7511dded99ad6571e7921d4c6d1f7"
+    },
+    "koopman.execution_ledger_v48": {
+      "relative_path": "koopman/execution_ledger_v48.py",
+      "sha256": "baf4634e4fc2b898da3a98e96b95e81f030df9fe1be2daeae3648a86477064d2"
+    },
+    "koopman.bounded_feedback_v47": {
+      "relative_path": "koopman/bounded_feedback_v47.py",
+      "sha256": "dc592bb2237b6c5446c6b70e734c70b2578fcee089f856a83c137ef38f8c54e1"
+    },
+    "koopman.command_batch_v45": {
+      "relative_path": "koopman/command_batch_v45.py",
+      "sha256": "ba88b806a671ce00f6db2dc13e2431805e18f0f7aadf977a4461c782d5b70b63"
+    },
+    "koopman.bounded_mpc_v45": {
+      "relative_path": "koopman/bounded_mpc_v45.py",
+      "sha256": "c25d8342bca86e95ba376ecba657ebbb0006dc1004e9c659500e22cb4a2a7216"
+    },
+    "koopman.recovery_solver_v50": {
+      "relative_path": "koopman/recovery_solver_v50.py",
+      "sha256": "4b966c0059c4462f8a48fd08a89a7506398eb7298a3d0df5b7b798575ad6aa26"
+    },
+    "koopman.plan_arbiter_v52": {
+      "relative_path": "koopman/plan_arbiter_v52.py",
+      "sha256": "7b554ed510660c0f4d6e85e6ab45380dfc59abe4f3156aee65bcdbf4df4bd85d"
+    },
+    "koopman.runtime_coordinator_v52": {
+      "relative_path": "koopman/runtime_coordinator_v52.py",
+      "sha256": "937f4494f8acb365efc1e7bc74d471eb9122d1492d44e8e6cdcc5a91ca731457"
+    },
+    "workflows.isaac_execution_v55": {
+      "relative_path": "workflows/isaac_execution_v55.py",
+      "sha256": "b4183512980eeb3d5aba29444bd3277a22c0b7610c86fae6fe2afb66894b2bac"
+    },
+    "workflows.runtime_episode_v59": {
+      "relative_path": "workflows/runtime_episode_v59.py",
+      "sha256": "8113b6d39cc0173596f191bf5f0c5e5a7ce87987d6ffb5da56fa31a3fb0ae13a"
+    },
+    "workflows.validate_feedback_v28": {
+      "relative_path": "workflows/validate_feedback_v28.py",
+      "sha256": "3bdd6fa8b4cd22dee53e32e9425081f3b3be3434e74d036e17d25ceacfb42856"
+    }
+  },
+  "geometry": {
+    "body_path": "/World/envs/env_0/Robot/base_link",
+    "collider_path": "/World/envs/env_0/Robot/base_link/collisions",
+    "ground_path": "/World/ground/GroundPlane/CollisionPlane",
+    "body_local_corners_m": [
+      [
+        -0.5,
+        -0.5,
+        -0.25
+      ],
+      [
+        -0.5,
+        -0.5,
+        0.25
+      ],
+      [
+        -0.5,
+        0.5,
+        -0.25
+      ],
+      [
+        -0.5,
+        0.5,
+        0.25
+      ],
+      [
+        0.5,
+        -0.5,
+        -0.25
+      ],
+      [
+        0.5,
+        -0.5,
+        0.25
+      ],
+      [
+        0.5,
+        0.5,
+        -0.25
+      ],
+      [
+        0.5,
+        0.5,
+        0.25
+      ]
+    ],
+    "ground_world_z_m": 0.0,
+    "meters_per_unit": 1.0,
+    "initial_clearance_m": 5.25,
+    "body_physics_attributes": {
+      "physics:angularVelocity": "(0, 0, 0)",
+      "physics:centerOfMass": "(-inf, -inf, -inf)",
+      "physics:density": "0.0",
+      "physics:diagonalInertia": "(0.37, 0.97, 1.19)",
+      "physics:kinematicEnabled": "False",
+      "physics:mass": "22.701000213623047",
+      "physics:principalAxes": "(1, 0, 0, 0)",
+      "physics:rigidBodyEnabled": "True",
+      "physics:startsAsleep": "False",
+      "physics:velocity": "(0, 0, 0)",
+      "physxArticulation:articulationEnabled": "False",
+      "physxArticulation:enabledSelfCollisions": "False",
+      "physxArticulation:sleepThreshold": "4.999999873689376e-05",
+      "physxArticulation:solverPositionIterationCount": "32",
+      "physxArticulation:solverVelocityIterationCount": "1",
+      "physxArticulation:stabilizationThreshold": "9.999999747378752e-06",
+      "physxContactReport:threshold": "0.0",
+      "physxRigidBody:angularDamping": "0.05000000074505806",
+      "physxRigidBody:cfmScale": "0.02500000037252903",
+      "physxRigidBody:contactSlopCoefficient": "0.0",
+      "physxRigidBody:disableGravity": "False",
+      "physxRigidBody:enableCCD": "False",
+      "physxRigidBody:enableGyroscopicForces": "True",
+      "physxRigidBody:enableSpeculativeCCD": "False",
+      "physxRigidBody:linearDamping": "0.0",
+      "physxRigidBody:lockedPosAxis": "0",
+      "physxRigidBody:lockedRotAxis": "0",
+      "physxRigidBody:maxAngularVelocity": "5729.580078125",
+      "physxRigidBody:maxContactImpulse": "inf",
+      "physxRigidBody:maxDepenetrationVelocity": "10.0",
+      "physxRigidBody:maxLinearVelocity": "inf",
+      "physxRigidBody:retainAccelerations": "False",
+      "physxRigidBody:sleepThreshold": "4.999999873689376e-05",
+      "physxRigidBody:solveContact": "True",
+      "physxRigidBody:solverPositionIterationCount": "16",
+      "physxRigidBody:solverVelocityIterationCount": "1",
+      "physxRigidBody:stabilizationThreshold": "9.999999747378752e-06"
+    },
+    "collider_attributes": {
+      "doubleSided": "False",
+      "extent": "[(-0.5, -0.5, -0.25), (0.5, 0.5, 0.25)]",
+      "orientation": "rightHanded",
+      "physics:collisionEnabled": "True",
+      "primvars:displayColor": "None",
+      "primvars:displayOpacity": "None",
+      "purpose": "guide",
+      "size": "1.0",
+      "visibility": "inherited",
+      "xformOp:orient": "(1, 0, 0, 0)",
+      "xformOp:scale": "(1, 1, 0.5)",
+      "xformOp:translate": "(0, 0, 0)",
+      "xformOpOrder": "[xformOp:translate, xformOp:orient, xformOp:scale]"
+    },
+    "ground_attributes": {
+      "axis": "Z",
+      "doubleSided": "True",
+      "extent": "[(-1, -1, 0), (1, 1, 0)]",
+      "length": "2.0",
+      "orientation": "rightHanded",
+      "physics:collisionEnabled": "True",
+      "primvars:displayColor": "None",
+      "primvars:displayOpacity": "None",
+      "purpose": "guide",
+      "visibility": "inherited",
+      "width": "2.0",
+      "xformOp:scale": "(0.01, 0.01, 0.01)",
+      "xformOpOrder": "[xformOp:scale]"
+    },
+    "algorithm": "cube_size_and_full_USD_transform_then_actual_actor_pose_v1",
+    "minimum_clearance_m": 0.1
+  },
+  "runtime_preparation": {
+    "physics_steps": 0,
+    "calls": 56,
+    "startup_seconds": 0.5992030608467758,
+    "preparation": "private_math_inputs_only",
+    "measurements": [
+      {
+        "name": "quat_conjugate",
+        "repeat": 0,
+        "seconds": 0.03528272220864892
+      },
+      {
+        "name": "quat_conjugate",
+        "repeat": 1,
+        "seconds": 7.517682388424873e-05
+      },
+      {
+        "name": "quat_conjugate",
+        "repeat": 2,
+        "seconds": 5.199713632464409e-05
+      },
+      {
+        "name": "quat_conjugate",
+        "repeat": 3,
+        "seconds": 5.0658825784921646e-05
+      },
+      {
+        "name": "quat_conjugate",
+        "repeat": 4,
+        "seconds": 4.915380850434303e-05
+      },
+      {
+        "name": "quat_conjugate",
+        "repeat": 5,
+        "seconds": 4.695495590567589e-05
+      },
+      {
+        "name": "quat_conjugate",
+        "repeat": 6,
+        "seconds": 4.602735862135887e-05
+      },
+      {
+        "name": "quat_conjugate",
+        "repeat": 7,
+        "seconds": 4.8484187573194504e-05
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 0,
+        "seconds": 0.03381416108459234
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 1,
+        "seconds": 0.00011142296716570854
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 2,
+        "seconds": 8.304184302687645e-05
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 3,
+        "seconds": 8.046627044677734e-05
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 4,
+        "seconds": 7.908325642347336e-05
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 5,
+        "seconds": 7.795030251145363e-05
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 6,
+        "seconds": 7.52587802708149e-05
+      },
+      {
+        "name": "quat_apply_body",
+        "repeat": 7,
+        "seconds": 7.557310163974762e-05
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 0,
+        "seconds": 0.0001447298564016819
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 1,
+        "seconds": 0.03462874190881848
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 2,
+        "seconds": 0.00018306029960513115
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 3,
+        "seconds": 9.076576679944992e-05
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 4,
+        "seconds": 8.373288437724113e-05
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 5,
+        "seconds": 7.936405017971992e-05
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 6,
+        "seconds": 7.949117571115494e-05
+      },
+      {
+        "name": "quat_apply_thrusters",
+        "repeat": 7,
+        "seconds": 8.35503451526165e-05
+      },
+      {
+        "name": "quat_error",
+        "repeat": 0,
+        "seconds": 0.008859897963702679
+      },
+      {
+        "name": "quat_error",
+        "repeat": 1,
+        "seconds": 0.20648271404206753
+      },
+      {
+        "name": "quat_error",
+        "repeat": 2,
+        "seconds": 0.00023980066180229187
+      },
+      {
+        "name": "quat_error",
+        "repeat": 3,
+        "seconds": 0.0002983277663588524
+      },
+      {
+        "name": "quat_error",
+        "repeat": 4,
+        "seconds": 0.0001440802589058876
+      },
+      {
+        "name": "quat_error",
+        "repeat": 5,
+        "seconds": 0.00013933517038822174
+      },
+      {
+        "name": "quat_error",
+        "repeat": 6,
+        "seconds": 0.00013299984857439995
+      },
+      {
+        "name": "quat_error",
+        "repeat": 7,
+        "seconds": 0.00015196995809674263
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 0,
+        "seconds": 0.0004444783553481102
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 1,
+        "seconds": 0.00021868571639060974
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 2,
+        "seconds": 0.00019688298925757408
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 3,
+        "seconds": 0.000195204745978117
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 4,
+        "seconds": 0.00019135931506752968
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 5,
+        "seconds": 0.00019236095249652863
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 6,
+        "seconds": 0.00019513070583343506
+      },
+      {
+        "name": "buoyancy",
+        "repeat": 7,
+        "seconds": 0.00019267667084932327
+      },
+      {
+        "name": "drag",
+        "repeat": 0,
+        "seconds": 0.0009941589087247849
+      },
+      {
+        "name": "drag",
+        "repeat": 1,
+        "seconds": 0.0005882140249013901
+      },
+      {
+        "name": "drag",
+        "repeat": 2,
+        "seconds": 0.0005382336676120758
+      },
+      {
+        "name": "drag",
+        "repeat": 3,
+        "seconds": 0.0005313060246407986
+      },
+      {
+        "name": "drag",
+        "repeat": 4,
+        "seconds": 0.0005315081216394901
+      },
+      {
+        "name": "drag",
+        "repeat": 5,
+        "seconds": 0.0005413433536887169
+      },
+      {
+        "name": "drag",
+        "repeat": 6,
+        "seconds": 0.0005362518131732941
+      },
+      {
+        "name": "drag",
+        "repeat": 7,
+        "seconds": 0.0005558738484978676
+      },
+      {
+        "name": "reward",
+        "repeat": 0,
+        "seconds": 0.011889893095940351
+      },
+      {
+        "name": "reward",
+        "repeat": 1,
+        "seconds": 0.25205629877746105
+      },
+      {
+        "name": "reward",
+        "repeat": 2,
+        "seconds": 0.0002529118210077286
+      },
+      {
+        "name": "reward",
+        "repeat": 3,
+        "seconds": 0.0002122987061738968
+      },
+      {
+        "name": "reward",
+        "repeat": 4,
+        "seconds": 0.00019762292504310608
+      },
+      {
+        "name": "reward",
+        "repeat": 5,
+        "seconds": 0.00019356794655323029
+      },
+      {
+        "name": "reward",
+        "repeat": 6,
+        "seconds": 0.00020321179181337357
+      },
+      {
+        "name": "reward",
+        "repeat": 7,
+        "seconds": 0.00019279029220342636
+      }
+    ],
+    "full_reset_snapshot_unchanged": true
+  },
+  "preparation_source_sha256": "447a495edc0018ec69b43bd38de09c6b1a7f1a1fd95847d8b78ff4ac3f0b5552",
+  "runtime_binding": {
+    "context_audit": {
+      "accepted": true,
+      "configuration": "base",
+      "observed_context_key": [
+        22.701000213623047,
+        0.3700000047683716,
+        0.9700000286102295,
+        1.190000057220459,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.022747844457626343,
+        1.0,
+        997.0,
+        0.001306,
+        9.81
+      ],
+      "fit_context_key": [
+        22.701000213623047,
+        0.3700000047683716,
+        0.9700000286102295,
+        1.190000057220459,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.022747844457626343,
+        1.0,
+        997.0,
+        0.001306,
+        9.81
+      ],
+      "absolute_difference": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "absolute_tolerances": [
+        1e-05,
+        1e-06,
+        1e-06,
+        1e-06,
+        1e-06,
+        1e-06,
+        1e-06,
+        1e-08,
+        1e-06,
+        1e-05,
+        1e-09,
+        1e-06
+      ],
+      "actuator_tau_s": 0.05
+    },
+    "startup": {
+      "status": "prepared",
+      "command": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "inspection": {
+        "command": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "target_wrench": [
+          0.0,
+          0.0,
+          0.20992702871558322,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "steady_wrench": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "acceleration_error": [
+          0.0,
+          0.0,
+          -0.009247479262592331,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pwm_raw": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "pwm_headroom": 1.0,
+        "minimum_deadzone_distance_pwm": 0.019999999552965164,
+        "physical_residual_accepted": true,
+        "command_constraints_accepted": true
+      },
+      "prepare_ms": 19.433978013694286,
+      "actual_history_advanced": false,
+      "runtime_eligible": false
+    },
+    "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+    "support_id": "2beb7816cf9bf5896c9976c16efa41688a09cb065737a2a39baba7e563644998",
+    "execution_id": "2b555c0136ce4362a063ec3220a358a5"
+  },
+  "exception": "ValueError:runtime_full_cycle_deadline",
+  "substeps": [
+    {
+      "control_index": 0,
+      "substep_index": 0,
+      "reset_generation": [
+        1
+      ],
+      "physics_dt_s": 0.008333333333333333,
+      "before": {
+        "state_11": [
+          [
+            5.5,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "telemetry": {
+          "configuration": "base",
+          "raw_action_4": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "virtual_control_4": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "motor_pwm_n": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "applied_wrench_6": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "fluid_velocity_world_3": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "thruster_efficiency_n": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "control_mask_4": [
+            [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          ],
+          "mass_kg": [
+            [
+              22.701000213623047
+            ]
+          ],
+          "inertia_diagonal_kg_m2": [
+            [
+              0.3700000047683716,
+              0.9700000286102295,
+              1.190000057220459
+            ]
+          ],
+          "com_to_cob_offset_m": [
+            [
+              0.0,
+              0.0,
+              0.009999999776482582
+            ]
+          ],
+          "volume_m3": [
+            [
+              0.022747844457626343
+            ]
+          ],
+          "drag_multiplier": [
+            1.0
+          ],
+          "thruster_dynamics_time_constant_s": [
+            0.05000000074505806
+          ],
+          "water_density_kg_m3": 997.0,
+          "dynamic_viscosity_pa_s": 0.001306,
+          "step_token": [
+            -1
+          ],
+          "valid": [
+            false
+          ]
+        },
+        "actuator_speed_n": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "old_actions": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "actions_i": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "_actions": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "_goal": [
+          [
+            0.9185466170310974,
+            -0.04107746481895447,
+            0.12713605165481567,
+            0.3720499277114868
+          ]
+        ],
+        "PID_args": [
+          [
+            [
+              1.0,
+              0.13333334028720856,
+              0.0
+            ],
+            [
+              1.0,
+              0.13333334028720856,
+              0.0
+            ],
+            [
+              1.6666666269302368,
+              0.21666666865348816,
+              0.0
+            ],
+            [
+              0.2666666805744171,
+              0.11666666716337204,
+              0.0
+            ]
+          ]
+        ],
+        "_thrust": [
+          [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        ],
+        "_moment": [
+          [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        ],
+        "_thruster_dynamics_time_s": [
+          0.0
+        ],
+        "_actions_d_filt": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "_depth_integral_state": [
+          0.0
+        ],
+        "_last_motor_values_clipped": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "backend": {
+          "transform_actor_world_xyzw": [
+            [
+              0.0,
+              0.0,
+              5.5,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "velocity_com_world_6": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "mass_kg": [
+            [
+              22.701000213623047
+            ]
+          ],
+          "inverse_mass_per_kg": [
+            [
+              0.0440509207546711
+            ]
+          ],
+          "inertia_9": [
+            [
+              0.3700000047683716,
+              0.0,
+              0.0,
+              0.0,
+              0.9700000286102295,
+              0.0,
+              0.0,
+              0.0,
+              1.190000057220459
+            ]
+          ],
+          "inverse_inertia_9": [
+            [
+              2.702702760696411,
+              0.0,
+              0.0,
+              0.0,
+              1.0309277772903442,
+              0.0,
+              0.0,
+              0.0,
+              0.8403360843658447
+            ]
+          ],
+          "com_local_pose_xyzw": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "gravity_disabled": [
+            [
+              0
+            ]
+          ],
+          "cache_state_world_wxyz_13": [
+            [
+              0.0,
+              0.0,
+              5.5,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cache_sim_timestamp_s": 0.008333333333333333,
+          "gravity_world_m_s2": [
+            0.0,
+            0.0,
+            -9.81
+          ],
+          "_external_force_b": [
+            [
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "_external_torque_b": [
+            [
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "_external_wrench_positions_b": [
+            [
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "has_external_wrench": false,
+          "uses_external_wrench_positions": false,
+          "_use_global_wrench_frame": false
+        }
+      },
+      "controller_inputs": {
+        "actions": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "actions_d": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "actions_i": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      "actuator_update": {
+        "speed_command_n": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "end_time_s": [
+          0.008333333767950535
+        ]
+      },
+      "command": {
+        "state_11": [
+          [
+            5.5,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "telemetry": {
+          "configuration": "base",
+          "raw_action_4": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "virtual_control_4": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "motor_pwm_n": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.0,
+              -0.0,
+              0.0
+            ]
+          ],
+          "applied_wrench_6": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "fluid_velocity_world_3": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "thruster_efficiency_n": [
+            [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          ],
+          "control_mask_4": [
+            [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          ],
+          "mass_kg": [
+            [
+              22.701000213623047
+            ]
+          ],
+          "inertia_diagonal_kg_m2": [
+            [
+              0.3700000047683716,
+              0.9700000286102295,
+              1.190000057220459
+            ]
+          ],
+          "com_to_cob_offset_m": [
+            [
+              0.0,
+              0.0,
+              0.009999999776482582
+            ]
+          ],
+          "volume_m3": [
+            [
+              0.022747844457626343
+            ]
+          ],
+          "drag_multiplier": [
+            1.0
+          ],
+          "thruster_dynamics_time_constant_s": [
+            0.05000000074505806
+          ],
+          "water_density_kg_m3": 997.0,
+          "dynamic_viscosity_pa_s": 0.001306,
+          "step_token": [
+            0
+          ],
+          "valid": [
+            true
+          ]
+        },
+        "actuator_speed_n": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "old_actions": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "actions_i": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "_actions": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "_goal": [
+          [
+            0.9185466170310974,
+            -0.04107746481895447,
+            0.12713605165481567,
+            0.3720499277114868
+          ]
+        ],
+        "PID_args": [
+          [
+            [
+              1.0,
+              0.13333334028720856,
+              0.0
+            ],
+            [
+              1.0,
+              0.13333334028720856,
+              0.0
+            ],
+            [
+              1.6666666269302368,
+              0.21666666865348816,
+              0.0
+            ],
+            [
+              0.2666666805744171,
+              0.11666666716337204,
+              0.0
+            ]
+          ]
+        ],
+        "_thrust": [
+          [
+            [
+              0.0,
+              0.0,
+              222.48690795898438
+            ]
+          ]
+        ],
+        "_moment": [
+          [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        ],
+        "_thruster_dynamics_time_s": [
+          0.008333333767950535
+        ],
+        "_actions_d_filt": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "_depth_integral_state": [
+          0.0
+        ],
+        "_last_motor_values_raw": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.0,
+            -0.0,
+            0.0
+          ]
+        ],
+        "_last_motor_values_clipped": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.0,
+            -0.0,
+            0.0
+          ]
+        ],
+        "backend": {
+          "transform_actor_world_xyzw": [
+            [
+              0.0,
+              0.0,
+              5.5,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "velocity_com_world_6": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "mass_kg": [
+            [
+              22.701000213623047
+            ]
+          ],
+          "inverse_mass_per_kg": [
+            [
+              0.0440509207546711
+            ]
+          ],
+          "inertia_9": [
+            [
+              0.3700000047683716,
+              0.0,
+              0.0,
+              0.0,
+              0.9700000286102295,
+              0.0,
+              0.0,
+              0.0,
+              1.190000057220459
+            ]
+          ],
+          "inverse_inertia_9": [
+            [
+              2.702702760696411,
+              0.0,
+              0.0,
+              0.0,
+              1.0309277772903442,
+              0.0,
+              0.0,
+              0.0,
+              0.8403360843658447
+            ]
+          ],
+          "com_local_pose_xyzw": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "gravity_disabled": [
+            [
+              0
+            ]
+          ],
+          "cache_state_world_wxyz_13": [
+            [
+              0.0,
+              0.0,
+              5.5,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cache_sim_timestamp_s": 0.008333333333333333,
+          "gravity_world_m_s2": [
+            0.0,
+            0.0,
+            -9.81
+          ],
+          "_external_force_b": [
+            [
+              [
+                0.0,
+                0.0,
+                222.48690795898438
+              ]
+            ]
+          ],
+          "_external_torque_b": [
+            [
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "_external_wrench_positions_b": [
+            [
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "has_external_wrench": true,
+          "uses_external_wrench_positions": false,
+          "_use_global_wrench_frame": false
+        }
+      },
+      "execution_command_v55": {
+        "physics_index": 0,
+        "command": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "backend_step_before": 1,
+        "timestamp_before": 0.008333333333333333
+      },
+      "state_after_physics_11": [
+        [
+          5.499999523162842,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -7.70546103012748e-05,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "backend_after_physics": {
+        "transform_actor_world_xyzw": [
+          [
+            0.0,
+            0.0,
+            5.499999523162842,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "velocity_com_world_6": [
+          [
+            0.0,
+            0.0,
+            -7.70546103012748e-05,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "mass_kg": [
+          [
+            22.701000213623047
+          ]
+        ],
+        "inverse_mass_per_kg": [
+          [
+            0.0440509207546711
+          ]
+        ],
+        "inertia_9": [
+          [
+            0.3700000047683716,
+            0.0,
+            0.0,
+            0.0,
+            0.9700000286102295,
+            0.0,
+            0.0,
+            0.0,
+            1.190000057220459
+          ]
+        ],
+        "inverse_inertia_9": [
+          [
+            2.702702760696411,
+            0.0,
+            0.0,
+            0.0,
+            1.0309277772903442,
+            0.0,
+            0.0,
+            0.0,
+            0.8403360843658447
+          ]
+        ],
+        "com_local_pose_xyzw": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "gravity_disabled": [
+          [
+            0
+          ]
+        ],
+        "cache_state_world_wxyz_13": [
+          [
+            0.0,
+            0.0,
+            5.499999523162842,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -7.70546103012748e-05,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "cache_sim_timestamp_s": 0.016666666666666666,
+        "gravity_world_m_s2": [
+          0.0,
+          0.0,
+          -9.81
+        ],
+        "_external_force_b": [
+          [
+            [
+              0.0,
+              0.0,
+              222.48690795898438
+            ]
+          ]
+        ],
+        "_external_torque_b": [
+          [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        ],
+        "_external_wrench_positions_b": [
+          [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        ],
+        "has_external_wrench": true,
+        "uses_external_wrench_positions": false,
+        "_use_global_wrench_frame": false
+      },
+      "contact_after_physics_v26": {
+        "normal_force_world_n": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "body_paths": [
+          "/World/envs/env_0/Robot/base_link"
+        ],
+        "physics_dt_s": 0.008333333333333333,
+        "sample_timestamp_s": 0.016666666666666666,
+        "quantity": "net_normal_contact_force_world_n_not_total_friction_force"
+      },
+      "free_water_screen_v26": {
+        "screen_pass": true,
+        "reasons": [],
+        "minimum_actor_z_m": 5.499999523162842,
+        "operating_floor_world_z_m": 1.0,
+        "residual_limit_m_s": 0.001,
+        "velocity_residual_world_3_m_s": [
+          0.0,
+          0.0,
+          -6.865818876432804e-10
+        ],
+        "max_abs_velocity_residual_m_s": 6.865818876432804e-10,
+        "estimated_unexplained_impulse_norm_n_s": 1.5586095578059824e-08,
+        "direct_contact_observed": false,
+        "minimum_hull_clearance_m": 5.249999523162842
+      },
+      "calibration_screen_v27": {
+        "screen_pass": true,
+        "reasons": [],
+        "minimum_actor_z_m": 5.499999523162842,
+        "operating_floor_world_z_m": 1.0,
+        "residual_limit_m_s": 0.001,
+        "velocity_residual_world_3_m_s": [
+          0.0,
+          0.0,
+          -6.865818876432804e-10
+        ],
+        "max_abs_velocity_residual_m_s": 6.865818876432804e-10,
+        "estimated_unexplained_impulse_norm_n_s": 1.5586095578059824e-08,
+        "direct_contact_observed": false,
+        "minimum_hull_clearance_m": 5.249999523162842,
+        "motion_metrics": {
+          "linear_speed_m_s": 7.70546103012748e-05,
+          "angular_speed_rad_s": 0.0,
+          "tilt_rad": 0.0,
+          "horizontal_displacement_m": 0.0,
+          "vertical_displacement_m": 4.76837158203125e-07
+        }
+      },
+      "execution_ack_v55": {
+        "status": "acknowledged",
+        "receipt": {
+          "physics_index": 1,
+          "history_digest": "cc5c8d6bded8584fd5022372101aeaf7f977009f99637ef5d418ab576ad40eab",
+          "interval_complete": false,
+          "startup_consumed": true
+        },
+        "control_compute_ms": 3.4044859930872917,
+        "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+        "actual_history_advanced": true
+      }
+    },
+    {
+      "control_index": 0,
+      "substep_index": 1,
+      "reset_generation": [
+        1
+      ],
+      "physics_dt_s": 0.008333333333333333,
+      "before": {
+        "state_11": [
+          [
+            5.499999523162842,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -7.70546103012748e-05,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "telemetry": {
+          "configuration": "base",
+          "raw_action_4": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "virtual_control_4": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "motor_pwm_n": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.0,
+              -0.0,
+              0.0
+            ]
+          ],
+          "applied_wrench_6": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "fluid_velocity_world_3": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "thruster_efficiency_n": [
+            [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          ],
+          "control_mask_4": [
+            [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          ],
+          "mass_kg": [
+            [
+              22.701000213623047
+            ]
+          ],
+          "inertia_diagonal_kg_m2": [
+            [
+              0.3700000047683716,
+              0.9700000286102295,
+              1.190000057220459
+            ]
+          ],
+          "com_to_cob_offset_m": [
+            [
+              0.0,
+              0.0,
+              0.009999999776482582
+            ]
+          ],
+          "volume_m3": [
+            [
+              0.022747844457626343
+            ]
+          ],
+          "drag_multiplier": [
+            1.0
+          ],
+          "thruster_dynamics_time_constant_s": [
+            0.05000000074505806
+          ],
+          "water_density_kg_m3": 997.0,
+          "dynamic_viscosity_pa_s": 0.001306,
+          "step_token": [
+            0
+          ],
+          "valid": [
+            true
+          ]
+        },
+        "actuator_speed_n": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "old_actions": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "actions_i": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "_actions": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "_goal": [
+          [
+            0.9185466170310974,
+            -0.04107746481895447,
+            0.12713605165481567,
+            0.3720499277114868
+          ]
+        ],
+        "PID_args": [
+          [
+            [
+              1.0,
+              0.13333334028720856,
+              0.0
+            ],
+            [
+              1.0,
+              0.13333334028720856,
+              0.0
+            ],
+            [
+              1.6666666269302368,
+              0.21666666865348816,
+              0.0
+            ],
+            [
+              0.2666666805744171,
+              0.11666666716337204,
+              0.0
+            ]
+          ]
+        ],
+        "_thrust": [
+          [
+            [
+              0.0,
+              0.0,
+              222.48690795898438
+            ]
+          ]
+        ],
+        "_moment": [
+          [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        ],
+        "_thruster_dynamics_time_s": [
+          0.008333333767950535
+        ],
+        "_actions_d_filt": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "_depth_integral_state": [
+          0.0
+        ],
+        "_last_motor_values_raw": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.0,
+            -0.0,
+            0.0
+          ]
+        ],
+        "_last_motor_values_clipped": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.0,
+            -0.0,
+            0.0
+          ]
+        ],
+        "backend": {
+          "transform_actor_world_xyzw": [
+            [
+              0.0,
+              0.0,
+              5.499999523162842,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "velocity_com_world_6": [
+            [
+              0.0,
+              0.0,
+              -7.70546103012748e-05,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "mass_kg": [
+            [
+              22.701000213623047
+            ]
+          ],
+          "inverse_mass_per_kg": [
+            [
+              0.0440509207546711
+            ]
+          ],
+          "inertia_9": [
+            [
+              0.3700000047683716,
+              0.0,
+              0.0,
+              0.0,
+              0.9700000286102295,
+              0.0,
+              0.0,
+              0.0,
+              1.190000057220459
+            ]
+          ],
+          "inverse_inertia_9": [
+            [
+              2.702702760696411,
+              0.0,
+              0.0,
+              0.0,
+              1.0309277772903442,
+              0.0,
+              0.0,
+              0.0,
+              0.8403360843658447
+            ]
+          ],
+          "com_local_pose_xyzw": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "gravity_disabled": [
+            [
+              0
+            ]
+          ],
+          "cache_state_world_wxyz_13": [
+            [
+              0.0,
+              0.0,
+              5.499999523162842,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -7.70546103012748e-05,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cache_sim_timestamp_s": 0.016666666666666666,
+          "gravity_world_m_s2": [
+            0.0,
+            0.0,
+            -9.81
+          ],
+          "_external_force_b": [
+            [
+              [
+                0.0,
+                0.0,
+                222.48690795898438
+              ]
+            ]
+          ],
+          "_external_torque_b": [
+            [
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "_external_wrench_positions_b": [
+            [
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "has_external_wrench": true,
+          "uses_external_wrench_positions": false,
+          "_use_global_wrench_frame": false
+        }
+      },
+      "controller_inputs": {
+        "actions": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "actions_d": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "actions_i": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      "actuator_update": {
+        "speed_command_n": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "end_time_s": [
+          0.01666666753590107
+        ]
+      },
+      "command": {
+        "state_11": [
+          [
+            5.499999523162842,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -7.70546103012748e-05,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "telemetry": {
+          "configuration": "base",
+          "raw_action_4": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "virtual_control_4": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "motor_pwm_n": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.0,
+              -0.0,
+              0.0
+            ]
+          ],
+          "applied_wrench_6": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "fluid_velocity_world_3": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "thruster_efficiency_n": [
+            [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          ],
+          "control_mask_4": [
+            [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          ],
+          "mass_kg": [
+            [
+              22.701000213623047
+            ]
+          ],
+          "inertia_diagonal_kg_m2": [
+            [
+              0.3700000047683716,
+              0.9700000286102295,
+              1.190000057220459
+            ]
+          ],
+          "com_to_cob_offset_m": [
+            [
+              0.0,
+              0.0,
+              0.009999999776482582
+            ]
+          ],
+          "volume_m3": [
+            [
+              0.022747844457626343
+            ]
+          ],
+          "drag_multiplier": [
+            1.0
+          ],
+          "thruster_dynamics_time_constant_s": [
+            0.05000000074505806
+          ],
+          "water_density_kg_m3": 997.0,
+          "dynamic_viscosity_pa_s": 0.001306,
+          "step_token": [
+            1
+          ],
+          "valid": [
+            true
+          ]
+        },
+        "actuator_speed_n": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "old_actions": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "actions_i": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "_actions": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "_goal": [
+          [
+            0.9185466170310974,
+            -0.04107746481895447,
+            0.12713605165481567,
+            0.3720499277114868
+          ]
+        ],
+        "PID_args": [
+          [
+            [
+              1.0,
+              0.13333334028720856,
+              0.0
+            ],
+            [
+              1.0,
+              0.13333334028720856,
+              0.0
+            ],
+            [
+              1.6666666269302368,
+              0.21666666865348816,
+              0.0
+            ],
+            [
+              0.2666666805744171,
+              0.11666666716337204,
+              0.0
+            ]
+          ]
+        ],
+        "_thrust": [
+          [
+            [
+              0.0,
+              0.0,
+              222.48690795898438
+            ]
+          ]
+        ],
+        "_moment": [
+          [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        ],
+        "_thruster_dynamics_time_s": [
+          0.01666666753590107
+        ],
+        "_actions_d_filt": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "_depth_integral_state": [
+          0.0
+        ],
+        "_last_motor_values_raw": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.0,
+            -0.0,
+            0.0
+          ]
+        ],
+        "_last_motor_values_clipped": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.0,
+            -0.0,
+            0.0
+          ]
+        ],
+        "backend": {
+          "transform_actor_world_xyzw": [
+            [
+              0.0,
+              0.0,
+              5.499999523162842,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "velocity_com_world_6": [
+            [
+              0.0,
+              0.0,
+              -7.70546103012748e-05,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "mass_kg": [
+            [
+              22.701000213623047
+            ]
+          ],
+          "inverse_mass_per_kg": [
+            [
+              0.0440509207546711
+            ]
+          ],
+          "inertia_9": [
+            [
+              0.3700000047683716,
+              0.0,
+              0.0,
+              0.0,
+              0.9700000286102295,
+              0.0,
+              0.0,
+              0.0,
+              1.190000057220459
+            ]
+          ],
+          "inverse_inertia_9": [
+            [
+              2.702702760696411,
+              0.0,
+              0.0,
+              0.0,
+              1.0309277772903442,
+              0.0,
+              0.0,
+              0.0,
+              0.8403360843658447
+            ]
+          ],
+          "com_local_pose_xyzw": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "gravity_disabled": [
+            [
+              0
+            ]
+          ],
+          "cache_state_world_wxyz_13": [
+            [
+              0.0,
+              0.0,
+              5.499999523162842,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -7.70546103012748e-05,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cache_sim_timestamp_s": 0.016666666666666666,
+          "gravity_world_m_s2": [
+            0.0,
+            0.0,
+            -9.81
+          ],
+          "_external_force_b": [
+            [
+              [
+                0.0,
+                0.0,
+                222.48690795898438
+              ]
+            ]
+          ],
+          "_external_torque_b": [
+            [
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "_external_wrench_positions_b": [
+            [
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "has_external_wrench": true,
+          "uses_external_wrench_positions": false,
+          "_use_global_wrench_frame": false
+        }
+      },
+      "execution_command_v55": {
+        "physics_index": 1,
+        "command": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "backend_step_before": 2,
+        "timestamp_before": 0.016666666666666666
+      },
+      "state_after_physics_11": [
+        [
+          5.499998092651367,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0001541092206025496,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "backend_after_physics": {
+        "transform_actor_world_xyzw": [
+          [
+            0.0,
+            0.0,
+            5.499998092651367,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "velocity_com_world_6": [
+          [
+            0.0,
+            0.0,
+            -0.0001541092206025496,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "mass_kg": [
+          [
+            22.701000213623047
+          ]
+        ],
+        "inverse_mass_per_kg": [
+          [
+            0.0440509207546711
+          ]
+        ],
+        "inertia_9": [
+          [
+            0.3700000047683716,
+            0.0,
+            0.0,
+            0.0,
+            0.9700000286102295,
+            0.0,
+            0.0,
+            0.0,
+            1.190000057220459
+          ]
+        ],
+        "inverse_inertia_9": [
+          [
+            2.702702760696411,
+            0.0,
+            0.0,
+            0.0,
+            1.0309277772903442,
+            0.0,
+            0.0,
+            0.0,
+            0.8403360843658447
+          ]
+        ],
+        "com_local_pose_xyzw": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "gravity_disabled": [
+          [
+            0
+          ]
+        ],
+        "cache_state_world_wxyz_13": [
+          [
+            0.0,
+            0.0,
+            5.499998092651367,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.0001541092206025496,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "cache_sim_timestamp_s": 0.025,
+        "gravity_world_m_s2": [
+          0.0,
+          0.0,
+          -9.81
+        ],
+        "_external_force_b": [
+          [
+            [
+              0.0,
+              0.0,
+              222.48690795898438
+            ]
+          ]
+        ],
+        "_external_torque_b": [
+          [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        ],
+        "_external_wrench_positions_b": [
+          [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        ],
+        "has_external_wrench": true,
+        "uses_external_wrench_positions": false,
+        "_use_global_wrench_frame": false
+      },
+      "contact_after_physics_v26": {
+        "normal_force_world_n": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "body_paths": [
+          "/World/envs/env_0/Robot/base_link"
+        ],
+        "physics_dt_s": 0.008333333333333333,
+        "sample_timestamp_s": 0.025,
+        "quantity": "net_normal_contact_force_world_n_not_total_friction_force"
+      },
+      "free_water_screen_v26": {
+        "screen_pass": true,
+        "reasons": [],
+        "minimum_actor_z_m": 5.499998092651367,
+        "operating_floor_world_z_m": 1.0,
+        "residual_limit_m_s": 0.001,
+        "velocity_residual_world_3_m_s": [
+          0.0,
+          0.0,
+          -6.865818876432804e-10
+        ],
+        "max_abs_velocity_residual_m_s": 6.865818876432804e-10,
+        "estimated_unexplained_impulse_norm_n_s": 1.5586095578059824e-08,
+        "direct_contact_observed": false,
+        "minimum_hull_clearance_m": 5.249998092651367
+      },
+      "calibration_screen_v27": {
+        "screen_pass": true,
+        "reasons": [],
+        "minimum_actor_z_m": 5.499998092651367,
+        "operating_floor_world_z_m": 1.0,
+        "residual_limit_m_s": 0.001,
+        "velocity_residual_world_3_m_s": [
+          0.0,
+          0.0,
+          -6.865818876432804e-10
+        ],
+        "max_abs_velocity_residual_m_s": 6.865818876432804e-10,
+        "estimated_unexplained_impulse_norm_n_s": 1.5586095578059824e-08,
+        "direct_contact_observed": false,
+        "minimum_hull_clearance_m": 5.249998092651367,
+        "motion_metrics": {
+          "linear_speed_m_s": 0.0001541092206025496,
+          "angular_speed_rad_s": 0.0,
+          "tilt_rad": 0.0,
+          "horizontal_displacement_m": 0.0,
+          "vertical_displacement_m": 1.9073486328125e-06
+        }
+      },
+      "execution_ack_v55": {
+        "status": "acknowledged",
+        "receipt": {
+          "physics_index": 2,
+          "history_digest": "7a6929fb22a7e50ea746fef0fc92a607d7f4a615c8ba0c42f9c0cec96c2cc1ee",
+          "interval_complete": true,
+          "startup_consumed": true
+        },
+        "control_compute_ms": 3.846817184239626,
+        "timing_scope": "decision_plus_ack_computation_excludes_simulator_step",
+        "actual_history_advanced": true
+      }
+    }
+  ],
+  "intervals": [
+    {
+      "status": "completed_interval",
+      "physics_index": 0,
+      "decision": {
+        "status": "dispatch",
+        "reason": null,
+        "packet": {
+          "ticket": "b73244386fcf4390998449135b9bcd13",
+          "execution_id": "2b555c0136ce4362a063ec3220a358a5",
+          "episode_id": "p9-v60-base-profile",
+          "reset_id": "p9-v60-base-profile:reset1",
+          "physics_index": 0,
+          "command": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "startup_exception": true,
+          "source": "fallback",
+          "actual_execution_confirmed": false,
+          "runtime_qualification": "adapter_and_closed_loop_still_required"
+        },
+        "progress": {
+          "status": "continue",
+          "reason": null,
+          "normalized_tracking_error": 0.0,
+          "controls_without_improvement": 0,
+          "zero_progress_controls": 0
+        },
+        "decision_compute_ms": 2.91104381904006,
+        "actual_history_advanced": false
+      },
+      "whole_cycle_wall_ms": 29.38153315335512,
+      "timing_scope": "boundary_readback_decision_env_step_substep_validation_ack_excludes_record_encoding",
+      "external_cycle_wall_ms": 29.41130893304944,
+      "scheduled_start_lateness_ms": 0.0018598511815071106
+    }
+  ],
+  "events": [
+    {
+      "kind": "reset",
+      "env_ids": [
+        0
+      ],
+      "before": {
+        "state_11": [
+          [
+            5.5,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "telemetry": {
+          "configuration": "base",
+          "raw_action_4": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "virtual_control_4": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "motor_pwm_n": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "applied_wrench_6": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "fluid_velocity_world_3": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "thruster_efficiency_n": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "control_mask_4": [
+            [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          ],
+          "mass_kg": [
+            [
+              22.701000213623047
+            ]
+          ],
+          "inertia_diagonal_kg_m2": [
+            [
+              0.3700000047683716,
+              0.9700000286102295,
+              1.190000057220459
+            ]
+          ],
+          "com_to_cob_offset_m": [
+            [
+              0.0,
+              0.0,
+              0.009999999776482582
+            ]
+          ],
+          "volume_m3": [
+            [
+              0.022747844457626343
+            ]
+          ],
+          "drag_multiplier": [
+            1.0
+          ],
+          "thruster_dynamics_time_constant_s": [
+            0.05000000074505806
+          ],
+          "water_density_kg_m3": 997.0,
+          "dynamic_viscosity_pa_s": 0.001306,
+          "step_token": [
+            -1
+          ],
+          "valid": [
+            false
+          ]
+        },
+        "actuator_speed_n": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "old_actions": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "actions_i": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "_actions": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "_goal": [
+          [
+            -0.3259631097316742,
+            -0.14994286000728607,
+            -0.9320117235183716,
+            0.051180388778448105
+          ]
+        ],
+        "PID_args": [
+          [
+            [
+              1.0,
+              0.13333334028720856,
+              0.0
+            ],
+            [
+              1.0,
+              0.13333334028720856,
+              0.0
+            ],
+            [
+              1.6666666269302368,
+              0.21666666865348816,
+              0.0
+            ],
+            [
+              0.2666666805744171,
+              0.11666666716337204,
+              0.0
+            ]
+          ]
+        ],
+        "_thrust": [
+          [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        ],
+        "_moment": [
+          [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        ],
+        "_thruster_dynamics_time_s": [
+          0.0
+        ],
+        "_actions_d_filt": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "_depth_integral_state": [
+          0.0
+        ],
+        "_last_motor_values_clipped": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "backend": {
+          "transform_actor_world_xyzw": [
+            [
+              0.0,
+              0.0,
+              5.5,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "velocity_com_world_6": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "mass_kg": [
+            [
+              22.701000213623047
+            ]
+          ],
+          "inverse_mass_per_kg": [
+            [
+              0.0440509207546711
+            ]
+          ],
+          "inertia_9": [
+            [
+              0.3700000047683716,
+              0.0,
+              0.0,
+              0.0,
+              0.9700000286102295,
+              0.0,
+              0.0,
+              0.0,
+              1.190000057220459
+            ]
+          ],
+          "inverse_inertia_9": [
+            [
+              2.702702760696411,
+              0.0,
+              0.0,
+              0.0,
+              1.0309277772903442,
+              0.0,
+              0.0,
+              0.0,
+              0.8403360843658447
+            ]
+          ],
+          "com_local_pose_xyzw": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "gravity_disabled": [
+            [
+              0
+            ]
+          ],
+          "cache_state_world_wxyz_13": [
+            [
+              0.0,
+              0.0,
+              5.5,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cache_sim_timestamp_s": 0.008333333333333333,
+          "gravity_world_m_s2": [
+            0.0,
+            0.0,
+            -9.81
+          ],
+          "_external_force_b": [
+            [
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "_external_torque_b": [
+            [
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "_external_wrench_positions_b": [
+            [
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "has_external_wrench": false,
+          "uses_external_wrench_positions": false,
+          "_use_global_wrench_frame": false
+        }
+      },
+      "after": {
+        "state_11": [
+          [
+            5.5,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "telemetry": {
+          "configuration": "base",
+          "raw_action_4": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "virtual_control_4": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "motor_pwm_n": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "applied_wrench_6": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "fluid_velocity_world_3": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "thruster_efficiency_n": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "control_mask_4": [
+            [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          ],
+          "mass_kg": [
+            [
+              22.701000213623047
+            ]
+          ],
+          "inertia_diagonal_kg_m2": [
+            [
+              0.3700000047683716,
+              0.9700000286102295,
+              1.190000057220459
+            ]
+          ],
+          "com_to_cob_offset_m": [
+            [
+              0.0,
+              0.0,
+              0.009999999776482582
+            ]
+          ],
+          "volume_m3": [
+            [
+              0.022747844457626343
+            ]
+          ],
+          "drag_multiplier": [
+            1.0
+          ],
+          "thruster_dynamics_time_constant_s": [
+            0.05000000074505806
+          ],
+          "water_density_kg_m3": 997.0,
+          "dynamic_viscosity_pa_s": 0.001306,
+          "step_token": [
+            -1
+          ],
+          "valid": [
+            false
+          ]
+        },
+        "actuator_speed_n": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "old_actions": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "actions_i": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "_actions": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "_goal": [
+          [
+            0.9185466170310974,
+            -0.04107746481895447,
+            0.12713605165481567,
+            0.3720499277114868
+          ]
+        ],
+        "PID_args": [
+          [
+            [
+              1.0,
+              0.13333334028720856,
+              0.0
+            ],
+            [
+              1.0,
+              0.13333334028720856,
+              0.0
+            ],
+            [
+              1.6666666269302368,
+              0.21666666865348816,
+              0.0
+            ],
+            [
+              0.2666666805744171,
+              0.11666666716337204,
+              0.0
+            ]
+          ]
+        ],
+        "_thrust": [
+          [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        ],
+        "_moment": [
+          [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        ],
+        "_thruster_dynamics_time_s": [
+          0.0
+        ],
+        "_actions_d_filt": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "_depth_integral_state": [
+          0.0
+        ],
+        "_last_motor_values_clipped": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "backend": {
+          "transform_actor_world_xyzw": [
+            [
+              0.0,
+              0.0,
+              5.5,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "velocity_com_world_6": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "mass_kg": [
+            [
+              22.701000213623047
+            ]
+          ],
+          "inverse_mass_per_kg": [
+            [
+              0.0440509207546711
+            ]
+          ],
+          "inertia_9": [
+            [
+              0.3700000047683716,
+              0.0,
+              0.0,
+              0.0,
+              0.9700000286102295,
+              0.0,
+              0.0,
+              0.0,
+              1.190000057220459
+            ]
+          ],
+          "inverse_inertia_9": [
+            [
+              2.702702760696411,
+              0.0,
+              0.0,
+              0.0,
+              1.0309277772903442,
+              0.0,
+              0.0,
+              0.0,
+              0.8403360843658447
+            ]
+          ],
+          "com_local_pose_xyzw": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "gravity_disabled": [
+            [
+              0
+            ]
+          ],
+          "cache_state_world_wxyz_13": [
+            [
+              0.0,
+              0.0,
+              5.5,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cache_sim_timestamp_s": 0.008333333333333333,
+          "gravity_world_m_s2": [
+            0.0,
+            0.0,
+            -9.81
+          ],
+          "_external_force_b": [
+            [
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "_external_torque_b": [
+            [
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "_external_wrench_positions_b": [
+            [
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "has_external_wrench": false,
+          "uses_external_wrench_positions": false,
+          "_use_global_wrench_frame": false
+        }
+      },
+      "reset_generation": [
+        1
+      ]
+    },
+    {
+      "kind": "dones",
+      "control_index": 0,
+      "reset_generation": [
+        1
+      ],
+      "result": [
+        [
+          false
+        ],
+        [
+          0.0
+        ]
+      ]
+    }
+  ],
+  "reset_record": {
+    "snapshot": {
+      "state_11": [
+        [
+          5.5,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "telemetry": {
+        "configuration": "base",
+        "raw_action_4": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "virtual_control_4": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "motor_pwm_n": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "applied_wrench_6": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "fluid_velocity_world_3": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "thruster_efficiency_n": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "control_mask_4": [
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        ],
+        "mass_kg": [
+          [
+            22.701000213623047
+          ]
+        ],
+        "inertia_diagonal_kg_m2": [
+          [
+            0.3700000047683716,
+            0.9700000286102295,
+            1.190000057220459
+          ]
+        ],
+        "com_to_cob_offset_m": [
+          [
+            0.0,
+            0.0,
+            0.009999999776482582
+          ]
+        ],
+        "volume_m3": [
+          [
+            0.022747844457626343
+          ]
+        ],
+        "drag_multiplier": [
+          1.0
+        ],
+        "thruster_dynamics_time_constant_s": [
+          0.05000000074505806
+        ],
+        "water_density_kg_m3": 997.0,
+        "dynamic_viscosity_pa_s": 0.001306,
+        "step_token": [
+          -1
+        ],
+        "valid": [
+          false
+        ]
+      },
+      "actuator_speed_n": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "old_actions": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "actions_i": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "_actions": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "_goal": [
+        [
+          0.9185466170310974,
+          -0.04107746481895447,
+          0.12713605165481567,
+          0.3720499277114868
+        ]
+      ],
+      "PID_args": [
+        [
+          [
+            1.0,
+            0.13333334028720856,
+            0.0
+          ],
+          [
+            1.0,
+            0.13333334028720856,
+            0.0
+          ],
+          [
+            1.6666666269302368,
+            0.21666666865348816,
+            0.0
+          ],
+          [
+            0.2666666805744171,
+            0.11666666716337204,
+            0.0
+          ]
+        ]
+      ],
+      "_thrust": [
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      "_moment": [
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      "_thruster_dynamics_time_s": [
+        0.0
+      ],
+      "_actions_d_filt": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "_depth_integral_state": [
+        0.0
+      ],
+      "_last_motor_values_clipped": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "backend": {
+        "transform_actor_world_xyzw": [
+          [
+            0.0,
+            0.0,
+            5.5,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "velocity_com_world_6": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "mass_kg": [
+          [
+            22.701000213623047
+          ]
+        ],
+        "inverse_mass_per_kg": [
+          [
+            0.0440509207546711
+          ]
+        ],
+        "inertia_9": [
+          [
+            0.3700000047683716,
+            0.0,
+            0.0,
+            0.0,
+            0.9700000286102295,
+            0.0,
+            0.0,
+            0.0,
+            1.190000057220459
+          ]
+        ],
+        "inverse_inertia_9": [
+          [
+            2.702702760696411,
+            0.0,
+            0.0,
+            0.0,
+            1.0309277772903442,
+            0.0,
+            0.0,
+            0.0,
+            0.8403360843658447
+          ]
+        ],
+        "com_local_pose_xyzw": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "gravity_disabled": [
+          [
+            0
+          ]
+        ],
+        "cache_state_world_wxyz_13": [
+          [
+            0.0,
+            0.0,
+            5.5,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "cache_sim_timestamp_s": 0.008333333333333333,
+        "gravity_world_m_s2": [
+          0.0,
+          0.0,
+          -9.81
+        ],
+        "_external_force_b": [
+          [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        ],
+        "_external_torque_b": [
+          [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        ],
+        "_external_wrench_positions_b": [
+          [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        ],
+        "has_external_wrench": false,
+        "uses_external_wrench_positions": false,
+        "_use_global_wrench_frame": false
+      }
+    },
+    "contact_safety": {
+      "episode_id": "p9-v60-base-profile",
+      "reset_id": "p9-v60-base-profile:reset1",
+      "physics_index": 0,
+      "xy_displacement_m": [
+        0.0,
+        0.0
+      ],
+      "minimum_clearance_m": 5.25,
+      "contact_observed": false
+    },
+    "backend_step_index": 0
+  },
+  "runtime_final": {
+    "stats": {
+      "requests": 0,
+      "mpc_activations": 0,
+      "confirmed_controls": 1,
+      "dispatches": 1,
+      "rejected_replies": 0,
+      "worker_failures": 0
+    },
+    "physics_index": 2
+  },
+  "lifecycle_source_sha256": "323738ae9ebbb0ff62fa4d87a232fc15caf6831c6823c2f448494376d6dc0700",
+  "cleanup_completed": {
+    "worker": true,
+    "environment": true,
+    "simulation_app": true
+  },
+  "native_dependents_gc_collected": 0,
+  "wall_seconds": 42.32051540305838
+}

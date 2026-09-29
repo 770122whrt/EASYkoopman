@@ -1,0 +1,147 @@
+{
+  "timestamp": "2026-09-20T17:29:45+08:00",
+  "source_hashes_match": {
+    "koopman/recovery_solver_v50.py": true,
+    "koopman/solver_worker_v49.py": true,
+    "koopman/prepared_execution_v49.py": true,
+    "koopman/execution_ledger_v48.py": true,
+    "koopman/bounded_feedback_v47.py": true,
+    "koopman/bounded_feedback_v46.py": true,
+    "koopman/bounded_mpc_v45.py": true,
+    "koopman/bounded_mpc_v44.py": true,
+    "koopman/control_objective_v44.py": true,
+    "koopman/compiled_projected_v43.py": true,
+    "koopman/command_state_v39.py": true,
+    "koopman/prepared_projected_v40.py": true,
+    "koopman/prepared_commands_v45.py": true,
+    "koopman/command_batch_v45.py": true,
+    "koopman/command_batch_v42.py": true,
+    "koopman/prepared_allocation_v42.py": true,
+    "workflows/benchmark_recovery_worker_v50.py": true,
+    "tests/test_recovery_solver_v50.py": true,
+    "koopman/bounded_mpc_v51.py": true,
+    "koopman/recovery_solver_v51.py": true,
+    "tests/test_deadzone_mpc_v51.py": true,
+    "workflows/benchmark_recovery_worker_v51.py": true,
+    "koopman/plan_arbiter_v52.py": true,
+    "koopman/runtime_coordinator_v52.py": true,
+    "tests/test_plan_arbiter_v52.py": true,
+    "tests/test_runtime_coordinator_v52.py": true,
+    "workflows/exercise_runtime_v52.py": true,
+    "koopman/cached_checks_v53.py": true,
+    "tests/test_cached_checks_v53.py": true,
+    "workflows/exercise_runtime_v53.py": true,
+    "koopman/plan_continuity_v54.py": true,
+    "tests/test_plan_continuity_v54.py": true,
+    "workflows/exercise_runtime_v54.py": true
+  },
+  "phase84_hashes_unchanged": {
+    "formal-closeout.json": "ca77ecc765bd63e87e41f04ddb33bda322ad8dda09a8d2e8b0e8bc01053bf4ec",
+    "prediction-control-handoff-v2.json": "5d8c4aa1264d93307dc0cf692757441509e75809206ed80006543ca5e4239632",
+    "live-budget.json": "916d99370b36fa191152f137ca7a5b8fba3103126129ff03a526856ae8d7ef29"
+  },
+  "baseline_seconds": 697.7631079000013,
+  "native_runs": [
+    {
+      "path": "docs/evidence/phase9/arbiter-v52-checks-20260920/fixture-native.json",
+      "seconds": 158.2981903,
+      "stage": "fixture",
+      "exit_code": 0
+    },
+    {
+      "path": "docs/evidence/phase9/arbiter-v52-checks-20260920/focused-01-native.json",
+      "stage": "focused-01",
+      "exit_code": 0,
+      "seconds": 6.198603
+    },
+    {
+      "path": "docs/evidence/phase9/arbiter-v52-checks-20260920/red-native.json",
+      "stage": "red",
+      "seconds": 4.8882678,
+      "exit_code": 1
+    },
+    {
+      "path": "docs/evidence/phase9/arbiter-v52-checks-20260920/related-native.json",
+      "seconds": 35.5565836,
+      "exit_code": 0,
+      "stage": "related"
+    },
+    {
+      "path": "docs/evidence/phase9/arbiter-v52-checks-20260920/runtime-focused-01-native.json",
+      "stage": "runtime-focused-01",
+      "exit_code": 1,
+      "seconds": 14.9425972
+    },
+    {
+      "path": "docs/evidence/phase9/arbiter-v52-checks-20260920/runtime-focused-02-native.json",
+      "exit_code": 0,
+      "seconds": 14.0944825,
+      "stage": "runtime-focused-02"
+    },
+    {
+      "path": "docs/evidence/phase9/arbiter-v52-checks-20260920/runtime-red-native.json",
+      "stage": "runtime-red",
+      "exit_code": 1,
+      "seconds": 15.026617
+    },
+    {
+      "path": "docs/evidence/phase9/runtime-v52-diagnosis-20260920/native.json",
+      "seconds": 24.6246227,
+      "exit_code": 0,
+      "stage": "diagnosis"
+    },
+    {
+      "path": "docs/evidence/phase9/runtime-v52-worker-diagnosis-20260920/native.json",
+      "seconds": 24.0483407,
+      "exit_code": 0,
+      "stage": "worker-diagnosis"
+    },
+    {
+      "path": "docs/evidence/phase9/cached-checks-v53-20260920/focused-native.json",
+      "exit_code": 0,
+      "stage": "focused",
+      "seconds": 14.6714322
+    },
+    {
+      "path": "docs/evidence/phase9/cached-checks-v53-20260920/pilot-native.json",
+      "seconds": 42.5843476,
+      "exit_code": 0,
+      "stage": "pilot"
+    },
+    {
+      "path": "docs/evidence/phase9/cached-checks-v53-20260920/red-native.json",
+      "seconds": 7.55128,
+      "stage": "red",
+      "exit_code": 1
+    },
+    {
+      "path": "docs/evidence/phase9/cached-checks-v53-20260920/related-native.json",
+      "seconds": 37.8275109,
+      "stage": "related",
+      "exit_code": 0
+    },
+    {
+      "path": "docs/evidence/phase9/continuity-v54-checks-20260920/pilot-native.json",
+      "stage": "pilot",
+      "exit_code": 0,
+      "seconds": 43.3669543
+    },
+    {
+      "path": "docs/evidence/phase9/continuity-v54-checks-20260920/red-native.json",
+      "stage": "red",
+      "exit_code": 1,
+      "seconds": 7.6072518
+    },
+    {
+      "path": "docs/evidence/phase9/continuity-v54-checks-20260920/related-native.json",
+      "exit_code": 0,
+      "stage": "related",
+      "seconds": 28.3918098
+    }
+  ],
+  "total_seconds": 1177.4419993000015,
+  "limit_seconds": 1200,
+  "remaining_seconds": 22.5580006999985,
+  "pilot_native_exit": 0,
+  "claim": "two_configuration_static_fixture_only; no new physics or control benefit"
+}

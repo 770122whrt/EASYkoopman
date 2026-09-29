@@ -1,0 +1,38 @@
+......FF..........                                                       [100%]
+================================== FAILURES ===================================
+___ test_known_first_substep_is_preserved_before_safety_stop[contact_read] ____
+
+bridge = <function bridge.<locals>.create at 0x000002A40B9BF4C0>
+bad = 'contact_read'
+
+    @pytest.mark.parametrize('bad', ['contact', 'contact_read', 'stale_contact', 'xy', 'state'])
+    def test_known_first_substep_is_preserved_before_safety_stop(bridge, bad):
+        env, s, run, _ = bridge(); env.mutation = bad
+        try:
+            with pytest.raises((ValueError, RuntimeError)):
+                advance(env, s)
+>           assert env.applies == env.physics_steps == 1
+E           assert 0 == 1
+E            +  where 0 = <test_isaac_execution_v55.FixtureEnv object at 0x000002A40B8E2BA0>.physics_steps
+
+tests\test_isaac_execution_v55.py:182: AssertionError
+___ test_known_first_substep_is_preserved_before_safety_stop[stale_contact] ___
+
+bridge = <function bridge.<locals>.create at 0x000002A40B9BFCE0>
+bad = 'stale_contact'
+
+    @pytest.mark.parametrize('bad', ['contact', 'contact_read', 'stale_contact', 'xy', 'state'])
+    def test_known_first_substep_is_preserved_before_safety_stop(bridge, bad):
+        env, s, run, _ = bridge(); env.mutation = bad
+        try:
+            with pytest.raises((ValueError, RuntimeError)):
+                advance(env, s)
+>           assert env.applies == env.physics_steps == 1
+E           assert 0 == 1
+E            +  where 0 = <test_isaac_execution_v55.FixtureEnv object at 0x000002A40B759FA0>.physics_steps
+
+tests\test_isaac_execution_v55.py:182: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_isaac_execution_v55.py::test_known_first_substep_is_preserved_before_safety_stop[contact_read]
+FAILED tests/test_isaac_execution_v55.py::test_known_first_substep_is_preserved_before_safety_stop[stale_contact]
+2 failed, 16 passed in 7.49s

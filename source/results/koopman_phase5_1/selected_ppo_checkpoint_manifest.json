@@ -1,0 +1,25 @@
+{
+  "phase": "05.1",
+  "selected_checkpoint": "/root/IsaacLab/logs/rsl_rl/easyuuv_koopman_mpc/2026-07-05_00-28-00/model_199.pt",
+  "selected_rule": "latest_mtime_model_pt",
+  "source_training_summary_path": "/root/EASYkoopman/source/results/koopman_phase5_1/stability_candidate_summary.json",
+  "ppo_evidence_level": "stability_candidate",
+  "checkpoint_provenance": "phase5_1_stability_candidate",
+  "reward_profile": "legacy_easyuuv_v0",
+  "adapter_mode": "heuristic_reference_delta_v0",
+  "koopman_backend": "direct_state",
+  "observation_dim": 9,
+  "action_dim": 4,
+  "selected_weight_status": "candidate_only",
+  "matched_eval_status": "pass",
+  "matched_eval_summary_path": "source/results/koopman_phase5_1/matched_eval_summary.json",
+  "allowed_claims": [
+    "RSL-RL PPO can train inside the Koopman-MPC closed-loop path",
+    "A retrained checkpoint can be generated and loaded for smoke evaluation"
+  ],
+  "disallowed_claims": [
+    "PPO convergence is proven",
+    "PPO+Koopman-MPC superiority is proven",
+    "old PPO semantics are losslessly migrated"
+  ]
+}
