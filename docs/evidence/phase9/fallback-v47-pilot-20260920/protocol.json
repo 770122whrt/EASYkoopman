@@ -1,0 +1,170 @@
+{
+  "schema": "bounded-tracking-feedback-v47-fit-only-v1",
+  "configurations": {
+    "base": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "long_body": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "heavy_moderate": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "asymmetric": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "uuv6": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "uuv6_angled": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "uuv4": {
+      "control_mask": [
+        1,
+        1,
+        0,
+        1
+      ]
+    },
+    "uuv4_angled": {
+      "control_mask": [
+        1,
+        1,
+        0,
+        1
+      ]
+    }
+  },
+  "model_for_fit_support": "nonlinear__pooled",
+  "requests_per_configuration": [
+    {
+      "label": "hold-o0",
+      "origin": 0,
+      "z": 5.5
+    },
+    {
+      "label": "hold-o64",
+      "origin": 64,
+      "z": 5.5
+    },
+    {
+      "label": "hold-o128",
+      "origin": 128,
+      "z": 5.5
+    },
+    {
+      "label": "depth-minus-o128",
+      "origin": 128,
+      "z": 5.45
+    },
+    {
+      "label": "depth-plus-o128",
+      "origin": 128,
+      "z": 5.55
+    }
+  ],
+  "reference_quaternion": [
+    1.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "warmups": 1,
+  "repetitions": 3,
+  "internal_ms": 10.0,
+  "complete_limit_ms": 16.666666666666668,
+  "gains": {
+    "height_kp": 1.0,
+    "vertical_kd": 2.0,
+    "attitude_kp": 9.0,
+    "angular_kd": 6.0
+  },
+  "inverse_iterations": 4,
+  "jacobian_step": 0.001,
+  "line_search_fractions": [
+    1.0,
+    0.5,
+    0.25
+  ],
+  "geometry_seed_factors": [
+    1.0,
+    1.0002,
+    0.9998
+  ],
+  "limiter_fractions": [
+    1.0,
+    0.999,
+    0.99,
+    0.9,
+    0.5
+  ],
+  "static_reference_may_exceed_fit_box": true,
+  "actual_command_must_remain_in_fit_box": true,
+  "limited_target_error_is_performance_quantity_not_zeroed": true,
+  "slew": 0.01,
+  "minimum_pwm_headroom": 0.05,
+  "minimum_deadzone_distance": 2e-06,
+  "static_inverse_residual_limit": [
+    0.025,
+    0.025,
+    0.025,
+    0.1,
+    0.1,
+    0.1
+  ],
+  "source_cross_check": "original_ControlKernel_steady_for_static_and_actual_outside_timer_all_ready_samples",
+  "maximum_seconds": 180,
+  "output_limit_bytes": 33554432,
+  "processes": 1,
+  "compute_threads": 1,
+  "gate": "all_120_ready_proposals_total_ms<=16.67_source_rechecked_no_zero_progress_when_tracking_limited",
+  "formal_test_access": false,
+  "new_fits": 0,
+  "new_server_runs": 0,
+  "sources": {
+    "koopman/command_state_v39.py": "2e1a1709d9704c76f4b90c7cbe0b2ecf849db052e60204d876796c188f47135b",
+    "koopman/prepared_projected_v40.py": "2974dccdee1af5fc57efc8aa9f0e336abad1f33669514127f0c9159f967d538b",
+    "koopman/prepared_allocation_v42.py": "a6675e7cfc5941c5d43b53e861945e550fae10a718bd89b264495f0b0490d068",
+    "koopman/command_batch_v42.py": "0fd49fc06b187c0051525f0364039862efe6dcd7d2a1257c9d0ebd0472e9d48c",
+    "koopman/control_objective_v44.py": "9a92b17f36d51b743a0807d6cc10aada5c7c686ed06a8751729da52fb6841747",
+    "koopman/bounded_mpc_v44.py": "67f318914e18e966367d3d4bb18f27877871fe50ed95d04343a35631b687fec2",
+    "koopman/prepared_commands_v45.py": "3545140a08190d3f7edb757f8aab8322f11f7517b49ab49baadcc601b5b53e0d",
+    "koopman/bounded_feedback_v46.py": "cc707af95e63697638fa6f98a7e6a7d1a0edee5d475aa4310b95b9a0f1b83af7",
+    "koopman/bounded_feedback_v47.py": "dc592bb2237b6c5446c6b70e734c70b2578fcee089f856a83c137ef38f8c54e1",
+    "tests/test_bounded_feedback_v47.py": "e32294594069e799b5fbba06e0196253ab19f5ef88414ceed3d3436b74a4769a",
+    "workflows/benchmark_bounded_feedback_v47.py": "2b15b7caf3505efcf1c16f1f4869ffa90dbffabc51c85cb4844d650475083472"
+  },
+  "prior_result_sha256": "afe93b67b14e961ef18f21371f3e3d203807de467edf565a774a71316c0045a9",
+  "handoff_sha256": "5d8c4aa1264d93307dc0cf692757441509e75809206ed80006543ca5e4239632"
+}

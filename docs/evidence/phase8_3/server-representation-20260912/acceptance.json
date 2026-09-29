@@ -1,0 +1,67 @@
+{
+  "status": "supplemental_repaired_traces_accepted",
+  "archive_sha256": "483d25b153821285712c7a1d25ba770f35b24fcac729fba17b4585647aa03bab",
+  "inventory_files": 49,
+  "cases": [
+    {
+      "case": "repr-base-8201-step",
+      "configuration": "base",
+      "seed": 8201,
+      "excitation": "step",
+      "intervals": 32
+    },
+    {
+      "case": "repr-base-8201-zero",
+      "configuration": "base",
+      "seed": 8201,
+      "excitation": "zero",
+      "intervals": 32
+    },
+    {
+      "case": "repr-base-8202-prbs",
+      "configuration": "base",
+      "seed": 8202,
+      "excitation": "prbs",
+      "intervals": 32
+    },
+    {
+      "case": "repr-uuv4-8201-step",
+      "configuration": "uuv4",
+      "seed": 8201,
+      "excitation": "step",
+      "intervals": 32
+    },
+    {
+      "case": "repr-uuv4-8201-zero",
+      "configuration": "uuv4",
+      "seed": 8201,
+      "excitation": "zero",
+      "intervals": 32
+    },
+    {
+      "case": "repr-uuv4-8202-prbs",
+      "configuration": "uuv4",
+      "seed": 8202,
+      "excitation": "prbs",
+      "intervals": 32
+    },
+    {
+      "case": "repr-uuv6-8201-step",
+      "configuration": "uuv6",
+      "seed": 8201,
+      "excitation": "step",
+      "intervals": 32
+    },
+    {
+      "case": "repr-uuv6-8201-zero",
+      "configuration": "uuv6",
+      "seed": 8201,
+      "excitation": "zero",
+      "intervals": 32
+    }
+  ],
+  "new_intervals": 256,
+  "new_physics_substeps": 512,
+  "cumulative_intervals": 1312,
+  "model_handoff": false
+}

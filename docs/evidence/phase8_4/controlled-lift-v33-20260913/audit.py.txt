@@ -1,0 +1,65 @@
+from pathlib import Path
+import sys,json,hashlib,time
+sys.path.insert(0,str(Path.cwd()))
+import numpy as np
+root=Path.cwd();read=lambda p:json.loads(p.read_text(encoding='utf8'));sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+base=root/'source/results/phase8.4-controlled-lift-v33-20260913';f=read(base/'freeze.json');status=read(base/'status.json')
+assert (base/'native-exit.txt').read_text().strip()=='0' and status['status']=='fit_diagnostic_complete'
+started=time.monotonic()
+for n,h in f['source_sha256'].items():assert sha(root/n)==h,n
+parents=root/'source/results/phase8.4-sparse-world-pilot-v30-20260913/models'
+for name,h in f['parent_models_sha256'].items():assert sha(parents/(name+'.json'))==h,name
+models=list((base/'models').glob('*.json'));assert {p.stem for p in models}==set(f['refit_models'])
+for p in models:
+    r=read(p);old=read(parents/(p.stem+'.json'));A=np.array(r['matrix']);prior=np.array(old['matrix'])
+    assert r['parent_sha256']==sha(parents/(p.stem+'.json'))
+    for key in ('damping','quadratic','angular_damping','fit_episode_hashes','fit_source','configurations'):assert r[key]==old[key]
+    np.testing.assert_array_equal(A[:,10:16],prior[:,10:16]);np.testing.assert_array_equal(A[:,-1],np.eye(53)[:,-1])
+    assert r['audit']['new_velocity_parameter_fits']==0 and r['audit']['training_role']=='fit'
+    if '__heldout-' in p.stem:assert p.stem.split('__heldout-')[1] not in r['configurations']
+scores=read(base/'scores.json');assert len(scores)==1440
+from workflows.identification_protocol_v29 import cases
+catalog={q['run_id']:q for q in cases() if q['role']=='fit'}
+paths=[('nonlinear',s,m) for s in ('pooled','heldout') for m in ('old_full','changed_input_only','refit_full','projected')]
+paths += [('linear',s,'projected') for s in ('pooled','heldout')]+[('known_physics','none','projected'),('persistence','none','projected')]
+expected={(q,*path,h) for q in catalog for path in paths for h in (1,20,60,128,320)}
+keys=set()
+for r in scores:
+    key=(r['run_id'],r['family'],r['scope'],r['mode'],r['horizon_control_intervals']);assert key not in keys;keys.add(key)
+    assert r['configuration']==catalog[r['run_id']]['configuration'] and r['role']=='fit_diagnostic'
+    assert r['origins']==(1 if key[-1]==320 else 193-key[-1])
+    assert r['complete_aggregate']==(r['failed_origins']==0)
+    for name in ('endpoint_rmse','path_rmse'):
+        if r['complete_aggregate']:
+            value=np.asarray(r[name]);assert value.shape==(4,) and np.isfinite(value).all() and min(value)>=0
+        else:assert r[name] is None
+assert keys==expected
+summary=read(base/'summary.json');assert len(summary)==60
+for group in summary:
+    rows=[r for r in scores if (r['family'],r['scope'],r['mode'],r['horizon_control_intervals'])==(group['family'],group['scope'],group['mode'],group['horizon'])]
+    assert len(rows)==group['records']==24 and sum(r['complete_aggregate'] for r in rows)==group['complete_records']
+    for key,metric in [('mean_endpoint','endpoint_rmse'),('mean_path','path_rmse')]:
+        if group['complete_records']==24:np.testing.assert_allclose(group[key],np.mean([r[metric] for r in rows],axis=0),rtol=1e-12,atol=1e-12)
+        else:assert group[key] is None
+from workflows.identify_sparse_world_v30 import load_fit_cache,from_record
+from workflows.sparse_evaluation_v32 import unprojected_rollout
+e=load_fit_cache(root)[0];old=from_record(read(parents/'nonlinear__pooled.json'))
+actual=unprojected_rollout(e.states,e.acceleration,old,e.context,20)
+reported=next(r for r in scores if (r['run_id'],r['family'],r['scope'],r['mode'],r['horizon_control_intervals'])==(e.case['run_id'],'nonlinear','pooled','old_full',20))
+for key in ('failed_origins','first_failure_physics_tick','complete_aggregate','endpoint_rmse','path_rmse'):assert actual[key]==reported[key]
+required=[r for r in scores if r['mode']=='refit_full'];assert len(required)==240
+assert status['refit_full_complete_records']==sum(r['complete_aggregate'] for r in required)
+assert status['hypothesis']==('timing_refit_removes_fit_instability_only' if all(r['complete_aggregate'] for r in required) else 'input_timing_correction_insufficient')
+oldbase=root/'source/results/phase8.4-structured-formal-v25-20260912'
+historical=read(root/'docs/evidence/phase8_4/formal-validation-closeout-20260913/audit.json')['artifact_sha256']
+for n,h in historical.items():assert sha(oldbase/n)==h,n
+result={'status':'independent_v33_inventory_roles_parameters_arithmetic_verified','scores':len(scores),'models':len(models),
+    'parent_models_unchanged':len(f['parent_models_sha256']),'old_formal_artifacts_unchanged':len(historical),
+    'frozen_v32_unprojected_real_fit_case_reproduction':'base-prbs,h20,all173origins,exact failure/metric match',
+    'hypothesis':status['hypothesis'],'source_files_verified':len(f['source_sha256']),'seconds':time.monotonic()-started,
+    'artifact_sha256':{str(p.relative_to(base)).replace('\\','/'):sha(p) for p in sorted(base.rglob('*')) if p.is_file()},
+    'independent_validation':False,'model_handoff':False,'test_access':False}
+out=root/'docs/evidence/phase8_4/controlled-lift-v33-20260913'
+with (out/'audit.json').open('x',encoding='utf8') as handle:json.dump(result,handle,indent=2);handle.write('\n')
+with (out/'audit.py.txt').open('x',encoding='utf8') as handle:handle.write(Path(__file__).read_text(encoding='utf8'))
+print(json.dumps({k:v for k,v in result.items() if k!='artifact_sha256'}))

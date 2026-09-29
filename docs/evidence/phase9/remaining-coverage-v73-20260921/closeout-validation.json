@@ -1,0 +1,42 @@
+{
+  "status": "closeout_verified",
+  "counts": {
+    "configurations_attempted": 8,
+    "complete_cases": 18,
+    "failed_cases": 4,
+    "not_run_cases": 10,
+    "complete_pairs": 8,
+    "pair_verdicts": {
+      "benefit_in_this_scenario": 1,
+      "no_material_benefit_in_this_scenario": 2,
+      "worse_in_this_scenario": 5
+    }
+  },
+  "links_checked": 40,
+  "source_bundle_files_checked": 26,
+  "pulled_results_checked": 180,
+  "tests": {
+    "passed": 52,
+    "skipped": 4,
+    "seconds": 19.92,
+    "scope": "related local suite, platform-specific strict MPC replay skipped"
+  },
+  "local_v73_bytes_before_record": 7383208,
+  "closing_files_reserved_bytes": 1048576,
+  "conservative_local_retained_bytes": 271169888,
+  "conservative_local_new_bytes": 14723240,
+  "conservative_server_seconds": 1636.3470104727894,
+  "physical_starts": 23,
+  "background_processes": [],
+  "source_sha256": {
+    "workflows/review_multiconfig_v73.py": "c2a6ce04f851eb7ce3b27f4ee808231f8608a62a932f750561bd0fae46ccac97",
+    "workflows/validate_tracking_v73.py": "cce2df941c5d241988c4168a2fca56b8dfe6bb16d51587f44688a37e0f69d09e",
+    "workflows/forecast_diagnostics_v73.py": "d9b0c39d8d10660c80b1e06adfeedfe1fd880b7e27b19e867a3e706c065a3c3c",
+    "workflows/diagnose_progress_stop_v73.py": "e35a6d773077cb41449ec437ec1f1ec665aaa75d5ffd978a6974dd33ed835d70",
+    "workflows/summarize_coverage_v73.py": "da3184cc9c311ac9c4c3cd00541287a829dd459b3e60d02d39432e3ee206c560",
+    "tests/test_tracking_replay_v73.py": "98e90635a7b8cedfc29073e97a3f9a9923d0c7c5764803b0a265a02ca0f695c5",
+    "tests/test_progress_stop_v73.py": "606ccbddf3af97c92d03b2409f90fcadaf8a5717ba82f0c418ec235405f92ba1",
+    "tests/test_forecast_diagnostics_v73.py": "c7ad7f20eb7ac179c1551196d4193260fef051f2bb6c17931954f3a4097c5a1f",
+    "tests/test_physical_replay_v73.py": "0a4fbe6b0abc438b34de0dcac9d80872f543ca8f64db97def850693f10493e26"
+  }
+}

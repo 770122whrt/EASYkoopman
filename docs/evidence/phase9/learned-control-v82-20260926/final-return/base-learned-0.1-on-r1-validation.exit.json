@@ -1,0 +1,21 @@
+{
+  "native_exit": 0,
+  "group_stopped": true,
+  "seconds": 55.71719343774021,
+  "command": [
+    "/root/shared-nvme/agentic-auv/runtime/bin/python",
+    "-B",
+    "-m",
+    "workflows.validate_learned_v82",
+    "--trace",
+    "/root/shared-nvme/agentic-auv/experiments/learned-control-v82-20260926/base-learned-0.1-on-r1/trace.json.gz",
+    "--assets",
+    "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+    "--native-exit",
+    "0",
+    "--learned-model",
+    "docs/evidence/phase9/learned-velocity-v81-20260926/normalized-quaternion/pooled__learned_0.1.json",
+    "--learned-sha256",
+    "7753e54624deaa72f6b234dc681a8dcfdfc74782117b2d6993cd0a25a2f60447"
+  ]
+}

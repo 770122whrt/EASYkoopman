@@ -1,0 +1,19 @@
+{
+  "kind": "pre_data_storage_projection_not_runtime_measurement",
+  "snapshot_unpacked_bytes": 79627501,
+  "snapshot_gzip_stream_bytes": 20395645,
+  "old_16_trace_bytes": 251921171,
+  "planned_56_trace_bytes": 1309990089.2,
+  "components": {
+    "local_prepared_package": 399501375,
+    "remote_bundle_and_clone": 238882503,
+    "both_hosts_raw_traces": 2619980178.4,
+    "local_unpacked_role_sources": 238882503,
+    "both_hosts_archives": 246188750.8,
+    "analysis_and_logs_margin": 134217728
+  },
+  "total_bytes": 3877653038.2000003,
+  "cap_bytes": 4294967296,
+  "headroom_bytes": 417314257.7999997,
+  "caveat": "Linear trace-length extrapolation; tar headers and per-case metadata covered only by margin. Actual two-host checks remain mandatory."
+}

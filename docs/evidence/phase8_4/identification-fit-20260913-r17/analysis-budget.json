@@ -1,0 +1,60 @@
+{
+  "limit_seconds": 3600,
+  "charged_seconds": 2291.2798761000076,
+  "attempts": [
+    {
+      "stage": "fit_adaptation_coverage",
+      "status": "completed",
+      "charged_seconds": 168.73399999999674
+    },
+    {
+      "stage": "coverage_engineering_scale_and_height_invariance",
+      "charged_seconds": 0.7179999999934807,
+      "status": "completed"
+    },
+    {
+      "stage": "sparse_world_v30_fit_and_fit_only_assay",
+      "status": "completed",
+      "charged_seconds": 41.48500000004424
+    },
+    {
+      "stage": "r18_failure_pullback_and_v31_source_forensics",
+      "status": "completed_conservatively_charged",
+      "charged_seconds": 300.0,
+      "accounting": "Conservative retained allowance for two local evidence-validation invocations and source-only diagnosis; not a measured runtime."
+    },
+    {
+      "stage": "v32_independent_validation_adaptation_and_all_scores",
+      "status": "interrupted_for_execution_only_parallel_resume",
+      "charged_seconds": 619.8119999999763,
+      "original_reserved_seconds": 3089.0629999999655,
+      "accounting": "Measured complete wrapper runtime plus10s conservative margin; child was stopped, not a completed model evaluation."
+    },
+    {
+      "stage": "parallel_execution_numeric_parity",
+      "status": "completed",
+      "charged_seconds": 15.48399999999674
+    },
+    {
+      "stage": "v32_parallel_same_algorithm_resume",
+      "status": "completed",
+      "charged_seconds": 1132.3130000000237,
+      "workers": 4
+    },
+    {
+      "stage": "v32_audit_initial_launcher",
+      "status": "failed_import_path_before_audit",
+      "charged_seconds": 0.9218761
+    },
+    {
+      "stage": "v32_independent_arrays_gates_roles_closeout",
+      "status": "completed",
+      "charged_seconds": 10.39000000001397
+    },
+    {
+      "stage": "post_validation_v30_parameter_form_equivalence",
+      "status": "completed",
+      "charged_seconds": 1.4219999999622814
+    }
+  ]
+}

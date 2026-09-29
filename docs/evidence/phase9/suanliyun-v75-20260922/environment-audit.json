@@ -1,0 +1,94 @@
+{
+  "checked_utc": "2026-09-22T07:41:16.337356+00:00",
+  "scope": "read_only_existing_deployment_audit_no_new_physics",
+  "ssh_alias": "suanliyun-agentic-AUV",
+  "endpoint": "root@219.146.211.42:25048",
+  "root": "/root/shared-nvme/agentic-auv",
+  "deployment": "/root/shared-nvme/agentic-auv/deployments/auv-smoke-20260922-01",
+  "source_count": 624,
+  "source_manifest_sha256": "5766749d86aacfc33fa302fe060b451ceaef7ddbc3d9481f508ccb56111fdd98",
+  "remote_source_mismatches": [],
+  "cgroup_memory_bytes": 64424509440,
+  "cgroup_cpu_max": "1000000 100000",
+  "runtime": {
+    "python": "3.11.13 | packaged by conda-forge | (main, Jun  4 2025, 14:48:23) [GCC 13.3.0]",
+    "executable": "/root/shared-nvme/agentic-auv/runtime/bin/python",
+    "numpy": "1.26.4",
+    "numba": "0.61.2",
+    "llvmlite": "0.44.0",
+    "scipy": "1.15.3",
+    "casadi": null,
+    "osqp": "0.6.7.post3"
+  },
+  "gpu": {
+    "returncode": 0,
+    "stdout": "name, driver_version, memory.total [MiB], memory.free [MiB]\nNVIDIA GeForce RTX 4090, 580.105.08, 23028 MiB, 22554 MiB",
+    "stderr": ""
+  },
+  "storage": {
+    "returncode": 0,
+    "stdout": "Filesystem                                                                     1B-blocks        Used   Available Use% Mounted on\ncs1.vast1.bz1.paratera.com:/cs1/fs1/pvc-2846a815-28ad-4694-8c9a-9f0235bda658 53687091200 21786263552 31900827648  41% /root/shared-nvme",
+    "stderr": ""
+  },
+  "mount": {
+    "returncode": 0,
+    "stdout": "/root/shared-nvme nfs",
+    "stderr": ""
+  },
+  "existing_smoke": {
+    "status": "verified",
+    "control_intervals": 32,
+    "physics_substeps": 64,
+    "native_exit": 0,
+    "scope": "new_server_deployment_smoke_only"
+  },
+  "existing_pytest": [
+    {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "65",
+      "time": "8.094",
+      "timestamp": "2026-09-22T13:55:24.149297+08:00",
+      "hostname": "p-c6c6e080e672-ackcs-00gjhpi1"
+    }
+  ],
+  "existing_environment_smoke": {
+    "scope": "environment_acceptance_only",
+    "versions": {
+      "torch": "2.7.0+cu128",
+      "torchvision": "0.22.0+cu128",
+      "isaacsim": "5.0.0.0",
+      "isaaclab": "0.45.9",
+      "isaaclab_tasks": "0.10.47",
+      "isaaclab_rl": "0.2.4",
+      "numpy": "1.26.4",
+      "numba": "0.61.2",
+      "llvmlite": "0.44.0",
+      "rsl-rl-lib": "2.3.3"
+    },
+    "isaaclab_release": "2.2.1",
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "torch_cuda_compute": true,
+    "numba_compilation": true,
+    "physics_steps": 32,
+    "state_device": "cuda:0",
+    "initial_z": 1.9970570802688599,
+    "final_z": 1.4163051843643188,
+    "physics_finite": true,
+    "isaaclab_modules_imported": true
+  },
+  "known_dependency_conflicts": [
+    "isaacsim-core 5.0.0.0 has requirement llvmlite==0.42.0, but you have llvmlite 0.44.0.",
+    "isaacsim-core 5.0.0.0 has requirement numba==0.59.1, but you have numba 0.61.2.",
+    "isaacsim-kernel 5.0.0.0 has requirement numpy==1.26.0, but you have numpy 1.26.4."
+  ],
+  "gpu_processes": {
+    "returncode": 0,
+    "stdout": "pid, process_name, used_gpu_memory [MiB]",
+    "stderr": ""
+  },
+  "new_physics_steps": 0,
+  "new_fits": 0
+}

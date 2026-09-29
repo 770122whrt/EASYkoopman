@@ -1,0 +1,99 @@
+{
+  "version": "projected-formal-v38-fixed-evaluation",
+  "roles": [
+    "validation",
+    "test"
+  ],
+  "paths": [
+    [
+      "nonlinear",
+      "pooled"
+    ],
+    [
+      "nonlinear",
+      "heldout"
+    ],
+    [
+      "linear",
+      "pooled"
+    ],
+    [
+      "linear",
+      "heldout"
+    ],
+    [
+      "known_physics",
+      "none"
+    ],
+    [
+      "persistence",
+      "none"
+    ]
+  ],
+  "conditional_horizons": [
+    1,
+    20,
+    60,
+    128
+  ],
+  "primary_accuracy_horizons": [
+    20,
+    60,
+    128
+  ],
+  "start_control": 128,
+  "full_episode_control_horizon": 512,
+  "full_episode_accuracy": "descriptive; completeness required",
+  "policy_origins": [
+    128
+  ],
+  "policy_horizons": [
+    20,
+    60,
+    128
+  ],
+  "policy_maximum_horizon": 128,
+  "primary_scopes": [
+    "pooled",
+    "heldout"
+  ],
+  "denominator_floor": [
+    0.001,
+    0.001,
+    0.001,
+    0.001
+  ],
+  "conditional_limits": {
+    "macro": 0.95,
+    "each_configuration_macro": 1.05,
+    "each_configuration_group": 1.1,
+    "over_linear_macro": 0.95,
+    "each_configuration_over_linear": 1.05
+  },
+  "policy_each_configuration_macro_max": 1.05,
+  "velocity_gate": {
+    "modes": [
+      "conditional_projected",
+      "policy_self_recurrence"
+    ],
+    "normalized_velocity_ratio_max": 0.9,
+    "minimum_improved_episodes_per_configuration": 2,
+    "total_episodes_per_configuration": 3,
+    "zero_over_zero_ratio": 1.0,
+    "improvement": "strict_S_less_than_B"
+  },
+  "all_six_paths_complete_required": true,
+  "bootstrap": {
+    "replicates": 2000,
+    "seed": 9600,
+    "percentiles": [
+      2.5,
+      97.5
+    ],
+    "unit": "configuration_stratified_paired_episode",
+    "promotion_gate": false
+  },
+  "known_physics": "descriptive; no unique learning benefit inferred from parity",
+  "complete_lift_recurrence": false,
+  "model_handoff": false
+}

@@ -1,0 +1,42 @@
+{
+  "case": {
+    "run_id": "i29-uuv6_angled-fit-8735-prbs",
+    "configuration": "uuv6_angled",
+    "role": "fit",
+    "seed": 8735,
+    "excitation": "prbs",
+    "intervals": 320,
+    "training_eligible": true,
+    "starting_z_m": 5.5,
+    "mode": "direct_pre_tam_v24"
+  },
+  "role": "fit_interface_diagnostic",
+  "origin_control": 128,
+  "control_intervals": 4,
+  "parent_sha256": "eab73ab86c18ed1f0acf16d913882afb35bad8fe417e15ccc332f2ddaaf61cb9",
+  "trace_sha256": "39a128e14dd29007e1b8fa348e24685973aced3a08abac7f2ce5f78f72b4dd44",
+  "arrays_sha256": "9faae1644d98102b1a3f959b6ddbb1c48d2c86ee894ae6134c9f6c5e134cb490",
+  "maximum_differences": {
+    "state": 0.0,
+    "pwm": 0.0,
+    "rotor_speed": 0.0,
+    "acceleration": 0.0,
+    "applied_control": 0.0,
+    "physics_time_s": 0.0
+  },
+  "repeat_branch_exact": true,
+  "masked_axis_zero": true,
+  "origin_actuator_time_s": 2.133333444595337,
+  "alternatives": [
+    {
+      "depth_command_offset": -0.01,
+      "complete": true,
+      "state_difference_from_original_max": 0.0002720847361282006
+    },
+    {
+      "depth_command_offset": 0.01,
+      "complete": true,
+      "state_difference_from_original_max": 0.0002714757203421698
+    }
+  ]
+}

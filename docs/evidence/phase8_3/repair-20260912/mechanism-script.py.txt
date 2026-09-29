@@ -1,0 +1,75 @@
+"""One local mechanism audit of the existing case; no new candidate selection."""
+from pathlib import Path
+import json, hashlib, sys
+import numpy as np
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT))
+from koopman.diagnostics_v23 import SourceOnlyReader, reserve_output, json_safe, diagnose_window
+from koopman.evaluation_v21 import DatasetFormalLocoBackendV21, load_protocol_episode_registry_v21
+from koopman.platform_features_v21 import fit_source_pca_v21
+from koopman.model_v21 import build_increment_targets_v21, build_observable_features_v21, build_conditional_design_v21
+from koopman.metrics_v21 import RolloutEpisodeV21
+from koopman.loco_v21 import CandidateSpecV21
+from easyuuv_nc.embodiments import SUPPORTED_EMBODIMENTS
+from workflows.diagnose_koopman_v23 import CASE_ID, SOURCE_COMMIT
+
+out = reserve_output(ROOT/'tmp/phase8_3', 'mechanism-audit-20260912')
+role=ROOT/'protocols/phase8_1/main_role_assignment_protocol.json'
+analysis=ROOT/'protocols/phase8_1/analysis_policy.json'
+for p, sha in [(role,'083d5eae3729e9939287345ab258dbfe4b4c8ca71ab769c2fd8616431a649417'),(analysis,'7a790b43d0f1581b8995ccdcbd9b6d259cb09bc8fe2268201400243d05f1e18c')]:
+    assert hashlib.sha256(p.read_bytes()).hexdigest()==sha
+data_root=ROOT/'source/results/koopman_phase8_2/dataset'
+registry=load_protocol_episode_registry_v21(role_protocol_path=role,inventory_path=data_root/'dataset_inventory.json')
+sources=tuple(c for c in SUPPORTED_EMBODIMENTS if c!='base')
+bindings=tuple(b for c in sources for b in (*registry.for_configuration_role(c,'fit')[:2],*registry.for_configuration_role(c,'validation')))
+backend=DatasetFormalLocoBackendV21(dataset_root=data_root,analysis_policy_path=analysis,expected_source_commit=SOURCE_COMMIT,expected_evidence_level='server_isaac_smoke')
+reader=SourceOnlyReader(backend,bindings)
+report={'scope':'local mechanism audit, same35 source episodes; one baseline fit; SVD same ridge objective, no tuning',
+        'candidate_id':CASE_ID,'source_commit':SOURCE_COMMIT,'allowlist':[b.to_dict() for b in bindings],'opens':[],
+        'code_sha256':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/'koopman/model_v21.py',ROOT/'koopman/so3_v21.py',ROOT/'koopman/diagnostics_v23.py']}}
+def save():
+    (out/'report.json').write_text(json.dumps(json_safe(report),ensure_ascii=False,indent=2,allow_nan=False)+'\n',encoding='utf-8')
+save()
+loaded=[]
+for b in bindings:
+    loaded.append((b,reader.open_episode(b)));report['opens'].append(b.to_dict());save();print('load',len(loaded),flush=True)
+descriptors={c:backend._descriptor(next(d for b,d in loaded if b.configuration==c)) for c in sources}
+projector=fit_source_pca_v21(descriptors,source_configurations=sources)
+scores={c:projector.transform(d) for c,d in descriptors.items()}
+candidate=CandidateSpecV21(family='conditional',observable_schema='so3_identity_v1',data_prefix=2,ridge=1e-8,normalization='none',conditioning='structured_pca2',label='conditional:so3_identity_v1:p2:r1e-08:none')
+assert candidate.candidate_id==CASE_ID
+model=backend._fit_model(candidate,loaded,sources,projector)
+old=json.loads((ROOT/'docs/evidence/phase8_3/fixed-source-20260912.json').read_text(encoding='utf-8'))
+assert model.model_sha256==old['model_sha256']
+report['baseline_model_sha256']=model.model_sha256
+report['fit_diagnostics']=dict(model.diagnostics)
+fits=[(b,d) for b,d in loaded if b.role=='fit']
+design=np.concatenate([build_conditional_design_v21(build_observable_features_v21(d.state_11,d.actuator_memory_4,d.virtual_control_4,'so3_identity_v1'),np.repeat(scores[b.configuration][None,:],d.sample_count,axis=0)) for b,d in fits])
+targets=np.concatenate([build_increment_targets_v21(d.state_11,d.Y) for b,d in fits])
+u,s,vt=np.linalg.svd(design,full_matrices=False)
+svd_coeff=(vt.T @ ((s/(s*s+candidate.ridge))[:,None]*(u.T@targets))).T
+report['solver_check']={'relative_coefficient_difference':np.linalg.norm(svd_coeff-model.coefficient_matrix)/np.linalg.norm(model.coefficient_matrix),
+    'max_training_prediction_difference':np.max(np.abs(design@(svd_coeff-model.coefficient_matrix).T)),
+    'smallest_singular':s[-1],'largest_singular':s[0]}
+report['per_configuration']={}
+indices=[1,8,9,10,11,12,13]
+for c in sources:
+    z=scores[c]; coeff=model.coefficient_matrix
+    effective=coeff[:,:22].copy();effective[:,0]+=coeff[:,22:24]@z
+    effective[:,1:22]+=z[0]*coeff[:,24:45]+z[1]*coeff[:,45:66]
+    A=np.eye(7)+effective[:7,indices]
+    eig=np.linalg.eigvals(A)
+    entry={'score':z,'unbounded_state_order':['z','vx','vy','vz','wx','wy','wz'],
+           'A7':A,'eigenvalues_real_imag':[[e.real,e.imag] for e in eig],
+           'spectral_radius_A7':max(abs(eig)),'episodes':[]}
+    for b,d in loaded:
+        if b.configuration!=c: continue
+        pred=model.predict_increment(d.state_11,d.actuator_memory_4,d.virtual_control_4,platform_score=np.repeat(z[None,:],d.sample_count,axis=0))
+        truth=build_increment_targets_v21(d.state_11,d.Y)
+        entry['episodes'].append({'episode_id':b.episode_id,'role':b.role,'one_step_increment_rmse_10':np.sqrt(np.mean((pred-truth)**2,axis=0)),
+          'truth_increment_rms_10':np.sqrt(np.mean(truth**2,axis=0)),
+          'max_truth_abs_z_v_omega':np.max(np.abs(d.state_11[:,[0,5,6,7,8,9,10]]),axis=0)})
+    report['per_configuration'][c]=entry;save();print(c,'rhoA7',entry['spectral_radius_A7'],flush=True)
+# Save coefficients ONLY as diagnostic numeric arrays, with no model loader/handoff envelope.
+np.savez(out/'diagnostic_arrays.npz',coefficient=model.coefficient_matrix,svd_coefficient=svd_coeff,design=design,targets=targets)
+report['status']='completed_local_mechanism_audit';save();print(out,flush=True)

@@ -1,0 +1,22 @@
+from pathlib import Path
+import hashlib,json,subprocess
+p=Path('/root/phase84-transfer-20260913/feedback-r16');r=Path('/root/EASYkoopman-phase8-4-feedback-20260913-r16')
+read=lambda q:json.loads(q.read_text())
+manifest=read(r/'SOURCE_MANIFEST.json');bad=[n for n,h in manifest['files_sha256'].items() if hashlib.sha256((r/n).read_bytes()).hexdigest()!=h]
+assert not bad,bad
+source=subprocess.check_output(['git','rev-parse','HEAD'],cwd=r,text=True).strip();assert source==(p/'expected-source-commit.txt').read_text().strip()
+dirty=subprocess.check_output(['git','status','--porcelain=v1','--untracked-files=all'],cwd=r,text=True).strip();assert not dirty,dirty
+stages={s:read(p/s/'stage-status.json') for s in ('trim','excitation')}
+exits={s:int((p/(s+'-launch.exit_status')).read_text()) for s in stages}
+assert all(v==0 for v in exits.values())
+assert all(v['status']=='calibration_stage_completed_pending_pullback' for v in stages.values())
+b=read(p/'budget.json');assert len(b['attempts'])<=49 and b['charged_seconds']<=2400
+assert all(a['status']=='exited' for a in b['attempts'])
+gpu=subprocess.check_output(['nvidia-smi','--query-compute-apps=pid,process_name','--format=csv,noheader'],text=True).strip()
+procs=subprocess.check_output(['ps','-eo','pid,args'],text=True)
+active=[x for x in procs.splitlines() if 'workflows.collect_feedback_v28' in x or ('phase8_4_feedback_server.sh' in x and 'r16' in x)]
+assert not active,active
+size=sum(q.stat().st_size for q in p.rglob('*') if q.is_file());assert size<1024**3
+result={'status':'source_clean_all_hashes_verified_no_active_collectors','source_commit':source,'files':len(manifest['files_sha256']),'dirty':dirty,'gpu_compute_processes':gpu.splitlines() if gpu else [],'active_collectors':active,'stage_exit_codes':exits,'attempts':len(b['attempts']),'charged_seconds':b['charged_seconds'],'transfer_bytes':size,'model_fits':0,'model_handoff':False}
+(p/'server-final-state.json').write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps(result))

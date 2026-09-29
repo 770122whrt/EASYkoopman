@@ -1,0 +1,1215 @@
+{
+  "status": "selection_root_cause_reproduced_not_fixed",
+  "actual": {
+    "uuv4": {
+      "trace": "docs\\evidence\\phase9\\uuv4-pairs-v71-20260921\\results\\uuv4-pitch-mpc\\output\\diagnostic.json.gz",
+      "sha256": "8d73e69d07a58f448b13a7a40c6bff369afbd1e69a5d8d6f9904dac3638383c5",
+      "stop": "RuntimeError:execution_bridge:actual_state_outside_support",
+      "physics_steps": 209,
+      "rejected_replies": [
+        {
+          "receipt_physics_index": 184,
+          "request_origin": 180,
+          "proposed_activation": 196,
+          "solver_reason": "baseline_prediction_infeasible",
+          "solver_ms": 7.91867496445775,
+          "worker_event_ms": 43.75379299744964,
+          "feasible_candidates": [
+            {
+              "index": 3,
+              "feasible": true,
+              "cost": 0.00013925806338419656,
+              "rejection": null
+            },
+            {
+              "index": 6,
+              "feasible": true,
+              "cost": 0.00013125054537729543,
+              "rejection": null
+            }
+          ],
+          "candidates": [
+            {
+              "index": 0,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 30
+              }
+            },
+            {
+              "index": 1,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 31
+              }
+            },
+            {
+              "index": 2,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 31
+              }
+            },
+            {
+              "index": 3,
+              "feasible": true,
+              "cost": 0.00013925806338419656,
+              "rejection": null
+            },
+            {
+              "index": 4,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 29
+              }
+            },
+            {
+              "index": 5,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 30
+              }
+            },
+            {
+              "index": 6,
+              "feasible": true,
+              "cost": 0.00013125054537729543,
+              "rejection": null
+            }
+          ]
+        },
+        {
+          "receipt_physics_index": 188,
+          "request_origin": 184,
+          "proposed_activation": 200,
+          "solver_reason": "baseline_prediction_infeasible",
+          "solver_ms": 7.217172998934984,
+          "worker_event_ms": 44.307745061814785,
+          "feasible_candidates": [],
+          "candidates": [
+            {
+              "index": 0,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 25
+              }
+            },
+            {
+              "index": 1,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 25
+              }
+            },
+            {
+              "index": 2,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 25
+              }
+            },
+            {
+              "index": 3,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 26
+              }
+            },
+            {
+              "index": 4,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 25
+              }
+            },
+            {
+              "index": 5,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 25
+              }
+            },
+            {
+              "index": 6,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 26
+              }
+            }
+          ]
+        },
+        {
+          "receipt_physics_index": 192,
+          "request_origin": 188,
+          "proposed_activation": 204,
+          "solver_reason": "baseline_prediction_infeasible",
+          "solver_ms": 6.9298031739890575,
+          "worker_event_ms": 44.269292149692774,
+          "feasible_candidates": [],
+          "candidates": [
+            {
+              "index": 0,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 20
+              }
+            },
+            {
+              "index": 1,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 20
+              }
+            },
+            {
+              "index": 2,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 20
+              }
+            },
+            {
+              "index": 3,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 20
+              }
+            },
+            {
+              "index": 4,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 20
+              }
+            },
+            {
+              "index": 5,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 20
+              }
+            },
+            {
+              "index": 6,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 20
+              }
+            }
+          ]
+        },
+        {
+          "receipt_physics_index": 208,
+          "request_origin": 204,
+          "proposed_activation": 220,
+          "solver_reason": "baseline_prediction_infeasible",
+          "solver_ms": 6.804510951042175,
+          "worker_event_ms": 44.6446668356657,
+          "feasible_candidates": [],
+          "candidates": [
+            {
+              "index": 0,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 4
+              }
+            },
+            {
+              "index": 1,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 4
+              }
+            },
+            {
+              "index": 2,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 4
+              }
+            },
+            {
+              "index": 3,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 4
+              }
+            },
+            {
+              "index": 4,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 4
+              }
+            },
+            {
+              "index": 5,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 4
+              }
+            },
+            {
+              "index": 6,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 4
+              }
+            }
+          ]
+        }
+      ],
+      "choices": [
+        {
+          "physics_index": 180,
+          "result": {
+            "status": "proposal",
+            "source": "mpc",
+            "command": [
+              -9.021460023461714e-09,
+              0.0009321022080257535,
+              0.0,
+              -0.11824924498796463
+            ],
+            "plan_index": 8,
+            "reason": null,
+            "actual_history_advanced": false,
+            "activated": true
+          }
+        },
+        {
+          "physics_index": 184,
+          "result": {
+            "status": "proposal",
+            "source": "mpc",
+            "command": [
+              -9.021460023461714e-09,
+              0.0009321022080257535,
+              0.0,
+              -0.11824924498796463
+            ],
+            "plan_index": 10,
+            "reason": null,
+            "actual_history_advanced": false,
+            "activated": false
+          }
+        },
+        {
+          "physics_index": 188,
+          "result": {
+            "status": "proposal",
+            "source": "mpc",
+            "command": [
+              -9.021460023461714e-09,
+              0.0009321022080257535,
+              0.0,
+              -0.11824924498796463
+            ],
+            "plan_index": 12,
+            "reason": null,
+            "actual_history_advanced": false,
+            "activated": false
+          }
+        },
+        {
+          "physics_index": 192,
+          "result": {
+            "status": "proposal",
+            "source": "mpc",
+            "command": [
+              -9.021460023461714e-09,
+              0.0009321022080257535,
+              0.0,
+              -0.11824924498796463
+            ],
+            "plan_index": 14,
+            "reason": null,
+            "actual_history_advanced": false,
+            "activated": false
+          }
+        },
+        {
+          "physics_index": 196,
+          "result": {
+            "status": "proposal",
+            "source": "mpc",
+            "command": [
+              -9.021460023461714e-09,
+              0.0009321022080257535,
+              0.0,
+              -0.11824924498796463
+            ],
+            "plan_index": 16,
+            "reason": null,
+            "actual_history_advanced": false,
+            "activated": false
+          }
+        },
+        {
+          "physics_index": 200,
+          "result": {
+            "status": "proposal",
+            "source": "mpc",
+            "command": [
+              -9.021460023461714e-09,
+              0.0009321022080257535,
+              0.0,
+              -0.11824924498796463
+            ],
+            "plan_index": 18,
+            "reason": null,
+            "actual_history_advanced": false,
+            "activated": false
+          }
+        },
+        {
+          "physics_index": 204,
+          "result": {
+            "status": "fallback",
+            "command": null,
+            "source": null,
+            "reason": "plan_index_expired",
+            "actual_history_advanced": false
+          }
+        },
+        {
+          "physics_index": 208,
+          "result": {
+            "status": "fallback",
+            "command": null,
+            "source": null,
+            "reason": "worker_no_admissible_plan",
+            "actual_history_advanced": false
+          }
+        }
+      ],
+      "actual_tail": [
+        {
+          "physics_index": 180,
+          "state": [
+            5.504587173461914,
+            0.9998459815979004,
+            -4.9409814018019915e-09,
+            0.017544735223054886,
+            1.0872263506156443e-10,
+            -0.0026012035086750984,
+            -8.987484090283715e-10,
+            -0.0010966690024361014,
+            4.3208011391016043e-08,
+            0.04434283822774887,
+            -2.777741370252329e-10
+          ],
+          "packet_source": "mpc",
+          "command": [
+            -9.021460023461714e-09,
+            0.0009321022080257535,
+            0.0,
+            -0.11824924498796463
+          ],
+          "applied_torque_y": 0.09622891247272491
+        },
+        {
+          "physics_index": 184,
+          "state": [
+            5.504551410675049,
+            0.9998329877853394,
+            -4.223188465601879e-09,
+            0.018275685608386993,
+            8.761358999409552e-11,
+            -0.0026814318262040615,
+            -9.220341712357083e-10,
+            -0.0012232604203745723,
+            4.353444182925159e-08,
+            0.04433842748403549,
+            -3.099133172312918e-10
+          ],
+          "packet_source": "mpc",
+          "command": [
+            -9.021460023461714e-09,
+            0.0009321022080257535,
+            0.0,
+            -0.11824924498796463
+          ],
+          "applied_torque_y": 0.060805439949035645
+        },
+        {
+          "physics_index": 192,
+          "state": [
+            5.504459857940674,
+            0.9998060464859009,
+            -2.790989439560576e-09,
+            0.019695617258548737,
+            4.40019548575421e-11,
+            -0.002851044526323676,
+            -9.59541557321586e-10,
+            -0.0017403744859620929,
+            4.209081083672572e-08,
+            0.041385870426893234,
+            -3.712046781068068e-10
+          ],
+          "packet_source": "mpc",
+          "command": [
+            -9.021460023461714e-09,
+            0.0009321022080257535,
+            0.0,
+            -0.11824924498796463
+          ],
+          "applied_torque_y": 0.030966997146606445
+        },
+        {
+          "physics_index": 200,
+          "state": [
+            5.504327297210693,
+            0.9997798800468445,
+            -1.5319856494500073e-09,
+            0.020977716892957687,
+            2.4442229924065417e-12,
+            -0.0030319690704345703,
+            -9.853989846320133e-10,
+            -0.0024148805532604456,
+            3.395893344304568e-08,
+            0.03675294294953346,
+            -4.198572323144134e-10
+          ],
+          "packet_source": "mpc",
+          "command": [
+            -9.021460023461714e-09,
+            0.0009321022080257535,
+            0.0,
+            -0.11824924498796463
+          ],
+          "applied_torque_y": 0.022764649242162704
+        },
+        {
+          "physics_index": 204,
+          "state": [
+            5.504243850708008,
+            0.999767541885376,
+            -1.0490363022697125e-09,
+            0.021558845415711403,
+            -1.569600699413698e-11,
+            -0.0031263097189366817,
+            -9.94172855151021e-10,
+            -0.002772075356915593,
+            2.6230731364762505e-08,
+            0.03415672108530998,
+            -4.3643025304795913e-10
+          ],
+          "packet_source": "committed_prefix",
+          "command": [
+            -8.927836248062704e-09,
+            -0.0044367872178554535,
+            0.0,
+            -0.11440978944301605
+          ],
+          "applied_torque_y": 0.003821946680545807
+        },
+        {
+          "physics_index": 208,
+          "state": [
+            5.504149436950684,
+            0.9997561573982239,
+            -6.676867392307884e-10,
+            0.02208305336534977,
+            -3.1794039623278536e-11,
+            -0.0032231637742370367,
+            -1.000638127912623e-09,
+            -0.0030928151682019234,
+            2.1308261821673113e-08,
+            0.03011113591492176,
+            -4.4807157983939305e-10
+          ],
+          "packet_source": "committed_prefix",
+          "command": [
+            -8.927836248062704e-09,
+            -0.0044367872178554535,
+            0.0,
+            -0.11440978944301605
+          ],
+          "applied_torque_y": -0.0432739183306694
+        }
+      ]
+    },
+    "uuv4_angled": {
+      "trace": "docs\\evidence\\phase9\\remaining-coverage-v73-20260921\\results\\uuv4_angled-pitch-mpc\\output\\diagnostic.json.gz",
+      "sha256": "fbde8a75b110c94d640512e17d899b77bf78bf7bab628d90ae721bee4adbfcfb",
+      "stop": "RuntimeError:execution_bridge:actual_state_outside_support",
+      "physics_steps": 212,
+      "rejected_replies": [
+        {
+          "receipt_physics_index": 184,
+          "request_origin": 180,
+          "proposed_activation": 196,
+          "solver_reason": "baseline_prediction_infeasible",
+          "solver_ms": 7.8750839456915855,
+          "worker_event_ms": 43.370240833610296,
+          "feasible_candidates": [],
+          "candidates": [
+            {
+              "index": 0,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 33
+              }
+            },
+            {
+              "index": 1,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 34
+              }
+            },
+            {
+              "index": 2,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 34
+              }
+            },
+            {
+              "index": 3,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 37
+              }
+            },
+            {
+              "index": 4,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 32
+              }
+            },
+            {
+              "index": 5,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 33
+              }
+            },
+            {
+              "index": 6,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 36
+              }
+            }
+          ]
+        },
+        {
+          "receipt_physics_index": 188,
+          "request_origin": 184,
+          "proposed_activation": 200,
+          "solver_reason": "baseline_prediction_infeasible",
+          "solver_ms": 8.594541810452938,
+          "worker_event_ms": 43.249641079455614,
+          "feasible_candidates": [],
+          "candidates": [
+            {
+              "index": 0,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 29
+              }
+            },
+            {
+              "index": 1,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 29
+              }
+            },
+            {
+              "index": 2,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 29
+              }
+            },
+            {
+              "index": 3,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 29
+              }
+            },
+            {
+              "index": 4,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 29
+              }
+            },
+            {
+              "index": 5,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 29
+              }
+            },
+            {
+              "index": 6,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 29
+              }
+            }
+          ]
+        },
+        {
+          "receipt_physics_index": 192,
+          "request_origin": 188,
+          "proposed_activation": 204,
+          "solver_reason": "baseline_prediction_infeasible",
+          "solver_ms": 9.007854852825403,
+          "worker_event_ms": 43.18891605362296,
+          "feasible_candidates": [],
+          "candidates": [
+            {
+              "index": 0,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 24
+              }
+            },
+            {
+              "index": 1,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 24
+              }
+            },
+            {
+              "index": 2,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 24
+              }
+            },
+            {
+              "index": 3,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 24
+              }
+            },
+            {
+              "index": 4,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 24
+              }
+            },
+            {
+              "index": 5,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 24
+              }
+            },
+            {
+              "index": 6,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 24
+              }
+            }
+          ]
+        },
+        {
+          "receipt_physics_index": 208,
+          "request_origin": 204,
+          "proposed_activation": 220,
+          "solver_reason": "baseline_prediction_infeasible",
+          "solver_ms": 8.126602042466402,
+          "worker_event_ms": 44.32551795616746,
+          "feasible_candidates": [],
+          "candidates": [
+            {
+              "index": 0,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 8
+              }
+            },
+            {
+              "index": 1,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 8
+              }
+            },
+            {
+              "index": 2,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 8
+              }
+            },
+            {
+              "index": 3,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 8
+              }
+            },
+            {
+              "index": 4,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 8
+              }
+            },
+            {
+              "index": 5,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 8
+              }
+            },
+            {
+              "index": 6,
+              "feasible": false,
+              "cost": null,
+              "rejection": {
+                "reason": "predicted_state_out_of_support",
+                "index": 8
+              }
+            }
+          ]
+        }
+      ],
+      "choices": [
+        {
+          "physics_index": 180,
+          "result": {
+            "status": "proposal",
+            "source": "mpc",
+            "command": [
+              -1.341958455469694e-08,
+              0.00787977036088705,
+              0.0,
+              -0.0967804491519928
+            ],
+            "plan_index": 8,
+            "reason": null,
+            "actual_history_advanced": false,
+            "activated": true
+          }
+        },
+        {
+          "physics_index": 184,
+          "result": {
+            "status": "proposal",
+            "source": "mpc",
+            "command": [
+              -1.886333578227095e-08,
+              0.001006967737339437,
+              0.0,
+              -0.11678044497966766
+            ],
+            "plan_index": 10,
+            "reason": null,
+            "actual_history_advanced": false,
+            "activated": false
+          }
+        },
+        {
+          "physics_index": 188,
+          "result": {
+            "status": "proposal",
+            "source": "mpc",
+            "command": [
+              -2.019353040338956e-08,
+              -0.000672420603223145,
+              0.0,
+              -0.12166750431060791
+            ],
+            "plan_index": 12,
+            "reason": null,
+            "actual_history_advanced": false,
+            "activated": false
+          }
+        },
+        {
+          "physics_index": 192,
+          "result": {
+            "status": "proposal",
+            "source": "mpc",
+            "command": [
+              -2.019353040338956e-08,
+              -0.000672420603223145,
+              0.0,
+              -0.12166750431060791
+            ],
+            "plan_index": 14,
+            "reason": null,
+            "actual_history_advanced": false,
+            "activated": false
+          }
+        },
+        {
+          "physics_index": 196,
+          "result": {
+            "status": "proposal",
+            "source": "mpc",
+            "command": [
+              -2.019353040338956e-08,
+              -0.000672420603223145,
+              0.0,
+              -0.12166750431060791
+            ],
+            "plan_index": 16,
+            "reason": null,
+            "actual_history_advanced": false,
+            "activated": false
+          }
+        },
+        {
+          "physics_index": 200,
+          "result": {
+            "status": "proposal",
+            "source": "mpc",
+            "command": [
+              -2.019353040338956e-08,
+              -0.000672420603223145,
+              0.0,
+              -0.12166750431060791
+            ],
+            "plan_index": 18,
+            "reason": null,
+            "actual_history_advanced": false,
+            "activated": false
+          }
+        },
+        {
+          "physics_index": 204,
+          "result": {
+            "status": "fallback",
+            "command": null,
+            "source": null,
+            "reason": "plan_index_expired",
+            "actual_history_advanced": false
+          }
+        },
+        {
+          "physics_index": 208,
+          "result": {
+            "status": "fallback",
+            "command": null,
+            "source": null,
+            "reason": "worker_no_admissible_plan",
+            "actual_history_advanced": false
+          }
+        }
+      ],
+      "actual_tail": [
+        {
+          "physics_index": 180,
+          "state": [
+            5.504676818847656,
+            0.9998910427093506,
+            1.047907804974102e-08,
+            0.014758664183318615,
+            -1.0291345553525844e-09,
+            -0.002408314263448119,
+            4.299559375198214e-09,
+            -0.0013770625228062272,
+            -1.1479490069632448e-07,
+            0.05616737902164459,
+            -1.4606097442637633e-09
+          ],
+          "packet_source": "mpc",
+          "command": [
+            -1.341958455469694e-08,
+            0.00787977036088705,
+            0.0,
+            -0.0967804491519928
+          ],
+          "applied_torque_y": 0.2512131929397583
+        },
+        {
+          "physics_index": 184,
+          "state": [
+            5.504626750946045,
+            0.9998760223388672,
+            8.623980640720674e-09,
+            0.015744293108582497,
+            -1.0144762807584584e-09,
+            -0.0024747950956225395,
+            4.350333426828001e-09,
+            -0.0016149778384715319,
+            -1.0956851070886842e-07,
+            0.06126463785767555,
+            -1.3463159476145847e-09
+          ],
+          "packet_source": "mpc",
+          "command": [
+            -1.886333578227095e-08,
+            0.001006967737339437,
+            0.0,
+            -0.11678044497966766
+          ],
+          "applied_torque_y": 0.19967448711395264
+        },
+        {
+          "physics_index": 192,
+          "state": [
+            5.504537105560303,
+            0.999840497970581,
+            5.621625831508936e-09,
+            0.01785929687321186,
+            -9.901115483046397e-10,
+            -0.0026221030857414007,
+            4.425082078540754e-09,
+            -0.0012713581090793014,
+            -7.110461552883862e-08,
+            0.0644230917096138,
+            -1.1475941308347615e-09
+          ],
+          "packet_source": "mpc",
+          "command": [
+            -2.019353040338956e-08,
+            -0.000672420603223145,
+            0.0,
+            -0.12166750431060791
+          ],
+          "applied_torque_y": 0.0627301037311554
+        },
+        {
+          "physics_index": 200,
+          "state": [
+            5.504459381103516,
+            0.9998014569282532,
+            4.330956482334614e-09,
+            0.019926289096474648,
+            -9.92092186180571e-10,
+            -0.0027896168176084757,
+            4.473097447998953e-09,
+            -0.001340385410003364,
+            -1.0933931982037848e-08,
+            0.06023109331727028,
+            -1.0612414280686266e-09
+          ],
+          "packet_source": "mpc",
+          "command": [
+            -2.019353040338956e-08,
+            -0.000672420603223145,
+            0.0,
+            -0.12166750431060791
+          ],
+          "applied_torque_y": 0.007043078541755676
+        },
+        {
+          "physics_index": 204,
+          "state": [
+            5.504415512084961,
+            0.9997816681861877,
+            4.503192485572072e-09,
+            0.0208908561617136,
+            -1.0090488444802759e-09,
+            -0.002880185144022107,
+            4.492478389295229e-09,
+            -0.0015053075039759278,
+            2.3053017272900433e-08,
+            0.05693361908197403,
+            -1.0693820273743881e-09
+          ],
+          "packet_source": "committed_prefix",
+          "command": [
+            -1.5222704874418014e-08,
+            -0.005997783504426479,
+            0.0,
+            -0.10166750103235245
+          ],
+          "applied_torque_y": -0.03963052108883858
+        },
+        {
+          "physics_index": 208,
+          "state": [
+            5.504375457763672,
+            0.9997628927230835,
+            5.136037817266015e-09,
+            0.021774528548121452,
+            -1.0363391256262844e-09,
+            -0.0029754620045423508,
+            4.512361595487846e-09,
+            -0.0011708879610523582,
+            4.5463231401754456e-08,
+            0.05096094682812691,
+            -1.1017163847881761e-09
+          ],
+          "packet_source": "committed_prefix",
+          "command": [
+            -1.5222704874418014e-08,
+            -0.005997783504426479,
+            0.0,
+            -0.10166750103235245
+          ],
+          "applied_torque_y": -0.11659421026706696
+        }
+      ]
+    }
+  },
+  "minimal_synthetic_reproduction": [
+    {
+      "mode": "baseline_valid",
+      "status": "baseline",
+      "reason": null,
+      "selected_index": 0,
+      "feasible_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "usable_commands_returned": true,
+      "actual_physics_steps": 0,
+      "scope": "real frozen selection code; controlled synthetic forecast outcomes; no closed-loop evidence"
+    },
+    {
+      "mode": "baseline_bad_others_good",
+      "status": "no_plan",
+      "reason": "baseline_prediction_infeasible",
+      "selected_index": null,
+      "feasible_indices": [
+        3,
+        6
+      ],
+      "usable_commands_returned": false,
+      "actual_physics_steps": 0,
+      "scope": "real frozen selection code; controlled synthetic forecast outcomes; no closed-loop evidence"
+    },
+    {
+      "mode": "all_bad",
+      "status": "no_plan",
+      "reason": "baseline_prediction_infeasible",
+      "selected_index": null,
+      "feasible_indices": [],
+      "usable_commands_returned": false,
+      "actual_physics_steps": 0,
+      "scope": "real frozen selection code; controlled synthetic forecast outcomes; no closed-loop evidence"
+    }
+  ],
+  "repeat_identical": true,
+  "known_gap_assertion_exit_code": 1,
+  "server_connections": 0,
+  "new_physics": 0,
+  "new_fits": 0,
+  "source_sha256": {
+    "koopman/bounded_mpc_v67.py": "0fad367b9aee383706f5e2708d056119781fcff22aa5b4f8178afff48d530b5b",
+    "koopman/bounded_mpc_v44.py": "67f318914e18e966367d3d4bb18f27877871fe50ed95d04343a35631b687fec2",
+    "koopman/plan_continuity_v54.py": "0bc9932b74b9b29e581c72e14211fc595ae57f85d59382008c5899d1b0926aea",
+    "koopman/plan_arbiter_v52.py": "7b554ed510660c0f4d6e85e6ab45380dfc59abe4f3156aee65bcdbf4df4bd85d",
+    "koopman/bounded_feedback_v46.py": "cc707af95e63697638fa6f98a7e6a7d1a0edee5d475aa4310b95b9a0f1b83af7"
+  }
+}

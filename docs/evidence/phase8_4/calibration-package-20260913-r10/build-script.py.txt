@@ -1,0 +1,84 @@
+"""One-shot isolated source artifact; never stages or commits the working repository."""
+from pathlib import Path
+import hashlib
+import json
+import shutil
+import subprocess
+
+root = Path(__file__).resolve().parents[1]
+package = root / '.pytest-tmp/phase84-calibration-20260913-r10'
+source = package / 'source'
+evidence = root / 'docs/evidence/phase8_4/calibration-package-20260913-r10'
+package.mkdir(exist_ok=False)
+evidence.mkdir(exist_ok=False)
+source.mkdir()
+
+def git(cwd, *args):
+    return subprocess.run(['git', '-c', 'core.excludesFile=', '-c', 'core.autocrlf=false',
+        '-c', 'core.longpaths=true', '-c', 'commit.gpgsign=false',
+        '-c', 'core.hooksPath=' + str(package / 'no-hooks'),
+        *args], cwd=cwd, check=True, capture_output=True).stdout.decode('utf-8').strip()
+
+tracked = git(root, 'ls-files', '-z').split('\0')
+folders = ('easyuuv_nc/', 'koopman/', 'workflows/', 'tests/', 'scripts/')
+names = {p for p in tracked if p.startswith(folders) or ('/' not in p and p.endswith('.py'))}
+names.update({'.gitignore', '.gitattributes', 'pyproject.toml'})
+# Include new Python work only under the explicitly selected runtime/test scopes.
+for folder in folders:
+    names.update(p.relative_to(root).as_posix() for p in (root / folder).rglob('*.py')
+                 if '__pycache__' not in p.parts)
+names.update({'scripts/phase8_3_server_pair.sh','scripts/phase8_4_formal_server.sh','scripts/phase8_4_free_water_server.sh','scripts/phase8_4_calibration_server.sh'})
+names = {p for p in names if not p.endswith('.md') and not p.startswith(
+    ('easyuuv_nc/docs/', 'easyuuv_nc/artifacts/', 'easyuuv_nc/checkpoints/'))}
+original = {}; hashes = {}; normalized = []
+for name in sorted(names):
+    path = root / name
+    if not path.is_file() or not path.resolve().is_relative_to(root.resolve()) or path.is_symlink():
+        raise RuntimeError('unsafe_or_missing_source:' + name)
+    data = path.read_bytes()
+    original[name] = hashlib.sha256(data).hexdigest()
+    if name.endswith('.sh'):
+        converted = data.replace(b'\r\n', b'\n')
+        if converted != data:
+            normalized.append(name)
+        data = converted
+    target = source / name
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_bytes(data)
+    hashes[name] = hashlib.sha256(data).hexdigest()
+manifest = {'schema': 'phase8.4-isolated-source-snapshot-v1', 'origin_head': git(root, 'rev-parse', 'HEAD'),
+    'origin_branch': git(root, 'branch', '--show-current'), 'origin_dirty': True,
+    'purpose': 'Sixteen-case maximum workpoint calibration; source-only static inverse; user authorized; no model fits',
+    'files_sha256': hashes, 'origin_files_sha256': original, 'shell_files_normalized_to_lf': normalized,
+    'excluded': ['datasets', 'source/results', 'protocols', 'docs', 'credentials', 'venv', 'original git history']}
+(source / 'SOURCE_MANIFEST.json').write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
+git(source, 'init', '-b', 'phase84-calibration-snapshot')
+all_names = sorted(names | {'SOURCE_MANIFEST.json'})
+for start in range(0, len(all_names), 40):
+    git(source, 'add', '--', *all_names[start:start+40])
+git(source, '-c', 'user.name=Phase 8.3 source packaging', '-c', 'user.email=source-package@localhost',
+    'commit', '-m', 'Isolated calibration diagnostic snapshot; original worktree unchanged')
+commit = git(source, 'rev-parse', 'HEAD')
+assert not git(source, 'status', '--porcelain=v1', '--untracked-files=all')
+bundle = package / 'EasyUUV-phase8-4-calibration.bundle'
+git(source, 'bundle', 'create', str(bundle), 'HEAD', 'refs/heads/phase84-calibration-snapshot')
+git(source, 'bundle', 'verify', str(bundle))
+clone = package / 'verified-clone'
+git(package, 'clone', str(bundle), str(clone))
+assert git(clone, 'rev-parse', 'HEAD') == commit
+for name, expected in hashes.items():
+    assert hashlib.sha256((clone / name).read_bytes()).hexdigest() == expected, name
+assert not git(clone, 'status', '--porcelain=v1', '--untracked-files=all')
+report = {'status': 'bundle_cloned_all_source_hashes_verified_runtime_unexecuted',
+    'source_commit': commit, 'origin_head': manifest['origin_head'], 'origin_branch': manifest['origin_branch'],
+    'bundle_path': str(bundle), 'bundle_sha256': hashlib.sha256(bundle.read_bytes()).hexdigest(),
+    'bundle_bytes': bundle.stat().st_size, 'file_count': len(hashes), 'clone_path': str(clone),
+    'shell_lf_normalizations': normalized, 'root_tests': 'pending local result',
+    'clone_tests': 'pending', 'server': 'r10 runtime not yet executed; calibration explicitly authorized', 'model_handoff': False}
+for name, value in [('bundle.sha256', report['bundle_sha256']), ('expected-source-commit.txt', commit)]:
+    (package / name).write_text(value + '\n', encoding='utf-8')
+    (evidence / name).write_text(value + '\n', encoding='utf-8')
+shutil.copyfile(source / 'SOURCE_MANIFEST.json', evidence / 'SOURCE_MANIFEST.json')
+shutil.copyfile(Path(__file__), evidence / 'build-script.py.txt')
+(evidence / 'package.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
+print(json.dumps(report, indent=2))

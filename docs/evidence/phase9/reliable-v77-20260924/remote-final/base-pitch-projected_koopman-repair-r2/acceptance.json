@@ -1,0 +1,31 @@
+{
+  "status": "accepted_bounded_simulation_time_closed_loop",
+  "physics_steps": 240,
+  "replay_max_errors": [
+    0.0,
+    0.0,
+    4.688186123757987e-06,
+    3.113518876052268e-07
+  ],
+  "plan_replay_max_error": 0.0,
+  "min_clearance_m": 5.232244677177997,
+  "normalized_tracking_score": 0.22381613434286082,
+  "case": {
+    "configuration": "base",
+    "controller": "projected_koopman",
+    "profile": "repair",
+    "controls": 60,
+    "seed": 19760,
+    "reference": [
+      5.5,
+      0.9998000066665778,
+      0.0,
+      0.01999866669333308,
+      0.0
+    ],
+    "task": "pitch_0.04_rad"
+  },
+  "real_time_qualified": false,
+  "training_eligible": false,
+  "trace_sha256": "25341edc1dded170dccb3fa007b1c387daa957931dce17719d5cd3ba2761b5dd"
+}

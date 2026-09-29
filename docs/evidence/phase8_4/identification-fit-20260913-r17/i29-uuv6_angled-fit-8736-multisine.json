@@ -1,0 +1,94 @@
+{
+  "case": {
+    "run_id": "i29-uuv6_angled-fit-8736-multisine",
+    "configuration": "uuv6_angled",
+    "role": "fit",
+    "seed": 8736,
+    "excitation": "multisine",
+    "intervals": 320,
+    "training_eligible": true,
+    "starting_z_m": 5.5,
+    "mode": "direct_pre_tam_v24"
+  },
+  "source_commit": "1fbfed1d85051845fcd28d9d799ebe364450c8b6",
+  "trace_sha256": "042bda8954c60034df91430ec5f4628ed9fb3e877aa6916be0a5e44e363ae52d",
+  "context": {
+    "mass": 31.680002212524414,
+    "inertia": [
+      0.5163472890853882,
+      1.3536672592163086,
+      1.660684585571289
+    ],
+    "cob": [
+      0.0,
+      0.0,
+      0.009999999776482582
+    ],
+    "volume": 0.03200000151991844,
+    "drag_multiplier": 1.0,
+    "rho": 997.0,
+    "beta": 0.001306,
+    "gravity": 9.81
+  },
+  "arrays_sha256": "b1923c892b507ad449f373c3c1a70229c6d30fb6428f52124cffb307da932bf6",
+  "acceptance": {
+    "status": "identification_semantics_passed",
+    "role": "fit",
+    "run_id": "i29-uuv6_angled-fit-8736-multisine",
+    "source_commit": "1fbfed1d85051845fcd28d9d799ebe364450c8b6",
+    "physics_ticks": 640,
+    "contact_ticks": 0,
+    "first_contact_index": null,
+    "impulse_ticks": 0,
+    "first_impulse_index": null,
+    "rejected_ticks": 0,
+    "minimum_hull_clearance_m": 5.22440932136035,
+    "maximum_velocity_balance_residual_m_s": 4.18060785841389e-08,
+    "maximum_control_pwm_speed_wrench_errors": [
+      0.0,
+      7.450580596923828e-08,
+      3.4317212993073554e-05,
+      8.394034381353777e-06
+    ],
+    "maximum_motion": {
+      "linear_speed_m_s": 0.026408039531761063,
+      "angular_speed_rad_s": 0.24307519049093126,
+      "tilt_rad": 0.060115530867106554,
+      "horizontal_displacement_m": 0.010992402197931687,
+      "vertical_displacement_m": 0.024470806121826172
+    },
+    "tail": {
+      "eligible_for_excitation": true,
+      "tail_physics_ticks": 64,
+      "maximum": {
+        "linear_speed_m_s": 0.026408039531761063,
+        "angular_speed_rad_s": 0.1296395241458295,
+        "tilt_rad": 0.03673924468719771
+      },
+      "limits": {
+        "linear_speed_m_s": 0.5,
+        "angular_speed_rad_s": 0.5,
+        "tilt_rad": 0.5235987755982988
+      },
+      "claim": "bounded motion only, not exact hovering"
+    },
+    "model_handoff": false,
+    "training_eligible": true,
+    "minimum_pwm_headroom": 0.8859053328633308,
+    "minimum_deadzone_distance_pwm": 2.294778823852539e-06,
+    "maximum_allocation_acceleration_error_6": [
+      0.003704492371553798,
+      0.0,
+      0.0161224242211434,
+      0.08996407362388996,
+      0.0714320227059863,
+      0.02870030651252592
+    ],
+    "controller_state_replayed": true
+  },
+  "backend": {
+    "linear_damping_s": 0.0,
+    "angular_damping_s": 0.05000000074505806,
+    "gyroscopic_forces_enabled": true
+  }
+}

@@ -1,0 +1,244 @@
+{
+  "schema": "phase9-effects-v66",
+  "purpose": "descriptive matched frozen-policy control-benefit pilot; no realtime or unique Koopman claim",
+  "user_authorization": "2026-09-21 continue implementation and obtain actual overall/scenario benefits; start goal; server ready31348",
+  "cases": [
+    {
+      "case_id": "base-depth-feedback-v66-retry",
+      "configuration": "base",
+      "controller": "feedback",
+      "mode": "simulation_effect",
+      "controls": 120,
+      "seed": 19500,
+      "reference": [
+        5.48,
+        1,
+        0,
+        0,
+        0
+      ],
+      "reference_id": "depth-v65",
+      "model_key": "nonlinear__pooled",
+      "strategy": "bounded_inexact_v66"
+    },
+    {
+      "case_id": "base-depth-mpc-v66",
+      "configuration": "base",
+      "controller": "mpc",
+      "mode": "simulation_effect",
+      "controls": 120,
+      "seed": 19500,
+      "reference": [
+        5.48,
+        1,
+        0,
+        0,
+        0
+      ],
+      "reference_id": "depth-v65",
+      "model_key": "nonlinear__pooled",
+      "strategy": "bounded_inexact_v66"
+    },
+    {
+      "case_id": "base-pitch-feedback-v66",
+      "configuration": "base",
+      "controller": "feedback",
+      "mode": "simulation_effect",
+      "controls": 120,
+      "seed": 19500,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0,
+        0.01999866669333308,
+        0
+      ],
+      "reference_id": "pitch-v65",
+      "model_key": "nonlinear__pooled",
+      "strategy": "bounded_inexact_v66"
+    },
+    {
+      "case_id": "base-pitch-mpc-v66",
+      "configuration": "base",
+      "controller": "mpc",
+      "mode": "simulation_effect",
+      "controls": 120,
+      "seed": 19500,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0,
+        0.01999866669333308,
+        0
+      ],
+      "reference_id": "pitch-v65",
+      "model_key": "nonlinear__pooled",
+      "strategy": "bounded_inexact_v66"
+    },
+    {
+      "case_id": "asymmetric-depth-feedback-v66",
+      "configuration": "asymmetric",
+      "controller": "feedback",
+      "mode": "simulation_effect",
+      "controls": 120,
+      "seed": 19500,
+      "reference": [
+        5.48,
+        1,
+        0,
+        0,
+        0
+      ],
+      "reference_id": "depth-v65",
+      "model_key": "nonlinear__pooled",
+      "strategy": "bounded_inexact_v66"
+    },
+    {
+      "case_id": "asymmetric-depth-mpc-v66",
+      "configuration": "asymmetric",
+      "controller": "mpc",
+      "mode": "simulation_effect",
+      "controls": 120,
+      "seed": 19500,
+      "reference": [
+        5.48,
+        1,
+        0,
+        0,
+        0
+      ],
+      "reference_id": "depth-v65",
+      "model_key": "nonlinear__pooled",
+      "strategy": "bounded_inexact_v66"
+    },
+    {
+      "case_id": "asymmetric-pitch-feedback-v66",
+      "configuration": "asymmetric",
+      "controller": "feedback",
+      "mode": "simulation_effect",
+      "controls": 120,
+      "seed": 19500,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0,
+        0.01999866669333308,
+        0
+      ],
+      "reference_id": "pitch-v65",
+      "model_key": "nonlinear__pooled",
+      "strategy": "bounded_inexact_v66"
+    },
+    {
+      "case_id": "asymmetric-pitch-mpc-v66",
+      "configuration": "asymmetric",
+      "controller": "mpc",
+      "mode": "simulation_effect",
+      "controls": 120,
+      "seed": 19500,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0,
+        0.01999866669333308,
+        0
+      ],
+      "reference_id": "pitch-v65",
+      "model_key": "nonlinear__pooled",
+      "strategy": "bounded_inexact_v66"
+    },
+    {
+      "case_id": "uuv4-depth-feedback-v66",
+      "configuration": "uuv4",
+      "controller": "feedback",
+      "mode": "simulation_effect",
+      "controls": 120,
+      "seed": 19500,
+      "reference": [
+        5.48,
+        1,
+        0,
+        0,
+        0
+      ],
+      "reference_id": "depth-v65",
+      "model_key": "nonlinear__pooled",
+      "strategy": "bounded_inexact_v66"
+    },
+    {
+      "case_id": "uuv4-depth-mpc-v66",
+      "configuration": "uuv4",
+      "controller": "mpc",
+      "mode": "simulation_effect",
+      "controls": 120,
+      "seed": 19500,
+      "reference": [
+        5.48,
+        1,
+        0,
+        0,
+        0
+      ],
+      "reference_id": "depth-v65",
+      "model_key": "nonlinear__pooled",
+      "strategy": "bounded_inexact_v66"
+    },
+    {
+      "case_id": "uuv4-pitch-feedback-v66",
+      "configuration": "uuv4",
+      "controller": "feedback",
+      "mode": "simulation_effect",
+      "controls": 120,
+      "seed": 19500,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0,
+        0.01999866669333308,
+        0
+      ],
+      "reference_id": "pitch-v65",
+      "model_key": "nonlinear__pooled",
+      "strategy": "bounded_inexact_v66"
+    },
+    {
+      "case_id": "uuv4-pitch-mpc-v66",
+      "configuration": "uuv4",
+      "controller": "mpc",
+      "mode": "simulation_effect",
+      "controls": 120,
+      "seed": 19500,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0,
+        0.01999866669333308,
+        0
+      ],
+      "reference_id": "pitch-v65",
+      "model_key": "nonlinear__pooled",
+      "strategy": "bounded_inexact_v66"
+    }
+  ],
+  "limits": {
+    "total_seconds": 1800,
+    "case_seconds": 180,
+    "attempts": 18,
+    "new_bytes_per_host": 16777216,
+    "retained_research_bytes_per_host": 268435456,
+    "total_with_environment_bytes": 1073741824
+  },
+  "score": {
+    "primary": "mean(depth_squared/.02**2+controllable_attitude_squared/.04**2)",
+    "minimum_relative_improvement": 0.05,
+    "minimum_depth_rmse_improvement_m": 0.0002,
+    "minimum_attitude_rmse_improvement_rad": 0.0005,
+    "report_cost_tradeoff": true
+  },
+  "no_fit": true,
+  "no_formal_test_access": true,
+  "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+  "release_sha256": "aa1efbb4c57b3d01225a3d1604f9b39a2adbc4d04e6e359b249afbfbabb7e3a9",
+  "effect_schedule": "existing8-control committed prefix; reply at next acknowledged boundary; actual worker100ms limit; admission age in simulation time; coordinator/ack wall limits unchanged",
+  "change": "Same frozen models/tasks and limits; both arms use bounded inexact static tracking with actual residual audit. Supersedes unrun v65 cases only. Existing v65 outcomes stay separate. Collector source-check manifest path repair only; zero physical intervals in failed attempt. 6 old/new failed starts plus 12 planned=18."
+}

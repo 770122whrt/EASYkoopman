@@ -1,0 +1,23 @@
+{
+  "native_exit": 1,
+  "group_stopped": true,
+  "seconds": 14.240991152822971,
+  "command": [
+    "/root/shared-nvme/agentic-auv/runtime/bin/python",
+    "-B",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "tests/test_preview_solver_v80.py",
+    "tests/test_preview_trace_v80.py",
+    "tests/test_continuous_mpc_v80.py",
+    "tests/test_control_separation_v79.py",
+    "tests/test_preview_decision_v79.py",
+    "tests/test_reliable_mpc_v77.py",
+    "tests/test_reliable_runtime_v77.py",
+    "tests/test_prepared_projected_v40.py",
+    "--junitxml=/root/shared-nvme/agentic-auv/experiments/preview-v80-20260926/server-tests.xml"
+  ]
+}

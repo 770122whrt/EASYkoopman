@@ -1,0 +1,127 @@
+{
+  "reviewed_at": "2026-09-20T22:52:43.775028+08:00",
+  "status": "lifecycle_repaired_within_three_base_runs_cycle_still_no_go",
+  "files_hash_verified": 52,
+  "local_tests_passed": 82,
+  "server_endpoint": "root@183.147.142.40:31348",
+  "attempts": [
+    {
+      "attempt": 1,
+      "native": {
+        "native_exit": 1,
+        "reason": "completed",
+        "seconds": 38.09082250203937,
+        "group_stopped": true,
+        "remaining_group_pids": [],
+        "bytes_after": 423817,
+        "source_sha256": "3c1571309d9b1f6083577592bdc5aec3acd13d65f35f47096c8b43a88986a852",
+        "diagnostic_only": true,
+        "runtime_qualified": false
+      },
+      "status": "diagnostic_exception",
+      "cycle_ms": [
+        32.07765566185117
+      ]
+    },
+    {
+      "attempt": 2,
+      "native": {
+        "native_exit": 1,
+        "reason": "completed",
+        "seconds": 45.69091806886718,
+        "group_stopped": true,
+        "remaining_group_pids": [],
+        "bytes_after": 665327,
+        "source_sha256": "f74a3e35f77b76b720e05886634ae130e68438c3b4bb01c24b3b1636a06011a0",
+        "diagnostic_only": true,
+        "runtime_qualified": false
+      },
+      "status": "diagnostic_exception",
+      "cycle_ms": [
+        29.38153315335512
+      ]
+    },
+    {
+      "attempt": 3,
+      "native": {
+        "native_exit": 1,
+        "reason": "completed",
+        "seconds": 45.92040893482044,
+        "group_stopped": true,
+        "remaining_group_pids": [],
+        "bytes_after": 875067,
+        "source_sha256": "f767fce4bcdc3d11793fdac3309f9b44bec83581b1fa4919f6d2cf14994953f7",
+        "diagnostic_only": true,
+        "runtime_qualified": false
+      },
+      "status": "diagnostic_exception",
+      "cycle_ms": [
+        36.83100501075387
+      ]
+    },
+    {
+      "attempt": 4,
+      "native": {
+        "native_exit": 0,
+        "reason": "completed",
+        "seconds": 8.092604516074061,
+        "group_stopped": true,
+        "remaining_group_pids": [],
+        "bytes_after": 908723,
+        "source_sha256": "5aae18dc80eccaf0536391be3d59887dd3e5bf53aef40405566638071be46616",
+        "diagnostic_only": true,
+        "runtime_qualified": false
+      },
+      "status": "one_cpu_request_completed",
+      "cycle_ms": []
+    }
+  ],
+  "supervised_seconds": 137.79475402180105,
+  "maximum_seconds": 600,
+  "actual_isaac_runs": 3,
+  "configuration": "base",
+  "actual_mpc_requests": 0,
+  "actual_mpc_activations": 0,
+  "native_segmentation_fault_reproduced": false,
+  "cleanup_errors": [
+    [],
+    [],
+    []
+  ],
+  "batching_adopted": false,
+  "comparison": {
+    "attempt02_vs_attempt01": {
+      "max_absolute_difference": 0.0,
+      "atol": 1e-06,
+      "passed": true,
+      "substeps": 2
+    },
+    "attempt02_vs_attempt03": {
+      "max_absolute_difference": 0.0,
+      "atol": 1e-06,
+      "passed": true,
+      "substeps": 2
+    }
+  },
+  "cpu_only_request": {
+    "cuda_available": false,
+    "round_trip_ms": 24.756954051554203,
+    "prepare_seconds": 5.521448580082506,
+    "status": "selected",
+    "requests": 1,
+    "role": "fit",
+    "native_exit": 0
+  },
+  "closed_loop_benefit_proven": false,
+  "real_time_qualified": false,
+  "model_fits": 0,
+  "frozen_v38_unchanged": true,
+  "old_sources_unchanged": true,
+  "tested_source_parity": true,
+  "local_additional_bytes": 987408,
+  "local_research_bytes": 220791728,
+  "remote_research_bytes": 168954084,
+  "environment_bytes": 246486386,
+  "conservative_combined_bytes": 636232198,
+  "all_experiment_processes_stopped": true
+}

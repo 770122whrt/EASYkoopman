@@ -1,0 +1,51 @@
+{
+  "decision": "NO_GO",
+  "fit_count": 21,
+  "successful_fits": 21,
+  "evaluation_records": 468,
+  "primary_128_stable": false,
+  "primary_failed_128": [
+    {
+      "run_id": "pilot-uuv6-8421-prbs",
+      "failed_origins": 1,
+      "first_failure_physics_tick": [
+        128
+      ]
+    }
+  ],
+  "gates": [
+    {
+      "horizon": 20,
+      "metric": "endpoint_rmse",
+      "complete_paired_comparison": false,
+      "pass": false
+    },
+    {
+      "horizon": 20,
+      "metric": "path_rmse",
+      "complete_paired_comparison": false,
+      "pass": false
+    },
+    {
+      "horizon": 60,
+      "metric": "endpoint_rmse",
+      "complete_paired_comparison": false,
+      "pass": false
+    },
+    {
+      "horizon": 60,
+      "metric": "path_rmse",
+      "complete_paired_comparison": false,
+      "pass": false
+    }
+  ],
+  "model_handoff": false,
+  "formal_d23_permitted_to_prepare": false,
+  "limits": [
+    "known catalog3configurations",
+    "fixednoDR/noise/flow",
+    "2.13seconds128controlintervals",
+    "projected hybridEDMD is nonlinear",
+    "no512/control/hardware claim"
+  ]
+}

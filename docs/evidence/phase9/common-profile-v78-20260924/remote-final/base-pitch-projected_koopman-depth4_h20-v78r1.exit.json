@@ -1,0 +1,23 @@
+{
+  "native_exit": 0,
+  "group_stopped": true,
+  "seconds": 749.6741905473173,
+  "command": [
+    "/root/shared-nvme/agentic-auv/runtime/bin/python",
+    "-B",
+    "-m",
+    "workflows.collect_reliable_v77",
+    "--configuration",
+    "base",
+    "--controller",
+    "projected_koopman",
+    "--profile",
+    "depth4_h20",
+    "--assets",
+    "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+    "--manifest",
+    "reliable-source-r4.json",
+    "--output",
+    "/root/shared-nvme/agentic-auv/experiments/common-profile-v78-20260924/base-pitch-projected_koopman-depth4_h20-v78r1"
+  ]
+}

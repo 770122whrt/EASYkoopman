@@ -1,0 +1,104 @@
+FFFFFFFFF                                                                [100%]
+================================== FAILURES ===================================
+_ test_preflight_has_fixed_base_first_cases_and_no_training_or_comparison_claim _
+
+    def test_preflight_has_fixed_base_first_cases_and_no_training_or_comparison_claim():
+>       from workflows.phase9_preflight_v57 import proposal, cases
+E       ModuleNotFoundError: No module named 'workflows.phase9_preflight_v57'
+
+tests\test_phase9_preflight_v57.py:9: ModuleNotFoundError
+__________ test_missing_or_v38_approval_cannot_launch_new_collector ___________
+
+tmp_path = WindowsPath('E:/code for project/Agentic AUV/EasyUUV/.pytest-tmp/preflight-v57-red/test_missing_or_v38_approval_c0')
+
+    def test_missing_or_v38_approval_cannot_launch_new_collector(tmp_path):
+>       from workflows.phase9_preflight_v57 import authorize_case,cases
+E       ModuleNotFoundError: No module named 'workflows.phase9_preflight_v57'
+
+tests\test_phase9_preflight_v57.py:31: ModuleNotFoundError
+___ test_tampered_scope_or_source_rejected_before_simulator_import[source] ____
+
+tmp_path = WindowsPath('E:/code for project/Agentic AUV/EasyUUV/.pytest-tmp/preflight-v57-red/test_tampered_scope_or_source_0')
+bad = 'source'
+
+    @pytest.mark.parametrize('bad',['source','release_sha','protocol_sha','approved','case','missing_source'])
+    def test_tampered_scope_or_source_rejected_before_simulator_import(tmp_path,bad):
+>       from workflows.phase9_preflight_v57 import authorize_case,cases,REQUIRED_RUNTIME_FILES
+E       ModuleNotFoundError: No module named 'workflows.phase9_preflight_v57'
+
+tests\test_phase9_preflight_v57.py:40: ModuleNotFoundError
+_ test_tampered_scope_or_source_rejected_before_simulator_import[release_sha] _
+
+tmp_path = WindowsPath('E:/code for project/Agentic AUV/EasyUUV/.pytest-tmp/preflight-v57-red/test_tampered_scope_or_source_1')
+bad = 'release_sha'
+
+    @pytest.mark.parametrize('bad',['source','release_sha','protocol_sha','approved','case','missing_source'])
+    def test_tampered_scope_or_source_rejected_before_simulator_import(tmp_path,bad):
+>       from workflows.phase9_preflight_v57 import authorize_case,cases,REQUIRED_RUNTIME_FILES
+E       ModuleNotFoundError: No module named 'workflows.phase9_preflight_v57'
+
+tests\test_phase9_preflight_v57.py:40: ModuleNotFoundError
+_ test_tampered_scope_or_source_rejected_before_simulator_import[protocol_sha] _
+
+tmp_path = WindowsPath('E:/code for project/Agentic AUV/EasyUUV/.pytest-tmp/preflight-v57-red/test_tampered_scope_or_source_2')
+bad = 'protocol_sha'
+
+    @pytest.mark.parametrize('bad',['source','release_sha','protocol_sha','approved','case','missing_source'])
+    def test_tampered_scope_or_source_rejected_before_simulator_import(tmp_path,bad):
+>       from workflows.phase9_preflight_v57 import authorize_case,cases,REQUIRED_RUNTIME_FILES
+E       ModuleNotFoundError: No module named 'workflows.phase9_preflight_v57'
+
+tests\test_phase9_preflight_v57.py:40: ModuleNotFoundError
+__ test_tampered_scope_or_source_rejected_before_simulator_import[approved] ___
+
+tmp_path = WindowsPath('E:/code for project/Agentic AUV/EasyUUV/.pytest-tmp/preflight-v57-red/test_tampered_scope_or_source_3')
+bad = 'approved'
+
+    @pytest.mark.parametrize('bad',['source','release_sha','protocol_sha','approved','case','missing_source'])
+    def test_tampered_scope_or_source_rejected_before_simulator_import(tmp_path,bad):
+>       from workflows.phase9_preflight_v57 import authorize_case,cases,REQUIRED_RUNTIME_FILES
+E       ModuleNotFoundError: No module named 'workflows.phase9_preflight_v57'
+
+tests\test_phase9_preflight_v57.py:40: ModuleNotFoundError
+____ test_tampered_scope_or_source_rejected_before_simulator_import[case] _____
+
+tmp_path = WindowsPath('E:/code for project/Agentic AUV/EasyUUV/.pytest-tmp/preflight-v57-red/test_tampered_scope_or_source_4')
+bad = 'case'
+
+    @pytest.mark.parametrize('bad',['source','release_sha','protocol_sha','approved','case','missing_source'])
+    def test_tampered_scope_or_source_rejected_before_simulator_import(tmp_path,bad):
+>       from workflows.phase9_preflight_v57 import authorize_case,cases,REQUIRED_RUNTIME_FILES
+E       ModuleNotFoundError: No module named 'workflows.phase9_preflight_v57'
+
+tests\test_phase9_preflight_v57.py:40: ModuleNotFoundError
+_ test_tampered_scope_or_source_rejected_before_simulator_import[missing_source] _
+
+tmp_path = WindowsPath('E:/code for project/Agentic AUV/EasyUUV/.pytest-tmp/preflight-v57-red/test_tampered_scope_or_source_5')
+bad = 'missing_source'
+
+    @pytest.mark.parametrize('bad',['source','release_sha','protocol_sha','approved','case','missing_source'])
+    def test_tampered_scope_or_source_rejected_before_simulator_import(tmp_path,bad):
+>       from workflows.phase9_preflight_v57 import authorize_case,cases,REQUIRED_RUNTIME_FILES
+E       ModuleNotFoundError: No module named 'workflows.phase9_preflight_v57'
+
+tests\test_phase9_preflight_v57.py:40: ModuleNotFoundError
+__________ test_exact_approval_and_manifest_release_only_fixed_case ___________
+
+tmp_path = WindowsPath('E:/code for project/Agentic AUV/EasyUUV/.pytest-tmp/preflight-v57-red/test_exact_approval_and_manife0')
+
+    def test_exact_approval_and_manifest_release_only_fixed_case(tmp_path):
+>       from workflows.phase9_preflight_v57 import authorize_case,cases
+E       ModuleNotFoundError: No module named 'workflows.phase9_preflight_v57'
+
+tests\test_phase9_preflight_v57.py:53: ModuleNotFoundError
+=========================== short test summary info ===========================
+FAILED tests/test_phase9_preflight_v57.py::test_preflight_has_fixed_base_first_cases_and_no_training_or_comparison_claim
+FAILED tests/test_phase9_preflight_v57.py::test_missing_or_v38_approval_cannot_launch_new_collector
+FAILED tests/test_phase9_preflight_v57.py::test_tampered_scope_or_source_rejected_before_simulator_import[source]
+FAILED tests/test_phase9_preflight_v57.py::test_tampered_scope_or_source_rejected_before_simulator_import[release_sha]
+FAILED tests/test_phase9_preflight_v57.py::test_tampered_scope_or_source_rejected_before_simulator_import[protocol_sha]
+FAILED tests/test_phase9_preflight_v57.py::test_tampered_scope_or_source_rejected_before_simulator_import[approved]
+FAILED tests/test_phase9_preflight_v57.py::test_tampered_scope_or_source_rejected_before_simulator_import[case]
+FAILED tests/test_phase9_preflight_v57.py::test_tampered_scope_or_source_rejected_before_simulator_import[missing_source]
+FAILED tests/test_phase9_preflight_v57.py::test_exact_approval_and_manifest_release_only_fixed_case
+9 failed in 0.40s

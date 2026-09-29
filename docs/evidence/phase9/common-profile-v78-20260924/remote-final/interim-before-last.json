@@ -1,0 +1,1372 @@
+{
+  "schema": "common-profile-v78-report/1",
+  "profile": "depth4_h20",
+  "task_seconds": 2,
+  "seed": 19760,
+  "new_physics_starts": 6,
+  "native_wall_seconds": 5552.447977092117,
+  "main_rows": [
+    {
+      "configuration": "base",
+      "controller": "feedback",
+      "origin": "reused_v76",
+      "path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/base-pitch-feedback-r1",
+      "profile": null,
+      "accepted": true,
+      "status": "accepted",
+      "reason": null,
+      "physics_steps": 240,
+      "source_manifest_sha256": "5b019b3593527e1774f397fc13645ff1c040b6385cb893a46f4ac01d67e3fa9c",
+      "context": [
+        22.701000213623047,
+        0.3700000047683716,
+        0.9700000286102295,
+        1.190000057220459,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.022747844457626343,
+        1.0,
+        997.0,
+        0.001306,
+        9.81
+      ],
+      "trace_sha256": "8db7c966cffe208ceb9edd6b066c0a87d7f1bf8d41755fc01e743225f6cea7d0",
+      "decision_statuses": {},
+      "nlp_statuses": {},
+      "whole_cycle_ms": {
+        "median": 53.63796092569828,
+        "maximum": 516.6625007987022
+      },
+      "metrics": {
+        "depth_rmse_m": 0.002784724627111971,
+        "attitude_rmse_rad": 0.0185121671048901,
+        "normalized_tracking_score": 0.23357443494671923,
+        "command_squared_integral": 0.0009206214103099378,
+        "pwm_squared_integral": 0.0036824856398820337,
+        "full_task_cost_depth4": 0.0009355010673967479,
+        "full_task_cost_components": {
+          "tracking_integral": 0.0008904293949491399,
+          "terminal": 3.283513217698159e-05,
+          "effort": 9.206214103099378e-06,
+          "slew": 3.0303261675271045e-06
+        }
+      },
+      "executed_prediction_errors": null,
+      "improvement_percent": 0.0
+    },
+    {
+      "configuration": "base",
+      "controller": "projected_koopman",
+      "origin": "new_v78",
+      "path": "/root/shared-nvme/agentic-auv/experiments/common-profile-v78-20260924/base-pitch-projected_koopman-depth4_h20-v78r1",
+      "profile": "depth4_h20",
+      "accepted": true,
+      "status": "accepted",
+      "reason": null,
+      "physics_steps": 240,
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "context": [
+        22.701000213623047,
+        0.3700000047683716,
+        0.9700000286102295,
+        1.190000057220459,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.022747844457626343,
+        1.0,
+        997.0,
+        0.001306,
+        9.81
+      ],
+      "trace_sha256": "344e6dd4c88105df036a44e76f56477900b0452fd57705faeefbdd0c65ccf5d2",
+      "decision_statuses": {
+        "optimized": 16,
+        "warm_retained": 3,
+        "baseline_retained": 40
+      },
+      "nlp_statuses": {
+        "Solve_Succeeded": 46,
+        "Maximum_Iterations_Exceeded": 11,
+        "Solved_To_Acceptable_Level": 2
+      },
+      "solve_seconds": {
+        "median": 7.646225534379482,
+        "p95": 22.42032095342874,
+        "maximum": 27.121634658426046
+      },
+      "whole_cycle_ms": {
+        "median": 7604.670558124781,
+        "maximum": 27230.41546344757
+      },
+      "metrics": {
+        "depth_rmse_m": 0.003447889287819849,
+        "attitude_rmse_rad": 0.019277738246075694,
+        "normalized_tracking_score": 0.26198934628028814,
+        "command_squared_integral": 0.0008626617368245891,
+        "pwm_squared_integral": 0.003450646932285917,
+        "full_task_cost_depth4": 0.001102072203318026,
+        "full_task_cost_components": {
+          "tracking_integral": 0.0009690328355818301,
+          "terminal": 0.00011994923742170305,
+          "effort": 8.626617368245891e-06,
+          "slew": 4.463512946247003e-06
+        }
+      },
+      "executed_prediction_errors": {
+        "compared_substeps": 236,
+        "horizon_seconds": 0.03333333333333333,
+        "depth_rmse_m": 2.1140579748990105e-07,
+        "full_attitude_rmse_rad": 8.797978282277068e-06,
+        "body_velocity_vector_rmse": 5.983435075889893e-08,
+        "angular_velocity_vector_rmse": 2.2403761573460832e-07
+      },
+      "improvement_percent": -12.165248880961933,
+      "command_intensity_ratio_to_feedback": 0.9370428790420637,
+      "pwm_intensity_ratio_to_feedback": 0.9370428753108339,
+      "full_task_cost_depth4_improvement_percent": -17.805552738149345,
+      "improvement_over_repair_percent": -12.921925814445622
+    },
+    {
+      "configuration": "base",
+      "controller": "nominal_physics",
+      "origin": "new_v78",
+      "path": "/root/shared-nvme/agentic-auv/experiments/common-profile-v78-20260924/base-pitch-nominal_physics-depth4_h20-v78r1",
+      "profile": "depth4_h20",
+      "accepted": true,
+      "status": "accepted",
+      "reason": null,
+      "physics_steps": 240,
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "context": [
+        22.701000213623047,
+        0.3700000047683716,
+        0.9700000286102295,
+        1.190000057220459,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.022747844457626343,
+        1.0,
+        997.0,
+        0.001306,
+        9.81
+      ],
+      "trace_sha256": "02397c26e88a6cd94f0fc73b2971256ad2d561a951e3d44506334386800ec006",
+      "decision_statuses": {
+        "optimized": 6,
+        "warm_retained": 7,
+        "baseline_retained": 46
+      },
+      "nlp_statuses": {
+        "Maximum_Iterations_Exceeded": 7,
+        "Solve_Succeeded": 49,
+        "Solved_To_Acceptable_Level": 3
+      },
+      "solve_seconds": {
+        "median": 11.98099172115326,
+        "p95": 22.622047705203293,
+        "maximum": 28.303673561662436
+      },
+      "whole_cycle_ms": {
+        "median": 11628.234881907701,
+        "maximum": 28419.231340289116
+      },
+      "metrics": {
+        "depth_rmse_m": 0.002587859124835674,
+        "attitude_rmse_rad": 0.019425882703263935,
+        "normalized_tracking_score": 0.2525956113755937,
+        "command_squared_integral": 0.0014069512485192623,
+        "pwm_squared_integral": 0.0056278049784876496,
+        "full_task_cost_depth4": 0.0009999556456881792,
+        "full_task_cost_components": {
+          "tracking_integral": 0.0009363507195287516,
+          "terminal": 4.6259442457765554e-05,
+          "effort": 1.4069512485192623e-05,
+          "slew": 3.275971216469437e-06
+        }
+      },
+      "executed_prediction_errors": {
+        "compared_substeps": 236,
+        "horizon_seconds": 0.03333333333333333,
+        "depth_rmse_m": 2.4708161830282773e-07,
+        "full_attitude_rmse_rad": 8.868708532914496e-06,
+        "body_velocity_vector_rmse": 5.9418009800314656e-08,
+        "angular_velocity_vector_rmse": 2.058871252522475e-07
+      },
+      "improvement_percent": -8.143518117988148,
+      "command_intensity_ratio_to_feedback": 1.5282625765194793,
+      "pwm_intensity_ratio_to_feedback": 1.5282625728495531,
+      "full_task_cost_depth4_improvement_percent": -6.889845510362846,
+      "improvement_over_repair_percent": -9.384199202257504
+    },
+    {
+      "configuration": "uuv4",
+      "controller": "feedback",
+      "origin": "reused_v76",
+      "path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv4-pitch-feedback-r3",
+      "profile": null,
+      "accepted": true,
+      "status": "accepted",
+      "reason": null,
+      "physics_steps": 240,
+      "source_manifest_sha256": "30ce4adf1af661db1efa9d1edc8498630f92cf12a6b4cc5c3ae4c0a1b637a8ae",
+      "context": [
+        21.780000686645508,
+        0.3549887537956238,
+        0.9306462407112122,
+        1.1417206525802612,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.02199999988079071,
+        1.0,
+        997.0,
+        0.001306,
+        9.81
+      ],
+      "trace_sha256": "d268a2a2f0679dd32cbe77ba32eaad8c622727740a4d561572f942e653bd17ac",
+      "decision_statuses": {},
+      "nlp_statuses": {},
+      "whole_cycle_ms": {
+        "median": 52.84144729375839,
+        "maximum": 63.422877341508865
+      },
+      "metrics": {
+        "depth_rmse_m": 0.0016929777665514747,
+        "attitude_rmse_rad": 0.018188562853152162,
+        "normalized_tracking_score": 0.21393032095951076,
+        "command_squared_integral": 0.022722586165262917,
+        "pwm_squared_integral": 0.007038842354357897,
+        "full_task_cost_depth4": 0.0010940089775164153,
+        "full_task_cost_components": {
+          "tracking_integral": 0.0008381672540129371,
+          "terminal": 2.3440014813984447e-05,
+          "effort": 0.0002272258616526292,
+          "slew": 5.175847036864481e-06
+        }
+      },
+      "executed_prediction_errors": null,
+      "improvement_percent": 0.0
+    },
+    {
+      "configuration": "uuv4",
+      "controller": "projected_koopman",
+      "origin": "reused_v77",
+      "path": "/root/shared-nvme/agentic-auv/experiments/reliable-v77-20260924/uuv4-pitch-projected_koopman-depth4_h20-r4",
+      "profile": "depth4_h20",
+      "accepted": true,
+      "status": "accepted",
+      "reason": null,
+      "physics_steps": 240,
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "context": [
+        21.780000686645508,
+        0.3549887537956238,
+        0.9306462407112122,
+        1.1417206525802612,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.02199999988079071,
+        1.0,
+        997.0,
+        0.001306,
+        9.81
+      ],
+      "trace_sha256": "b87e7fce61d49f8cf86da38516f7a7e86ce3d7d33cea9893f5970c2dc9ed4076",
+      "decision_statuses": {
+        "recovered": 6,
+        "warm_retained": 9,
+        "baseline_retained": 1,
+        "optimized": 43
+      },
+      "nlp_statuses": {
+        "Solve_Succeeded": 29,
+        "Solved_To_Acceptable_Level": 4,
+        "Maximum_Iterations_Exceeded": 26
+      },
+      "solve_seconds": {
+        "median": 13.813982032239437,
+        "p95": 18.425574330985548,
+        "maximum": 19.08927285671234
+      },
+      "whole_cycle_ms": {
+        "median": 12662.38646581769,
+        "maximum": 19208.33444222808
+      },
+      "metrics": {
+        "depth_rmse_m": 0.00041065244141101176,
+        "attitude_rmse_rad": 0.017321501449284314,
+        "normalized_tracking_score": 0.18794309635506615,
+        "command_squared_integral": 0.021942436973180345,
+        "pwm_squared_integral": 0.006980014117187998,
+        "full_task_cost_depth4": 0.0009993872563939501,
+        "full_task_cost_components": {
+          "tracking_integral": 0.0007669708320813472,
+          "terminal": 3.824405684527359e-06,
+          "effort": 0.00021942436973180346,
+          "slew": 9.167648896272128e-06
+        }
+      },
+      "executed_prediction_errors": {
+        "compared_substeps": 236,
+        "horizon_seconds": 0.03333333333333333,
+        "depth_rmse_m": 2.319276249819562e-07,
+        "full_attitude_rmse_rad": 8.676788042636901e-06,
+        "body_velocity_vector_rmse": 4.345461995242585e-08,
+        "angular_velocity_vector_rmse": 3.548572913984275e-07
+      },
+      "improvement_percent": 12.147518167545336,
+      "command_intensity_ratio_to_feedback": 0.9656663556512232,
+      "pwm_intensity_ratio_to_feedback": 0.991642341992007,
+      "full_task_cost_depth4_improvement_percent": 8.649080863785263,
+      "improvement_over_repair_percent": 79.300069439768
+    },
+    {
+      "configuration": "uuv4",
+      "controller": "nominal_physics",
+      "origin": "reused_v77",
+      "path": "/root/shared-nvme/agentic-auv/experiments/reliable-v77-20260924/uuv4-pitch-nominal_physics-depth4_h20-r4",
+      "profile": "depth4_h20",
+      "accepted": true,
+      "status": "accepted",
+      "reason": null,
+      "physics_steps": 240,
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "context": [
+        21.780000686645508,
+        0.3549887537956238,
+        0.9306462407112122,
+        1.1417206525802612,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.02199999988079071,
+        1.0,
+        997.0,
+        0.001306,
+        9.81
+      ],
+      "trace_sha256": "23852e63881cf0954f10d9246ea7ab91eef47ea5613fd0857c78697d757bba69",
+      "decision_statuses": {
+        "recovered": 6,
+        "warm_retained": 14,
+        "baseline_retained": 4,
+        "optimized": 35
+      },
+      "nlp_statuses": {
+        "Solve_Succeeded": 17,
+        "Maximum_Iterations_Exceeded": 36,
+        "Solved_To_Acceptable_Level": 6
+      },
+      "solve_seconds": {
+        "median": 16.741855569183826,
+        "p95": 17.779888972640038,
+        "maximum": 18.433088809251785
+      },
+      "whole_cycle_ms": {
+        "median": 16758.99544171989,
+        "maximum": 18547.6525016129
+      },
+      "metrics": {
+        "depth_rmse_m": 0.0006738152248103447,
+        "attitude_rmse_rad": 0.017439706367759458,
+        "normalized_tracking_score": 0.1912246662640092,
+        "command_squared_integral": 0.023136759480175764,
+        "pwm_squared_integral": 0.007384966631116997,
+        "full_task_cost_depth4": 0.0010226025549364079,
+        "full_task_cost_components": {
+          "tracking_integral": 0.0007780386586553699,
+          "terminal": 3.243026082516488e-06,
+          "effort": 0.00023136759480175763,
+          "slew": 9.953275396763712e-06
+        }
+      },
+      "executed_prediction_errors": {
+        "compared_substeps": 236,
+        "horizon_seconds": 0.03333333333333333,
+        "depth_rmse_m": 2.062773017007817e-07,
+        "full_attitude_rmse_rad": 9.33664698567783e-06,
+        "body_velocity_vector_rmse": 4.224308468445046e-08,
+        "angular_velocity_vector_rmse": 3.812303294015143e-07
+      },
+      "improvement_percent": 10.613574828319416,
+      "command_intensity_ratio_to_feedback": 1.018227384501946,
+      "pwm_intensity_ratio_to_feedback": 1.0491734662227243,
+      "full_task_cost_depth4_improvement_percent": 6.527041738004014,
+      "improvement_over_repair_percent": 83.10910467573953
+    },
+    {
+      "configuration": "long_body",
+      "controller": "feedback",
+      "origin": "reused_v76",
+      "path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/long_body-pitch-feedback-r3",
+      "profile": null,
+      "accepted": true,
+      "status": "accepted",
+      "reason": null,
+      "physics_steps": 240,
+      "source_manifest_sha256": "30ce4adf1af661db1efa9d1edc8498630f92cf12a6b4cc5c3ae4c0a1b637a8ae",
+      "context": [
+        22.701000213623047,
+        0.10000000149011612,
+        2.5,
+        2.5,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.022747844457626343,
+        1.0,
+        997.0,
+        0.001306,
+        9.81
+      ],
+      "trace_sha256": "ce222e4b821e6042b8cba39c44b9e51bccf38cc2b20e2cb29c74c64a475cdd4a",
+      "decision_statuses": {},
+      "nlp_statuses": {},
+      "whole_cycle_ms": {
+        "median": 51.95945315063,
+        "maximum": 60.95948442816734
+      },
+      "metrics": {
+        "depth_rmse_m": 0.0011134550646684325,
+        "attitude_rmse_rad": 0.01819984207482225,
+        "normalized_tracking_score": 0.21012086267038343,
+        "command_squared_integral": 0.0013435147865844973,
+        "pwm_squared_integral": 0.005374059142138187,
+        "full_task_cost_depth4": 0.0008559810064475367,
+        "full_task_cost_components": {
+          "tracking_integral": 0.0008267314474172312,
+          "terminal": 9.126553412150216e-06,
+          "effort": 1.3435147865844973e-05,
+          "slew": 6.687857752310288e-06
+        }
+      },
+      "executed_prediction_errors": null,
+      "improvement_percent": 0.0
+    },
+    {
+      "configuration": "long_body",
+      "controller": "projected_koopman",
+      "origin": "new_v78",
+      "path": "/root/shared-nvme/agentic-auv/experiments/common-profile-v78-20260924/long_body-pitch-projected_koopman-depth4_h20-v78r1",
+      "profile": "depth4_h20",
+      "accepted": true,
+      "status": "accepted",
+      "reason": null,
+      "physics_steps": 240,
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "context": [
+        22.701000213623047,
+        0.10000000149011612,
+        2.5,
+        2.5,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.022747844457626343,
+        1.0,
+        997.0,
+        0.001306,
+        9.81
+      ],
+      "trace_sha256": "54e192d133d1b6067f41677dc1af480dc62cf76fd549060f6ee607fc58a18a99",
+      "decision_statuses": {
+        "recovered": 2,
+        "warm_retained": 17,
+        "baseline_retained": 38,
+        "optimized": 2
+      },
+      "nlp_statuses": {
+        "Maximum_Iterations_Exceeded": 23,
+        "Solve_Succeeded": 35,
+        "Solved_To_Acceptable_Level": 1
+      },
+      "solve_seconds": {
+        "median": 7.974946487694979,
+        "p95": 25.237098455801604,
+        "maximum": 26.864100500941277
+      },
+      "whole_cycle_ms": {
+        "median": 7954.772248864174,
+        "maximum": 26974.154837429523
+      },
+      "metrics": {
+        "depth_rmse_m": 0.0014687135376315217,
+        "attitude_rmse_rad": 0.018369370316906733,
+        "normalized_tracking_score": 0.21628890228883907,
+        "command_squared_integral": 0.0016066868602095687,
+        "pwm_squared_integral": 0.00642674743981909,
+        "full_task_cost_depth4": 0.0009419674088304451,
+        "full_task_cost_components": {
+          "tracking_integral": 0.0008537471462602646,
+          "terminal": 6.521907517733974e-05,
+          "effort": 1.6066868602095687e-05,
+          "slew": 6.934318790745106e-06
+        }
+      },
+      "executed_prediction_errors": {
+        "compared_substeps": 236,
+        "horizon_seconds": 0.03333333333333333,
+        "depth_rmse_m": 1.8687026263410938e-07,
+        "full_attitude_rmse_rad": 8.373662960259865e-06,
+        "body_velocity_vector_rmse": 5.999829406068223e-08,
+        "angular_velocity_vector_rmse": 2.951243559559717e-07
+      },
+      "improvement_percent": -2.9354722515733345,
+      "command_intensity_ratio_to_feedback": 1.1958832729292925,
+      "pwm_intensity_ratio_to_feedback": 1.1958832736742209,
+      "full_task_cost_depth4_improvement_percent": -10.045363359143478,
+      "improvement_over_repair_percent": 1.0287642826695587
+    },
+    {
+      "configuration": "long_body",
+      "controller": "nominal_physics",
+      "origin": "new_v78",
+      "path": "/root/shared-nvme/agentic-auv/experiments/common-profile-v78-20260924/long_body-pitch-nominal_physics-depth4_h20-v78r1",
+      "profile": "depth4_h20",
+      "accepted": true,
+      "status": "accepted",
+      "reason": null,
+      "physics_steps": 240,
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "context": [
+        22.701000213623047,
+        0.10000000149011612,
+        2.5,
+        2.5,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.022747844457626343,
+        1.0,
+        997.0,
+        0.001306,
+        9.81
+      ],
+      "trace_sha256": "e533f635b5a61be8874a4ca1ec72f0a028628853bfdba78e24f63eafaa7393c5",
+      "decision_statuses": {
+        "recovered": 2,
+        "warm_retained": 14,
+        "baseline_retained": 41,
+        "optimized": 2
+      },
+      "nlp_statuses": {
+        "Maximum_Iterations_Exceeded": 23,
+        "Solve_Succeeded": 36
+      },
+      "solve_seconds": {
+        "median": 8.004073694348335,
+        "p95": 25.82008340656757,
+        "maximum": 26.52429085597396
+      },
+      "whole_cycle_ms": {
+        "median": 8030.7431276887655,
+        "maximum": 26633.6242929101
+      },
+      "metrics": {
+        "depth_rmse_m": 0.0017575259727738361,
+        "attitude_rmse_rad": 0.01832316679657052,
+        "normalized_tracking_score": 0.2175587697717767,
+        "command_squared_integral": 0.0015895208186048697,
+        "pwm_squared_integral": 0.0063580832925264575,
+        "full_task_cost_depth4": 0.000942297528599761,
+        "full_task_cost_components": {
+          "tracking_integral": 0.0008578045299637432,
+          "terminal": 6.200630759279587e-05,
+          "effort": 1.5895208186048698e-05,
+          "slew": 6.5914828571732465e-06
+        }
+      },
+      "executed_prediction_errors": {
+        "compared_substeps": 236,
+        "horizon_seconds": 0.03333333333333333,
+        "depth_rmse_m": 1.9478911894803214e-07,
+        "full_attitude_rmse_rad": 8.508992076754613e-06,
+        "body_velocity_vector_rmse": 5.286064916419814e-08,
+        "angular_velocity_vector_rmse": 1.380257091074839e-07
+      },
+      "improvement_percent": -3.539823226911598,
+      "command_intensity_ratio_to_feedback": 1.183106307780782,
+      "pwm_intensity_ratio_to_feedback": 1.1831063120747038,
+      "full_task_cost_depth4_improvement_percent": -10.083929608491204,
+      "improvement_over_repair_percent": -3.0978198981227223
+    },
+    {
+      "configuration": "uuv6",
+      "controller": "feedback",
+      "origin": "reused_v76",
+      "path": "/root/shared-nvme/agentic-auv/experiments/continuous-v76-20260924/uuv6-pitch-feedback-r3",
+      "profile": null,
+      "accepted": true,
+      "status": "accepted",
+      "reason": null,
+      "physics_steps": 240,
+      "source_manifest_sha256": "30ce4adf1af661db1efa9d1edc8498630f92cf12a6b4cc5c3ae4c0a1b637a8ae",
+      "context": [
+        29.69999885559082,
+        0.4840756058692932,
+        1.2690629959106445,
+        1.5568917989730835,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.029999999329447746,
+        1.0,
+        997.0,
+        0.001306,
+        9.81
+      ],
+      "trace_sha256": "f268a697300be7f6d70341bcdaeff6decf0c4ee36a5afbdf5b6a07b036440a57",
+      "decision_statuses": {},
+      "nlp_statuses": {},
+      "whole_cycle_ms": {
+        "median": 52.726274356245995,
+        "maximum": 63.25024366378784
+      },
+      "metrics": {
+        "depth_rmse_m": 0.0014895220611882611,
+        "attitude_rmse_rad": 0.018099627557102874,
+        "normalized_tracking_score": 0.2102945134930649,
+        "command_squared_integral": 0.03450524638394677,
+        "pwm_squared_integral": 0.010194861871246404,
+        "full_task_cost_depth4": 0.001174541364213114,
+        "full_task_cost_components": {
+          "tracking_integral": 0.000817888320333285,
+          "terminal": 4.486673381364402e-06,
+          "effort": 0.0003450524638394677,
+          "slew": 7.113906658996972e-06
+        }
+      },
+      "executed_prediction_errors": null,
+      "improvement_percent": 0.0
+    },
+    {
+      "configuration": "uuv6",
+      "controller": "projected_koopman",
+      "origin": "new_v78",
+      "path": "/root/shared-nvme/agentic-auv/experiments/common-profile-v78-20260924/uuv6-pitch-projected_koopman-depth4_h20-v78r2",
+      "profile": "depth4_h20",
+      "accepted": false,
+      "status": "not_run",
+      "reason": null,
+      "physics_steps": 0
+    },
+    {
+      "configuration": "uuv6",
+      "controller": "nominal_physics",
+      "origin": "new_v78",
+      "path": "/root/shared-nvme/agentic-auv/experiments/common-profile-v78-20260924/uuv6-pitch-nominal_physics-depth4_h20-v78r1",
+      "profile": "depth4_h20",
+      "accepted": true,
+      "status": "accepted",
+      "reason": null,
+      "physics_steps": 240,
+      "collector_entrypoint_sha256": "0946a8ab1b6c5be41d792b77c33d27f30f9f91ae042886a4c4a92a1ce07ad2b1",
+      "collector_wall_limit_seconds": 1350,
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "context": [
+        29.69999885559082,
+        0.4840756058692932,
+        1.2690629959106445,
+        1.5568917989730835,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.029999999329447746,
+        1.0,
+        997.0,
+        0.001306,
+        9.81
+      ],
+      "trace_sha256": "f404084c5f2b8dfeae2bccf94e6f10385507c51e5c41ee44c14dd99465389e91",
+      "decision_statuses": {
+        "recovered": 9,
+        "optimized": 32,
+        "warm_retained": 14,
+        "baseline_retained": 4
+      },
+      "nlp_statuses": {
+        "Solve_Succeeded": 7,
+        "Maximum_Iterations_Exceeded": 52
+      },
+      "solve_seconds": {
+        "median": 21.567325223237276,
+        "p95": 23.801524889841666,
+        "maximum": 25.749564677476883
+      },
+      "whole_cycle_ms": {
+        "median": 21673.91813546419,
+        "maximum": 25858.575608581305
+      },
+      "metrics": {
+        "depth_rmse_m": 0.0008179911058982658,
+        "attitude_rmse_rad": 0.018468295410977425,
+        "normalized_tracking_score": 0.2148464832402778,
+        "command_squared_integral": 0.034929388069602926,
+        "pwm_squared_integral": 0.012710479217381582,
+        "full_task_cost_depth4": 0.001229178508647188,
+        "full_task_cost_components": {
+          "tracking_integral": 0.000858404080745702,
+          "terminal": 8.331888926644855e-06,
+          "effort": 0.00034929388069602927,
+          "slew": 1.3148658278811725e-05
+        }
+      },
+      "executed_prediction_errors": {
+        "compared_substeps": 236,
+        "horizon_seconds": 0.03333333333333333,
+        "depth_rmse_m": 2.3696133188885288e-07,
+        "full_attitude_rmse_rad": 8.865973364739449e-06,
+        "body_velocity_vector_rmse": 4.303926080024917e-08,
+        "angular_velocity_vector_rmse": 4.4546932266869885e-07
+      },
+      "improvement_percent": -2.164568952181911,
+      "command_intensity_ratio_to_feedback": 1.012292092655611,
+      "pwm_intensity_ratio_to_feedback": 1.246753450699536,
+      "full_task_cost_depth4_improvement_percent": -4.6517854627178945,
+      "improvement_over_repair_percent": 94.15402351214094
+    }
+  ],
+  "old_repair_rows": [
+    {
+      "configuration": "base",
+      "controller": "projected_koopman",
+      "origin": "reused_v77",
+      "path": "/root/shared-nvme/agentic-auv/experiments/reliable-v77-20260924/base-pitch-projected_koopman-repair-r4",
+      "profile": "repair",
+      "accepted": true,
+      "status": "accepted",
+      "reason": null,
+      "physics_steps": 240,
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "context": [
+        22.701000213623047,
+        0.3700000047683716,
+        0.9700000286102295,
+        1.190000057220459,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.022747844457626343,
+        1.0,
+        997.0,
+        0.001306,
+        9.81
+      ],
+      "trace_sha256": "95a0e67d161d4979799c4f471f36df2c536640476cb4f83e3430f2d7d4a5172b",
+      "decision_statuses": {
+        "optimized": 15,
+        "baseline_retained": 30,
+        "warm_retained": 14
+      },
+      "nlp_statuses": {
+        "Solve_Succeeded": 56,
+        "Solved_To_Acceptable_Level": 2,
+        "Maximum_Iterations_Exceeded": 1
+      },
+      "solve_seconds": {
+        "median": 1.350913293659687,
+        "p95": 4.667938406392913,
+        "maximum": 9.059394001960754
+      },
+      "whole_cycle_ms": {
+        "median": 1403.071641921997,
+        "maximum": 9115.568935871124
+      },
+      "metrics": {
+        "depth_rmse_m": 0.003312005407587383,
+        "attitude_rmse_rad": 0.01809246604634131,
+        "normalized_tracking_score": 0.23200927932347834,
+        "command_squared_integral": 0.0017909936051905071,
+        "pwm_squared_integral": 0.007163974433375703,
+        "full_task_cost_depth4": 0.00099901502728535,
+        "full_task_cost_components": {
+          "tracking_integral": 0.0009121542262965731,
+          "terminal": 6.029463195391263e-05,
+          "effort": 1.7909936051905072e-05,
+          "slew": 8.656232982959251e-06
+        }
+      },
+      "executed_prediction_errors": {
+        "compared_substeps": 236,
+        "horizon_seconds": 0.03333333333333333,
+        "depth_rmse_m": 2.3044386249832526e-07,
+        "full_attitude_rmse_rad": 8.597935210382593e-06,
+        "body_velocity_vector_rmse": 6.22073718240099e-08,
+        "angular_velocity_vector_rmse": 5.331517571763486e-07
+      },
+      "improvement_percent": 0.6700885837946813,
+      "command_intensity_ratio_to_feedback": 1.9454181546652805,
+      "pwm_intensity_ratio_to_feedback": 1.9454181588078636,
+      "full_task_cost_depth4_improvement_percent": -6.789298494906548
+    },
+    {
+      "configuration": "base",
+      "controller": "nominal_physics",
+      "origin": "reused_v77",
+      "path": "/root/shared-nvme/agentic-auv/experiments/reliable-v77-20260924/base-pitch-nominal_physics-repair-r4",
+      "profile": "repair",
+      "accepted": true,
+      "status": "accepted",
+      "reason": null,
+      "physics_steps": 240,
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "context": [
+        22.701000213623047,
+        0.3700000047683716,
+        0.9700000286102295,
+        1.190000057220459,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.022747844457626343,
+        1.0,
+        997.0,
+        0.001306,
+        9.81
+      ],
+      "trace_sha256": "8cd28ec9f01c0ab803deb18f528e97398991343a9a679e62e811e0e39d3c3f0e",
+      "decision_statuses": {
+        "optimized": 15,
+        "baseline_retained": 30,
+        "warm_retained": 14
+      },
+      "nlp_statuses": {
+        "Solve_Succeeded": 57,
+        "Maximum_Iterations_Exceeded": 2
+      },
+      "solve_seconds": {
+        "median": 1.4484924040734768,
+        "p95": 4.0335104435682165,
+        "maximum": 9.444794543087482
+      },
+      "whole_cycle_ms": {
+        "median": 1506.7119654268026,
+        "maximum": 9500.02720579505
+      },
+      "metrics": {
+        "depth_rmse_m": 0.0032835658262803918,
+        "attitude_rmse_rad": 0.01806524288082734,
+        "normalized_tracking_score": 0.23092513655334285,
+        "command_squared_integral": 0.0017635285718665837,
+        "pwm_squared_integral": 0.007054114275506922,
+        "full_task_cost_depth4": 0.0009884558837873507,
+        "full_task_cost_components": {
+          "tracking_integral": 0.0009088003473304761,
+          "terminal": 5.3424687737698485e-05,
+          "effort": 1.763528571866584e-05,
+          "slew": 8.595563000510185e-06
+        }
+      },
+      "executed_prediction_errors": {
+        "compared_substeps": 236,
+        "horizon_seconds": 0.03333333333333333,
+        "depth_rmse_m": 2.3319702814719417e-07,
+        "full_attitude_rmse_rad": 8.481752985068333e-06,
+        "body_velocity_vector_rmse": 6.626398133932443e-08,
+        "angular_velocity_vector_rmse": 2.949374137337896e-07
+      },
+      "improvement_percent": 1.1342415936832828,
+      "command_intensity_ratio_to_feedback": 1.9155850082531445,
+      "pwm_intensity_ratio_to_feedback": 1.915585005711766,
+      "full_task_cost_depth4_improvement_percent": -5.660583214294124
+    },
+    {
+      "configuration": "uuv4",
+      "controller": "projected_koopman",
+      "origin": "reused_v77",
+      "path": "/root/shared-nvme/agentic-auv/experiments/reliable-v77-20260924/uuv4-pitch-projected_koopman-repair-r4",
+      "profile": "repair",
+      "accepted": true,
+      "status": "accepted",
+      "reason": null,
+      "physics_steps": 240,
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "context": [
+        21.780000686645508,
+        0.3549887537956238,
+        0.9306462407112122,
+        1.1417206525802612,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.02199999988079071,
+        1.0,
+        997.0,
+        0.001306,
+        9.81
+      ],
+      "trace_sha256": "f4999dc2775bcb35fb30d6cde8bf51b8729b388ca90628633daa71e45446df43",
+      "decision_statuses": {
+        "optimized": 22,
+        "warm_retained": 17,
+        "baseline_retained": 5,
+        "recovered": 15
+      },
+      "nlp_statuses": {
+        "Solve_Succeeded": 39,
+        "Solved_To_Acceptable_Level": 4,
+        "Maximum_Iterations_Exceeded": 16
+      },
+      "solve_seconds": {
+        "median": 2.256011627614498,
+        "p95": 5.917640728503464,
+        "maximum": 6.349350333213806
+      },
+      "whole_cycle_ms": {
+        "median": 2266.483886167407,
+        "maximum": 6411.383170634508
+      },
+      "metrics": {
+        "depth_rmse_m": 0.01686880446618997,
+        "attitude_rmse_rad": 0.01773355233506226,
+        "normalized_tracking_score": 0.9079407093091217,
+        "command_squared_integral": 0.023830108147899768,
+        "pwm_squared_integral": 0.014182523497866561,
+        "full_task_cost_depth4": 0.005264908880484488,
+        "full_task_cost_components": {
+          "tracking_integral": 0.0034120329205904994,
+          "terminal": 0.0015975904127766825,
+          "effort": 0.00023830108147899768,
+          "slew": 1.6984465638307885e-05
+        }
+      },
+      "executed_prediction_errors": {
+        "compared_substeps": 236,
+        "horizon_seconds": 0.03333333333333333,
+        "depth_rmse_m": 2.2534345017096254e-07,
+        "full_attitude_rmse_rad": 8.879855660326108e-06,
+        "body_velocity_vector_rmse": 2.0130503877403866e-07,
+        "angular_velocity_vector_rmse": 5.952453070122086e-07
+      },
+      "improvement_percent": -324.409548509471,
+      "command_intensity_ratio_to_feedback": 1.048741018059378,
+      "pwm_intensity_ratio_to_feedback": 2.0148943226560343,
+      "full_task_cost_depth4_improvement_percent": -381.2491477388712
+    },
+    {
+      "configuration": "uuv4",
+      "controller": "nominal_physics",
+      "origin": "reused_v77",
+      "path": "/root/shared-nvme/agentic-auv/experiments/reliable-v77-20260924/uuv4-pitch-nominal_physics-repair-r4",
+      "profile": "repair",
+      "accepted": true,
+      "status": "accepted",
+      "reason": null,
+      "physics_steps": 240,
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "context": [
+        21.780000686645508,
+        0.3549887537956238,
+        0.9306462407112122,
+        1.1417206525802612,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.02199999988079071,
+        1.0,
+        997.0,
+        0.001306,
+        9.81
+      ],
+      "trace_sha256": "7fca552a47bbacfdec8b9359a246d7d3e958eb158212270046832ce760f983fc",
+      "decision_statuses": {
+        "optimized": 24,
+        "warm_retained": 16,
+        "baseline_retained": 6,
+        "recovered": 13
+      },
+      "nlp_statuses": {
+        "Solve_Succeeded": 42,
+        "Solved_To_Acceptable_Level": 2,
+        "Maximum_Iterations_Exceeded": 15
+      },
+      "solve_seconds": {
+        "median": 3.0725957341492176,
+        "p95": 5.7281143389642235,
+        "maximum": 6.099072556942701
+      },
+      "whole_cycle_ms": {
+        "median": 3038.686729967594,
+        "maximum": 6158.234469592571
+      },
+      "metrics": {
+        "depth_rmse_m": 0.019285628217613038,
+        "attitude_rmse_rad": 0.01799013846246114,
+        "normalized_tracking_score": 1.1321168155565577,
+        "command_squared_integral": 0.025146423859828213,
+        "pwm_squared_integral": 0.014427442992188259,
+        "full_task_cost_depth4": 0.008064211262241144,
+        "full_task_cost_components": {
+          "tracking_integral": 0.004096854942306614,
+          "terminal": 0.00369815466327672,
+          "effort": 0.00025146423859828215,
+          "slew": 1.7737418059528527e-05
+        }
+      },
+      "executed_prediction_errors": {
+        "compared_substeps": 236,
+        "horizon_seconds": 0.03333333333333333,
+        "depth_rmse_m": 2.2801023694441595e-07,
+        "full_attitude_rmse_rad": 8.771959711232547e-06,
+        "body_velocity_vector_rmse": 2.0125927348136125e-07,
+        "angular_velocity_vector_rmse": 2.491272936230853e-07
+      },
+      "improvement_percent": -429.1988580575384,
+      "command_intensity_ratio_to_feedback": 1.106670855022248,
+      "pwm_intensity_ratio_to_feedback": 2.0496897452541925,
+      "full_task_cost_depth4_improvement_percent": -637.1247794097872
+    },
+    {
+      "configuration": "long_body",
+      "controller": "projected_koopman",
+      "origin": "reused_v77",
+      "path": "/root/shared-nvme/agentic-auv/experiments/reliable-v77-20260924/long_body-pitch-projected_koopman-repair-r4",
+      "profile": "repair",
+      "accepted": true,
+      "status": "accepted",
+      "reason": null,
+      "physics_steps": 240,
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "context": [
+        22.701000213623047,
+        0.10000000149011612,
+        2.5,
+        2.5,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.022747844457626343,
+        1.0,
+        997.0,
+        0.001306,
+        9.81
+      ],
+      "trace_sha256": "5541b20f4a7f73388dc82a3863b213165a407b36ce34d45c486a78d6e138b403",
+      "decision_statuses": {
+        "baseline_retained": 39,
+        "optimized": 13,
+        "warm_retained": 7
+      },
+      "nlp_statuses": {
+        "Maximum_Iterations_Exceeded": 29,
+        "Solve_Succeeded": 30
+      },
+      "solve_seconds": {
+        "median": 6.703842855989933,
+        "p95": 8.906948577612638,
+        "maximum": 9.467512037605047
+      },
+      "whole_cycle_ms": {
+        "median": 6704.502020031214,
+        "maximum": 9520.08892223239
+      },
+      "metrics": {
+        "depth_rmse_m": 0.0020271619810428147,
+        "attitude_rmse_rad": 0.01825436583514731,
+        "normalized_tracking_score": 0.21853713427058447,
+        "command_squared_integral": 0.0015628468428547926,
+        "pwm_squared_integral": 0.006251387377732081,
+        "full_task_cost_depth4": 0.0009276128324329192,
+        "full_task_cost_components": {
+          "tracking_integral": 0.0008463070174069555,
+          "terminal": 5.818803615344861e-05,
+          "effort": 1.5628468428547928e-05,
+          "slew": 7.489310443967102e-06
+        }
+      },
+      "executed_prediction_errors": {
+        "compared_substeps": 236,
+        "horizon_seconds": 0.03333333333333333,
+        "depth_rmse_m": 2.1445887497929314e-07,
+        "full_attitude_rmse_rad": 8.29664922023754e-06,
+        "body_velocity_vector_rmse": 4.9385797644005914e-08,
+        "angular_velocity_vector_rmse": 4.1246356256163703e-07
+      },
+      "improvement_percent": -4.005443102241424,
+      "command_intensity_ratio_to_feedback": 1.1632524319496955,
+      "pwm_intensity_ratio_to_feedback": 1.1632524340334724,
+      "full_task_cost_depth4_improvement_percent": -8.368389654189468
+    },
+    {
+      "configuration": "long_body",
+      "controller": "nominal_physics",
+      "origin": "reused_v77",
+      "path": "/root/shared-nvme/agentic-auv/experiments/reliable-v77-20260924/long_body-pitch-nominal_physics-repair-r4",
+      "profile": "repair",
+      "accepted": true,
+      "status": "accepted",
+      "reason": null,
+      "physics_steps": 240,
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "context": [
+        22.701000213623047,
+        0.10000000149011612,
+        2.5,
+        2.5,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.022747844457626343,
+        1.0,
+        997.0,
+        0.001306,
+        9.81
+      ],
+      "trace_sha256": "b8bd7d49e6e3fd62b5f6e4673de3f3df5c16a382a3ef48b667a4c9d245bc0dc8",
+      "decision_statuses": {
+        "baseline_retained": 36,
+        "optimized": 19,
+        "warm_retained": 4
+      },
+      "nlp_statuses": {
+        "Maximum_Iterations_Exceeded": 14,
+        "Solve_Succeeded": 41,
+        "Solved_To_Acceptable_Level": 4
+      },
+      "solve_seconds": {
+        "median": 2.107034135609865,
+        "p95": 7.87794333770871,
+        "maximum": 8.949480149894953
+      },
+      "whole_cycle_ms": {
+        "median": 2102.7561258524656,
+        "maximum": 9009.357500821352
+      },
+      "metrics": {
+        "depth_rmse_m": 0.0018633494945141057,
+        "attitude_rmse_rad": 0.017992955034073797,
+        "normalized_tracking_score": 0.2110216976331409,
+        "command_squared_integral": 0.00144941678002929,
+        "pwm_squared_integral": 0.0057976671151545416,
+        "full_task_cost_depth4": 0.0009275000888737259,
+        "full_task_cost_components": {
+          "tracking_integral": 0.0008386411395738503,
+          "terminal": 6.59264892256241e-05,
+          "effort": 1.44941678002929e-05,
+          "slew": 8.438292273958614e-06
+        }
+      },
+      "executed_prediction_errors": {
+        "compared_substeps": 236,
+        "horizon_seconds": 0.03333333333333333,
+        "depth_rmse_m": 1.9931517058018468e-07,
+        "full_attitude_rmse_rad": 8.397673632333992e-06,
+        "body_velocity_vector_rmse": 4.284626200697849e-08,
+        "angular_velocity_vector_rmse": 1.4880014121330404e-07
+      },
+      "improvement_percent": -0.42872228455039796,
+      "command_intensity_ratio_to_feedback": 1.078824583474826,
+      "pwm_intensity_ratio_to_feedback": 1.078824583394483,
+      "full_task_cost_depth4_improvement_percent": -8.355218385394458
+    },
+    {
+      "configuration": "uuv6",
+      "controller": "projected_koopman",
+      "origin": "reused_v77",
+      "path": "/root/shared-nvme/agentic-auv/experiments/reliable-v77-20260924/uuv6-pitch-projected_koopman-repair-r4",
+      "profile": "repair",
+      "accepted": true,
+      "status": "accepted",
+      "reason": null,
+      "physics_steps": 240,
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "context": [
+        29.69999885559082,
+        0.4840756058692932,
+        1.2690629959106445,
+        1.5568917989730835,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.029999999329447746,
+        1.0,
+        997.0,
+        0.001306,
+        9.81
+      ],
+      "trace_sha256": "81ad96bf0ac6eeaaa75af388ad25438fb0b633fc563a16ef6d076eaae592abe7",
+      "decision_statuses": {
+        "optimized": 31,
+        "warm_retained": 8,
+        "baseline_retained": 2,
+        "recovered": 18
+      },
+      "nlp_statuses": {
+        "Solve_Succeeded": 56,
+        "Maximum_Iterations_Exceeded": 2,
+        "Solved_To_Acceptable_Level": 1
+      },
+      "solve_seconds": {
+        "median": 1.5263514555990696,
+        "p95": 5.401778063178059,
+        "maximum": 6.463660441339016
+      },
+      "whole_cycle_ms": {
+        "median": 1580.8931719511747,
+        "maximum": 6522.929225116968
+      },
+      "metrics": {
+        "depth_rmse_m": 0.02037676298509533,
+        "attitude_rmse_rad": 0.017294259722165493,
+        "normalized_tracking_score": 1.2249633114629503,
+        "command_squared_integral": 0.015712615752101308,
+        "pwm_squared_integral": 0.01580093396514017,
+        "full_task_cost_depth4": 0.009825877693091869,
+        "full_task_cost_components": {
+          "tracking_integral": 0.004282433496033406,
+          "terminal": 0.005359519700297268,
+          "effort": 0.00015712615752101308,
+          "slew": 2.6798339240182762e-05
+        }
+      },
+      "executed_prediction_errors": {
+        "compared_substeps": 236,
+        "horizon_seconds": 0.03333333333333333,
+        "depth_rmse_m": 2.0099052161437148e-07,
+        "full_attitude_rmse_rad": 8.775637691139627e-06,
+        "body_velocity_vector_rmse": 1.7383948144868097e-07,
+        "angular_velocity_vector_rmse": 6.98738394444322e-07
+      },
+      "improvement_percent": -482.49893975638463,
+      "command_intensity_ratio_to_feedback": 0.45536889020480814,
+      "pwm_intensity_ratio_to_feedback": 1.5498919126805566,
+      "full_task_cost_depth4_improvement_percent": -736.5714475858185
+    },
+    {
+      "configuration": "uuv6",
+      "controller": "nominal_physics",
+      "origin": "reused_v77",
+      "path": "/root/shared-nvme/agentic-auv/experiments/reliable-v77-20260924/uuv6-pitch-nominal_physics-repair-r4",
+      "profile": "repair",
+      "accepted": true,
+      "status": "accepted",
+      "reason": null,
+      "physics_steps": 240,
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "context": [
+        29.69999885559082,
+        0.4840756058692932,
+        1.2690629959106445,
+        1.5568917989730835,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.029999999329447746,
+        1.0,
+        997.0,
+        0.001306,
+        9.81
+      ],
+      "trace_sha256": "8bdc45fe22c8840ee1a2bf02783a2dffeb25629069a9267e563d182707bd47b0",
+      "decision_statuses": {
+        "optimized": 22,
+        "warm_retained": 21,
+        "baseline_retained": 3,
+        "recovered": 13
+      },
+      "nlp_statuses": {
+        "Solve_Succeeded": 44,
+        "Maximum_Iterations_Exceeded": 11,
+        "Solved_To_Acceptable_Level": 4
+      },
+      "solve_seconds": {
+        "median": 2.1049886904656887,
+        "p95": 6.684588436037298,
+        "maximum": 8.283081647008657
+      },
+      "whole_cycle_ms": {
+        "median": 2085.5588167905807,
+        "maximum": 8347.064841538668
+      },
+      "metrics": {
+        "depth_rmse_m": 0.036727516992376245,
+        "attitude_rmse_rad": 0.02201239169393771,
+        "normalized_tracking_score": 3.675117128617801,
+        "command_squared_integral": 0.03904638265129448,
+        "pwm_squared_integral": 0.018379269708689368,
+        "full_task_cost_depth4": 0.03361112843110543,
+        "full_task_cost_components": {
+          "tracking_integral": 0.012759202250000249,
+          "terminal": 0.020439421517429106,
+          "effort": 0.0003904638265129448,
+          "slew": 2.2040837163141597e-05
+        }
+      },
+      "executed_prediction_errors": {
+        "compared_substeps": 236,
+        "horizon_seconds": 0.03333333333333333,
+        "depth_rmse_m": 2.082205298002357e-07,
+        "full_attitude_rmse_rad": 9.011875812355719e-06,
+        "body_velocity_vector_rmse": 3.551190037217295e-07,
+        "angular_velocity_vector_rmse": 9.298920130179437e-07
+      },
+      "improvement_percent": -1647.604855482356,
+      "command_intensity_ratio_to_feedback": 1.131607124806981,
+      "pwm_intensity_ratio_to_feedback": 1.8027973248491256,
+      "full_task_cost_depth4_improvement_percent": -2761.6385471978047
+    }
+  ],
+  "prior_attempts": [
+    {
+      "configuration": "uuv6",
+      "controller": "projected_koopman",
+      "origin": "new_v78",
+      "path": "/root/shared-nvme/agentic-auv/experiments/common-profile-v78-20260924/uuv6-pitch-projected_koopman-depth4_h20-v78r1",
+      "profile": "depth4_h20",
+      "accepted": false,
+      "status": "failed_or_unaccepted",
+      "reason": "TimeoutError:case_wall_budget",
+      "physics_steps": 180,
+      "source_manifest_sha256": "815b212077ef792d06e8568226edf90a2a603b9379195c17f3a90b15bbc3e090",
+      "context": [
+        29.69999885559082,
+        0.4840756058692932,
+        1.2690629959106445,
+        1.5568917989730835,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.029999999329447746,
+        1.0,
+        997.0,
+        0.001306,
+        9.81
+      ],
+      "trace_sha256": "94715361df0df59e88acaa87695ebba08e8f29b48bc821c564e75d14516b73c9",
+      "decision_statuses": {
+        "recovered": 9,
+        "warm_retained": 8,
+        "optimized": 23,
+        "baseline_retained": 4
+      },
+      "nlp_statuses": {
+        "Solve_Succeeded": 9,
+        "Maximum_Iterations_Exceeded": 34,
+        "Solved_To_Acceptable_Level": 1
+      },
+      "solve_seconds": {
+        "median": 21.990665091201663,
+        "p95": 24.285964808426797,
+        "maximum": 26.46105846390128
+      },
+      "whole_cycle_ms": {
+        "median": 22107.056871056557,
+        "maximum": 26573.649626225233
+      }
+    }
+  ],
+  "retry_prefix_agreement": null,
+  "accepted_main_rows": 11,
+  "limitations": [
+    "known configurations and one short development task",
+    "uuv4 and feedback explicitly reused",
+    "simulation paused while solving; not real-time",
+    "projected readout equals identified-parameter physics",
+    "command/PWM intensity proxies are not measured energy",
+    "no confidence interval or unseen-configuration claim"
+  ]
+}

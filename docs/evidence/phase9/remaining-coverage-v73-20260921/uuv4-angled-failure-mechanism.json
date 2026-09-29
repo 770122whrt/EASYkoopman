@@ -1,0 +1,67 @@
+{
+  "physics_steps": 212,
+  "runtime": {
+    "stats": {
+      "requests": 16,
+      "mpc_activations": 11,
+      "confirmed_controls": 52,
+      "dispatches": 53,
+      "rejected_replies": 4,
+      "worker_failures": 0
+    },
+    "physics_index": 212,
+    "stopped": true,
+    "pending": false
+  },
+  "crossings": [
+    {
+      "feature": 1,
+      "before": -0.04470610215067801,
+      "after": -0.04506527804497069,
+      "lower": -0.0449339200339076,
+      "upper": 0.07030854890973068
+    }
+  ],
+  "rejections": [
+    {
+      "physics_index": 184,
+      "result": {
+        "status": "rejected",
+        "reason": "worker_no_admissible_plan"
+      },
+      "payload_status": "no_plan",
+      "payload_reason": "baseline_prediction_infeasible",
+      "elapsed_ms": 7.8750839456915855
+    },
+    {
+      "physics_index": 188,
+      "result": {
+        "status": "rejected",
+        "reason": "worker_no_admissible_plan"
+      },
+      "payload_status": "no_plan",
+      "payload_reason": "baseline_prediction_infeasible",
+      "elapsed_ms": 8.594541810452938
+    },
+    {
+      "physics_index": 192,
+      "result": {
+        "status": "rejected",
+        "reason": "worker_no_admissible_plan"
+      },
+      "payload_status": "no_plan",
+      "payload_reason": "baseline_prediction_infeasible",
+      "elapsed_ms": 9.007854852825403
+    },
+    {
+      "physics_index": 208,
+      "result": {
+        "status": "rejected",
+        "reason": "worker_no_admissible_plan"
+      },
+      "payload_status": "no_plan",
+      "payload_reason": "baseline_prediction_infeasible",
+      "elapsed_ms": 8.126602042466402
+    }
+  ]
+}

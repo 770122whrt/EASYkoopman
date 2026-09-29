@@ -1,0 +1,4984 @@
+{
+  "status": "local_complete_path_profile_complete",
+  "error": null,
+  "seconds": 21.986580299999332,
+  "rows": [
+    {
+      "configuration": "base",
+      "episode_id": "i29-base-fit-8720-prbs",
+      "trace_sha256": "e713f82299dede5095a0d054fe89a027280b340b6ac7561236621b4cf647d33d",
+      "prepare_before_calls_ms": 10640.337899996666,
+      "solver": {
+        "profiled_total_ms": 124.34820000000012,
+        "by_self": [
+          {
+            "file": "koopman/command_batch_v42.py",
+            "line": 19,
+            "function": "forecast_batch",
+            "calls": 1,
+            "self_ms": 18.4927,
+            "cumulative_ms": 70.23740000000001
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+            "calls": 2208,
+            "self_ms": 13.9255,
+            "cumulative_ms": 13.9255
+          },
+          {
+            "file": "koopman/prepared_allocation_v42.py",
+            "line": 59,
+            "function": "command",
+            "calls": 360,
+            "self_ms": 12.726600000000001,
+            "cumulative_ms": 31.5164
+          },
+          {
+            "file": "koopman/bounded_mpc_v44.py",
+            "line": 170,
+            "function": "solve",
+            "calls": 1,
+            "self_ms": 7.8499,
+            "cumulative_ms": 123.52400000000002
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/_methods.py",
+            "line": 90,
+            "function": "_clip",
+            "calls": 1049,
+            "self_ms": 6.8408,
+            "cumulative_ms": 6.8408
+          },
+          {
+            "file": "frozen/easyuuv_nc/env/thruster_dynamics.py",
+            "line": 31,
+            "function": "create_tf_rpyquat",
+            "calls": 16,
+            "self_ms": 5.483200000000001,
+            "cumulative_ms": 9.001900000000001
+          },
+          {
+            "file": "frozen/workflows/actuator_replay_v28.py",
+            "line": 13,
+            "function": "advance_pwm",
+            "calls": 40,
+            "self_ms": 3.9867000000000004,
+            "cumulative_ms": 7.944700000000001
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method numpy.asarray>",
+            "calls": 894,
+            "self_ms": 3.4136,
+            "cumulative_ms": 3.4136
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 71,
+            "function": "_wrapreduction",
+            "calls": 945,
+            "self_ms": 3.2665,
+            "cumulative_ms": 9.234300000000001
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/linalg/linalg.py",
+            "line": 2383,
+            "function": "norm",
+            "calls": 197,
+            "self_ms": 3.1034,
+            "cumulative_ms": 4.8799
+          },
+          {
+            "file": "koopman/compiled_projected_v43.py",
+            "line": 114,
+            "function": "__call__",
+            "calls": 40,
+            "self_ms": 2.5872,
+            "cumulative_ms": 7.7879000000000005
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method numpy.array>",
+            "calls": 851,
+            "self_ms": 2.281,
+            "cumulative_ms": 2.281
+          },
+          {
+            "file": "frozen/koopman/physical_terms_v26.py",
+            "line": 10,
+            "function": "validate_states",
+            "calls": 68,
+            "self_ms": 2.1460000000000004,
+            "cumulative_ms": 5.726500000000001
+          },
+          {
+            "file": "frozen/easyuuv_nc/env/thruster_dynamics.py",
+            "line": 26,
+            "function": "create_tf_quat",
+            "calls": 16,
+            "self_ms": 2.1416,
+            "cumulative_ms": 2.1416
+          },
+          {
+            "file": "frozen/workflows/identification_prediction_v32.py",
+            "line": 7,
+            "function": "valid_predictions",
+            "calls": 41,
+            "self_ms": 2.0461,
+            "cumulative_ms": 5.0735
+          },
+          {
+            "file": "frozen/koopman/projected_edmd_v24.py",
+            "line": 35,
+            "function": "rotation",
+            "calls": 19,
+            "self_ms": 1.9073,
+            "cumulative_ms": 3.6984
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 2100,
+            "function": "clip",
+            "calls": 1049,
+            "self_ms": 1.8152000000000001,
+            "cumulative_ms": 11.7727
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'all' of 'numpy.ndarray' objects>",
+            "calls": 971,
+            "self_ms": 1.7706000000000002,
+            "cumulative_ms": 9.3704
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/shape_base.py",
+            "line": 372,
+            "function": "stack",
+            "calls": 59,
+            "self_ms": 1.6495000000000002,
+            "cumulative_ms": 1.8373
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 2322,
+            "function": "any",
+            "calls": 697,
+            "self_ms": 1.5823,
+            "cumulative_ms": 8.5934
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'clip' of 'numpy.ndarray' objects>",
+            "calls": 1049,
+            "self_ms": 1.5807000000000002,
+            "cumulative_ms": 8.4215
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'copy' of 'numpy.ndarray' objects>",
+            "calls": 572,
+            "self_ms": 1.3254,
+            "cumulative_ms": 1.3254
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 53,
+            "function": "_wrapfunc",
+            "calls": 1112,
+            "self_ms": 1.1890000000000003,
+            "cumulative_ms": 10.2544
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'astype' of 'numpy.ndarray' objects>",
+            "calls": 269,
+            "self_ms": 1.0539,
+            "cumulative_ms": 1.0539
+          },
+          {
+            "file": "frozen/easyuuv_nc/env/thruster_dynamics.py",
+            "line": 14,
+            "function": "get_thruster_com_and_orientations",
+            "calls": 2,
+            "self_ms": 0.9358000000000001,
+            "cumulative_ms": 10.283900000000001
+          },
+          {
+            "file": "koopman/control_objective_v44.py",
+            "line": 43,
+            "function": "tracking_terms",
+            "calls": 9,
+            "self_ms": 0.8827,
+            "cumulative_ms": 5.1931
+          },
+          {
+            "file": "koopman/bounded_mpc_v44.py",
+            "line": 82,
+            "function": "check_states",
+            "calls": 10,
+            "self_ms": 0.7284,
+            "cumulative_ms": 6.272900000000001
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'items' of 'dict' objects>",
+            "calls": 957,
+            "self_ms": 0.7032,
+            "cumulative_ms": 0.7032
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/_methods.py",
+            "line": 61,
+            "function": "_all",
+            "calls": 971,
+            "self_ms": 0.6763,
+            "cumulative_ms": 7.5998
+          },
+          {
+            "file": "koopman/control_objective_v44.py",
+            "line": 74,
+            "function": "trajectory_cost",
+            "calls": 9,
+            "self_ms": 0.5854,
+            "cumulative_ms": 8.359100000000002
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.as_tensor>",
+            "calls": 56,
+            "self_ms": 0.5543000000000001,
+            "cumulative_ms": 0.5543000000000001
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.tensor>",
+            "calls": 14,
+            "self_ms": 0.5236999999999999,
+            "cumulative_ms": 0.5236999999999999
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method builtins.getattr>",
+            "calls": 1162,
+            "self_ms": 0.5165000000000001,
+            "cumulative_ms": 0.5165000000000001
+          },
+          {
+            "file": "koopman/prepared_projected_v40.py",
+            "line": 23,
+            "function": "_context_key",
+            "calls": 41,
+            "self_ms": 0.44530000000000003,
+            "cumulative_ms": 0.45840000000000003
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.cos>",
+            "calls": 48,
+            "self_ms": 0.44260000000000005,
+            "cumulative_ms": 0.44260000000000005
+          },
+          {
+            "file": "koopman/control_objective_v44.py",
+            "line": 36,
+            "function": "state_features",
+            "calls": 10,
+            "self_ms": 0.4424,
+            "cumulative_ms": 4.3669
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/lib/function_base.py",
+            "line": 1324,
+            "function": "diff",
+            "calls": 18,
+            "self_ms": 0.4421,
+            "cumulative_ms": 0.47680000000000006
+          },
+          {
+            "file": "E:\\anaconda\\Lib\\json\\encoder.py",
+            "line": 205,
+            "function": "iterencode",
+            "calls": 2,
+            "self_ms": 0.4339,
+            "cumulative_ms": 0.45660000000000006
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.sin>",
+            "calls": 48,
+            "self_ms": 0.4072,
+            "cumulative_ms": 0.4072
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 2317,
+            "function": "_any_dispatcher",
+            "calls": 697,
+            "self_ms": 0.4017,
+            "cumulative_ms": 0.4017
+          },
+          {
+            "file": "koopman/control_objective_v44.py",
+            "line": 82,
+            "function": "<genexpr>",
+            "calls": 45,
+            "self_ms": 0.3639,
+            "cumulative_ms": 0.3849
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 2692,
+            "function": "max",
+            "calls": 180,
+            "self_ms": 0.359,
+            "cumulative_ms": 1.8571000000000002
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/numeric.py",
+            "line": 67,
+            "function": "zeros_like",
+            "calls": 40,
+            "self_ms": 0.3589,
+            "cumulative_ms": 0.4265
+          },
+          {
+            "file": "koopman/bounded_mpc_v44.py",
+            "line": 183,
+            "function": "check_time",
+            "calls": 442,
+            "self_ms": 0.34480000000000005,
+            "cumulative_ms": 0.5252000000000001
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 2096,
+            "function": "_clip_dispatcher",
+            "calls": 1049,
+            "self_ms": 0.27990000000000004,
+            "cumulative_ms": 0.27990000000000004
+          },
+          {
+            "file": "frozen/workflows/control_seam_v23.py",
+            "line": 56,
+            "function": "__init__",
+            "calls": 2,
+            "self_ms": 0.2768,
+            "cumulative_ms": 12.1171
+          },
+          {
+            "file": "frozen/easyuuv_nc/thrust_allocation.py",
+            "line": 93,
+            "function": "build_wrench_matrix",
+            "calls": 2,
+            "self_ms": 0.2719,
+            "cumulative_ms": 0.7602000000000001
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/numeric.py",
+            "line": 2378,
+            "function": "array_equal",
+            "calls": 28,
+            "self_ms": 0.25370000000000004,
+            "cumulative_ms": 0.5724
+          },
+          {
+            "file": "koopman/control_objective_v44.py",
+            "line": 21,
+            "function": "checked_mask",
+            "calls": 28,
+            "self_ms": 0.25070000000000003,
+            "cumulative_ms": 0.9702000000000001
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/shape_base.py",
+            "line": 219,
+            "function": "vstack",
+            "calls": 18,
+            "self_ms": 0.24920000000000003,
+            "cumulative_ms": 0.42410000000000003
+          }
+        ],
+        "by_cumulative": [
+          {
+            "file": "workflows/profile_bounded_mpc_v44.py",
+            "line": 101,
+            "function": "solve",
+            "calls": 1,
+            "self_ms": 0.1116,
+            "cumulative_ms": 124.3178
+          },
+          {
+            "file": "koopman/bounded_mpc_v44.py",
+            "line": 170,
+            "function": "solve",
+            "calls": 1,
+            "self_ms": 7.8499,
+            "cumulative_ms": 123.52400000000002
+          },
+          {
+            "file": "koopman/command_batch_v42.py",
+            "line": 19,
+            "function": "forecast_batch",
+            "calls": 1,
+            "self_ms": 18.4927,
+            "cumulative_ms": 70.23740000000001
+          },
+          {
+            "file": "koopman/prepared_allocation_v42.py",
+            "line": 59,
+            "function": "command",
+            "calls": 360,
+            "self_ms": 12.726600000000001,
+            "cumulative_ms": 31.5164
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+            "calls": 2208,
+            "self_ms": 13.9255,
+            "cumulative_ms": 13.9255
+          },
+          {
+            "file": "koopman/prepared_allocation_v42.py",
+            "line": 31,
+            "function": "__init__",
+            "calls": 2,
+            "self_ms": 0.1666,
+            "cumulative_ms": 12.494100000000001
+          },
+          {
+            "file": "frozen/workflows/control_seam_v23.py",
+            "line": 56,
+            "function": "__init__",
+            "calls": 2,
+            "self_ms": 0.2768,
+            "cumulative_ms": 12.1171
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 2100,
+            "function": "clip",
+            "calls": 1049,
+            "self_ms": 1.8152000000000001,
+            "cumulative_ms": 11.7727
+          },
+          {
+            "file": "frozen/easyuuv_nc/env/thruster_dynamics.py",
+            "line": 14,
+            "function": "get_thruster_com_and_orientations",
+            "calls": 2,
+            "self_ms": 0.9358000000000001,
+            "cumulative_ms": 10.283900000000001
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 53,
+            "function": "_wrapfunc",
+            "calls": 1112,
+            "self_ms": 1.1890000000000003,
+            "cumulative_ms": 10.2544
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'all' of 'numpy.ndarray' objects>",
+            "calls": 971,
+            "self_ms": 1.7706000000000002,
+            "cumulative_ms": 9.3704
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 71,
+            "function": "_wrapreduction",
+            "calls": 945,
+            "self_ms": 3.2665,
+            "cumulative_ms": 9.234300000000001
+          },
+          {
+            "file": "frozen/easyuuv_nc/env/thruster_dynamics.py",
+            "line": 31,
+            "function": "create_tf_rpyquat",
+            "calls": 16,
+            "self_ms": 5.483200000000001,
+            "cumulative_ms": 9.001900000000001
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 2322,
+            "function": "any",
+            "calls": 697,
+            "self_ms": 1.5823,
+            "cumulative_ms": 8.5934
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'clip' of 'numpy.ndarray' objects>",
+            "calls": 1049,
+            "self_ms": 1.5807000000000002,
+            "cumulative_ms": 8.4215
+          },
+          {
+            "file": "koopman/control_objective_v44.py",
+            "line": 74,
+            "function": "trajectory_cost",
+            "calls": 9,
+            "self_ms": 0.5854,
+            "cumulative_ms": 8.359100000000002
+          },
+          {
+            "file": "koopman/bounded_mpc_v44.py",
+            "line": 186,
+            "function": "guarded_predictor",
+            "calls": 40,
+            "self_ms": 0.16190000000000002,
+            "cumulative_ms": 8.082500000000001
+          },
+          {
+            "file": "frozen/workflows/actuator_replay_v28.py",
+            "line": 13,
+            "function": "advance_pwm",
+            "calls": 40,
+            "self_ms": 3.9867000000000004,
+            "cumulative_ms": 7.944700000000001
+          },
+          {
+            "file": "koopman/compiled_projected_v43.py",
+            "line": 114,
+            "function": "__call__",
+            "calls": 40,
+            "self_ms": 2.5872,
+            "cumulative_ms": 7.7879000000000005
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/_methods.py",
+            "line": 61,
+            "function": "_all",
+            "calls": 971,
+            "self_ms": 0.6763,
+            "cumulative_ms": 7.5998
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/_methods.py",
+            "line": 90,
+            "function": "_clip",
+            "calls": 1049,
+            "self_ms": 6.8408,
+            "cumulative_ms": 6.8408
+          },
+          {
+            "file": "koopman/bounded_mpc_v44.py",
+            "line": 82,
+            "function": "check_states",
+            "calls": 10,
+            "self_ms": 0.7284,
+            "cumulative_ms": 6.272900000000001
+          },
+          {
+            "file": "frozen/koopman/physical_terms_v26.py",
+            "line": 10,
+            "function": "validate_states",
+            "calls": 68,
+            "self_ms": 2.1460000000000004,
+            "cumulative_ms": 5.726500000000001
+          },
+          {
+            "file": "koopman/control_objective_v44.py",
+            "line": 43,
+            "function": "tracking_terms",
+            "calls": 9,
+            "self_ms": 0.8827,
+            "cumulative_ms": 5.1931
+          },
+          {
+            "file": "frozen/workflows/identification_prediction_v32.py",
+            "line": 7,
+            "function": "valid_predictions",
+            "calls": 41,
+            "self_ms": 2.0461,
+            "cumulative_ms": 5.0735
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/linalg/linalg.py",
+            "line": 2383,
+            "function": "norm",
+            "calls": 197,
+            "self_ms": 3.1034,
+            "cumulative_ms": 4.8799
+          },
+          {
+            "file": "koopman/control_objective_v44.py",
+            "line": 36,
+            "function": "state_features",
+            "calls": 10,
+            "self_ms": 0.4424,
+            "cumulative_ms": 4.3669
+          },
+          {
+            "file": "frozen/koopman/projected_edmd_v24.py",
+            "line": 35,
+            "function": "rotation",
+            "calls": 19,
+            "self_ms": 1.9073,
+            "cumulative_ms": 3.6984
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method numpy.asarray>",
+            "calls": 894,
+            "self_ms": 3.4136,
+            "cumulative_ms": 3.4136
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method numpy.array>",
+            "calls": 851,
+            "self_ms": 2.281,
+            "cumulative_ms": 2.281
+          },
+          {
+            "file": "frozen/easyuuv_nc/env/thruster_dynamics.py",
+            "line": 26,
+            "function": "create_tf_quat",
+            "calls": 16,
+            "self_ms": 2.1416,
+            "cumulative_ms": 2.1416
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 2692,
+            "function": "max",
+            "calls": 180,
+            "self_ms": 0.359,
+            "cumulative_ms": 1.8571000000000002
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/shape_base.py",
+            "line": 372,
+            "function": "stack",
+            "calls": 59,
+            "self_ms": 1.6495000000000002,
+            "cumulative_ms": 1.8373
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'copy' of 'numpy.ndarray' objects>",
+            "calls": 572,
+            "self_ms": 1.3254,
+            "cumulative_ms": 1.3254
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'astype' of 'numpy.ndarray' objects>",
+            "calls": 269,
+            "self_ms": 1.0539,
+            "cumulative_ms": 1.0539
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/numeric.py",
+            "line": 615,
+            "function": "flatnonzero",
+            "calls": 61,
+            "self_ms": 0.2387,
+            "cumulative_ms": 0.9847
+          },
+          {
+            "file": "koopman/control_objective_v44.py",
+            "line": 21,
+            "function": "checked_mask",
+            "calls": 28,
+            "self_ms": 0.25070000000000003,
+            "cumulative_ms": 0.9702000000000001
+          },
+          {
+            "file": "frozen/easyuuv_nc/thrust_allocation.py",
+            "line": 93,
+            "function": "build_wrench_matrix",
+            "calls": 2,
+            "self_ms": 0.2719,
+            "cumulative_ms": 0.7602000000000001
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'any' of 'numpy.ndarray' objects>",
+            "calls": 106,
+            "self_ms": 0.18380000000000002,
+            "cumulative_ms": 0.7265
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method builtins.any>",
+            "calls": 29,
+            "self_ms": 0.03950000000000001,
+            "cumulative_ms": 0.7124
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'items' of 'dict' objects>",
+            "calls": 957,
+            "self_ms": 0.7032,
+            "cumulative_ms": 0.7032
+          },
+          {
+            "file": "koopman/control_objective_v44.py",
+            "line": 28,
+            "function": "checked_reference",
+            "calls": 10,
+            "self_ms": 0.2457,
+            "cumulative_ms": 0.6851
+          },
+          {
+            "file": "koopman/control_objective_v44.py",
+            "line": 23,
+            "function": "<genexpr>",
+            "calls": 28,
+            "self_ms": 0.08180000000000001,
+            "cumulative_ms": 0.6637000000000001
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/numeric.py",
+            "line": 2378,
+            "function": "array_equal",
+            "calls": 28,
+            "self_ms": 0.25370000000000004,
+            "cumulative_ms": 0.5724
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.as_tensor>",
+            "calls": 56,
+            "self_ms": 0.5543000000000001,
+            "cumulative_ms": 0.5543000000000001
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/_methods.py",
+            "line": 55,
+            "function": "_any",
+            "calls": 106,
+            "self_ms": 0.07,
+            "cumulative_ms": 0.5427000000000001
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/numeric.py",
+            "line": 1393,
+            "function": "moveaxis",
+            "calls": 19,
+            "self_ms": 0.1865,
+            "cumulative_ms": 0.5324
+          },
+          {
+            "file": "koopman/bounded_mpc_v44.py",
+            "line": 183,
+            "function": "check_time",
+            "calls": 442,
+            "self_ms": 0.34480000000000005,
+            "cumulative_ms": 0.5252000000000001
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.tensor>",
+            "calls": 14,
+            "self_ms": 0.5236999999999999,
+            "cumulative_ms": 0.5236999999999999
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method builtins.sum>",
+            "calls": 9,
+            "self_ms": 0.133,
+            "cumulative_ms": 0.5179
+          }
+        ]
+      },
+      "solver_result": {
+        "status": "baseline",
+        "reason": null,
+        "selected_index": 0,
+        "commands": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "predictions": [
+          [
+            5.4795562517761125,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.018290375245448586,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.479403328658311,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.018350774136240502,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.479249903134065,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.018411062909562778,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.479095976122361,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.018471241404520916,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.4789415485435065,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.01853130946249606,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.478786621319114,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.018591266927141026,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.478631195372078,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.018651113644376258,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.478475271626558,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.01871084946238569,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.478318851007962,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.018770474231612565,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.478161934442922,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.01882998780475513,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.478004522859282,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.01888939003676231,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.477846617186075,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.01894868078482926,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.477688218353506,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.019007859908392856,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.477529327292929,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.019066927269127145,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.4773699449368385,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.01912588273093867,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.477210072218838,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.019184726159961765,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.477049710073634,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.01924345742455375,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.476888859437007,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.01930207639529006,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.476727521245799,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.019360582944959334,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.476565696437894,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.01941897694855839,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.476403385952199,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.019477258283287155,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.4762405907286285,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.019535426828543527,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.476077311708079,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.019593482465918157,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.475913549832419,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.019651425079189187,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.475749306044467,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.019709254554316893,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.475584581287971,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.01976697077943828,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.475419376507597,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.019824573644861607,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.475253692648905,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.01988206304306086,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.475087530658333,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.019939438868670126,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.474920891483179,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.019996701018477954,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.474753776071584,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.02005384939142161,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.474586185372512,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.02011088388858129,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.474418120335736,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.020167804413174287,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.474249581911815,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.020224610870549053,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.47408057105208,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.020281303168179252,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.473911088708617,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.020337881215657716,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.473741135834244,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.020394344924690368,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.473570713382501,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.02045069420909007,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.473399822307628,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.02050692898477043,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            5.4732284635645465,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.02056304916973953,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "cost": 0.0009576137237458396,
+        "baseline_cost": 0.0009576137237458396,
+        "candidate_count": 9,
+        "candidates": [
+          {
+            "index": 0,
+            "feasible": true,
+            "cost": 0.0009576137237458396,
+            "rejection": null
+          },
+          {
+            "index": 1,
+            "feasible": true,
+            "cost": 0.0009576303904140895,
+            "rejection": null
+          },
+          {
+            "index": 2,
+            "feasible": true,
+            "cost": 0.0009576303904140895,
+            "rejection": null
+          },
+          {
+            "index": 3,
+            "feasible": true,
+            "cost": 0.0009576303904140895,
+            "rejection": null
+          },
+          {
+            "index": 4,
+            "feasible": true,
+            "cost": 0.0009576303904140895,
+            "rejection": null
+          },
+          {
+            "index": 5,
+            "feasible": true,
+            "cost": 0.0009576303904140895,
+            "rejection": null
+          },
+          {
+            "index": 6,
+            "feasible": true,
+            "cost": 0.0009576303904140895,
+            "rejection": null
+          },
+          {
+            "index": 7,
+            "feasible": true,
+            "cost": 0.0009576303904140895,
+            "rejection": null
+          },
+          {
+            "index": 8,
+            "feasible": true,
+            "cost": 0.0009576303904140895,
+            "rejection": null
+          }
+        ],
+        "runtime_eligible": false,
+        "data_source_verified": true,
+        "metadata": {
+          "episode_id": "i29-base-fit-8720-prbs",
+          "reference_id": "fixed-z5.5-upright",
+          "request_id": "profile",
+          "configuration": "base",
+          "context_key": [
+            22.701000213623047,
+            0.3700000047683716,
+            0.9700000286102295,
+            1.190000057220459,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.022747844457626343,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "2beb7816cf9bf5896c9976c16efa41688a09cb065737a2a39baba7e563644998",
+          "input_contract": "bounded4D_direct_preTAM_held_two_substeps",
+          "clock": "time.perf_counter",
+          "started_perf_counter_s": 232288.0363064,
+          "origin_control": 128,
+          "history_physics_index": 256,
+          "origin_actuator_time_s": 2.133333444595337,
+          "committed_prefix": 0,
+          "previous_command": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "reference": [
+            5.5,
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "completed_perf_counter_s": 232288.1598237
+        },
+        "elapsed_ms": 123.5173000022769
+      },
+      "fallback": {
+        "profiled_total_ms": 109.7019,
+        "by_self": [
+          {
+            "file": "frozen/easyuuv_nc/env/easyuuv_env.py",
+            "line": 2163,
+            "function": "_pid_control",
+            "calls": 37,
+            "self_ms": 31.302500000000006,
+            "cumulative_ms": 47.0129
+          },
+          {
+            "file": "frozen/easyuuv_nc/env/easyuuv_env.py",
+            "line": 1,
+            "function": "pwm_speed",
+            "calls": 33,
+            "self_ms": 20.9924,
+            "cumulative_ms": 24.812900000000003
+          },
+          {
+            "file": "frozen/easyuuv_nc/env/thruster_dynamics.py",
+            "line": 31,
+            "function": "create_tf_rpyquat",
+            "calls": 16,
+            "self_ms": 5.3067,
+            "cumulative_ms": 9.1489
+          },
+          {
+            "file": "frozen/workflows/control_seam_v23.py",
+            "line": 84,
+            "function": "command",
+            "calls": 37,
+            "self_ms": 3.3963,
+            "cumulative_ms": 58.5513
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.clip>",
+            "calls": 74,
+            "self_ms": 3.2279,
+            "cumulative_ms": 3.2279
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'clone' of 'torch._C.TensorBase' objects>",
+            "calls": 255,
+            "self_ms": 2.912,
+            "cumulative_ms": 2.912
+          },
+          {
+            "file": "frozen/easyuuv_nc/env/thruster_dynamics.py",
+            "line": 26,
+            "function": "create_tf_quat",
+            "calls": 16,
+            "self_ms": 2.5023000000000004,
+            "cumulative_ms": 2.5023000000000004
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.isfinite>",
+            "calls": 39,
+            "self_ms": 2.479,
+            "cumulative_ms": 2.479
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.abs>",
+            "calls": 33,
+            "self_ms": 2.4387000000000003,
+            "cumulative_ms": 2.4387000000000003
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.as_tensor>",
+            "calls": 126,
+            "self_ms": 2.258,
+            "cumulative_ms": 2.258
+          },
+          {
+            "file": "frozen/workflows/workpoint_v27.py",
+            "line": 48,
+            "function": "_steady",
+            "calls": 33,
+            "self_ms": 1.9931000000000003,
+            "cumulative_ms": 82.01910000000001
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'numpy' of 'torch._C.TensorBase' objects>",
+            "calls": 178,
+            "self_ms": 1.8533000000000002,
+            "cumulative_ms": 1.8533000000000002
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'max' of 'torch._C.TensorBase' objects>",
+            "calls": 37,
+            "self_ms": 1.7573,
+            "cumulative_ms": 1.7573
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'detach' of 'torch._C.TensorBase' objects>",
+            "calls": 259,
+            "self_ms": 1.7304000000000002,
+            "cumulative_ms": 1.7304000000000002
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'mean' of 'torch._C.TensorBase' objects>",
+            "calls": 37,
+            "self_ms": 1.5499,
+            "cumulative_ms": 1.5499
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.zeros_like>",
+            "calls": 111,
+            "self_ms": 1.3706,
+            "cumulative_ms": 1.3706
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'abs' of 'torch._C.TensorBase' objects>",
+            "calls": 111,
+            "self_ms": 1.3681,
+            "cumulative_ms": 1.3681
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.zeros>",
+            "calls": 49,
+            "self_ms": 1.2441000000000002,
+            "cumulative_ms": 1.2441000000000002
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.rsub>",
+            "calls": 37,
+            "self_ms": 1.0832000000000002,
+            "cumulative_ms": 1.0832000000000002
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'reshape' of 'torch._C.TensorBase' objects>",
+            "calls": 76,
+            "self_ms": 1.0325,
+            "cumulative_ms": 1.0325
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.pow>",
+            "calls": 66,
+            "self_ms": 0.9307,
+            "cumulative_ms": 0.9307
+          },
+          {
+            "file": "frozen/easyuuv_nc/env/thruster_dynamics.py",
+            "line": 14,
+            "function": "get_thruster_com_and_orientations",
+            "calls": 2,
+            "self_ms": 0.8933000000000001,
+            "cumulative_ms": 10.4718
+          },
+          {
+            "file": "frozen/workflows/workpoint_v27.py",
+            "line": 70,
+            "function": "solve_control",
+            "calls": 1,
+            "self_ms": 0.8732000000000001,
+            "cumulative_ms": 94.6893
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+            "calls": 97,
+            "self_ms": 0.6255000000000001,
+            "cumulative_ms": 0.6255000000000001
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'all' of 'torch._C.TensorBase' objects>",
+            "calls": 37,
+            "self_ms": 0.6111000000000001,
+            "cumulative_ms": 0.6111000000000001
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.tensor>",
+            "calls": 14,
+            "self_ms": 0.5976,
+            "cumulative_ms": 0.5976
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.any>",
+            "calls": 37,
+            "self_ms": 0.5874,
+            "cumulative_ms": 0.5874
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method builtins.locals>",
+            "calls": 37,
+            "self_ms": 0.49720000000000003,
+            "cumulative_ms": 0.49720000000000003
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/testing/_private/utils.py",
+            "line": 641,
+            "function": "assert_array_compare",
+            "calls": 12,
+            "self_ms": 0.4524,
+            "cumulative_ms": 3.1892
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/testing/_private/utils.py",
+            "line": 661,
+            "function": "func_assert_same_pos",
+            "calls": 36,
+            "self_ms": 0.4484,
+            "cumulative_ms": 0.9897
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'float' of 'torch._C.TensorBase' objects>",
+            "calls": 37,
+            "self_ms": 0.44100000000000006,
+            "cumulative_ms": 0.44100000000000006
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.cos>",
+            "calls": 48,
+            "self_ms": 0.4318,
+            "cumulative_ms": 0.4318
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.sin>",
+            "calls": 48,
+            "self_ms": 0.41630000000000006,
+            "cumulative_ms": 0.41630000000000006
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'copy' of 'numpy.ndarray' objects>",
+            "calls": 125,
+            "self_ms": 0.41150000000000003,
+            "cumulative_ms": 0.41150000000000003
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/numeric.py",
+            "line": 2330,
+            "function": "within_tol",
+            "calls": 12,
+            "self_ms": 0.35710000000000003,
+            "cumulative_ms": 0.8816
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/linalg/linalg.py",
+            "line": 2383,
+            "function": "norm",
+            "calls": 24,
+            "self_ms": 0.3373,
+            "cumulative_ms": 0.6092000000000001
+          },
+          {
+            "file": "frozen/workflows/workpoint_v27.py",
+            "line": 84,
+            "function": "residual",
+            "calls": 30,
+            "self_ms": 0.31600000000000006,
+            "cumulative_ms": 76.08760000000001
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/linalg/linalg.py",
+            "line": 2191,
+            "function": "lstsq",
+            "calls": 4,
+            "self_ms": 0.2987,
+            "cumulative_ms": 0.43210000000000004
+          },
+          {
+            "file": "frozen/workflows/feedback_v28.py",
+            "line": 64,
+            "function": "target_terms",
+            "calls": 2,
+            "self_ms": 0.2866,
+            "cumulative_ms": 1.7194
+          },
+          {
+            "file": "frozen/workflows/workpoint_v27.py",
+            "line": 55,
+            "function": "_inverse_force",
+            "calls": 8,
+            "self_ms": 0.2721,
+            "cumulative_ms": 0.43320000000000003
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/lib/twodim_base.py",
+            "line": 158,
+            "function": "eye",
+            "calls": 20,
+            "self_ms": 0.271,
+            "cumulative_ms": 0.3389
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/_methods.py",
+            "line": 90,
+            "function": "_clip",
+            "calls": 33,
+            "self_ms": 0.2479,
+            "cumulative_ms": 0.2479
+          },
+          {
+            "file": "frozen/workflows/control_seam_v23.py",
+            "line": 56,
+            "function": "__init__",
+            "calls": 2,
+            "self_ms": 0.24650000000000002,
+            "cumulative_ms": 12.0698
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'to' of 'torch._C.TensorBase' objects>",
+            "calls": 37,
+            "self_ms": 0.22860000000000003,
+            "cumulative_ms": 0.22860000000000003
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/shape_base.py",
+            "line": 372,
+            "function": "stack",
+            "calls": 7,
+            "self_ms": 0.2145,
+            "cumulative_ms": 0.25680000000000003
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'astype' of 'numpy.ndarray' objects>",
+            "calls": 60,
+            "self_ms": 0.19830000000000003,
+            "cumulative_ms": 0.19830000000000003
+          },
+          {
+            "file": "frozen/easyuuv_nc/thrust_allocation.py",
+            "line": 34,
+            "function": "quat_apply",
+            "calls": 2,
+            "self_ms": 0.1975,
+            "cumulative_ms": 0.2795
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/numeric.py",
+            "line": 2249,
+            "function": "isclose",
+            "calls": 12,
+            "self_ms": 0.19590000000000002,
+            "cumulative_ms": 1.3958
+          },
+          {
+            "file": "frozen/koopman/projected_edmd_v24.py",
+            "line": 35,
+            "function": "rotation",
+            "calls": 4,
+            "self_ms": 0.1832,
+            "cumulative_ms": 0.5963
+          },
+          {
+            "file": "frozen/easyuuv_nc/thrust_allocation.py",
+            "line": 93,
+            "function": "build_wrench_matrix",
+            "calls": 2,
+            "self_ms": 0.1768,
+            "cumulative_ms": 0.6155
+          }
+        ],
+        "by_cumulative": [
+          {
+            "file": "workflows/profile_bounded_mpc_v44.py",
+            "line": 111,
+            "function": "fallback",
+            "calls": 1,
+            "self_ms": 0.055400000000000005,
+            "cumulative_ms": 109.66820000000001
+          },
+          {
+            "file": "frozen/workflows/feedback_v31.py",
+            "line": 11,
+            "function": "decide",
+            "calls": 1,
+            "self_ms": 0.0293,
+            "cumulative_ms": 95.81240000000001
+          },
+          {
+            "file": "frozen/workflows/feedback_inverse_v31.py",
+            "line": 12,
+            "function": "solve_feasible_control",
+            "calls": 1,
+            "self_ms": 0.022400000000000003,
+            "cumulative_ms": 94.93260000000001
+          },
+          {
+            "file": "frozen/workflows/feedback_inverse_v28.py",
+            "line": 36,
+            "function": "solve_feasible_control",
+            "calls": 1,
+            "self_ms": 0.10890000000000001,
+            "cumulative_ms": 94.84450000000001
+          },
+          {
+            "file": "frozen/workflows/workpoint_v27.py",
+            "line": 70,
+            "function": "solve_control",
+            "calls": 1,
+            "self_ms": 0.8732000000000001,
+            "cumulative_ms": 94.6893
+          },
+          {
+            "file": "frozen/workflows/workpoint_v27.py",
+            "line": 48,
+            "function": "_steady",
+            "calls": 33,
+            "self_ms": 1.9931000000000003,
+            "cumulative_ms": 82.01910000000001
+          },
+          {
+            "file": "frozen/workflows/workpoint_v27.py",
+            "line": 84,
+            "function": "residual",
+            "calls": 30,
+            "self_ms": 0.31600000000000006,
+            "cumulative_ms": 76.08760000000001
+          },
+          {
+            "file": "frozen/workflows/control_seam_v23.py",
+            "line": 84,
+            "function": "command",
+            "calls": 37,
+            "self_ms": 3.3963,
+            "cumulative_ms": 58.5513
+          },
+          {
+            "file": "frozen/easyuuv_nc/env/easyuuv_env.py",
+            "line": 2163,
+            "function": "_pid_control",
+            "calls": 37,
+            "self_ms": 31.302500000000006,
+            "cumulative_ms": 47.0129
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method builtins.min>",
+            "calls": 10,
+            "self_ms": 0.0646,
+            "cumulative_ms": 36.1502
+          },
+          {
+            "file": "frozen/workflows/workpoint_v27.py",
+            "line": 100,
+            "function": "<lambda>",
+            "calls": 12,
+            "self_ms": 0.12310000000000001,
+            "cumulative_ms": 36.049400000000006
+          },
+          {
+            "file": "frozen/easyuuv_nc/env/easyuuv_env.py",
+            "line": 1,
+            "function": "pwm_speed",
+            "calls": 33,
+            "self_ms": 20.9924,
+            "cumulative_ms": 24.812900000000003
+          },
+          {
+            "file": "frozen/workflows/feedback_v28.py",
+            "line": 110,
+            "function": "validate_decision",
+            "calls": 1,
+            "self_ms": 0.1753,
+            "cumulative_ms": 13.786100000000001
+          },
+          {
+            "file": "frozen/workflows/control_seam_v23.py",
+            "line": 56,
+            "function": "__init__",
+            "calls": 2,
+            "self_ms": 0.24650000000000002,
+            "cumulative_ms": 12.0698
+          },
+          {
+            "file": "frozen/easyuuv_nc/env/thruster_dynamics.py",
+            "line": 14,
+            "function": "get_thruster_com_and_orientations",
+            "calls": 2,
+            "self_ms": 0.8933000000000001,
+            "cumulative_ms": 10.4718
+          },
+          {
+            "file": "frozen/easyuuv_nc/env/thruster_dynamics.py",
+            "line": 31,
+            "function": "create_tf_rpyquat",
+            "calls": 16,
+            "self_ms": 5.3067,
+            "cumulative_ms": 9.1489
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/testing/_private/utils.py",
+            "line": 1438,
+            "function": "assert_allclose",
+            "calls": 12,
+            "self_ms": 0.1583,
+            "cumulative_ms": 3.7274000000000003
+          },
+          {
+            "file": "E:\\anaconda\\Lib\\contextlib.py",
+            "line": 78,
+            "function": "inner",
+            "calls": 12,
+            "self_ms": 0.1155,
+            "cumulative_ms": 3.516
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.clip>",
+            "calls": 74,
+            "self_ms": 3.2279,
+            "cumulative_ms": 3.2279
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/testing/_private/utils.py",
+            "line": 641,
+            "function": "assert_array_compare",
+            "calls": 12,
+            "self_ms": 0.4524,
+            "cumulative_ms": 3.1892
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'clone' of 'torch._C.TensorBase' objects>",
+            "calls": 255,
+            "self_ms": 2.912,
+            "cumulative_ms": 2.912
+          },
+          {
+            "file": "frozen/easyuuv_nc/env/thruster_dynamics.py",
+            "line": 26,
+            "function": "create_tf_quat",
+            "calls": 16,
+            "self_ms": 2.5023000000000004,
+            "cumulative_ms": 2.5023000000000004
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.isfinite>",
+            "calls": 39,
+            "self_ms": 2.479,
+            "cumulative_ms": 2.479
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.abs>",
+            "calls": 33,
+            "self_ms": 2.4387000000000003,
+            "cumulative_ms": 2.4387000000000003
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.as_tensor>",
+            "calls": 126,
+            "self_ms": 2.258,
+            "cumulative_ms": 2.258
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'numpy' of 'torch._C.TensorBase' objects>",
+            "calls": 178,
+            "self_ms": 1.8533000000000002,
+            "cumulative_ms": 1.8533000000000002
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'max' of 'torch._C.TensorBase' objects>",
+            "calls": 37,
+            "self_ms": 1.7573,
+            "cumulative_ms": 1.7573
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'detach' of 'torch._C.TensorBase' objects>",
+            "calls": 259,
+            "self_ms": 1.7304000000000002,
+            "cumulative_ms": 1.7304000000000002
+          },
+          {
+            "file": "frozen/workflows/feedback_v28.py",
+            "line": 64,
+            "function": "target_terms",
+            "calls": 2,
+            "self_ms": 0.2866,
+            "cumulative_ms": 1.7194
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'mean' of 'torch._C.TensorBase' objects>",
+            "calls": 37,
+            "self_ms": 1.5499,
+            "cumulative_ms": 1.5499
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/testing/_private/utils.py",
+            "line": 1498,
+            "function": "compare",
+            "calls": 12,
+            "self_ms": 0.055900000000000005,
+            "cumulative_ms": 1.4565000000000001
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/numeric.py",
+            "line": 2249,
+            "function": "isclose",
+            "calls": 12,
+            "self_ms": 0.19590000000000002,
+            "cumulative_ms": 1.3958
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.zeros_like>",
+            "calls": 111,
+            "self_ms": 1.3706,
+            "cumulative_ms": 1.3706
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'abs' of 'torch._C.TensorBase' objects>",
+            "calls": 111,
+            "self_ms": 1.3681,
+            "cumulative_ms": 1.3681
+          },
+          {
+            "file": ".venv/Lib/site-packages/torch/_tensor.py",
+            "line": 33,
+            "function": "wrapped",
+            "calls": 37,
+            "self_ms": 0.1451,
+            "cumulative_ms": 1.3275000000000001
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.zeros>",
+            "calls": 49,
+            "self_ms": 1.2441000000000002,
+            "cumulative_ms": 1.2441000000000002
+          },
+          {
+            "file": ".venv/Lib/site-packages/torch/_tensor.py",
+            "line": 1095,
+            "function": "__rsub__",
+            "calls": 37,
+            "self_ms": 0.06810000000000001,
+            "cumulative_ms": 1.1513
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.rsub>",
+            "calls": 37,
+            "self_ms": 1.0832000000000002,
+            "cumulative_ms": 1.0832000000000002
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'reshape' of 'torch._C.TensorBase' objects>",
+            "calls": 76,
+            "self_ms": 1.0325,
+            "cumulative_ms": 1.0325
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/testing/_private/utils.py",
+            "line": 661,
+            "function": "func_assert_same_pos",
+            "calls": 36,
+            "self_ms": 0.4484,
+            "cumulative_ms": 0.9897
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.pow>",
+            "calls": 66,
+            "self_ms": 0.9307,
+            "cumulative_ms": 0.9307
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/numeric.py",
+            "line": 2330,
+            "function": "within_tol",
+            "calls": 12,
+            "self_ms": 0.35710000000000003,
+            "cumulative_ms": 0.8816
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+            "calls": 97,
+            "self_ms": 0.6255000000000001,
+            "cumulative_ms": 0.6255000000000001
+          },
+          {
+            "file": "frozen/easyuuv_nc/thrust_allocation.py",
+            "line": 93,
+            "function": "build_wrench_matrix",
+            "calls": 2,
+            "self_ms": 0.1768,
+            "cumulative_ms": 0.6155
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'all' of 'torch._C.TensorBase' objects>",
+            "calls": 37,
+            "self_ms": 0.6111000000000001,
+            "cumulative_ms": 0.6111000000000001
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/linalg/linalg.py",
+            "line": 2383,
+            "function": "norm",
+            "calls": 24,
+            "self_ms": 0.3373,
+            "cumulative_ms": 0.6092000000000001
+          },
+          {
+            "file": "frozen/workflows/calibration_trace_v27.py",
+            "line": 12,
+            "function": "state_metrics",
+            "calls": 2,
+            "self_ms": 0.0944,
+            "cumulative_ms": 0.6054
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.tensor>",
+            "calls": 14,
+            "self_ms": 0.5976,
+            "cumulative_ms": 0.5976
+          },
+          {
+            "file": "frozen/koopman/projected_edmd_v24.py",
+            "line": 35,
+            "function": "rotation",
+            "calls": 4,
+            "self_ms": 0.1832,
+            "cumulative_ms": 0.5963
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.any>",
+            "calls": 37,
+            "self_ms": 0.5874,
+            "cumulative_ms": 0.5874
+          }
+        ]
+      },
+      "fallback_result": {
+        "accepted": true,
+        "decision": {
+          "state_available_11": [
+            5.479708671569824,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.01822986640036106,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "pulse_acceleration_4": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "feedback_acceleration_4": [
+            -0.0,
+            -0.0,
+            -0.0,
+            0.0
+          ],
+          "restoring_torque_3_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "unallocated_lateral_force_2_n": [
+            0.0,
+            0.0
+          ],
+          "unallocated_torque_3_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "target_wrench_6_n_nm": [
+            0.0,
+            0.0,
+            0.20992702871558322,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "command_4": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "allocation": {
+            "command_4": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "target_wrench_6_n_nm": [
+              0.0,
+              0.0,
+              0.20992702871558322,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "steady_wrench_6_n_nm": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "acceleration_error_6": [
+              0.0,
+              0.0,
+              -0.009247479262592331,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "pwm_raw": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.0,
+              -0.0,
+              0.0
+            ],
+            "pwm_headroom": 1.0,
+            "within_tolerance": true,
+            "exact_equilibrium": false,
+            "iterations": 2
+          }
+        }
+      }
+    },
+    {
+      "configuration": "uuv6_angled",
+      "episode_id": "i29-uuv6_angled-fit-8735-prbs",
+      "trace_sha256": "39a128e14dd29007e1b8fa348e24685973aced3a08abac7f2ce5f78f72b4dd44",
+      "prepare_before_calls_ms": 1.5405000012833625,
+      "solver": {
+        "profiled_total_ms": 169.17210000000006,
+        "by_self": [
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.einsum>",
+            "calls": 360,
+            "self_ms": 26.733100000000004,
+            "cumulative_ms": 26.733100000000004
+          },
+          {
+            "file": "koopman/prepared_allocation_v42.py",
+            "line": 59,
+            "function": "command",
+            "calls": 360,
+            "self_ms": 23.7745,
+            "cumulative_ms": 87.6409
+          },
+          {
+            "file": "koopman/command_batch_v42.py",
+            "line": 19,
+            "function": "forecast_batch",
+            "calls": 1,
+            "self_ms": 16.7863,
+            "cumulative_ms": 92.1303
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+            "calls": 2208,
+            "self_ms": 13.870400000000002,
+            "cumulative_ms": 13.870400000000002
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/_methods.py",
+            "line": 90,
+            "function": "_clip",
+            "calls": 1049,
+            "self_ms": 8.413200000000002,
+            "cumulative_ms": 8.413200000000002
+          },
+          {
+            "file": "koopman/bounded_mpc_v44.py",
+            "line": 170,
+            "function": "solve",
+            "calls": 1,
+            "self_ms": 8.098300000000002,
+            "cumulative_ms": 167.6355
+          },
+          {
+            "file": ".venv/Lib/site-packages/torch/functional.py",
+            "line": 225,
+            "function": "einsum",
+            "calls": 360,
+            "self_ms": 5.474,
+            "cumulative_ms": 33.9898
+          },
+          {
+            "file": "frozen/workflows/actuator_replay_v28.py",
+            "line": 13,
+            "function": "advance_pwm",
+            "calls": 40,
+            "self_ms": 4.348700000000001,
+            "cumulative_ms": 6.278700000000001
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'numpy' of 'torch._C.TensorBase' objects>",
+            "calls": 366,
+            "self_ms": 4.2326999999999995,
+            "cumulative_ms": 4.2326999999999995
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.from_numpy>",
+            "calls": 360,
+            "self_ms": 3.6696000000000004,
+            "cumulative_ms": 3.6696000000000004
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 71,
+            "function": "_wrapreduction",
+            "calls": 945,
+            "self_ms": 3.6108000000000002,
+            "cumulative_ms": 10.0759
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/linalg/linalg.py",
+            "line": 2383,
+            "function": "norm",
+            "calls": 197,
+            "self_ms": 2.9878,
+            "cumulative_ms": 4.7498000000000005
+          },
+          {
+            "file": "koopman/compiled_projected_v43.py",
+            "line": 114,
+            "function": "__call__",
+            "calls": 40,
+            "self_ms": 2.6355000000000004,
+            "cumulative_ms": 7.2621
+          },
+          {
+            "file": "frozen/workflows/identification_prediction_v32.py",
+            "line": 7,
+            "function": "valid_predictions",
+            "calls": 41,
+            "self_ms": 2.4655,
+            "cumulative_ms": 4.546200000000001
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 2100,
+            "function": "clip",
+            "calls": 1049,
+            "self_ms": 2.4223,
+            "cumulative_ms": 13.866700000000002
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'copy' of 'numpy.ndarray' objects>",
+            "calls": 932,
+            "self_ms": 2.2258,
+            "cumulative_ms": 2.2258
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'all' of 'numpy.ndarray' objects>",
+            "calls": 971,
+            "self_ms": 2.1566,
+            "cumulative_ms": 9.097800000000001
+          },
+          {
+            "file": "frozen/koopman/physical_terms_v26.py",
+            "line": 10,
+            "function": "validate_states",
+            "calls": 68,
+            "self_ms": 2.0791,
+            "cumulative_ms": 5.5652
+          },
+          {
+            "file": "frozen/koopman/projected_edmd_v24.py",
+            "line": 35,
+            "function": "rotation",
+            "calls": 19,
+            "self_ms": 1.9375000000000002,
+            "cumulative_ms": 3.6218
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/shape_base.py",
+            "line": 372,
+            "function": "stack",
+            "calls": 59,
+            "self_ms": 1.7729000000000001,
+            "cumulative_ms": 1.9737
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 2322,
+            "function": "any",
+            "calls": 697,
+            "self_ms": 1.6266000000000003,
+            "cumulative_ms": 8.8366
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 53,
+            "function": "_wrapfunc",
+            "calls": 1112,
+            "self_ms": 1.4256000000000002,
+            "cumulative_ms": 11.7283
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method numpy.array>",
+            "calls": 491,
+            "self_ms": 1.3697000000000001,
+            "cumulative_ms": 1.3697000000000001
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method numpy.asarray>",
+            "calls": 894,
+            "self_ms": 1.2682000000000002,
+            "cumulative_ms": 1.2682000000000002
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'clip' of 'numpy.ndarray' objects>",
+            "calls": 1049,
+            "self_ms": 1.1944,
+            "cumulative_ms": 9.607600000000001
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'astype' of 'numpy.ndarray' objects>",
+            "calls": 269,
+            "self_ms": 1.0609,
+            "cumulative_ms": 1.0609
+          },
+          {
+            "file": "E:\\anaconda\\Lib\\json\\encoder.py",
+            "line": 205,
+            "function": "iterencode",
+            "calls": 2,
+            "self_ms": 1.0022,
+            "cumulative_ms": 1.0263000000000002
+          },
+          {
+            "file": "koopman/control_objective_v44.py",
+            "line": 43,
+            "function": "tracking_terms",
+            "calls": 9,
+            "self_ms": 0.9185000000000001,
+            "cumulative_ms": 4.9127
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method numpy.zeros>",
+            "calls": 442,
+            "self_ms": 0.8396,
+            "cumulative_ms": 0.8396
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method builtins.getattr>",
+            "calls": 1522,
+            "self_ms": 0.7763000000000001,
+            "cumulative_ms": 0.7763000000000001
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/_methods.py",
+            "line": 61,
+            "function": "_all",
+            "calls": 971,
+            "self_ms": 0.7610000000000001,
+            "cumulative_ms": 6.9412
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method builtins.isinstance>",
+            "calls": 713,
+            "self_ms": 0.6826,
+            "cumulative_ms": 0.6826
+          },
+          {
+            "file": "koopman/bounded_mpc_v44.py",
+            "line": 82,
+            "function": "check_states",
+            "calls": 10,
+            "self_ms": 0.6679,
+            "cumulative_ms": 5.7578000000000005
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'items' of 'dict' objects>",
+            "calls": 957,
+            "self_ms": 0.62,
+            "cumulative_ms": 0.62
+          },
+          {
+            "file": "koopman/control_objective_v44.py",
+            "line": 74,
+            "function": "trajectory_cost",
+            "calls": 9,
+            "self_ms": 0.6021000000000001,
+            "cumulative_ms": 8.3357
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method builtins.len>",
+            "calls": 1673,
+            "self_ms": 0.5253,
+            "cumulative_ms": 0.5253
+          },
+          {
+            "file": ".venv/Lib/site-packages/torch/_VF.py",
+            "line": 27,
+            "function": "__getattr__",
+            "calls": 360,
+            "self_ms": 0.49,
+            "cumulative_ms": 0.6903
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch._C._linalg.linalg_pinv>",
+            "calls": 2,
+            "self_ms": 0.48740000000000006,
+            "cumulative_ms": 0.48740000000000006
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.tensor>",
+            "calls": 24,
+            "self_ms": 0.44320000000000004,
+            "cumulative_ms": 0.44320000000000004
+          },
+          {
+            "file": "frozen/easyuuv_nc/thrust_allocation.py",
+            "line": 34,
+            "function": "quat_apply",
+            "calls": 2,
+            "self_ms": 0.41150000000000003,
+            "cumulative_ms": 0.5113
+          },
+          {
+            "file": "E:\\anaconda\\Lib\\json\\decoder.py",
+            "line": 343,
+            "function": "raw_decode",
+            "calls": 1,
+            "self_ms": 0.3997,
+            "cumulative_ms": 0.3997
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 2692,
+            "function": "max",
+            "calls": 180,
+            "self_ms": 0.39830000000000004,
+            "cumulative_ms": 2.3531000000000004
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/numeric.py",
+            "line": 67,
+            "function": "zeros_like",
+            "calls": 40,
+            "self_ms": 0.3928,
+            "cumulative_ms": 0.4623
+          },
+          {
+            "file": "koopman/control_objective_v44.py",
+            "line": 36,
+            "function": "state_features",
+            "calls": 10,
+            "self_ms": 0.38570000000000004,
+            "cumulative_ms": 3.9611000000000005
+          },
+          {
+            "file": "koopman/prepared_projected_v40.py",
+            "line": 23,
+            "function": "_context_key",
+            "calls": 41,
+            "self_ms": 0.38230000000000003,
+            "cumulative_ms": 0.3965
+          },
+          {
+            "file": "koopman/bounded_mpc_v44.py",
+            "line": 183,
+            "function": "check_time",
+            "calls": 442,
+            "self_ms": 0.36160000000000003,
+            "cumulative_ms": 0.5742
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 2096,
+            "function": "_clip_dispatcher",
+            "calls": 1049,
+            "self_ms": 0.32830000000000004,
+            "cumulative_ms": 0.32830000000000004
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/lib/function_base.py",
+            "line": 1324,
+            "function": "diff",
+            "calls": 18,
+            "self_ms": 0.3073,
+            "cumulative_ms": 0.3425
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch._C._has_torch_function>",
+            "calls": 360,
+            "self_ms": 0.27140000000000003,
+            "cumulative_ms": 0.27140000000000003
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 2317,
+            "function": "_any_dispatcher",
+            "calls": 697,
+            "self_ms": 0.26260000000000006,
+            "cumulative_ms": 0.26260000000000006
+          }
+        ],
+        "by_cumulative": [
+          {
+            "file": "workflows/profile_bounded_mpc_v44.py",
+            "line": 101,
+            "function": "solve",
+            "calls": 1,
+            "self_ms": 0.09770000000000001,
+            "cumulative_ms": 169.1484
+          },
+          {
+            "file": "koopman/bounded_mpc_v44.py",
+            "line": 170,
+            "function": "solve",
+            "calls": 1,
+            "self_ms": 8.098300000000002,
+            "cumulative_ms": 167.6355
+          },
+          {
+            "file": "koopman/command_batch_v42.py",
+            "line": 19,
+            "function": "forecast_batch",
+            "calls": 1,
+            "self_ms": 16.7863,
+            "cumulative_ms": 92.1303
+          },
+          {
+            "file": "koopman/prepared_allocation_v42.py",
+            "line": 59,
+            "function": "command",
+            "calls": 360,
+            "self_ms": 23.7745,
+            "cumulative_ms": 87.6409
+          },
+          {
+            "file": ".venv/Lib/site-packages/torch/functional.py",
+            "line": 225,
+            "function": "einsum",
+            "calls": 360,
+            "self_ms": 5.474,
+            "cumulative_ms": 33.9898
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.einsum>",
+            "calls": 360,
+            "self_ms": 26.733100000000004,
+            "cumulative_ms": 26.733100000000004
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+            "calls": 2208,
+            "self_ms": 13.870400000000002,
+            "cumulative_ms": 13.870400000000002
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 2100,
+            "function": "clip",
+            "calls": 1049,
+            "self_ms": 2.4223,
+            "cumulative_ms": 13.866700000000002
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 53,
+            "function": "_wrapfunc",
+            "calls": 1112,
+            "self_ms": 1.4256000000000002,
+            "cumulative_ms": 11.7283
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 71,
+            "function": "_wrapreduction",
+            "calls": 945,
+            "self_ms": 3.6108000000000002,
+            "cumulative_ms": 10.0759
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'clip' of 'numpy.ndarray' objects>",
+            "calls": 1049,
+            "self_ms": 1.1944,
+            "cumulative_ms": 9.607600000000001
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'all' of 'numpy.ndarray' objects>",
+            "calls": 971,
+            "self_ms": 2.1566,
+            "cumulative_ms": 9.097800000000001
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 2322,
+            "function": "any",
+            "calls": 697,
+            "self_ms": 1.6266000000000003,
+            "cumulative_ms": 8.8366
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/_methods.py",
+            "line": 90,
+            "function": "_clip",
+            "calls": 1049,
+            "self_ms": 8.413200000000002,
+            "cumulative_ms": 8.413200000000002
+          },
+          {
+            "file": "koopman/control_objective_v44.py",
+            "line": 74,
+            "function": "trajectory_cost",
+            "calls": 9,
+            "self_ms": 0.6021000000000001,
+            "cumulative_ms": 8.3357
+          },
+          {
+            "file": "koopman/bounded_mpc_v44.py",
+            "line": 186,
+            "function": "guarded_predictor",
+            "calls": 40,
+            "self_ms": 0.1796,
+            "cumulative_ms": 7.5798000000000005
+          },
+          {
+            "file": "koopman/compiled_projected_v43.py",
+            "line": 114,
+            "function": "__call__",
+            "calls": 40,
+            "self_ms": 2.6355000000000004,
+            "cumulative_ms": 7.2621
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/_methods.py",
+            "line": 61,
+            "function": "_all",
+            "calls": 971,
+            "self_ms": 0.7610000000000001,
+            "cumulative_ms": 6.9412
+          },
+          {
+            "file": "frozen/workflows/actuator_replay_v28.py",
+            "line": 13,
+            "function": "advance_pwm",
+            "calls": 40,
+            "self_ms": 4.348700000000001,
+            "cumulative_ms": 6.278700000000001
+          },
+          {
+            "file": "koopman/bounded_mpc_v44.py",
+            "line": 82,
+            "function": "check_states",
+            "calls": 10,
+            "self_ms": 0.6679,
+            "cumulative_ms": 5.7578000000000005
+          },
+          {
+            "file": "frozen/koopman/physical_terms_v26.py",
+            "line": 10,
+            "function": "validate_states",
+            "calls": 68,
+            "self_ms": 2.0791,
+            "cumulative_ms": 5.5652
+          },
+          {
+            "file": "koopman/control_objective_v44.py",
+            "line": 43,
+            "function": "tracking_terms",
+            "calls": 9,
+            "self_ms": 0.9185000000000001,
+            "cumulative_ms": 4.9127
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/linalg/linalg.py",
+            "line": 2383,
+            "function": "norm",
+            "calls": 197,
+            "self_ms": 2.9878,
+            "cumulative_ms": 4.7498000000000005
+          },
+          {
+            "file": "frozen/workflows/identification_prediction_v32.py",
+            "line": 7,
+            "function": "valid_predictions",
+            "calls": 41,
+            "self_ms": 2.4655,
+            "cumulative_ms": 4.546200000000001
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'numpy' of 'torch._C.TensorBase' objects>",
+            "calls": 366,
+            "self_ms": 4.2326999999999995,
+            "cumulative_ms": 4.2326999999999995
+          },
+          {
+            "file": "koopman/control_objective_v44.py",
+            "line": 36,
+            "function": "state_features",
+            "calls": 10,
+            "self_ms": 0.38570000000000004,
+            "cumulative_ms": 3.9611000000000005
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.from_numpy>",
+            "calls": 360,
+            "self_ms": 3.6696000000000004,
+            "cumulative_ms": 3.6696000000000004
+          },
+          {
+            "file": "koopman/prepared_allocation_v42.py",
+            "line": 31,
+            "function": "__init__",
+            "calls": 2,
+            "self_ms": 0.19560000000000002,
+            "cumulative_ms": 3.6416
+          },
+          {
+            "file": "frozen/koopman/projected_edmd_v24.py",
+            "line": 35,
+            "function": "rotation",
+            "calls": 19,
+            "self_ms": 1.9375000000000002,
+            "cumulative_ms": 3.6218
+          },
+          {
+            "file": "frozen/workflows/control_seam_v23.py",
+            "line": 56,
+            "function": "__init__",
+            "calls": 2,
+            "self_ms": 0.1717,
+            "cumulative_ms": 2.7244
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 2692,
+            "function": "max",
+            "calls": 180,
+            "self_ms": 0.39830000000000004,
+            "cumulative_ms": 2.3531000000000004
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'copy' of 'numpy.ndarray' objects>",
+            "calls": 932,
+            "self_ms": 2.2258,
+            "cumulative_ms": 2.2258
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/shape_base.py",
+            "line": 372,
+            "function": "stack",
+            "calls": 59,
+            "self_ms": 1.7729000000000001,
+            "cumulative_ms": 1.9737
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method numpy.array>",
+            "calls": 491,
+            "self_ms": 1.3697000000000001,
+            "cumulative_ms": 1.3697000000000001
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method numpy.asarray>",
+            "calls": 894,
+            "self_ms": 1.2682000000000002,
+            "cumulative_ms": 1.2682000000000002
+          },
+          {
+            "file": "E:\\anaconda\\Lib\\json\\__init__.py",
+            "line": 183,
+            "function": "dumps",
+            "calls": 2,
+            "self_ms": 0.018900000000000004,
+            "cumulative_ms": 1.0718
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'astype' of 'numpy.ndarray' objects>",
+            "calls": 269,
+            "self_ms": 1.0609,
+            "cumulative_ms": 1.0609
+          },
+          {
+            "file": "E:\\anaconda\\Lib\\json\\encoder.py",
+            "line": 183,
+            "function": "encode",
+            "calls": 2,
+            "self_ms": 0.018099999999999998,
+            "cumulative_ms": 1.05
+          },
+          {
+            "file": "E:\\anaconda\\Lib\\json\\encoder.py",
+            "line": 205,
+            "function": "iterencode",
+            "calls": 2,
+            "self_ms": 1.0022,
+            "cumulative_ms": 1.0263000000000002
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/numeric.py",
+            "line": 615,
+            "function": "flatnonzero",
+            "calls": 61,
+            "self_ms": 0.2558,
+            "cumulative_ms": 0.9192
+          },
+          {
+            "file": "frozen/easyuuv_nc/thrust_allocation.py",
+            "line": 93,
+            "function": "build_wrench_matrix",
+            "calls": 2,
+            "self_ms": 0.1729,
+            "cumulative_ms": 0.8678
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method numpy.zeros>",
+            "calls": 442,
+            "self_ms": 0.8396,
+            "cumulative_ms": 0.8396
+          },
+          {
+            "file": "koopman/control_objective_v44.py",
+            "line": 21,
+            "function": "checked_mask",
+            "calls": 28,
+            "self_ms": 0.13570000000000002,
+            "cumulative_ms": 0.8052
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method builtins.getattr>",
+            "calls": 1522,
+            "self_ms": 0.7763000000000001,
+            "cumulative_ms": 0.7763000000000001
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'any' of 'numpy.ndarray' objects>",
+            "calls": 106,
+            "self_ms": 0.1552,
+            "cumulative_ms": 0.6963
+          },
+          {
+            "file": ".venv/Lib/site-packages/torch/_VF.py",
+            "line": 27,
+            "function": "__getattr__",
+            "calls": 360,
+            "self_ms": 0.49,
+            "cumulative_ms": 0.6903
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method builtins.isinstance>",
+            "calls": 713,
+            "self_ms": 0.6826,
+            "cumulative_ms": 0.6826
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method builtins.any>",
+            "calls": 29,
+            "self_ms": 0.0337,
+            "cumulative_ms": 0.6626000000000001
+          },
+          {
+            "file": "frozen/easyuuv_nc/thrust_allocation.py",
+            "line": 76,
+            "function": "from_specs",
+            "calls": 2,
+            "self_ms": 0.1577,
+            "cumulative_ms": 0.6609
+          },
+          {
+            "file": "koopman/control_objective_v44.py",
+            "line": 28,
+            "function": "checked_reference",
+            "calls": 10,
+            "self_ms": 0.2268,
+            "cumulative_ms": 0.6325000000000001
+          }
+        ]
+      },
+      "solver_result": {
+        "status": "selected",
+        "reason": null,
+        "selected_index": 7,
+        "commands": [
+          [
+            1.9651920091234842e-09,
+            1.1414145184573954e-08,
+            9.656491578580173e-11,
+            -0.14034725725650787
+          ],
+          [
+            1.9651920091234842e-09,
+            1.1414145184573954e-08,
+            9.656491578580173e-11,
+            -0.14034725725650787
+          ],
+          [
+            1.9651920091234842e-09,
+            1.1414145184573954e-08,
+            9.656491578580173e-11,
+            -0.14034725725650787
+          ],
+          [
+            1.9651920091234842e-09,
+            1.1414145184573954e-08,
+            9.656491578580173e-11,
+            -0.14034725725650787
+          ],
+          [
+            1.9651920091234842e-09,
+            1.1414145184573954e-08,
+            9.656491578580173e-11,
+            -0.14034725725650787
+          ],
+          [
+            1.9651920091234842e-09,
+            1.1414145184573954e-08,
+            9.656491578580173e-11,
+            -0.14034725725650787
+          ],
+          [
+            1.9651920091234842e-09,
+            1.1414145184573954e-08,
+            9.656491578580173e-11,
+            -0.14034725725650787
+          ],
+          [
+            1.9651920091234842e-09,
+            1.1414145184573954e-08,
+            9.656491578580173e-11,
+            -0.14034725725650787
+          ],
+          [
+            1.9651920091234842e-09,
+            1.1414145184573954e-08,
+            9.656491578580173e-11,
+            -0.14034725725650787
+          ],
+          [
+            1.9651920091234842e-09,
+            1.1414145184573954e-08,
+            9.656491578580173e-11,
+            -0.14034725725650787
+          ],
+          [
+            1.9651920091234842e-09,
+            1.1414145184573954e-08,
+            9.656491578580173e-11,
+            -0.14034725725650787
+          ],
+          [
+            1.9651920091234842e-09,
+            1.1414145184573954e-08,
+            9.656491578580173e-11,
+            -0.14034725725650787
+          ],
+          [
+            1.9651920091234842e-09,
+            1.1414145184573954e-08,
+            9.656491578580173e-11,
+            -0.14034725725650787
+          ],
+          [
+            1.9651920091234842e-09,
+            1.1414145184573954e-08,
+            9.656491578580173e-11,
+            -0.14034725725650787
+          ],
+          [
+            1.9651920091234842e-09,
+            1.1414145184573954e-08,
+            9.656491578580173e-11,
+            -0.14034725725650787
+          ],
+          [
+            1.9651920091234842e-09,
+            1.1414145184573954e-08,
+            9.656491578580173e-11,
+            -0.14034725725650787
+          ],
+          [
+            1.9651920091234842e-09,
+            1.1414145184573954e-08,
+            9.656491578580173e-11,
+            -0.14034725725650787
+          ],
+          [
+            1.9651920091234842e-09,
+            1.1414145184573954e-08,
+            9.656491578580173e-11,
+            -0.14034725725650787
+          ],
+          [
+            1.9651920091234842e-09,
+            1.1414145184573954e-08,
+            9.656491578580173e-11,
+            -0.14034725725650787
+          ],
+          [
+            1.9651920091234842e-09,
+            1.1414145184573954e-08,
+            9.656491578580173e-11,
+            -0.14034725725650787
+          ]
+        ],
+        "predictions": [
+          [
+            5.510044219216504,
+            1.0,
+            -1.8123496713491384e-10,
+            -7.380570409563488e-11,
+            -2.0767041567862356e-16,
+            5.307433747610613e-07,
+            -1.7060138855960784e-12,
+            0.0047066355703491896,
+            -4.349639211237932e-08,
+            -1.771336898295237e-08,
+            -4.9840899762869656e-14
+          ],
+          [
+            5.510083404930814,
+            1.0,
+            -3.739551698503886e-10,
+            -1.476307320044255e-10,
+            -4.2863630131841813e-16,
+            5.328926494772361e-07,
+            -3.727980377697649e-12,
+            0.004702285717160318,
+            -4.625284865171394e-08,
+            -1.771800669810975e-08,
+            -5.303160995185116e-14
+          ],
+          [
+            5.510122542912972,
+            1.0,
+            -5.782248475166619e-10,
+            -2.215303016833598e-10,
+            -6.630660694594338e-16,
+            5.350471042067594e-07,
+            -6.079017404636324e-12,
+            0.004696557859028394,
+            -4.902472263990562e-08,
+            -1.7735896722944236e-08,
+            -5.626253922842559e-14
+          ],
+          [
+            5.510161623437613,
+            1.0,
+            -7.940805508243073e-10,
+            -2.9554942269600183e-10,
+            -9.111018631131958e-16,
+            5.372059613789148e-07,
+            -8.772050826585723e-12,
+            0.0046896629568247954,
+            -5.180536879383489e-08,
+            -1.776458904303408e-08,
+            -5.952738594471576e-14
+          ],
+          [
+            5.510200638270488,
+            1.0,
+            -1.0215345671198003e-09,
+            -3.697244199269977e-10,
+            -1.1728635038335195e-15,
+            5.393685615037919e-07,
+            -1.1819820316190024e-11,
+            0.004681779945094892,
+            -5.4588963910918314e-08,
+            -1.780199933543901e-08,
+            -6.282079625754627e-14
+          ],
+          [
+            5.510239580441703,
+            1.0,
+            -1.260577848382368e-09,
+            -4.440842336405976e-10,
+            -1.4484518569107088e-15,
+            5.415343454212259e-07,
+            -1.523488352953834e-11,
+            0.004673060545815437,
+            -5.737038750301623e-08,
+            -1.7846355291263986e-08,
+            -6.613822417411203e-14
+          ],
+          [
+            5.51027844405314,
+            1.0,
+            -1.5111825127266189e-09,
+            -5.186515273984059e-10,
+            -1.7379516964597213e-15,
+            5.437028391675445e-07,
+            -1.9029618758557932e-11,
+            0.004663633372343429,
+            -6.014511944262022e-08,
+            -1.7896150501873988e-08,
+            -6.947581148338206e-14
+          ],
+          [
+            5.510317224115008,
+            1.0,
+            -1.7733039811235832e-09,
+            -5.934436313071329e-10,
+            -2.041434142445077e-15,
+            5.458736410886548e-07,
+            -2.3216226266987772e-11,
+            0.004653607424245696,
+            -6.290915241527143e-08,
+            -1.7950104938094487e-08,
+            -7.283028499318187e-14
+          ],
+          [
+            5.51035591640718,
+            1.0,
+            -2.046882802703167e-09,
+            -6.684733444291652e-10,
+            -2.3589587319430695e-15,
+            5.480464108764092e-07,
+            -2.7806728507221956e-11,
+            0.004643075060588377,
+            -6.565891717910012e-08,
+            -1.8007131149287743e-08,
+            -7.619886873063544e-14
+          ],
+          [
+            5.510394517361576,
+            1.0,
+            -2.331846214618883e-09,
+            -7.437496169420507e-10,
+            -2.6905751783211317e-15,
+            5.502208602486064e-07,
+            -3.2812969401743156e-11,
+            0.004632114527502509,
+            -6.839121885977178e-08,
+            -1.8066305403092507e-08,
+            -7.957920903377216e-14
+          ],
+          [
+            5.510433023962454,
+            1.0,
+            -2.6281094760368152e-09,
+            -8.192781297618626e-10,
+            -3.036324864528941e-15,
+            5.523967450314899e-07,
+            -3.8246612855487166e-11,
+            0.004620792105407919,
+            -7.110318274030375e-08,
+            -1.8126843076754854e-08,
+            -8.296931073535931e-14
+          ],
+          [
+            5.5104714336618885,
+            1.0,
+            -2.935577010096226e-09,
+            -8.950617868394834e-10,
+            -3.3962421100408726e-15,
+            5.545738584374525e-07,
+            -4.4119140645376104e-11,
+            0.004609163932103719,
+            -7.379220817425854e-08,
+            -1.8188077698628998e-08,
+            -8.636748283991019e-14
+          ],
+          [
+            5.510509744308138,
+            1.0,
+            -3.254143382850875e-09,
+            -9.71101133154625e-10,
+            -3.7703552452802035e-15,
+            5.567520253602058e-07,
+            -5.044184981434088e-11,
+            0.004597277549923355,
+            -7.64559294611158e-08,
+            -1.8249443115634002e-08,
+            -8.977229232225879e-14
+          ],
+          [
+            5.510547954084956,
+            1.0,
+            -3.583694143944925e-09,
+            -1.0473947095444689e-09,
+            -4.158687522488018e-15,
+            5.589310975353328e-07,
+            -5.722584967860814e-11,
+            0.004585173218196078,
+            -7.909218266257204e-08,
+            -1.8310458333562505e-08,
+            -9.318252487849126e-14
+          ],
+          [
+            5.510586061460175,
+            1.0,
+            -3.924106550134732e-09,
+            -1.1239393538625316e-09,
+            -4.561257887666574e-15,
+            5.611109494363215e-07,
+            -6.44820585403002e-11,
+            0.0045728850262429085,
+            -8.169897748555371e-08,
+            -1.8370714636335068e-08,
+            -9.659715158852225e-14
+          ],
+          [
+            5.510624065142149,
+            1.0,
+            -4.27525018961046e-09,
+            -1.2007304565731754e-09,
+            -4.978081634580593e-15,
+            5.632914747952836e-07,
+            -7.222120018224875e-11,
+            0.004560441836954464,
+            -8.427447347417458e-08,
+            -1.8429864650554493e-08,
+            -1.0001530061469438e-13
+          ],
+          [
+            5.51066196404287,
+            1.0,
+            -4.636987522415318e-09,
+            -1.2777621776770249e-09,
+            -5.409170958714482e-15,
+            5.654725836539737e-07,
+            -8.045380020911939e-11,
+            0.004547868086548171,
+            -8.681695987316587e-08,
+            -1.8487613064923893e-08,
+            -1.0343623319552782e-13
+          ],
+          [
+            5.510699757246723,
+            1.0,
+            -5.0091743499719186e-09,
+            -1.3550276308236726e-09,
+            -5.85453542636625e-15,
+            5.676541998647824e-07,
+            -8.919018228779338e-11,
+            0.0045351844622894405,
+            -8.932483861358418e-08,
+            -1.8543708755195425e-08,
+            -1.06859323282234e-13
+          ],
+          [
+            5.510737443984029,
+            1.0,
+            -5.391660224732791e-09,
+            -1.4325190396094115e-09,
+            -6.314182371806969e-15,
+            5.698362589734039e-07,
+            -9.844046433012435e-11,
+            0.004522408476700677,
+            -9.179660994260928e-08,
+            -1.859793810857737e-08,
+            -1.1028404027742003e-13
+          ],
+          [
+            5.5107750236086455,
+            1.0,
+            -5.784288809343385e-09,
+            -1.510227870282996e-09,
+            -6.7881172334381485e-15,
+            5.720187064251411e-07,
+            -1.0821455465350982e-10,
+            0.0045095549539981225,
+            -9.42308603065425e-08,
+            -1.8650119361660265e-08,
+            -1.1370993439672398e-13
+          ],
+          [
+            5.510812495578996,
+            1.0,
+            -6.186898193245579e-09,
+            -1.5881449444656627e-09,
+            -7.276343838301567e-15,
+            5.74201496045563e-07,
+            -1.1852214814769048e-10,
+            0.004496636442123106,
+            -9.662625213652667e-08,
+            -1.8700097803840037e-08,
+            -1.1713662427470343e-13
+          ],
+          [
+            5.51084985944201,
+            1.0,
+            -6.599321173472094e-09,
+            -1.6662605349258137e-09,
+            -7.778864642787649e-15,
+            5.76384588753685e-07,
+            -1.2937272247090735e-10,
+            0.004483663561712895,
+            -9.898151525436368e-08,
+            -1.8747741710436203e-08,
+            -1.2056378645292852e-13
+          ],
+          [
+            5.510887114819524,
+            1.0,
+            -7.0213855053216765e-09,
+            -1.744564447002573e-09,
+            -8.295680936276448e-15,
+            5.785679514721787e-07,
+            -1.4077553429370425e-10,
+            0.004470645301636738,
+            -1.0129543964389968e-07,
+            -1.879293889842219e-08,
+            -1.239911464834496e-13
+          ],
+          [
+            5.5109242613967675,
+            1.0,
+            -7.452914127768177e-09,
+            -1.8230460878705077e-09,
+            -8.826793013362693e-15,
+            5.807515562045119e-07,
+            -1.5273961560523756e-10,
+            0.00445758926926071,
+            -1.0356686938716013e-07,
+            -1.8835593808304278e-08,
+            -1.2741847138782829e-13
+          ],
+          [
+            5.510961298912621,
+            1.0,
+            -7.893725367683522e-09,
+            -1.901694525499374e-09,
+            -9.372200319492875e-15,
+            5.829353792534988e-07,
+            -1.6527377009365846e-10,
+            0.004444501902362955,
+            -1.0579469757968287e-07,
+            -1.8875625030927915e-08,
+            -1.3084556327416664e-13
+          ],
+          [
+            5.510998227151359,
+            1.0,
+            -8.343633126327426e-09,
+            -1.9804985388985437e-09,
+            -9.931901574087803e-15,
+            5.85119400559625e-07,
+            -1.7838656960968742e-10,
+            0.004431388648566456,
+            -1.0797786207453679e-07,
+            -1.891296321580072e-08,
+            -1.3427225393111505e-13
+          ],
+          [
+            5.511035045935669,
+            1.0,
+            -8.802447051060842e-09,
+            -2.059446660967848e-09,
+            -1.0505894874613954e-14,
+            5.873036031408163e-07,
+            -1.9208635072085645e-10,
+            0.004418254117261487,
+            -1.1011534193601978e-07,
+            -1.894754929663298e-08,
+            -1.3769840025243591e-13
+          ],
+          [
+            5.511071755120738,
+            1.0,
+            -9.269972694720875e-09,
+            -2.1385272150975223e-09,
+            -1.10941777845185e-14,
+            5.894879726181149e-07,
+            -2.0638121136176325e-10,
+            0.00440510220823074,
+            -1.1220615447840776e-07,
+            -1.8979332991121756e-08,
+            -1.411238803606289e-13
+          ],
+          [
+            5.5111083545892425,
+            1.0,
+            -9.74601166477439e-09,
+            -2.217728346466179e-09,
+            -1.169674740751922e-14,
+            5.916724968141053e-07,
+            -2.212790075849521e-10,
+            0.004391936220546328,
+            -1.1424935281284377e-07,
+            -1.9008271528477482e-08,
+            -1.4454859032791798e-13
+          ],
+          [
+            5.511144844247116,
+            1.0,
+            -1.0230361763984798e-08,
+            -2.2970380488559554e-09,
+            -1.2313600450345252e-14,
+            5.93857165412939e-07,
+            -2.3678735041557326e-10,
+            0.004378758944761984,
+            -1.1624402381049814e-07,
+            -1.903432857354633e-08,
+            -1.4797244139984462e-13
+          ],
+          [
+            5.511181224019957,
+            1.0,
+            -1.0722817124133409e-08,
+            -2.376444187672001e-09,
+            -1.2944733275714046e-14,
+            5.960419696725182e-07,
+            -2.529136028128921e-10,
+            0.004365572740961212,
+            -1.1818928643566657e-07,
+            -1.905747331585082e-08,
+            -1.513953576469296e-13
+          ],
+          [
+            5.511217493849998,
+            1.0,
+            -1.1223168333975232e-08,
+            -2.4559345197427585e-09,
+            -1.3590141947034596e-14,
+            5.982269021808402e-07,
+            -2.6966487674005567e-10,
+            0.004352379604830085,
+            -1.200842903620379e-07,
+            -1.9077679696981717e-08,
+            -1.5481727397361417e-13
+          ],
+          [
+            5.511253653693528,
+            1.0,
+            -1.1731202562555072e-08,
+            -2.5354967104012875e-09,
+            -1.4249822266144996e-14,
+            6.004119566497326e-07,
+            -2.87048030344238e-10,
+            0.004339181223591203,
+            -1.2192821485916155e-07,
+            -1.9094925758046858e-08,
+            -1.5823813444080016e-13
+          ],
+          [
+            5.511289703518722,
+            1.0,
+            -1.2246703678720149e-08,
+            -2.615118348259485e-09,
+            -1.492376980512832e-14,
+            6.025971277402426e-07,
+            -3.0506966524793903e-10,
+            0.004325979023353965,
+            -1.237202678796184e-07,
+            -1.9109193085967294e-08,
+            -1.6165789083867754e-13
+          ],
+          [
+            5.511325643303799,
+            1.0,
+            -1.2769452367595898e-08,
+            -2.6947869580296265e-09,
+            -1.5611979933146398e-14,
+            6.047824109148266e-07,
+            -3.237361239525215e-10,
+            0.004312774209197961,
+            -1.2545968533017972e-07,
+            -1.912046634483383e-08,
+            -1.650765014847888e-13
+          ],
+          [
+            5.511361473035458,
+            1.0,
+            -1.3299226244643242e-08,
+            -2.7744900116958586e-09,
+            -1.6314447839053467e-14,
+            6.069678023122264e-07,
+            -3.4305348735464265e-10,
+            0.004299567799104363,
+            -1.271457304913626e-07,
+            -1.9128732879895525e-08,
+            -1.684939302047615e-13
+          ],
+          [
+            5.511397192707563,
+            1.0,
+            -1.383579996783433e-08,
+            -2.854214938287176e-09,
+            -1.7031168550460714e-14,
+            6.091532986415564e-07,
+            -3.630275723762588e-10,
+            0.00428636065267932,
+            -1.2877769356586117e-07,
+            -1.9133982381915988e-08,
+            -1.7191014547386967e-13
+          ],
+          [
+            5.511432802320026,
+            1.0,
+            -1.437894534835556e-08,
+            -2.9339491324601256e-09,
+            -1.7762136949793965e-14,
+            6.113388970926489e-07,
+            -3.836639297084275e-10,
+            0.004273153495468511,
+            -1.3035489132509477e-07,
+            -1.9136206601507646e-08,
+            -1.7532511968856336e-13
+          ],
+          [
+            5.511468301877855,
+            1.0,
+            -1.4928431460226618e-08,
+            -3.013679962082144e-09,
+            -1.8507347787820075e-14,
+            6.135245952601649e-07,
+            -4.0496784166947345e-10,
+            0.0042599469395394884,
+            -1.3187666684905446e-07,
+            -1.9135399109284274e-08,
+            -1.787388285519846e-13
+          ],
+          [
+            5.511503691390362,
+            1.0,
+            -1.5484024749110803e-08,
+            -3.093394774965606e-09,
+            -1.9266795695039863e-14,
+            6.157103910793595e-07,
+            -4.2694432017761805e-10,
+            0.004246741500904559,
+            -1.3334238933220448e-07,
+            -1.913155509203053e-08,
+            -1.8215125055484144e-13
+          ]
+        ],
+        "cost": 0.00023932084236529127,
+        "baseline_cost": 0.00023957358735286316,
+        "candidate_count": 9,
+        "candidates": [
+          {
+            "index": 0,
+            "feasible": true,
+            "cost": 0.00023957358735286316,
+            "rejection": null
+          },
+          {
+            "index": 1,
+            "feasible": true,
+            "cost": 0.0003183165647587373,
+            "rejection": null
+          },
+          {
+            "index": 2,
+            "feasible": true,
+            "cost": 0.00031831812681534804,
+            "rejection": null
+          },
+          {
+            "index": 3,
+            "feasible": true,
+            "cost": 0.0002517192752997522,
+            "rejection": null
+          },
+          {
+            "index": 4,
+            "feasible": true,
+            "cost": 0.00025171916781070307,
+            "rejection": null
+          },
+          {
+            "index": 5,
+            "feasible": true,
+            "cost": 0.00024204268893707624,
+            "rejection": null
+          },
+          {
+            "index": 6,
+            "feasible": true,
+            "cost": 0.00024204238392939694,
+            "rejection": null
+          },
+          {
+            "index": 7,
+            "feasible": true,
+            "cost": 0.00023932084236529127,
+            "rejection": null
+          },
+          {
+            "index": 8,
+            "feasible": true,
+            "cost": 0.00023988973801193758,
+            "rejection": null
+          }
+        ],
+        "runtime_eligible": false,
+        "data_source_verified": true,
+        "metadata": {
+          "episode_id": "i29-uuv6_angled-fit-8735-prbs",
+          "reference_id": "fixed-z5.5-upright",
+          "request_id": "profile",
+          "configuration": "uuv6_angled",
+          "context_key": [
+            31.680002212524414,
+            0.5163472890853882,
+            1.3536672592163086,
+            1.660684585571289,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.03200000151991844,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "e6820117b700a45e5f49768f78bea18867358868d6f0cf6b2b7ca605f22a3270",
+          "input_contract": "bounded4D_direct_preTAM_held_two_substeps",
+          "clock": "time.perf_counter",
+          "started_perf_counter_s": 232288.9359931,
+          "origin_control": 128,
+          "history_physics_index": 256,
+          "origin_actuator_time_s": 2.133333444595337,
+          "committed_prefix": 0,
+          "previous_command": [
+            1.9651920091234842e-09,
+            1.1414145184573954e-08,
+            9.656491578580173e-11,
+            -0.13834725320339203
+          ],
+          "reference": [
+            5.5,
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "completed_perf_counter_s": 232289.1036231
+        },
+        "elapsed_ms": 167.63000001083128
+      },
+      "fallback": {
+        "profiled_total_ms": 20.234,
+        "by_self": [
+          {
+            "file": "frozen/easyuuv_nc/env/easyuuv_env.py",
+            "line": 1,
+            "function": "pwm_speed",
+            "calls": 3,
+            "self_ms": 1.7639,
+            "cumulative_ms": 1.9196
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch._C._linalg.linalg_pinv>",
+            "calls": 7,
+            "self_ms": 1.4116,
+            "cumulative_ms": 1.4116
+          },
+          {
+            "file": "frozen/easyuuv_nc/env/easyuuv_env.py",
+            "line": 2163,
+            "function": "_pid_control",
+            "calls": 7,
+            "self_ms": 1.0121000000000002,
+            "cumulative_ms": 6.419500000000001
+          },
+          {
+            "file": "frozen/easyuuv_nc/thrust_allocation.py",
+            "line": 104,
+            "function": "control_channels_to_wrench",
+            "calls": 7,
+            "self_ms": 0.7898000000000001,
+            "cumulative_ms": 0.8853000000000001
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.isfinite>",
+            "calls": 9,
+            "self_ms": 0.7326,
+            "cumulative_ms": 0.7326
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+            "calls": 94,
+            "self_ms": 0.5893,
+            "cumulative_ms": 0.5893
+          },
+          {
+            "file": "frozen/workflows/control_seam_v23.py",
+            "line": 84,
+            "function": "command",
+            "calls": 7,
+            "self_ms": 0.5373,
+            "cumulative_ms": 8.3314
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.einsum>",
+            "calls": 7,
+            "self_ms": 0.5146000000000001,
+            "cumulative_ms": 0.5146000000000001
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/testing/_private/utils.py",
+            "line": 661,
+            "function": "func_assert_same_pos",
+            "calls": 36,
+            "self_ms": 0.5092,
+            "cumulative_ms": 1.0223
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'clone' of 'torch._C.TensorBase' objects>",
+            "calls": 45,
+            "self_ms": 0.4531,
+            "cumulative_ms": 0.4531
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/testing/_private/utils.py",
+            "line": 641,
+            "function": "assert_array_compare",
+            "calls": 12,
+            "self_ms": 0.3998,
+            "cumulative_ms": 3.1007000000000002
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.tensor>",
+            "calls": 24,
+            "self_ms": 0.38980000000000004,
+            "cumulative_ms": 0.38980000000000004
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'mean' of 'torch._C.TensorBase' objects>",
+            "calls": 7,
+            "self_ms": 0.37970000000000004,
+            "cumulative_ms": 0.37970000000000004
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/numeric.py",
+            "line": 2330,
+            "function": "within_tol",
+            "calls": 12,
+            "self_ms": 0.3381,
+            "cumulative_ms": 0.8059000000000001
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'reshape' of 'torch._C.TensorBase' objects>",
+            "calls": 16,
+            "self_ms": 0.32750000000000007,
+            "cumulative_ms": 0.32750000000000007
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.as_tensor>",
+            "calls": 39,
+            "self_ms": 0.3143,
+            "cumulative_ms": 0.3143
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.zeros>",
+            "calls": 28,
+            "self_ms": 0.303,
+            "cumulative_ms": 0.303
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'detach' of 'torch._C.TensorBase' objects>",
+            "calls": 49,
+            "self_ms": 0.26930000000000004,
+            "cumulative_ms": 0.26930000000000004
+          },
+          {
+            "file": "frozen/workflows/feedback_v28.py",
+            "line": 64,
+            "function": "target_terms",
+            "calls": 2,
+            "self_ms": 0.2672,
+            "cumulative_ms": 1.5877000000000001
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.clip>",
+            "calls": 14,
+            "self_ms": 0.25060000000000004,
+            "cumulative_ms": 0.25060000000000004
+          },
+          {
+            "file": "frozen/workflows/workpoint_v27.py",
+            "line": 70,
+            "function": "solve_control",
+            "calls": 1,
+            "self_ms": 0.23800000000000002,
+            "cumulative_ms": 11.2531
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'abs' of 'torch._C.TensorBase' objects>",
+            "calls": 21,
+            "self_ms": 0.22840000000000002,
+            "cumulative_ms": 0.22840000000000002
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'numpy' of 'torch._C.TensorBase' objects>",
+            "calls": 28,
+            "self_ms": 0.22510000000000002,
+            "cumulative_ms": 0.22510000000000002
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'max' of 'torch._C.TensorBase' objects>",
+            "calls": 7,
+            "self_ms": 0.22050000000000003,
+            "cumulative_ms": 0.22050000000000003
+          },
+          {
+            "file": "frozen/workflows/workpoint_v27.py",
+            "line": 55,
+            "function": "_inverse_force",
+            "calls": 6,
+            "self_ms": 0.21630000000000002,
+            "cumulative_ms": 0.4539
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.all>",
+            "calls": 4,
+            "self_ms": 0.21580000000000002,
+            "cumulative_ms": 0.21580000000000002
+          },
+          {
+            "file": "frozen/easyuuv_nc/thrust_allocation.py",
+            "line": 34,
+            "function": "quat_apply",
+            "calls": 2,
+            "self_ms": 0.2108,
+            "cumulative_ms": 0.2866
+          },
+          {
+            "file": "frozen/workflows/workpoint_v27.py",
+            "line": 48,
+            "function": "_steady",
+            "calls": 3,
+            "self_ms": 0.20280000000000004,
+            "cumulative_ms": 5.8205
+          },
+          {
+            "file": "frozen/workflows/workpoint_v27.py",
+            "line": 58,
+            "function": "speed",
+            "calls": 306,
+            "self_ms": 0.19480000000000003,
+            "cumulative_ms": 0.19480000000000003
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/numeric.py",
+            "line": 2249,
+            "function": "isclose",
+            "calls": 12,
+            "self_ms": 0.1875,
+            "cumulative_ms": 1.3590000000000002
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.rsub>",
+            "calls": 7,
+            "self_ms": 0.1831,
+            "cumulative_ms": 0.1831
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/linalg/linalg.py",
+            "line": 2191,
+            "function": "lstsq",
+            "calls": 2,
+            "self_ms": 0.17830000000000001,
+            "cumulative_ms": 0.24420000000000003
+          },
+          {
+            "file": "frozen/easyuuv_nc/thrust_allocation.py",
+            "line": 93,
+            "function": "build_wrench_matrix",
+            "calls": 2,
+            "self_ms": 0.1774,
+            "cumulative_ms": 0.6052000000000001
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.zeros_like>",
+            "calls": 21,
+            "self_ms": 0.16790000000000002,
+            "cumulative_ms": 0.16790000000000002
+          },
+          {
+            "file": "frozen/koopman/projected_edmd_v24.py",
+            "line": 35,
+            "function": "rotation",
+            "calls": 4,
+            "self_ms": 0.1642,
+            "cumulative_ms": 0.523
+          },
+          {
+            "file": ".venv/Lib/site-packages/torch/functional.py",
+            "line": 225,
+            "function": "einsum",
+            "calls": 7,
+            "self_ms": 0.1552,
+            "cumulative_ms": 0.7073
+          },
+          {
+            "file": "frozen/workflows/control_seam_v23.py",
+            "line": 56,
+            "function": "__init__",
+            "calls": 2,
+            "self_ms": 0.14900000000000002,
+            "cumulative_ms": 2.5395000000000003
+          },
+          {
+            "file": "frozen/easyuuv_nc/thrust_allocation.py",
+            "line": 113,
+            "function": "dof_weight_vector",
+            "calls": 2,
+            "self_ms": 0.1476,
+            "cumulative_ms": 0.16970000000000002
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 71,
+            "function": "_wrapreduction",
+            "calls": 36,
+            "self_ms": 0.1449,
+            "cumulative_ms": 0.4401
+          },
+          {
+            "file": "frozen/workflows/feedback_v28.py",
+            "line": 110,
+            "function": "validate_decision",
+            "calls": 1,
+            "self_ms": 0.14400000000000002,
+            "cumulative_ms": 7.9305
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/testing/_private/utils.py",
+            "line": 1438,
+            "function": "assert_allclose",
+            "calls": 12,
+            "self_ms": 0.1416,
+            "cumulative_ms": 3.5604
+          },
+          {
+            "file": "frozen/easyuuv_nc/env/thruster_dynamics.py",
+            "line": 220,
+            "function": "_validate_time_constants",
+            "calls": 2,
+            "self_ms": 0.132,
+            "cumulative_ms": 0.5842
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/shape_base.py",
+            "line": 372,
+            "function": "stack",
+            "calls": 5,
+            "self_ms": 0.12680000000000002,
+            "cumulative_ms": 0.15760000000000002
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/linalg/linalg.py",
+            "line": 2383,
+            "function": "norm",
+            "calls": 12,
+            "self_ms": 0.1178,
+            "cumulative_ms": 0.21050000000000002
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'all' of 'torch._C.TensorBase' objects>",
+            "calls": 7,
+            "self_ms": 0.11030000000000001,
+            "cumulative_ms": 0.11030000000000001
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/numeric.py",
+            "line": 1468,
+            "function": "cross",
+            "calls": 2,
+            "self_ms": 0.10860000000000002,
+            "cumulative_ms": 0.2477
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/testing/_private/utils.py",
+            "line": 722,
+            "function": "<lambda>",
+            "calls": 24,
+            "self_ms": 0.10840000000000001,
+            "cumulative_ms": 0.10840000000000001
+          },
+          {
+            "file": "E:\\anaconda\\Lib\\contextlib.py",
+            "line": 78,
+            "function": "inner",
+            "calls": 12,
+            "self_ms": 0.10470000000000002,
+            "cumulative_ms": 3.3713
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method numpy.asanyarray>",
+            "calls": 127,
+            "self_ms": 0.0987,
+            "cumulative_ms": 0.0987
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/testing/_private/utils.py",
+            "line": 725,
+            "function": "<lambda>",
+            "calls": 24,
+            "self_ms": 0.0954,
+            "cumulative_ms": 0.0954
+          }
+        ],
+        "by_cumulative": [
+          {
+            "file": "workflows/profile_bounded_mpc_v44.py",
+            "line": 111,
+            "function": "fallback",
+            "calls": 1,
+            "self_ms": 0.0419,
+            "cumulative_ms": 20.204100000000004
+          },
+          {
+            "file": "frozen/workflows/feedback_v31.py",
+            "line": 11,
+            "function": "decide",
+            "calls": 1,
+            "self_ms": 0.0229,
+            "cumulative_ms": 12.221300000000001
+          },
+          {
+            "file": "frozen/workflows/feedback_inverse_v31.py",
+            "line": 12,
+            "function": "solve_feasible_control",
+            "calls": 1,
+            "self_ms": 0.016900000000000002,
+            "cumulative_ms": 11.362800000000002
+          },
+          {
+            "file": "frozen/workflows/feedback_inverse_v28.py",
+            "line": 36,
+            "function": "solve_feasible_control",
+            "calls": 1,
+            "self_ms": 0.0256,
+            "cumulative_ms": 11.3177
+          },
+          {
+            "file": "frozen/workflows/workpoint_v27.py",
+            "line": 70,
+            "function": "solve_control",
+            "calls": 1,
+            "self_ms": 0.23800000000000002,
+            "cumulative_ms": 11.2531
+          },
+          {
+            "file": "frozen/workflows/control_seam_v23.py",
+            "line": 84,
+            "function": "command",
+            "calls": 7,
+            "self_ms": 0.5373,
+            "cumulative_ms": 8.3314
+          },
+          {
+            "file": "frozen/workflows/feedback_v28.py",
+            "line": 110,
+            "function": "validate_decision",
+            "calls": 1,
+            "self_ms": 0.14400000000000002,
+            "cumulative_ms": 7.9305
+          },
+          {
+            "file": "frozen/easyuuv_nc/env/easyuuv_env.py",
+            "line": 2163,
+            "function": "_pid_control",
+            "calls": 7,
+            "self_ms": 1.0121000000000002,
+            "cumulative_ms": 6.419500000000001
+          },
+          {
+            "file": "frozen/workflows/workpoint_v27.py",
+            "line": 48,
+            "function": "_steady",
+            "calls": 3,
+            "self_ms": 0.20280000000000004,
+            "cumulative_ms": 5.8205
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/testing/_private/utils.py",
+            "line": 1438,
+            "function": "assert_allclose",
+            "calls": 12,
+            "self_ms": 0.1416,
+            "cumulative_ms": 3.5604
+          },
+          {
+            "file": "E:\\anaconda\\Lib\\contextlib.py",
+            "line": 78,
+            "function": "inner",
+            "calls": 12,
+            "self_ms": 0.10470000000000002,
+            "cumulative_ms": 3.3713
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/testing/_private/utils.py",
+            "line": 641,
+            "function": "assert_array_compare",
+            "calls": 12,
+            "self_ms": 0.3998,
+            "cumulative_ms": 3.1007000000000002
+          },
+          {
+            "file": "frozen/workflows/control_seam_v23.py",
+            "line": 56,
+            "function": "__init__",
+            "calls": 2,
+            "self_ms": 0.14900000000000002,
+            "cumulative_ms": 2.5395000000000003
+          },
+          {
+            "file": "frozen/easyuuv_nc/thrust_allocation.py",
+            "line": 126,
+            "function": "allocate",
+            "calls": 7,
+            "self_ms": 0.0722,
+            "cumulative_ms": 2.2313000000000005
+          },
+          {
+            "file": "frozen/workflows/workpoint_v27.py",
+            "line": 84,
+            "function": "residual",
+            "calls": 1,
+            "self_ms": 0.011700000000000002,
+            "cumulative_ms": 1.955
+          },
+          {
+            "file": "frozen/easyuuv_nc/env/easyuuv_env.py",
+            "line": 1,
+            "function": "pwm_speed",
+            "calls": 3,
+            "self_ms": 1.7639,
+            "cumulative_ms": 1.9196
+          },
+          {
+            "file": "frozen/workflows/feedback_v28.py",
+            "line": 64,
+            "function": "target_terms",
+            "calls": 2,
+            "self_ms": 0.2672,
+            "cumulative_ms": 1.5877000000000001
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/testing/_private/utils.py",
+            "line": 1498,
+            "function": "compare",
+            "calls": 12,
+            "self_ms": 0.0495,
+            "cumulative_ms": 1.4131
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch._C._linalg.linalg_pinv>",
+            "calls": 7,
+            "self_ms": 1.4116,
+            "cumulative_ms": 1.4116
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/numeric.py",
+            "line": 2249,
+            "function": "isclose",
+            "calls": 12,
+            "self_ms": 0.1875,
+            "cumulative_ms": 1.3590000000000002
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/testing/_private/utils.py",
+            "line": 661,
+            "function": "func_assert_same_pos",
+            "calls": 36,
+            "self_ms": 0.5092,
+            "cumulative_ms": 1.0223
+          },
+          {
+            "file": "frozen/easyuuv_nc/thrust_allocation.py",
+            "line": 104,
+            "function": "control_channels_to_wrench",
+            "calls": 7,
+            "self_ms": 0.7898000000000001,
+            "cumulative_ms": 0.8853000000000001
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/numeric.py",
+            "line": 2330,
+            "function": "within_tol",
+            "calls": 12,
+            "self_ms": 0.3381,
+            "cumulative_ms": 0.8059000000000001
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.isfinite>",
+            "calls": 9,
+            "self_ms": 0.7326,
+            "cumulative_ms": 0.7326
+          },
+          {
+            "file": ".venv/Lib/site-packages/torch/functional.py",
+            "line": 225,
+            "function": "einsum",
+            "calls": 7,
+            "self_ms": 0.1552,
+            "cumulative_ms": 0.7073
+          },
+          {
+            "file": "frozen/easyuuv_nc/env/thruster_dynamics.py",
+            "line": 215,
+            "function": "__init__",
+            "calls": 2,
+            "self_ms": 0.0204,
+            "cumulative_ms": 0.6868
+          },
+          {
+            "file": "frozen/easyuuv_nc/thrust_allocation.py",
+            "line": 93,
+            "function": "build_wrench_matrix",
+            "calls": 2,
+            "self_ms": 0.1774,
+            "cumulative_ms": 0.6052000000000001
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+            "calls": 94,
+            "self_ms": 0.5893,
+            "cumulative_ms": 0.5893
+          },
+          {
+            "file": "frozen/easyuuv_nc/env/thruster_dynamics.py",
+            "line": 220,
+            "function": "_validate_time_constants",
+            "calls": 2,
+            "self_ms": 0.132,
+            "cumulative_ms": 0.5842
+          },
+          {
+            "file": "frozen/workflows/calibration_trace_v27.py",
+            "line": 12,
+            "function": "state_metrics",
+            "calls": 2,
+            "self_ms": 0.084,
+            "cumulative_ms": 0.5442
+          },
+          {
+            "file": "frozen/koopman/projected_edmd_v24.py",
+            "line": 35,
+            "function": "rotation",
+            "calls": 4,
+            "self_ms": 0.1642,
+            "cumulative_ms": 0.523
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.einsum>",
+            "calls": 7,
+            "self_ms": 0.5146000000000001,
+            "cumulative_ms": 0.5146000000000001
+          },
+          {
+            "file": "frozen/easyuuv_nc/thrust_allocation.py",
+            "line": 76,
+            "function": "from_specs",
+            "calls": 2,
+            "self_ms": 0.0618,
+            "cumulative_ms": 0.467
+          },
+          {
+            "file": "frozen/workflows/workpoint_v27.py",
+            "line": 55,
+            "function": "_inverse_force",
+            "calls": 6,
+            "self_ms": 0.21630000000000002,
+            "cumulative_ms": 0.4539
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'clone' of 'torch._C.TensorBase' objects>",
+            "calls": 45,
+            "self_ms": 0.4531,
+            "cumulative_ms": 0.4531
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 71,
+            "function": "_wrapreduction",
+            "calls": 36,
+            "self_ms": 0.1449,
+            "cumulative_ms": 0.4401
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'all' of 'numpy.ndarray' objects>",
+            "calls": 51,
+            "self_ms": 0.0775,
+            "cumulative_ms": 0.401
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.tensor>",
+            "calls": 24,
+            "self_ms": 0.38980000000000004,
+            "cumulative_ms": 0.38980000000000004
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'mean' of 'torch._C.TensorBase' objects>",
+            "calls": 7,
+            "self_ms": 0.37970000000000004,
+            "cumulative_ms": 0.37970000000000004
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/fromnumeric.py",
+            "line": 2421,
+            "function": "all",
+            "calls": 26,
+            "self_ms": 0.05910000000000001,
+            "cumulative_ms": 0.3634
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/_methods.py",
+            "line": 61,
+            "function": "_all",
+            "calls": 56,
+            "self_ms": 0.044500000000000005,
+            "cumulative_ms": 0.3526
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'reshape' of 'torch._C.TensorBase' objects>",
+            "calls": 16,
+            "self_ms": 0.32750000000000007,
+            "cumulative_ms": 0.32750000000000007
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.as_tensor>",
+            "calls": 39,
+            "self_ms": 0.3143,
+            "cumulative_ms": 0.3143
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.zeros>",
+            "calls": 28,
+            "self_ms": 0.303,
+            "cumulative_ms": 0.303
+          },
+          {
+            "file": "frozen/easyuuv_nc/thrust_allocation.py",
+            "line": 34,
+            "function": "quat_apply",
+            "calls": 2,
+            "self_ms": 0.2108,
+            "cumulative_ms": 0.2866
+          },
+          {
+            "file": "frozen/easyuuv_nc/thrust_allocation.py",
+            "line": 44,
+            "function": "quat_from_rpy",
+            "calls": 12,
+            "self_ms": 0.05740000000000001,
+            "cumulative_ms": 0.27690000000000003
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<method 'detach' of 'torch._C.TensorBase' objects>",
+            "calls": 49,
+            "self_ms": 0.26930000000000004,
+            "cumulative_ms": 0.26930000000000004
+          },
+          {
+            "file": "~",
+            "line": 0,
+            "function": "<built-in method torch.clip>",
+            "calls": 14,
+            "self_ms": 0.25060000000000004,
+            "cumulative_ms": 0.25060000000000004
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/core/numeric.py",
+            "line": 1468,
+            "function": "cross",
+            "calls": 2,
+            "self_ms": 0.10860000000000002,
+            "cumulative_ms": 0.2477
+          },
+          {
+            "file": ".venv/Lib/site-packages/numpy/linalg/linalg.py",
+            "line": 2191,
+            "function": "lstsq",
+            "calls": 2,
+            "self_ms": 0.17830000000000001,
+            "cumulative_ms": 0.24420000000000003
+          }
+        ]
+      },
+      "fallback_result": {
+        "accepted": true,
+        "decision": {
+          "state_available_11": [
+            5.510004997253418,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            5.286001965032483e-07,
+            0.0,
+            0.0047093587927520275,
+            -4.0762959230278284e-08,
+            -1.7724861578471973e-08,
+            -4.669782084892188e-14
+          ],
+          "pulse_acceleration_4": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "feedback_acceleration_4": [
+            2.445777553816697e-07,
+            1.0634916947083184e-07,
+            2.8018692509353127e-13,
+            -0.0
+          ],
+          "restoring_torque_3_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "unallocated_lateral_force_2_n": [
+            -0.0,
+            -0.0
+          ],
+          "unallocated_torque_3_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "target_wrench_6_n_nm": [
+            0.0,
+            0.0,
+            -2.197451871894259,
+            1.2628706096191436e-07,
+            1.4396138875751166e-07,
+            4.653021075814448e-13
+          ],
+          "command_4": [
+            -8.515399940733914e-09,
+            1.0785134563207066e-08,
+            2.1869743516145235e-10,
+            -0.13834728300571442
+          ],
+          "allocation": {
+            "command_4": [
+              -8.515399940733914e-09,
+              1.0785134563207066e-08,
+              2.1869743516145235e-10,
+              -0.13834728300571442
+            ],
+            "target_wrench_6_n_nm": [
+              0.0,
+              0.0,
+              -2.197451871894259,
+              1.2628706096191436e-07,
+              1.4396138875751166e-07,
+              4.653021075814448e-13
+            ],
+            "steady_wrench_6_n_nm": [
+              8.120689017232507e-06,
+              0.0,
+              -2.197460412979126,
+              1.2665987014770508e-07,
+              -1.4901161193847656e-08,
+              4.547473508864641e-13
+            ],
+            "acceleration_error_6": [
+              2.5633487812516763e-07,
+              0.0,
+              -2.6960494901019397e-07,
+              7.220124781735123e-10,
+              -1.173571635642064e-07,
+              -6.355666082942383e-15
+            ],
+            "pwm_raw": [
+              -0.03458680212497711,
+              -0.034586817026138306,
+              -0.034586843103170395,
+              -0.03458685427904129,
+              -2.642185563672683e-07,
+              -2.6456518753548153e-07
+            ],
+            "pwm_headroom": 0.9654131457209587,
+            "within_tolerance": true,
+            "exact_equilibrium": true,
+            "iterations": 1
+          }
+        }
+      }
+    }
+  ],
+  "protocol_sha256": "1b2134212c51730c138b5ba3c5871003cb565a6a8f44e662cf222e8402d8b100",
+  "created_at": "2026-09-20T13:47:22.098572+08:00",
+  "clocks": {
+    "monotonic": {
+      "implementation": "GetTickCount64()",
+      "monotonic": true,
+      "adjustable": false,
+      "resolution": 0.015625
+    },
+    "perf_counter": {
+      "implementation": "QueryPerformanceCounter()",
+      "monotonic": true,
+      "adjustable": false,
+      "resolution": 1e-07
+    }
+  },
+  "prior_gate_unchanged": "NO_GO",
+  "controller_promoted": false,
+  "limitations": [
+    "two_fit_configurations_only",
+    "profiled_time_not_deadline_evidence",
+    "no_actual_issuance"
+  ]
+}

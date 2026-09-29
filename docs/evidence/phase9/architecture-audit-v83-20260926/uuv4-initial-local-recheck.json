@@ -1,0 +1,652 @@
+{
+  "schema": "initial-plan-cross-evaluation-v82/1",
+  "configuration": "uuv4",
+  "origin_physics": 4,
+  "horizon_macro_steps": 20,
+  "cross_cells": [
+    {
+      "evaluation_model": "physics",
+      "plan_source": "physics",
+      "feasible": true,
+      "cost": 0.0007368396350725188,
+      "reason": null,
+      "rejection": null
+    },
+    {
+      "evaluation_model": "physics",
+      "plan_source": "learned_0.001",
+      "feasible": true,
+      "cost": 0.0007306136135666313,
+      "reason": null,
+      "rejection": null
+    },
+    {
+      "evaluation_model": "physics",
+      "plan_source": "learned_0.1",
+      "feasible": true,
+      "cost": 0.0007541116343070002,
+      "reason": null,
+      "rejection": null
+    },
+    {
+      "evaluation_model": "learned_0.001",
+      "plan_source": "physics",
+      "feasible": true,
+      "cost": 0.0007369067700601241,
+      "reason": null,
+      "rejection": null
+    },
+    {
+      "evaluation_model": "learned_0.001",
+      "plan_source": "learned_0.001",
+      "feasible": true,
+      "cost": 0.0007306574231197573,
+      "reason": null,
+      "rejection": null
+    },
+    {
+      "evaluation_model": "learned_0.001",
+      "plan_source": "learned_0.1",
+      "feasible": true,
+      "cost": 0.0007541454846803149,
+      "reason": null,
+      "rejection": null
+    },
+    {
+      "evaluation_model": "learned_0.1",
+      "plan_source": "physics",
+      "feasible": true,
+      "cost": 0.0007368845006039439,
+      "reason": null,
+      "rejection": null
+    },
+    {
+      "evaluation_model": "learned_0.1",
+      "plan_source": "learned_0.001",
+      "feasible": true,
+      "cost": 0.0007306415084240421,
+      "reason": null,
+      "rejection": null
+    },
+    {
+      "evaluation_model": "learned_0.1",
+      "plan_source": "learned_0.1",
+      "feasible": true,
+      "cost": 0.0007541322213997311,
+      "reason": null,
+      "rejection": null
+    }
+  ],
+  "physical_model_comparisons": [
+    {
+      "alternative_plan_source": "learned_0.001",
+      "both_physically_predicted_feasible": true,
+      "physical_predicted_cost_reduction": 6.226021505887475e-06,
+      "reduction_exceeds_diagnostic_1e_8": true,
+      "inference": "potential local-solver/initialization confound only; not counterfactual closed-loop benefit"
+    },
+    {
+      "alternative_plan_source": "learned_0.1",
+      "both_physically_predicted_feasible": true,
+      "physical_predicted_cost_reduction": -1.7271999234481417e-05,
+      "reduction_exceeds_diagnostic_1e_8": false,
+      "inference": "potential local-solver/initialization confound only; not counterfactual closed-loop benefit"
+    }
+  ],
+  "common_origin_check": {
+    "absolute_tolerance": 1e-07,
+    "relative_tolerance": 0.0,
+    "maximum_differences": {
+      "state": 0.0,
+      "startup_command": 0.0,
+      "observed_rotor": 0.0,
+      "origin_rotor": 0.0,
+      "origin_clock": 0.0,
+      "observed_clock": 0.0,
+      "reset_state": 0.0
+    },
+    "common_origin_source": "physics_trace_first_solve"
+  },
+  "common_origin": {
+    "case": {
+      "configuration": "uuv4",
+      "profile": "depth4_h20",
+      "preview_enabled": true,
+      "controls": 60,
+      "seed": 19760,
+      "reference": [
+        5.5,
+        0.9998000066665778,
+        0.0,
+        0.01999866669333308,
+        0.0
+      ],
+      "task": "pitch_pos"
+    },
+    "state": [
+      5.500044345855713,
+      1.0,
+      1.4060882449692946e-12,
+      8.988543413579464e-06,
+      -8.305316039325412e-18,
+      -3.6598414965283155e-08,
+      5.891487266166924e-15,
+      0.002048008842393756,
+      2.2930815579691455e-10,
+      0.0015566241927444935,
+      -1.8501719491052e-15
+    ],
+    "startup_command": [
+      -5.359864996279384e-09,
+      0.018507136031985283,
+      0.0,
+      -0.06338614225387573
+    ],
+    "observed_rotor": [
+      -15.604503631591797,
+      -15.604503631591797,
+      8.872490882873535,
+      8.872489929199219
+    ],
+    "origin_rotor": [
+      -15.604509337615863,
+      -15.604510246137544,
+      8.87249457265969,
+      8.872495468902482
+    ],
+    "observed_clock": 0.03333333507180214,
+    "origin_clock": 0.03333333507180214,
+    "reset_state": [
+      5.5,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "sources": {
+    "physics": {
+      "trace": "docs\\evidence\\phase9\\preview-v80-20260926\\final-return\\uuv4-identified-on-r1\\trace.json.gz",
+      "trace_sha256": "6faf47ba0938720a087282227d7f2ad1ed882abfeceb20a82dcc0652c164b13d",
+      "acceptance_sha256": "cdaa55142e358146798a6ea21fa6265bf3916796956b6fdb098a2b09d9732eea",
+      "collector_exit_sha256": "0915a2fc23e720bcb38491b23ebfd70ca95cc831200e2ad1eb920ee9fcc7a60b",
+      "validator_exit_sha256": "7c309b9af71ef567dd03a0a7fdc1fb153ff464f8048a9b181ceae0014050c2d5",
+      "source_manifest_sha256": "9f3449e65d819697d91d5af4d64d0870c24bc33af26e15577e4e6fa64668e2e1",
+      "selected_reference": "worker",
+      "solver_status": "recovered",
+      "worker_status": "optimized",
+      "solver": {
+        "return_status": "Maximum_Iterations_Exceeded",
+        "success": false,
+        "iterations": 160,
+        "global_optimum_claimed": false
+      },
+      "recorded_cost": 0.0007368396273791531,
+      "startup_actuator_replay_max_error": 6.6145457466859625e-06,
+      "plan_sha256": "06699edc0f11a87785bc209867cfb07ed22426c7dd77322bfc952fed7672d0f7",
+      "selected_plan": [
+        [
+          0.0048870607279241085,
+          0.03848825395107269,
+          0.0,
+          -0.08227363973855972
+        ],
+        [
+          -0.004816599190235138,
+          0.04019290953874588,
+          0.0,
+          -0.09018877893686295
+        ],
+        [
+          -4.050439201819245e-06,
+          0.02022559568285942,
+          0.0,
+          -0.077183797955513
+        ],
+        [
+          -0.007736685685813427,
+          0.009227661415934563,
+          0.0,
+          -0.05745299905538559
+        ],
+        [
+          0.004436438903212547,
+          0.012572264298796654,
+          0.0,
+          -0.037973109632730484
+        ],
+        [
+          -6.556009611813352e-05,
+          0.015772156417369843,
+          0.0,
+          -0.041407253593206406
+        ],
+        [
+          -0.0001394050195813179,
+          0.0026409628335386515,
+          0.0,
+          -0.06109194457530975
+        ],
+        [
+          -2.2927633835934103e-05,
+          -4.9810114433057606e-05,
+          0.0,
+          -0.08088693767786026
+        ],
+        [
+          -4.7493285819655284e-05,
+          -0.0025294858496636152,
+          0.0,
+          -0.1002812311053276
+        ],
+        [
+          -4.5233769924379885e-05,
+          -0.004957125522196293,
+          0.0,
+          -0.11905394494533539
+        ],
+        [
+          -4.5308548578759655e-05,
+          -0.0070541840977966785,
+          0.0,
+          -0.1352999061346054
+        ],
+        [
+          -4.6707544242963195e-05,
+          -0.007949238643050194,
+          0.0,
+          -0.1422482132911682
+        ],
+        [
+          -4.8173013055929914e-05,
+          -0.008061929605901241,
+          0.0,
+          -0.14313837885856628
+        ],
+        [
+          -4.7009772970341146e-05,
+          -0.007808197755366564,
+          0.0,
+          -0.14117547869682312
+        ],
+        [
+          -4.273713784641586e-05,
+          -0.007511904463171959,
+          0.0,
+          -0.13886386156082153
+        ],
+        [
+          -3.6701123462989926e-05,
+          -0.007202993147075176,
+          0.0,
+          -0.13644273579120636
+        ],
+        [
+          -3.077875226153992e-05,
+          -0.0067184497602283955,
+          0.0,
+          -0.13266395032405853
+        ],
+        [
+          -2.65284124907339e-05,
+          -0.005852700676769018,
+          0.0,
+          -0.12595677375793457
+        ],
+        [
+          -2.5617735445848666e-05,
+          -0.004321352578699589,
+          0.0,
+          -0.11417008936405182
+        ],
+        [
+          -3.376539098098874e-05,
+          -0.0024725503753870726,
+          0.0,
+          -0.1003488153219223
+        ]
+      ]
+    },
+    "learned_0.001": {
+      "trace": "docs\\evidence\\phase9\\learned-control-v82-20260926\\final-return\\uuv4-learned-0.001-on-r1\\trace.json.gz",
+      "trace_sha256": "d90fd2627964f400ee6c4b5185d6d4fc12fa9ec587a9475dbf2ccd0628277207",
+      "acceptance_sha256": "f09e1c507f16df1c07f6e4ed1270d19bf58073d19d8c47784913ba8630283685",
+      "collector_exit_sha256": "aebf2a9740c4c4356677f071cc72b3ab245a92015d6d67bdea9d025b4fcc29b2",
+      "validator_exit_sha256": "4f37267fa56caa8cf4aff4339e20588e630c969d396617f0d0f5fcaf41d18837",
+      "source_manifest_sha256": "69e277eca1e0ab8ab99f9b9ffa973630b1ca113619b4152612aa5a1dfde12427",
+      "selected_reference": "worker",
+      "solver_status": "recovered",
+      "worker_status": "optimized",
+      "solver": {
+        "return_status": "Solved_To_Acceptable_Level",
+        "success": true,
+        "iterations": 119,
+        "global_optimum_claimed": false
+      },
+      "recorded_cost": 0.0007306574610537127,
+      "startup_actuator_replay_max_error": 6.6145457466859625e-06,
+      "plan_sha256": "4d02c6184290ee159fe6ab96f340ba5df35c5ec80863c43ab3ab890573ea6b20",
+      "selected_plan": [
+        [
+          -4.384435214888072e-06,
+          0.03850701078772545,
+          0.0,
+          -0.08297821134328842
+        ],
+        [
+          -7.461324003088521e-06,
+          0.04233403131365776,
+          0.0,
+          -0.08862534910440445
+        ],
+        [
+          -1.048600850594994e-08,
+          0.02233423851430416,
+          0.0,
+          -0.09315210580825806
+        ],
+        [
+          2.3928985683596693e-05,
+          0.0023787894751876593,
+          0.0,
+          -0.07315445691347122
+        ],
+        [
+          -1.3550263133765839e-08,
+          0.0034662673715502024,
+          0.0,
+          -0.053161654621362686
+        ],
+        [
+          -8.9013667547988e-09,
+          0.015486405231058598,
+          0.0,
+          -0.04002747684717178
+        ],
+        [
+          -4.755697613489929e-09,
+          0.002580224070698023,
+          0.0,
+          -0.06002380698919296
+        ],
+        [
+          -1.0881699985532123e-09,
+          -3.1779916298546595e-07,
+          0.0,
+          -0.08002180606126785
+        ],
+        [
+          -1.3707694979103735e-09,
+          -0.002576391911134124,
+          0.0,
+          -0.09999267756938934
+        ],
+        [
+          -8.837190978994158e-10,
+          -0.004924645647406578,
+          0.0,
+          -0.11819583922624588
+        ],
+        [
+          -6.406993824370488e-10,
+          -0.006358191836625338,
+          0.0,
+          -0.12930849194526672
+        ],
+        [
+          -5.454062201870613e-10,
+          -0.007040008902549744,
+          0.0,
+          -0.1345939040184021
+        ],
+        [
+          -4.882332871325445e-10,
+          -0.007275016978383064,
+          0.0,
+          -0.13641571998596191
+        ],
+        [
+          -3.8240527411304015e-10,
+          -0.007343526463955641,
+          0.0,
+          -0.13694678246974945
+        ],
+        [
+          -1.997222665028886e-10,
+          -0.007399717811495066,
+          0.0,
+          -0.13738228380680084
+        ],
+        [
+          1.886479340795777e-11,
+          -0.007410877849906683,
+          0.0,
+          -0.13746865093708038
+        ],
+        [
+          1.8921111899494747e-10,
+          -0.007164048496633768,
+          0.0,
+          -0.13555513322353363
+        ],
+        [
+          2.1941699845928753e-10,
+          -0.006346980109810829,
+          0.0,
+          -0.1292213350534439
+        ],
+        [
+          3.06034884933748e-11,
+          -0.0047681271098554134,
+          0.0,
+          -0.11698278784751892
+        ],
+        [
+          -5.993022744732457e-10,
+          -0.002874059835448861,
+          0.0,
+          -0.10230394452810287
+        ]
+      ]
+    },
+    "learned_0.1": {
+      "trace": "docs\\evidence\\phase9\\learned-control-v82-20260926\\final-return\\uuv4-learned-0.1-on-r1\\trace.json.gz",
+      "trace_sha256": "b4e19b9bb75188f30a974daa7a1502ba3491f63317e552456f6a82cc596b4dfe",
+      "acceptance_sha256": "5fcf7e0858048df8f8fdce57f617adb9fd67c039101a7800a2f492b14aa7996b",
+      "collector_exit_sha256": "b187a2670b95fee284f99f282f0b531026646c50d46d30c9f119af6d88cc6f40",
+      "validator_exit_sha256": "c304b22936d075b43164955d77ffa757529544dd700e156e7bd7ee502aa01618",
+      "source_manifest_sha256": "69e277eca1e0ab8ab99f9b9ffa973630b1ca113619b4152612aa5a1dfde12427",
+      "selected_reference": "worker",
+      "solver_status": "recovered",
+      "worker_status": "optimized",
+      "solver": {
+        "return_status": "Maximum_Iterations_Exceeded",
+        "success": false,
+        "iterations": 160,
+        "global_optimum_claimed": false
+      },
+      "recorded_cost": 0.0007541322636573045,
+      "startup_actuator_replay_max_error": 6.6145457466859625e-06,
+      "plan_sha256": "68571b24fe34cf3fede8c46e4ee92e6a056463516a735ca02c1223e61f9c2b88",
+      "selected_plan": [
+        [
+          0.00010165691492147744,
+          0.038109105080366135,
+          0.0,
+          -0.0678023248910904
+        ],
+        [
+          -0.00010412679694127291,
+          0.038095440715551376,
+          0.0,
+          -0.0701298713684082
+        ],
+        [
+          -8.971102943178266e-06,
+          0.018790332600474358,
+          0.0,
+          -0.07510820776224136
+        ],
+        [
+          -2.9040067602181807e-05,
+          0.008278744295239449,
+          0.0,
+          -0.0633029192686081
+        ],
+        [
+          2.77655399258947e-05,
+          0.0071358769200742245,
+          0.0,
+          -0.055770065635442734
+        ],
+        [
+          -1.505308500782121e-05,
+          0.019314777106046677,
+          0.0,
+          -0.05761553347110748
+        ],
+        [
+          -2.8171676603960805e-05,
+          0.005397031083703041,
+          0.0,
+          -0.07407144457101822
+        ],
+        [
+          -1.0039274457085412e-05,
+          -0.0005906056612730026,
+          0.0,
+          -0.09190769493579865
+        ],
+        [
+          -1.0175679562962614e-05,
+          -0.002406413434073329,
+          0.0,
+          -0.10783209651708603
+        ],
+        [
+          -9.203738954965957e-06,
+          -0.0041322652250528336,
+          0.0,
+          -0.12156574428081512
+        ],
+        [
+          -7.21046626495081e-06,
+          -0.005465697962790728,
+          0.0,
+          -0.1321747601032257
+        ],
+        [
+          -4.319876097724773e-06,
+          -0.006318036932498217,
+          0.0,
+          -0.1390962153673172
+        ],
+        [
+          -6.22807363015454e-07,
+          -0.006769092287868261,
+          0.0,
+          -0.14287227392196655
+        ],
+        [
+          3.663355528260581e-06,
+          -0.006972610019147396,
+          0.0,
+          -0.1445845663547516
+        ],
+        [
+          8.184782018361147e-06,
+          -0.007057191804051399,
+          0.0,
+          -0.14516204595565796
+        ],
+        [
+          1.2613284525286872e-05,
+          -0.0070698875933885574,
+          0.0,
+          -0.1450032740831375
+        ],
+        [
+          1.687641633907333e-05,
+          -0.006964772939682007,
+          0.0,
+          -0.14391501247882843
+        ],
+        [
+          2.148486237274483e-05,
+          -0.006622344721108675,
+          0.0,
+          -0.1413031369447708
+        ],
+        [
+          2.888246308430098e-05,
+          -0.005886370316147804,
+          0.0,
+          -0.13679538667201996
+        ],
+        [
+          4.7850455302977934e-05,
+          -0.004367862828075886,
+          0.0,
+          -0.13166627287864685
+        ]
+      ]
+    }
+  },
+  "prediction_model_identities": {
+    "0.001": {
+      "kind": "learned_velocity",
+      "symbolic_proxy": "learned_velocity_matrix_v81",
+      "prediction_artifact_sha256": "8f973c20e66eb06ef8077723ca172d3513ea434e167d106a6c35ac72f7ef5180",
+      "prediction_record_content_sha256": "0b199fae1d2fac89ed3934c81beead09faf3c3d96666eed682e31d8cefc414f7",
+      "prediction_content_sha256": "0b199fae1d2fac89ed3934c81beead09faf3c3d96666eed682e31d8cefc414f7",
+      "uses_learned_velocity_matrix": true,
+      "representation_benefit_claimed": false,
+      "v38_model_admission_claimed": false,
+      "comparison_scope": "pooled_fit8_development",
+      "fit_episode_count": 24,
+      "pwm_planning_margin": 3e-06,
+      "pwm_optimizer_margin": 4e-06
+    },
+    "0.1": {
+      "kind": "learned_velocity",
+      "symbolic_proxy": "learned_velocity_matrix_v81",
+      "prediction_artifact_sha256": "7753e54624deaa72f6b234dc681a8dcfdfc74782117b2d6993cd0a25a2f60447",
+      "prediction_record_content_sha256": "862b0e4f5203b35ce869bacff7a2387b58d5a035ff73a7f87aba9f0cec6e479f",
+      "prediction_content_sha256": "862b0e4f5203b35ce869bacff7a2387b58d5a035ff73a7f87aba9f0cec6e479f",
+      "uses_learned_velocity_matrix": true,
+      "representation_benefit_claimed": false,
+      "v38_model_admission_claimed": false,
+      "comparison_scope": "pooled_fit8_development",
+      "fit_episode_count": 24,
+      "pwm_planning_margin": 3e-06,
+      "pwm_optimizer_margin": 4e-06
+    }
+  },
+  "common_support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+  "common_support_model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+  "analysis_platform": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64",
+    "python": "3.12.4 | packaged by Anaconda, Inc. | (main, Jun 18 2024, 15:03:56) [MSC v.1929 64 bit (AMD64)]",
+    "python_executable": "E:\\code for project\\Agentic AUV\\EasyUUV\\.venv\\Scripts\\python.exe",
+    "numpy": "1.26.4",
+    "torch": "2.8.0",
+    "command_dtype": "float32",
+    "prediction_arithmetic": "numpy float64 with float32 actuator/allocation recurrence",
+    "platform_matched_to_collection_established": false
+  },
+  "new_solves": 0,
+  "new_fits": 0,
+  "new_physics_runs": 0,
+  "future_measured_states_used": false,
+  "counterfactual_control_benefit": false,
+  "diagnostic_cost_tolerance": 1e-08,
+  "tolerance_changes_no_runtime_gate": true,
+  "numerical_limit": "Cross-platform cost differences around 1e-10 have been observed; report raw cost reductions and do not infer benefit from such micro-differences."
+}

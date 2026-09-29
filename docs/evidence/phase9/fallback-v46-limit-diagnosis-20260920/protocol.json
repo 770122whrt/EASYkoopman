@@ -1,0 +1,35 @@
+{
+  "schema": "fallback-v46-limit-diagnosis-v1",
+  "cases": [
+    [
+      "base",
+      "hold-o64"
+    ],
+    [
+      "heavy_moderate",
+      "hold-o64"
+    ],
+    [
+      "uuv6",
+      "depth-minus-o128"
+    ],
+    [
+      "uuv4",
+      "depth-minus-o128"
+    ]
+  ],
+  "maximum_seconds": 60,
+  "output_limit_bytes": 8388608,
+  "input_sha256": "afe93b67b14e961ef18f21371f3e3d203807de467edf565a774a71316c0045a9",
+  "fit_support_sha256": "307445bd455a473e1007c7038d3b54ca24a71951d0be942c433c634355b72df3",
+  "runner_sha256": "e45b82513ef3b9957bd47fa922fa1e473695b88ee6b62c2ef45be435b5085234",
+  "handoff_sha256": "5d8c4aa1264d93307dc0cf692757441509e75809206ed80006543ca5e4239632",
+  "original_source_commit": "bfe1659f2aee45760b66dbb98884f37fd20ad391",
+  "static_inverse_calls_per_case": 1,
+  "slew": 0.01,
+  "processes": 1,
+  "compute_threads": 1,
+  "new_fits": 0,
+  "new_server_runs": 0,
+  "formal_test_access": false
+}

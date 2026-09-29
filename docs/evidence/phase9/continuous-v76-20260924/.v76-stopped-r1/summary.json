@@ -1,0 +1,82 @@
+[
+  {
+    "case": "long_body-pitch-nominal_physics-r3",
+    "source_trace_sha256": "58d569beea0beaae498c159c7453fd4dfcad20361040856c1a3ddd905b606deb",
+    "original_solver": {
+      "return_status": "Maximum_CpuTime_Exceeded",
+      "success": false,
+      "iterations": 142,
+      "global_optimum_claimed": false
+    },
+    "original_elapsed_seconds": 13.256189815700054,
+    "isolated_cpu_seconds": 8.689851526999998,
+    "new_physics_steps": 0,
+    "model_fits": 0,
+    "status": "optimized",
+    "reason": null,
+    "cost": 0.00037743283489760247,
+    "baseline_cost": 0.0004757516506179538,
+    "exact_feasible": true,
+    "runtime_eligible": false,
+    "search_kind": "continuous_nonlinear_program",
+    "decision_variables": 40,
+    "solver": {
+      "return_status": "Maximum_Iterations_Exceeded",
+      "success": false,
+      "iterations": 160,
+      "global_optimum_claimed": false
+    },
+    "baseline_check": {
+      "feasible": true,
+      "reason": null,
+      "cost": 0.0004757516506179538
+    },
+    "constraint_violation": 0.0,
+    "solution_check": {
+      "feasible": true,
+      "reason": null,
+      "cost": 0.00037743283489760247
+    },
+    "elapsed_seconds": 8.690423596650362
+  },
+  {
+    "case": "long_body-pitch-projected_koopman-r3",
+    "source_trace_sha256": "9d97d927f9695c52328f7680eb014465aa7eebfb8a4c0dac27f294dfa95d7647",
+    "original_solver": {
+      "return_status": "Maximum_CpuTime_Exceeded",
+      "success": false,
+      "iterations": 152,
+      "global_optimum_claimed": false
+    },
+    "original_elapsed_seconds": 14.151098314672709,
+    "isolated_cpu_seconds": 8.511596434000001,
+    "new_physics_steps": 0,
+    "model_fits": 0,
+    "status": "optimized",
+    "reason": null,
+    "cost": 0.0005401706490091412,
+    "baseline_cost": 0.0006960809354501481,
+    "exact_feasible": true,
+    "runtime_eligible": false,
+    "search_kind": "continuous_nonlinear_program",
+    "decision_variables": 40,
+    "solver": {
+      "return_status": "Maximum_Iterations_Exceeded",
+      "success": false,
+      "iterations": 160,
+      "global_optimum_claimed": false
+    },
+    "baseline_check": {
+      "feasible": true,
+      "reason": null,
+      "cost": 0.0006960809354501481
+    },
+    "constraint_violation": 0.0,
+    "solution_check": {
+      "feasible": true,
+      "reason": null,
+      "cost": 0.0005401706490091412
+    },
+    "elapsed_seconds": 8.51217631995678
+  }
+]

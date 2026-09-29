@@ -1,0 +1,54 @@
+[
+  {
+    "case": "uuv4-feedback-r1",
+    "metrics": {
+      "normalized_tracking_score": 0.21393032095951076,
+      "depth_rmse_m": 0.0016929777665514747,
+      "attitude_rmse_rad": 0.018188562853152162,
+      "terminal_depth_error_m": 0.002231121063232422,
+      "terminal_attitude_error_rad": 0.00016078224002242966,
+      "control_squared_integral": 0.022722586165262917,
+      "actual_objective": 0.0010940089775164153,
+      "cycle_median_ms": 56.249070912599564,
+      "cycle_p95_ms": 65.92207364737988,
+      "cycle_max_ms": 76.35822333395481,
+      "solve_status_counts": {},
+      "selected_reference_counts": {},
+      "nlp_return_status_counts": {},
+      "control_effort_is_not_energy_in_joules": true
+    },
+    "trace_sha256": "16d0ac97727f2fe111cacc766b0c67c4a84cb1b31ea5b6bbd7c59eae046701d0"
+  },
+  {
+    "case": "uuv4-identified-off-r1",
+    "metrics": {
+      "normalized_tracking_score": 0.20128505325569387,
+      "depth_rmse_m": 0.0008683943092987903,
+      "attitude_rmse_rad": 0.01786168106599768,
+      "terminal_depth_error_m": 0.0007290840148925781,
+      "terminal_attitude_error_rad": 0.0006969440482932368,
+      "control_squared_integral": 0.01861504296327776,
+      "actual_objective": 0.0010412276218957953,
+      "cycle_median_ms": 16413.62871043384,
+      "cycle_p95_ms": 19185.553857311606,
+      "cycle_max_ms": 19848.660439252853,
+      "solve_status_counts": {
+        "recovered": 18,
+        "warm_retained": 8,
+        "optimized": 33
+      },
+      "selected_reference_counts": {
+        "worker": 51,
+        "warm": 8
+      },
+      "nlp_return_status_counts": {
+        "Solve_Succeeded": 22,
+        "Maximum_Iterations_Exceeded": 30,
+        "Solved_To_Acceptable_Level": 6,
+        "Error_In_Step_Computation": 1
+      },
+      "control_effort_is_not_energy_in_joules": true
+    },
+    "trace_sha256": "2a8f2e2e92616f78d760d0c08652d117b6bf556effed309b2bec790034dc82b4"
+  }
+]

@@ -1,0 +1,827 @@
+{
+  "status": "completed_source_only_retrospective_calibration",
+  "protocol": {
+    "schema": "source-only-bilinear-ridge-calibration-v85",
+    "ridge_grid": [
+      1e-08,
+      1e-06,
+      0.0001,
+      0.001,
+      0.1
+    ],
+    "maximum_seconds": 600,
+    "maximum_bytes": 134217728,
+    "gate": {
+      "horizon_physics": 80,
+      "max_window_z_rmse_m": 0.002,
+      "max_window_attitude_rmse_rad": 0.004
+    },
+    "selection": "lexicographic: number of failed 80-step windows; maximum over complete windows of z_RMSE/.002 + attitude_RMSE/.004; larger ridge on exact ties",
+    "source_development": "alphabetically last outer source configuration, excluded from inner fitting",
+    "outer_target_used_for_selection": false,
+    "blind_test": false,
+    "dictionary_changed": false,
+    "input_features_changed": false,
+    "propagation_changed": true,
+    "interaction_features": "shared a_i*z_j; no height or constant",
+    "user_authorized": "2026-09-27 bilinear extension as distinct comparison",
+    "fixed_AB_comparator": "docs/evidence/phase9/lifted-calibration-v84-20260927/report.json",
+    "origins": [
+      256,
+      384,
+      512
+    ],
+    "horizons": [
+      1,
+      80,
+      128
+    ],
+    "solver_runs": 0,
+    "physics_runs": 0,
+    "source_sha256": {
+      "workflows\\calibrate_bilinear_v85.py": "9a30dca2e05f43145da83ae51cd425b4a9bf247d6b3d22c710862c23a9e9411f",
+      "koopman\\bilinear_lifted_v85.py": "858c5bad82355f8cbe81367574db5a2e5fe20d136795fe3c8800b2c8a36ee0d7",
+      "koopman\\lifted_propagation_v84.py": "6fafdff448ecb3fd49de0904d2197c3885dad76890eb20de04f68c0349c05bde",
+      "workflows\\calibrate_lifted_v84.py": "192ef4b3f04182a736e6ffddd5ae71ecc4b0515e6d800b72de5e8d6036c83128",
+      "workflows\\compare_models_v84.py": "dc0f7250c55b1d38802c1f3917390a545f20ed5e52e605918c0272d449f973ee"
+    }
+  },
+  "elapsed_seconds": 74.875,
+  "model_fits": 54,
+  "folds": [
+    {
+      "fold": "pooled",
+      "ridge": 0.001,
+      "gates": {
+        "BLK_calibrated": {
+          "eligible_body_prediction": false,
+          "windows": 72,
+          "failures": 9,
+          "max_z_rmse_m": 0.00556964306543763,
+          "max_attitude_rmse_rad": 0.0612874851704807,
+          "closed_loop_admitted": false
+        },
+        "BLK_calibrated_relift_diagnostic": {
+          "eligible_body_prediction": false,
+          "windows": 72,
+          "failures": 0,
+          "max_z_rmse_m": 0.004722909536314815,
+          "max_attitude_rmse_rad": 0.04562752423453124,
+          "closed_loop_admitted": false
+        }
+      },
+      "summary": [
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 1,
+          "total": 72,
+          "complete": 72,
+          "failed": 0,
+          "complete_window_metrics": {
+            "z_rmse_m": 2.684574553357636e-06,
+            "attitude_rmse_rad": 1.0312525855237886e-05,
+            "velocity_6_rmse": [
+              9.306566236576025e-06,
+              1.6424001905606573e-05,
+              0.0001419030589777049,
+              0.0009663845440246584,
+              0.0003898832019184129,
+              1.349486003807871e-05
+            ],
+            "linear_velocity_rmse_m_s": 8.26495375283313e-05,
+            "angular_velocity_rmse_rad_s": 0.0006016893188668462
+          },
+          "metrics_exclude_failures_explicitly": true
+        },
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 80,
+          "total": 72,
+          "complete": 63,
+          "failed": 9,
+          "complete_window_metrics": {
+            "z_rmse_m": 0.0018101999451806874,
+            "attitude_rmse_rad": 0.011655180127972828,
+            "velocity_6_rmse": [
+              0.004049126067053928,
+              0.008211377253640162,
+              0.00641955310558849,
+              0.042583674548156716,
+              0.02079701627769079,
+              0.000746418641380957
+            ],
+            "linear_velocity_rmse_m_s": 0.006455819090401192,
+            "angular_velocity_rmse_rad_s": 0.027364468232034443
+          },
+          "metrics_exclude_failures_explicitly": true
+        },
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 128,
+          "total": 72,
+          "complete": 63,
+          "failed": 9,
+          "complete_window_metrics": {
+            "z_rmse_m": 0.0036674436579843942,
+            "attitude_rmse_rad": 0.03194552925925166,
+            "velocity_6_rmse": [
+              0.018483112756594755,
+              0.028698112415069275,
+              0.00869440624418868,
+              0.1295599459866312,
+              0.05411007917147702,
+              0.001770505786344636
+            ],
+            "linear_velocity_rmse_m_s": 0.020337156580177217,
+            "angular_velocity_rmse_rad_s": 0.08106954825486114
+          },
+          "metrics_exclude_failures_explicitly": true
+        },
+        {
+          "model": "BLK_calibrated_relift_diagnostic",
+          "horizon_physics": 1,
+          "total": 72,
+          "complete": 72,
+          "failed": 0,
+          "complete_window_metrics": {
+            "z_rmse_m": 2.684574553357636e-06,
+            "attitude_rmse_rad": 1.0312525855237886e-05,
+            "velocity_6_rmse": [
+              9.306566236576025e-06,
+              1.6424001905606573e-05,
+              0.0001419030589777049,
+              0.0009663845440246584,
+              0.0003898832019184129,
+              1.349486003807871e-05
+            ],
+            "linear_velocity_rmse_m_s": 8.26495375283313e-05,
+            "angular_velocity_rmse_rad_s": 0.0006016893188668462
+          },
+          "metrics_exclude_failures_explicitly": true
+        },
+        {
+          "model": "BLK_calibrated_relift_diagnostic",
+          "horizon_physics": 80,
+          "total": 72,
+          "complete": 72,
+          "failed": 0,
+          "complete_window_metrics": {
+            "z_rmse_m": 0.001695688848133368,
+            "attitude_rmse_rad": 0.008574165390264997,
+            "velocity_6_rmse": [
+              0.0030806286916817477,
+              0.0057497313854779205,
+              0.005704123438628175,
+              0.029275648966898455,
+              0.013908990590592595,
+              0.0036128081875069456
+            ],
+            "linear_velocity_rmse_m_s": 0.005002889443254101,
+            "angular_velocity_rmse_rad_s": 0.01882884334101959
+          },
+          "metrics_exclude_failures_explicitly": true
+        },
+        {
+          "model": "BLK_calibrated_relift_diagnostic",
+          "horizon_physics": 128,
+          "total": 72,
+          "complete": 71,
+          "failed": 1,
+          "complete_window_metrics": {
+            "z_rmse_m": 0.002888930068404315,
+            "attitude_rmse_rad": 0.012007728470919918,
+            "velocity_6_rmse": [
+              0.005551146733281153,
+              0.009355570656954977,
+              0.007352817798421009,
+              0.04137135451024923,
+              0.01887385098840197,
+              0.00915587135004929
+            ],
+            "linear_velocity_rmse_m_s": 0.007580806068584699,
+            "angular_velocity_rmse_rad_s": 0.026780846422544687
+          },
+          "metrics_exclude_failures_explicitly": true
+        }
+      ],
+      "seconds": 14.811999999976251
+    },
+    {
+      "fold": "loco_base",
+      "ridge": 0.001,
+      "gates": {
+        "BLK_calibrated": {
+          "eligible_body_prediction": false,
+          "windows": 9,
+          "failures": 0,
+          "max_z_rmse_m": 0.006635173693871464,
+          "max_attitude_rmse_rad": 0.24963094268305278,
+          "closed_loop_admitted": false
+        }
+      },
+      "summary": [
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 1,
+          "total": 9,
+          "complete": 9,
+          "failed": 0,
+          "complete_window_metrics": {
+            "z_rmse_m": 3.9654758775395085e-05,
+            "attitude_rmse_rad": 6.952568128471421e-05,
+            "velocity_6_rmse": [
+              7.999556951624224e-05,
+              0.00016265940859606112,
+              0.0006134987091666994,
+              0.008432754644557292,
+              0.001878762995715944,
+              0.0005524820506638558
+            ],
+            "linear_velocity_rmse_m_s": 0.0003693408725898317,
+            "angular_velocity_rmse_rad_s": 0.004998210936781275
+          },
+          "metrics_exclude_failures_explicitly": true
+        },
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 80,
+          "total": 9,
+          "complete": 9,
+          "failed": 0,
+          "complete_window_metrics": {
+            "z_rmse_m": 0.0035171249769626553,
+            "attitude_rmse_rad": 0.09152337499301792,
+            "velocity_6_rmse": [
+              0.003378881770845868,
+              0.004997775905271626,
+              0.02292496040047215,
+              0.3684077164529703,
+              0.12686667748502561,
+              0.016770719574761145
+            ],
+            "linear_velocity_rmse_m_s": 0.013686348616825994,
+            "angular_velocity_rmse_rad_s": 0.22516709087048886
+          },
+          "metrics_exclude_failures_explicitly": true
+        },
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 128,
+          "total": 9,
+          "complete": 6,
+          "failed": 3,
+          "complete_window_metrics": {
+            "z_rmse_m": 0.006041337318087042,
+            "attitude_rmse_rad": 0.06718952094339889,
+            "velocity_6_rmse": [
+              0.004268112681895299,
+              0.006193259874764542,
+              0.016388817229038722,
+              0.2621066025420978,
+              0.13352474461563119,
+              0.012274055673472048
+            ],
+            "linear_velocity_rmse_m_s": 0.01041099713297691,
+            "angular_velocity_rmse_rad_s": 0.16997978405632658
+          },
+          "metrics_exclude_failures_explicitly": true
+        }
+      ],
+      "seconds": 7.702999999979511
+    },
+    {
+      "fold": "loco_long_body",
+      "ridge": 0.001,
+      "gates": {
+        "BLK_calibrated": {
+          "eligible_body_prediction": false,
+          "windows": 9,
+          "failures": 9,
+          "max_z_rmse_m": null,
+          "max_attitude_rmse_rad": null,
+          "closed_loop_admitted": false
+        }
+      },
+      "summary": [
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 1,
+          "total": 9,
+          "complete": 9,
+          "failed": 0,
+          "complete_window_metrics": {
+            "z_rmse_m": 0.00017129479307422966,
+            "attitude_rmse_rad": 0.0001219436055269918,
+            "velocity_6_rmse": [
+              0.00020089938817715775,
+              0.0003866619325833361,
+              0.014808864279060373,
+              0.009083503499515545,
+              0.003747509999485827,
+              6.832205585719875e-05
+            ],
+            "linear_velocity_rmse_m_s": 0.008553602150554455,
+            "angular_velocity_rmse_rad_s": 0.005673286376380506
+          },
+          "metrics_exclude_failures_explicitly": true
+        },
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 80,
+          "total": 9,
+          "complete": 0,
+          "failed": 9,
+          "complete_window_metrics": {},
+          "metrics_exclude_failures_explicitly": true
+        },
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 128,
+          "total": 9,
+          "complete": 0,
+          "failed": 9,
+          "complete_window_metrics": {},
+          "metrics_exclude_failures_explicitly": true
+        }
+      ],
+      "seconds": 6.5310000000172295
+    },
+    {
+      "fold": "loco_heavy_moderate",
+      "ridge": 0.0001,
+      "gates": {
+        "BLK_calibrated": {
+          "eligible_body_prediction": false,
+          "windows": 9,
+          "failures": 9,
+          "max_z_rmse_m": null,
+          "max_attitude_rmse_rad": null,
+          "closed_loop_admitted": false
+        }
+      },
+      "summary": [
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 1,
+          "total": 9,
+          "complete": 0,
+          "failed": 9,
+          "complete_window_metrics": {},
+          "metrics_exclude_failures_explicitly": true
+        },
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 80,
+          "total": 9,
+          "complete": 0,
+          "failed": 9,
+          "complete_window_metrics": {},
+          "metrics_exclude_failures_explicitly": true
+        },
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 128,
+          "total": 9,
+          "complete": 0,
+          "failed": 9,
+          "complete_window_metrics": {},
+          "metrics_exclude_failures_explicitly": true
+        }
+      ],
+      "seconds": 7.217999999993481
+    },
+    {
+      "fold": "loco_asymmetric",
+      "ridge": 0.001,
+      "gates": {
+        "BLK_calibrated": {
+          "eligible_body_prediction": false,
+          "windows": 9,
+          "failures": 9,
+          "max_z_rmse_m": null,
+          "max_attitude_rmse_rad": null,
+          "closed_loop_admitted": false
+        }
+      },
+      "summary": [
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 1,
+          "total": 9,
+          "complete": 9,
+          "failed": 0,
+          "complete_window_metrics": {
+            "z_rmse_m": 0.00044323292035494216,
+            "attitude_rmse_rad": 0.0024382533554203937,
+            "velocity_6_rmse": [
+              0.0005315888787081456,
+              0.0009391364644367561,
+              0.013823530355479166,
+              0.24881730744394098,
+              0.09398849931177469,
+              0.0027561710906466525
+            ],
+            "linear_velocity_rmse_m_s": 0.008005301483468208,
+            "angular_velocity_rmse_rad_s": 0.15357027377893706
+          },
+          "metrics_exclude_failures_explicitly": true
+        },
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 80,
+          "total": 9,
+          "complete": 0,
+          "failed": 9,
+          "complete_window_metrics": {},
+          "metrics_exclude_failures_explicitly": true
+        },
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 128,
+          "total": 9,
+          "complete": 0,
+          "failed": 9,
+          "complete_window_metrics": {},
+          "metrics_exclude_failures_explicitly": true
+        }
+      ],
+      "seconds": 6.172000000020489
+    },
+    {
+      "fold": "loco_uuv6",
+      "ridge": 0.1,
+      "gates": {
+        "BLK_calibrated": {
+          "eligible_body_prediction": false,
+          "windows": 9,
+          "failures": 3,
+          "max_z_rmse_m": 0.022777538399574443,
+          "max_attitude_rmse_rad": 0.05847184614691876,
+          "closed_loop_admitted": false
+        }
+      },
+      "summary": [
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 1,
+          "total": 9,
+          "complete": 9,
+          "failed": 0,
+          "complete_window_metrics": {
+            "z_rmse_m": 2.7951458662991394e-05,
+            "attitude_rmse_rad": 0.000205062053733095,
+            "velocity_6_rmse": [
+              1.5676352542216377e-05,
+              0.00010888687164073516,
+              0.0010689987420570762,
+              0.01070386624572882,
+              0.004722544800776116,
+              0.0008216797186683683
+            ],
+            "linear_velocity_rmse_m_s": 0.0006204461860533232,
+            "angular_velocity_rmse_rad_s": 0.006771271164802594
+          },
+          "metrics_exclude_failures_explicitly": true
+        },
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 80,
+          "total": 9,
+          "complete": 6,
+          "failed": 3,
+          "complete_window_metrics": {
+            "z_rmse_m": 0.012776850492166073,
+            "attitude_rmse_rad": 0.04369619726283034,
+            "velocity_6_rmse": [
+              0.0012331290187758974,
+              0.002176346612049988,
+              0.050685089131126806,
+              0.13362383225462227,
+              0.10841800591965262,
+              0.018986581312482386
+            ],
+            "linear_velocity_rmse_m_s": 0.029298665225472857,
+            "angular_velocity_rmse_rad_s": 0.0999504591017316
+          },
+          "metrics_exclude_failures_explicitly": true
+        },
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 128,
+          "total": 9,
+          "complete": 2,
+          "failed": 7,
+          "complete_window_metrics": {
+            "z_rmse_m": 0.05440512642344495,
+            "attitude_rmse_rad": 0.09487342626589057,
+            "velocity_6_rmse": [
+              0.003640821603373626,
+              0.003892660875243988,
+              0.2003528246498588,
+              0.18122844243095432,
+              0.424877357188268,
+              0.1208775840481711
+            ],
+            "linear_velocity_rmse_m_s": 0.11571468177636221,
+            "angular_velocity_rmse_rad_s": 0.275666409102596
+          },
+          "metrics_exclude_failures_explicitly": true
+        }
+      ],
+      "seconds": 7.454000000027008
+    },
+    {
+      "fold": "loco_uuv6_angled",
+      "ridge": 0.1,
+      "gates": {
+        "BLK_calibrated": {
+          "eligible_body_prediction": false,
+          "windows": 9,
+          "failures": 2,
+          "max_z_rmse_m": 0.026273122496437148,
+          "max_attitude_rmse_rad": 0.06616852433153561,
+          "closed_loop_admitted": false
+        }
+      },
+      "summary": [
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 1,
+          "total": 9,
+          "complete": 9,
+          "failed": 0,
+          "complete_window_metrics": {
+            "z_rmse_m": 7.748634910887345e-05,
+            "attitude_rmse_rad": 0.0002309755134230882,
+            "velocity_6_rmse": [
+              4.99869704451789e-05,
+              4.501513395509488e-05,
+              0.0008547744129102166,
+              0.00919748441422261,
+              0.0031707646163261854,
+              0.0004217385918020864
+            ],
+            "linear_velocity_rmse_m_s": 0.0004950300854376724,
+            "angular_velocity_rmse_rad_s": 0.005622138716474042
+          },
+          "metrics_exclude_failures_explicitly": true
+        },
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 80,
+          "total": 9,
+          "complete": 7,
+          "failed": 2,
+          "complete_window_metrics": {
+            "z_rmse_m": 0.016037606145878357,
+            "attitude_rmse_rad": 0.04119312998498905,
+            "velocity_6_rmse": [
+              0.0015800819098820064,
+              0.006661261712366565,
+              0.054836545733955154,
+              0.28479289446794354,
+              0.17624274119395225,
+              0.06654438337139762
+            ],
+            "linear_velocity_rmse_m_s": 0.031905672507537654,
+            "angular_velocity_rmse_rad_s": 0.19714347695799897
+          },
+          "metrics_exclude_failures_explicitly": true
+        },
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 128,
+          "total": 9,
+          "complete": 0,
+          "failed": 9,
+          "complete_window_metrics": {},
+          "metrics_exclude_failures_explicitly": true
+        }
+      ],
+      "seconds": 7.014999999955762
+    },
+    {
+      "fold": "loco_uuv4",
+      "ridge": 0.001,
+      "gates": {
+        "BLK_calibrated": {
+          "eligible_body_prediction": false,
+          "windows": 9,
+          "failures": 0,
+          "max_z_rmse_m": 0.006244796890813982,
+          "max_attitude_rmse_rad": 0.04279575387633241,
+          "closed_loop_admitted": false
+        }
+      },
+      "summary": [
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 1,
+          "total": 9,
+          "complete": 9,
+          "failed": 0,
+          "complete_window_metrics": {
+            "z_rmse_m": 1.228529015858674e-05,
+            "attitude_rmse_rad": 2.573308923538389e-05,
+            "velocity_6_rmse": [
+              2.865357377963836e-05,
+              0.00011564899016197428,
+              0.00046070231958046827,
+              0.0025293229161343182,
+              0.0010676306011257327,
+              2.2689848588664865e-05
+            ],
+            "linear_velocity_rmse_m_s": 0.0002747376587963225,
+            "angular_velocity_rmse_rad_s": 0.001585120851730374
+          },
+          "metrics_exclude_failures_explicitly": true
+        },
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 80,
+          "total": 9,
+          "complete": 9,
+          "failed": 0,
+          "complete_window_metrics": {
+            "z_rmse_m": 0.0035167180164277943,
+            "attitude_rmse_rad": 0.02047812074305971,
+            "velocity_6_rmse": [
+              0.001668986415779977,
+              0.0047892461361304,
+              0.012874800097004998,
+              0.08497746355150758,
+              0.01945503767444038,
+              0.0012340412787297012
+            ],
+            "linear_velocity_rmse_m_s": 0.007989219230653646,
+            "angular_velocity_rmse_rad_s": 0.05033617208475863
+          },
+          "metrics_exclude_failures_explicitly": true
+        },
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 128,
+          "total": 9,
+          "complete": 9,
+          "failed": 0,
+          "complete_window_metrics": {
+            "z_rmse_m": 0.007295325717859791,
+            "attitude_rmse_rad": 0.040577988282731674,
+            "velocity_6_rmse": [
+              0.0037793944659532553,
+              0.010523712114667573,
+              0.017770197711662005,
+              0.12625998136329625,
+              0.12247369171158844,
+              0.006132093356293999
+            ],
+            "linear_velocity_rmse_m_s": 0.01212177470385747,
+            "angular_velocity_rmse_rad_s": 0.10161855247977675
+          },
+          "metrics_exclude_failures_explicitly": true
+        }
+      ],
+      "seconds": 9.172000000020489
+    },
+    {
+      "fold": "loco_uuv4_angled",
+      "ridge": 0.1,
+      "gates": {
+        "BLK_calibrated": {
+          "eligible_body_prediction": false,
+          "windows": 9,
+          "failures": 0,
+          "max_z_rmse_m": 0.013605009698973217,
+          "max_attitude_rmse_rad": 0.16992847636480735,
+          "closed_loop_admitted": false
+        }
+      },
+      "summary": [
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 1,
+          "total": 9,
+          "complete": 9,
+          "failed": 0,
+          "complete_window_metrics": {
+            "z_rmse_m": 6.425580526479561e-05,
+            "attitude_rmse_rad": 0.00026528799467458907,
+            "velocity_6_rmse": [
+              2.6613083454278895e-05,
+              6.239041363701676e-05,
+              0.0007418462012165262,
+              0.003654312082698356,
+              0.002432524302395483,
+              0.00023880057337524174
+            ],
+            "linear_velocity_rmse_m_s": 0.000430091698045945,
+            "angular_velocity_rmse_rad_s": 0.002538253795646669
+          },
+          "metrics_exclude_failures_explicitly": true
+        },
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 80,
+          "total": 9,
+          "complete": 9,
+          "failed": 0,
+          "complete_window_metrics": {
+            "z_rmse_m": 0.007350450919763438,
+            "attitude_rmse_rad": 0.0766177702175434,
+            "velocity_6_rmse": [
+              0.0014194563244031304,
+              0.00278927812214661,
+              0.03053091178282959,
+              0.2845783078556749,
+              0.19528279292513215,
+              0.03173065597766679
+            ],
+            "linear_velocity_rmse_m_s": 0.017719400883311455,
+            "angular_velocity_rmse_rad_s": 0.20010581954173845
+          },
+          "metrics_exclude_failures_explicitly": true
+        },
+        {
+          "model": "BLK_calibrated",
+          "horizon_physics": 128,
+          "total": 9,
+          "complete": 0,
+          "failed": 9,
+          "complete_window_metrics": {},
+          "metrics_exclude_failures_explicitly": true
+        }
+      ],
+      "seconds": 8.422000000020489
+    }
+  ],
+  "loco_summary": [
+    {
+      "model": "BLK_calibrated",
+      "horizon_physics": 1,
+      "total": 72,
+      "complete": 63,
+      "failed": 9,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.0001845593140887494,
+        "attitude_rmse_rad": 0.0009358894573145904,
+        "velocity_6_rmse": [
+          0.00021831180847028744,
+          0.0003944422459786286,
+          0.007684909269950942,
+          0.0943266299421793,
+          0.03563871244206918,
+          0.001122302794862809
+        ],
+        "linear_velocity_rmse_m_s": 0.0044445125423945775,
+        "angular_velocity_rmse_rad_s": 0.058220530469187265
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_calibrated",
+      "horizon_physics": 80,
+      "total": 72,
+      "complete": 40,
+      "failed": 32,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.00933919234882979,
+        "attitude_rmse_rad": 0.06231567668905799,
+        "velocity_6_rmse": [
+          0.002076988085930825,
+          0.004583334472873238,
+          0.03573312697915426,
+          0.25933824312353776,
+          0.13959212951016106,
+          0.033453907142112396
+        ],
+        "linear_velocity_rmse_m_s": 0.020834084237995598,
+        "angular_velocity_rmse_rad_s": 0.17113488916705227
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_calibrated",
+      "horizon_physics": 128,
+      "total": 72,
+      "complete": 17,
+      "failed": 55,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.01973026653440093,
+        "attitude_rmse_rad": 0.05936313104560526,
+        "velocity_6_rmse": [
+          0.003943470268168709,
+          0.008599524866112665,
+          0.0706008198634945,
+          0.19118223048636485,
+          0.18833838887425913,
+          0.04233279803920014
+        ],
+        "linear_velocity_rmse_m_s": 0.04112573626930149,
+        "angular_velocity_rmse_rad_s": 0.15685881100246477
+      },
+      "metrics_exclude_failures_explicitly": true
+    }
+  ],
+  "closed_loop_admitted": false,
+  "bounds": "Historical-data development only; no blind generalization or control benefit established."
+}

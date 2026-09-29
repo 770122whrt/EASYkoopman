@@ -1,0 +1,47 @@
+{
+  "schema": "prepared-projected-v40-assay-v1",
+  "stage": "full",
+  "origins": [
+    0,
+    64,
+    128
+  ],
+  "horizons": [
+    20,
+    60,
+    128
+  ],
+  "scopes": [
+    "pooled",
+    "heldout"
+  ],
+  "configurations": [
+    "base",
+    "long_body",
+    "heavy_moderate",
+    "asymmetric",
+    "uuv6",
+    "uuv6_angled",
+    "uuv4",
+    "uuv4_angled"
+  ],
+  "repetitions": 3,
+  "warmups_per_path": 1,
+  "maximum_seconds": 600,
+  "output_limit_bytes": 134217728,
+  "processes": 1,
+  "threads": 1,
+  "pilot_gate": "median_cell_speedup>=1.10_and_all_cells>=0.95",
+  "rtol": 1e-12,
+  "atol": 1e-12,
+  "candidate_sha256": "2974dccdee1af5fc57efc8aa9f0e336abad1f33669514127f0c9159f967d538b",
+  "branch_sha256": "2e1a1709d9704c76f4b90c7cbe0b2ecf849db052e60204d876796c188f47135b",
+  "runner_sha256": "e1ab51a14251d34d5ff337dea9b2a9eff4d9c797a52b50eb16e41f6d99e9972b",
+  "helper_sha256": "2585e6f9e5680863b59c65779860b302f0760f43ff93738a6cd2b7d03121043a",
+  "handoff_sha256": "5d8c4aa1264d93307dc0cf692757441509e75809206ed80006543ca5e4239632",
+  "baseline_protocol_sha256": "8e4e8838df932ae245c6c7bda5afda4d79a88a503ca922074d15b7f08de01040",
+  "pilot_result_sha256": "f6c3d490aae68d03abc504508747beeee3ca2d1e578569955d9aa8c77246fc6d",
+  "new_fits": 0,
+  "new_server_runs": 0,
+  "formal_test_access": false
+}

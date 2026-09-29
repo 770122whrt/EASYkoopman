@@ -1,0 +1,13 @@
+{
+  "command": "python -X utf8 -B -m pytest -q tests/test_lifted_propagation_v84.py tests/test_bilinear_lifted_v85.py tests/test_compact_residual_v84.py tests/test_model_comparison_v84.py tests/test_causal_inputs_v84.py tests/test_residual_attribution_v84.py tests/test_lifted_calibration_v84.py tests/test_bilinear_calibration_v85.py tests/test_solver_regression_v84.py tests/test_learned_velocity_v81.py tests/test_prepared_projected_v40.py",
+  "passed": 115,
+  "skipped": 6,
+  "seconds": 13.51,
+  "exit_code": 0,
+  "skips": "local CasADi unavailable; server numeric tests run separately",
+  "source_sha256": {
+    "koopman\\bilinear_lifted_v85.py": "858c5bad82355f8cbe81367574db5a2e5fe20d136795fe3c8800b2c8a36ee0d7",
+    "workflows\\calibrate_bilinear_v85.py": "9a30dca2e05f43145da83ae51cd425b4a9bf247d6b3d22c710862c23a9e9411f",
+    "workflows\\solver_regression_v84.py": "d2058aa7d5faa9e99baf21ae117b267b4b3247ad46a661badaac37b013e68060"
+  }
+}

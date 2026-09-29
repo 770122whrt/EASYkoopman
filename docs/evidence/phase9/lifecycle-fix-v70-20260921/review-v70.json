@@ -1,0 +1,80 @@
+{
+  "status": "reviewed_actual_cases_only",
+  "case_results": {
+    "uuv4-pitch-feedback": {
+      "case": {
+        "case_id": "uuv4-pitch-feedback",
+        "configuration": "uuv4",
+        "controller": "feedback",
+        "mode": "simulation_effect",
+        "controls": 60,
+        "control_rate_hz": 30,
+        "seed": 19500,
+        "reference": [
+          5.5,
+          0.9998000066665778,
+          0,
+          0.01999866669333308,
+          0
+        ],
+        "reference_id": "pitch-v67",
+        "model_key": "nonlinear__pooled",
+        "strategy": "paired_rate30_inexact_v67",
+        "defer_gc": true
+      },
+      "exception": null,
+      "native_exit": 0,
+      "actual_physics_steps": 240,
+      "group_stopped": true,
+      "complete": true,
+      "trace_sha256": "77e5c681fa6d1af0d2f484dad6c2365317b875a764f82f1aa60580a3769b3cd4",
+      "independent_replay": "passed",
+      "feedback_audit": {
+        "decisions": 60,
+        "static_residual_unmet": 0,
+        "tracking_limited": 2,
+        "zero_progress": 51
+      },
+      "metrics": {
+        "normalized_tracking_score": 0.21393034222852286,
+        "depth_rmse_m": 0.0016929777665514747,
+        "attitude_rmse_rad": 0.018188563788641646,
+        "depth_iae_m_s": 0.0030234615008036298,
+        "attitude_iae_rad_s": 0.02714479063221511,
+        "command_variation": 0.10511719194324513,
+        "applied_force_squared_N2_s": 5.101332357029452,
+        "applied_torque_squared_Nm2_s": 0.019819515433638482,
+        "mpc_command_controls": 0,
+        "fallback_controls": 60,
+        "committed_prefix_controls": 0,
+        "mpc_activations": 0
+      },
+      "timing": {
+        "completed_controls": 60,
+        "startup_ms": 55.98123976960778,
+        "steady_max_ms": 56.77830288186669,
+        "maximum_cycle_ms": 56.77830288186669,
+        "steady_p50_ms": 50.07212981581688,
+        "steady_p95_ms": 54.0184729732573,
+        "steady_deadline_misses": 59,
+        "maximum_start_lateness_ms": 0.0,
+        "seconds": 3.0348670007660985,
+        "simulated_seconds": 2.0,
+        "timing_mode": "simulation_effect",
+        "runtime_qualified": false,
+        "gate": "bounded_effects_pilot"
+      },
+      "feedback_latency": {
+        "p50_ms": 1.2326459400355816,
+        "max_ms": 2.143419347703457,
+        "gc_event_count": 2
+      }
+    }
+  },
+  "pairs": {},
+  "measured_case_seconds": 51.262620059773326,
+  "zero_refits": true,
+  "runtime_qualified": false,
+  "unique_koopman_advantage_proven": false,
+  "complete_paired_scenarios": 0
+}

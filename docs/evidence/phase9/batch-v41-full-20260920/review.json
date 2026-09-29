@@ -1,0 +1,45 @@
+{
+  "created_at": "2026-09-20T12:31:27+08:00",
+  "status": "verified_local_batch_equivalence_not_realtime",
+  "native_exit": 0,
+  "profile_native_exit": 0,
+  "synthetic_timing_native_exit": 0,
+  "result_sha256": "97f82dd398bcaf5f888f1bccdd8aa69739159c89236dc3ba93d855b711ee5376",
+  "protocol_sha256": "7a725a16ebb0304898367aaa1e7eef39bd4fa2ba4a3aa380513b8c0d0ee9a305",
+  "profile_result_sha256": "87bae360119b301a0fef67ed4516e4676f00223336b99491407fb7cd21633844",
+  "cells": 16,
+  "distinct_candidate_forecasts": 192,
+  "maximum_absolute_difference": 2.67841304690819e-15,
+  "ranges": [
+    {
+      "horizon": 60,
+      "candidates": 16,
+      "batch_p50_min_ms": 1572.111000015866,
+      "batch_p50_max_ms": 1874.4435000116937,
+      "batch_worst_ms": 1903.6336000135634,
+      "median_speedup": 2.669763553287284
+    },
+    {
+      "horizon": 128,
+      "candidates": 8,
+      "batch_p50_min_ms": 1988.2503999979235,
+      "batch_p50_max_ms": 2183.620299998438,
+      "batch_worst_ms": 2209.48610000778,
+      "median_speedup": 2.3339260856896265
+    }
+  ],
+  "focused_tests_passed": 43,
+  "related_tests_passed": 138,
+  "cumulative_measured_local_seconds": 1473.7470000000162,
+  "unmeasured_startup_reserve_seconds": 30,
+  "conservative_local_budget_charge_seconds": 1503.7470000000162,
+  "local_limit_seconds": 1800,
+  "remaining_after_reserve_seconds": 296.2529999999838,
+  "v38_bindings_unchanged": {
+    "formal-closeout.json": "ca77ecc765bd63e87e41f04ddb33bda322ad8dda09a8d2e8b0e8bc01053bf4ec",
+    "prediction-control-handoff-v2.json": "5d8c4aa1264d93307dc0cf692757441509e75809206ed80006543ca5e4239632",
+    "live-budget.json": "916d99370b36fa191152f137ca7a5b8fba3103126129ff03a526856ae8d7ef29"
+  },
+  "controller_promoted": false,
+  "optimizer_qualified": false
+}

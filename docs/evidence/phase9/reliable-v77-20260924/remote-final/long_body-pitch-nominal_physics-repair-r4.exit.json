@@ -1,0 +1,23 @@
+{
+  "native_exit": 0,
+  "group_stopped": true,
+  "seconds": 273.6617116741836,
+  "command": [
+    "/root/shared-nvme/agentic-auv/runtime/bin/python",
+    "-B",
+    "-m",
+    "workflows.collect_reliable_v77",
+    "--configuration",
+    "long_body",
+    "--controller",
+    "nominal_physics",
+    "--profile",
+    "repair",
+    "--assets",
+    "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+    "--manifest",
+    "reliable-source-r4.json",
+    "--output",
+    "/root/shared-nvme/agentic-auv/experiments/reliable-v77-20260924/long_body-pitch-nominal_physics-repair-r4"
+  ]
+}

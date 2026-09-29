@@ -1,0 +1,2202 @@
+{
+  "schema": "local-control-model-separation-v79/1",
+  "physics_runs": 0,
+  "model_fits": 0,
+  "continuous_solves": 0,
+  "closed_loop_benefit_claimed": false,
+  "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+  "scope": "development_recorded_states_only",
+  "preview": [
+    {
+      "configuration": "base",
+      "physics_index": 4,
+      "kind": "nominal_physics",
+      "trace_sha256": "8db7c966cffe208ceb9edd6b066c0a87d7f1bf8d41755fc01e743225f6cea7d0",
+      "hold_feasible": true,
+      "hold_cost": 0.005125604362547331,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.0010191312534926949,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.478034400002798
+      },
+      "predicted_cost_decrease": 0.004106473109054636
+    },
+    {
+      "configuration": "base",
+      "physics_index": 4,
+      "kind": "identified_physics",
+      "trace_sha256": "8db7c966cffe208ceb9edd6b066c0a87d7f1bf8d41755fc01e743225f6cea7d0",
+      "hold_feasible": true,
+      "hold_cost": 0.0051250137403999535,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.0010191357958207793,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.5426212000020314
+      },
+      "predicted_cost_decrease": 0.004105877944579174
+    },
+    {
+      "configuration": "base",
+      "physics_index": 4,
+      "kind": "structured_projected",
+      "trace_sha256": "8db7c966cffe208ceb9edd6b066c0a87d7f1bf8d41755fc01e743225f6cea7d0",
+      "hold_feasible": true,
+      "hold_cost": 0.005125013740399959,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.0010191357958207793,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 2.812456999992719
+      },
+      "predicted_cost_decrease": 0.00410587794457918
+    },
+    {
+      "configuration": "base",
+      "physics_index": 80,
+      "kind": "nominal_physics",
+      "trace_sha256": "8db7c966cffe208ceb9edd6b066c0a87d7f1bf8d41755fc01e743225f6cea7d0",
+      "hold_feasible": true,
+      "hold_cost": 0.00037653314377692984,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.000230997626562393,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.4699727999977767
+      },
+      "predicted_cost_decrease": 0.00014553551721453685
+    },
+    {
+      "configuration": "base",
+      "physics_index": 80,
+      "kind": "identified_physics",
+      "trace_sha256": "8db7c966cffe208ceb9edd6b066c0a87d7f1bf8d41755fc01e743225f6cea7d0",
+      "hold_feasible": true,
+      "hold_cost": 0.00037653697767519104,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.0002309978976696739,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.4556549999979325
+      },
+      "predicted_cost_decrease": 0.00014553908000551713
+    },
+    {
+      "configuration": "base",
+      "physics_index": 80,
+      "kind": "structured_projected",
+      "trace_sha256": "8db7c966cffe208ceb9edd6b066c0a87d7f1bf8d41755fc01e743225f6cea7d0",
+      "hold_feasible": true,
+      "hold_cost": 0.000376536977675191,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.0002309978976696739,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 2.7357316999987233
+      },
+      "predicted_cost_decrease": 0.00014553908000551708
+    },
+    {
+      "configuration": "base",
+      "physics_index": 160,
+      "kind": "nominal_physics",
+      "trace_sha256": "8db7c966cffe208ceb9edd6b066c0a87d7f1bf8d41755fc01e743225f6cea7d0",
+      "hold_feasible": true,
+      "hold_cost": 0.00012635205994271487,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 8.473170744947712e-05,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.436984300002223
+      },
+      "predicted_cost_decrease": 4.162035249323775e-05
+    },
+    {
+      "configuration": "base",
+      "physics_index": 160,
+      "kind": "identified_physics",
+      "trace_sha256": "8db7c966cffe208ceb9edd6b066c0a87d7f1bf8d41755fc01e743225f6cea7d0",
+      "hold_feasible": true,
+      "hold_cost": 0.00012635024911984447,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 8.473164009339444e-05,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.4181665999931283
+      },
+      "predicted_cost_decrease": 4.161860902645003e-05
+    },
+    {
+      "configuration": "base",
+      "physics_index": 160,
+      "kind": "structured_projected",
+      "trace_sha256": "8db7c966cffe208ceb9edd6b066c0a87d7f1bf8d41755fc01e743225f6cea7d0",
+      "hold_feasible": true,
+      "hold_cost": 0.00012635024911984447,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 8.473164009339444e-05,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 2.699758799979463
+      },
+      "predicted_cost_decrease": 4.161860902645003e-05
+    },
+    {
+      "configuration": "uuv4",
+      "physics_index": 4,
+      "kind": "nominal_physics",
+      "trace_sha256": "d268a2a2f0679dd32cbe77ba32eaad8c622727740a4d561572f942e653bd17ac",
+      "hold_feasible": false,
+      "hold_cost": null,
+      "hold_reason": "predicted_state_out_of_support",
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.0009781105595166113,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.2702064999903087
+      },
+      "predicted_cost_decrease": null
+    },
+    {
+      "configuration": "uuv4",
+      "physics_index": 4,
+      "kind": "identified_physics",
+      "trace_sha256": "d268a2a2f0679dd32cbe77ba32eaad8c622727740a4d561572f942e653bd17ac",
+      "hold_feasible": false,
+      "hold_cost": null,
+      "hold_reason": "predicted_state_out_of_support",
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.0009781167850593348,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.23188229999505
+      },
+      "predicted_cost_decrease": null
+    },
+    {
+      "configuration": "uuv4",
+      "physics_index": 4,
+      "kind": "structured_projected",
+      "trace_sha256": "d268a2a2f0679dd32cbe77ba32eaad8c622727740a4d561572f942e653bd17ac",
+      "hold_feasible": false,
+      "hold_cost": null,
+      "hold_reason": "predicted_state_out_of_support",
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.0009781167850593348,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 2.5441401000134647
+      },
+      "predicted_cost_decrease": null
+    },
+    {
+      "configuration": "uuv4",
+      "physics_index": 80,
+      "kind": "nominal_physics",
+      "trace_sha256": "d268a2a2f0679dd32cbe77ba32eaad8c622727740a4d561572f942e653bd17ac",
+      "hold_feasible": true,
+      "hold_cost": 0.0003145742422651371,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.00023202205412704084,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.25370689999545
+      },
+      "predicted_cost_decrease": 8.255218813809628e-05
+    },
+    {
+      "configuration": "uuv4",
+      "physics_index": 80,
+      "kind": "identified_physics",
+      "trace_sha256": "d268a2a2f0679dd32cbe77ba32eaad8c622727740a4d561572f942e653bd17ac",
+      "hold_feasible": true,
+      "hold_cost": 0.0003145762410888279,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.0002320231114962949,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.279407699999865
+      },
+      "predicted_cost_decrease": 8.255312959253299e-05
+    },
+    {
+      "configuration": "uuv4",
+      "physics_index": 80,
+      "kind": "structured_projected",
+      "trace_sha256": "d268a2a2f0679dd32cbe77ba32eaad8c622727740a4d561572f942e653bd17ac",
+      "hold_feasible": true,
+      "hold_cost": 0.0003145762410888277,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.00023202311149629468,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 2.529324400005862
+      },
+      "predicted_cost_decrease": 8.255312959253304e-05
+    },
+    {
+      "configuration": "uuv4",
+      "physics_index": 160,
+      "kind": "nominal_physics",
+      "trace_sha256": "d268a2a2f0679dd32cbe77ba32eaad8c622727740a4d561572f942e653bd17ac",
+      "hold_feasible": true,
+      "hold_cost": 0.00019043678173575414,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.0001250686119359986,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.2693849000206683
+      },
+      "predicted_cost_decrease": 6.536816979975553e-05
+    },
+    {
+      "configuration": "uuv4",
+      "physics_index": 160,
+      "kind": "identified_physics",
+      "trace_sha256": "d268a2a2f0679dd32cbe77ba32eaad8c622727740a4d561572f942e653bd17ac",
+      "hold_feasible": true,
+      "hold_cost": 0.00019043577187306007,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.00012506854340518838,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.2017197999812197
+      },
+      "predicted_cost_decrease": 6.53672284678717e-05
+    },
+    {
+      "configuration": "uuv4",
+      "physics_index": 160,
+      "kind": "structured_projected",
+      "trace_sha256": "d268a2a2f0679dd32cbe77ba32eaad8c622727740a4d561572f942e653bd17ac",
+      "hold_feasible": true,
+      "hold_cost": 0.0001904357718730601,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.00012506854340518835,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 2.4978636000014376
+      },
+      "predicted_cost_decrease": 6.536722846787175e-05
+    },
+    {
+      "configuration": "long_body",
+      "physics_index": 4,
+      "kind": "nominal_physics",
+      "trace_sha256": "ce222e4b821e6042b8cba39c44b9e51bccf38cc2b20e2cb29c74c64a475cdd4a",
+      "hold_feasible": false,
+      "hold_cost": null,
+      "hold_reason": "predicted_state_out_of_support",
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.0009596600981847162,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.3138265000015963
+      },
+      "predicted_cost_decrease": null
+    },
+    {
+      "configuration": "long_body",
+      "physics_index": 4,
+      "kind": "identified_physics",
+      "trace_sha256": "ce222e4b821e6042b8cba39c44b9e51bccf38cc2b20e2cb29c74c64a475cdd4a",
+      "hold_feasible": false,
+      "hold_cost": null,
+      "hold_reason": "predicted_state_out_of_support",
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.0009596653766266076,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.3356889999995474
+      },
+      "predicted_cost_decrease": null
+    },
+    {
+      "configuration": "long_body",
+      "physics_index": 4,
+      "kind": "structured_projected",
+      "trace_sha256": "ce222e4b821e6042b8cba39c44b9e51bccf38cc2b20e2cb29c74c64a475cdd4a",
+      "hold_feasible": false,
+      "hold_cost": null,
+      "hold_reason": "predicted_state_out_of_support",
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.0009596653766266078,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 2.7127413999987766
+      },
+      "predicted_cost_decrease": null
+    },
+    {
+      "configuration": "long_body",
+      "physics_index": 80,
+      "kind": "nominal_physics",
+      "trace_sha256": "ce222e4b821e6042b8cba39c44b9e51bccf38cc2b20e2cb29c74c64a475cdd4a",
+      "hold_feasible": true,
+      "hold_cost": 0.0007744791098510553,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.00012775469496111692,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.2978680000233
+      },
+      "predicted_cost_decrease": 0.0006467244148899384
+    },
+    {
+      "configuration": "long_body",
+      "physics_index": 80,
+      "kind": "identified_physics",
+      "trace_sha256": "ce222e4b821e6042b8cba39c44b9e51bccf38cc2b20e2cb29c74c64a475cdd4a",
+      "hold_feasible": true,
+      "hold_cost": 0.0007744785947505179,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.00012775764592636116,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.341460099996766
+      },
+      "predicted_cost_decrease": 0.0006467209488241568
+    },
+    {
+      "configuration": "long_body",
+      "physics_index": 80,
+      "kind": "structured_projected",
+      "trace_sha256": "ce222e4b821e6042b8cba39c44b9e51bccf38cc2b20e2cb29c74c64a475cdd4a",
+      "hold_feasible": true,
+      "hold_cost": 0.0007744785947505179,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.00012775764592636113,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 2.6737356999947224
+      },
+      "predicted_cost_decrease": 0.0006467209488241568
+    },
+    {
+      "configuration": "long_body",
+      "physics_index": 160,
+      "kind": "nominal_physics",
+      "trace_sha256": "ce222e4b821e6042b8cba39c44b9e51bccf38cc2b20e2cb29c74c64a475cdd4a",
+      "hold_feasible": true,
+      "hold_cost": 0.0004017182157972664,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 3.9833124087383506e-05,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.318750100006582
+      },
+      "predicted_cost_decrease": 0.0003618850917098829
+    },
+    {
+      "configuration": "long_body",
+      "physics_index": 160,
+      "kind": "identified_physics",
+      "trace_sha256": "ce222e4b821e6042b8cba39c44b9e51bccf38cc2b20e2cb29c74c64a475cdd4a",
+      "hold_feasible": true,
+      "hold_cost": 0.0004017042668337196,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 3.983283796283482e-05,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.2982504999963567
+      },
+      "predicted_cost_decrease": 0.00036187142887088476
+    },
+    {
+      "configuration": "long_body",
+      "physics_index": 160,
+      "kind": "structured_projected",
+      "trace_sha256": "ce222e4b821e6042b8cba39c44b9e51bccf38cc2b20e2cb29c74c64a475cdd4a",
+      "hold_feasible": true,
+      "hold_cost": 0.0004017042668337194,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 3.983283796283478e-05,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 2.693875199998729
+      },
+      "predicted_cost_decrease": 0.00036187142887088465
+    },
+    {
+      "configuration": "uuv6",
+      "physics_index": 4,
+      "kind": "nominal_physics",
+      "trace_sha256": "f268a697300be7f6d70341bcdaeff6decf0c4ee36a5afbdf5b6a07b036440a57",
+      "hold_feasible": false,
+      "hold_cost": null,
+      "hold_reason": "predicted_state_out_of_support",
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.0010636282096666862,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.2406842000200413
+      },
+      "predicted_cost_decrease": null
+    },
+    {
+      "configuration": "uuv6",
+      "physics_index": 4,
+      "kind": "identified_physics",
+      "trace_sha256": "f268a697300be7f6d70341bcdaeff6decf0c4ee36a5afbdf5b6a07b036440a57",
+      "hold_feasible": false,
+      "hold_cost": null,
+      "hold_reason": "predicted_state_out_of_support",
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.0010636318465750074,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.3151197000115644
+      },
+      "predicted_cost_decrease": null
+    },
+    {
+      "configuration": "uuv6",
+      "physics_index": 4,
+      "kind": "structured_projected",
+      "trace_sha256": "f268a697300be7f6d70341bcdaeff6decf0c4ee36a5afbdf5b6a07b036440a57",
+      "hold_feasible": false,
+      "hold_cost": null,
+      "hold_reason": "predicted_state_out_of_support",
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.001063631846575008,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 2.802927799988538
+      },
+      "predicted_cost_decrease": null
+    },
+    {
+      "configuration": "uuv6",
+      "physics_index": 80,
+      "kind": "nominal_physics",
+      "trace_sha256": "f268a697300be7f6d70341bcdaeff6decf0c4ee36a5afbdf5b6a07b036440a57",
+      "hold_feasible": true,
+      "hold_cost": 0.0006252119950138918,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.00023804631053521975,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.398271100013517
+      },
+      "predicted_cost_decrease": 0.00038716568447867206
+    },
+    {
+      "configuration": "uuv6",
+      "physics_index": 80,
+      "kind": "identified_physics",
+      "trace_sha256": "f268a697300be7f6d70341bcdaeff6decf0c4ee36a5afbdf5b6a07b036440a57",
+      "hold_feasible": true,
+      "hold_cost": 0.00062521356828552,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.00023804683930684037,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.2855441000137944
+      },
+      "predicted_cost_decrease": 0.0003871667289786796
+    },
+    {
+      "configuration": "uuv6",
+      "physics_index": 80,
+      "kind": "structured_projected",
+      "trace_sha256": "f268a697300be7f6d70341bcdaeff6decf0c4ee36a5afbdf5b6a07b036440a57",
+      "hold_feasible": true,
+      "hold_cost": 0.0006252135682855198,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.0002380468393068404,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 2.6186346000176854
+      },
+      "predicted_cost_decrease": 0.0003871667289786794
+    },
+    {
+      "configuration": "uuv6",
+      "physics_index": 160,
+      "kind": "nominal_physics",
+      "trace_sha256": "f268a697300be7f6d70341bcdaeff6decf0c4ee36a5afbdf5b6a07b036440a57",
+      "hold_feasible": true,
+      "hold_cost": 0.0001302278753065978,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.0001302278753065978,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.1970827999757603
+      },
+      "predicted_cost_decrease": 0.0
+    },
+    {
+      "configuration": "uuv6",
+      "physics_index": 160,
+      "kind": "identified_physics",
+      "trace_sha256": "f268a697300be7f6d70341bcdaeff6decf0c4ee36a5afbdf5b6a07b036440a57",
+      "hold_feasible": true,
+      "hold_cost": 0.00013022781242874755,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.00013022781242874755,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 3.5889690999756567
+      },
+      "predicted_cost_decrease": 0.0
+    },
+    {
+      "configuration": "uuv6",
+      "physics_index": 160,
+      "kind": "structured_projected",
+      "trace_sha256": "f268a697300be7f6d70341bcdaeff6decf0c4ee36a5afbdf5b6a07b036440a57",
+      "hold_feasible": true,
+      "hold_cost": 0.00013022781242874755,
+      "hold_reason": null,
+      "preview": {
+        "status": "ready",
+        "reason": null,
+        "cost": 0.00013022781242874755,
+        "completed_macro_steps": 20,
+        "runtime_eligible": false,
+        "real_future_data_used": false,
+        "actual_history_advanced": false,
+        "elapsed_seconds": 2.8592237000120804
+      },
+      "predicted_cost_decrease": 0.0
+    }
+  ],
+  "model_probe": [
+    {
+      "configuration": "base",
+      "physics_index": 4,
+      "recorded_future_commands_for_offline_diagnosis_only": true,
+      "identified_projected_max_abs": 3.469446951953614e-17,
+      "model_errors": {
+        "nominal_physics": {
+          "z_rmse_m": 3.9632889428751005e-07,
+          "attitude_rmse_rad": 0.00012500832218664907,
+          "body_velocity_rmse": 2.9517973673137948e-05
+        },
+        "identified_physics": {
+          "z_rmse_m": 3.963289313932453e-07,
+          "attitude_rmse_rad": 0.0001248154442644319,
+          "body_velocity_rmse": 2.9874967880674115e-05
+        },
+        "structured_projected": {
+          "z_rmse_m": 3.963289313932453e-07,
+          "attitude_rmse_rad": 0.0001248154442644319,
+          "body_velocity_rmse": 2.987496788066964e-05
+        }
+      },
+      "full_lift": {
+        "kind": "frozen_full_lift_probe",
+        "complete": false,
+        "reason": "rotation_projection_limit",
+        "rotation_residuals": [
+          3.2667097623727344e-06,
+          6.824645842441456e-06,
+          1.0748047424317146e-05,
+          1.5147161760100861e-05,
+          2.0183797014404768e-05,
+          2.6095194500792435e-05,
+          3.3230154379355144e-05,
+          4.210247491833282e-05,
+          5.346808503404499e-05,
+          6.843409066131557e-05,
+          8.861118701622307e-05,
+          0.00011632684707241088,
+          0.00015492653825442053,
+          0.00020920224116256582,
+          0.00028602072765706243,
+          0.0003952185736946894,
+          0.0005508879368797703,
+          0.0007732197096034508,
+          0.0010911419827278265,
+          0.0015460949657531713,
+          0.002197431988302468,
+          0.003130145899699131,
+          0.004465942409359988,
+          0.006379101759094807,
+          0.009119229167461834,
+          0.01304388915410216,
+          0.018665649442836982,
+          0.026719852227891302,
+          0.03826262655040607,
+          0.054813162576874214
+        ],
+        "runtime_eligible": false,
+        "model_fits": 0,
+        "propagation": "full_latent_no_relift",
+        "input_map": "frozen_known_state_dependent_lift_kick",
+        "rotation_tolerance": 0.05
+      },
+      "full_lift_completed_steps": 29,
+      "full_lift_error": null
+    },
+    {
+      "configuration": "base",
+      "physics_index": 80,
+      "recorded_future_commands_for_offline_diagnosis_only": true,
+      "identified_projected_max_abs": 2.42861286636753e-17,
+      "model_errors": {
+        "nominal_physics": {
+          "z_rmse_m": 1.1617295546911938e-06,
+          "attitude_rmse_rad": 0.00013023423604721887,
+          "body_velocity_rmse": 3.077630736983501e-05
+        },
+        "identified_physics": {
+          "z_rmse_m": 1.1617144685773567e-06,
+          "attitude_rmse_rad": 0.00013013886694927774,
+          "body_velocity_rmse": 3.087311341362822e-05
+        },
+        "structured_projected": {
+          "z_rmse_m": 1.1617144685773567e-06,
+          "attitude_rmse_rad": 0.00013013886694927774,
+          "body_velocity_rmse": 3.0873113413626134e-05
+        }
+      },
+      "full_lift": {
+        "kind": "frozen_full_lift_probe",
+        "complete": false,
+        "reason": "rotation_projection_limit",
+        "rotation_residuals": [
+          1.9675609343075814e-05,
+          3.995150425437629e-05,
+          6.109410126582971e-05,
+          8.34723015511191e-05,
+          0.00010762114144805708,
+          0.0001343426684598535,
+          0.00016486365910093768,
+          0.00020107665945921704,
+          0.0002458963798308643,
+          0.000303765632683302,
+          0.0003813464803199783,
+          0.0004884470604158335,
+          0.0006392841631337403,
+          0.0008542726036210894,
+          0.0011626425291967842,
+          0.0016062943424471495,
+          0.00224542858009659,
+          0.003166685645532216,
+          0.004494842187780651,
+          0.006409569803718568,
+          0.009169407580404777,
+          0.013145992375598938,
+          0.018872805782116607,
+          0.027114308244737567,
+          0.03896335775116851,
+          0.055977070957376356
+        ],
+        "runtime_eligible": false,
+        "model_fits": 0,
+        "propagation": "full_latent_no_relift",
+        "input_map": "frozen_known_state_dependent_lift_kick",
+        "rotation_tolerance": 0.05
+      },
+      "full_lift_completed_steps": 25,
+      "full_lift_error": null
+    },
+    {
+      "configuration": "base",
+      "physics_index": 160,
+      "recorded_future_commands_for_offline_diagnosis_only": true,
+      "identified_projected_max_abs": 6.938893903907228e-18,
+      "model_errors": {
+        "nominal_physics": {
+          "z_rmse_m": 3.166961295410539e-06,
+          "attitude_rmse_rad": 7.922193948073135e-05,
+          "body_velocity_rmse": 2.3028410844467195e-05
+        },
+        "identified_physics": {
+          "z_rmse_m": 3.1669582995062868e-06,
+          "attitude_rmse_rad": 7.919173441959753e-05,
+          "body_velocity_rmse": 2.3065757789321358e-05
+        },
+        "structured_projected": {
+          "z_rmse_m": 3.1669582995062868e-06,
+          "attitude_rmse_rad": 7.919173441959753e-05,
+          "body_velocity_rmse": 2.3065757789320948e-05
+        }
+      },
+      "full_lift": {
+        "kind": "frozen_full_lift_probe",
+        "complete": false,
+        "reason": "rotation_projection_limit",
+        "rotation_residuals": [
+          4.2552908115403095e-05,
+          8.396289963101612e-05,
+          0.00012365845105065127,
+          0.0001609478169043136,
+          0.00019501498918831657,
+          0.00022493649943859428,
+          0.0002497503124886174,
+          0.00026864676108127346,
+          0.0002814465214909266,
+          0.0002897430808836769,
+          0.00029940936629513435,
+          0.0003247849485972013,
+          0.0003909719779998124,
+          0.0005274767119152214,
+          0.0007616960194018899,
+          0.0011257603229660304,
+          0.0016686382706611789,
+          0.0024674517820912996,
+          0.0036411299067870655,
+          0.005369904234993486,
+          0.007923626962545248,
+          0.011702627126687286,
+          0.017296276350526184,
+          0.025566284030578406,
+          0.03776368768886694,
+          0.05568976838853138
+        ],
+        "runtime_eligible": false,
+        "model_fits": 0,
+        "propagation": "full_latent_no_relift",
+        "input_map": "frozen_known_state_dependent_lift_kick",
+        "rotation_tolerance": 0.05
+      },
+      "full_lift_completed_steps": 25,
+      "full_lift_error": null
+    },
+    {
+      "configuration": "uuv4",
+      "physics_index": 4,
+      "recorded_future_commands_for_offline_diagnosis_only": true,
+      "identified_projected_max_abs": 5.551115123125783e-17,
+      "model_errors": {
+        "nominal_physics": {
+          "z_rmse_m": 4.700433906783685e-07,
+          "attitude_rmse_rad": 0.0001219211557697238,
+          "body_velocity_rmse": 2.8956235742758968e-05
+        },
+        "identified_physics": {
+          "z_rmse_m": 4.7003742339744704e-07,
+          "attitude_rmse_rad": 0.00012167078604251777,
+          "body_velocity_rmse": 2.9444808012980595e-05
+        },
+        "structured_projected": {
+          "z_rmse_m": 4.7003742339744704e-07,
+          "attitude_rmse_rad": 0.00012167078604251777,
+          "body_velocity_rmse": 2.944480801296824e-05
+        }
+      },
+      "full_lift": {
+        "kind": "frozen_full_lift_probe",
+        "complete": false,
+        "reason": "rotation_projection_limit",
+        "rotation_residuals": [
+          2.837477976627177e-06,
+          5.991089732976361e-06,
+          9.547563162157848e-06,
+          1.3615671804858563e-05,
+          1.834016490918385e-05,
+          2.3922609345319152e-05,
+          3.0653401275232e-05,
+          3.896137281292028e-05,
+          4.9490190749489136e-05,
+          6.32158353449282e-05,
+          8.1619382298252e-05,
+          0.0001069361019226097,
+          0.00014250478604595188,
+          0.00019325554636282318,
+          0.0002663987283271647,
+          0.00037241302480531415,
+          0.0005264757273420662,
+          0.0007505358275346563,
+          0.0010763122042935272,
+          0.0015496194656477238,
+          0.002236601027425477,
+          0.003232704047482626,
+          0.00467561260294823,
+          0.0067638848472676505,
+          0.009783843522149425,
+          0.014148417517015458,
+          0.020453384539500366,
+          0.02955900607994396,
+          0.04270895015903554,
+          0.061704262541896475
+        ],
+        "runtime_eligible": false,
+        "model_fits": 0,
+        "propagation": "full_latent_no_relift",
+        "input_map": "frozen_known_state_dependent_lift_kick",
+        "rotation_tolerance": 0.05
+      },
+      "full_lift_completed_steps": 29,
+      "full_lift_error": null
+    },
+    {
+      "configuration": "uuv4",
+      "physics_index": 80,
+      "recorded_future_commands_for_offline_diagnosis_only": true,
+      "identified_projected_max_abs": 2.168404344971009e-17,
+      "model_errors": {
+        "nominal_physics": {
+          "z_rmse_m": 2.0205841814564253e-07,
+          "attitude_rmse_rad": 0.00011634891640615003,
+          "body_velocity_rmse": 2.885887401770166e-05
+        },
+        "identified_physics": {
+          "z_rmse_m": 2.020578587814055e-07,
+          "attitude_rmse_rad": 0.0001163072103886015,
+          "body_velocity_rmse": 2.8895189066783666e-05
+        },
+        "structured_projected": {
+          "z_rmse_m": 2.020578587814055e-07,
+          "attitude_rmse_rad": 0.0001163072103886015,
+          "body_velocity_rmse": 2.88951890667787e-05
+        }
+      },
+      "full_lift": {
+        "kind": "frozen_full_lift_probe",
+        "complete": false,
+        "reason": "rotation_projection_limit",
+        "rotation_residuals": [
+          2.454063897589911e-05,
+          4.946475850262573e-05,
+          7.47820115733746e-05,
+          0.00010048562984838449,
+          0.00012656199254931674,
+          0.00015300740181172943,
+          0.00017985676872054855,
+          0.0002072320960227349,
+          0.00023542398975876912,
+          0.00026502815035063965,
+          0.00029717200987068604,
+          0.0003338838844036355,
+          0.00037866957115880633,
+          0.00043735328336083054,
+          0.0005191916589098321,
+          0.0006382196565931275,
+          0.0008148826909541274,
+          0.0010783460531293674,
+          0.001470217603787328,
+          0.00205048028189177,
+          0.002906388984964406,
+          0.004165315909242625,
+          0.006013113686779613,
+          0.008720378329156574,
+          0.012680029339893763,
+          0.018460974981583837,
+          0.02688437294152645,
+          0.03913110445163782,
+          0.056891202655461326
+        ],
+        "runtime_eligible": false,
+        "model_fits": 0,
+        "propagation": "full_latent_no_relift",
+        "input_map": "frozen_known_state_dependent_lift_kick",
+        "rotation_tolerance": 0.05
+      },
+      "full_lift_completed_steps": 28,
+      "full_lift_error": null
+    },
+    {
+      "configuration": "uuv4",
+      "physics_index": 160,
+      "recorded_future_commands_for_offline_diagnosis_only": true,
+      "identified_projected_max_abs": 8.673617379884035e-18,
+      "model_errors": {
+        "nominal_physics": {
+          "z_rmse_m": 2.921025863290285e-07,
+          "attitude_rmse_rad": 0.0001257847614293236,
+          "body_velocity_rmse": 2.978689283809716e-05
+        },
+        "identified_physics": {
+          "z_rmse_m": 2.921074134184902e-07,
+          "attitude_rmse_rad": 0.0001257630096040567,
+          "body_velocity_rmse": 2.982125457022749e-05
+        },
+        "structured_projected": {
+          "z_rmse_m": 2.921074134184902e-07,
+          "attitude_rmse_rad": 0.0001257630096040567,
+          "body_velocity_rmse": 2.9821254570228824e-05
+        }
+      },
+      "full_lift": {
+        "kind": "frozen_full_lift_probe",
+        "complete": false,
+        "reason": "rotation_projection_limit",
+        "rotation_residuals": [
+          3.450294030905335e-05,
+          6.703391451866531e-05,
+          9.697873468047987e-05,
+          0.00012358361780378418,
+          0.0001459584693213246,
+          0.00016311535292280852,
+          0.0001740969040521197,
+          0.00017833786029784298,
+          0.00017664135062684652,
+          0.0001736647246062527,
+          0.00018257909917881202,
+          0.00022577192857367698,
+          0.00032181024929494397,
+          0.0004801255109285526,
+          0.0007120698169644693,
+          0.001038341110286072,
+          0.0014933380309151028,
+          0.002131634417112495,
+          0.003038515159211487,
+          0.004345932114452892,
+          0.006255664423820173,
+          0.009072335378546436,
+          0.013250407945847389,
+          0.019461073485326736,
+          0.028687156604883173,
+          0.04235602809435433,
+          0.06252107030291111
+        ],
+        "runtime_eligible": false,
+        "model_fits": 0,
+        "propagation": "full_latent_no_relift",
+        "input_map": "frozen_known_state_dependent_lift_kick",
+        "rotation_tolerance": 0.05
+      },
+      "full_lift_completed_steps": 26,
+      "full_lift_error": null
+    },
+    {
+      "configuration": "long_body",
+      "physics_index": 4,
+      "recorded_future_commands_for_offline_diagnosis_only": true,
+      "identified_projected_max_abs": 4.163336342344337e-17,
+      "model_errors": {
+        "nominal_physics": {
+          "z_rmse_m": 5.747926103652977e-07,
+          "attitude_rmse_rad": 0.00013383449995488404,
+          "body_velocity_rmse": 1.2145016790139516e-05
+        },
+        "identified_physics": {
+          "z_rmse_m": 5.747930275919597e-07,
+          "attitude_rmse_rad": 0.00013356707047146297,
+          "body_velocity_rmse": 1.268776925164217e-05
+        },
+        "structured_projected": {
+          "z_rmse_m": 5.747930275919597e-07,
+          "attitude_rmse_rad": 0.00013356707047146297,
+          "body_velocity_rmse": 1.2687769251647775e-05
+        }
+      },
+      "full_lift": {
+        "kind": "frozen_full_lift_probe",
+        "complete": false,
+        "reason": "rotation_projection_limit",
+        "rotation_residuals": [
+          3.4431865643584015e-06,
+          7.241293797816557e-06,
+          1.147759202156325e-05,
+          1.6275061339353155e-05,
+          2.1823116299780388e-05,
+          2.8420325127807864e-05,
+          3.6538185470206035e-05,
+          4.690958166200842e-05,
+          6.064282066423388e-05,
+          7.93615391731317e-05,
+          0.00010537784622290425,
+          0.00014192216165241837,
+          0.00019347127443325806,
+          0.0002662166211440853,
+          0.0003687828271428266,
+          0.000513219748932649,
+          0.0007164115473968111,
+          0.0010020694419826165,
+          0.0014035471833715825,
+          0.001967820629969205,
+          0.0027611175287129905,
+          0.0038768695560267145,
+          0.005447030477917354,
+          0.007658104030107713,
+          0.01077391215500157,
+          0.015167982635329348,
+          0.021369698848422474,
+          0.03013019985964867,
+          0.0425167337052645,
+          0.06004818706149366
+        ],
+        "runtime_eligible": false,
+        "model_fits": 0,
+        "propagation": "full_latent_no_relift",
+        "input_map": "frozen_known_state_dependent_lift_kick",
+        "rotation_tolerance": 0.05
+      },
+      "full_lift_completed_steps": 29,
+      "full_lift_error": null
+    },
+    {
+      "configuration": "long_body",
+      "physics_index": 80,
+      "recorded_future_commands_for_offline_diagnosis_only": true,
+      "identified_projected_max_abs": 1.0408340855860843e-17,
+      "model_errors": {
+        "nominal_physics": {
+          "z_rmse_m": 2.2994320998968645e-07,
+          "attitude_rmse_rad": 0.00010454874053003358,
+          "body_velocity_rmse": 1.1580577892479263e-05
+        },
+        "identified_physics": {
+          "z_rmse_m": 2.2994195376820448e-07,
+          "attitude_rmse_rad": 0.00010445658204190814,
+          "body_velocity_rmse": 1.1668704227870669e-05
+        },
+        "structured_projected": {
+          "z_rmse_m": 2.2994195376820448e-07,
+          "attitude_rmse_rad": 0.00010445658204190814,
+          "body_velocity_rmse": 1.1668704227868746e-05
+        }
+      },
+      "full_lift": {
+        "kind": "frozen_full_lift_probe",
+        "complete": false,
+        "reason": "rotation_projection_limit",
+        "rotation_residuals": [
+          2.4029089195435058e-05,
+          4.7339433416131525e-05,
+          6.948747356852587e-05,
+          8.99695680000886e-05,
+          0.00010824775645704643,
+          0.00012381400149530703,
+          0.00013633699178346894,
+          0.00014598184013352354,
+          0.0001540657683677478,
+          0.00016421766459563124,
+          0.00018368932044977184,
+          0.0002230411415454701,
+          0.00029307995408062897,
+          0.0004029147849255141,
+          0.000561989160052106,
+          0.0007834413467496791,
+          0.0010873566684394113,
+          0.001504921584957051,
+          0.0020848115022616695,
+          0.002903046267182834,
+          0.004077643079641316,
+          0.005789713189529381,
+          0.008313385785904853,
+          0.012058245396955497,
+          0.01762977099004192,
+          0.025915319428389778,
+          0.03820504634373279,
+          0.056357999653238365
+        ],
+        "runtime_eligible": false,
+        "model_fits": 0,
+        "propagation": "full_latent_no_relift",
+        "input_map": "frozen_known_state_dependent_lift_kick",
+        "rotation_tolerance": 0.05
+      },
+      "full_lift_completed_steps": 27,
+      "full_lift_error": null
+    },
+    {
+      "configuration": "long_body",
+      "physics_index": 160,
+      "recorded_future_commands_for_offline_diagnosis_only": true,
+      "identified_projected_max_abs": 2.6020852139652106e-17,
+      "model_errors": {
+        "nominal_physics": {
+          "z_rmse_m": 1.1814724772549229e-06,
+          "attitude_rmse_rad": 0.00013096894807928475,
+          "body_velocity_rmse": 1.2157305306279274e-05
+        },
+        "identified_physics": {
+          "z_rmse_m": 1.181472671442651e-06,
+          "attitude_rmse_rad": 0.0001309441403066722,
+          "body_velocity_rmse": 1.2201229357549548e-05
+        },
+        "structured_projected": {
+          "z_rmse_m": 1.181472671442651e-06,
+          "attitude_rmse_rad": 0.0001309441403066722,
+          "body_velocity_rmse": 1.220122935755499e-05
+        }
+      },
+      "full_lift": {
+        "kind": "frozen_full_lift_probe",
+        "complete": false,
+        "reason": "rotation_projection_limit",
+        "rotation_residuals": [
+          3.5283959743443885e-05,
+          6.713298791838975e-05,
+          9.438450102215117e-05,
+          0.00011559360498512075,
+          0.00012899639691963018,
+          0.00013254286653101416,
+          0.00012423668564450282,
+          0.00010398830980674424,
+          8.416075268195318e-05,
+          0.00011481029756133661,
+          0.00022012227139528686,
+          0.00038863392532896427,
+          0.0006262215956148931,
+          0.0009488038903938739,
+          0.0013788346471191309,
+          0.0019455999024182303,
+          0.0026866617123765505,
+          0.0036500435816681728,
+          0.004897292676332031,
+          0.006507841428302661,
+          0.008585464042164766,
+          0.011268237530017334,
+          0.014744538765146515,
+          0.019279153460538358,
+          0.025256105358464193,
+          0.0332479729980214,
+          0.04412459759755598,
+          0.059215752736846164
+        ],
+        "runtime_eligible": false,
+        "model_fits": 0,
+        "propagation": "full_latent_no_relift",
+        "input_map": "frozen_known_state_dependent_lift_kick",
+        "rotation_tolerance": 0.05
+      },
+      "full_lift_completed_steps": 27,
+      "full_lift_error": null
+    },
+    {
+      "configuration": "uuv6",
+      "physics_index": 4,
+      "recorded_future_commands_for_offline_diagnosis_only": true,
+      "identified_projected_max_abs": 2.0816681711721685e-17,
+      "model_errors": {
+        "nominal_physics": {
+          "z_rmse_m": 6.435769406154717e-07,
+          "attitude_rmse_rad": 0.00013071111220648316,
+          "body_velocity_rmse": 3.0470505008113365e-05
+        },
+        "identified_physics": {
+          "z_rmse_m": 6.435739663743519e-07,
+          "attitude_rmse_rad": 0.0001305320568745433,
+          "body_velocity_rmse": 3.0807506824444234e-05
+        },
+        "structured_projected": {
+          "z_rmse_m": 6.435739663743519e-07,
+          "attitude_rmse_rad": 0.0001305320568745433,
+          "body_velocity_rmse": 3.0807506824443015e-05
+        }
+      },
+      "full_lift": {
+        "kind": "frozen_full_lift_probe",
+        "complete": false,
+        "reason": "rotation_projection_limit",
+        "rotation_residuals": [
+          3.443333714686807e-06,
+          7.189939765098283e-06,
+          1.1289472302040842e-05,
+          1.581815050097081e-05,
+          2.08936874096161e-05,
+          2.6699698777632352e-05,
+          3.352525819124627e-05,
+          4.182713292648905e-05,
+          5.2323422668378054e-05,
+          6.612695689059723e-05,
+          8.492567712162258e-05,
+          0.00011122001389305604,
+          0.00014864070205172837,
+          0.00020239906292984514,
+          0.00027995156529327553,
+          0.00039195235665815883,
+          0.0005536473144811912,
+          0.0007868821591937124,
+          0.0011230131714931296,
+          0.0016070668442026371,
+          0.002303704081619286,
+          0.0033057607355330317,
+          0.004746545364472402,
+          0.006817481718170268,
+          0.009793477619477759,
+          0.014069454517438304,
+          0.020213050610202947,
+          0.0290408523808284,
+          0.04172902191449956,
+          0.05997448766940196
+        ],
+        "runtime_eligible": false,
+        "model_fits": 0,
+        "propagation": "full_latent_no_relift",
+        "input_map": "frozen_known_state_dependent_lift_kick",
+        "rotation_tolerance": 0.05
+      },
+      "full_lift_completed_steps": 29,
+      "full_lift_error": null
+    },
+    {
+      "configuration": "uuv6",
+      "physics_index": 80,
+      "recorded_future_commands_for_offline_diagnosis_only": true,
+      "identified_projected_max_abs": 2.7755575615628914e-17,
+      "model_errors": {
+        "nominal_physics": {
+          "z_rmse_m": 8.499319755040916e-07,
+          "attitude_rmse_rad": 0.00011990087827176864,
+          "body_velocity_rmse": 2.909616203875881e-05
+        },
+        "identified_physics": {
+          "z_rmse_m": 8.49927858322462e-07,
+          "attitude_rmse_rad": 0.0001198527819218018,
+          "body_velocity_rmse": 2.913928710333347e-05
+        },
+        "structured_projected": {
+          "z_rmse_m": 8.49927858322462e-07,
+          "attitude_rmse_rad": 0.0001198527819218018,
+          "body_velocity_rmse": 2.9139287103327925e-05
+        }
+      },
+      "full_lift": {
+        "kind": "frozen_full_lift_probe",
+        "complete": false,
+        "reason": "rotation_projection_limit",
+        "rotation_residuals": [
+          2.558254661965981e-05,
+          5.11371111194089e-05,
+          7.658711827239913e-05,
+          0.00010182244313599762,
+          0.0001267032301322011,
+          0.00015106994530712252,
+          0.00017476485089676366,
+          0.00019767447256104735,
+          0.00021981016573252644,
+          0.00024145867242049697,
+          0.0002634585678829704,
+          0.0002876906912824147,
+          0.00031788688016169854,
+          0.0003607821100772343,
+          0.00042737141870209216,
+          0.0005338331042519547,
+          0.0007022847381870025,
+          0.0009627133821063005,
+          0.0013573977205594272,
+          0.00194811911767996,
+          0.0028263658754773316,
+          0.004127570216144438,
+          0.006051300544069157,
+          0.008890201804701727,
+          0.013071529693599622,
+          0.01921654429486486,
+          0.02822485331099184,
+          0.04139280632849863,
+          0.060576698746927754
+        ],
+        "runtime_eligible": false,
+        "model_fits": 0,
+        "propagation": "full_latent_no_relift",
+        "input_map": "frozen_known_state_dependent_lift_kick",
+        "rotation_tolerance": 0.05
+      },
+      "full_lift_completed_steps": 28,
+      "full_lift_error": null
+    },
+    {
+      "configuration": "uuv6",
+      "physics_index": 160,
+      "recorded_future_commands_for_offline_diagnosis_only": true,
+      "identified_projected_max_abs": 5.204170427930421e-18,
+      "model_errors": {
+        "nominal_physics": {
+          "z_rmse_m": 5.388813536010126e-07,
+          "attitude_rmse_rad": 0.0001234685327837255,
+          "body_velocity_rmse": 2.9183497549477714e-05
+        },
+        "identified_physics": {
+          "z_rmse_m": 5.388813355794103e-07,
+          "attitude_rmse_rad": 0.00012345923291255626,
+          "body_velocity_rmse": 2.9195363363940012e-05
+        },
+        "structured_projected": {
+          "z_rmse_m": 5.388813355794103e-07,
+          "attitude_rmse_rad": 0.00012345923291255626,
+          "body_velocity_rmse": 2.9195363363940337e-05
+        }
+      },
+      "full_lift": {
+        "kind": "frozen_full_lift_probe",
+        "complete": false,
+        "reason": "rotation_projection_limit",
+        "rotation_residuals": [
+          3.8169065462741856e-05,
+          7.365793481082359e-05,
+          0.00010560996919935364,
+          0.00013290712549829075,
+          0.00015412204097241852,
+          0.00016748654910200126,
+          0.00017093779244655216,
+          0.0001624686516077893,
+          0.00014177108186158086,
+          0.00011803924022684648,
+          0.0001329974063675152,
+          0.00022980463552603323,
+          0.00040232726854060475,
+          0.0006516715791650431,
+          0.0009926972334286985,
+          0.001448481244174757,
+          0.0020497435048281326,
+          0.0028361693581519477,
+          0.00385881337499511,
+          0.0051837299493904315,
+          0.006897476506132418,
+          0.009115719147537508,
+          0.011997153833225626,
+          0.01576642810231738,
+          0.02075184420694319,
+          0.027446346252390123,
+          0.036602894984319075,
+          0.049376598062156045,
+          0.06752472764817315
+        ],
+        "runtime_eligible": false,
+        "model_fits": 0,
+        "propagation": "full_latent_no_relift",
+        "input_map": "frozen_known_state_dependent_lift_kick",
+        "rotation_tolerance": 0.05
+      },
+      "full_lift_completed_steps": 28,
+      "full_lift_error": null
+    }
+  ],
+  "historical_selection": [
+    {
+      "configuration": "base",
+      "kind": "structured_projected",
+      "physics_index": 4,
+      "original_status": "optimized",
+      "audit": {
+        "accepted": true,
+        "reason": null,
+        "references": {
+          "held": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.005125013740399959
+          },
+          "selected": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.0015685705488061184
+          }
+        },
+        "selected_cost": 0.0015685705488061184,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    },
+    {
+      "configuration": "base",
+      "kind": "structured_projected",
+      "physics_index": 80,
+      "original_status": "baseline_retained",
+      "audit": {
+        "accepted": true,
+        "reason": null,
+        "references": {
+          "held": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.0002562444091298019
+          },
+          "selected": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.0002562444091298019
+          },
+          "warm": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.0002562444091298019
+          }
+        },
+        "selected_cost": 0.0002562444091298019,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    },
+    {
+      "configuration": "base",
+      "kind": "structured_projected",
+      "physics_index": 160,
+      "original_status": "baseline_retained",
+      "audit": {
+        "accepted": true,
+        "reason": null,
+        "references": {
+          "held": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.0011335992558310604
+          },
+          "selected": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.0011335992558310604
+          },
+          "warm": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.0011335992558310604
+          }
+        },
+        "selected_cost": 0.0011335992558310604,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    },
+    {
+      "configuration": "base",
+      "kind": "nominal_physics",
+      "physics_index": 4,
+      "original_status": "optimized",
+      "audit": {
+        "accepted": true,
+        "reason": null,
+        "references": {
+          "held": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.005125604362547331
+          },
+          "selected": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.0015686286375349399
+          }
+        },
+        "selected_cost": 0.0015686286375349399,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    },
+    {
+      "configuration": "base",
+      "kind": "nominal_physics",
+      "physics_index": 80,
+      "original_status": "baseline_retained",
+      "audit": {
+        "accepted": true,
+        "reason": null,
+        "references": {
+          "held": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.0002551438464228148
+          },
+          "selected": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.0002551438464228148
+          },
+          "warm": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.0002551438464228148
+          }
+        },
+        "selected_cost": 0.0002551438464228148,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    },
+    {
+      "configuration": "base",
+      "kind": "nominal_physics",
+      "physics_index": 160,
+      "original_status": "baseline_retained",
+      "audit": {
+        "accepted": true,
+        "reason": null,
+        "references": {
+          "held": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00011276083794676224
+          },
+          "selected": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00011276083794676224
+          },
+          "warm": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00011276083794676224
+          }
+        },
+        "selected_cost": 0.00011276083794676224,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    },
+    {
+      "configuration": "uuv4",
+      "kind": "structured_projected",
+      "physics_index": 4,
+      "original_status": "recovered",
+      "audit": {
+        "accepted": false,
+        "reason": "selected_infeasible",
+        "references": {
+          "held": {
+            "feasible": false,
+            "reason": "predicted_state_out_of_support",
+            "cost": null
+          },
+          "selected": {
+            "feasible": false,
+            "reason": "raw_pwm_deadzone_margin",
+            "cost": null
+          }
+        },
+        "selected_cost": null,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    },
+    {
+      "configuration": "uuv4",
+      "kind": "structured_projected",
+      "physics_index": 80,
+      "original_status": "optimized",
+      "audit": {
+        "accepted": true,
+        "reason": null,
+        "references": {
+          "held": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00023585755474466092
+          },
+          "selected": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.0001175637587750037
+          },
+          "warm": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00012246010213435375
+          }
+        },
+        "selected_cost": 0.0001175637587750037,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    },
+    {
+      "configuration": "uuv4",
+      "kind": "structured_projected",
+      "physics_index": 160,
+      "original_status": "optimized",
+      "audit": {
+        "accepted": true,
+        "reason": null,
+        "references": {
+          "held": {
+            "feasible": true,
+            "reason": null,
+            "cost": 9.564765069056766e-05
+          },
+          "selected": {
+            "feasible": true,
+            "reason": null,
+            "cost": 7.887729881157033e-05
+          },
+          "warm": {
+            "feasible": true,
+            "reason": null,
+            "cost": 7.987198662799441e-05
+          }
+        },
+        "selected_cost": 7.887729881157033e-05,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    },
+    {
+      "configuration": "uuv4",
+      "kind": "nominal_physics",
+      "physics_index": 4,
+      "original_status": "recovered",
+      "audit": {
+        "accepted": false,
+        "reason": "selected_infeasible",
+        "references": {
+          "held": {
+            "feasible": false,
+            "reason": "predicted_state_out_of_support",
+            "cost": null
+          },
+          "selected": {
+            "feasible": false,
+            "reason": "raw_pwm_deadzone_margin",
+            "cost": null
+          }
+        },
+        "selected_cost": null,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    },
+    {
+      "configuration": "uuv4",
+      "kind": "nominal_physics",
+      "physics_index": 80,
+      "original_status": "warm_retained",
+      "audit": {
+        "accepted": true,
+        "reason": null,
+        "references": {
+          "held": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00018858922525128572
+          },
+          "selected": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00012603530845687748
+          },
+          "warm": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00012603530845687748
+          }
+        },
+        "selected_cost": 0.00012603530845687748,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    },
+    {
+      "configuration": "uuv4",
+      "kind": "nominal_physics",
+      "physics_index": 160,
+      "original_status": "warm_retained",
+      "audit": {
+        "accepted": true,
+        "reason": null,
+        "references": {
+          "held": {
+            "feasible": true,
+            "reason": null,
+            "cost": 8.56895544217535e-05
+          },
+          "selected": {
+            "feasible": true,
+            "reason": null,
+            "cost": 8.358995358060389e-05
+          },
+          "warm": {
+            "feasible": true,
+            "reason": null,
+            "cost": 8.358995358060389e-05
+          }
+        },
+        "selected_cost": 8.358995358060389e-05,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    },
+    {
+      "configuration": "long_body",
+      "kind": "structured_projected",
+      "physics_index": 4,
+      "original_status": "recovered",
+      "audit": {
+        "accepted": true,
+        "reason": null,
+        "references": {
+          "held": {
+            "feasible": false,
+            "reason": "predicted_state_out_of_support",
+            "cost": null
+          },
+          "selected": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.0012401756093314469
+          }
+        },
+        "selected_cost": 0.0012401756093314469,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    },
+    {
+      "configuration": "long_body",
+      "kind": "structured_projected",
+      "physics_index": 80,
+      "original_status": "baseline_retained",
+      "audit": {
+        "accepted": true,
+        "reason": null,
+        "references": {
+          "held": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00016457737991332956
+          },
+          "selected": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00016457737991332956
+          },
+          "warm": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00016457737991332956
+          }
+        },
+        "selected_cost": 0.00016457737991332956,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    },
+    {
+      "configuration": "long_body",
+      "kind": "structured_projected",
+      "physics_index": 160,
+      "original_status": "baseline_retained",
+      "audit": {
+        "accepted": true,
+        "reason": null,
+        "references": {
+          "held": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.0003441349503239419
+          },
+          "selected": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.0003441349503239419
+          },
+          "warm": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.0003441349503239419
+          }
+        },
+        "selected_cost": 0.0003441349503239419,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    },
+    {
+      "configuration": "long_body",
+      "kind": "nominal_physics",
+      "physics_index": 4,
+      "original_status": "recovered",
+      "audit": {
+        "accepted": true,
+        "reason": null,
+        "references": {
+          "held": {
+            "feasible": false,
+            "reason": "predicted_state_out_of_support",
+            "cost": null
+          },
+          "selected": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.0012401158469200627
+          }
+        },
+        "selected_cost": 0.0012401158469200627,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    },
+    {
+      "configuration": "long_body",
+      "kind": "nominal_physics",
+      "physics_index": 80,
+      "original_status": "baseline_retained",
+      "audit": {
+        "accepted": true,
+        "reason": null,
+        "references": {
+          "held": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00016338089560370095
+          },
+          "selected": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00016338089560370095
+          },
+          "warm": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00016338089560370095
+          }
+        },
+        "selected_cost": 0.00016338089560370095,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    },
+    {
+      "configuration": "long_body",
+      "kind": "nominal_physics",
+      "physics_index": 160,
+      "original_status": "baseline_retained",
+      "audit": {
+        "accepted": true,
+        "reason": null,
+        "references": {
+          "held": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00033391768471938686
+          },
+          "selected": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00033391768471938686
+          },
+          "warm": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00033391768471938686
+          }
+        },
+        "selected_cost": 0.00033391768471938686,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    },
+    {
+      "configuration": "uuv6",
+      "kind": "structured_projected",
+      "physics_index": 4,
+      "original_status": "recovered",
+      "audit": {
+        "accepted": false,
+        "reason": "selected_infeasible",
+        "references": {
+          "held": {
+            "feasible": false,
+            "reason": "predicted_state_out_of_support",
+            "cost": null
+          },
+          "selected": {
+            "feasible": false,
+            "reason": "raw_pwm_deadzone_margin",
+            "cost": null
+          }
+        },
+        "selected_cost": null,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    },
+    {
+      "configuration": "uuv6",
+      "kind": "structured_projected",
+      "physics_index": 80,
+      "original_status": "optimized",
+      "audit": {
+        "accepted": true,
+        "reason": null,
+        "references": {
+          "held": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.0005859349518509599
+          },
+          "selected": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00021285729062929155
+          },
+          "warm": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00021427722920895552
+          }
+        },
+        "selected_cost": 0.00021285729062929155,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    },
+    {
+      "configuration": "uuv6",
+      "kind": "structured_projected",
+      "physics_index": 160,
+      "original_status": "optimized",
+      "audit": {
+        "accepted": true,
+        "reason": null,
+        "references": {
+          "held": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.0003454683534313616
+          },
+          "selected": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00014577941236178354
+          },
+          "warm": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00015075622713119245
+          }
+        },
+        "selected_cost": 0.00014577941236178354,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    },
+    {
+      "configuration": "uuv6",
+      "kind": "nominal_physics",
+      "physics_index": 4,
+      "original_status": "recovered",
+      "audit": {
+        "accepted": false,
+        "reason": "selected_infeasible",
+        "references": {
+          "held": {
+            "feasible": false,
+            "reason": "predicted_state_out_of_support",
+            "cost": null
+          },
+          "selected": {
+            "feasible": false,
+            "reason": "raw_pwm_deadzone_margin",
+            "cost": null
+          }
+        },
+        "selected_cost": null,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    },
+    {
+      "configuration": "uuv6",
+      "kind": "nominal_physics",
+      "physics_index": 80,
+      "original_status": "optimized",
+      "audit": {
+        "accepted": true,
+        "reason": null,
+        "references": {
+          "held": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.0008538188895847849
+          },
+          "selected": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00017277286743218274
+          },
+          "warm": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00017333629778260555
+          }
+        },
+        "selected_cost": 0.00017277286743218274,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    },
+    {
+      "configuration": "uuv6",
+      "kind": "nominal_physics",
+      "physics_index": 160,
+      "original_status": "optimized",
+      "audit": {
+        "accepted": true,
+        "reason": null,
+        "references": {
+          "held": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.0005393645382167007
+          },
+          "selected": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00048200450630762236
+          },
+          "warm": {
+            "feasible": true,
+            "reason": null,
+            "cost": 0.00048320460331494183
+          }
+        },
+        "selected_cost": 0.00048200450630762236,
+        "global_optimum_claimed": false
+      },
+      "scope": "known_held_warm_selected_only; unrecorded_discarded_worker_not_reconstructible"
+    }
+  ],
+  "elapsed_seconds": 167.71132850000868
+}

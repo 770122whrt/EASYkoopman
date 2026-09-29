@@ -1,0 +1,109 @@
+from pathlib import Path
+import hashlib, json, shutil, tarfile
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import numpy as np
+from workflows.validate_control_trace_v23 import validate_interval, compare_values
+from workflows.control_seam_v23 import ControlKernel, estimate_speed
+
+root=Path(__file__).resolve().parents[1]
+incoming=root/'tmp/phase8_3/inertia-pullback-20260912'
+archive=incoming/'inertia-comparison-evidence.tar.gz'
+digest=hashlib.sha256(archive.read_bytes()).hexdigest()
+assert digest==(incoming/'inertia-comparison-evidence.tar.gz.sha256').read_text().strip()=='61820c60587885d47e4ff5c7336ef4870e8838a0045c1dcc1ba4bf52ffa61f5c'
+output=root/'docs/evidence/phase8_3/server-inertia-repair-20260912';output.mkdir(exist_ok=False)
+raw=output/'raw';raw.mkdir()
+with tarfile.open(archive) as tar:
+    for member in tar.getmembers():
+        target=(raw/member.name).resolve()
+        assert member.isfile() and target.is_relative_to(raw.resolve()),member.name
+        target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(tar.extractfile(member).read())
+index=json.loads((raw/'inventory.json').read_text())
+assert {p.relative_to(raw).as_posix() for p in raw.rglob('*') if p.is_file()}==set(index)|{'inventory.json'}
+for name,entry in index.items():
+    p=raw/name
+    assert hashlib.sha256(p.read_bytes()).hexdigest()==entry['sha256'] and p.stat().st_size==entry['bytes'],name
+ids=[f'inertia-{c}-{mode}-cold' for c in ['base','uuv6','uuv4'] for mode in ['legacy','declared_v1']]+['inertia-uuv6-declared_v1-warm']
+assert {p.name for p in (raw/'repair/results').iterdir()}==set(ids)|{'inertia-ab-status'}
+for label,commit in [('legacy','7fd0f3cd28ca1340cef910a4b00f5e439cf69762'),('repair','76a39c3cccea122c94023dd170d942c31dc3edad')]:
+    assert (raw/label/'source-head.txt').read_text().strip()==commit
+    assert not (raw/label/'source-status.txt').read_text().strip()
+for p in raw.rglob('*.exit_status'):
+    assert p.read_text().strip()=='0',str(p)
+runtime_sha=hashlib.sha256((raw/'direct_rl_env.py').read_bytes()).hexdigest()
+reports={}
+for label in ['legacy','repair']:
+    manifest=json.loads((raw/label/'SOURCE_MANIFEST.json').read_text())
+    for p in (raw/label/'results').glob('*/trace.json'):
+        r=json.loads(p.read_text());reports[p.parent.name]=r
+        assert r['status']=='completed_exploratory_trace'
+        assert r['loaded_sources']['DirectRLEnv']['sha256']==runtime_sha
+        assert r['loaded_sources']['EasyUUVEnv']['sha256']==manifest['files_sha256']['easyuuv_nc/env/easyuuv_env.py']
+        count=r['request']['observed_intervals']+r['request']['preparation_intervals']
+        assert len(r['boundary_states'])==count
+        if r['request']['trace']=='off':continue
+        assert len(r['substeps'])==2*count
+        prep=r['request']['preparation_intervals']
+        for i in range(count):
+            pair=r['substeps'][2*i:2*i+2];validate_interval(pair,configuration=r['request']['configuration'])
+            generation=2 if prep and i>=prep else 1
+            assert all(row['control_index']==i and row['reset_generation']==[generation] for row in pair)
+            compare_values(pair[-1]['state_after_physics_11'],r['boundary_states'][i]['state_11'])
+            if i==0 or (prep and i==prep):
+                start=r['initial_boundary' if i==0 else 'observed_start_boundary']
+                compare_values(start['state_11'],pair[0]['before']['state_11'])
+            else:
+                previous=r['substeps'][2*i-1]
+                compare_values(previous['state_after_physics_11'],pair[0]['before']['state_11'])
+                compare_values(previous['command']['actuator_speed_n'],pair[0]['before']['actuator_speed_n'])
+                compare_values(previous['command']['telemetry']['step_token'],pair[0]['before']['telemetry']['step_token'])
+
+def states(r):return np.asarray([row['state_11'][0] for row in r['boundary_states'] if row['stage']=='observed'])
+def wrench(r):return np.asarray([row['command']['telemetry']['applied_wrench_6'][0] for row in r['substeps'] if row['stage']=='observed'])
+def controls(r):return np.asarray([row['command']['telemetry']['virtual_control_4'][0] for row in r['substeps'] if row['stage']=='observed'])
+def mechanical(r):
+    a=r['mechanical_after_observed_reset'];d=np.asarray(a['declared_inertia']);p=np.asarray(a['physx_inertia'])[:,[0,4,8]]
+    return {'declared':d.tolist(),'physx':p.tolist(),'relative_error':((p-d)/d).tolist()}
+result={'status':'actual_inertia_repair_comparison_pass','source_repair':'76a39c3cccea122c94023dd170d942c31dc3edad',
+ 'archive_sha256':digest,'inventory_files':len(index),'repair_cases':7,'repair_control_intervals':256,
+ 'all_actual_control_intervals_including_first_pair_and_sentinels':384,'model_fits':0,'model_handoff':False,
+ 'comparisons':{},'temporal_input_diagnostics':{}}
+for c in ['base','uuv6','uuv4']:
+    old=reports['trace-base-8201-on' if c=='base' else f'matrix-{c}-8201-prbs-cold']
+    a=reports[f'inertia-{c}-legacy-cold'];b=reports[f'inertia-{c}-declared_v1-cold']
+    compare_values(old['boundary_states'],a['boundary_states'])
+    assert np.array_equal(controls(a),controls(b))
+    assert np.array_equal(wrench(a),wrench(b))
+    assert np.max(np.abs(np.asarray(mechanical(b)['relative_error'])))<=1e-6
+    delta=states(b)-states(a)
+    result['comparisons'][c]={'legacy_source_version_max_state_difference':float(np.max(np.abs(states(a)-states(old)))),
+        'inertia_legacy':mechanical(a),'inertia_repaired':mechanical(b),
+        'raw_control_and_thruster_wrench_unchanged':True,'max_state_difference_by_component':np.max(np.abs(delta),axis=0).tolist(),
+        'final_angular_velocity_legacy':states(a)[-1,8:].tolist(),'final_angular_velocity_repaired':states(b)[-1,8:].tolist()}
+    if c=='base':assert np.array_equal(states(a),states(b))
+    kernel=ControlKernel(c);B=kernel.B.numpy();held_speed=np.zeros(B.shape[1]);held=[];actual=wrench(a)
+    rows=[x for x in a['substeps'] if x['stage']=='observed']
+    for i in range(0,len(rows),2):
+        pwm=np.asarray(rows[i+1]['command']['telemetry']['motor_pwm_n'][0])
+        for _ in range(2):
+            held_speed=estimate_speed(held_speed,pwm,tau=kernel.tau,dt=1/120)
+            held.append(B@(.001*np.abs(held_speed)*held_speed))
+    reference=np.sum(np.abs(actual),axis=0)/120;difference=np.sum(np.abs(actual-np.asarray(held)),axis=0)/120
+    result['temporal_input_diagnostics'][c]={'excitation':a['request']['excitation'],
+        'mean_abs_first_last_control_4':np.mean(np.abs(controls(a)[::2]-controls(a)[1::2]),axis=0).tolist(),
+        'max_abs_first_last_control_4':np.max(np.abs(controls(a)[::2]-controls(a)[1::2]),axis=0).tolist(),
+        'actual_wrench_l1_impulse_6':reference.tolist(),'held_last_replay_difference_l1_6':difference.tolist(),
+        'relative_l1_difference_6':[float(d/r) if r>1e-8 else None for d,r in zip(difference,reference)],
+        'max_causal_speed_error':float(max(np.max(np.abs(x['estimated_minus_actual_speed_n'])) for x in rows))}
+warm=reports['inertia-uuv6-declared_v1-warm'];cold=reports['inertia-uuv6-declared_v1-cold']
+compare_values(cold['observed_start_boundary']['state_11'],warm['observed_start_boundary']['state_11'])
+compare_values(cold['observed_start_boundary']['actuator_speed_n'],warm['observed_start_boundary']['actuator_speed_n'])
+result['warm_reset']={'configuration':'uuv6','matched_initial_physical_and_actuator_state':True,
+    'cold_old_actions':cold['observed_start_boundary']['old_actions'],'warm_old_actions':warm['observed_start_boundary']['old_actions'],
+    'mechanical':mechanical(warm),'max_state_difference_by_component':np.max(np.abs(states(cold)-states(warm)),axis=0).tolist(),
+    'max_causal_speed_error':float(max(np.max(np.abs(x['estimated_minus_actual_speed_n'])) for x in warm['substeps']))}
+result['limitations']=['No model training or prediction-improvement claim.','Full48-case matrix paused after2sentinels; no all-catalog runtime claim.',
+    'Impulse comparison is command-driven actuator replay, not a held-last hull intervention.','Warm uses legacy controller history even though inertia is repaired.']
+(output/'acceptance.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+shutil.copyfile(archive,output/archive.name);shutil.copyfile(Path(__file__),output/'analysis-script.py.txt')
+print(json.dumps(result,ensure_ascii=False,indent=2))

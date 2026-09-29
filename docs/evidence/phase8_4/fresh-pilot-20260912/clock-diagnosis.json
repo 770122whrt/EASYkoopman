@@ -1,0 +1,113 @@
+{
+  "status": "clock_bug_reproduced_and_focused_fix_checked",
+  "archive_sha256": "66828c4c01e27bad3af939035b0d58f8f59ca8077af16a0991b0ef75e0c83057",
+  "failed_trace_status": "failed_exploratory_v24",
+  "native_case_exit": 0,
+  "semantic_batch_exit": 1,
+  "complete_intervals": 120,
+  "attempted_intervals": 121,
+  "model_fit_rows_used": 0,
+  "last_clock_values": [
+    2.008331775665283,
+    2.01666522026062
+  ],
+  "last_tick_absolute_deviation": 1.1126200358084481e-07,
+  "new_validator_all_recorded_intervals_pass": true,
+  "relabel_failed_trace": false,
+  "inventory_files": 44,
+  "cpu_only_fixed_request_actuator_checks": [
+    {
+      "run_id": "pilot-base-8411-prbs",
+      "speed_max_abs": 2.549263348328168e-05,
+      "wrench_max_abs": 1.265343755108006e-05
+    },
+    {
+      "run_id": "pilot-base-8412-multisine",
+      "speed_max_abs": 2.4753025712698218e-05,
+      "wrench_max_abs": 8.070286561689954e-06
+    },
+    {
+      "run_id": "pilot-base-8413-chirp",
+      "speed_max_abs": 1.4534866309645622e-05,
+      "wrench_max_abs": 6.47996408531526e-06
+    },
+    {
+      "run_id": "pilot-base-8421-prbs",
+      "speed_max_abs": 1.9879369034470074e-05,
+      "wrench_max_abs": 8.675579920236487e-06
+    },
+    {
+      "run_id": "pilot-base-8422-multisine",
+      "speed_max_abs": 2.2455158742218373e-05,
+      "wrench_max_abs": 5.34826298093094e-06
+    },
+    {
+      "run_id": "pilot-base-8423-chirp",
+      "speed_max_abs": 1.796048417190832e-05,
+      "wrench_max_abs": 5.803360330958185e-06
+    },
+    {
+      "run_id": "pilot-uuv4-8411-prbs",
+      "speed_max_abs": 1.3915257831342842e-05,
+      "wrench_max_abs": 2.1134549186285767e-06
+    },
+    {
+      "run_id": "pilot-uuv4-8412-multisine",
+      "speed_max_abs": 1.5151838098859116e-05,
+      "wrench_max_abs": 2.1882349052759764e-06
+    },
+    {
+      "run_id": "pilot-uuv4-8413-chirp",
+      "speed_max_abs": 1.0231194011112166e-05,
+      "wrench_max_abs": 1.5791810703547071e-06
+    },
+    {
+      "run_id": "pilot-uuv4-8421-prbs",
+      "speed_max_abs": 1.48393166199412e-05,
+      "wrench_max_abs": 1.8803658274890722e-06
+    },
+    {
+      "run_id": "pilot-uuv4-8422-multisine",
+      "speed_max_abs": 9.996111721477519e-06,
+      "wrench_max_abs": 9.838179777510447e-07
+    },
+    {
+      "run_id": "pilot-uuv4-8423-chirp",
+      "speed_max_abs": 9.951756524628763e-06,
+      "wrench_max_abs": 1.2030578666610836e-06
+    },
+    {
+      "run_id": "pilot-uuv6-8411-prbs",
+      "speed_max_abs": 2.1182606758429756e-05,
+      "wrench_max_abs": 5.575628130638499e-06
+    },
+    {
+      "run_id": "pilot-uuv6-8412-multisine",
+      "speed_max_abs": 1.81084808872356e-05,
+      "wrench_max_abs": 3.338604597308281e-06
+    },
+    {
+      "run_id": "pilot-uuv6-8413-chirp",
+      "speed_max_abs": 1.826405974725276e-05,
+      "wrench_max_abs": 4.0135081504388045e-06
+    },
+    {
+      "run_id": "pilot-uuv6-8421-prbs",
+      "speed_max_abs": 2.5573353639174456e-05,
+      "wrench_max_abs": 7.492345059340044e-06
+    },
+    {
+      "run_id": "pilot-uuv6-8422-multisine",
+      "speed_max_abs": 2.1918796434761134e-05,
+      "wrench_max_abs": 4.835766802671615e-06
+    },
+    {
+      "run_id": "pilot-uuv6-8423-chirp",
+      "speed_max_abs": 1.700992740438778e-05,
+      "wrench_max_abs": 6.083362556960625e-06
+    }
+  ],
+  "max_speed_error": 2.5573353639174456e-05,
+  "max_wrench_error": 1.265343755108006e-05,
+  "limits": "CPU actuator/control only, not a new Isaac hull run"
+}

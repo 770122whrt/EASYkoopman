@@ -1,0 +1,98 @@
+{
+  "schema": "v79-platform-pwm-boundary/1",
+  "physics_runs": 0,
+  "model_fits": 0,
+  "original_required_margin": 2e-06,
+  "original_gate_unchanged": true,
+  "rows": [
+    {
+      "configuration": "base",
+      "controller": "projected_koopman",
+      "trace_sha256": "344e6dd4c88105df036a44e76f56477900b0452fd57705faeefbdd0c65ccf5d2",
+      "observed_local_max_pwm_difference": 0.0,
+      "actual_commands_deadzone_branch_changes": 0,
+      "actual_min_local_margin": 2.002343535423279e-06,
+      "actual_min_recorded_margin": 2.002343535423279e-06,
+      "planned_min_local_margin": 2.002343535423279e-06,
+      "planned_local_margin_rejections": 0
+    },
+    {
+      "configuration": "base",
+      "controller": "nominal_physics",
+      "trace_sha256": "02397c26e88a6cd94f0fc73b2971256ad2d561a951e3d44506334386800ec006",
+      "observed_local_max_pwm_difference": 0.0,
+      "actual_commands_deadzone_branch_changes": 0,
+      "actual_min_local_margin": 2.0042061805725098e-06,
+      "actual_min_recorded_margin": 2.0042061805725098e-06,
+      "planned_min_local_margin": 2.0042061805725098e-06,
+      "planned_local_margin_rejections": 0
+    },
+    {
+      "configuration": "uuv4",
+      "controller": "projected_koopman",
+      "trace_sha256": "b87e7fce61d49f8cf86da38516f7a7e86ce3d7d33cea9893f5970c2dc9ed4076",
+      "observed_local_max_pwm_difference": 2.9802322387695312e-08,
+      "actual_commands_deadzone_branch_changes": 0,
+      "actual_min_local_margin": 1.998618245124817e-06,
+      "actual_min_recorded_margin": 2.0079314708709717e-06,
+      "planned_min_local_margin": 1.991167664527893e-06,
+      "planned_local_margin_rejections": 14
+    },
+    {
+      "configuration": "uuv4",
+      "controller": "nominal_physics",
+      "trace_sha256": "23852e63881cf0954f10d9246ea7ab91eef47ea5613fd0857c78697d757bba69",
+      "observed_local_max_pwm_difference": 2.9802322387695312e-08,
+      "actual_commands_deadzone_branch_changes": 0,
+      "actual_min_local_margin": 1.998618245124817e-06,
+      "actual_min_recorded_margin": 2.0060688257217407e-06,
+      "planned_min_local_margin": 1.993030309677124e-06,
+      "planned_local_margin_rejections": 10
+    },
+    {
+      "configuration": "long_body",
+      "controller": "projected_koopman",
+      "trace_sha256": "54e192d133d1b6067f41677dc1af480dc62cf76fd549060f6ee607fc58a18a99",
+      "observed_local_max_pwm_difference": 0.0,
+      "actual_commands_deadzone_branch_changes": 0,
+      "actual_min_local_margin": 2.0135194063186646e-06,
+      "actual_min_recorded_margin": 2.0135194063186646e-06,
+      "planned_min_local_margin": 2.0097941160202026e-06,
+      "planned_local_margin_rejections": 0
+    },
+    {
+      "configuration": "long_body",
+      "controller": "nominal_physics",
+      "trace_sha256": "e533f635b5a61be8874a4ca1ec72f0a028628853bfdba78e24f63eafaa7393c5",
+      "observed_local_max_pwm_difference": 0.0,
+      "actual_commands_deadzone_branch_changes": 0,
+      "actual_min_local_margin": 2.000480890274048e-06,
+      "actual_min_recorded_margin": 2.000480890274048e-06,
+      "planned_min_local_margin": 2.000480890274048e-06,
+      "planned_local_margin_rejections": 0
+    },
+    {
+      "configuration": "uuv6",
+      "controller": "projected_koopman",
+      "trace_sha256": "f6d5b49010361e051acc0788e99155f52195f8d556294646234b50fb301eff9b",
+      "observed_local_max_pwm_difference": 3.725290298461914e-08,
+      "actual_commands_deadzone_branch_changes": 0,
+      "actual_min_local_margin": 1.9818544387817383e-06,
+      "actual_min_recorded_margin": 1.991167664527893e-06,
+      "planned_min_local_margin": 1.9744038581848145e-06,
+      "planned_local_margin_rejections": 90
+    },
+    {
+      "configuration": "uuv6",
+      "controller": "nominal_physics",
+      "trace_sha256": "f404084c5f2b8dfeae2bccf94e6f10385507c51e5c41ee44c14dd99465389e91",
+      "observed_local_max_pwm_difference": 3.91155481338501e-08,
+      "actual_commands_deadzone_branch_changes": 0,
+      "actual_min_local_margin": 1.9799917936325073e-06,
+      "actual_min_recorded_margin": 1.987442374229431e-06,
+      "planned_min_local_margin": 1.9762665033340454e-06,
+      "planned_local_margin_rejections": 96
+    }
+  ],
+  "conclusion": "local_allocation_and_recorded_server_allocation_differ; exact_platform_replay_pending"
+}

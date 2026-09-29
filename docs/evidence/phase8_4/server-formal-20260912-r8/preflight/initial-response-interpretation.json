@@ -1,0 +1,11 @@
+{
+  "status": "diagnostic_scope_qualification",
+  "original_report": "initial-response-diagnostic.json",
+  "mass_result": "all eight first-step translational responses match configured masses; max relative difference1.4717588459056685e-7",
+  "angular_result": "explicit angular Euler approximation has residuals; this does not establish exact rotational solver equivalence",
+  "inertia_axes_excited_field": "means only absolute logged total moment greater than1e-7 Nm; not a controllability or sufficient-excitation certificate",
+  "uuv4_yaw": "structurally unavailable in uuv4 anduuv4_angled; tiny floating-point yaw moments must not be interpreted as commanded yaw excitation or an Izz response verification",
+  "model_changes": 0,
+  "gate_changes": 0,
+  "next": "retain for interpretation of formal results; do not tune frozen model on these residuals"
+}

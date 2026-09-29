@@ -1,0 +1,400 @@
+{
+  "scope": "single_episode_2s_development_not_statistical_validation",
+  "rows": [
+    {
+      "configuration": "base",
+      "controller": "feedback",
+      "status": "accepted",
+      "trace_sha256": "8db7c966cffe208ceb9edd6b066c0a87d7f1bf8d41755fc01e743225f6cea7d0",
+      "physics_steps": 240,
+      "exception": null,
+      "metrics": {
+        "depth_rmse_m": 0.002784724627111971,
+        "attitude_rmse_rad": 0.0185121671048901,
+        "normalized_tracking_score": 0.23357443494671923,
+        "maximum_angular_speed": 0.05000787228345871,
+        "maximum_cycle_ms": 516.6625007987022
+      },
+      "wall_seconds": 97.09426224976778,
+      "command_variation_l1": 0.1313008574725245,
+      "command_rms": 0.01072742635904541,
+      "selection_counts": {},
+      "solver_counts": {}
+    },
+    {
+      "configuration": "base",
+      "controller": "projected_koopman",
+      "status": "accepted",
+      "trace_sha256": "ef4a00cf7cfaac023e6690dfeceac976d1ef147b1b7bf0165ffd4b8cbc0d18d3",
+      "physics_steps": 240,
+      "exception": null,
+      "metrics": {
+        "depth_rmse_m": 0.0024112997049375263,
+        "attitude_rmse_rad": 0.018413229980305392,
+        "normalized_tracking_score": 0.22644031460984032,
+        "maximum_angular_speed": 0.04947705445008058,
+        "maximum_cycle_ms": 9655.364036560059
+      },
+      "wall_seconds": 186.58411958813667,
+      "command_variation_l1": 0.23012659121608126,
+      "command_rms": 0.013258081100067867,
+      "selection_counts": {
+        "optimized": 7,
+        "baseline_retained": 52
+      },
+      "solver_counts": {
+        "Solve_Succeeded": 59
+      },
+      "issued_one_interval_prediction_max_abs_11": [
+        8.897380450179071e-07,
+        1.7754181724782825e-07,
+        7.101141836680545e-08,
+        1.1413385535417875e-05,
+        4.1586635987725265e-10,
+        1.308435099079048e-07,
+        8.58893950749647e-10,
+        1.2896204792993632e-07,
+        9.817760744929417e-09,
+        6.854288300064959e-07,
+        2.61510779984651e-09
+      ],
+      "issued_one_interval_attitude_max_rad": 2.282904582143761e-05,
+      "solve_wall_seconds": {
+        "median": 1.7918541096150875,
+        "maximum": 9.593880709260702
+      }
+    },
+    {
+      "configuration": "base",
+      "controller": "nominal_physics",
+      "status": "accepted",
+      "trace_sha256": "0d67e6f2fd42e1cf904b8658b0ecd40121852fb6a934540b89b712e5c3fbaf5c",
+      "physics_steps": 240,
+      "exception": null,
+      "metrics": {
+        "depth_rmse_m": 0.002398490527357118,
+        "attitude_rmse_rad": 0.01840954351643936,
+        "normalized_tracking_score": 0.22620144982685114,
+        "maximum_angular_speed": 0.04947690538561913,
+        "maximum_cycle_ms": 10379.03095036745
+      },
+      "wall_seconds": 197.71804444864392,
+      "command_variation_l1": 0.23194766077960852,
+      "command_rms": 0.013331140558016052,
+      "selection_counts": {
+        "optimized": 7,
+        "baseline_retained": 52
+      },
+      "solver_counts": {
+        "Solve_Succeeded": 59
+      },
+      "issued_one_interval_prediction_max_abs_11": [
+        8.311525032667078e-07,
+        2.2268537192005056e-07,
+        3.946502310250885e-08,
+        1.1577045745815584e-05,
+        3.238006640007733e-10,
+        9.71908231171912e-08,
+        4.770717021270681e-10,
+        1.289703972886299e-07,
+        7.471706495507493e-09,
+        6.606586146554183e-07,
+        2.6041593843962395e-09
+      ],
+      "issued_one_interval_attitude_max_rad": 2.315801537568329e-05,
+      "solve_wall_seconds": {
+        "median": 1.950508013367653,
+        "maximum": 10.318229049444199
+      }
+    },
+    {
+      "configuration": "uuv4",
+      "controller": "feedback",
+      "status": "accepted",
+      "trace_sha256": "d268a2a2f0679dd32cbe77ba32eaad8c622727740a4d561572f942e653bd17ac",
+      "physics_steps": 240,
+      "exception": null,
+      "metrics": {
+        "depth_rmse_m": 0.0016929777665514747,
+        "attitude_rmse_rad": 0.018188562853152162,
+        "normalized_tracking_score": 0.21393032095951076,
+        "maximum_angular_speed": 0.060738824307926466,
+        "maximum_cycle_ms": 63.422877341508865
+      },
+      "wall_seconds": 67.96398282796144,
+      "command_variation_l1": 0.12723853255274897,
+      "command_rms": 0.053294683324491804,
+      "selection_counts": {},
+      "solver_counts": {}
+    },
+    {
+      "configuration": "uuv4",
+      "controller": "projected_koopman",
+      "status": "accepted",
+      "trace_sha256": "5414fc221824e3ade383d26a5ab79f2513ea6eba8bbbf888b0d15b3d5b2f5018",
+      "physics_steps": 240,
+      "exception": null,
+      "metrics": {
+        "depth_rmse_m": 0.0044983158269840465,
+        "attitude_rmse_rad": 0.016768004726730547,
+        "normalized_tracking_score": 0.22631585227052406,
+        "maximum_angular_speed": 0.06584635255249408,
+        "maximum_cycle_ms": 11825.638469308615
+      },
+      "wall_seconds": 257.863007877022,
+      "command_variation_l1": 0.797876222292643,
+      "command_rms": 0.055246071758501616,
+      "selection_counts": {
+        "optimized": 46,
+        "baseline_retained": 11,
+        "recovered": 2
+      },
+      "solver_counts": {
+        "Solve_Succeeded": 50,
+        "Maximum_Iterations_Exceeded": 6,
+        "Solved_To_Acceptable_Level": 3
+      },
+      "issued_one_interval_prediction_max_abs_11": [
+        9.158962566147011e-07,
+        2.2375029029575444e-07,
+        4.637613223896646e-06,
+        1.0004168505991368e-05,
+        9.561204821750203e-08,
+        2.609741484378876e-07,
+        5.7795902583435724e-08,
+        1.7017277249668783e-07,
+        9.880937840946917e-07,
+        7.486810989221215e-07,
+        2.3236065513274085e-06
+      ],
+      "issued_one_interval_attitude_max_rad": 2.093290175959214e-05,
+      "solve_wall_seconds": {
+        "median": 1.7850712575018406,
+        "maximum": 11.760421574115753
+      }
+    },
+    {
+      "configuration": "uuv4",
+      "controller": "nominal_physics",
+      "status": "accepted",
+      "trace_sha256": "902086a434819273d05e34aedb770316338d75faa54aaf64065a212cbf0fee9f",
+      "physics_steps": 240,
+      "exception": null,
+      "metrics": {
+        "depth_rmse_m": 0.004200713614430678,
+        "attitude_rmse_rad": 0.016756237212135858,
+        "normalized_tracking_score": 0.2195971656195121,
+        "maximum_angular_speed": 0.06582308590197192,
+        "maximum_cycle_ms": 11406.635839492083
+      },
+      "wall_seconds": 272.55552818998694,
+      "command_variation_l1": 0.6974815873104157,
+      "command_rms": 0.05535657351327141,
+      "selection_counts": {
+        "optimized": 46,
+        "baseline_retained": 11,
+        "recovered": 2
+      },
+      "solver_counts": {
+        "Solve_Succeeded": 47,
+        "Solved_To_Acceptable_Level": 1,
+        "Maximum_Iterations_Exceeded": 11
+      },
+      "issued_one_interval_prediction_max_abs_11": [
+        7.669026729217876e-07,
+        2.907883150937707e-07,
+        7.050034132134085e-06,
+        1.0198341948965128e-05,
+        3.061712276529358e-07,
+        2.4740297597115445e-07,
+        6.284065952415739e-08,
+        1.6298072740179859e-07,
+        1.064159642056087e-06,
+        5.697068808127419e-07,
+        8.375676173834939e-07
+      ],
+      "issued_one_interval_attitude_max_rad": 2.068712704115448e-05,
+      "solve_wall_seconds": {
+        "median": 1.7498267330229282,
+        "maximum": 11.345065269619226
+      }
+    },
+    {
+      "configuration": "long_body",
+      "controller": "feedback",
+      "status": "accepted",
+      "trace_sha256": "ce222e4b821e6042b8cba39c44b9e51bccf38cc2b20e2cb29c74c64a475cdd4a",
+      "physics_steps": 240,
+      "exception": null,
+      "metrics": {
+        "depth_rmse_m": 0.0011134550646684325,
+        "attitude_rmse_rad": 0.01819984207482225,
+        "normalized_tracking_score": 0.21012086267038343,
+        "maximum_angular_speed": 0.05483945831656456,
+        "maximum_cycle_ms": 60.95948442816734
+      },
+      "wall_seconds": 67.71462298929691,
+      "command_variation_l1": 0.2403321377496468,
+      "command_rms": 0.012959141496374756,
+      "selection_counts": {},
+      "solver_counts": {}
+    },
+    {
+      "configuration": "long_body",
+      "controller": "projected_koopman",
+      "status": "failed",
+      "trace_sha256": "9d97d927f9695c52328f7680eb014465aa7eebfb8a4c0dac27f294dfa95d7647",
+      "physics_steps": 36,
+      "exception": "ValueError:runtime_continuous_no_exact_plan:solver_timeout",
+      "metrics": null,
+      "wall_seconds": 118.72205734625459,
+      "command_variation_l1": 0.14036241955173356,
+      "command_rms": 0.02563581798546975,
+      "terminal_solve": {
+        "physics_index": 36,
+        "status": "no_plan",
+        "reason": "solver_timeout",
+        "commands": null,
+        "predictions": null,
+        "cost": null,
+        "baseline_cost": 0.0006960809354501481,
+        "exact_feasible": false,
+        "runtime_eligible": false,
+        "search_kind": "continuous_nonlinear_program",
+        "decision_variables": 40,
+        "solver": {
+          "return_status": "Maximum_CpuTime_Exceeded",
+          "success": false,
+          "iterations": 152,
+          "global_optimum_claimed": false
+        },
+        "baseline_check": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0006960809354501481
+        },
+        "elapsed_seconds": 14.151098314672709
+      }
+    },
+    {
+      "configuration": "long_body",
+      "controller": "nominal_physics",
+      "status": "failed",
+      "trace_sha256": "58d569beea0beaae498c159c7453fd4dfcad20361040856c1a3ddd905b606deb",
+      "physics_steps": 48,
+      "exception": "ValueError:runtime_continuous_no_exact_plan:solver_timeout",
+      "metrics": null,
+      "wall_seconds": 164.57370760664344,
+      "command_variation_l1": 0.1716527839573576,
+      "command_rms": 0.02146861569142946,
+      "terminal_solve": {
+        "physics_index": 48,
+        "status": "no_plan",
+        "reason": "solver_timeout",
+        "commands": null,
+        "predictions": null,
+        "cost": null,
+        "baseline_cost": 0.0004757516506179538,
+        "exact_feasible": false,
+        "runtime_eligible": false,
+        "search_kind": "continuous_nonlinear_program",
+        "decision_variables": 40,
+        "solver": {
+          "return_status": "Maximum_CpuTime_Exceeded",
+          "success": false,
+          "iterations": 142,
+          "global_optimum_claimed": false
+        },
+        "baseline_check": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.0004757516506179538
+        },
+        "elapsed_seconds": 13.256189815700054
+      }
+    },
+    {
+      "configuration": "uuv6",
+      "controller": "feedback",
+      "status": "accepted",
+      "trace_sha256": "f268a697300be7f6d70341bcdaeff6decf0c4ee36a5afbdf5b6a07b036440a57",
+      "physics_steps": 240,
+      "exception": null,
+      "metrics": {
+        "depth_rmse_m": 0.0014895220611882611,
+        "attitude_rmse_rad": 0.018099627557102874,
+        "normalized_tracking_score": 0.2102945134930649,
+        "maximum_angular_speed": 0.05798124521972147,
+        "maximum_cycle_ms": 63.25024366378784
+      },
+      "wall_seconds": 63.772440660744905,
+      "command_variation_l1": 0.10515216323322943,
+      "command_rms": 0.06567462065359302,
+      "selection_counts": {},
+      "solver_counts": {}
+    },
+    {
+      "configuration": "uuv6",
+      "controller": "projected_koopman",
+      "status": "failed",
+      "trace_sha256": "05ca417997a73baf6fb0c898eea1eb12a3ad16dbb074fa6b59d463e3a9af7966",
+      "physics_steps": 192,
+      "exception": "ValueError:runtime_continuous_no_exact_plan:solver_timeout",
+      "metrics": null,
+      "wall_seconds": 350.18406281247735,
+      "command_variation_l1": 0.7834568122145222,
+      "command_rms": 0.02300953163235766,
+      "terminal_solve": {
+        "physics_index": 192,
+        "status": "no_plan",
+        "reason": "solver_timeout",
+        "commands": null,
+        "predictions": null,
+        "cost": null,
+        "baseline_cost": 0.00880599565447021,
+        "exact_feasible": false,
+        "runtime_eligible": false,
+        "search_kind": "continuous_nonlinear_program",
+        "decision_variables": 40,
+        "solver": {
+          "return_status": "Maximum_CpuTime_Exceeded",
+          "success": false,
+          "iterations": 149,
+          "global_optimum_claimed": false
+        },
+        "baseline_check": {
+          "feasible": true,
+          "reason": null,
+          "cost": 0.00880599565447021
+        },
+        "elapsed_seconds": 14.101184453815222
+      }
+    },
+    {
+      "configuration": "uuv6",
+      "controller": "nominal_physics",
+      "status": "not_returned"
+    }
+  ],
+  "comparisons": [
+    {
+      "configuration": "base",
+      "koopman_vs_feedback_score_gain_percent": 3.054324133763301,
+      "physical_vs_feedback_score_gain_percent": 3.1565890854236427,
+      "koopman_vs_physical_score_gain_percent": -0.10559825464072886,
+      "koopman_vs_feedback_attitude_rmse_gain_percent": 0.5344437743249013,
+      "koopman_vs_feedback_depth_rmse_gain_percent": 13.409761185676821
+    },
+    {
+      "configuration": "uuv4",
+      "koopman_vs_feedback_score_gain_percent": -5.789516537656873,
+      "physical_vs_feedback_score_gain_percent": -2.648920748860964,
+      "koopman_vs_physical_score_gain_percent": -3.059550715082174,
+      "koopman_vs_feedback_attitude_rmse_gain_percent": 7.810172457772966,
+      "koopman_vs_feedback_depth_rmse_gain_percent": -165.70436516404635
+    }
+  ],
+  "gain_sign": "positive_is_lower_error",
+  "prediction_scope": "only_first_four_physics_steps_with_identical_actually_issued_command",
+  "independent_representation_gain_claim": false
+}

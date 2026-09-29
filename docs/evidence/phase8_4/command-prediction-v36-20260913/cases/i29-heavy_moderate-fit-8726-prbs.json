@@ -1,0 +1,42 @@
+{
+  "case": {
+    "run_id": "i29-heavy_moderate-fit-8726-prbs",
+    "configuration": "heavy_moderate",
+    "role": "fit",
+    "seed": 8726,
+    "excitation": "prbs",
+    "intervals": 320,
+    "training_eligible": true,
+    "starting_z_m": 5.5,
+    "mode": "direct_pre_tam_v24"
+  },
+  "role": "fit_interface_diagnostic",
+  "origin_control": 128,
+  "control_intervals": 4,
+  "parent_sha256": "8c71fd2dad84af0b1e88d6894f632582e2a87a79b11e472c2e37555fcb03fde6",
+  "trace_sha256": "6ccde4b51c4433d2011d2457739c27c19a57b09fc7c431b11ac1a56c5177e31e",
+  "arrays_sha256": "dc0a1b7fe003311459d156985a41268daf6661b1ae860c3cffb9b2066c0c8fdc",
+  "maximum_differences": {
+    "state": 0.0,
+    "pwm": 0.0,
+    "rotor_speed": 0.0,
+    "acceleration": 0.0,
+    "applied_control": 0.0,
+    "physics_time_s": 0.0
+  },
+  "repeat_branch_exact": true,
+  "masked_axis_zero": true,
+  "origin_actuator_time_s": 2.133333444595337,
+  "alternatives": [
+    {
+      "depth_command_offset": -0.01,
+      "complete": true,
+      "state_difference_from_original_max": 0.0028605768630715483
+    },
+    {
+      "depth_command_offset": 0.01,
+      "complete": true,
+      "state_difference_from_original_max": 0.002853758429689976
+    }
+  ]
+}

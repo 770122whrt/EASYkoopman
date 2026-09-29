@@ -1,0 +1,42 @@
+{
+  "case": {
+    "run_id": "i29-uuv4_angled-fit-8741-prbs",
+    "configuration": "uuv4_angled",
+    "role": "fit",
+    "seed": 8741,
+    "excitation": "prbs",
+    "intervals": 320,
+    "training_eligible": true,
+    "starting_z_m": 5.5,
+    "mode": "direct_pre_tam_v24"
+  },
+  "role": "fit_interface_diagnostic",
+  "origin_control": 128,
+  "control_intervals": 4,
+  "parent_sha256": "3a0bd2282254fedbf55e6ba7cadaaa1d6a9e8554d5550e5f8f5df51b312dfe7e",
+  "trace_sha256": "fdd45f54c88449d0f3e5962cd393592e9c561e601c227176a10de48c64f9f79d",
+  "arrays_sha256": "f68094148b82186b549bc9b83c1da5793254a03a4aae54619d53cdcd2770cb00",
+  "maximum_differences": {
+    "state": 0.0,
+    "pwm": 0.0,
+    "rotor_speed": 0.0,
+    "acceleration": 0.0,
+    "applied_control": 0.0,
+    "physics_time_s": 0.0
+  },
+  "repeat_branch_exact": true,
+  "masked_axis_zero": true,
+  "origin_actuator_time_s": 2.133333444595337,
+  "alternatives": [
+    {
+      "depth_command_offset": -0.01,
+      "complete": true,
+      "state_difference_from_original_max": 0.0003160304544986489
+    },
+    {
+      "depth_command_offset": 0.01,
+      "complete": true,
+      "state_difference_from_original_max": 0.006689452989711388
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+from pathlib import Path
+import hashlib,json,tarfile
+import numpy as np
+from workflows.validate_control_trace_v23 import validate_interval,validate_clock_step,compare_values
+root=Path.cwd();base=root/'docs/evidence/phase8_4/server-structured-pilot-20260912-r7'
+archive=base/'fresh-pilot-evidence.tar.gz';sha=(base/'fresh-pilot-evidence.tar.gz.sha256').read_text().strip()
+assert hashlib.sha256(archive.read_bytes()).hexdigest()==sha
+raw=base/'raw'
+if not raw.exists():
+ raw.mkdir()
+ with tarfile.open(archive) as tar:
+  for m in tar.getmembers():assert m.isfile() and (raw/m.name).resolve().is_relative_to(raw.resolve())
+  tar.extractall(raw,filter='data')
+index=json.loads((raw/'inventory.json').read_text())
+assert {p.relative_to(raw).as_posix() for p in raw.rglob('*') if p.is_file()}==set(index)|{'inventory.json'}
+for n,m in index.items():assert (raw/n).stat().st_size==m['bytes'] and hashlib.sha256((raw/n).read_bytes()).hexdigest()==m['sha256'],n
+assert (raw/'outer.exit_status').read_text().strip()==(raw/'runner.exit_status').read_text().strip()=='0'
+commit='b87ce2047ee828424094d0a307383694cec79adf'
+assert (raw/'source-head.txt').read_text().strip()==commit and not (raw/'source-status.txt').read_text().strip()
+clone=root/'.pytest-tmp/phase84-runtime-20260912-r7/verified-clone'
+manifest=json.loads((raw/'SOURCE_MANIFEST.json').read_text())
+for n,h in manifest['files_sha256'].items():assert hashlib.sha256((clone/n).read_bytes()).hexdigest()==h,n
+binding=json.loads((raw/'structured-source-binding.json').read_text())
+assert binding==json.loads((root/'docs/evidence/phase8_4/structured-pilot-20260912/structured-source-binding.json').read_text())
+assert hashlib.sha256((raw/'protocol.md').read_bytes()).hexdigest()==binding['original_protocol_sha256']
+assert hashlib.sha256((raw/'design.md').read_bytes()).hexdigest()==binding['design_sha256']
+assert {p.name for p in (raw/'requests').glob('*.json')}==set(binding['request_hashes'])
+assert {p.parent.name for p in (raw/'results').glob('*/trace.json')}=={Path(n).stem for n in binding['request_hashes']}
+maximum=0;cases=[]
+for n,h in sorted(binding['request_hashes'].items()):
+ assert hashlib.sha256((raw/'requests'/n).read_bytes()).hexdigest()==h
+ q=json.loads((raw/'requests'/n).read_text());name=q['run_id']
+ assert (raw/(name+'.exit_status')).read_text().strip()=='0'
+ p=raw/'results'/name/'trace.json';d=json.loads(p.read_text())
+ assert d['request']==q and d['status']=='completed_exploratory_v24' and d['source_commit']==commit
+ assert len(d['boundary_states'])==128 and len(d['substeps'])==256
+ e=d['effective_cfg'];assert e['control_input_mode']=='direct_pre_tam_v24' and e['physics_initialization_mode']=='authored_static_v1' and e['inertia_sync_mode']=='declared_v1' and e['control_history_reset_mode']=='episode_local_v1'
+ ap=d['actuator_parameters'];assert ap['clock']=='float32_accumulated_v1' and ap['known_zero_initialization'] and not ap['truth_feedback']
+ assert not np.any(d['observed_start_boundary']['actuator_speed_n'])
+ rp=d['runtime_provenance'];assert rp['actual_isaac_sim']=='5.0' and rp['actual_isaac_lab']=='2.2.1'
+ rp=rp['runtime_provenance'];assert rp['isaac_lab_release_commit']=='0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20' and rp['isaac_lab_repo_commit']=='c91a125c73c8b574878419a9583afc0b63b99f0a' and rp['isaac_lab_repo_patch_sha256']=='d056adb8bb64fe7c9c34fffbd2478ef04155df8b60b071da942280952f829079'
+ for cls,path in [('EasyUUVEnv',clone/'easyuuv_nc/env/easyuuv_env.py'),('DirectRLEnv',raw/'direct_rl_env.py')]:
+  expected='/root/EASYkoopman-phase8-4-structured-20260912/easyuuv_nc/env/easyuuv_env.py' if cls=='EasyUUVEnv' else '/root/IsaacLab/source/isaaclab/isaaclab/envs/direct_rl_env.py'
+  assert d['loaded_sources'][cls]['path']==expected and d['loaded_sources'][cls]['sha256']==hashlib.sha256(path.read_bytes()).hexdigest()
+ for i in range(128):
+  rows=d['substeps'][2*i:2*i+2];validate_interval(rows,configuration=q['configuration'])
+  assert all(row['control_index']==i and row['reset_generation']==[1] for row in rows)
+  compare_values(rows[-1]['state_after_physics_11'],d['boundary_states'][i]['state_11'])
+ for j,row in enumerate(d['substeps']):
+  compare_values(row['before']['state_11'],d['observed_start_boundary']['state_11'] if j==0 else d['substeps'][j-1]['state_after_physics_11'])
+  if j:
+   prior=d['substeps'][j-1]
+   compare_values(prior['command']['actuator_speed_n'],row['before']['actuator_speed_n'])
+   compare_values(prior['command']['telemetry']['step_token'],row['before']['telemetry']['step_token'],atol=0)
+   validate_clock_step(prior['actuator_update']['end_time_s'],row['actuator_update']['end_time_s'])
+  else:validate_clock_step([0],row['actuator_update']['end_time_s'])
+  t=row['before']['telemetry'];be=row['before']['backend']
+  # PhysX stores inverse mass; require the exact float32 reciprocal roundtrip.
+  declared=np.asarray(t['mass_kg'],dtype=np.float32)
+  actual=np.asarray(be['mass_kg'],dtype=np.float32)
+  inverse=np.asarray(be['inverse_mass_per_kg'],dtype=np.float32)
+  assert np.array_equal(inverse,np.float32(1)/declared)
+  assert np.array_equal(actual,np.float32(1)/inverse)
+  np.testing.assert_allclose(np.asarray(t['inertia_diagonal_kg_m2'])[0],np.asarray(be['inertia_9']).reshape(3,3).diagonal(),rtol=0,atol=1e-6)
+  maximum=max(maximum,float(np.max(np.abs(row['estimated_minus_actual_speed_n']))))
+ cases.append({'run_id':name,'trace_sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'intervals':128})
+assert maximum<1e-3 and len(cases)==18
+report={'status':'source_runtime_continuity_pullback_accepted','source_commit':commit,'archive_sha256':sha,'inventory_files':len(index),'cases':cases,'control_intervals':2304,'physics_rows':4608,'old_pilot_rows_used':0,'speed_estimate_max_abs':maximum,'model_fits':0,'model_handoff':False,'tests':{'root':'194 passed8.92s','clone':'194 passed9.01s'}}
+(base/'acceptance.json').write_text(json.dumps(report,indent=2)+'\n');(base/'validate-pullback.py.txt').write_bytes(Path(__file__).read_bytes())
+print(json.dumps({k:v for k,v in report.items() if k!='cases'},indent=2))

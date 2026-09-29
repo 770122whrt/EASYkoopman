@@ -1,0 +1,248 @@
+{
+  "scope": "synthetic_source_contract_counterexample_not_closed_loop",
+  "yaw_rotation_rad": 1.4,
+  "old_policy_parameters": {
+    "attitude_kp_s2": 9.0,
+    "angular_kd_s": 6.0,
+    "angular_feedback_limit_rad_s2": 16.0,
+    "height_kp_s2": 0.0,
+    "vertical_kd_s": 0.0,
+    "vertical_feedback_limit_m_s2": 1.0,
+    "starting_z_m": 5.5,
+    "pulse_acceleration_4": [
+      4.0,
+      2.0,
+      1.0,
+      0.5
+    ],
+    "minimum_pwm_headroom": 0.05,
+    "inverse_refinement": "branch_robust_block_local_and_batched_source_grid_v2",
+    "minimum_deadzone_distance_pwm": 2e-06,
+    "allocation_acceleration_tolerance_6": [
+      0.025,
+      0.025,
+      0.025,
+      0.1,
+      0.1,
+      0.1
+    ],
+    "sample_period_s": 0.016666666666666666,
+    "physics_period_s": 0.008333333333333333,
+    "history": "identity_pose_zero_velocity_zero_rotors_all_startup_recorded",
+    "state_input": "current_boundary_z_quaternion_body_velocity_body_omega",
+    "architecture": "pose_restoring_compensation_bounded_pd_known_steady_inverse_v1"
+  },
+  "rows": [
+    {
+      "configuration": "uuv4",
+      "before": {
+        "state_available_11": [
+          5.5,
+          0.986973861587993,
+          0.12209985916552492,
+          -0.09157489437414369,
+          0.05087494131896872,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pulse_acceleration_4": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feedback_acceleration_4": [
+          -2.1977974649794487,
+          1.6483480987345867,
+          -0.0,
+          -0.0
+        ],
+        "restoring_torque_3_nm": [
+          -0.49855692219382913,
+          0.41568687078359473,
+          0.0
+        ],
+        "unallocated_lateral_force_2_n": [
+          -0.29185486023437,
+          -0.3500381442682316
+        ],
+        "unallocated_torque_3_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "target_wrench_6_n_nm": [
+          0.0,
+          0.0,
+          -1.4403490931930938,
+          -0.2816364609944065,
+          1.1183420906872223,
+          0.0
+        ]
+      },
+      "after": {
+        "state_available_11": [
+          5.5,
+          0.7221047100547193,
+          0.15238129001403478,
+          0.008618546370196184,
+          0.6747373198726399,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pulse_acceleration_4": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feedback_acceleration_4": [
+          -2.7428632202526257,
+          -0.1551338346635313,
+          -0.0,
+          -0.0
+        ],
+        "restoring_torque_3_nm": [
+          -0.4985569221938291,
+          0.4156868707835947,
+          0.0
+        ],
+        "unallocated_lateral_force_2_n": [
+          -0.29185486023436996,
+          -0.35003814426823154
+        ],
+        "unallocated_torque_3_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "target_wrench_6_n_nm": [
+          0.0,
+          0.0,
+          -1.4403490931930938,
+          -0.4751286741955021,
+          -0.5600615908203248,
+          0.0
+        ]
+      },
+      "world_vertical_body_max_difference": 5.551115123125783e-17,
+      "active_feedback_max_difference": 1.803481933398118
+    },
+    {
+      "configuration": "uuv4_angled",
+      "before": {
+        "state_available_11": [
+          5.5,
+          0.986973861587993,
+          0.12209985916552492,
+          -0.09157489437414369,
+          0.05087494131896872,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pulse_acceleration_4": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feedback_acceleration_4": [
+          -2.1977974649794487,
+          1.6483480987345867,
+          -0.0,
+          -0.0
+        ],
+        "restoring_torque_3_nm": [
+          -0.5438802864315709,
+          0.4534765927083607,
+          0.0
+        ],
+        "unallocated_lateral_force_2_n": [
+          -0.3183887459957329,
+          -0.38186174358973757
+        ],
+        "unallocated_torque_3_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "target_wrench_6_n_nm": [
+          0.0,
+          0.0,
+          -1.571297943126851,
+          -0.3072397858190866,
+          1.2200095470779853,
+          0.0
+        ]
+      },
+      "after": {
+        "state_available_11": [
+          5.5,
+          0.7221047100547193,
+          0.15238129001403478,
+          0.008618546370196184,
+          0.6747373198726399,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pulse_acceleration_4": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feedback_acceleration_4": [
+          -2.7428632202526257,
+          -0.1551338346635313,
+          -0.0,
+          -0.0
+        ],
+        "restoring_torque_3_nm": [
+          -0.5438802864315707,
+          0.45347659270836066,
+          0.0
+        ],
+        "unallocated_lateral_force_2_n": [
+          -0.31838874599573286,
+          -0.3818617435897375
+        ],
+        "unallocated_torque_3_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "target_wrench_6_n_nm": [
+          0.0,
+          0.0,
+          -1.571297943126851,
+          -0.5183222046505253,
+          -0.6109762872938844,
+          0.0
+        ]
+      },
+      "world_vertical_body_max_difference": 5.551115123125783e-17,
+      "active_feedback_max_difference": 1.803481933398118
+    }
+  ],
+  "source_sha256": {
+    "workflows/feedback_v28.py": "a95e447803fa72c76d16bf16c41f508f80899df9f08b77f31da2c4259f857801",
+    "workflows/feedback_v31.py": "2a12a3a9f470b0b751f8c84e7f3769b06e5c3533529e4fd9739f8159382d28ec"
+  },
+  "conclusion": "legacy_collection_policy_not_a_qualified_new_depth_and_reduced_attitude_fallback"
+}

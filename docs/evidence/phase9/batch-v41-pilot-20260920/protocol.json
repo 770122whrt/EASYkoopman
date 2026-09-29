@@ -1,0 +1,101 @@
+{
+  "schema": "command-batch-v41-assay-v1",
+  "stage": "pilot",
+  "arms": [
+    {
+      "origin": 128,
+      "horizon": 20,
+      "candidates": 8,
+      "scope": "pooled"
+    }
+  ],
+  "configurations": {
+    "base": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "long_body": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "heavy_moderate": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "asymmetric": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "uuv6": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "uuv6_angled": {
+      "control_mask": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "uuv4": {
+      "control_mask": [
+        1,
+        1,
+        0,
+        1
+      ]
+    },
+    "uuv4_angled": {
+      "control_mask": [
+        1,
+        1,
+        0,
+        1
+      ]
+    }
+  },
+  "repetitions": 3,
+  "warmups_per_path": 1,
+  "maximum_seconds": 180,
+  "output_limit_bytes": 134217728,
+  "candidate_recipe": "recorded_fit_commands_plus_0.0005_sine_offsets_first_candidate_unchanged_clip_to_0.95",
+  "rtol": 1e-12,
+  "atol": 1e-12,
+  "sources": {
+    "koopman/command_state_v39.py": "2e1a1709d9704c76f4b90c7cbe0b2ecf849db052e60204d876796c188f47135b",
+    "koopman/prepared_projected_v40.py": "2974dccdee1af5fc57efc8aa9f0e336abad1f33669514127f0c9159f967d538b",
+    "koopman/command_batch_v41.py": "7f23d874a195738f4740a9343b6b37faed04ecf7a9c2162dac2c0f113c0c9412",
+    "workflows/benchmark_command_state_v39.py": "2585e6f9e5680863b59c65779860b302f0760f43ff93738a6cd2b7d03121043a",
+    "workflows/benchmark_command_batch_v41.py": "f1173151dcf9e6a03146fe47fa091de141a50e051e0ea3bf9c1df5e887147eb6"
+  },
+  "handoff_sha256": "5d8c4aa1264d93307dc0cf692757441509e75809206ed80006543ca5e4239632",
+  "previous_full_result_sha256": "cd328c8a1e809801584e5f29942d2beaf557de984f96c9d427acdd4ab1b037f9",
+  "pilot_result_sha256": null,
+  "pilot_gate": "median_speedup>=1.20_and_minimum_speedup>=1.0",
+  "processes": 1,
+  "threads": 1,
+  "new_fits": 0,
+  "new_server_runs": 0,
+  "formal_test_access": false
+}

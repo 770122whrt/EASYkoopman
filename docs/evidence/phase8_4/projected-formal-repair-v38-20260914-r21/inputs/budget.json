@@ -1,0 +1,151 @@
+{
+  "schema": "projected-formal-budget-v38",
+  "freeze_sha256": "a592b69b84e3d6a2fad0b0cc70d3613f44a23c077ac8f0a33bead61e156effa5",
+  "attempts": [
+    {
+      "bucket": "collector",
+      "name": "p38-base-preflight-9300-prbs",
+      "status": "exited",
+      "charged_seconds": 30.650828102137893,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-base-preflight-9300-prbs",
+      "status": "exited",
+      "charged_seconds": 2.3218783638440073,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-long_body-preflight-9301-prbs",
+      "status": "exited",
+      "charged_seconds": 31.823265010025352,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-long_body-preflight-9301-prbs",
+      "status": "exited",
+      "charged_seconds": 2.086824825964868,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-heavy_moderate-preflight-9302-prbs",
+      "status": "exited",
+      "charged_seconds": 60.37915838090703,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-heavy_moderate-preflight-9302-prbs",
+      "status": "exited",
+      "charged_seconds": 2.043435974046588,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-asymmetric-preflight-9303-prbs",
+      "status": "exited",
+      "charged_seconds": 31.981251956894994,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-asymmetric-preflight-9303-prbs",
+      "status": "exited",
+      "charged_seconds": 2.111085016746074,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv6-preflight-9304-prbs",
+      "status": "exited",
+      "charged_seconds": 30.105916861910373,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv6-preflight-9304-prbs",
+      "status": "exited",
+      "charged_seconds": 1.8137156297452748,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv6_angled-preflight-9305-prbs",
+      "status": "exited",
+      "charged_seconds": 32.61191768292338,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv6_angled-preflight-9305-prbs",
+      "status": "exited",
+      "charged_seconds": 1.9052449921146035,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv4-preflight-9306-prbs",
+      "status": "exited",
+      "charged_seconds": 29.393105062656105,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv4-preflight-9306-prbs",
+      "status": "exited",
+      "charged_seconds": 1.803920014295727,
+      "native_exit": 0
+    },
+    {
+      "bucket": "collector",
+      "name": "p38-uuv4_angled-preflight-9307-prbs",
+      "status": "exited",
+      "charged_seconds": 29.779969214927405,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "online_semantics:p38-uuv4_angled-preflight-9307-prbs",
+      "status": "exited",
+      "charged_seconds": 1.8749437211081386,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "archive:preflight",
+      "status": "exited",
+      "charged_seconds": 9.753591628279537,
+      "native_exit": 0
+    },
+    {
+      "bucket": "analysis",
+      "name": "pullback:preflight",
+      "status": "exited",
+      "charged_seconds": 17.93699999997625,
+      "native_exit": 1
+    },
+    {
+      "bucket": "analysis",
+      "name": "numeric_repair_reaudit",
+      "status": "exited",
+      "charged_seconds": 86.2749336361303,
+      "native_exit": 0
+    }
+  ],
+  "charged_seconds": {
+    "collector": 276.7254122723825,
+    "analysis": 129.92657380225137
+  },
+  "numeric_recovery": {
+    "schema": "projected-v38-numeric-recovery",
+    "parent_freeze_sha256": "85fda36f7e8ef69502395b8e87b48afc7421d73d153b59454febd83277e9b6d7",
+    "parent_attempt_count": 18,
+    "parent_attempts_digest": "af47f19be562a56b3f8a1d3972e516960e887364f9776899bc77dea37e9b4168",
+    "preflight_audit_sha256": "effe92dc081776d66a7cd724eb49d45eb9be944b2957b53fc43e7fbffa5eda20",
+    "diagnostic_seconds": 86.2749336361303
+  }
+}

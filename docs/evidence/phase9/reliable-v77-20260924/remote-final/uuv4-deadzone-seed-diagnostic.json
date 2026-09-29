@@ -1,0 +1,282 @@
+[
+  {
+    "status": "optimized",
+    "reason": null,
+    "cost": 0.005282577100960409,
+    "baseline_cost": 0.005288480087920651,
+    "exact_feasible": true,
+    "runtime_eligible": false,
+    "search_kind": "continuous_nonlinear_program",
+    "decision_variables": 30,
+    "solver": {
+      "return_status": "Solve_Succeeded",
+      "success": true,
+      "iterations": 20,
+      "global_optimum_claimed": false
+    },
+    "baseline_check": {
+      "feasible": true,
+      "reason": null,
+      "cost": 0.005288480087920651
+    },
+    "constraint_violation": 0.0,
+    "solution_check": {
+      "feasible": true,
+      "reason": null,
+      "cost": 0.005282577100960409
+    },
+    "elapsed_seconds": 0.9420814663171768,
+    "index": 160,
+    "seed": "held_feedback",
+    "wall_seconds": 0.942230299115181,
+    "max_prediction_jacobian": 0.0,
+    "seed_first": [
+      1.2757408285324345e-07,
+      0.0025940719060599804,
+      0.0,
+      -0.04134274274110794
+    ],
+    "physical_target": [
+      3.066566591769515e-07,
+      0.025443185120821,
+      0.0,
+      -0.11721792072057724
+    ]
+  },
+  {
+    "status": "baseline_retained",
+    "reason": null,
+    "cost": 0.005283954250636577,
+    "baseline_cost": 0.005283954250636577,
+    "exact_feasible": true,
+    "runtime_eligible": false,
+    "search_kind": "continuous_nonlinear_program",
+    "decision_variables": 30,
+    "solver": {
+      "return_status": "Solve_Succeeded",
+      "success": true,
+      "iterations": 27,
+      "global_optimum_claimed": false
+    },
+    "baseline_check": {
+      "feasible": true,
+      "reason": null,
+      "cost": 0.005283954250636577
+    },
+    "constraint_violation": 0.0,
+    "solution_check": {
+      "feasible": true,
+      "reason": null,
+      "cost": 0.0062666833195030806
+    },
+    "elapsed_seconds": 0.8893635645508766,
+    "index": 160,
+    "seed": "shifted_plan",
+    "wall_seconds": 0.8894145861268044,
+    "max_prediction_jacobian": 0.0,
+    "seed_first": [
+      8.036956700152587e-08,
+      -0.0034287446178495884,
+      0.0,
+      -0.021342743188142776
+    ],
+    "physical_target": [
+      3.066566591769515e-07,
+      0.025443185120821,
+      0.0,
+      -0.11721792072057724
+    ]
+  },
+  {
+    "status": "optimized",
+    "reason": null,
+    "cost": 0.0031256927882215325,
+    "baseline_cost": 0.0035742438122765567,
+    "exact_feasible": true,
+    "runtime_eligible": false,
+    "search_kind": "continuous_nonlinear_program",
+    "decision_variables": 30,
+    "solver": {
+      "return_status": "Solve_Succeeded",
+      "success": true,
+      "iterations": 42,
+      "global_optimum_claimed": false
+    },
+    "baseline_check": {
+      "feasible": true,
+      "reason": null,
+      "cost": 0.0035742438122765567
+    },
+    "constraint_violation": 0.0,
+    "solution_check": {
+      "feasible": true,
+      "reason": null,
+      "cost": 0.0031256927882215325
+    },
+    "elapsed_seconds": 1.469041433185339,
+    "index": 160,
+    "seed": "physical_target_ramp",
+    "wall_seconds": 1.4690729565918446,
+    "max_prediction_jacobian": 2.6325755927674215,
+    "seed_first": [
+      3.066566591769515e-07,
+      0.016571255382150412,
+      0.0,
+      -0.04134274318814278
+    ],
+    "physical_target": [
+      3.066566591769515e-07,
+      0.025443185120821,
+      0.0,
+      -0.11721792072057724
+    ]
+  },
+  {
+    "status": "no_plan",
+    "reason": "no_exact_feasible_solution_found",
+    "cost": null,
+    "baseline_cost": null,
+    "exact_feasible": false,
+    "runtime_eligible": false,
+    "search_kind": "continuous_nonlinear_program",
+    "decision_variables": 30,
+    "solver": {
+      "return_status": "Infeasible_Problem_Detected",
+      "success": false,
+      "iterations": 16,
+      "global_optimum_claimed": false
+    },
+    "baseline_check": {
+      "feasible": false,
+      "reason": "predicted_state_out_of_support",
+      "cost": null,
+      "rejection": {
+        "reason": "state_out_of_support",
+        "index": 39
+      }
+    },
+    "constraint_violation": 0.0002546986055618483,
+    "solution_check": {
+      "feasible": false,
+      "reason": "predicted_state_out_of_support",
+      "cost": null,
+      "rejection": {
+        "reason": "state_out_of_support",
+        "index": 39
+      }
+    },
+    "elapsed_seconds": 0.6194626539945602,
+    "index": 192,
+    "seed": "held_feedback",
+    "wall_seconds": 0.6195144057273865,
+    "max_prediction_jacobian": 0.0,
+    "seed_first": [
+      8.672778051277419e-08,
+      0.002006259048357606,
+      0.0,
+      -0.04134274274110794
+    ],
+    "physical_target": [
+      1.1712474190517241e-07,
+      0.027989594265818596,
+      0.0,
+      -0.13695752620697021
+    ]
+  },
+  {
+    "status": "no_plan",
+    "reason": "no_exact_feasible_solution_found",
+    "cost": null,
+    "baseline_cost": null,
+    "exact_feasible": false,
+    "runtime_eligible": false,
+    "search_kind": "continuous_nonlinear_program",
+    "decision_variables": 30,
+    "solver": {
+      "return_status": "Infeasible_Problem_Detected",
+      "success": false,
+      "iterations": 36,
+      "global_optimum_claimed": false
+    },
+    "baseline_check": {
+      "feasible": false,
+      "reason": "predicted_state_out_of_support",
+      "cost": null,
+      "rejection": {
+        "reason": "state_out_of_support",
+        "index": 39
+      }
+    },
+    "constraint_violation": 0.0002546986055618483,
+    "solution_check": {
+      "feasible": false,
+      "reason": "predicted_state_out_of_support",
+      "cost": null,
+      "rejection": {
+        "reason": "state_out_of_support",
+        "index": 39
+      }
+    },
+    "elapsed_seconds": 1.1614014655351639,
+    "index": 192,
+    "seed": "shifted_plan",
+    "wall_seconds": 1.1614304445683956,
+    "max_prediction_jacobian": 0.0,
+    "seed_first": [
+      8.036956700152587e-08,
+      -0.0034287446178495884,
+      0.0,
+      -0.021342743188142776
+    ],
+    "physical_target": [
+      1.1712474190517241e-07,
+      0.027989594265818596,
+      0.0,
+      -0.13695752620697021
+    ]
+  },
+  {
+    "status": "optimized",
+    "reason": null,
+    "cost": 0.006733537844554047,
+    "baseline_cost": 0.007514400704380981,
+    "exact_feasible": true,
+    "runtime_eligible": false,
+    "search_kind": "continuous_nonlinear_program",
+    "decision_variables": 30,
+    "solver": {
+      "return_status": "Solve_Succeeded",
+      "success": true,
+      "iterations": 28,
+      "global_optimum_claimed": false
+    },
+    "baseline_check": {
+      "feasible": true,
+      "reason": null,
+      "cost": 0.007514400704380981
+    },
+    "constraint_violation": 0.0,
+    "solution_check": {
+      "feasible": true,
+      "reason": null,
+      "cost": 0.006733537844554047
+    },
+    "elapsed_seconds": 0.9729952067136765,
+    "index": 192,
+    "seed": "physical_target_ramp",
+    "wall_seconds": 0.9730234481394291,
+    "max_prediction_jacobian": 2.818552349821888,
+    "seed_first": [
+      1.1712474190517241e-07,
+      0.016571255382150412,
+      0.0,
+      -0.04134274318814278
+    ],
+    "physical_target": [
+      1.1712474190517241e-07,
+      0.027989594265818596,
+      0.0,
+      -0.13695752620697021
+    ]
+  }
+]

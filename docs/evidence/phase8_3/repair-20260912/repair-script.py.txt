@@ -1,0 +1,64 @@
+"""One predeclared contraction-constrained local repair assay; no search/promotion."""
+from pathlib import Path
+import json, hashlib, sys
+import numpy as np
+ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT))
+from koopman.stability_repair_v23 import constrained_refit, DiagnosticCoefficientModel, UNBOUNDED_FEATURE_COLUMNS
+from koopman.diagnostics_v23 import SourceOnlyReader, reserve_output, json_safe
+from koopman.evaluation_v21 import DatasetFormalLocoBackendV21, load_protocol_episode_registry_v21
+from koopman.metrics_v21 import RolloutEpisodeV21, rollout_episode_v21, OFFICIAL_ROLLOUT_POLICY_V21, _metric_values
+from koopman.model_v21 import build_increment_targets_v21
+from workflows.diagnose_koopman_v23 import CASE_ID, SOURCE_COMMIT
+
+parent=ROOT/'tmp/phase8_3/mechanism-audit-20260912'
+mechanism=json.loads((parent/'report.json').read_text(encoding='utf-8'))
+assert mechanism['status']=='completed_local_mechanism_audit' and mechanism['candidate_id']==CASE_ID
+arrays=np.load(parent/'diagnostic_arrays.npz',allow_pickle=False)
+sources=tuple(mechanism['per_configuration'])
+scores=np.asarray([mechanism['per_configuration'][c]['score'] for c in sources])
+design,targets,baseline=arrays['design'],arrays['targets'],arrays['coefficient']
+scales=np.maximum(np.std(design[:,UNBOUNDED_FEATURE_COLUMNS],axis=0),1e-6)
+out=reserve_output(ROOT/'tmp/phase8_3','stability-repair-adaptive-20260912')
+report={'status':'started','evidence_level':'local_source_validation_exploratory_repair',
+        'baseline_candidate_id':CASE_ID,'new_formal_candidate':False,'model_handoff':False,
+        'settings':{'radius':.999,'max_iterations':5000,'ridge':1e-8,'scale_floor':1e-6,
+                    'objective':'fit-only state-standard-deviation weighted ridge; original unconstrained row optima unchanged'},
+        'inputs_sha256':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [parent/'report.json',parent/'diagnostic_arrays.npz']},
+        'code_sha256':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/'koopman/stability_repair_v23.py']},
+        'opens':[],'episodes':[]}
+def save():
+    (out/'report.json').write_text(json.dumps(json_safe(report),ensure_ascii=False,indent=2,allow_nan=False)+'\n',encoding='utf-8')
+save()
+try:
+    coefficient,certificate=constrained_refit(design,targets,baseline,scores,scales,ridge=1e-8,radius=.999,max_iterations=5000)
+    report['constraint_certificate']=certificate;save();print('optimization',certificate,flush=True)
+    np.savez(out/'diagnostic_coefficient.npz',coefficient=coefficient)
+    repaired=DiagnosticCoefficientModel(coefficient)
+    dataset_root=ROOT/'source/results/koopman_phase8_2/dataset'
+    registry=load_protocol_episode_registry_v21(role_protocol_path=ROOT/'protocols/phase8_1/main_role_assignment_protocol.json',inventory_path=dataset_root/'dataset_inventory.json')
+    bindings=tuple(b for b in registry.episodes if b.configuration in sources and b.role=='validation')
+    assert len(bindings)==21
+    expected={b['episode_id']:b for b in mechanism['allowlist']}
+    assert all(b.to_dict()==expected[b.episode_id] for b in bindings)
+    report['allowlist']=[b.to_dict() for b in bindings];save()
+    backend=DatasetFormalLocoBackendV21(dataset_root=dataset_root,analysis_policy_path=ROOT/'protocols/phase8_1/analysis_policy.json',expected_source_commit=SOURCE_COMMIT,expected_evidence_level='server_isaac_smoke')
+    reader=SourceOnlyReader(backend,bindings)
+    class Persistence:
+        def predict_increment(self,*args,**kwargs):return np.zeros(10)
+    for b in bindings:
+        d=reader.open_episode(b);report['opens'].append(b.to_dict())
+        ep=RolloutEpisodeV21.from_dataset(d)
+        score=scores[sources.index(b.configuration)]
+        trace=rollout_episode_v21(repaired,ep,start=0,steps=512,policy=OFFICIAL_ROLLOUT_POLICY_V21,platform_score=score)
+        persist=rollout_episode_v21(Persistence(),ep,start=0,steps=512,policy=OFFICIAL_ROLLOUT_POLICY_V21)
+        pred=repaired.predict_increment(d.state_11,d.actuator_memory_4,d.virtual_control_4,platform_score=np.repeat(score[None,:],len(d.state_11),axis=0))
+        truth=build_increment_targets_v21(d.state_11,d.Y)
+        report['episodes'].append({'episode_id':b.episode_id,'configuration':b.configuration,'status':trace.status,'reason':trace.reason_code,
+            'completed':trace.completed_transition_count,'one_step_increment_rmse_10':np.sqrt(np.mean((pred-truth)**2,axis=0)),
+            'full_metrics':_metric_values(trace.predictions,ep.targets_11) if trace.status=='success' else None,
+            'persistence_full_metrics':_metric_values(persist.predictions,ep.targets_11) if persist.status=='success' else None})
+        save();print(b.configuration,b.family_repetition,trace.status,flush=True)
+    report['status']='completed_local_repair_assay';save()
+except Exception as exc:
+    report['status']='failed_local_repair_assay';report['exception']=f'{type(exc).__name__}: {exc}';save();raise
+print(out,flush=True)

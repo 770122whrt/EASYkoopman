@@ -1,0 +1,132 @@
+{
+  "status": "local_rate30_and_server_cpu_ready_isaac_graphics_blocked",
+  "timestamp": "2026-09-21T16:40:29.003116+08:00",
+  "server": {
+    "host": "183.147.142.40",
+    "port": 30852,
+    "authentication": "existing_key"
+  },
+  "local_tests": {
+    "related_passed": 119,
+    "deployment_regression_passed": 2,
+    "repository_wide": false
+  },
+  "cpu_readiness": {
+    "schema": "rate30-worker-readiness-v67",
+    "physics_steps": 0,
+    "model_fits": 0,
+    "control_benefit_claim": false,
+    "release_sha256": "aa1efbb4c57b3d01225a3d1604f9b39a2adbc4d04e6e359b249afbfbabb7e3a9",
+    "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+    "workers": [
+      {
+        "configuration": "base",
+        "event": {
+          "status": "ready",
+          "generation": "3a66d670c98d46f2a018fb6ff006aaf1"
+        },
+        "state": "ready",
+        "cleanup": {
+          "process_stopped": true,
+          "io_threads_stopped": true
+        },
+        "seconds": 10.104405181482434
+      },
+      {
+        "configuration": "asymmetric",
+        "event": {
+          "status": "ready",
+          "generation": "21a2cbf2736d4b64b73a0fc4a208aa0a"
+        },
+        "state": "ready",
+        "cleanup": {
+          "process_stopped": true,
+          "io_threads_stopped": true
+        },
+        "seconds": 9.816341714933515
+      },
+      {
+        "configuration": "uuv4",
+        "event": {
+          "status": "ready",
+          "generation": "bd416096e24a40ccbb6b2fcad9761fff"
+        },
+        "state": "ready",
+        "cleanup": {
+          "process_stopped": true,
+          "io_threads_stopped": true
+        },
+        "seconds": 9.922495860606432
+      }
+    ],
+    "passed": true
+  },
+  "cpu_supervisor": {
+    "native_exit": 0,
+    "reason": "completed",
+    "seconds": 32.2387102227658,
+    "group_stopped": true,
+    "remaining_group_pids": [],
+    "bytes_after": 156029,
+    "case_id": "cpu-check",
+    "diagnostic_only": true,
+    "manifest_sha256": "2c6a7c46fa78c23d9cf015aee56f6873d581095c876f64fe6a4a948af9f48f66"
+  },
+  "failed_cpu_r1": {
+    "native_exit": 1,
+    "reason": "completed",
+    "seconds": 0.15381317026913166,
+    "group_stopped": true,
+    "remaining_group_pids": [],
+    "bytes_after": 154224,
+    "case_id": "cpu-check",
+    "diagnostic_only": true,
+    "manifest_sha256": "466e2567b48d8a47364116c32c888b7eb88ca7f743529667ff91756fdaec1f63"
+  },
+  "original_env_audit": {
+    "original_dependency_files_checked": 2965,
+    "original_dependency_changed": [],
+    "isaaclab_patch_sha256": "d056adb8bb64fe7c9c34fffbd2478ef04155df8b60b071da942280952f829079",
+    "isaaclab_patch_unchanged": true,
+    "release_sha256": "aa1efbb4c57b3d01225a3d1604f9b39a2adbc4d04e6e359b249afbfbabb7e3a9",
+    "addon_changed": [],
+    "environment_bytes_excluding_shared_targets": 246486369,
+    "addon_bytes": 156329,
+    "release_bytes": 83420269,
+    "physical_runs": 0
+  },
+  "environment_preparation_status": "environment_ready",
+  "preparation_source_sha256_corrected": "7cba6bc1527f10ca3790a4db1bf692e9c873f3109bbb097ccae838599e2c2d38",
+  "preparation_source_field_original": "reused-approved-v58-environment-setup-on-30852",
+  "frozen_environment_record_preserved": true,
+  "physics_control_intervals": 0,
+  "new_control_benefit": false,
+  "runtime_qualified": false,
+  "probe_native": {
+    "native_exit": -15,
+    "reason": "timeout",
+    "seconds": 177.176061950624,
+    "group_stopped": true,
+    "remaining_group_pids": [],
+    "bytes_after": 95876,
+    "case_id": "gc-auto",
+    "diagnostic_only": true,
+    "manifest_sha256": "748067c882144e131d3dbb6e0b676949ca79ca3d99f4d68fd9788f63d1c86649"
+  },
+  "application_diagnostics": {
+    "preloaded_warp_90s": "failed_to_start",
+    "unset_display_90s": "failed_to_start"
+  },
+  "independent_host_checks": {
+    "nvidia_smi_q_12s": 124,
+    "vulkaninfo_15s": 124,
+    "nvidia_icd_only_vulkaninfo_12s": 124
+  },
+  "known_cause_boundary": "graphics_environment_unavailable_exact_host_cause_unconfirmed",
+  "background_processes": [],
+  "manifest_sha256": "2c6a7c46fa78c23d9cf015aee56f6873d581095c876f64fe6a4a948af9f48f66",
+  "archive_sha256": "a07000d61653aec5ee66bf038ca1cebb00c844c123460234f6286153c06b4bb8",
+  "evidence_bytes_before_review": 24908411,
+  "conservative_retained_local_bytes_before_review": 252492826,
+  "remaining_local_bytes_before_review": 15942630
+}

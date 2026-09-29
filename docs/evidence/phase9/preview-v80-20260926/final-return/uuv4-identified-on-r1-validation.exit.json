@@ -1,0 +1,17 @@
+{
+  "native_exit": 0,
+  "group_stopped": true,
+  "seconds": 105.39176757074893,
+  "command": [
+    "/root/shared-nvme/agentic-auv/runtime/bin/python",
+    "-B",
+    "-m",
+    "workflows.validate_preview_v80",
+    "--trace",
+    "/root/shared-nvme/agentic-auv/experiments/preview-v80-20260926/uuv4-identified-on-r1/trace.json.gz",
+    "--assets",
+    "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+    "--native-exit",
+    "0"
+  ]
+}

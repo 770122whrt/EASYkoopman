@@ -1,0 +1,102 @@
+[
+  {
+    "configuration": "long_body",
+    "controller": "projected_koopman",
+    "physics_steps": 36,
+    "simulation_seconds": 0.3,
+    "partial_score": 0.8635132241647885,
+    "matched_feedback_prefix_score": 0.8741754693383059,
+    "partial_score_gain_percent": 1.2196916462993481,
+    "terminal_pitch_rad": 0.008870622976685434,
+    "terminal_depth_error_m": 8.96453857421875e-05,
+    "issued_one_interval_max_abs_11": [
+      5.787585495298231e-07,
+      9.576299486724338e-08,
+      2.821237587495934e-06,
+      8.847777974509662e-06,
+      5.179725889626903e-07,
+      8.64439666317525e-09,
+      1.7965647076374096e-09,
+      9.267413336126046e-08,
+      9.226998841556106e-07,
+      3.6961695923376503e-07,
+      1.4719805926044473e-06
+    ],
+    "evidence": "raw_partial_trace_descriptive_only_not_full_episode_acceptance"
+  },
+  {
+    "configuration": "long_body",
+    "controller": "nominal_physics",
+    "physics_steps": 48,
+    "simulation_seconds": 0.4,
+    "partial_score": 0.7730603450701121,
+    "matched_feedback_prefix_score": 0.7849233938690597,
+    "partial_score_gain_percent": 1.5113638976247155,
+    "terminal_pitch_rad": 0.014195836459844293,
+    "terminal_depth_error_m": 2.4318695068359375e-05,
+    "issued_one_interval_max_abs_11": [
+      5.064992176784244e-07,
+      9.736092831946763e-08,
+      3.1819866365366093e-08,
+      8.798014075754416e-06,
+      5.312615374962268e-10,
+      6.819210244277205e-09,
+      2.420322025955837e-11,
+      1.0725968104175658e-07,
+      3.787797386102564e-08,
+      2.4491186217251437e-07,
+      4.83930560453035e-08
+    ],
+    "evidence": "raw_partial_trace_descriptive_only_not_full_episode_acceptance"
+  },
+  {
+    "configuration": "uuv6",
+    "controller": "projected_koopman",
+    "physics_steps": 192,
+    "simulation_seconds": 1.6,
+    "partial_score": 0.9778804068668333,
+    "matched_feedback_prefix_score": 0.2619415727571222,
+    "partial_score_gain_percent": -273.32004865586754,
+    "terminal_pitch_rad": -0.0016952598883524556,
+    "terminal_depth_error_m": 0.039216041564941406,
+    "issued_one_interval_max_abs_11": [
+      8.936474218401713e-07,
+      2.051059233565411e-07,
+      7.595939434963453e-08,
+      9.120553649234146e-06,
+      2.389115303910944e-06,
+      8.174977712357046e-07,
+      3.625244655833093e-09,
+      1.0174296993965826e-07,
+      1.3248226646890728e-06,
+      8.059815562594386e-07,
+      8.135737233766482e-07
+    ],
+    "evidence": "raw_partial_trace_descriptive_only_not_full_episode_acceptance"
+  },
+  {
+    "configuration": "uuv6",
+    "controller": "nominal_physics",
+    "physics_steps": 92,
+    "simulation_seconds": 0.7666666666666667,
+    "partial_score": 0.5056701997274249,
+    "matched_feedback_prefix_score": 0.5060998996912194,
+    "partial_score_gain_percent": 0.08490417881067787,
+    "terminal_pitch_rad": 0.03694457438060819,
+    "terminal_depth_error_m": 0.011266231536865234,
+    "issued_one_interval_max_abs_11": [
+      6.245794983428254e-07,
+      9.653259502862e-08,
+      2.0039899286053843e-07,
+      1.059603466563308e-05,
+      3.542701200857809e-07,
+      3.833560167287517e-07,
+      1.0359964437470465e-08,
+      1.349994043931685e-07,
+      4.385540166521734e-07,
+      5.730002021406277e-07,
+      1.8364703038343567e-07
+    ],
+    "evidence": "raw_partial_trace_descriptive_only_not_full_episode_acceptance"
+  }
+]

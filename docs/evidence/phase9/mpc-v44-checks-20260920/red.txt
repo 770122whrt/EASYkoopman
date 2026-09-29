@@ -1,0 +1,192 @@
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF                                          [100%]
+================================== FAILURES ===================================
+_ test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features[-2.8-uuv4] _
+tests\test_bounded_mpc_v44.py:21: in test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features
+    from koopman.control_objective_v44 import tracking_terms, state_features, control_mask, trajectory_cost, ObjectiveWeights
+E   ModuleNotFoundError: No module named 'koopman.control_objective_v44'
+_ test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features[-2.8-uuv4_angled] _
+tests\test_bounded_mpc_v44.py:21: in test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features
+    from koopman.control_objective_v44 import tracking_terms, state_features, control_mask, trajectory_cost, ObjectiveWeights
+E   ModuleNotFoundError: No module named 'koopman.control_objective_v44'
+_ test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features[-0.4-uuv4] _
+tests\test_bounded_mpc_v44.py:21: in test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features
+    from koopman.control_objective_v44 import tracking_terms, state_features, control_mask, trajectory_cost, ObjectiveWeights
+E   ModuleNotFoundError: No module named 'koopman.control_objective_v44'
+_ test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features[-0.4-uuv4_angled] _
+tests\test_bounded_mpc_v44.py:21: in test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features
+    from koopman.control_objective_v44 import tracking_terms, state_features, control_mask, trajectory_cost, ObjectiveWeights
+E   ModuleNotFoundError: No module named 'koopman.control_objective_v44'
+_ test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features[0.7-uuv4] _
+tests\test_bounded_mpc_v44.py:21: in test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features
+    from koopman.control_objective_v44 import tracking_terms, state_features, control_mask, trajectory_cost, ObjectiveWeights
+E   ModuleNotFoundError: No module named 'koopman.control_objective_v44'
+_ test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features[0.7-uuv4_angled] _
+tests\test_bounded_mpc_v44.py:21: in test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features
+    from koopman.control_objective_v44 import tracking_terms, state_features, control_mask, trajectory_cost, ObjectiveWeights
+E   ModuleNotFoundError: No module named 'koopman.control_objective_v44'
+_ test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features[2.9-uuv4] _
+tests\test_bounded_mpc_v44.py:21: in test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features
+    from koopman.control_objective_v44 import tracking_terms, state_features, control_mask, trajectory_cost, ObjectiveWeights
+E   ModuleNotFoundError: No module named 'koopman.control_objective_v44'
+_ test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features[2.9-uuv4_angled] _
+tests\test_bounded_mpc_v44.py:21: in test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features
+    from koopman.control_objective_v44 import tracking_terms, state_features, control_mask, trajectory_cost, ObjectiveWeights
+E   ModuleNotFoundError: No module named 'koopman.control_objective_v44'
+__ test_controllable_yaw_remains_a_target_and_quaternion_sign_is_irrelevant ___
+tests\test_bounded_mpc_v44.py:37: in test_controllable_yaw_remains_a_target_and_quaternion_sign_is_irrelevant
+    from koopman.control_objective_v44 import tracking_terms, control_mask
+E   ModuleNotFoundError: No module named 'koopman.control_objective_v44'
+__ test_objective_rejects_malformed_state_reference_or_mask[zero_quaternion] __
+tests\test_bounded_mpc_v44.py:48: in test_objective_rejects_malformed_state_reference_or_mask
+    from koopman.control_objective_v44 import tracking_terms
+E   ModuleNotFoundError: No module named 'koopman.control_objective_v44'
+________ test_objective_rejects_malformed_state_reference_or_mask[nan] ________
+tests\test_bounded_mpc_v44.py:48: in test_objective_rejects_malformed_state_reference_or_mask
+    from koopman.control_objective_v44 import tracking_terms
+E   ModuleNotFoundError: No module named 'koopman.control_objective_v44'
+_____ test_objective_rejects_malformed_state_reference_or_mask[reference] _____
+tests\test_bounded_mpc_v44.py:48: in test_objective_rejects_malformed_state_reference_or_mask
+    from koopman.control_objective_v44 import tracking_terms
+E   ModuleNotFoundError: No module named 'koopman.control_objective_v44'
+_______ test_objective_rejects_malformed_state_reference_or_mask[mask] ________
+tests\test_bounded_mpc_v44.py:48: in test_objective_rejects_malformed_state_reference_or_mask
+    from koopman.control_objective_v44 import tracking_terms
+E   ModuleNotFoundError: No module named 'koopman.control_objective_v44'
+___ test_known_vertical_response_selects_improving_depth_without_committing ___
+tests\test_bounded_mpc_v44.py:76: in test_known_vertical_response_selects_improving_depth_without_committing
+    live, domain, solver, args = fixtures()
+                                 ^^^^^^^^^^
+tests\test_bounded_mpc_v44.py:59: in fixtures
+    from koopman.bounded_mpc_v44 import SupportDomain, BoundedMPC, SearchConfig
+E   ModuleNotFoundError: No module named 'koopman.bounded_mpc_v44'
+__________________ test_baseline_wins_when_already_at_target __________________
+tests\test_bounded_mpc_v44.py:86: in test_baseline_wins_when_already_at_target
+    _, _, solver, args = fixtures()
+                         ^^^^^^^^^^
+tests\test_bounded_mpc_v44.py:59: in fixtures
+    from koopman.bounded_mpc_v44 import SupportDomain, BoundedMPC, SearchConfig
+E   ModuleNotFoundError: No module named 'koopman.bounded_mpc_v44'
+_ test_yaw_only_reference_change_does_not_change_candidates_or_selection[uuv4] _
+tests\test_bounded_mpc_v44.py:95: in test_yaw_only_reference_change_does_not_change_candidates_or_selection
+    _, _, solver, args = fixtures(name)
+                         ^^^^^^^^^^^^^^
+tests\test_bounded_mpc_v44.py:59: in fixtures
+    from koopman.bounded_mpc_v44 import SupportDomain, BoundedMPC, SearchConfig
+E   ModuleNotFoundError: No module named 'koopman.bounded_mpc_v44'
+_ test_yaw_only_reference_change_does_not_change_candidates_or_selection[uuv4_angled] _
+tests\test_bounded_mpc_v44.py:95: in test_yaw_only_reference_change_does_not_change_candidates_or_selection
+    _, _, solver, args = fixtures(name)
+                         ^^^^^^^^^^^^^^
+tests\test_bounded_mpc_v44.py:59: in fixtures
+    from koopman.bounded_mpc_v44 import SupportDomain, BoundedMPC, SearchConfig
+E   ModuleNotFoundError: No module named 'koopman.bounded_mpc_v44'
+________ test_committed_prefix_is_unchanged_and_future_slew_is_bounded ________
+tests\test_bounded_mpc_v44.py:106: in test_committed_prefix_is_unchanged_and_future_slew_is_bounded
+    _, _, solver, args = fixtures()
+                         ^^^^^^^^^^
+tests\test_bounded_mpc_v44.py:59: in fixtures
+    from koopman.bounded_mpc_v44 import SupportDomain, BoundedMPC, SearchConfig
+E   ModuleNotFoundError: No module named 'koopman.bounded_mpc_v44'
+_ test_inadmissible_baseline_and_predictions_never_return_usable_plan[state] __
+tests\test_bounded_mpc_v44.py:115: in test_inadmissible_baseline_and_predictions_never_return_usable_plan
+    _, domain, solver, args = fixtures()
+                              ^^^^^^^^^^
+tests\test_bounded_mpc_v44.py:59: in fixtures
+    from koopman.bounded_mpc_v44 import SupportDomain, BoundedMPC, SearchConfig
+E   ModuleNotFoundError: No module named 'koopman.bounded_mpc_v44'
+_ test_inadmissible_baseline_and_predictions_never_return_usable_plan[command] _
+tests\test_bounded_mpc_v44.py:115: in test_inadmissible_baseline_and_predictions_never_return_usable_plan
+    _, domain, solver, args = fixtures()
+                              ^^^^^^^^^^
+tests\test_bounded_mpc_v44.py:59: in fixtures
+    from koopman.bounded_mpc_v44 import SupportDomain, BoundedMPC, SearchConfig
+E   ModuleNotFoundError: No module named 'koopman.bounded_mpc_v44'
+__ test_inadmissible_baseline_and_predictions_never_return_usable_plan[slew] __
+tests\test_bounded_mpc_v44.py:115: in test_inadmissible_baseline_and_predictions_never_return_usable_plan
+    _, domain, solver, args = fixtures()
+                              ^^^^^^^^^^
+tests\test_bounded_mpc_v44.py:59: in fixtures
+    from koopman.bounded_mpc_v44 import SupportDomain, BoundedMPC, SearchConfig
+E   ModuleNotFoundError: No module named 'koopman.bounded_mpc_v44'
+_ test_inadmissible_baseline_and_predictions_never_return_usable_plan[saturation] _
+tests\test_bounded_mpc_v44.py:115: in test_inadmissible_baseline_and_predictions_never_return_usable_plan
+    _, domain, solver, args = fixtures()
+                              ^^^^^^^^^^
+tests\test_bounded_mpc_v44.py:59: in fixtures
+    from koopman.bounded_mpc_v44 import SupportDomain, BoundedMPC, SearchConfig
+E   ModuleNotFoundError: No module named 'koopman.bounded_mpc_v44'
+_ test_inadmissible_baseline_and_predictions_never_return_usable_plan[prediction] _
+tests\test_bounded_mpc_v44.py:115: in test_inadmissible_baseline_and_predictions_never_return_usable_plan
+    _, domain, solver, args = fixtures()
+                              ^^^^^^^^^^
+tests\test_bounded_mpc_v44.py:59: in fixtures
+    from koopman.bounded_mpc_v44 import SupportDomain, BoundedMPC, SearchConfig
+E   ModuleNotFoundError: No module named 'koopman.bounded_mpc_v44'
+__ test_expired_or_blocking_computation_returns_timeout_never_issued_history __
+tests\test_bounded_mpc_v44.py:128: in test_expired_or_blocking_computation_returns_timeout_never_issued_history
+    live, _, solver, args = fixtures()
+                            ^^^^^^^^^^
+tests\test_bounded_mpc_v44.py:59: in fixtures
+    from koopman.bounded_mpc_v44 import SupportDomain, BoundedMPC, SearchConfig
+E   ModuleNotFoundError: No module named 'koopman.bounded_mpc_v44'
+__________ test_context_model_and_missing_fit_provenance_fail_closed __________
+tests\test_bounded_mpc_v44.py:140: in test_context_model_and_missing_fit_provenance_fail_closed
+    from koopman.bounded_mpc_v44 import BoundedMPC
+E   ModuleNotFoundError: No module named 'koopman.bounded_mpc_v44'
+____ test_diagnostic_domain_is_owned_and_yaw_rate_remains_a_physical_bound ____
+tests\test_bounded_mpc_v44.py:152: in test_diagnostic_domain_is_owned_and_yaw_rate_remains_a_physical_bound
+    from koopman.bounded_mpc_v44 import SupportDomain
+E   ModuleNotFoundError: No module named 'koopman.bounded_mpc_v44'
+__________ test_invalid_search_configuration_is_rejected[horizon-0] ___________
+tests\test_bounded_mpc_v44.py:164: in test_invalid_search_configuration_is_rejected
+    from koopman.bounded_mpc_v44 import SearchConfig
+E   ModuleNotFoundError: No module named 'koopman.bounded_mpc_v44'
+________ test_invalid_search_configuration_is_rejected[timeout_ms-nan] ________
+tests\test_bounded_mpc_v44.py:164: in test_invalid_search_configuration_is_rejected
+    from koopman.bounded_mpc_v44 import SearchConfig
+E   ModuleNotFoundError: No module named 'koopman.bounded_mpc_v44'
+_____ test_invalid_search_configuration_is_rejected[perturbation-value2] ______
+tests\test_bounded_mpc_v44.py:164: in test_invalid_search_configuration_is_rejected
+    from koopman.bounded_mpc_v44 import SearchConfig
+E   ModuleNotFoundError: No module named 'koopman.bounded_mpc_v44'
+_________ test_invalid_search_configuration_is_rejected[slew-value3] __________
+tests\test_bounded_mpc_v44.py:164: in test_invalid_search_configuration_is_rejected
+    from koopman.bounded_mpc_v44 import SearchConfig
+E   ModuleNotFoundError: No module named 'koopman.bounded_mpc_v44'
+______ test_invalid_search_configuration_is_rejected[raw_pwm_limit-1.01] ______
+tests\test_bounded_mpc_v44.py:164: in test_invalid_search_configuration_is_rejected
+    from koopman.bounded_mpc_v44 import SearchConfig
+E   ModuleNotFoundError: No module named 'koopman.bounded_mpc_v44'
+=========================== short test summary info ===========================
+FAILED tests/test_bounded_mpc_v44.py::test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features[-2.8-uuv4]
+FAILED tests/test_bounded_mpc_v44.py::test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features[-2.8-uuv4_angled]
+FAILED tests/test_bounded_mpc_v44.py::test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features[-0.4-uuv4]
+FAILED tests/test_bounded_mpc_v44.py::test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features[-0.4-uuv4_angled]
+FAILED tests/test_bounded_mpc_v44.py::test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features[0.7-uuv4]
+FAILED tests/test_bounded_mpc_v44.py::test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features[0.7-uuv4_angled]
+FAILED tests/test_bounded_mpc_v44.py::test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features[2.9-uuv4]
+FAILED tests/test_bounded_mpc_v44.py::test_uncontrollable_world_yaw_is_absent_from_objective_and_domain_features[2.9-uuv4_angled]
+FAILED tests/test_bounded_mpc_v44.py::test_controllable_yaw_remains_a_target_and_quaternion_sign_is_irrelevant
+FAILED tests/test_bounded_mpc_v44.py::test_objective_rejects_malformed_state_reference_or_mask[zero_quaternion]
+FAILED tests/test_bounded_mpc_v44.py::test_objective_rejects_malformed_state_reference_or_mask[nan]
+FAILED tests/test_bounded_mpc_v44.py::test_objective_rejects_malformed_state_reference_or_mask[reference]
+FAILED tests/test_bounded_mpc_v44.py::test_objective_rejects_malformed_state_reference_or_mask[mask]
+FAILED tests/test_bounded_mpc_v44.py::test_known_vertical_response_selects_improving_depth_without_committing
+FAILED tests/test_bounded_mpc_v44.py::test_baseline_wins_when_already_at_target
+FAILED tests/test_bounded_mpc_v44.py::test_yaw_only_reference_change_does_not_change_candidates_or_selection[uuv4]
+FAILED tests/test_bounded_mpc_v44.py::test_yaw_only_reference_change_does_not_change_candidates_or_selection[uuv4_angled]
+FAILED tests/test_bounded_mpc_v44.py::test_committed_prefix_is_unchanged_and_future_slew_is_bounded
+FAILED tests/test_bounded_mpc_v44.py::test_inadmissible_baseline_and_predictions_never_return_usable_plan[state]
+FAILED tests/test_bounded_mpc_v44.py::test_inadmissible_baseline_and_predictions_never_return_usable_plan[command]
+FAILED tests/test_bounded_mpc_v44.py::test_inadmissible_baseline_and_predictions_never_return_usable_plan[slew]
+FAILED tests/test_bounded_mpc_v44.py::test_inadmissible_baseline_and_predictions_never_return_usable_plan[saturation]
+FAILED tests/test_bounded_mpc_v44.py::test_inadmissible_baseline_and_predictions_never_return_usable_plan[prediction]
+FAILED tests/test_bounded_mpc_v44.py::test_expired_or_blocking_computation_returns_timeout_never_issued_history
+FAILED tests/test_bounded_mpc_v44.py::test_context_model_and_missing_fit_provenance_fail_closed
+FAILED tests/test_bounded_mpc_v44.py::test_diagnostic_domain_is_owned_and_yaw_rate_remains_a_physical_bound
+FAILED tests/test_bounded_mpc_v44.py::test_invalid_search_configuration_is_rejected[horizon-0]
+FAILED tests/test_bounded_mpc_v44.py::test_invalid_search_configuration_is_rejected[timeout_ms-nan]
+FAILED tests/test_bounded_mpc_v44.py::test_invalid_search_configuration_is_rejected[perturbation-value2]
+FAILED tests/test_bounded_mpc_v44.py::test_invalid_search_configuration_is_rejected[slew-value3]
+FAILED tests/test_bounded_mpc_v44.py::test_invalid_search_configuration_is_rejected[raw_pwm_limit-1.01]
+31 failed in 4.64s

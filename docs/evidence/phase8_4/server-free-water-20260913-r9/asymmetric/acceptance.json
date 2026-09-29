@@ -1,0 +1,74 @@
+{
+  "status": "source_runtime_semantics_inventory_pullback_accepted_diagnostic_only",
+  "stage": "asymmetric",
+  "source_commit": "8a73485b33306eb7fe420b87dcfe08df7323b4b2",
+  "archive_sha256": "1ec6a3855653920bc509772a47e26ca4337a2136298a281a2934f3d361fa86d3",
+  "files": 44,
+  "cases": [
+    {
+      "status": "diagnostic_semantics_passed_not_training_data",
+      "run_id": "w26-asymmetric-8502-low",
+      "source_commit": "8a73485b33306eb7fe420b87dcfe08df7323b4b2",
+      "physics_ticks": 512,
+      "contact_ticks": 0,
+      "first_contact_index": null,
+      "impulse_ticks": 0,
+      "first_impulse_index": null,
+      "rejected_ticks": 36,
+      "minimum_hull_clearance_m": 0.23655513073813084,
+      "maximum_velocity_balance_residual_m_s": 3.725218509966627e-08,
+      "maximum_control_pwm_speed_wrench_errors": [
+        0.0,
+        0.0,
+        2.3605821240835212e-05,
+        7.157875028696026e-06
+      ],
+      "model_handoff": false,
+      "training_eligible": false
+    },
+    {
+      "status": "diagnostic_semantics_passed_not_training_data",
+      "run_id": "w26-asymmetric-8502-high",
+      "source_commit": "8a73485b33306eb7fe420b87dcfe08df7323b4b2",
+      "physics_ticks": 512,
+      "contact_ticks": 0,
+      "first_contact_index": null,
+      "impulse_ticks": 0,
+      "first_impulse_index": null,
+      "rejected_ticks": 0,
+      "minimum_hull_clearance_m": 4.236556382435671,
+      "maximum_velocity_balance_residual_m_s": 3.725218509966627e-08,
+      "maximum_control_pwm_speed_wrench_errors": [
+        0.0,
+        0.0,
+        2.3605821240835212e-05,
+        7.157875028696026e-06
+      ],
+      "model_handoff": false,
+      "training_eligible": false
+    }
+  ],
+  "pair": {
+    "configuration": "asymmetric",
+    "precontact_physics_ticks": 512,
+    "maximum_quaternion_body_velocity_difference": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "maximum_height_offset_error_m": 3.4570693969726562e-06,
+    "precontact_equivalent_within_fixed_tolerances": true,
+    "low_contact_observed": false,
+    "limits": "Matched measured states; no model comparison or prediction promotion."
+  },
+  "new_model_fits": 0,
+  "training_eligible": false,
+  "model_handoff": false
+}

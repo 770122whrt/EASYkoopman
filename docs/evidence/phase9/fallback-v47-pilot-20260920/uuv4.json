@@ -1,0 +1,3591 @@
+[
+  {
+    "configuration": "uuv4",
+    "episode_id": "i29-uuv4-fit-8738-prbs",
+    "role": "fit",
+    "trace_sha256": "a99954360bd03e57df70d53e3d7945f2c69a095b478b550a766aa2b6d8595af1",
+    "request": {
+      "label": "hold-o0",
+      "origin": 0,
+      "z": 5.5
+    },
+    "state": [
+      5.5,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "reference": [
+      5.5,
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "previous": null,
+    "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+    "prepare_before_ready_ms": 18.35259998915717,
+    "seed_status": "prepared",
+    "warmup": {
+      "total_ms": 2.6530999748501927,
+      "packet": {
+        "status": "ready",
+        "command": [
+          -1.1364567065186293e-08,
+          1.4839368622787674e-09,
+          0.0,
+          -0.10681555420160294
+        ],
+        "reason": null,
+        "startup_exception_requested": true,
+        "runtime_eligible": false,
+        "actual_history_advanced": false,
+        "configuration": "uuv4",
+        "context_key": [
+          21.780000686645508,
+          0.3549887537956238,
+          0.9306462407112122,
+          1.1417206525802612,
+          0.0,
+          0.0,
+          0.009999999776482582,
+          0.02199999988079071,
+          1.0,
+          997.0,
+          0.001306,
+          9.81
+        ],
+        "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+        "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+        "demand": {
+          "target_wrench": [
+            0.0,
+            0.0,
+            -1.510732098072765,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "desired_vertical_acceleration": 0.0,
+          "desired_angular_acceleration": [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "unallocated_torque": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+        },
+        "inspection": {
+          "command": [
+            -1.1364567065186293e-08,
+            1.4839368622787674e-09,
+            0.0,
+            -0.10681555420160294
+          ],
+          "target_wrench": [
+            0.0,
+            0.0,
+            -1.510732098072765,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "steady_wrench": [
+            5.58289229957154e-06,
+            0.0,
+            -1.5107320547103882,
+            -7.450580596923828e-09,
+            0.0,
+            -5.684341886080802e-14
+          ],
+          "acceleration_error": [
+            2.5633113514981255e-07,
+            0.0,
+            1.9909263284343116e-09,
+            -2.098821587236344e-08,
+            0.0,
+            -4.978750163828889e-14
+          ],
+          "pwm_raw": [
+            -0.02670387551188469,
+            -0.026703879237174988,
+            -0.026703910902142525,
+            -0.026703903451561928
+          ],
+          "pwm_headroom": 0.9732960890978575,
+          "minimum_deadzone_distance_pwm": 0.006703875958919525,
+          "physical_residual_accepted": true,
+          "command_constraints_accepted": true
+        },
+        "iterations": 0,
+        "evaluations": 1,
+        "elapsed_ms": 2.378999983193353,
+        "requested_wrench": [
+          0.0,
+          0.0,
+          -1.510732098072765,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "static_command": [
+          -1.1364567065186293e-08,
+          1.4839368622787674e-09,
+          0.0,
+          -0.10681555420160294
+        ],
+        "static_inspection": {
+          "command": [
+            -1.1364567065186293e-08,
+            1.4839368622787674e-09,
+            0.0,
+            -0.10681555420160294
+          ],
+          "target_wrench": [
+            0.0,
+            0.0,
+            -1.510732098072765,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "steady_wrench": [
+            5.58289229957154e-06,
+            0.0,
+            -1.5107320547103882,
+            -7.450580596923828e-09,
+            0.0,
+            -5.684341886080802e-14
+          ],
+          "acceleration_error": [
+            2.5633113514981255e-07,
+            0.0,
+            1.9909263284343116e-09,
+            -2.098821587236344e-08,
+            0.0,
+            -4.978750163828889e-14
+          ],
+          "pwm_raw": [
+            -0.02670387551188469,
+            -0.026703879237174988,
+            -0.026703910902142525,
+            -0.026703903451561928
+          ],
+          "pwm_headroom": 0.9732960890978575,
+          "minimum_deadzone_distance_pwm": 0.006703875958919525,
+          "physical_residual_accepted": true,
+          "command_constraints_accepted": true
+        },
+        "static_reference_in_support": true,
+        "target_rewritten": false,
+        "tracking_status": "target_attained",
+        "alpha": 1.0,
+        "limitations": [
+          "once_only_startup_permission_required"
+        ],
+        "zero_progress": false
+      },
+      "passes": true,
+      "source_check": {
+        "checked_ready": true,
+        "maximum_difference": 0.0,
+        "seconds": 0.005533300020033494
+      }
+    },
+    "samples": [
+      {
+        "total_ms": 2.869399992050603,
+        "packet": {
+          "status": "ready",
+          "command": [
+            -1.1364567065186293e-08,
+            1.4839368622787674e-09,
+            0.0,
+            -0.10681555420160294
+          ],
+          "reason": null,
+          "startup_exception_requested": true,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv4",
+          "context_key": [
+            21.780000686645508,
+            0.3549887537956238,
+            0.9306462407112122,
+            1.1417206525802612,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.02199999988079071,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.510732098072765,
+              -0.0,
+              -0.0,
+              -0.0
+            ],
+            "desired_vertical_acceleration": 0.0,
+            "desired_angular_acceleration": [
+              -0.0,
+              -0.0,
+              -0.0
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              -1.1364567065186293e-08,
+              1.4839368622787674e-09,
+              0.0,
+              -0.10681555420160294
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.510732098072765,
+              -0.0,
+              -0.0,
+              -0.0
+            ],
+            "steady_wrench": [
+              5.58289229957154e-06,
+              0.0,
+              -1.5107320547103882,
+              -7.450580596923828e-09,
+              0.0,
+              -5.684341886080802e-14
+            ],
+            "acceleration_error": [
+              2.5633113514981255e-07,
+              0.0,
+              1.9909263284343116e-09,
+              -2.098821587236344e-08,
+              0.0,
+              -4.978750163828889e-14
+            ],
+            "pwm_raw": [
+              -0.02670387551188469,
+              -0.026703879237174988,
+              -0.026703910902142525,
+              -0.026703903451561928
+            ],
+            "pwm_headroom": 0.9732960890978575,
+            "minimum_deadzone_distance_pwm": 0.006703875958919525,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "iterations": 0,
+          "evaluations": 1,
+          "elapsed_ms": 2.5934000150300562,
+          "requested_wrench": [
+            0.0,
+            0.0,
+            -1.510732098072765,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "static_command": [
+            -1.1364567065186293e-08,
+            1.4839368622787674e-09,
+            0.0,
+            -0.10681555420160294
+          ],
+          "static_inspection": {
+            "command": [
+              -1.1364567065186293e-08,
+              1.4839368622787674e-09,
+              0.0,
+              -0.10681555420160294
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.510732098072765,
+              -0.0,
+              -0.0,
+              -0.0
+            ],
+            "steady_wrench": [
+              5.58289229957154e-06,
+              0.0,
+              -1.5107320547103882,
+              -7.450580596923828e-09,
+              0.0,
+              -5.684341886080802e-14
+            ],
+            "acceleration_error": [
+              2.5633113514981255e-07,
+              0.0,
+              1.9909263284343116e-09,
+              -2.098821587236344e-08,
+              0.0,
+              -4.978750163828889e-14
+            ],
+            "pwm_raw": [
+              -0.02670387551188469,
+              -0.026703879237174988,
+              -0.026703910902142525,
+              -0.026703903451561928
+            ],
+            "pwm_headroom": 0.9732960890978575,
+            "minimum_deadzone_distance_pwm": 0.006703875958919525,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "static_reference_in_support": true,
+          "target_rewritten": false,
+          "tracking_status": "target_attained",
+          "alpha": 1.0,
+          "limitations": [
+            "once_only_startup_permission_required"
+          ],
+          "zero_progress": false
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.009373500011861324
+        }
+      },
+      {
+        "total_ms": 3.718699997989461,
+        "packet": {
+          "status": "ready",
+          "command": [
+            -1.1364567065186293e-08,
+            1.4839368622787674e-09,
+            0.0,
+            -0.10681555420160294
+          ],
+          "reason": null,
+          "startup_exception_requested": true,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv4",
+          "context_key": [
+            21.780000686645508,
+            0.3549887537956238,
+            0.9306462407112122,
+            1.1417206525802612,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.02199999988079071,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.510732098072765,
+              -0.0,
+              -0.0,
+              -0.0
+            ],
+            "desired_vertical_acceleration": 0.0,
+            "desired_angular_acceleration": [
+              -0.0,
+              -0.0,
+              -0.0
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              -1.1364567065186293e-08,
+              1.4839368622787674e-09,
+              0.0,
+              -0.10681555420160294
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.510732098072765,
+              -0.0,
+              -0.0,
+              -0.0
+            ],
+            "steady_wrench": [
+              5.58289229957154e-06,
+              0.0,
+              -1.5107320547103882,
+              -7.450580596923828e-09,
+              0.0,
+              -5.684341886080802e-14
+            ],
+            "acceleration_error": [
+              2.5633113514981255e-07,
+              0.0,
+              1.9909263284343116e-09,
+              -2.098821587236344e-08,
+              0.0,
+              -4.978750163828889e-14
+            ],
+            "pwm_raw": [
+              -0.02670387551188469,
+              -0.026703879237174988,
+              -0.026703910902142525,
+              -0.026703903451561928
+            ],
+            "pwm_headroom": 0.9732960890978575,
+            "minimum_deadzone_distance_pwm": 0.006703875958919525,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "iterations": 0,
+          "evaluations": 1,
+          "elapsed_ms": 3.450799995334819,
+          "requested_wrench": [
+            0.0,
+            0.0,
+            -1.510732098072765,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "static_command": [
+            -1.1364567065186293e-08,
+            1.4839368622787674e-09,
+            0.0,
+            -0.10681555420160294
+          ],
+          "static_inspection": {
+            "command": [
+              -1.1364567065186293e-08,
+              1.4839368622787674e-09,
+              0.0,
+              -0.10681555420160294
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.510732098072765,
+              -0.0,
+              -0.0,
+              -0.0
+            ],
+            "steady_wrench": [
+              5.58289229957154e-06,
+              0.0,
+              -1.5107320547103882,
+              -7.450580596923828e-09,
+              0.0,
+              -5.684341886080802e-14
+            ],
+            "acceleration_error": [
+              2.5633113514981255e-07,
+              0.0,
+              1.9909263284343116e-09,
+              -2.098821587236344e-08,
+              0.0,
+              -4.978750163828889e-14
+            ],
+            "pwm_raw": [
+              -0.02670387551188469,
+              -0.026703879237174988,
+              -0.026703910902142525,
+              -0.026703903451561928
+            ],
+            "pwm_headroom": 0.9732960890978575,
+            "minimum_deadzone_distance_pwm": 0.006703875958919525,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "static_reference_in_support": true,
+          "target_rewritten": false,
+          "tracking_status": "target_attained",
+          "alpha": 1.0,
+          "limitations": [
+            "once_only_startup_permission_required"
+          ],
+          "zero_progress": false
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.006542199989780784
+        }
+      },
+      {
+        "total_ms": 2.223299990873784,
+        "packet": {
+          "status": "ready",
+          "command": [
+            -1.1364567065186293e-08,
+            1.4839368622787674e-09,
+            0.0,
+            -0.10681555420160294
+          ],
+          "reason": null,
+          "startup_exception_requested": true,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv4",
+          "context_key": [
+            21.780000686645508,
+            0.3549887537956238,
+            0.9306462407112122,
+            1.1417206525802612,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.02199999988079071,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.510732098072765,
+              -0.0,
+              -0.0,
+              -0.0
+            ],
+            "desired_vertical_acceleration": 0.0,
+            "desired_angular_acceleration": [
+              -0.0,
+              -0.0,
+              -0.0
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              -1.1364567065186293e-08,
+              1.4839368622787674e-09,
+              0.0,
+              -0.10681555420160294
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.510732098072765,
+              -0.0,
+              -0.0,
+              -0.0
+            ],
+            "steady_wrench": [
+              5.58289229957154e-06,
+              0.0,
+              -1.5107320547103882,
+              -7.450580596923828e-09,
+              0.0,
+              -5.684341886080802e-14
+            ],
+            "acceleration_error": [
+              2.5633113514981255e-07,
+              0.0,
+              1.9909263284343116e-09,
+              -2.098821587236344e-08,
+              0.0,
+              -4.978750163828889e-14
+            ],
+            "pwm_raw": [
+              -0.02670387551188469,
+              -0.026703879237174988,
+              -0.026703910902142525,
+              -0.026703903451561928
+            ],
+            "pwm_headroom": 0.9732960890978575,
+            "minimum_deadzone_distance_pwm": 0.006703875958919525,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "iterations": 0,
+          "evaluations": 1,
+          "elapsed_ms": 1.9779999856837094,
+          "requested_wrench": [
+            0.0,
+            0.0,
+            -1.510732098072765,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "static_command": [
+            -1.1364567065186293e-08,
+            1.4839368622787674e-09,
+            0.0,
+            -0.10681555420160294
+          ],
+          "static_inspection": {
+            "command": [
+              -1.1364567065186293e-08,
+              1.4839368622787674e-09,
+              0.0,
+              -0.10681555420160294
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.510732098072765,
+              -0.0,
+              -0.0,
+              -0.0
+            ],
+            "steady_wrench": [
+              5.58289229957154e-06,
+              0.0,
+              -1.5107320547103882,
+              -7.450580596923828e-09,
+              0.0,
+              -5.684341886080802e-14
+            ],
+            "acceleration_error": [
+              2.5633113514981255e-07,
+              0.0,
+              1.9909263284343116e-09,
+              -2.098821587236344e-08,
+              0.0,
+              -4.978750163828889e-14
+            ],
+            "pwm_raw": [
+              -0.02670387551188469,
+              -0.026703879237174988,
+              -0.026703910902142525,
+              -0.026703903451561928
+            ],
+            "pwm_headroom": 0.9732960890978575,
+            "minimum_deadzone_distance_pwm": 0.006703875958919525,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "static_reference_in_support": true,
+          "target_rewritten": false,
+          "tracking_status": "target_attained",
+          "alpha": 1.0,
+          "limitations": [
+            "once_only_startup_permission_required"
+          ],
+          "zero_progress": false
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.005984799994621426
+        }
+      }
+    ]
+  },
+  {
+    "configuration": "uuv4",
+    "episode_id": "i29-uuv4-fit-8738-prbs",
+    "role": "fit",
+    "trace_sha256": "a99954360bd03e57df70d53e3d7945f2c69a095b478b550a766aa2b6d8595af1",
+    "request": {
+      "label": "hold-o64",
+      "origin": 64,
+      "z": 5.5
+    },
+    "state": [
+      5.504908084869385,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      2.5523235080981976e-07,
+      0.0,
+      0.004769783467054367,
+      -2.2944110611433643e-08,
+      1.2703576857120424e-08,
+      -2.5795283877666497e-14
+    ],
+    "reference": [
+      5.5,
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "previous": [
+      -1.1495793650340147e-08,
+      -1.0768876068656397e-10,
+      0.0,
+      -0.10681556165218353
+    ],
+    "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+    "prepare_before_ready_ms": 18.35259998915717,
+    "seed_status": "prepared",
+    "warmup": {
+      "total_ms": 4.115699994144961,
+      "packet": {
+        "status": "ready",
+        "command": [
+          -1.1495793650340147e-08,
+          -1.0768876068656397e-10,
+          0.0,
+          -0.10681556165218353
+        ],
+        "reason": null,
+        "startup_exception_requested": false,
+        "runtime_eligible": false,
+        "actual_history_advanced": false,
+        "configuration": "uuv4",
+        "context_key": [
+          21.780000686645508,
+          0.3549887537956238,
+          0.9306462407112122,
+          1.1417206525802612,
+          0.0,
+          0.0,
+          0.009999999776482582,
+          0.02199999988079071,
+          1.0,
+          997.0,
+          0.001306,
+          9.81
+        ],
+        "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+        "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+        "demand": {
+          "target_wrench": [
+            0.0,
+            0.0,
+            -1.8254019642732828,
+            4.886940739741066e-08,
+            -7.093521627399047e-08,
+            0.0
+          ],
+          "desired_vertical_acceleration": -0.0144476518034935,
+          "desired_angular_acceleration": [
+            1.3766466366860186e-07,
+            -7.622146114272255e-08,
+            0.0
+          ],
+          "unallocated_torque": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+        },
+        "inspection": {
+          "command": [
+            -1.1495793650340147e-08,
+            -1.0768876068656397e-10,
+            0.0,
+            -0.10681556165218353
+          ],
+          "target_wrench": [
+            0.0,
+            0.0,
+            -1.8254019642732828,
+            4.886940739741066e-08,
+            -7.093521627399047e-08,
+            0.0
+          ],
+          "steady_wrench": [
+            5.582892754318891e-06,
+            0.0,
+            -1.5107321739196777,
+            -7.450580596923828e-09,
+            -1.4901161193847656e-08,
+            -5.684341886080802e-14
+          ],
+          "acceleration_error": [
+            2.5633115602893727e-07,
+            0.0,
+            0.014447648321083209,
+            -1.586528795409653e-07,
+            6.020983337054136e-08,
+            -4.978750163828889e-14
+          ],
+          "pwm_raw": [
+            -0.02670387364923954,
+            -0.02670387737452984,
+            -0.026703916490077972,
+            -0.026703909039497375
+          ],
+          "pwm_headroom": 0.973296083509922,
+          "minimum_deadzone_distance_pwm": 0.006703874096274376,
+          "physical_residual_accepted": true,
+          "command_constraints_accepted": true
+        },
+        "static_inspection": {
+          "command": [
+            -1.1495793650340147e-08,
+            -1.0768876068656397e-10,
+            0.0,
+            -0.10681556165218353
+          ],
+          "target_wrench": [
+            0.0,
+            0.0,
+            -1.8254019642732828,
+            4.886940739741066e-08,
+            -7.093521627399047e-08,
+            0.0
+          ],
+          "steady_wrench": [
+            5.582892754318891e-06,
+            0.0,
+            -1.5107321739196777,
+            -7.450580596923828e-09,
+            -1.4901161193847656e-08,
+            -5.684341886080802e-14
+          ],
+          "acceleration_error": [
+            2.5633115602893727e-07,
+            0.0,
+            0.014447648321083209,
+            -1.586528795409653e-07,
+            6.020983337054136e-08,
+            -4.978750163828889e-14
+          ],
+          "pwm_raw": [
+            -0.02670387364923954,
+            -0.02670387737452984,
+            -0.026703916490077972,
+            -0.026703909039497375
+          ],
+          "pwm_headroom": 0.973296083509922,
+          "minimum_deadzone_distance_pwm": 0.006703874096274376,
+          "physical_residual_accepted": true,
+          "command_constraints_accepted": true
+        },
+        "requested_wrench": [
+          0.0,
+          0.0,
+          -1.8254019642732828,
+          4.886940739741066e-08,
+          -7.093521627399047e-08,
+          0.0
+        ],
+        "tracking_status": "target_attained",
+        "target_rewritten": false,
+        "iterations": 0,
+        "evaluations": 4,
+        "static_command": [
+          -1.1495793650340147e-08,
+          -1.0768876068656397e-10,
+          0.0,
+          -0.10681556165218353
+        ],
+        "alpha": 1.0,
+        "limitations": [],
+        "zero_progress": true,
+        "static_reference_in_support": true,
+        "elapsed_ms": 3.8164000143297017
+      },
+      "passes": true,
+      "source_check": {
+        "checked_ready": true,
+        "maximum_difference": 0.0,
+        "seconds": 0.00842150000971742
+      }
+    },
+    "samples": [
+      {
+        "total_ms": 4.39000001642853,
+        "packet": {
+          "status": "ready",
+          "command": [
+            -1.1495793650340147e-08,
+            -1.0768876068656397e-10,
+            0.0,
+            -0.10681556165218353
+          ],
+          "reason": null,
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv4",
+          "context_key": [
+            21.780000686645508,
+            0.3549887537956238,
+            0.9306462407112122,
+            1.1417206525802612,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.02199999988079071,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.8254019642732828,
+              4.886940739741066e-08,
+              -7.093521627399047e-08,
+              0.0
+            ],
+            "desired_vertical_acceleration": -0.0144476518034935,
+            "desired_angular_acceleration": [
+              1.3766466366860186e-07,
+              -7.622146114272255e-08,
+              0.0
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              -1.1495793650340147e-08,
+              -1.0768876068656397e-10,
+              0.0,
+              -0.10681556165218353
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.8254019642732828,
+              4.886940739741066e-08,
+              -7.093521627399047e-08,
+              0.0
+            ],
+            "steady_wrench": [
+              5.582892754318891e-06,
+              0.0,
+              -1.5107321739196777,
+              -7.450580596923828e-09,
+              -1.4901161193847656e-08,
+              -5.684341886080802e-14
+            ],
+            "acceleration_error": [
+              2.5633115602893727e-07,
+              0.0,
+              0.014447648321083209,
+              -1.586528795409653e-07,
+              6.020983337054136e-08,
+              -4.978750163828889e-14
+            ],
+            "pwm_raw": [
+              -0.02670387364923954,
+              -0.02670387737452984,
+              -0.026703916490077972,
+              -0.026703909039497375
+            ],
+            "pwm_headroom": 0.973296083509922,
+            "minimum_deadzone_distance_pwm": 0.006703874096274376,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "static_inspection": {
+            "command": [
+              -1.1495793650340147e-08,
+              -1.0768876068656397e-10,
+              0.0,
+              -0.10681556165218353
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.8254019642732828,
+              4.886940739741066e-08,
+              -7.093521627399047e-08,
+              0.0
+            ],
+            "steady_wrench": [
+              5.582892754318891e-06,
+              0.0,
+              -1.5107321739196777,
+              -7.450580596923828e-09,
+              -1.4901161193847656e-08,
+              -5.684341886080802e-14
+            ],
+            "acceleration_error": [
+              2.5633115602893727e-07,
+              0.0,
+              0.014447648321083209,
+              -1.586528795409653e-07,
+              6.020983337054136e-08,
+              -4.978750163828889e-14
+            ],
+            "pwm_raw": [
+              -0.02670387364923954,
+              -0.02670387737452984,
+              -0.026703916490077972,
+              -0.026703909039497375
+            ],
+            "pwm_headroom": 0.973296083509922,
+            "minimum_deadzone_distance_pwm": 0.006703874096274376,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "requested_wrench": [
+            0.0,
+            0.0,
+            -1.8254019642732828,
+            4.886940739741066e-08,
+            -7.093521627399047e-08,
+            0.0
+          ],
+          "tracking_status": "target_attained",
+          "target_rewritten": false,
+          "iterations": 0,
+          "evaluations": 4,
+          "static_command": [
+            -1.1495793650340147e-08,
+            -1.0768876068656397e-10,
+            0.0,
+            -0.10681556165218353
+          ],
+          "alpha": 1.0,
+          "limitations": [],
+          "zero_progress": true,
+          "static_reference_in_support": true,
+          "elapsed_ms": 4.08479999168776
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.0070838000101502985
+        }
+      },
+      {
+        "total_ms": 4.052499978570268,
+        "packet": {
+          "status": "ready",
+          "command": [
+            -1.1495793650340147e-08,
+            -1.0768876068656397e-10,
+            0.0,
+            -0.10681556165218353
+          ],
+          "reason": null,
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv4",
+          "context_key": [
+            21.780000686645508,
+            0.3549887537956238,
+            0.9306462407112122,
+            1.1417206525802612,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.02199999988079071,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.8254019642732828,
+              4.886940739741066e-08,
+              -7.093521627399047e-08,
+              0.0
+            ],
+            "desired_vertical_acceleration": -0.0144476518034935,
+            "desired_angular_acceleration": [
+              1.3766466366860186e-07,
+              -7.622146114272255e-08,
+              0.0
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              -1.1495793650340147e-08,
+              -1.0768876068656397e-10,
+              0.0,
+              -0.10681556165218353
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.8254019642732828,
+              4.886940739741066e-08,
+              -7.093521627399047e-08,
+              0.0
+            ],
+            "steady_wrench": [
+              5.582892754318891e-06,
+              0.0,
+              -1.5107321739196777,
+              -7.450580596923828e-09,
+              -1.4901161193847656e-08,
+              -5.684341886080802e-14
+            ],
+            "acceleration_error": [
+              2.5633115602893727e-07,
+              0.0,
+              0.014447648321083209,
+              -1.586528795409653e-07,
+              6.020983337054136e-08,
+              -4.978750163828889e-14
+            ],
+            "pwm_raw": [
+              -0.02670387364923954,
+              -0.02670387737452984,
+              -0.026703916490077972,
+              -0.026703909039497375
+            ],
+            "pwm_headroom": 0.973296083509922,
+            "minimum_deadzone_distance_pwm": 0.006703874096274376,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "static_inspection": {
+            "command": [
+              -1.1495793650340147e-08,
+              -1.0768876068656397e-10,
+              0.0,
+              -0.10681556165218353
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.8254019642732828,
+              4.886940739741066e-08,
+              -7.093521627399047e-08,
+              0.0
+            ],
+            "steady_wrench": [
+              5.582892754318891e-06,
+              0.0,
+              -1.5107321739196777,
+              -7.450580596923828e-09,
+              -1.4901161193847656e-08,
+              -5.684341886080802e-14
+            ],
+            "acceleration_error": [
+              2.5633115602893727e-07,
+              0.0,
+              0.014447648321083209,
+              -1.586528795409653e-07,
+              6.020983337054136e-08,
+              -4.978750163828889e-14
+            ],
+            "pwm_raw": [
+              -0.02670387364923954,
+              -0.02670387737452984,
+              -0.026703916490077972,
+              -0.026703909039497375
+            ],
+            "pwm_headroom": 0.973296083509922,
+            "minimum_deadzone_distance_pwm": 0.006703874096274376,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "requested_wrench": [
+            0.0,
+            0.0,
+            -1.8254019642732828,
+            4.886940739741066e-08,
+            -7.093521627399047e-08,
+            0.0
+          ],
+          "tracking_status": "target_attained",
+          "target_rewritten": false,
+          "iterations": 0,
+          "evaluations": 4,
+          "static_command": [
+            -1.1495793650340147e-08,
+            -1.0768876068656397e-10,
+            0.0,
+            -0.10681556165218353
+          ],
+          "alpha": 1.0,
+          "limitations": [],
+          "zero_progress": true,
+          "static_reference_in_support": true,
+          "elapsed_ms": 3.7543000071309507
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.005606699996860698
+        }
+      },
+      {
+        "total_ms": 6.901200016727671,
+        "packet": {
+          "status": "ready",
+          "command": [
+            -1.1495793650340147e-08,
+            -1.0768876068656397e-10,
+            0.0,
+            -0.10681556165218353
+          ],
+          "reason": null,
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv4",
+          "context_key": [
+            21.780000686645508,
+            0.3549887537956238,
+            0.9306462407112122,
+            1.1417206525802612,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.02199999988079071,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.8254019642732828,
+              4.886940739741066e-08,
+              -7.093521627399047e-08,
+              0.0
+            ],
+            "desired_vertical_acceleration": -0.0144476518034935,
+            "desired_angular_acceleration": [
+              1.3766466366860186e-07,
+              -7.622146114272255e-08,
+              0.0
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              -1.1495793650340147e-08,
+              -1.0768876068656397e-10,
+              0.0,
+              -0.10681556165218353
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.8254019642732828,
+              4.886940739741066e-08,
+              -7.093521627399047e-08,
+              0.0
+            ],
+            "steady_wrench": [
+              5.582892754318891e-06,
+              0.0,
+              -1.5107321739196777,
+              -7.450580596923828e-09,
+              -1.4901161193847656e-08,
+              -5.684341886080802e-14
+            ],
+            "acceleration_error": [
+              2.5633115602893727e-07,
+              0.0,
+              0.014447648321083209,
+              -1.586528795409653e-07,
+              6.020983337054136e-08,
+              -4.978750163828889e-14
+            ],
+            "pwm_raw": [
+              -0.02670387364923954,
+              -0.02670387737452984,
+              -0.026703916490077972,
+              -0.026703909039497375
+            ],
+            "pwm_headroom": 0.973296083509922,
+            "minimum_deadzone_distance_pwm": 0.006703874096274376,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "static_inspection": {
+            "command": [
+              -1.1495793650340147e-08,
+              -1.0768876068656397e-10,
+              0.0,
+              -0.10681556165218353
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.8254019642732828,
+              4.886940739741066e-08,
+              -7.093521627399047e-08,
+              0.0
+            ],
+            "steady_wrench": [
+              5.582892754318891e-06,
+              0.0,
+              -1.5107321739196777,
+              -7.450580596923828e-09,
+              -1.4901161193847656e-08,
+              -5.684341886080802e-14
+            ],
+            "acceleration_error": [
+              2.5633115602893727e-07,
+              0.0,
+              0.014447648321083209,
+              -1.586528795409653e-07,
+              6.020983337054136e-08,
+              -4.978750163828889e-14
+            ],
+            "pwm_raw": [
+              -0.02670387364923954,
+              -0.02670387737452984,
+              -0.026703916490077972,
+              -0.026703909039497375
+            ],
+            "pwm_headroom": 0.973296083509922,
+            "minimum_deadzone_distance_pwm": 0.006703874096274376,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "requested_wrench": [
+            0.0,
+            0.0,
+            -1.8254019642732828,
+            4.886940739741066e-08,
+            -7.093521627399047e-08,
+            0.0
+          ],
+          "tracking_status": "target_attained",
+          "target_rewritten": false,
+          "iterations": 0,
+          "evaluations": 4,
+          "static_command": [
+            -1.1495793650340147e-08,
+            -1.0768876068656397e-10,
+            0.0,
+            -0.10681556165218353
+          ],
+          "alpha": 1.0,
+          "limitations": [],
+          "zero_progress": true,
+          "static_reference_in_support": true,
+          "elapsed_ms": 6.036500009940937
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.0064956000132951885
+        }
+      }
+    ]
+  },
+  {
+    "configuration": "uuv4",
+    "episode_id": "i29-uuv4-fit-8738-prbs",
+    "role": "fit",
+    "trace_sha256": "a99954360bd03e57df70d53e3d7945f2c69a095b478b550a766aa2b6d8595af1",
+    "request": {
+      "label": "hold-o128",
+      "origin": 128,
+      "z": 5.5
+    },
+    "state": [
+      5.509914875030518,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      5.285511974761903e-07,
+      0.0,
+      0.004622654989361763,
+      8.267569739928149e-09,
+      8.449259958354105e-09,
+      8.683826667997292e-15
+    ],
+    "reference": [
+      5.5,
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "previous": [
+      -8.134418472138805e-09,
+      1.5828874877499288e-09,
+      0.0,
+      -0.10681556165218353
+    ],
+    "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+    "prepare_before_ready_ms": 18.35259998915717,
+    "seed_status": "prepared",
+    "warmup": {
+      "total_ms": 4.84940002206713,
+      "packet": {
+        "status": "ready",
+        "command": [
+          -8.134418472138805e-09,
+          1.5828874877499288e-09,
+          0.0,
+          -0.10681556165218353
+        ],
+        "reason": null,
+        "startup_exception_requested": false,
+        "runtime_eligible": false,
+        "actual_history_advanced": false,
+        "configuration": "uuv4",
+        "context_key": [
+          21.780000686645508,
+          0.3549887537956238,
+          0.9306462407112122,
+          1.1417206525802612,
+          0.0,
+          0.0,
+          0.009999999776482582,
+          0.02199999988079071,
+          1.0,
+          997.0,
+          0.001306,
+          9.81
+        ],
+        "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+        "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+        "demand": {
+          "target_wrench": [
+            0.0,
+            0.0,
+            -1.928040940730284,
+            -1.7609365673373018e-08,
+            -4.7179632102204125e-08,
+            -0.0
+          ],
+          "desired_vertical_acceleration": -0.019160185009241104,
+          "desired_angular_acceleration": [
+            -4.9605418439568894e-08,
+            -5.069555975012463e-08,
+            -0.0
+          ],
+          "unallocated_torque": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+        },
+        "inspection": {
+          "command": [
+            -8.134418472138805e-09,
+            1.5828874877499288e-09,
+            0.0,
+            -0.10681556165218353
+          ],
+          "target_wrench": [
+            0.0,
+            0.0,
+            -1.928040940730284,
+            -1.7609365673373018e-08,
+            -4.7179632102204125e-08,
+            -0.0
+          ],
+          "steady_wrench": [
+            5.582893209066242e-06,
+            0.0,
+            -1.5107321739196777,
+            -7.450580596923828e-08,
+            1.4901161193847656e-08,
+            -2.8421709430404007e-13
+          ],
+          "acceleration_error": [
+            2.5633117690806204e-07,
+            0.0,
+            0.019160181526829835,
+            -1.602767402840655e-07,
+            6.670718752230581e-08,
+            -2.4893750819144447e-13
+          ],
+          "pwm_raw": [
+            -0.026703881099820137,
+            -0.02670387737452984,
+            -0.026703916490077972,
+            -0.02670390158891678
+          ],
+          "pwm_headroom": 0.973296083509922,
+          "minimum_deadzone_distance_pwm": 0.006703877821564674,
+          "physical_residual_accepted": true,
+          "command_constraints_accepted": true
+        },
+        "static_inspection": {
+          "command": [
+            -8.134418472138805e-09,
+            1.5828874877499288e-09,
+            0.0,
+            -0.10681556165218353
+          ],
+          "target_wrench": [
+            0.0,
+            0.0,
+            -1.928040940730284,
+            -1.7609365673373018e-08,
+            -4.7179632102204125e-08,
+            -0.0
+          ],
+          "steady_wrench": [
+            5.582893209066242e-06,
+            0.0,
+            -1.5107321739196777,
+            -7.450580596923828e-08,
+            1.4901161193847656e-08,
+            -2.8421709430404007e-13
+          ],
+          "acceleration_error": [
+            2.5633117690806204e-07,
+            0.0,
+            0.019160181526829835,
+            -1.602767402840655e-07,
+            6.670718752230581e-08,
+            -2.4893750819144447e-13
+          ],
+          "pwm_raw": [
+            -0.026703881099820137,
+            -0.02670387737452984,
+            -0.026703916490077972,
+            -0.02670390158891678
+          ],
+          "pwm_headroom": 0.973296083509922,
+          "minimum_deadzone_distance_pwm": 0.006703877821564674,
+          "physical_residual_accepted": true,
+          "command_constraints_accepted": true
+        },
+        "requested_wrench": [
+          0.0,
+          0.0,
+          -1.928040940730284,
+          -1.7609365673373018e-08,
+          -4.7179632102204125e-08,
+          -0.0
+        ],
+        "tracking_status": "target_attained",
+        "target_rewritten": false,
+        "iterations": 0,
+        "evaluations": 4,
+        "static_command": [
+          -8.134418472138805e-09,
+          1.5828874877499288e-09,
+          0.0,
+          -0.10681556165218353
+        ],
+        "alpha": 1.0,
+        "limitations": [],
+        "zero_progress": true,
+        "static_reference_in_support": true,
+        "elapsed_ms": 4.506600002059713
+      },
+      "passes": true,
+      "source_check": {
+        "checked_ready": true,
+        "maximum_difference": 0.0,
+        "seconds": 0.006747799983713776
+      }
+    },
+    "samples": [
+      {
+        "total_ms": 4.927200003294274,
+        "packet": {
+          "status": "ready",
+          "command": [
+            -8.134418472138805e-09,
+            1.5828874877499288e-09,
+            0.0,
+            -0.10681556165218353
+          ],
+          "reason": null,
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv4",
+          "context_key": [
+            21.780000686645508,
+            0.3549887537956238,
+            0.9306462407112122,
+            1.1417206525802612,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.02199999988079071,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.928040940730284,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "desired_vertical_acceleration": -0.019160185009241104,
+            "desired_angular_acceleration": [
+              -4.9605418439568894e-08,
+              -5.069555975012463e-08,
+              -0.0
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              -8.134418472138805e-09,
+              1.5828874877499288e-09,
+              0.0,
+              -0.10681556165218353
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.928040940730284,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "steady_wrench": [
+              5.582893209066242e-06,
+              0.0,
+              -1.5107321739196777,
+              -7.450580596923828e-08,
+              1.4901161193847656e-08,
+              -2.8421709430404007e-13
+            ],
+            "acceleration_error": [
+              2.5633117690806204e-07,
+              0.0,
+              0.019160181526829835,
+              -1.602767402840655e-07,
+              6.670718752230581e-08,
+              -2.4893750819144447e-13
+            ],
+            "pwm_raw": [
+              -0.026703881099820137,
+              -0.02670387737452984,
+              -0.026703916490077972,
+              -0.02670390158891678
+            ],
+            "pwm_headroom": 0.973296083509922,
+            "minimum_deadzone_distance_pwm": 0.006703877821564674,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "static_inspection": {
+            "command": [
+              -8.134418472138805e-09,
+              1.5828874877499288e-09,
+              0.0,
+              -0.10681556165218353
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.928040940730284,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "steady_wrench": [
+              5.582893209066242e-06,
+              0.0,
+              -1.5107321739196777,
+              -7.450580596923828e-08,
+              1.4901161193847656e-08,
+              -2.8421709430404007e-13
+            ],
+            "acceleration_error": [
+              2.5633117690806204e-07,
+              0.0,
+              0.019160181526829835,
+              -1.602767402840655e-07,
+              6.670718752230581e-08,
+              -2.4893750819144447e-13
+            ],
+            "pwm_raw": [
+              -0.026703881099820137,
+              -0.02670387737452984,
+              -0.026703916490077972,
+              -0.02670390158891678
+            ],
+            "pwm_headroom": 0.973296083509922,
+            "minimum_deadzone_distance_pwm": 0.006703877821564674,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "requested_wrench": [
+            0.0,
+            0.0,
+            -1.928040940730284,
+            -1.7609365673373018e-08,
+            -4.7179632102204125e-08,
+            -0.0
+          ],
+          "tracking_status": "target_attained",
+          "target_rewritten": false,
+          "iterations": 0,
+          "evaluations": 4,
+          "static_command": [
+            -8.134418472138805e-09,
+            1.5828874877499288e-09,
+            0.0,
+            -0.10681556165218353
+          ],
+          "alpha": 1.0,
+          "limitations": [],
+          "zero_progress": true,
+          "static_reference_in_support": true,
+          "elapsed_ms": 4.631299991160631
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.005432099977042526
+        }
+      },
+      {
+        "total_ms": 5.567099986365065,
+        "packet": {
+          "status": "ready",
+          "command": [
+            -8.134418472138805e-09,
+            1.5828874877499288e-09,
+            0.0,
+            -0.10681556165218353
+          ],
+          "reason": null,
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv4",
+          "context_key": [
+            21.780000686645508,
+            0.3549887537956238,
+            0.9306462407112122,
+            1.1417206525802612,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.02199999988079071,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.928040940730284,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "desired_vertical_acceleration": -0.019160185009241104,
+            "desired_angular_acceleration": [
+              -4.9605418439568894e-08,
+              -5.069555975012463e-08,
+              -0.0
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              -8.134418472138805e-09,
+              1.5828874877499288e-09,
+              0.0,
+              -0.10681556165218353
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.928040940730284,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "steady_wrench": [
+              5.582893209066242e-06,
+              0.0,
+              -1.5107321739196777,
+              -7.450580596923828e-08,
+              1.4901161193847656e-08,
+              -2.8421709430404007e-13
+            ],
+            "acceleration_error": [
+              2.5633117690806204e-07,
+              0.0,
+              0.019160181526829835,
+              -1.602767402840655e-07,
+              6.670718752230581e-08,
+              -2.4893750819144447e-13
+            ],
+            "pwm_raw": [
+              -0.026703881099820137,
+              -0.02670387737452984,
+              -0.026703916490077972,
+              -0.02670390158891678
+            ],
+            "pwm_headroom": 0.973296083509922,
+            "minimum_deadzone_distance_pwm": 0.006703877821564674,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "static_inspection": {
+            "command": [
+              -8.134418472138805e-09,
+              1.5828874877499288e-09,
+              0.0,
+              -0.10681556165218353
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.928040940730284,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "steady_wrench": [
+              5.582893209066242e-06,
+              0.0,
+              -1.5107321739196777,
+              -7.450580596923828e-08,
+              1.4901161193847656e-08,
+              -2.8421709430404007e-13
+            ],
+            "acceleration_error": [
+              2.5633117690806204e-07,
+              0.0,
+              0.019160181526829835,
+              -1.602767402840655e-07,
+              6.670718752230581e-08,
+              -2.4893750819144447e-13
+            ],
+            "pwm_raw": [
+              -0.026703881099820137,
+              -0.02670387737452984,
+              -0.026703916490077972,
+              -0.02670390158891678
+            ],
+            "pwm_headroom": 0.973296083509922,
+            "minimum_deadzone_distance_pwm": 0.006703877821564674,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "requested_wrench": [
+            0.0,
+            0.0,
+            -1.928040940730284,
+            -1.7609365673373018e-08,
+            -4.7179632102204125e-08,
+            -0.0
+          ],
+          "tracking_status": "target_attained",
+          "target_rewritten": false,
+          "iterations": 0,
+          "evaluations": 4,
+          "static_command": [
+            -8.134418472138805e-09,
+            1.5828874877499288e-09,
+            0.0,
+            -0.10681556165218353
+          ],
+          "alpha": 1.0,
+          "limitations": [],
+          "zero_progress": true,
+          "static_reference_in_support": true,
+          "elapsed_ms": 5.225000000791624
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.006181700009619817
+        }
+      },
+      {
+        "total_ms": 3.951200022129342,
+        "packet": {
+          "status": "ready",
+          "command": [
+            -8.134418472138805e-09,
+            1.5828874877499288e-09,
+            0.0,
+            -0.10681556165218353
+          ],
+          "reason": null,
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv4",
+          "context_key": [
+            21.780000686645508,
+            0.3549887537956238,
+            0.9306462407112122,
+            1.1417206525802612,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.02199999988079071,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.928040940730284,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "desired_vertical_acceleration": -0.019160185009241104,
+            "desired_angular_acceleration": [
+              -4.9605418439568894e-08,
+              -5.069555975012463e-08,
+              -0.0
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              -8.134418472138805e-09,
+              1.5828874877499288e-09,
+              0.0,
+              -0.10681556165218353
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.928040940730284,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "steady_wrench": [
+              5.582893209066242e-06,
+              0.0,
+              -1.5107321739196777,
+              -7.450580596923828e-08,
+              1.4901161193847656e-08,
+              -2.8421709430404007e-13
+            ],
+            "acceleration_error": [
+              2.5633117690806204e-07,
+              0.0,
+              0.019160181526829835,
+              -1.602767402840655e-07,
+              6.670718752230581e-08,
+              -2.4893750819144447e-13
+            ],
+            "pwm_raw": [
+              -0.026703881099820137,
+              -0.02670387737452984,
+              -0.026703916490077972,
+              -0.02670390158891678
+            ],
+            "pwm_headroom": 0.973296083509922,
+            "minimum_deadzone_distance_pwm": 0.006703877821564674,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "static_inspection": {
+            "command": [
+              -8.134418472138805e-09,
+              1.5828874877499288e-09,
+              0.0,
+              -0.10681556165218353
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -1.928040940730284,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "steady_wrench": [
+              5.582893209066242e-06,
+              0.0,
+              -1.5107321739196777,
+              -7.450580596923828e-08,
+              1.4901161193847656e-08,
+              -2.8421709430404007e-13
+            ],
+            "acceleration_error": [
+              2.5633117690806204e-07,
+              0.0,
+              0.019160181526829835,
+              -1.602767402840655e-07,
+              6.670718752230581e-08,
+              -2.4893750819144447e-13
+            ],
+            "pwm_raw": [
+              -0.026703881099820137,
+              -0.02670387737452984,
+              -0.026703916490077972,
+              -0.02670390158891678
+            ],
+            "pwm_headroom": 0.973296083509922,
+            "minimum_deadzone_distance_pwm": 0.006703877821564674,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "requested_wrench": [
+            0.0,
+            0.0,
+            -1.928040940730284,
+            -1.7609365673373018e-08,
+            -4.7179632102204125e-08,
+            -0.0
+          ],
+          "tracking_status": "target_attained",
+          "target_rewritten": false,
+          "iterations": 0,
+          "evaluations": 4,
+          "static_command": [
+            -8.134418472138805e-09,
+            1.5828874877499288e-09,
+            0.0,
+            -0.10681556165218353
+          ],
+          "alpha": 1.0,
+          "limitations": [],
+          "zero_progress": true,
+          "static_reference_in_support": true,
+          "elapsed_ms": 3.631499974289909
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.005969799996819347
+        }
+      }
+    ]
+  },
+  {
+    "configuration": "uuv4",
+    "episode_id": "i29-uuv4-fit-8738-prbs",
+    "role": "fit",
+    "trace_sha256": "a99954360bd03e57df70d53e3d7945f2c69a095b478b550a766aa2b6d8595af1",
+    "request": {
+      "label": "depth-minus-o128",
+      "origin": 128,
+      "z": 5.45
+    },
+    "state": [
+      5.509914875030518,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      5.285511974761903e-07,
+      0.0,
+      0.004622654989361763,
+      8.267569739928149e-09,
+      8.449259958354105e-09,
+      8.683826667997292e-15
+    ],
+    "reference": [
+      5.45,
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "previous": [
+      -8.134418472138805e-09,
+      1.5828874877499288e-09,
+      0.0,
+      -0.10681556165218353
+    ],
+    "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+    "prepare_before_ready_ms": 18.35259998915717,
+    "seed_status": "prepared",
+    "warmup": {
+      "total_ms": 5.525300017325208,
+      "packet": {
+        "status": "ready",
+        "command": [
+          -9.607632911468045e-09,
+          1.645840908004459e-09,
+          0.0,
+          -0.11681555956602097
+        ],
+        "reason": null,
+        "startup_exception_requested": false,
+        "runtime_eligible": false,
+        "actual_history_advanced": false,
+        "configuration": "uuv4",
+        "context_key": [
+          21.780000686645508,
+          0.3549887537956238,
+          0.9306462407112122,
+          1.1417206525802612,
+          0.0,
+          0.0,
+          0.009999999776482582,
+          0.02199999988079071,
+          1.0,
+          997.0,
+          0.001306,
+          9.81
+        ],
+        "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+        "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+        "demand": {
+          "target_wrench": [
+            0.0,
+            0.0,
+            -3.017040975062571,
+            -1.7609365673373018e-08,
+            -4.7179632102204125e-08,
+            -0.0
+          ],
+          "desired_vertical_acceleration": -0.06916018500924093,
+          "desired_angular_acceleration": [
+            -4.9605418439568894e-08,
+            -5.069555975012463e-08,
+            -0.0
+          ],
+          "unallocated_torque": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+        },
+        "inspection": {
+          "command": [
+            -9.607632911468045e-09,
+            1.645840908004459e-09,
+            0.0,
+            -0.11681555956602097
+          ],
+          "target_wrench": [
+            0.0,
+            0.0,
+            -3.017040975062571,
+            -1.7609365673373018e-08,
+            -4.7179632102204125e-08,
+            -0.0
+          ],
+          "steady_wrench": [
+            6.337723334581824e-06,
+            0.0,
+            -1.714989423751831,
+            -5.960464477539063e-08,
+            0.0,
+            -2.2737367544323206e-13
+          ],
+          "acceleration_error": [
+            2.909882063717208e-07,
+            0.0,
+            0.059781979350859146,
+            -1.1830030853933862e-07,
+            5.069555975012463e-08,
+            -1.9915000655315555e-13
+          ],
+          "pwm_raw": [
+            -0.029203878715634346,
+            -0.029203876852989197,
+            -0.02920391596853733,
+            -0.029203904792666435
+          ],
+          "pwm_headroom": 0.9707960840314627,
+          "minimum_deadzone_distance_pwm": 0.009203877300024033,
+          "physical_residual_accepted": false,
+          "command_constraints_accepted": true
+        },
+        "static_inspection": {
+          "command": [
+            -1.7472705948762268e-08,
+            1.9819315077995725e-09,
+            0.0,
+            -0.17020273208618164
+          ],
+          "target_wrench": [
+            0.0,
+            0.0,
+            -3.017040975062571,
+            -1.7609365673373018e-08,
+            -4.7179632102204125e-08,
+            -0.0
+          ],
+          "steady_wrench": [
+            1.1149438250868116e-05,
+            0.0,
+            -3.017040729522705,
+            4.470348358154297e-08,
+            -4.470348358154297e-08,
+            1.1368683772161603e-13
+          ],
+          "acceleration_error": [
+            5.119117492821952e-07,
+            0.0,
+            1.1273639028100647e-08,
+            1.7553471367374952e-07,
+            2.66067643358109e-09,
+            9.957500327657778e-14
+          ],
+          "pwm_raw": [
+            -0.04255066066980362,
+            -0.042550668120384216,
+            -0.042550716549158096,
+            -0.0425507128238678
+          ],
+          "pwm_headroom": 0.9574492834508419,
+          "minimum_deadzone_distance_pwm": 0.022550661116838455,
+          "physical_residual_accepted": true,
+          "command_constraints_accepted": true
+        },
+        "requested_wrench": [
+          0.0,
+          0.0,
+          -3.017040975062571,
+          -1.7609365673373018e-08,
+          -4.7179632102204125e-08,
+          -0.0
+        ],
+        "tracking_status": "tracking_limited",
+        "target_rewritten": false,
+        "iterations": 0,
+        "evaluations": 5,
+        "static_command": [
+          -1.7472705948762268e-08,
+          1.9819315077995725e-09,
+          0.0,
+          -0.17020273208618164
+        ],
+        "alpha": 0.15776063092156006,
+        "limitations": [
+          "slew"
+        ],
+        "zero_progress": false,
+        "static_reference_in_support": true,
+        "elapsed_ms": 5.2109000098425895
+      },
+      "passes": true,
+      "source_check": {
+        "checked_ready": true,
+        "maximum_difference": 0.0,
+        "seconds": 0.008045299997320399
+      }
+    },
+    "samples": [
+      {
+        "total_ms": 4.878199979430065,
+        "packet": {
+          "status": "ready",
+          "command": [
+            -9.607632911468045e-09,
+            1.645840908004459e-09,
+            0.0,
+            -0.11681555956602097
+          ],
+          "reason": null,
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv4",
+          "context_key": [
+            21.780000686645508,
+            0.3549887537956238,
+            0.9306462407112122,
+            1.1417206525802612,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.02199999988079071,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -3.017040975062571,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "desired_vertical_acceleration": -0.06916018500924093,
+            "desired_angular_acceleration": [
+              -4.9605418439568894e-08,
+              -5.069555975012463e-08,
+              -0.0
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              -9.607632911468045e-09,
+              1.645840908004459e-09,
+              0.0,
+              -0.11681555956602097
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -3.017040975062571,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "steady_wrench": [
+              6.337723334581824e-06,
+              0.0,
+              -1.714989423751831,
+              -5.960464477539063e-08,
+              0.0,
+              -2.2737367544323206e-13
+            ],
+            "acceleration_error": [
+              2.909882063717208e-07,
+              0.0,
+              0.059781979350859146,
+              -1.1830030853933862e-07,
+              5.069555975012463e-08,
+              -1.9915000655315555e-13
+            ],
+            "pwm_raw": [
+              -0.029203878715634346,
+              -0.029203876852989197,
+              -0.02920391596853733,
+              -0.029203904792666435
+            ],
+            "pwm_headroom": 0.9707960840314627,
+            "minimum_deadzone_distance_pwm": 0.009203877300024033,
+            "physical_residual_accepted": false,
+            "command_constraints_accepted": true
+          },
+          "static_inspection": {
+            "command": [
+              -1.7472705948762268e-08,
+              1.9819315077995725e-09,
+              0.0,
+              -0.17020273208618164
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -3.017040975062571,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "steady_wrench": [
+              1.1149438250868116e-05,
+              0.0,
+              -3.017040729522705,
+              4.470348358154297e-08,
+              -4.470348358154297e-08,
+              1.1368683772161603e-13
+            ],
+            "acceleration_error": [
+              5.119117492821952e-07,
+              0.0,
+              1.1273639028100647e-08,
+              1.7553471367374952e-07,
+              2.66067643358109e-09,
+              9.957500327657778e-14
+            ],
+            "pwm_raw": [
+              -0.04255066066980362,
+              -0.042550668120384216,
+              -0.042550716549158096,
+              -0.0425507128238678
+            ],
+            "pwm_headroom": 0.9574492834508419,
+            "minimum_deadzone_distance_pwm": 0.022550661116838455,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "requested_wrench": [
+            0.0,
+            0.0,
+            -3.017040975062571,
+            -1.7609365673373018e-08,
+            -4.7179632102204125e-08,
+            -0.0
+          ],
+          "tracking_status": "tracking_limited",
+          "target_rewritten": false,
+          "iterations": 0,
+          "evaluations": 5,
+          "static_command": [
+            -1.7472705948762268e-08,
+            1.9819315077995725e-09,
+            0.0,
+            -0.17020273208618164
+          ],
+          "alpha": 0.15776063092156006,
+          "limitations": [
+            "slew"
+          ],
+          "zero_progress": false,
+          "static_reference_in_support": true,
+          "elapsed_ms": 4.562399990390986
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.00620639999397099
+        }
+      },
+      {
+        "total_ms": 4.860000015469268,
+        "packet": {
+          "status": "ready",
+          "command": [
+            -9.607632911468045e-09,
+            1.645840908004459e-09,
+            0.0,
+            -0.11681555956602097
+          ],
+          "reason": null,
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv4",
+          "context_key": [
+            21.780000686645508,
+            0.3549887537956238,
+            0.9306462407112122,
+            1.1417206525802612,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.02199999988079071,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -3.017040975062571,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "desired_vertical_acceleration": -0.06916018500924093,
+            "desired_angular_acceleration": [
+              -4.9605418439568894e-08,
+              -5.069555975012463e-08,
+              -0.0
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              -9.607632911468045e-09,
+              1.645840908004459e-09,
+              0.0,
+              -0.11681555956602097
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -3.017040975062571,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "steady_wrench": [
+              6.337723334581824e-06,
+              0.0,
+              -1.714989423751831,
+              -5.960464477539063e-08,
+              0.0,
+              -2.2737367544323206e-13
+            ],
+            "acceleration_error": [
+              2.909882063717208e-07,
+              0.0,
+              0.059781979350859146,
+              -1.1830030853933862e-07,
+              5.069555975012463e-08,
+              -1.9915000655315555e-13
+            ],
+            "pwm_raw": [
+              -0.029203878715634346,
+              -0.029203876852989197,
+              -0.02920391596853733,
+              -0.029203904792666435
+            ],
+            "pwm_headroom": 0.9707960840314627,
+            "minimum_deadzone_distance_pwm": 0.009203877300024033,
+            "physical_residual_accepted": false,
+            "command_constraints_accepted": true
+          },
+          "static_inspection": {
+            "command": [
+              -1.7472705948762268e-08,
+              1.9819315077995725e-09,
+              0.0,
+              -0.17020273208618164
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -3.017040975062571,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "steady_wrench": [
+              1.1149438250868116e-05,
+              0.0,
+              -3.017040729522705,
+              4.470348358154297e-08,
+              -4.470348358154297e-08,
+              1.1368683772161603e-13
+            ],
+            "acceleration_error": [
+              5.119117492821952e-07,
+              0.0,
+              1.1273639028100647e-08,
+              1.7553471367374952e-07,
+              2.66067643358109e-09,
+              9.957500327657778e-14
+            ],
+            "pwm_raw": [
+              -0.04255066066980362,
+              -0.042550668120384216,
+              -0.042550716549158096,
+              -0.0425507128238678
+            ],
+            "pwm_headroom": 0.9574492834508419,
+            "minimum_deadzone_distance_pwm": 0.022550661116838455,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "requested_wrench": [
+            0.0,
+            0.0,
+            -3.017040975062571,
+            -1.7609365673373018e-08,
+            -4.7179632102204125e-08,
+            -0.0
+          ],
+          "tracking_status": "tracking_limited",
+          "target_rewritten": false,
+          "iterations": 0,
+          "evaluations": 5,
+          "static_command": [
+            -1.7472705948762268e-08,
+            1.9819315077995725e-09,
+            0.0,
+            -0.17020273208618164
+          ],
+          "alpha": 0.15776063092156006,
+          "limitations": [
+            "slew"
+          ],
+          "zero_progress": false,
+          "static_reference_in_support": true,
+          "elapsed_ms": 4.547899996396154
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.005733500001952052
+        }
+      },
+      {
+        "total_ms": 4.357500001788139,
+        "packet": {
+          "status": "ready",
+          "command": [
+            -9.607632911468045e-09,
+            1.645840908004459e-09,
+            0.0,
+            -0.11681555956602097
+          ],
+          "reason": null,
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv4",
+          "context_key": [
+            21.780000686645508,
+            0.3549887537956238,
+            0.9306462407112122,
+            1.1417206525802612,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.02199999988079071,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -3.017040975062571,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "desired_vertical_acceleration": -0.06916018500924093,
+            "desired_angular_acceleration": [
+              -4.9605418439568894e-08,
+              -5.069555975012463e-08,
+              -0.0
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              -9.607632911468045e-09,
+              1.645840908004459e-09,
+              0.0,
+              -0.11681555956602097
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -3.017040975062571,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "steady_wrench": [
+              6.337723334581824e-06,
+              0.0,
+              -1.714989423751831,
+              -5.960464477539063e-08,
+              0.0,
+              -2.2737367544323206e-13
+            ],
+            "acceleration_error": [
+              2.909882063717208e-07,
+              0.0,
+              0.059781979350859146,
+              -1.1830030853933862e-07,
+              5.069555975012463e-08,
+              -1.9915000655315555e-13
+            ],
+            "pwm_raw": [
+              -0.029203878715634346,
+              -0.029203876852989197,
+              -0.02920391596853733,
+              -0.029203904792666435
+            ],
+            "pwm_headroom": 0.9707960840314627,
+            "minimum_deadzone_distance_pwm": 0.009203877300024033,
+            "physical_residual_accepted": false,
+            "command_constraints_accepted": true
+          },
+          "static_inspection": {
+            "command": [
+              -1.7472705948762268e-08,
+              1.9819315077995725e-09,
+              0.0,
+              -0.17020273208618164
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -3.017040975062571,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "steady_wrench": [
+              1.1149438250868116e-05,
+              0.0,
+              -3.017040729522705,
+              4.470348358154297e-08,
+              -4.470348358154297e-08,
+              1.1368683772161603e-13
+            ],
+            "acceleration_error": [
+              5.119117492821952e-07,
+              0.0,
+              1.1273639028100647e-08,
+              1.7553471367374952e-07,
+              2.66067643358109e-09,
+              9.957500327657778e-14
+            ],
+            "pwm_raw": [
+              -0.04255066066980362,
+              -0.042550668120384216,
+              -0.042550716549158096,
+              -0.0425507128238678
+            ],
+            "pwm_headroom": 0.9574492834508419,
+            "minimum_deadzone_distance_pwm": 0.022550661116838455,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "requested_wrench": [
+            0.0,
+            0.0,
+            -3.017040975062571,
+            -1.7609365673373018e-08,
+            -4.7179632102204125e-08,
+            -0.0
+          ],
+          "tracking_status": "tracking_limited",
+          "target_rewritten": false,
+          "iterations": 0,
+          "evaluations": 5,
+          "static_command": [
+            -1.7472705948762268e-08,
+            1.9819315077995725e-09,
+            0.0,
+            -0.17020273208618164
+          ],
+          "alpha": 0.15776063092156006,
+          "limitations": [
+            "slew"
+          ],
+          "zero_progress": false,
+          "static_reference_in_support": true,
+          "elapsed_ms": 4.057000012835488
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.006013700010953471
+        }
+      }
+    ]
+  },
+  {
+    "configuration": "uuv4",
+    "episode_id": "i29-uuv4-fit-8738-prbs",
+    "role": "fit",
+    "trace_sha256": "a99954360bd03e57df70d53e3d7945f2c69a095b478b550a766aa2b6d8595af1",
+    "request": {
+      "label": "depth-plus-o128",
+      "origin": 128,
+      "z": 5.55
+    },
+    "state": [
+      5.509914875030518,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      5.285511974761903e-07,
+      0.0,
+      0.004622654989361763,
+      8.267569739928149e-09,
+      8.449259958354105e-09,
+      8.683826667997292e-15
+    ],
+    "reference": [
+      5.55,
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "previous": [
+      -8.134418472138805e-09,
+      1.5828874877499288e-09,
+      0.0,
+      -0.10681556165218353
+    ],
+    "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+    "prepare_before_ready_ms": 18.35259998915717,
+    "seed_status": "prepared",
+    "warmup": {
+      "total_ms": 5.248500005109236,
+      "packet": {
+        "status": "ready",
+        "command": [
+          -8.275773843990919e-09,
+          3.632323997138087e-09,
+          0.0,
+          -0.0968155637383461
+        ],
+        "reason": null,
+        "startup_exception_requested": false,
+        "runtime_eligible": false,
+        "actual_history_advanced": false,
+        "configuration": "uuv4",
+        "context_key": [
+          21.780000686645508,
+          0.3549887537956238,
+          0.9306462407112122,
+          1.1417206525802612,
+          0.0,
+          0.0,
+          0.009999999776482582,
+          0.02199999988079071,
+          1.0,
+          997.0,
+          0.001306,
+          9.81
+        ],
+        "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+        "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+        "demand": {
+          "target_wrench": [
+            0.0,
+            0.0,
+            -0.8390409063980258,
+            -1.7609365673373018e-08,
+            -4.7179632102204125e-08,
+            -0.0
+          ],
+          "desired_vertical_acceleration": 0.030839814990758718,
+          "desired_angular_acceleration": [
+            -4.9605418439568894e-08,
+            -5.069555975012463e-08,
+            -0.0
+          ],
+          "unallocated_torque": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+        },
+        "inspection": {
+          "command": [
+            -8.275773843990919e-09,
+            3.632323997138087e-09,
+            0.0,
+            -0.0968155637383461
+          ],
+          "target_wrench": [
+            0.0,
+            0.0,
+            -0.8390409063980258,
+            -1.7609365673373018e-08,
+            -4.7179632102204125e-08,
+            -0.0
+          ],
+          "steady_wrench": [
+            4.8748270273790695e-06,
+            0.0,
+            -1.319129228591919,
+            -4.470348358154297e-08,
+            3.725290298461914e-08,
+            -1.7053025658242404e-13
+          ],
+          "acceleration_error": [
+            2.2382125223568466e-07,
+            0.0,
+            -0.022042621995336357,
+            -7.632387679461175e-08,
+            9.072462918057758e-08,
+            -1.4936250491486667e-13
+          ],
+          "pwm_raw": [
+            -0.024203885346651077,
+            -0.024203885346651077,
+            -0.024203909561038017,
+            -0.024203898385167122
+          ],
+          "pwm_headroom": 0.975796090438962,
+          "minimum_deadzone_distance_pwm": 0.004203885793685913,
+          "physical_residual_accepted": true,
+          "command_constraints_accepted": true
+        },
+        "static_inspection": {
+          "command": [
+            -8.513244331709302e-09,
+            7.075290131552947e-09,
+            0.0,
+            -0.08001598715782166
+          ],
+          "target_wrench": [
+            0.0,
+            0.0,
+            -0.8390409063980258,
+            -1.7609365673373018e-08,
+            -4.7179632102204125e-08,
+            -0.0
+          ],
+          "steady_wrench": [
+            3.7912052448518807e-06,
+            0.0,
+            -1.0259010791778564,
+            -1.4901161193847656e-08,
+            9.685754776000977e-08,
+            -5.684341886080802e-14
+          ],
+          "acceleration_error": [
+            1.7406818757248584e-07,
+            0.0,
+            -0.008579438332819003,
+            7.628986694842015e-09,
+            1.547711402693023e-07,
+            -4.978750163828889e-14
+          ],
+          "pwm_raw": [
+            -0.020003998652100563,
+            -0.020004000514745712,
+            -0.02000400237739086,
+            -0.020003998652100563
+          ],
+          "pwm_headroom": 0.9799959976226091,
+          "minimum_deadzone_distance_pwm": 3.999099135398865e-06,
+          "physical_residual_accepted": true,
+          "command_constraints_accepted": true
+        },
+        "requested_wrench": [
+          0.0,
+          0.0,
+          -0.8390409063980258,
+          -1.7609365673373018e-08,
+          -4.7179632102204125e-08,
+          -0.0
+        ],
+        "tracking_status": "target_attained",
+        "target_rewritten": false,
+        "iterations": 0,
+        "evaluations": 6,
+        "static_command": [
+          -8.513244331709302e-09,
+          7.075290131552947e-09,
+          0.0,
+          -0.08001598715782166
+        ],
+        "alpha": 0.3731402527343787,
+        "limitations": [
+          "slew"
+        ],
+        "zero_progress": false,
+        "static_reference_in_support": true,
+        "elapsed_ms": 4.956799995852634
+      },
+      "passes": true,
+      "source_check": {
+        "checked_ready": true,
+        "maximum_difference": 0.0,
+        "seconds": 0.005512900010216981
+      }
+    },
+    "samples": [
+      {
+        "total_ms": 4.98860000516288,
+        "packet": {
+          "status": "ready",
+          "command": [
+            -8.275773843990919e-09,
+            3.632323997138087e-09,
+            0.0,
+            -0.0968155637383461
+          ],
+          "reason": null,
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv4",
+          "context_key": [
+            21.780000686645508,
+            0.3549887537956238,
+            0.9306462407112122,
+            1.1417206525802612,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.02199999988079071,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -0.8390409063980258,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "desired_vertical_acceleration": 0.030839814990758718,
+            "desired_angular_acceleration": [
+              -4.9605418439568894e-08,
+              -5.069555975012463e-08,
+              -0.0
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              -8.275773843990919e-09,
+              3.632323997138087e-09,
+              0.0,
+              -0.0968155637383461
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -0.8390409063980258,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "steady_wrench": [
+              4.8748270273790695e-06,
+              0.0,
+              -1.319129228591919,
+              -4.470348358154297e-08,
+              3.725290298461914e-08,
+              -1.7053025658242404e-13
+            ],
+            "acceleration_error": [
+              2.2382125223568466e-07,
+              0.0,
+              -0.022042621995336357,
+              -7.632387679461175e-08,
+              9.072462918057758e-08,
+              -1.4936250491486667e-13
+            ],
+            "pwm_raw": [
+              -0.024203885346651077,
+              -0.024203885346651077,
+              -0.024203909561038017,
+              -0.024203898385167122
+            ],
+            "pwm_headroom": 0.975796090438962,
+            "minimum_deadzone_distance_pwm": 0.004203885793685913,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "static_inspection": {
+            "command": [
+              -8.513244331709302e-09,
+              7.075290131552947e-09,
+              0.0,
+              -0.08001598715782166
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -0.8390409063980258,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "steady_wrench": [
+              3.7912052448518807e-06,
+              0.0,
+              -1.0259010791778564,
+              -1.4901161193847656e-08,
+              9.685754776000977e-08,
+              -5.684341886080802e-14
+            ],
+            "acceleration_error": [
+              1.7406818757248584e-07,
+              0.0,
+              -0.008579438332819003,
+              7.628986694842015e-09,
+              1.547711402693023e-07,
+              -4.978750163828889e-14
+            ],
+            "pwm_raw": [
+              -0.020003998652100563,
+              -0.020004000514745712,
+              -0.02000400237739086,
+              -0.020003998652100563
+            ],
+            "pwm_headroom": 0.9799959976226091,
+            "minimum_deadzone_distance_pwm": 3.999099135398865e-06,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "requested_wrench": [
+            0.0,
+            0.0,
+            -0.8390409063980258,
+            -1.7609365673373018e-08,
+            -4.7179632102204125e-08,
+            -0.0
+          ],
+          "tracking_status": "target_attained",
+          "target_rewritten": false,
+          "iterations": 0,
+          "evaluations": 6,
+          "static_command": [
+            -8.513244331709302e-09,
+            7.075290131552947e-09,
+            0.0,
+            -0.08001598715782166
+          ],
+          "alpha": 0.3731402527343787,
+          "limitations": [
+            "slew"
+          ],
+          "zero_progress": false,
+          "static_reference_in_support": true,
+          "elapsed_ms": 4.694000002928078
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.005538099998375401
+        }
+      },
+      {
+        "total_ms": 4.800499998964369,
+        "packet": {
+          "status": "ready",
+          "command": [
+            -8.275773843990919e-09,
+            3.632323997138087e-09,
+            0.0,
+            -0.0968155637383461
+          ],
+          "reason": null,
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv4",
+          "context_key": [
+            21.780000686645508,
+            0.3549887537956238,
+            0.9306462407112122,
+            1.1417206525802612,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.02199999988079071,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -0.8390409063980258,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "desired_vertical_acceleration": 0.030839814990758718,
+            "desired_angular_acceleration": [
+              -4.9605418439568894e-08,
+              -5.069555975012463e-08,
+              -0.0
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              -8.275773843990919e-09,
+              3.632323997138087e-09,
+              0.0,
+              -0.0968155637383461
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -0.8390409063980258,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "steady_wrench": [
+              4.8748270273790695e-06,
+              0.0,
+              -1.319129228591919,
+              -4.470348358154297e-08,
+              3.725290298461914e-08,
+              -1.7053025658242404e-13
+            ],
+            "acceleration_error": [
+              2.2382125223568466e-07,
+              0.0,
+              -0.022042621995336357,
+              -7.632387679461175e-08,
+              9.072462918057758e-08,
+              -1.4936250491486667e-13
+            ],
+            "pwm_raw": [
+              -0.024203885346651077,
+              -0.024203885346651077,
+              -0.024203909561038017,
+              -0.024203898385167122
+            ],
+            "pwm_headroom": 0.975796090438962,
+            "minimum_deadzone_distance_pwm": 0.004203885793685913,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "static_inspection": {
+            "command": [
+              -8.513244331709302e-09,
+              7.075290131552947e-09,
+              0.0,
+              -0.08001598715782166
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -0.8390409063980258,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "steady_wrench": [
+              3.7912052448518807e-06,
+              0.0,
+              -1.0259010791778564,
+              -1.4901161193847656e-08,
+              9.685754776000977e-08,
+              -5.684341886080802e-14
+            ],
+            "acceleration_error": [
+              1.7406818757248584e-07,
+              0.0,
+              -0.008579438332819003,
+              7.628986694842015e-09,
+              1.547711402693023e-07,
+              -4.978750163828889e-14
+            ],
+            "pwm_raw": [
+              -0.020003998652100563,
+              -0.020004000514745712,
+              -0.02000400237739086,
+              -0.020003998652100563
+            ],
+            "pwm_headroom": 0.9799959976226091,
+            "minimum_deadzone_distance_pwm": 3.999099135398865e-06,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "requested_wrench": [
+            0.0,
+            0.0,
+            -0.8390409063980258,
+            -1.7609365673373018e-08,
+            -4.7179632102204125e-08,
+            -0.0
+          ],
+          "tracking_status": "target_attained",
+          "target_rewritten": false,
+          "iterations": 0,
+          "evaluations": 6,
+          "static_command": [
+            -8.513244331709302e-09,
+            7.075290131552947e-09,
+            0.0,
+            -0.08001598715782166
+          ],
+          "alpha": 0.3731402527343787,
+          "limitations": [
+            "slew"
+          ],
+          "zero_progress": false,
+          "static_reference_in_support": true,
+          "elapsed_ms": 4.509099991992116
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.005832499999087304
+        }
+      },
+      {
+        "total_ms": 5.046000005677342,
+        "packet": {
+          "status": "ready",
+          "command": [
+            -8.275773843990919e-09,
+            3.632323997138087e-09,
+            0.0,
+            -0.0968155637383461
+          ],
+          "reason": null,
+          "startup_exception_requested": false,
+          "runtime_eligible": false,
+          "actual_history_advanced": false,
+          "configuration": "uuv4",
+          "context_key": [
+            21.780000686645508,
+            0.3549887537956238,
+            0.9306462407112122,
+            1.1417206525802612,
+            0.0,
+            0.0,
+            0.009999999776482582,
+            0.02199999988079071,
+            1.0,
+            997.0,
+            0.001306,
+            9.81
+          ],
+          "model_id": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+          "support_id": "98991a1aa4752046cd60e11601a593ad901fc92208140cf20d58f6144fbf8680",
+          "demand": {
+            "target_wrench": [
+              0.0,
+              0.0,
+              -0.8390409063980258,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "desired_vertical_acceleration": 0.030839814990758718,
+            "desired_angular_acceleration": [
+              -4.9605418439568894e-08,
+              -5.069555975012463e-08,
+              -0.0
+            ],
+            "unallocated_torque": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "feedback_model": "nominal_gravity_restoring_PD_no_drag_gyro_cancellation"
+          },
+          "inspection": {
+            "command": [
+              -8.275773843990919e-09,
+              3.632323997138087e-09,
+              0.0,
+              -0.0968155637383461
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -0.8390409063980258,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "steady_wrench": [
+              4.8748270273790695e-06,
+              0.0,
+              -1.319129228591919,
+              -4.470348358154297e-08,
+              3.725290298461914e-08,
+              -1.7053025658242404e-13
+            ],
+            "acceleration_error": [
+              2.2382125223568466e-07,
+              0.0,
+              -0.022042621995336357,
+              -7.632387679461175e-08,
+              9.072462918057758e-08,
+              -1.4936250491486667e-13
+            ],
+            "pwm_raw": [
+              -0.024203885346651077,
+              -0.024203885346651077,
+              -0.024203909561038017,
+              -0.024203898385167122
+            ],
+            "pwm_headroom": 0.975796090438962,
+            "minimum_deadzone_distance_pwm": 0.004203885793685913,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "static_inspection": {
+            "command": [
+              -8.513244331709302e-09,
+              7.075290131552947e-09,
+              0.0,
+              -0.08001598715782166
+            ],
+            "target_wrench": [
+              0.0,
+              0.0,
+              -0.8390409063980258,
+              -1.7609365673373018e-08,
+              -4.7179632102204125e-08,
+              -0.0
+            ],
+            "steady_wrench": [
+              3.7912052448518807e-06,
+              0.0,
+              -1.0259010791778564,
+              -1.4901161193847656e-08,
+              9.685754776000977e-08,
+              -5.684341886080802e-14
+            ],
+            "acceleration_error": [
+              1.7406818757248584e-07,
+              0.0,
+              -0.008579438332819003,
+              7.628986694842015e-09,
+              1.547711402693023e-07,
+              -4.978750163828889e-14
+            ],
+            "pwm_raw": [
+              -0.020003998652100563,
+              -0.020004000514745712,
+              -0.02000400237739086,
+              -0.020003998652100563
+            ],
+            "pwm_headroom": 0.9799959976226091,
+            "minimum_deadzone_distance_pwm": 3.999099135398865e-06,
+            "physical_residual_accepted": true,
+            "command_constraints_accepted": true
+          },
+          "requested_wrench": [
+            0.0,
+            0.0,
+            -0.8390409063980258,
+            -1.7609365673373018e-08,
+            -4.7179632102204125e-08,
+            -0.0
+          ],
+          "tracking_status": "target_attained",
+          "target_rewritten": false,
+          "iterations": 0,
+          "evaluations": 6,
+          "static_command": [
+            -8.513244331709302e-09,
+            7.075290131552947e-09,
+            0.0,
+            -0.08001598715782166
+          ],
+          "alpha": 0.3731402527343787,
+          "limitations": [
+            "slew"
+          ],
+          "zero_progress": false,
+          "static_reference_in_support": true,
+          "elapsed_ms": 4.800199996680021
+        },
+        "passes": true,
+        "source_check": {
+          "checked_ready": true,
+          "maximum_difference": 0.0,
+          "seconds": 0.0058447999763302505
+        }
+      }
+    ]
+  }
+]

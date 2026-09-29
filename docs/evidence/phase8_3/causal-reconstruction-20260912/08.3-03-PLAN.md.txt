@@ -1,0 +1,58 @@
+---
+phase: 08.3-control-identification-forensics
+plan: 03
+type: execute
+wave: 3
+depends_on: [08.3-01, 08.3-02]
+requirements: [CFR-04, CFR-05, CFR-06]
+autonomous: true
+---
+
+# Plan 08.3-03 — State Sufficiency, Interface Choice and Investment Decision
+
+Status: planned, not fitted/executed. Repaired static traces now provide valid matched initial boundaries for bounded causal representation analysis;02 coverage review and final interface decision remain open. Existing user authorization covers routine investigation/training through gates, not scientific model promotion or waiver of a new formal D-23.
+
+Latest local evidence: [direction assay](../../../docs/phase8_3_direction_assay.md) is an01 extension, not execution of this trace-dependent plan. Known kinematics helps one-step pose, while per-config dynamics remains inaccurate on untrained excitation and unstable in long recursion. Use this evidence to prioritize input/history sufficiency and dynamics coverage. Keep A as an interface candidate; do not equate a per-config diagnostic with a final scientific branch. No further old-validation model search.
+
+Additional pre-runtime evidence: [control-seam findings](../../../docs/phase8_3_control_seam_findings.md) identifies allocation/PWM/deadzone/ordering interactions. Compare calibrated physical effect as well as command dimensions, and verify actual mass/inertia before calling descriptor fields physical truth. Account for the nearly equal uuv4/uuv4_angled allocation matrices without assuming whole-plant equality. Command-only N-dimensional speed estimates are now available; post-transition impulse/truth remains oracle unless predictably propagated from the current boundary and candidate commands. No new model search was run for this supplement.
+
+## Objective
+
+Use the measured control process and model failure to choose one defensible next interface or stop. Do not optimize multiple new architectures against old test results.
+
+## Tasks
+
+1. Separate measured facts from reconstructed commands and hypotheses. Test whether first-substep control can be causally reconstructed from actual recorded raw action/history/config; retain errors by channel, episode boundary and topology. Do not relabel reconstruction as original measurements.
+2. On the same02 traces, predeclare and compare last-value vs ordered-control-sequence information and current4D proxy vs command-driven actuator estimate. Include exact geometry/slot semantics for N-dimensional estimates. Oracle speed/wrench is diagnostic only. Use different whole episodes/seeds for fit and validation; do not use post-transition state/actual future feedback commands as deployable input.
+3. Keep the comparison bounded: one linear-increment diagnostic family with fixed settings for representation probes, no new lift grid, no three-MPC implementation. Report residual dependence on causal history, estimator error and excitation/saturation coverage; distinguish dimensional loss from insufficient sampling. Use only horizons supported within an episode;32-step traces cannot establish60/full performance. More data belongs to a separately planned8.4 pilot.
+
+   For future topology-local probes, define active features from the known mask before fitting: uuv4 yaw-control/yaw-memory columns are structurally zero. Separate this from empirical ill-conditioning. Confirm state frame and kinematic discretization before changing pose heads; do not force position integrators into a strict contraction just to obtain bounded trajectories.
+4. Compare A/B/C against the existing Phase9 goal and the failure mechanism, including hold waveform changes, true feedback modes, mask/TAM placement, actuator initialization and fallback handover. If choosingB orper-config, state changes to scientific claims and requirements rather than silently reusing4D direct-MPC/LOCO labels.
+5. Write `08.3-DECISION.md` with one recommended seam or a stop, alternative rejected with reason, fit/validation boundaries, expected code scope, remaining uncertainty and resource cap. Outcome: GO to8.4 planning, NO_GO, or INCONCLUSIVE. Incomplete required evidence is explicitly not a completed scientific decision. Only elaborate8.4 implementation after the user accepts the chosen branch.
+6. After actual execution, write phase SUMMARY/VERIFICATION against CFR-01..06; update completion state only for satisfied requirements. Do not create success evidence solely because a plan finished. No Phase9 entry from this phase.
+
+## Verification / done when
+
+- The six senior claims are revisited against actual trace and source-failure evidence, with no root-cause claim beyond matched comparison.
+- Representation comparisons are causal, same-trajectory and budget-bounded; results unsupported by the short traces are explicitly unavailable.
+- Decision separates contract correctness, representation information gain and model-family benefit.
+- GO has a concrete8.4 pilot hypothesis and stop condition; NO_GO/INCONCLUSIVE does not automatically promote linear/per-config or allocate more runtime.
+
+Provisional effort:0.5–1 person-day, CPU minutes to hours. The success criterion is a falsifiable decision, not forced Koopman improvement.
+
+
+## 2026-09-12实际GPU更新（优先于历史待执行状态）
+
+见[初始化修复](../../../docs/phase8_3_initialization_repair.md)。固定构型初始化修复已通过真实GPU验收：原资产22.8kg造成冷启动首步响应异常，authored_static_v1在PhysX创建前写入质量/惯量；base/uuv4 seed8201及uuv6 seed8201/8202共四组冷/热对照，64个observed物理子步state11逐分量差0。新增576区间/13进程，累计1056区间/26进程；210本地及210独立克隆测试通过，105文件拉回核验通过。完成修复后覆盖审查，再用匹配轨迹比较有序子步输入与因果N维执行器状态；8.4 fresh pilot在接口决定后冻结。剩余46个旧plant病例保持未完成且不自动恢复。动态换构型/DR尚未验证，32步trace不支持60/512步性能结论。Phase8.3仍partial，8.4conditional，Phase9无handoff。 用户授权持续有效。
+
+
+## 初始化修复后的输入/状态约束
+
+使用authored_static_v1 + declared_v1 + episode_local_v1的匹配轨迹；旧冷启动首步含错误有效参数的轨迹只作反例，不能混入新plant拟合。固定质量/惯量归入平台上下文，控制器历史和N维转速归入动态记忆；reset_generation用于分段与质量检查，不作为替代因果状态的经验标签。32步不足60/512步验证；少量PRBS轨迹不足以判断泛化，pilot应整段隔离并扩展激励覆盖。本次没有启动本计划的模型拟合。
+
+
+## 用户研究主线与本轮有限检查（2026-09-12T19:22:32+08:00）
+
+学长建议+本任务证据判断是前进方向，代码细节自主处理；最终验证Koopman-UUV/Agentic-AUV形式，简单线性和分构型仅为诊断对照。保持可检验的正负结论；不自动用更容易的基线替代目标。
+
+本轮先执行无拟合的因果重建检查：仅使用已验收raw/initialization/results中的四条authored cold轨迹（base8201、uuv4 8201、uuv6 8201/8202），共128control intervals/256substeps。逐个control interval只读取其开始时已知raw action，由已确认默认控制器/分配/推进器核和独立零初值递推重建两个子步，不将测量PWM/转速/wrench/未来状态反馈给重建器。逐通道比较virtual control、PWM、速度命令和N维转速；固定绝对诊断容差分别1e-6、1e-6、1e-3、1e-3，记录所有差值与实测量级。检查配置与已测试源manifest绑定。统计独立轨迹、激励家族及最长horizon覆盖；warm/off重复轨迹不算新增独立样本。无新模型fit、无新Isaac、无验证调参；超容差记录失败，不调宽门。结果仅决定因果输入表征是否可行，不据此宣布预测性能或关闭整个03。

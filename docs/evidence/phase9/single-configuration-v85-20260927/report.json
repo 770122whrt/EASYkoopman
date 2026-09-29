@@ -1,0 +1,1602 @@
+{
+  "status": "completed_single_configuration_retrospective_diagnosis",
+  "protocol": {
+    "schema": "single-configuration-lifted-diagnosis-v85",
+    "configuration": "base",
+    "training_excitations": [
+      "prbs",
+      "multisine"
+    ],
+    "heldout_excitation": "chirp",
+    "ridge_grid": [
+      1e-08,
+      1e-06,
+      0.0001,
+      0.001,
+      0.1
+    ],
+    "selection": "none; report every predeclared candidate; heldout never selects a deployment model",
+    "nonlinear_lift_changed": false,
+    "context": "one constant mechanical context, no cross-configuration inference",
+    "maximum_seconds": 120,
+    "maximum_bytes": 67108864,
+    "maximum_new_fits": 10,
+    "origins": [
+      256,
+      384,
+      512
+    ],
+    "horizons": [
+      1,
+      80,
+      128
+    ],
+    "gate": {
+      "horizon_physics": 80,
+      "max_window_z_rmse_m": 0.002,
+      "max_window_attitude_rmse_rad": 0.004
+    },
+    "source_sha256": {
+      "workflows\\single_configuration_v85.py": "4bd74106ae9cf38fffb778bd9f6e6c411cec07fc48f4cbf3ab2719a2f6328cab",
+      "koopman\\lifted_propagation_v84.py": "6fafdff448ecb3fd49de0904d2197c3885dad76890eb20de04f68c0349c05bde",
+      "koopman\\bilinear_lifted_v85.py": "858c5bad82355f8cbe81367574db5a2e5fe20d136795fe3c8800b2c8a36ee0d7",
+      "workflows\\calibrate_lifted_v84.py": "192ef4b3f04182a736e6ffddd5ae71ecc4b0515e6d800b72de5e8d6036c83128",
+      "workflows\\calibrate_bilinear_v85.py": "9a30dca2e05f43145da83ae51cd425b4a9bf247d6b3d22c710862c23a9e9411f",
+      "workflows\\compare_models_v84.py": "dc0f7250c55b1d38802c1f3917390a545f20ed5e52e605918c0272d449f973ee"
+    },
+    "blind_test": false,
+    "physics_runs": 0,
+    "solver_runs": 0
+  },
+  "elapsed_seconds": 13.98399999999674,
+  "model_fits": 10,
+  "training_summary": [
+    {
+      "model": "BLK_0.0001",
+      "horizon_physics": 1,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 1.7998091843353044e-07,
+        "attitude_rmse_rad": 2.6846638236717853e-06,
+        "velocity_6_rmse": [
+          3.2485670241484933e-07,
+          3.6150035516693814e-07,
+          1.02338920260789e-06,
+          6.156320623308917e-06,
+          8.536372305277718e-06,
+          2.7485763770271093e-06
+        ],
+        "linear_velocity_rmse_m_s": 6.540998506609637e-07,
+        "angular_velocity_rmse_rad_s": 6.280249672628273e-06
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_0.0001",
+      "horizon_physics": 80,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 6.268732728428053e-06,
+        "attitude_rmse_rad": 0.0001782571749274878,
+        "velocity_6_rmse": [
+          4.4802764949756555e-06,
+          2.201407875653225e-05,
+          2.9646651596983974e-05,
+          0.0006595046867244919,
+          0.0002519550785192694,
+          8.231230499567075e-05
+        ],
+        "linear_velocity_rmse_m_s": 2.1475695501994718e-05,
+        "angular_velocity_rmse_rad_s": 0.00041036695324913035
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_0.0001",
+      "horizon_physics": 128,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 3.441163259889131e-05,
+        "attitude_rmse_rad": 0.000459151160431297,
+        "velocity_6_rmse": [
+          1.6471317485915936e-05,
+          7.61895445649568e-05,
+          0.000129395577923091,
+          0.0030957912868678395,
+          0.001055464151298959,
+          0.0003548621883165787
+        ],
+        "linear_velocity_rmse_m_s": 8.721499600945565e-05,
+        "angular_velocity_rmse_rad_s": 0.0018994609269668149
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_0.001",
+      "horizon_physics": 1,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 2.292561387080465e-06,
+        "attitude_rmse_rad": 8.655253249323577e-06,
+        "velocity_6_rmse": [
+          3.6490551689198736e-07,
+          4.203584726963295e-07,
+          3.854426250756497e-06,
+          2.5385173099853328e-05,
+          2.9302626868225668e-05,
+          7.899191264665205e-06
+        ],
+        "linear_velocity_rmse_m_s": 2.248440867530697e-06,
+        "angular_velocity_rmse_rad_s": 2.284329352584504e-05
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_0.001",
+      "horizon_physics": 80,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 3.9753508516691975e-05,
+        "attitude_rmse_rad": 0.001089954491117231,
+        "velocity_6_rmse": [
+          6.963106769306558e-06,
+          3.841669211796874e-05,
+          0.0001431196606830135,
+          0.002590067119371627,
+          0.0010085389685049982,
+          0.0004563718850114895
+        ],
+        "linear_velocity_rmse_m_s": 8.564960471437968e-05,
+        "angular_velocity_rmse_rad_s": 0.0016262301837144813
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_0.001",
+      "horizon_physics": 128,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.00011832676151699686,
+        "attitude_rmse_rad": 0.0014761736364028776,
+        "velocity_6_rmse": [
+          2.625281541775502e-05,
+          7.497363301891633e-05,
+          0.00038627764691410483,
+          0.0029997285228813547,
+          0.0019796175001755107,
+          0.0005376489843342436
+        ],
+        "linear_velocity_rmse_m_s": 0.0002276844867141894,
+        "angular_velocity_rmse_rad_s": 0.002098120038538051
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_0.1",
+      "horizon_physics": 1,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 1.787237658535769e-05,
+        "attitude_rmse_rad": 3.573584493863844e-05,
+        "velocity_6_rmse": [
+          1.3555777964460837e-06,
+          9.250521020274862e-07,
+          2.5194213376067777e-05,
+          0.0001507081596912225,
+          0.00010384426550486036,
+          0.00011930806416515351
+        ],
+        "linear_velocity_rmse_m_s": 1.4576713166240136e-05,
+        "angular_velocity_rmse_rad_s": 0.00012613616326625674
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_0.1",
+      "horizon_physics": 80,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.001070126775116002,
+        "attitude_rmse_rad": 0.0077404403316074025,
+        "velocity_6_rmse": [
+          9.803760969343925e-05,
+          0.0002323560613392114,
+          0.002438732650420879,
+          0.02086492192950469,
+          0.008378538014495226,
+          0.004979296949016273
+        ],
+        "linear_velocity_rmse_m_s": 0.001415511409630729,
+        "angular_velocity_rmse_rad_s": 0.013295842263544272
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_0.1",
+      "horizon_physics": 128,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.0015218189057610609,
+        "attitude_rmse_rad": 0.008786532096591203,
+        "velocity_6_rmse": [
+          0.00015307968755441694,
+          0.000263438385092579,
+          0.002914758295779862,
+          0.023367433836657743,
+          0.011593673281829841,
+          0.005464108220839747
+        ],
+        "linear_velocity_rmse_m_s": 0.0016920056241336262,
+        "angular_velocity_rmse_rad_s": 0.015387296740335744
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_1e-06",
+      "horizon_physics": 1,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 1.0880220445591941e-07,
+        "attitude_rmse_rad": 2.2900972771027774e-06,
+        "velocity_6_rmse": [
+          2.5119456647780293e-07,
+          2.2719552008759337e-07,
+          5.6190923450288083e-08,
+          4.2301526589452043e-07,
+          7.122985010400105e-07,
+          1.2833740523395948e-07
+        ],
+        "linear_velocity_rmse_m_s": 1.9822036092359392e-07,
+        "angular_velocity_rmse_rad_s": 4.840046691737051e-07
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_1e-06",
+      "horizon_physics": 80,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 1.7540799975562415e-06,
+        "attitude_rmse_rad": 2.913410773748441e-05,
+        "velocity_6_rmse": [
+          1.1813485463912385e-05,
+          3.51907689283536e-05,
+          2.1509812042107846e-05,
+          0.00013066753409027954,
+          0.00016001371183933677,
+          1.166113897420136e-05
+        ],
+        "linear_velocity_rmse_m_s": 2.4769744115631976e-05,
+        "angular_velocity_rmse_rad_s": 0.00011946320856789942
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_1e-06",
+      "horizon_physics": 128,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.00018710540830797165,
+        "attitude_rmse_rad": 0.0009894050570231658,
+        "velocity_6_rmse": [
+          0.0005786476636424279,
+          0.0005485763252445505,
+          0.0010299815489190427,
+          0.01173029471459038,
+          0.008895616925077985,
+          0.0004455898575269723
+        ],
+        "linear_velocity_rmse_m_s": 0.0007520263945658924,
+        "angular_velocity_rmse_rad_s": 0.008503535831053103
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_1e-08",
+      "horizon_physics": 1,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 1.0237611592690397e-07,
+        "attitude_rmse_rad": 2.230035650306615e-06,
+        "velocity_6_rmse": [
+          2.2167765628264823e-07,
+          1.92555931232882e-07,
+          1.4279680001632317e-08,
+          2.7747127509745626e-08,
+          3.450181181563798e-08,
+          4.371145973504131e-09
+        ],
+        "linear_velocity_rmse_m_s": 1.6972789910999636e-07,
+        "angular_velocity_rmse_rad_s": 2.568647517485587e-08
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_1e-08",
+      "horizon_physics": 80,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 1.6848813440524623e-05,
+        "attitude_rmse_rad": 0.000276063704982768,
+        "velocity_6_rmse": [
+          9.15254908997749e-05,
+          0.0001451438280903228,
+          0.0001359795114550916,
+          0.000550521048145818,
+          0.00035871690323977895,
+          7.476449260540046e-05
+        ],
+        "linear_velocity_rmse_m_s": 0.00012640421123354416,
+        "angular_velocity_rmse_rad_s": 0.00038181189543021914
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_1e-08",
+      "horizon_physics": 128,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.0016087035007590587,
+        "attitude_rmse_rad": 0.01641582006954584,
+        "velocity_6_rmse": [
+          0.004262677721770005,
+          0.02729548583319461,
+          0.009293124624218517,
+          0.06045811847785481,
+          0.027833650377081045,
+          0.0033864375867131173
+        ],
+        "linear_velocity_rmse_m_s": 0.016828310803633447,
+        "angular_velocity_rmse_rad_s": 0.038476677536418584
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_0.0001",
+      "horizon_physics": 1,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 1.555563435007954e-07,
+        "attitude_rmse_rad": 2.1453532508392935e-06,
+        "velocity_6_rmse": [
+          1.9071959262909158e-06,
+          2.9309302509893895e-06,
+          3.234698572195078e-07,
+          1.989112338287418e-06,
+          2.1313357854665986e-06,
+          1.7655512616713556e-06
+        ],
+        "linear_velocity_rmse_m_s": 2.02750924255641e-06,
+        "angular_velocity_rmse_rad_s": 1.9677678879318295e-06
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_0.0001",
+      "horizon_physics": 80,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 4.703281933216769e-05,
+        "attitude_rmse_rad": 0.000339856946047852,
+        "velocity_6_rmse": [
+          0.00023751131423482066,
+          0.0006080078807118137,
+          0.0004446573428105096,
+          0.0021249179854760806,
+          0.0007422708674335664,
+          0.0015498024377782501
+        ],
+        "linear_velocity_rmse_m_s": 0.00045599903505472676,
+        "angular_velocity_rmse_rad_s": 0.0015777758693578446
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_0.0001",
+      "horizon_physics": 128,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.00036954831980868857,
+        "attitude_rmse_rad": 0.0013230932232228198,
+        "velocity_6_rmse": [
+          0.00046905232346538465,
+          0.0030145574447254567,
+          0.0015777691009154194,
+          0.011873218537352731,
+          0.0029110486009158347,
+          0.009962683691234266
+        ],
+        "linear_velocity_rmse_m_s": 0.0019830046230826432,
+        "angular_velocity_rmse_rad_s": 0.009104991098736557
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_0.001",
+      "horizon_physics": 1,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 1.5644801911138847e-06,
+        "attitude_rmse_rad": 4.432738564255481e-06,
+        "velocity_6_rmse": [
+          2.0610157083699582e-06,
+          2.8876372686062293e-06,
+          1.7370959503712708e-06,
+          1.6945214817876657e-05,
+          9.681567122970736e-06,
+          4.437144569137642e-06
+        ],
+        "linear_velocity_rmse_m_s": 2.280623970611817e-06,
+        "angular_velocity_rmse_rad_s": 1.1555104198405167e-05
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_0.001",
+      "horizon_physics": 80,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.00010890014003582298,
+        "attitude_rmse_rad": 0.00031985653255277167,
+        "velocity_6_rmse": [
+          0.00018788279885961063,
+          0.000494463062338095,
+          0.0003397939701825551,
+          0.0017996121472576895,
+          0.0007026130631793749,
+          0.001310806271102294
+        ],
+        "linear_velocity_rmse_m_s": 0.0003629754850750992,
+        "angular_velocity_rmse_rad_s": 0.0013478973845053185
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_0.001",
+      "horizon_physics": 128,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.0003531048447431246,
+        "attitude_rmse_rad": 0.0009303812553699871,
+        "velocity_6_rmse": [
+          0.0004943754425976474,
+          0.0018583364786762732,
+          0.001102196624465969,
+          0.005730970524379546,
+          0.002104564010044171,
+          0.004123412463830076
+        ],
+        "linear_velocity_rmse_m_s": 0.0012796690907166492,
+        "angular_velocity_rmse_rad_s": 0.004253459108794064
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_0.1",
+      "horizon_physics": 1,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 1.5608595169182083e-05,
+        "attitude_rmse_rad": 9.231222336760689e-05,
+        "velocity_6_rmse": [
+          3.842600641106891e-06,
+          6.000044752059296e-06,
+          7.157308226344928e-05,
+          0.0006080658586255796,
+          0.0004007167778903416,
+          0.00019439769830595865
+        ],
+        "linear_velocity_rmse_m_s": 4.152698809771876e-05,
+        "angular_velocity_rmse_rad_s": 0.00043516605628025694
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_0.1",
+      "horizon_physics": 80,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.0013952715272641167,
+        "attitude_rmse_rad": 0.008316651860329273,
+        "velocity_6_rmse": [
+          0.0002448159465993482,
+          0.0003222697285851519,
+          0.0029471853449995196,
+          0.02507816972724324,
+          0.012638609416714366,
+          0.006476723407123963
+        ],
+        "linear_velocity_rmse_m_s": 0.0017175267182251363,
+        "angular_velocity_rmse_rad_s": 0.01663928074315982
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_0.1",
+      "horizon_physics": 128,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.0021410396405061845,
+        "attitude_rmse_rad": 0.012146716916323104,
+        "velocity_6_rmse": [
+          0.00038748402340282157,
+          0.00046375105780748676,
+          0.003791309187288539,
+          0.037510417227750156,
+          0.011336360076740444,
+          0.008395857719105405
+        ],
+        "linear_velocity_rmse_m_s": 0.002216546432751371,
+        "angular_velocity_rmse_rad_s": 0.023137522823535456
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_1e-06",
+      "horizon_physics": 1,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 1.2472192487854224e-07,
+        "attitude_rmse_rad": 2.3099843973115154e-06,
+        "velocity_6_rmse": [
+          1.9413977541179395e-06,
+          3.0387955294637753e-06,
+          2.3845200815296547e-07,
+          5.391742901651932e-07,
+          1.7365825160989037e-06,
+          1.6220039952272326e-06
+        ],
+        "linear_velocity_rmse_m_s": 2.086477323926254e-06,
+        "angular_velocity_rmse_rad_s": 1.406807818067633e-06
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_1e-06",
+      "horizon_physics": 80,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 7.757458878878076e-05,
+        "attitude_rmse_rad": 0.00039100568607166117,
+        "velocity_6_rmse": [
+          0.0002581482436499629,
+          0.0006659093514416955,
+          0.0005024865722426761,
+          0.0022032231377124103,
+          0.0008538852344886843,
+          0.001716615770701207
+        ],
+        "linear_velocity_rmse_m_s": 0.0005041721053110251,
+        "angular_velocity_rmse_rad_s": 0.0016862267435954169
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_1e-06",
+      "horizon_physics": 128,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.0003103890947646162,
+        "attitude_rmse_rad": 0.0019261445461305855,
+        "velocity_6_rmse": [
+          0.0005957829980670823,
+          0.003668822133967392,
+          0.0022353743607986245,
+          0.01463720774866137,
+          0.003914374107426787,
+          0.014997695563264985
+        ],
+        "linear_velocity_rmse_m_s": 0.002504137360741932,
+        "angular_velocity_rmse_rad_s": 0.01230854780953388
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_1e-08",
+      "horizon_physics": 1,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 1.265085638829022e-07,
+        "attitude_rmse_rad": 2.307932844057464e-06,
+        "velocity_6_rmse": [
+          1.95670345525656e-06,
+          3.1584851735366384e-06,
+          2.05642130694868e-07,
+          5.465090529264215e-07,
+          1.7583788294282678e-06,
+          1.6478661157772067e-06
+        ],
+        "linear_velocity_rmse_m_s": 2.148410706326924e-06,
+        "angular_velocity_rmse_rad_s": 1.4266547104139247e-06
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_1e-08",
+      "horizon_physics": 80,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 7.419144410827278e-05,
+        "attitude_rmse_rad": 0.00035650348815577805,
+        "velocity_6_rmse": [
+          0.000253411591243484,
+          0.0006675044341082169,
+          0.00047992040503841535,
+          0.0021087761907828515,
+          0.0009360323714354734,
+          0.0018136460155536002
+        ],
+        "linear_velocity_rmse_m_s": 0.0004966901110695756,
+        "angular_velocity_rmse_rad_s": 0.0016943440710120636
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_1e-08",
+      "horizon_physics": 128,
+      "total": 6,
+      "complete": 6,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.0003004138963017997,
+        "attitude_rmse_rad": 0.0019327849246523956,
+        "velocity_6_rmse": [
+          0.0006302407808065013,
+          0.0037548287546097315,
+          0.002381938127284404,
+          0.013972444352435824,
+          0.004125588154339218,
+          0.014955384499762525
+        ],
+        "linear_velocity_rmse_m_s": 0.002592911597699054,
+        "angular_velocity_rmse_rad_s": 0.012054227534173465
+      },
+      "metrics_exclude_failures_explicitly": true
+    }
+  ],
+  "heldout_summary": [
+    {
+      "model": "BLK_0.0001",
+      "horizon_physics": 1,
+      "total": 3,
+      "complete": 3,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.00010114651487447274,
+        "attitude_rmse_rad": 0.00036729178689098467,
+        "velocity_6_rmse": [
+          9.767498560837507e-05,
+          3.5527763531472254e-05,
+          0.00028269524472608625,
+          0.006037123737089821,
+          0.0027115501219296,
+          0.0006587360253903513
+        ],
+        "linear_velocity_rmse_m_s": 0.00017389577931037342,
+        "angular_velocity_rmse_rad_s": 0.0038398480973347924
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_0.0001",
+      "horizon_physics": 80,
+      "total": 3,
+      "complete": 3,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.004781863011554313,
+        "attitude_rmse_rad": 0.07703300654425872,
+        "velocity_6_rmse": [
+          0.0027854019570215487,
+          0.006926054511173346,
+          0.03121686589576566,
+          0.22382160247129065,
+          0.1917079274725153,
+          0.09263662225241164
+        ],
+        "linear_velocity_rmse_m_s": 0.018531247588043837,
+        "angular_velocity_rmse_rad_s": 0.17835319170208278
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_0.0001",
+      "horizon_physics": 128,
+      "total": 3,
+      "complete": 1,
+      "failed": 2,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.00959844629393267,
+        "attitude_rmse_rad": 0.07567650421324364,
+        "velocity_6_rmse": [
+          0.00819325576205062,
+          0.029604583860131317,
+          0.007535931125234449,
+          0.1687714644740726,
+          0.09730145972094943,
+          0.05508795703727945
+        ],
+        "linear_velocity_rmse_m_s": 0.01826062324089917,
+        "angular_velocity_rmse_rad_s": 0.11688465011154066
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_0.001",
+      "horizon_physics": 1,
+      "total": 3,
+      "complete": 3,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 9.24447880219837e-05,
+        "attitude_rmse_rad": 0.0004763957012545054,
+        "velocity_6_rmse": [
+          5.4556698396588687e-05,
+          4.4682082867407045e-05,
+          0.0002927234212928811,
+          0.005925608159202657,
+          0.0012419396405945033,
+          0.00041766721636000276
+        ],
+        "linear_velocity_rmse_m_s": 0.00017383893238926248,
+        "angular_velocity_rmse_rad_s": 0.003503792803563543
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_0.001",
+      "horizon_physics": 80,
+      "total": 3,
+      "complete": 3,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.00489562900271952,
+        "attitude_rmse_rad": 0.08968075985660304,
+        "velocity_6_rmse": [
+          0.0017486510747833795,
+          0.003619297636699387,
+          0.019301191127617277,
+          0.46456545151501294,
+          0.08943358947823571,
+          0.06736877675935976
+        ],
+        "linear_velocity_rmse_m_s": 0.011382634066992442,
+        "angular_velocity_rmse_rad_s": 0.27589731045587834
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_0.001",
+      "horizon_physics": 128,
+      "total": 3,
+      "complete": 0,
+      "failed": 3,
+      "complete_window_metrics": {},
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_0.1",
+      "horizon_physics": 1,
+      "total": 3,
+      "complete": 3,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.0002609722759521508,
+        "attitude_rmse_rad": 0.0008671137100401741,
+        "velocity_6_rmse": [
+          2.9188413735019815e-05,
+          9.261764828066884e-05,
+          0.00025959100768402956,
+          0.0060182099608888815,
+          0.0016494717150232336,
+          0.0012591246832944253
+        ],
+        "linear_velocity_rmse_m_s": 0.0001600182109842692,
+        "angular_velocity_rmse_rad_s": 0.0036753686001127894
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_0.1",
+      "horizon_physics": 80,
+      "total": 3,
+      "complete": 3,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.016647085611427886,
+        "attitude_rmse_rad": 0.04346408742846221,
+        "velocity_6_rmse": [
+          0.0020393889990220904,
+          0.002616185362123683,
+          0.0330806603933346,
+          0.2959426774622217,
+          0.1455526306504598,
+          0.12639033840741562
+        ],
+        "linear_velocity_rmse_m_s": 0.019194909267802047,
+        "angular_velocity_rmse_rad_s": 0.20391350639876604
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_0.1",
+      "horizon_physics": 128,
+      "total": 3,
+      "complete": 3,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.026745579091325966,
+        "attitude_rmse_rad": 0.0754619493018106,
+        "velocity_6_rmse": [
+          0.0027031177616510453,
+          0.005561414108283741,
+          0.03765305470985437,
+          0.5448964860180815,
+          0.24590009783542383,
+          0.19674852212692953
+        ],
+        "linear_velocity_rmse_m_s": 0.022030196711941067,
+        "angular_velocity_rmse_rad_s": 0.3633588765712924
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_1e-06",
+      "horizon_physics": 1,
+      "total": 3,
+      "complete": 3,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 2.6152325265629256e-05,
+        "attitude_rmse_rad": 0.0005828047254808933,
+        "velocity_6_rmse": [
+          0.00022739801369834375,
+          0.0005104953501005398,
+          3.8809492738109775e-05,
+          0.00166947995382985,
+          0.0010229864104911934,
+          0.0007683729627361557
+        ],
+        "linear_velocity_rmse_m_s": 0.00032343033038291995,
+        "angular_velocity_rmse_rad_s": 0.0012143669849148174
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_1e-06",
+      "horizon_physics": 80,
+      "total": 3,
+      "complete": 2,
+      "failed": 1,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.001980799726631202,
+        "attitude_rmse_rad": 0.10865058549228403,
+        "velocity_6_rmse": [
+          0.06559793043761306,
+          0.2294189115267741,
+          0.030550385806961882,
+          0.8126240100637946,
+          0.5244875125822873,
+          0.025711876983697878
+        ],
+        "linear_velocity_rmse_m_s": 0.1388877862602059,
+        "angular_velocity_rmse_rad_s": 0.5586012391694519
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_1e-06",
+      "horizon_physics": 128,
+      "total": 3,
+      "complete": 1,
+      "failed": 2,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.01771235057536307,
+        "attitude_rmse_rad": 0.12165302330272286,
+        "velocity_6_rmse": [
+          0.05328457903423147,
+          0.05357562191014189,
+          0.0891832201211564,
+          0.2613477976138821,
+          0.4467501326279138,
+          0.048827899462510746
+        ],
+        "linear_velocity_rmse_m_s": 0.06748639462166274,
+        "angular_velocity_rmse_rad_s": 0.30015135964298983
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_1e-08",
+      "horizon_physics": 1,
+      "total": 3,
+      "complete": 3,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 9.504408773149388e-05,
+        "attitude_rmse_rad": 0.002685218146004887,
+        "velocity_6_rmse": [
+          0.0006778638196474664,
+          0.0023269218140115353,
+          2.3139363490814122e-05,
+          0.0005143121344045082,
+          0.00014377715015504607,
+          6.631082211984007e-05
+        ],
+        "linear_velocity_rmse_m_s": 0.0013993569852677034,
+        "angular_velocity_rmse_rad_s": 0.0003106906101105711
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_1e-08",
+      "horizon_physics": 80,
+      "total": 3,
+      "complete": 1,
+      "failed": 2,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.005901697521700545,
+        "attitude_rmse_rad": 0.02714946749793395,
+        "velocity_6_rmse": [
+          0.02441773313604484,
+          0.12238221057778968,
+          0.023767180041735923,
+          0.10800661978791504,
+          0.22789161642172526,
+          0.024419284471933138
+        ],
+        "linear_velocity_rmse_m_s": 0.07334509755156521,
+        "angular_velocity_rmse_rad_s": 0.14628319589918637
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "BLK_1e-08",
+      "horizon_physics": 128,
+      "total": 3,
+      "complete": 0,
+      "failed": 3,
+      "complete_window_metrics": {},
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_0.0001",
+      "horizon_physics": 1,
+      "total": 3,
+      "complete": 3,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 3.923453585887749e-05,
+        "attitude_rmse_rad": 0.00011865221437650765,
+        "velocity_6_rmse": [
+          0.0001259072721945693,
+          0.0005154624199818355,
+          6.071236507345392e-05,
+          0.0004461233524533924,
+          0.00042180371379708074,
+          0.00026306643047971384
+        ],
+        "linear_velocity_rmse_m_s": 0.00030835052504026424,
+        "angular_velocity_rmse_rad_s": 0.00038563729307152574
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_0.0001",
+      "horizon_physics": 80,
+      "total": 3,
+      "complete": 2,
+      "failed": 1,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.021657223209688728,
+        "attitude_rmse_rad": 0.022881740777438195,
+        "velocity_6_rmse": [
+          0.02837386035415773,
+          0.07770639276213133,
+          0.0675991155912445,
+          0.24678820577868832,
+          0.08516809588847415,
+          0.10028595901293842
+        ],
+        "linear_velocity_rmse_m_s": 0.06167927760120167,
+        "angular_velocity_rmse_rad_s": 0.1614675371335028
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_0.0001",
+      "horizon_physics": 128,
+      "total": 3,
+      "complete": 1,
+      "failed": 2,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.004555591807635926,
+        "attitude_rmse_rad": 0.008967030842416164,
+        "velocity_6_rmse": [
+          0.003447011296796934,
+          0.010376885666352025,
+          0.015431663787788314,
+          0.0466087784988809,
+          0.008684179436447038,
+          0.032903759674090996
+        ],
+        "linear_velocity_rmse_m_s": 0.010919369491445388,
+        "angular_velocity_rmse_rad_s": 0.03331891658068776
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_0.001",
+      "horizon_physics": 1,
+      "total": 3,
+      "complete": 3,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 6.96319927201339e-05,
+        "attitude_rmse_rad": 0.00013903682975331205,
+        "velocity_6_rmse": [
+          0.0001880407511165872,
+          0.00016313137799881224,
+          0.00014711853742727004,
+          0.0008509029237780537,
+          0.0006702643485824825,
+          0.0003745334497496216
+        ],
+        "linear_velocity_rmse_m_s": 0.0001669481302910385,
+        "angular_velocity_rmse_rad_s": 0.0006617062257669164
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_0.001",
+      "horizon_physics": 80,
+      "total": 3,
+      "complete": 3,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.030415618043721677,
+        "attitude_rmse_rad": 0.034474967071430176,
+        "velocity_6_rmse": [
+          0.03018806473956351,
+          0.10820969942615838,
+          0.08254831111859603,
+          0.1601603694188251,
+          0.0881663452010678,
+          0.3107102752544689
+        ],
+        "linear_velocity_rmse_m_s": 0.0804878499550339,
+        "angular_velocity_rmse_rad_s": 0.20813899483053486
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_0.001",
+      "horizon_physics": 128,
+      "total": 3,
+      "complete": 2,
+      "failed": 1,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.031440101752468766,
+        "attitude_rmse_rad": 0.04988973435576402,
+        "velocity_6_rmse": [
+          0.033368490019513045,
+          0.08190412845971909,
+          0.08885848203885945,
+          0.12069540983179927,
+          0.04663309812534554,
+          0.09882071692423397
+        ],
+        "linear_velocity_rmse_m_s": 0.07238225430582375,
+        "angular_velocity_rmse_rad_s": 0.09399922320362313
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_0.1",
+      "horizon_physics": 1,
+      "total": 3,
+      "complete": 3,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.0002371003555420013,
+        "attitude_rmse_rad": 0.0002945755218630852,
+        "velocity_6_rmse": [
+          3.288393548484199e-05,
+          6.774185320633337e-05,
+          0.0002054035169003434,
+          0.004605537447685462,
+          0.001750601043444128,
+          0.001082117774087105
+        ],
+        "linear_velocity_rmse_m_s": 0.00012630771505049265,
+        "angular_velocity_rmse_rad_s": 0.0029124192734069055
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_0.1",
+      "horizon_physics": 80,
+      "total": 3,
+      "complete": 3,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.011928397410890485,
+        "attitude_rmse_rad": 0.05522114197530416,
+        "velocity_6_rmse": [
+          0.002389907153631197,
+          0.003330924242088771,
+          0.0109408320165872,
+          0.07267086712771562,
+          0.04486717987905843,
+          0.03365490746880301
+        ],
+        "linear_velocity_rmse_m_s": 0.00674557923691983,
+        "angular_velocity_rmse_rad_s": 0.05299928161817408
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_0.1",
+      "horizon_physics": 128,
+      "total": 3,
+      "complete": 3,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.02710655197615192,
+        "attitude_rmse_rad": 0.08389235378968436,
+        "velocity_6_rmse": [
+          0.0036572348574957845,
+          0.004701907024381171,
+          0.0322709425406409,
+          0.21059138362560875,
+          0.05588126599561362,
+          0.04875549297096595
+        ],
+        "linear_velocity_rmse_m_s": 0.018946389532310665,
+        "angular_velocity_rmse_rad_s": 0.1289037688115476
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_1e-06",
+      "horizon_physics": 1,
+      "total": 3,
+      "complete": 3,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 8.911824304643298e-06,
+        "attitude_rmse_rad": 0.00025428157226002976,
+        "velocity_6_rmse": [
+          0.0004121574502202505,
+          0.0009740578314099825,
+          5.264690807746988e-05,
+          0.0002534181514465071,
+          0.0003826833864301398,
+          0.0004500468814035312
+        ],
+        "linear_velocity_rmse_m_s": 0.0006114011557161942,
+        "angular_velocity_rmse_rad_s": 0.00037112869699213895
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_1e-06",
+      "horizon_physics": 80,
+      "total": 3,
+      "complete": 1,
+      "failed": 2,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.0008471712805084577,
+        "attitude_rmse_rad": 0.001336396695482093,
+        "velocity_6_rmse": [
+          0.002385614437533813,
+          0.0018281293872931933,
+          0.006150014283777121,
+          0.0018325811890896986,
+          0.003403477394777769,
+          0.007991081439345274
+        ],
+        "linear_velocity_rmse_m_s": 0.003952041202210885,
+        "angular_velocity_rmse_rad_s": 0.005125081942812142
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_1e-06",
+      "horizon_physics": 128,
+      "total": 3,
+      "complete": 1,
+      "failed": 2,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.0048374963747436165,
+        "attitude_rmse_rad": 0.010510383182208698,
+        "velocity_6_rmse": [
+          0.0034733309982318784,
+          0.01114984536254425,
+          0.0141907286432846,
+          0.04487148921974491,
+          0.007937752234020434,
+          0.040706699281474815
+        ],
+        "linear_velocity_rmse_m_s": 0.010610684226433686,
+        "angular_velocity_rmse_rad_s": 0.035277442375729766
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_1e-08",
+      "horizon_physics": 1,
+      "total": 3,
+      "complete": 3,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 9.488322594702068e-06,
+        "attitude_rmse_rad": 0.00025800128040729124,
+        "velocity_6_rmse": [
+          0.00039453161871523193,
+          0.001027190279972804,
+          4.5913079838866704e-05,
+          0.0002638768229667556,
+          0.0003969005309866947,
+          0.00045007827831002354
+        ],
+        "linear_velocity_rmse_m_s": 0.0006358414583151365,
+        "angular_velocity_rmse_rad_s": 0.00037847565566936345
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_1e-08",
+      "horizon_physics": 80,
+      "total": 3,
+      "complete": 1,
+      "failed": 2,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.0008315824905608046,
+        "attitude_rmse_rad": 0.0014529620864545394,
+        "velocity_6_rmse": [
+          0.0024070099718353586,
+          0.0019002589588223277,
+          0.0060618150813672705,
+          0.0016991166257649814,
+          0.0037298229810770658,
+          0.008762777320052643
+        ],
+        "linear_velocity_rmse_m_s": 0.003922171303236303,
+        "angular_velocity_rmse_rad_s": 0.005585243746962483
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "LK_1e-08",
+      "horizon_physics": 128,
+      "total": 3,
+      "complete": 1,
+      "failed": 2,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.004810054854715078,
+        "attitude_rmse_rad": 0.010987373953666913,
+        "velocity_6_rmse": [
+          0.0035832997853050266,
+          0.011594595004692891,
+          0.014172105758350272,
+          0.046110097540631334,
+          0.00858011257809068,
+          0.04005626091210043
+        ],
+        "linear_velocity_rmse_m_s": 0.010772236726883934,
+        "angular_velocity_rmse_rad_s": 0.035610220748719085
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "persistence",
+      "horizon_physics": 1,
+      "total": 3,
+      "complete": 3,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.00025920913533443603,
+        "attitude_rmse_rad": 0.0017894501932549617,
+        "velocity_6_rmse": [
+          3.21612152080259e-05,
+          6.36829449719968e-05,
+          0.0008025803957495356,
+          0.006203734254772244,
+          0.0024425950536221853,
+          0.003116519158918938
+        ],
+        "linear_velocity_rmse_m_s": 0.0004651971456223137,
+        "angular_velocity_rmse_rad_s": 0.0042491285760621125
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "persistence",
+      "horizon_physics": 80,
+      "total": 3,
+      "complete": 3,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.017130734206234163,
+        "attitude_rmse_rad": 0.05824738450072322,
+        "velocity_6_rmse": [
+          0.0014961966864371623,
+          0.0025219471019259213,
+          0.0398468167229568,
+          0.2855636212271855,
+          0.1559755337694182,
+          0.06946324500179808
+        ],
+        "linear_velocity_rmse_m_s": 0.023067781461469355,
+        "angular_velocity_rmse_rad_s": 0.1920938063457697
+      },
+      "metrics_exclude_failures_explicitly": true
+    },
+    {
+      "model": "persistence",
+      "horizon_physics": 128,
+      "total": 3,
+      "complete": 3,
+      "failed": 0,
+      "complete_window_metrics": {
+        "z_rmse_m": 0.029026393264103532,
+        "attitude_rmse_rad": 0.08107157346371782,
+        "velocity_6_rmse": [
+          0.001839142564236881,
+          0.004141348894711075,
+          0.03593996669241146,
+          0.2723533941970903,
+          0.15618082545186354,
+          0.06339852620318027
+        ],
+        "linear_velocity_rmse_m_s": 0.02091422499871763,
+        "angular_velocity_rmse_rad_s": 0.18492178048590932
+      },
+      "metrics_exclude_failures_explicitly": true
+    }
+  ],
+  "gates": {
+    "LK_1e-08": {
+      "training": {
+        "eligible_body_prediction": true,
+        "windows": 6,
+        "failures": 0,
+        "max_z_rmse_m": 0.00015807921217257683,
+        "max_attitude_rmse_rad": 0.0006293121427220295,
+        "closed_loop_admitted": false
+      },
+      "heldout": {
+        "eligible_body_prediction": false,
+        "windows": 3,
+        "failures": 2,
+        "max_z_rmse_m": 0.0008315824905608046,
+        "max_attitude_rmse_rad": 0.0014529620864545394,
+        "closed_loop_admitted": false
+      }
+    },
+    "LK_1e-06": {
+      "training": {
+        "eligible_body_prediction": true,
+        "windows": 6,
+        "failures": 0,
+        "max_z_rmse_m": 0.00016030883968856102,
+        "max_attitude_rmse_rad": 0.0007069544007666337,
+        "closed_loop_admitted": false
+      },
+      "heldout": {
+        "eligible_body_prediction": false,
+        "windows": 3,
+        "failures": 2,
+        "max_z_rmse_m": 0.0008471712805084577,
+        "max_attitude_rmse_rad": 0.001336396695482093,
+        "closed_loop_admitted": false
+      }
+    },
+    "LK_0.0001": {
+      "training": {
+        "eligible_body_prediction": true,
+        "windows": 6,
+        "failures": 0,
+        "max_z_rmse_m": 8.94566591239451e-05,
+        "max_attitude_rmse_rad": 0.0005927171606376227,
+        "closed_loop_admitted": false
+      },
+      "heldout": {
+        "eligible_body_prediction": false,
+        "windows": 3,
+        "failures": 1,
+        "max_z_rmse_m": 0.030622674958936804,
+        "max_attitude_rmse_rad": 0.03233875120429566,
+        "closed_loop_admitted": false
+      }
+    },
+    "LK_0.001": {
+      "training": {
+        "eligible_body_prediction": true,
+        "windows": 6,
+        "failures": 0,
+        "max_z_rmse_m": 0.00020242495718367367,
+        "max_attitude_rmse_rad": 0.0004513636493316275,
+        "closed_loop_admitted": false
+      },
+      "heldout": {
+        "eligible_body_prediction": false,
+        "windows": 3,
+        "failures": 0,
+        "max_z_rmse_m": 0.05223543213531252,
+        "max_attitude_rmse_rad": 0.04865343131360659,
+        "closed_loop_admitted": false
+      }
+    },
+    "LK_0.1": {
+      "training": {
+        "eligible_body_prediction": false,
+        "windows": 6,
+        "failures": 0,
+        "max_z_rmse_m": 0.0025392978247052588,
+        "max_attitude_rmse_rad": 0.012223510709431507,
+        "closed_loop_admitted": false
+      },
+      "heldout": {
+        "eligible_body_prediction": false,
+        "windows": 3,
+        "failures": 0,
+        "max_z_rmse_m": 0.01852509652367883,
+        "max_attitude_rmse_rad": 0.0771341002596033,
+        "closed_loop_admitted": false
+      }
+    },
+    "BLK_1e-08": {
+      "training": {
+        "eligible_body_prediction": true,
+        "windows": 6,
+        "failures": 0,
+        "max_z_rmse_m": 3.73158668524777e-05,
+        "max_attitude_rmse_rad": 0.0006237911425900745,
+        "closed_loop_admitted": false
+      },
+      "heldout": {
+        "eligible_body_prediction": false,
+        "windows": 3,
+        "failures": 2,
+        "max_z_rmse_m": 0.005901697521700545,
+        "max_attitude_rmse_rad": 0.02714946749793395,
+        "closed_loop_admitted": false
+      }
+    },
+    "BLK_1e-06": {
+      "training": {
+        "eligible_body_prediction": true,
+        "windows": 6,
+        "failures": 0,
+        "max_z_rmse_m": 2.9905915591825714e-06,
+        "max_attitude_rmse_rad": 5.667621343184222e-05,
+        "closed_loop_admitted": false
+      },
+      "heldout": {
+        "eligible_body_prediction": false,
+        "windows": 3,
+        "failures": 1,
+        "max_z_rmse_m": 0.0027905743480051777,
+        "max_attitude_rmse_rad": 0.15342078498718748,
+        "closed_loop_admitted": false
+      }
+    },
+    "BLK_0.0001": {
+      "training": {
+        "eligible_body_prediction": true,
+        "windows": 6,
+        "failures": 0,
+        "max_z_rmse_m": 1.3121669848791412e-05,
+        "max_attitude_rmse_rad": 0.0003616491701762291,
+        "closed_loop_admitted": false
+      },
+      "heldout": {
+        "eligible_body_prediction": false,
+        "windows": 3,
+        "failures": 0,
+        "max_z_rmse_m": 0.0075473199872432345,
+        "max_attitude_rmse_rad": 0.12424672974332802,
+        "closed_loop_admitted": false
+      }
+    },
+    "BLK_0.001": {
+      "training": {
+        "eligible_body_prediction": true,
+        "windows": 6,
+        "failures": 0,
+        "max_z_rmse_m": 7.45329569137733e-05,
+        "max_attitude_rmse_rad": 0.002515141156575052,
+        "closed_loop_admitted": false
+      },
+      "heldout": {
+        "eligible_body_prediction": false,
+        "windows": 3,
+        "failures": 0,
+        "max_z_rmse_m": 0.005941624449544554,
+        "max_attitude_rmse_rad": 0.12463428581636928,
+        "closed_loop_admitted": false
+      }
+    },
+    "BLK_0.1": {
+      "training": {
+        "eligible_body_prediction": false,
+        "windows": 6,
+        "failures": 0,
+        "max_z_rmse_m": 0.0020468613478751793,
+        "max_attitude_rmse_rad": 0.011918682402366062,
+        "closed_loop_admitted": false
+      },
+      "heldout": {
+        "eligible_body_prediction": false,
+        "windows": 3,
+        "failures": 0,
+        "max_z_rmse_m": 0.02808278274549996,
+        "max_attitude_rmse_rad": 0.046388416916004344,
+        "closed_loop_admitted": false
+      }
+    }
+  },
+  "selected_model": null,
+  "control_admitted": false,
+  "cross_configuration_generalization_claimed": false
+}

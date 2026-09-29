@@ -1,0 +1,4039 @@
+{
+  "diagnostic_only": true,
+  "runtime_qualified": false,
+  "profiler_overhead_included": true,
+  "functions": [
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-profile-v60-20260920/attempt03/diagnose.py",
+      "line": 107,
+      "function": "<lambda>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 1.1396e-05,
+      "cumulative_seconds": 0.160295289
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/runtime_episode_v59.py",
+      "line": 86,
+      "function": "run_intervals",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 7.6327e-05,
+      "cumulative_seconds": 0.160283893
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/isaac_execution_v55.py",
+      "line": 225,
+      "function": "run_interval",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 0.00010034,
+      "cumulative_seconds": 0.160153541
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/gymnasium/wrappers/common.py",
+      "line": 389,
+      "function": "step",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 3.91e-06,
+      "cumulative_seconds": 0.154347716
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/gymnasium/core.py",
+      "line": 323,
+      "function": "step",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 1.6135e-05,
+      "cumulative_seconds": 0.154343806
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/envs/direct_rl_env.py",
+      "line": 313,
+      "function": "step",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 0.000213066,
+      "cumulative_seconds": 0.154327671
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/isaac_execution_v55.py",
+      "line": 142,
+      "function": "_apply",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 0.000112237,
+      "cumulative_seconds": 0.12318427600000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/control_trace_v23.py",
+      "line": 123,
+      "function": "_apply",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 5.4744e-05,
+      "cumulative_seconds": 0.12229447800000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/env/easyuuv_env.py",
+      "line": 1559,
+      "function": "_apply_action",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 0.00016661,
+      "cumulative_seconds": 0.11331457900000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/env/easyuuv_env.py",
+      "line": 2352,
+      "function": "_compute_dynamics",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 0.071340834,
+      "cumulative_seconds": 0.11299921600000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/env/rigid_body_hydrodynamics.py",
+      "line": 21,
+      "function": "calculate_buoyancy_forces",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 0.03645006,
+      "cumulative_seconds": 0.036603952
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/env/easyuuv_env.py",
+      "line": 1671,
+      "function": "_get_rewards",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 0.019717392,
+      "cumulative_seconds": 0.019886664000000002
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/isaac_execution_v55.py",
+      "line": 183,
+      "function": "_finish_physics",
+      "primitive_calls": 3,
+      "calls": 3,
+      "self_seconds": 8.9944e-05,
+      "cumulative_seconds": 0.007856918000000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/control_trace_v23.py",
+      "line": 79,
+      "function": "_snapshot",
+      "primitive_calls": 5,
+      "calls": 5,
+      "self_seconds": 0.000131104,
+      "cumulative_seconds": 0.006286732000000001
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/sim/simulation_context.py",
+      "line": 600,
+      "function": "step",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 2.8506e-05,
+      "cumulative_seconds": 0.004985766
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/control_trace_v23.py",
+      "line": 6,
+      "function": "_copy",
+      "primitive_calls": 240,
+      "calls": 512,
+      "self_seconds": 0.00096243,
+      "cumulative_seconds": 0.004745654
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/simulation_context/simulation_context.py",
+      "line": 672,
+      "function": "step",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 1.5510000000000002e-05,
+      "cumulative_seconds": 0.004719633
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/physics_context/physics_context.py",
+      "line": 561,
+      "function": "_step",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 1.2215e-05,
+      "cumulative_seconds": 0.004699904
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/calibration_trace_v27.py",
+      "line": 49,
+      "function": "_finish_physics",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 4.8662e-05,
+      "cumulative_seconds": 0.004636256
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/control_trace_v23.py",
+      "line": 141,
+      "function": "_dones",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 1.9492000000000002e-05,
+      "cumulative_seconds": 0.004483664
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/runtime_coordinator_v52.py",
+      "line": 133,
+      "function": "step",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 0.000104288,
+      "cumulative_seconds": 0.0036537500000000003
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method omni.physx.bindings._physx.fetch_results>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 0.0036264810000000004,
+      "cumulative_seconds": 0.0036308850000000004
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/free_water_trace_v26.py",
+      "line": 25,
+      "function": "_finish_physics",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 9.002600000000001e-05,
+      "cumulative_seconds": 0.003206417
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'cpu' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 290,
+      "calls": 290,
+      "self_seconds": 0.002995221,
+      "cumulative_seconds": 0.002995221
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/control_trace_v23.py",
+      "line": 21,
+      "function": "backend_readback",
+      "primitive_calls": 9,
+      "calls": 9,
+      "self_seconds": 0.000217118,
+      "cumulative_seconds": 0.0026341510000000004
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/control_trace_v23.py",
+      "line": 16,
+      "function": "_states",
+      "primitive_calls": 7,
+      "calls": 7,
+      "self_seconds": 5.2578000000000004e-05,
+      "cumulative_seconds": 0.002374633
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/control_trace_v23.py",
+      "line": 18,
+      "function": "<listcomp>",
+      "primitive_calls": 7,
+      "calls": 7,
+      "self_seconds": 9.741e-06,
+      "cumulative_seconds": 0.0023111620000000003
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/koopman_logging.py",
+      "line": 24,
+      "function": "state_vector_from_env",
+      "primitive_calls": 7,
+      "calls": 7,
+      "self_seconds": 0.00017689500000000002,
+      "cumulative_seconds": 0.002301421
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/projected_edmd_v24.py",
+      "line": 35,
+      "function": "rotation",
+      "primitive_calls": 24,
+      "calls": 24,
+      "self_seconds": 0.00088847,
+      "cumulative_seconds": 0.00194957
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/control_trace_v23.py",
+      "line": 10,
+      "function": "<dictcomp>",
+      "primitive_calls": 11,
+      "calls": 15,
+      "self_seconds": 7.437000000000001e-05,
+      "cumulative_seconds": 0.001746085
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/free_water_v26.py",
+      "line": 23,
+      "function": "screen_step",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 0.000274414,
+      "cumulative_seconds": 0.001427992
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/free_water_runtime_v26.py",
+      "line": 8,
+      "function": "clearance",
+      "primitive_calls": 11,
+      "calls": 11,
+      "self_seconds": 0.000256173,
+      "cumulative_seconds": 0.0013996520000000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/calibration_trace_v27.py",
+      "line": 21,
+      "function": "domain_screen",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 4.5905e-05,
+      "cumulative_seconds": 0.0013811770000000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/bounded_feedback_v47.py",
+      "line": 142,
+      "function": "decide",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 3.347e-05,
+      "cumulative_seconds": 0.001322538
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/bounded_feedback_v46.py",
+      "line": 211,
+      "function": "decide",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 3.1649e-05,
+      "cumulative_seconds": 0.0012825500000000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/control_trace_v23.py",
+      "line": 100,
+      "function": "_pid",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 4.5444e-05,
+      "cumulative_seconds": 0.0012823040000000002
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/runtime_coordinator_v52.py",
+      "line": 182,
+      "function": "acknowledge",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 3.4241e-05,
+      "cumulative_seconds": 0.001281259
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/env/rigid_body_hydrodynamics.py",
+      "line": 95,
+      "function": "calculate_density_and_viscosity_forces",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 0.00030244800000000003,
+      "cumulative_seconds": 0.0012688600000000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/execution_ledger_v48.py",
+      "line": 242,
+      "function": "acknowledge",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 6.849300000000001e-05,
+      "cumulative_seconds": 0.001218207
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/execution_ledger_v48.py",
+      "line": 177,
+      "function": "capture",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 5.7534e-05,
+      "cumulative_seconds": 0.001207306
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/control_trace_v23.py",
+      "line": 107,
+      "function": "_finish_physics",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 1.1087e-05,
+      "cumulative_seconds": 0.001188648
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/env/easyuuv_env.py",
+      "line": 2163,
+      "function": "_pid_control",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 3.0752e-05,
+      "cumulative_seconds": 0.0011299910000000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/validate_free_water_v26.py",
+      "line": 17,
+      "function": "contact_screen",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 2.4724000000000002e-05,
+      "cumulative_seconds": 0.001102635
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/control_v24.py",
+      "line": 56,
+      "function": "direct_pwm",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 0.00041326000000000004,
+      "cumulative_seconds": 0.0010985670000000002
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.min>",
+      "primitive_calls": 16,
+      "calls": 16,
+      "self_seconds": 2.1980000000000003e-05,
+      "cumulative_seconds": 0.0010340520000000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/free_water_runtime_v26.py",
+      "line": 18,
+      "function": "step_clearance",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 7.638e-06,
+      "cumulative_seconds": 0.001024149
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/free_water_runtime_v26.py",
+      "line": 19,
+      "function": "<genexpr>",
+      "primitive_calls": 12,
+      "calls": 12,
+      "self_seconds": 1.5008000000000001e-05,
+      "cumulative_seconds": 0.0010079140000000002
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/bounded_mpc_v44.py",
+      "line": 82,
+      "function": "check_states",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 0.000116688,
+      "cumulative_seconds": 0.000995238
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method omni.physx.bindings._physx.simulate>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 0.0009555210000000001,
+      "cumulative_seconds": 0.0009555210000000001
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/simulation_context/simulation_context.py",
+      "line": 316,
+      "function": "device",
+      "primitive_calls": 19,
+      "calls": 19,
+      "self_seconds": 2.4764000000000002e-05,
+      "cumulative_seconds": 0.000937677
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/numeric.py",
+      "line": 2170,
+      "function": "allclose",
+      "primitive_calls": 14,
+      "calls": 14,
+      "self_seconds": 4.2902000000000004e-05,
+      "cumulative_seconds": 0.0009197630000000001
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.simulation_manager/isaacsim/core/simulation_manager/impl/simulation_manager.py",
+      "line": 325,
+      "function": "get_physics_sim_device",
+      "primitive_calls": 19,
+      "calls": 19,
+      "self_seconds": 9.8505e-05,
+      "cumulative_seconds": 0.000912913
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'clone' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 97,
+      "calls": 97,
+      "self_seconds": 0.0008737590000000001,
+      "cumulative_seconds": 0.0008737590000000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/koopman_logging.py",
+      "line": 8,
+      "function": "_as_list",
+      "primitive_calls": 28,
+      "calls": 28,
+      "self_seconds": 0.000207882,
+      "cumulative_seconds": 0.0008723460000000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/control_trace_v23.py",
+      "line": 94,
+      "function": "_actuator_update",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 2.4626e-05,
+      "cumulative_seconds": 0.0008106880000000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/numeric.py",
+      "line": 2249,
+      "function": "isclose",
+      "primitive_calls": 14,
+      "calls": 14,
+      "self_seconds": 0.000113314,
+      "cumulative_seconds": 0.000809896
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/envs/direct_rl_env.py",
+      "line": 254,
+      "function": "device",
+      "primitive_calls": 15,
+      "calls": 15,
+      "self_seconds": 1.4695e-05,
+      "cumulative_seconds": 0.0008078170000000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/control_trace_v23.py",
+      "line": 12,
+      "function": "<listcomp>",
+      "primitive_calls": 23,
+      "calls": 33,
+      "self_seconds": 5.2650000000000006e-05,
+      "cumulative_seconds": 0.0007829820000000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/env/easyuuv_env.py",
+      "line": 782,
+      "function": "get_koopman_telemetry_snapshot",
+      "primitive_calls": 5,
+      "calls": 5,
+      "self_seconds": 0.000102101,
+      "cumulative_seconds": 0.0007825040000000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/linalg/linalg.py",
+      "line": 2383,
+      "function": "norm",
+      "primitive_calls": 112,
+      "calls": 112,
+      "self_seconds": 0.00048264000000000005,
+      "cumulative_seconds": 0.000770679
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/assets/rigid_object/rigid_object_data.py",
+      "line": 590,
+      "function": "root_lin_vel_b",
+      "primitive_calls": 8,
+      "calls": 8,
+      "self_seconds": 7.878e-06,
+      "cumulative_seconds": 0.0007468100000000001
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/assets/rigid_object/rigid_object_data.py",
+      "line": 372,
+      "function": "root_com_lin_vel_b",
+      "primitive_calls": 8,
+      "calls": 8,
+      "self_seconds": 0.000649833,
+      "cumulative_seconds": 0.0007389320000000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+      "primitive_calls": 405,
+      "calls": 405,
+      "self_seconds": 0.000728442,
+      "cumulative_seconds": 0.000728442
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/control_objective_v44.py",
+      "line": 36,
+      "function": "state_features",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 9.377100000000001e-05,
+      "cumulative_seconds": 0.000714729
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/env/thruster_dynamics.py",
+      "line": 243,
+      "function": "update",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 0.00030421100000000003,
+      "cumulative_seconds": 0.000704595
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/bounded_feedback_v46.py",
+      "line": 185,
+      "function": "_same_pose_values",
+      "primitive_calls": 5,
+      "calls": 5,
+      "self_seconds": 7.392000000000001e-05,
+      "cumulative_seconds": 0.0006460120000000001
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/scene/interactive_scene.py",
+      "line": 463,
+      "function": "write_data_to_sim",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 1.2212000000000001e-05,
+      "cumulative_seconds": 0.0006333990000000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/env/rigid_body_hydrodynamics.py",
+      "line": 63,
+      "function": "calculate_quadratic_drag_forces",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 0.000148479,
+      "cumulative_seconds": 0.00062463
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/assets/rigid_object/rigid_object.py",
+      "line": 108,
+      "function": "write_data_to_sim",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 3.3484e-05,
+      "cumulative_seconds": 0.0006193310000000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/isaac_execution_v55.py",
+      "line": 130,
+      "function": "_pre",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 1.6319e-05,
+      "cumulative_seconds": 0.000593112
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/execution_ledger_v48.py",
+      "line": 156,
+      "function": "_binding_check",
+      "primitive_calls": 6,
+      "calls": 6,
+      "self_seconds": 3.1548000000000004e-05,
+      "cumulative_seconds": 0.0005890670000000001
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/copy.py",
+      "line": 128,
+      "function": "deepcopy",
+      "primitive_calls": 205,
+      "calls": 247,
+      "self_seconds": 0.000345228,
+      "cumulative_seconds": 0.000585764
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/isaac_execution_v55.py",
+      "line": 65,
+      "function": "_safety_observation",
+      "primitive_calls": 3,
+      "calls": 3,
+      "self_seconds": 5.0086e-05,
+      "cumulative_seconds": 0.0005816370000000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/bounded_mpc_v44.py",
+      "line": 78,
+      "function": "identity",
+      "primitive_calls": 7,
+      "calls": 7,
+      "self_seconds": 4.4746e-05,
+      "cumulative_seconds": 0.000581172
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'all' of 'numpy.ndarray' objects>",
+      "primitive_calls": 205,
+      "calls": 205,
+      "self_seconds": 0.00011287700000000001,
+      "cumulative_seconds": 0.000568624
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'detach' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 381,
+      "calls": 381,
+      "self_seconds": 0.000564915,
+      "cumulative_seconds": 0.000564915
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.physics.tensors-107.3.18+107.3.1.lx64.r.cp311.u353/omni/physics/tensors/impl/api.py",
+      "line": 3516,
+      "function": "apply_forces_and_torques_at_position",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 1.7081e-05,
+      "cumulative_seconds": 0.000562272
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/numeric.py",
+      "line": 2330,
+      "function": "within_tol",
+      "primitive_calls": 14,
+      "calls": 14,
+      "self_seconds": 0.00021130400000000002,
+      "cumulative_seconds": 0.0005609930000000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/env/easyuuv_env.py",
+      "line": 1335,
+      "function": "get_current_fluid_velocity",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 2.2456e-05,
+      "cumulative_seconds": 0.000552119
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/bounded_feedback_v46.py",
+      "line": 47,
+      "function": "feedback_demand",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 6.696500000000001e-05,
+      "cumulative_seconds": 0.0005381790000000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/fromnumeric.py",
+      "line": 71,
+      "function": "_wrapreduction",
+      "primitive_calls": 132,
+      "calls": 132,
+      "self_seconds": 0.00020892800000000002,
+      "cumulative_seconds": 0.0005347850000000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/env/rigid_body_hydrodynamics.py",
+      "line": 53,
+      "function": "_calculate_inferred_half_dimensions",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 0.000169473,
+      "cumulative_seconds": 0.000518054
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.simulation_manager/isaacsim/core/simulation_manager/impl/simulation_manager.py",
+      "line": 396,
+      "function": "get_broadphase_type",
+      "primitive_calls": 19,
+      "calls": 19,
+      "self_seconds": 0.00044030500000000005,
+      "cumulative_seconds": 0.00050003
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/control_trace_v23.py",
+      "line": 114,
+      "function": "_pre",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 1.0991e-05,
+      "cumulative_seconds": 0.000499904
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/env/easyuuv_env.py",
+      "line": 1530,
+      "function": "_pre_physics_step",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 6.524100000000001e-05,
+      "cumulative_seconds": 0.000488696
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/assets/rigid_object/rigid_object_data.py",
+      "line": 595,
+      "function": "root_ang_vel_b",
+      "primitive_calls": 8,
+      "calls": 8,
+      "self_seconds": 7.695e-06,
+      "cumulative_seconds": 0.00046447800000000005
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/assets/rigid_object/rigid_object_data.py",
+      "line": 381,
+      "function": "root_com_ang_vel_b",
+      "primitive_calls": 8,
+      "calls": 8,
+      "self_seconds": 0.000370508,
+      "cumulative_seconds": 0.00045678300000000005
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/_methods.py",
+      "line": 61,
+      "function": "_all",
+      "primitive_calls": 205,
+      "calls": 205,
+      "self_seconds": 8.453200000000001e-05,
+      "cumulative_seconds": 0.00045574700000000005
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/env/easyuuv_env.py",
+      "line": 1726,
+      "function": "_get_dones",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 0.000248479,
+      "cumulative_seconds": 0.000446673
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/command_state_v39.py",
+      "line": 68,
+      "function": "record_issued",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 3.1277e-05,
+      "cumulative_seconds": 0.000444851
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/json/__init__.py",
+      "line": 183,
+      "function": "dumps",
+      "primitive_calls": 7,
+      "calls": 7,
+      "self_seconds": 2.7065000000000003e-05,
+      "cumulative_seconds": 0.00044119600000000004
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/env/easyuuv_env.py",
+      "line": 1349,
+      "function": "_vectorize",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 3.5158000000000005e-05,
+      "cumulative_seconds": 0.00043201800000000005
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/numeric.py",
+      "line": 1393,
+      "function": "moveaxis",
+      "primitive_calls": 30,
+      "calls": 30,
+      "self_seconds": 0.000154821,
+      "cumulative_seconds": 0.000428562
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/shape_base.py",
+      "line": 372,
+      "function": "stack",
+      "primitive_calls": 24,
+      "calls": 24,
+      "self_seconds": 0.00022708,
+      "cumulative_seconds": 0.000406783
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/json/encoder.py",
+      "line": 183,
+      "function": "encode",
+      "primitive_calls": 7,
+      "calls": 7,
+      "self_seconds": 2.2904000000000003e-05,
+      "cumulative_seconds": 0.000406045
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/bounded_feedback_v46.py",
+      "line": 107,
+      "function": "inspect",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 0.00012432100000000002,
+      "cumulative_seconds": 0.000399518
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/execution_ledger_v48.py",
+      "line": 163,
+      "function": "_checked_command",
+      "primitive_calls": 3,
+      "calls": 3,
+      "self_seconds": 4.0052e-05,
+      "cumulative_seconds": 0.000386314
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/json/encoder.py",
+      "line": 205,
+      "function": "iterencode",
+      "primitive_calls": 7,
+      "calls": 7,
+      "self_seconds": 0.000378608,
+      "cumulative_seconds": 0.000378608
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.isfinite>",
+      "primitive_calls": 9,
+      "calls": 9,
+      "self_seconds": 0.000366516,
+      "cumulative_seconds": 0.000366516
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/control_v24.py",
+      "line": 32,
+      "function": "begin_interval",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 4.6643e-05,
+      "cumulative_seconds": 0.00035006100000000004
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method omni.physics.tensors.bindings._physicsTensors.apply_forces_and_torques_at_position>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 0.00034804000000000004,
+      "cumulative_seconds": 0.00034804000000000004
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/env/rigid_body_hydrodynamics.py",
+      "line": 80,
+      "function": "calculate_linear_viscous_forces",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 7.0321e-05,
+      "cumulative_seconds": 0.000336291
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/assets/rigid_object/rigid_object_data.py",
+      "line": 191,
+      "function": "root_state_w",
+      "primitive_calls": 9,
+      "calls": 9,
+      "self_seconds": 1.6553000000000002e-05,
+      "cumulative_seconds": 0.00033060200000000004
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/numeric.py",
+      "line": 2378,
+      "function": "array_equal",
+      "primitive_calls": 58,
+      "calls": 58,
+      "self_seconds": 0.00016754700000000001,
+      "cumulative_seconds": 0.000328778
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/runtime_coordinator_v52.py",
+      "line": 70,
+      "function": "observe",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 2.8703000000000003e-05,
+      "cumulative_seconds": 0.000327564
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/command_state_v39.py",
+      "line": 84,
+      "function": "snapshot",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 1.9313e-05,
+      "cumulative_seconds": 0.000325996
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/prepared_allocation_v42.py",
+      "line": 59,
+      "function": "command",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 0.00015222600000000002,
+      "cumulative_seconds": 0.000319834
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/execution_ledger_v48.py",
+      "line": 206,
+      "function": "reserve",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 1.8363e-05,
+      "cumulative_seconds": 0.000317588
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.physics.tensors-107.3.18+107.3.1.lx64.r.cp311.u353/omni/physics/tensors/impl/api.py",
+      "line": 3342,
+      "function": "get_transforms",
+      "primitive_calls": 11,
+      "calls": 11,
+      "self_seconds": 1.9239e-05,
+      "cumulative_seconds": 0.00030538900000000004
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/free_water_v26.py",
+      "line": 16,
+      "function": "_array",
+      "primitive_calls": 64,
+      "calls": 64,
+      "self_seconds": 0.000100075,
+      "cumulative_seconds": 0.00030472800000000004
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/control_objective_v44.py",
+      "line": 43,
+      "function": "tracking_terms",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 8.4177e-05,
+      "cumulative_seconds": 0.000297853
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.any>",
+      "primitive_calls": 16,
+      "calls": 16,
+      "self_seconds": 2.6437e-05,
+      "cumulative_seconds": 0.00029707800000000004
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/fromnumeric.py",
+      "line": 2322,
+      "function": "any",
+      "primitive_calls": 50,
+      "calls": 50,
+      "self_seconds": 6.0686e-05,
+      "cumulative_seconds": 0.000284495
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method omni.physics.tensors.bindings._physicsTensors.get_transforms>",
+      "primitive_calls": 11,
+      "calls": 11,
+      "self_seconds": 0.00028384600000000003,
+      "cumulative_seconds": 0.00028384600000000003
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.physics.tensors-107.3.18+107.3.1.lx64.r.cp311.u353/omni/physics/tensors/impl/api.py",
+      "line": 3369,
+      "function": "get_velocities",
+      "primitive_calls": 11,
+      "calls": 11,
+      "self_seconds": 1.4861e-05,
+      "cumulative_seconds": 0.000281462
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.asarray>",
+      "primitive_calls": 495,
+      "calls": 495,
+      "self_seconds": 0.00027583800000000004,
+      "cumulative_seconds": 0.00027583800000000004
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/control_v24.py",
+      "line": 14,
+      "function": "_command",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 6.893700000000001e-05,
+      "cumulative_seconds": 0.000269243
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method omni.physics.tensors.bindings._physicsTensors.get_velocities>",
+      "primitive_calls": 11,
+      "calls": 11,
+      "self_seconds": 0.00026453500000000004,
+      "cumulative_seconds": 0.00026453500000000004
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/physical_terms_v26.py",
+      "line": 10,
+      "function": "validate_states",
+      "primitive_calls": 7,
+      "calls": 7,
+      "self_seconds": 0.00010750500000000001,
+      "cumulative_seconds": 0.000262643
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'tolist' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 290,
+      "calls": 290,
+      "self_seconds": 0.00024188300000000003,
+      "cumulative_seconds": 0.00024188300000000003
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/fromnumeric.py",
+      "line": 2421,
+      "function": "all",
+      "primitive_calls": 58,
+      "calls": 58,
+      "self_seconds": 5.3746000000000003e-05,
+      "cumulative_seconds": 0.000239243
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/assets/rigid_object/rigid_object_data.py",
+      "line": 123,
+      "function": "root_link_pose_w",
+      "primitive_calls": 48,
+      "calls": 48,
+      "self_seconds": 0.00010680600000000001,
+      "cumulative_seconds": 0.000237327
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/command_prediction_v37.py",
+      "line": 16,
+      "function": "validate_context",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 1.6682e-05,
+      "cumulative_seconds": 0.00023622900000000002
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/assets/rigid_object/rigid_object_data.py",
+      "line": 402,
+      "function": "root_link_quat_w",
+      "primitive_calls": 32,
+      "calls": 32,
+      "self_seconds": 0.00020602,
+      "cumulative_seconds": 0.00022336500000000003
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.zeros>",
+      "primitive_calls": 14,
+      "calls": 14,
+      "self_seconds": 0.00021919000000000002,
+      "cumulative_seconds": 0.00021919000000000002
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'repeat' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 11,
+      "calls": 11,
+      "self_seconds": 0.00021488100000000002,
+      "cumulative_seconds": 0.00021488100000000002
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/calibration_trace_v27.py",
+      "line": 12,
+      "function": "state_metrics",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 3.3751e-05,
+      "cumulative_seconds": 0.000213543
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/numeric.py",
+      "line": 1330,
+      "function": "normalize_axis_tuple",
+      "primitive_calls": 60,
+      "calls": 60,
+      "self_seconds": 0.000136711,
+      "cumulative_seconds": 0.00020558200000000002
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/runtime_audit_v57.py",
+      "line": 28,
+      "function": "_call",
+      "primitive_calls": 3,
+      "calls": 4,
+      "self_seconds": 2.9372000000000003e-05,
+      "cumulative_seconds": 0.000189203
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/torch/_tensor.py",
+      "line": 33,
+      "function": "wrapped",
+      "primitive_calls": 8,
+      "calls": 8,
+      "self_seconds": 2.3033e-05,
+      "cumulative_seconds": 0.0001864
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/lib/index_tricks.py",
+      "line": 326,
+      "function": "__getitem__",
+      "primitive_calls": 11,
+      "calls": 11,
+      "self_seconds": 0.00013849400000000002,
+      "cumulative_seconds": 0.00018563000000000002
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.as_tensor>",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 0.00018355200000000002,
+      "cumulative_seconds": 0.00018355200000000002
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/env/easyuuv_env.py",
+      "line": 1608,
+      "function": "_get_observations",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 0.000122636,
+      "cumulative_seconds": 0.00017753900000000002
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.simulation_manager/isaacsim/core/simulation_manager/impl/simulation_manager.py",
+      "line": 577,
+      "function": "is_gpu_dynamics_enabled",
+      "primitive_calls": 19,
+      "calls": 19,
+      "self_seconds": 0.000142096,
+      "cumulative_seconds": 0.00017283
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/assets/rigid_object/rigid_object_data.py",
+      "line": 565,
+      "function": "root_pos_w",
+      "primitive_calls": 14,
+      "calls": 14,
+      "self_seconds": 1.1523000000000001e-05,
+      "cumulative_seconds": 0.00016609600000000002
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.pow>",
+      "primitive_calls": 11,
+      "calls": 11,
+      "self_seconds": 0.00016433500000000002,
+      "cumulative_seconds": 0.00016433500000000002
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/copy.py",
+      "line": 259,
+      "function": "_reconstruct",
+      "primitive_calls": 3,
+      "calls": 3,
+      "self_seconds": 2.5024000000000003e-05,
+      "cumulative_seconds": 0.000157162
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/assets/rigid_object/rigid_object_data.py",
+      "line": 394,
+      "function": "root_link_pos_w",
+      "primitive_calls": 14,
+      "calls": 14,
+      "self_seconds": 0.000146059,
+      "cumulative_seconds": 0.000154573
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/runtime_audit_v57.py",
+      "line": 46,
+      "function": "choose",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 7.5380000000000005e-06,
+      "cumulative_seconds": 0.000153757
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/assets/rigid_object/rigid_object.py",
+      "line": 366,
+      "function": "set_external_force_and_torque",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 0.00010089800000000001,
+      "cumulative_seconds": 0.000148753
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/_ufunc_config.py",
+      "line": 33,
+      "function": "seterr",
+      "primitive_calls": 28,
+      "calls": 28,
+      "self_seconds": 7.057000000000001e-05,
+      "cumulative_seconds": 0.00014723200000000002
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/assets/rigid_object/rigid_object_data.py",
+      "line": 570,
+      "function": "root_quat_w",
+      "primitive_calls": 16,
+      "calls": 16,
+      "self_seconds": 1.2921e-05,
+      "cumulative_seconds": 0.00014452600000000002
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/actuator_replay_v28.py",
+      "line": 13,
+      "function": "advance_pwm",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 9.6172e-05,
+      "cumulative_seconds": 0.000143473
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/free_water_runtime_v26.py",
+      "line": 96,
+      "function": "read",
+      "primitive_calls": 3,
+      "calls": 3,
+      "self_seconds": 1.2008000000000001e-05,
+      "cumulative_seconds": 0.000142831
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.hasattr>",
+      "primitive_calls": 768,
+      "calls": 768,
+      "self_seconds": 0.000136093,
+      "cumulative_seconds": 0.000136093
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.sum>",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 0.000134132,
+      "cumulative_seconds": 0.000134132
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.next>",
+      "primitive_calls": 68,
+      "calls": 68,
+      "self_seconds": 3.5456e-05,
+      "cumulative_seconds": 0.000131783
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.physics.tensors-107.3.18+107.3.1.lx64.r.cp311.u353/omni/physics/tensors/impl/frontend_torch.py",
+      "line": 75,
+      "function": "get_tensor_desc",
+      "primitive_calls": 6,
+      "calls": 6,
+      "self_seconds": 0.00010418200000000001,
+      "cumulative_seconds": 0.000127872
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/fromnumeric.py",
+      "line": 2100,
+      "function": "clip",
+      "primitive_calls": 13,
+      "calls": 13,
+      "self_seconds": 1.9776000000000002e-05,
+      "cumulative_seconds": 0.000127555
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/cached_checks_v53.py",
+      "line": 33,
+      "function": "evaluate",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 4.5808000000000006e-05,
+      "cumulative_seconds": 0.000127211
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.cat>",
+      "primitive_calls": 5,
+      "calls": 5,
+      "self_seconds": 0.000125066,
+      "cumulative_seconds": 0.000125066
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/plan_arbiter_v52.py",
+      "line": 175,
+      "function": "choose",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 8.745e-06,
+      "cumulative_seconds": 0.000117632
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/control_objective_v44.py",
+      "line": 28,
+      "function": "checked_reference",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 4.8700000000000005e-05,
+      "cumulative_seconds": 0.000114772
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/contextlib.py",
+      "line": 299,
+      "function": "helper",
+      "primitive_calls": 34,
+      "calls": 34,
+      "self_seconds": 3.6854e-05,
+      "cumulative_seconds": 0.00011395700000000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/_ufunc_config.py",
+      "line": 430,
+      "function": "__enter__",
+      "primitive_calls": 14,
+      "calls": 14,
+      "self_seconds": 2.3634e-05,
+      "cumulative_seconds": 0.00011387700000000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.isinstance>",
+      "primitive_calls": 806,
+      "calls": 806,
+      "self_seconds": 0.000113794,
+      "cumulative_seconds": 0.000113794
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/numeric.py",
+      "line": 1468,
+      "function": "cross",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 4.733e-05,
+      "cumulative_seconds": 0.000113287
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.abs>",
+      "primitive_calls": 11,
+      "calls": 11,
+      "self_seconds": 0.00011327800000000001,
+      "cumulative_seconds": 0.00011327800000000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/fromnumeric.py",
+      "line": 53,
+      "function": "_wrapfunc",
+      "primitive_calls": 14,
+      "calls": 14,
+      "self_seconds": 1.8729e-05,
+      "cumulative_seconds": 0.00011145400000000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'reshape' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 31,
+      "calls": 31,
+      "self_seconds": 0.000108529,
+      "cumulative_seconds": 0.000108529
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.roll>",
+      "primitive_calls": 12,
+      "calls": 12,
+      "self_seconds": 0.000105661,
+      "cumulative_seconds": 0.000105661
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/contextlib.py",
+      "line": 132,
+      "function": "__enter__",
+      "primitive_calls": 34,
+      "calls": 34,
+      "self_seconds": 2.7664e-05,
+      "cumulative_seconds": 0.000104129
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/command_prediction_v37.py",
+      "line": 30,
+      "function": "<genexpr>",
+      "primitive_calls": 16,
+      "calls": 16,
+      "self_seconds": 2.6523e-05,
+      "cumulative_seconds": 0.00010274600000000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/projected_edmd_v24.py",
+      "line": 21,
+      "function": "__post_init__",
+      "primitive_calls": 3,
+      "calls": 3,
+      "self_seconds": 5.6030000000000004e-05,
+      "cumulative_seconds": 0.00010259300000000001
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/free_water_v26.py",
+      "line": 53,
+      "function": "<genexpr>",
+      "primitive_calls": 12,
+      "calls": 12,
+      "self_seconds": 2.6371000000000002e-05,
+      "cumulative_seconds": 0.000101896
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/physics_context/physics_context.py",
+      "line": 286,
+      "function": "get_physics_dt",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 5.332e-06,
+      "cumulative_seconds": 0.00010128300000000001
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/contextlib.py",
+      "line": 141,
+      "function": "__exit__",
+      "primitive_calls": 34,
+      "calls": 34,
+      "self_seconds": 4.4419e-05,
+      "cumulative_seconds": 9.973700000000001e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/plan_arbiter_v52.py",
+      "line": 71,
+      "function": "_capture_is_current",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 4.5280000000000005e-06,
+      "cumulative_seconds": 9.895700000000001e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.stack>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 9.893300000000001e-05,
+      "cumulative_seconds": 9.893300000000001e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.simulation_manager/isaacsim/core/simulation_manager/impl/simulation_manager.py",
+      "line": 208,
+      "function": "_get_physics_scene_api",
+      "primitive_calls": 40,
+      "calls": 40,
+      "self_seconds": 8.1864e-05,
+      "cumulative_seconds": 9.8708e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method carb.settings._settings.get_as_bool>",
+      "primitive_calls": 20,
+      "calls": 20,
+      "self_seconds": 9.7967e-05,
+      "cumulative_seconds": 9.7967e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/fromnumeric.py",
+      "line": 2836,
+      "function": "min",
+      "primitive_calls": 15,
+      "calls": 15,
+      "self_seconds": 2.2446e-05,
+      "cumulative_seconds": 9.7675e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/execution_ledger_v48.py",
+      "line": 229,
+      "function": "dispatch",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 6.343e-06,
+      "cumulative_seconds": 9.691700000000001e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.simulation_manager/isaacsim/core/simulation_manager/impl/simulation_manager.py",
+      "line": 373,
+      "function": "get_physics_dt",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 8.770200000000001e-05,
+      "cumulative_seconds": 9.5951e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'to' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 12,
+      "calls": 12,
+      "self_seconds": 9.5814e-05,
+      "cumulative_seconds": 9.5814e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/copy.py",
+      "line": 227,
+      "function": "_deepcopy_dict",
+      "primitive_calls": 3,
+      "calls": 3,
+      "self_seconds": 2.1789e-05,
+      "cumulative_seconds": 9.5165e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/torch/_tensor.py",
+      "line": 1100,
+      "function": "__rdiv__",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 4.1293e-05,
+      "cumulative_seconds": 9.505200000000001e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/execution_ledger_v48.py",
+      "line": 136,
+      "function": "physics_index",
+      "primitive_calls": 7,
+      "calls": 7,
+      "self_seconds": 2.1361e-05,
+      "cumulative_seconds": 8.948300000000001e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/execution_ledger_v48.py",
+      "line": 41,
+      "function": "__post_init__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 6.097e-06,
+      "cumulative_seconds": 8.8823e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.getattr>",
+      "primitive_calls": 335,
+      "calls": 335,
+      "self_seconds": 8.3707e-05,
+      "cumulative_seconds": 8.3707e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'nonzero' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 8.2749e-05,
+      "cumulative_seconds": 8.2749e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.physics.tensors-107.3.18+107.3.1.lx64.r.cp311.u353/omni/physics/tensors/impl/api.py",
+      "line": 5767,
+      "function": "get_net_contact_forces",
+      "primitive_calls": 3,
+      "calls": 3,
+      "self_seconds": 6.856e-06,
+      "cumulative_seconds": 7.7904e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/runtime_coordinator_v52.py",
+      "line": 49,
+      "function": "__post_init__",
+      "primitive_calls": 3,
+      "calls": 3,
+      "self_seconds": 3.0019000000000002e-05,
+      "cumulative_seconds": 7.7476e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/contextlib.py",
+      "line": 104,
+      "function": "__init__",
+      "primitive_calls": 34,
+      "calls": 34,
+      "self_seconds": 6.6072e-05,
+      "cumulative_seconds": 7.710300000000001e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/control_objective_v44.py",
+      "line": 21,
+      "function": "checked_mask",
+      "primitive_calls": 5,
+      "calls": 5,
+      "self_seconds": 2.1110000000000003e-05,
+      "cumulative_seconds": 7.682500000000001e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/_ufunc_config.py",
+      "line": 435,
+      "function": "__exit__",
+      "primitive_calls": 14,
+      "calls": 14,
+      "self_seconds": 1.947e-05,
+      "cumulative_seconds": 7.645900000000001e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/execution_ledger_v48.py",
+      "line": 148,
+      "function": "stopped",
+      "primitive_calls": 5,
+      "calls": 5,
+      "self_seconds": 1.5442000000000002e-05,
+      "cumulative_seconds": 7.616300000000001e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/solver_worker_v49.py",
+      "line": 165,
+      "function": "poll",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 3.0676e-05,
+      "cumulative_seconds": 7.605800000000001e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/fromnumeric.py",
+      "line": 72,
+      "function": "<dictcomp>",
+      "primitive_calls": 132,
+      "calls": 132,
+      "self_seconds": 7.517500000000001e-05,
+      "cumulative_seconds": 7.517500000000001e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/shape_base.py",
+      "line": 443,
+      "function": "<listcomp>",
+      "primitive_calls": 24,
+      "calls": 24,
+      "self_seconds": 4.9981e-05,
+      "cumulative_seconds": 7.497100000000001e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.any>",
+      "primitive_calls": 5,
+      "calls": 5,
+      "self_seconds": 7.1598e-05,
+      "cumulative_seconds": 7.1598e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/env/easyuuv_env.py",
+      "line": 933,
+      "function": "_update_runtime_torque_pulse",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 6.661400000000001e-05,
+      "cumulative_seconds": 6.9979e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/bounded_mpc_v44.py",
+      "line": 28,
+      "function": "owned",
+      "primitive_calls": 12,
+      "calls": 12,
+      "self_seconds": 3.0652000000000004e-05,
+      "cumulative_seconds": 6.9936e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method omni.physics.tensors.bindings._physicsTensors.get_net_contact_forces>",
+      "primitive_calls": 3,
+      "calls": 3,
+      "self_seconds": 6.981600000000001e-05,
+      "cumulative_seconds": 6.981600000000001e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.abs>",
+      "primitive_calls": 59,
+      "calls": 59,
+      "self_seconds": 6.8102e-05,
+      "cumulative_seconds": 6.8102e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'dot' of 'numpy.ndarray' objects>",
+      "primitive_calls": 64,
+      "calls": 64,
+      "self_seconds": 6.7475e-05,
+      "cumulative_seconds": 6.7475e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/torch/cuda/__init__.py",
+      "line": 517,
+      "function": "set_device",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 9.768e-06,
+      "cumulative_seconds": 6.734300000000001e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.all>",
+      "primitive_calls": 6,
+      "calls": 6,
+      "self_seconds": 6.663300000000001e-05,
+      "cumulative_seconds": 6.663300000000001e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'get' of 'dict' objects>",
+      "primitive_calls": 510,
+      "calls": 510,
+      "self_seconds": 6.6591e-05,
+      "cumulative_seconds": 6.6591e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/_methods.py",
+      "line": 90,
+      "function": "_clip",
+      "primitive_calls": 13,
+      "calls": 13,
+      "self_seconds": 6.634e-05,
+      "cumulative_seconds": 6.634e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/torch/_tensor.py",
+      "line": 1096,
+      "function": "__rsub__",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 7.924e-06,
+      "cumulative_seconds": 6.490200000000001e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'all' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 3,
+      "calls": 3,
+      "self_seconds": 6.4768e-05,
+      "cumulative_seconds": 6.4768e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.len>",
+      "primitive_calls": 324,
+      "calls": 324,
+      "self_seconds": 4.7398e-05,
+      "cumulative_seconds": 6.3613e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'max' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 6.2901e-05,
+      "cumulative_seconds": 6.2901e-05
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/assets/rigid_object/rigid_object_data.py",
+      "line": 178,
+      "function": "root_com_vel_w",
+      "primitive_calls": 22,
+      "calls": 22,
+      "self_seconds": 1.1891e-05,
+      "cumulative_seconds": 6.0245000000000003e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'clip' of 'numpy.ndarray' objects>",
+      "primitive_calls": 10,
+      "calls": 10,
+      "self_seconds": 1.0476000000000001e-05,
+      "cumulative_seconds": 5.8557e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/fromnumeric.py",
+      "line": 2692,
+      "function": "max",
+      "primitive_calls": 8,
+      "calls": 8,
+      "self_seconds": 1.2319e-05,
+      "cumulative_seconds": 5.7579000000000006e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.array>",
+      "primitive_calls": 79,
+      "calls": 79,
+      "self_seconds": 5.722100000000001e-05,
+      "cumulative_seconds": 5.722100000000001e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.rsub>",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 5.6978e-05,
+      "cumulative_seconds": 5.6978e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/execution_ledger_v48.py",
+      "line": 128,
+      "function": "_guard",
+      "primitive_calls": 40,
+      "calls": 40,
+      "self_seconds": 3.5884000000000004e-05,
+      "cumulative_seconds": 5.6956e-05
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/assets/rigid_object/rigid_object_data.py",
+      "line": 442,
+      "function": "root_com_lin_vel_w",
+      "primitive_calls": 10,
+      "calls": 10,
+      "self_seconds": 5.1266e-05,
+      "cumulative_seconds": 5.6395000000000005e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.cross>",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 5.6129000000000004e-05,
+      "cumulative_seconds": 5.6129000000000004e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/runtime_audit_v57.py",
+      "line": 47,
+      "function": "invalidate",
+      "primitive_calls": 3,
+      "calls": 3,
+      "self_seconds": 8.074000000000001e-06,
+      "cumulative_seconds": 5.5115000000000003e-05
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/utils/math.py",
+      "line": 195,
+      "function": "convert_quat",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 1.4563000000000001e-05,
+      "cumulative_seconds": 5.4387000000000006e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/shape_base.py",
+      "line": 455,
+      "function": "<listcomp>",
+      "primitive_calls": 24,
+      "calls": 24,
+      "self_seconds": 5.4319000000000006e-05,
+      "cumulative_seconds": 5.4319000000000006e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/env/thruster_dynamics.py",
+      "line": 298,
+      "function": "convert",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 3.6556e-05,
+      "cumulative_seconds": 5.3951000000000006e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'reciprocal' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 5.3759000000000005e-05,
+      "cumulative_seconds": 5.3759000000000005e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.exp>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 5.347e-05,
+      "cumulative_seconds": 5.347e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.clamp_min>",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 5.342e-05,
+      "cumulative_seconds": 5.342e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/bounded_mpc_v44.py",
+      "line": 93,
+      "function": "<listcomp>",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 9.712000000000001e-06,
+      "cumulative_seconds": 5.2511000000000006e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/command_state_v39.py",
+      "line": 24,
+      "function": "_same_context",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 2.567e-06,
+      "cumulative_seconds": 5.2211000000000005e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/runtime_coordinator_v52.py",
+      "line": 112,
+      "function": "_stop",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 7.5940000000000005e-06,
+      "cumulative_seconds": 5.1685000000000004e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/feedback_inverse_v28.py",
+      "line": 15,
+      "function": "deadzone_distance",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 2.8338000000000002e-05,
+      "cumulative_seconds": 5.1647e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.physics.tensors-107.3.18+107.3.1.lx64.r.cp311.u353/omni/physics/tensors/impl/frontend_torch.py",
+      "line": 86,
+      "function": "as_contiguous_uint32",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 3.181e-06,
+      "cumulative_seconds": 5.1399e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/control_objective_v44.py",
+      "line": 23,
+      "function": "<genexpr>",
+      "primitive_calls": 10,
+      "calls": 10,
+      "self_seconds": 1.0853000000000001e-05,
+      "cumulative_seconds": 5.1176000000000006e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/_ufunc_config.py",
+      "line": 132,
+      "function": "geterr",
+      "primitive_calls": 28,
+      "calls": 28,
+      "self_seconds": 4.7782000000000004e-05,
+      "cumulative_seconds": 5.1046000000000006e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/torch/cuda/_utils.py",
+      "line": 9,
+      "function": "_get_device_index",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 3.7469e-05,
+      "cumulative_seconds": 5.0503e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'unsqueeze' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 9,
+      "calls": 9,
+      "self_seconds": 5.0014000000000006e-05,
+      "cumulative_seconds": 5.0014000000000006e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.all>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 3.2670000000000002e-06,
+      "cumulative_seconds": 4.9644e-05
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/assets/rigid_object/rigid_object_data.py",
+      "line": 450,
+      "function": "root_com_ang_vel_w",
+      "primitive_calls": 10,
+      "calls": 10,
+      "self_seconds": 4.6003e-05,
+      "cumulative_seconds": 4.9468e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.sqrt>",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 4.8666000000000005e-05,
+      "cumulative_seconds": 4.8666000000000005e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/dataclasses.py",
+      "line": 1455,
+      "function": "replace",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 1.2496e-05,
+      "cumulative_seconds": 4.8575e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'abs' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 5,
+      "calls": 5,
+      "self_seconds": 4.8100000000000004e-05,
+      "cumulative_seconds": 4.8100000000000004e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'any' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 4.7855e-05,
+      "cumulative_seconds": 4.7855e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method carb.settings._settings.get_as_int>",
+      "primitive_calls": 19,
+      "calls": 19,
+      "self_seconds": 4.7807000000000005e-05,
+      "cumulative_seconds": 4.7807000000000005e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'unbind' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 4.7589e-05,
+      "cumulative_seconds": 4.7589e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/numeric.py",
+      "line": 1380,
+      "function": "<listcomp>",
+      "primitive_calls": 60,
+      "calls": 60,
+      "self_seconds": 3.0476e-05,
+      "cumulative_seconds": 4.7480000000000006e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'copy_' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 6,
+      "calls": 6,
+      "self_seconds": 4.6578e-05,
+      "cumulative_seconds": 4.6578e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/bounded_mpc_v44.py",
+      "line": 69,
+      "function": "record",
+      "primitive_calls": 7,
+      "calls": 7,
+      "self_seconds": 3.6203000000000006e-05,
+      "cumulative_seconds": 4.6453000000000004e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/command_state_v39.py",
+      "line": 25,
+      "function": "<genexpr>",
+      "primitive_calls": 9,
+      "calls": 9,
+      "self_seconds": 1.1866000000000001e-05,
+      "cumulative_seconds": 4.6377e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/lib/shape_base.py",
+      "line": 612,
+      "function": "column_stack",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 3.4937e-05,
+      "cumulative_seconds": 4.6228000000000005e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/free_water_v26.py",
+      "line": 52,
+      "function": "<listcomp>",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 8.65e-06,
+      "cumulative_seconds": 4.4217e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/shape_base.py",
+      "line": 362,
+      "function": "_stack_dispatcher",
+      "primitive_calls": 24,
+      "calls": 24,
+      "self_seconds": 1.8584e-05,
+      "cumulative_seconds": 4.4200000000000004e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'any' of 'numpy.ndarray' objects>",
+      "primitive_calls": 20,
+      "calls": 20,
+      "self_seconds": 1.1953e-05,
+      "cumulative_seconds": 4.2799e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.clamp>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 4.2519000000000004e-05,
+      "cumulative_seconds": 4.2519000000000004e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'reshape' of 'numpy.ndarray' objects>",
+      "primitive_calls": 51,
+      "calls": 51,
+      "self_seconds": 4.1211e-05,
+      "cumulative_seconds": 4.1211e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/omni/kernel/py/omni/kit/app/_impl/__init__.py",
+      "line": 188,
+      "function": "_gc_profile_callback",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 7.757e-06,
+      "cumulative_seconds": 4.053e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/runtime_coordinator_v52.py",
+      "line": 116,
+      "function": "_safety",
+      "primitive_calls": 3,
+      "calls": 3,
+      "self_seconds": 1.5606e-05,
+      "cumulative_seconds": 4.0297000000000004e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/prepared_projected_v40.py",
+      "line": 23,
+      "function": "_context_key",
+      "primitive_calls": 7,
+      "calls": 7,
+      "self_seconds": 3.8674e-05,
+      "cumulative_seconds": 3.9697e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/_ufunc_config.py",
+      "line": 452,
+      "function": "_no_nep50_warning",
+      "primitive_calls": 28,
+      "calls": 28,
+      "self_seconds": 2.3023000000000003e-05,
+      "cumulative_seconds": 3.9371e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'roll' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 3.8977e-05,
+      "cumulative_seconds": 3.8977e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'flatten' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 3.8372000000000005e-05,
+      "cumulative_seconds": 3.8372000000000005e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.id>",
+      "primitive_calls": 299,
+      "calls": 299,
+      "self_seconds": 3.7898e-05,
+      "cumulative_seconds": 3.7898e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.zeros_like>",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 3.7736e-05,
+      "cumulative_seconds": 3.7736e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/control_objective_v44.py",
+      "line": 17,
+      "function": "control_mask",
+      "primitive_calls": 5,
+      "calls": 5,
+      "self_seconds": 9.117000000000001e-06,
+      "cumulative_seconds": 3.6769e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.mean>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 3.5994e-05,
+      "cumulative_seconds": 3.5994e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.asanyarray>",
+      "primitive_calls": 275,
+      "calls": 275,
+      "self_seconds": 3.5976e-05,
+      "cumulative_seconds": 3.5976e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/command_state_v39.py",
+      "line": 29,
+      "function": "_command",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 1.6254e-05,
+      "cumulative_seconds": 3.5584000000000004e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/shape_base.py",
+      "line": 447,
+      "function": "<setcomp>",
+      "primitive_calls": 24,
+      "calls": 24,
+      "self_seconds": 3.553e-05,
+      "cumulative_seconds": 3.553e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/workpoint_v27.py",
+      "line": 29,
+      "function": "mechanics",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 1.9616e-05,
+      "cumulative_seconds": 3.4572e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/linalg/linalg.py",
+      "line": 140,
+      "function": "isComplexType",
+      "primitive_calls": 64,
+      "calls": 64,
+      "self_seconds": 2.5499e-05,
+      "cumulative_seconds": 3.3989e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.physics.tensors-107.3.18+107.3.1.lx64.r.cp311.u353/omni/physics/tensors/impl/api.py",
+      "line": 3589,
+      "function": "get_masses",
+      "primitive_calls": 9,
+      "calls": 9,
+      "self_seconds": 1.2098e-05,
+      "cumulative_seconds": 3.3561e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method _hashlib.openssl_sha256>",
+      "primitive_calls": 9,
+      "calls": 9,
+      "self_seconds": 3.3416e-05,
+      "cumulative_seconds": 3.3416e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/cached_checks_v53.py",
+      "line": 45,
+      "function": "<dictcomp>",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 2.0317000000000002e-05,
+      "cumulative_seconds": 3.2732000000000004e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'mean' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 3.0946000000000005e-05,
+      "cumulative_seconds": 3.0946000000000005e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/omni/kernel/py/carb/profiler/__init__.py",
+      "line": 30,
+      "function": "begin",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 1.8156e-05,
+      "cumulative_seconds": 3.0895e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/_methods.py",
+      "line": 55,
+      "function": "_any",
+      "primitive_calls": 20,
+      "calls": 20,
+      "self_seconds": 8.592e-06,
+      "cumulative_seconds": 3.0846e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/shape_base.py",
+      "line": 207,
+      "function": "_arrays_for_stack_dispatcher",
+      "primitive_calls": 28,
+      "calls": 28,
+      "self_seconds": 1.9077e-05,
+      "cumulative_seconds": 2.8685e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/copy.py",
+      "line": 182,
+      "function": "_deepcopy_atomic",
+      "primitive_calls": 237,
+      "calls": 237,
+      "self_seconds": 2.7338e-05,
+      "cumulative_seconds": 2.7338e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/simulation_context/simulation_context.py",
+      "line": 842,
+      "function": "is_playing",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 6.029e-06,
+      "cumulative_seconds": 2.7278000000000002e-05
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/envs/direct_rl_env.py",
+      "line": 233,
+      "function": "num_envs",
+      "primitive_calls": 18,
+      "calls": 18,
+      "self_seconds": 1.6573000000000002e-05,
+      "cumulative_seconds": 2.7062000000000003e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.issubclass>",
+      "primitive_calls": 183,
+      "calls": 183,
+      "self_seconds": 2.691e-05,
+      "cumulative_seconds": 2.691e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method '__reduce_ex__' of 'object' objects>",
+      "primitive_calls": 3,
+      "calls": 3,
+      "self_seconds": 1.9632e-05,
+      "cumulative_seconds": 2.6899e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'clip' of 'numpy.generic' objects>",
+      "primitive_calls": 3,
+      "calls": 3,
+      "self_seconds": 8.505e-06,
+      "cumulative_seconds": 2.6764000000000003e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/embodiments.py",
+      "line": 157,
+      "function": "qualification_record",
+      "primitive_calls": 7,
+      "calls": 7,
+      "self_seconds": 2.4732000000000003e-05,
+      "cumulative_seconds": 2.6365000000000003e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/einsumfunc.py",
+      "line": 1009,
+      "function": "einsum",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 2.92e-06,
+      "cumulative_seconds": 2.6332e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/multiprocessing/process.py",
+      "line": 224,
+      "function": "exitcode",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 1.5058e-05,
+      "cumulative_seconds": 2.6039000000000003e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'items' of 'dict' objects>",
+      "primitive_calls": 163,
+      "calls": 163,
+      "self_seconds": 2.4836e-05,
+      "cumulative_seconds": 2.4836e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.core._multiarray_umath.normalize_axis_index>",
+      "primitive_calls": 90,
+      "calls": 90,
+      "self_seconds": 2.483e-05,
+      "cumulative_seconds": 2.483e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'float' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 2.4313000000000003e-05,
+      "cumulative_seconds": 2.4313000000000003e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'ravel' of 'numpy.ndarray' objects>",
+      "primitive_calls": 65,
+      "calls": 65,
+      "self_seconds": 2.3537000000000002e-05,
+      "cumulative_seconds": 2.3537000000000002e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.core._multiarray_umath.c_einsum>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 2.3412000000000002e-05,
+      "cumulative_seconds": 2.3412000000000002e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.physics.tensors-107.3.18+107.3.1.lx64.r.cp311.u353/omni/physics/tensors/impl/api.py",
+      "line": 3666,
+      "function": "get_inertias",
+      "primitive_calls": 9,
+      "calls": 9,
+      "self_seconds": 9.946000000000001e-06,
+      "cumulative_seconds": 2.2996e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/command_state_v39.py",
+      "line": 63,
+      "function": "physics_index",
+      "primitive_calls": 16,
+      "calls": 16,
+      "self_seconds": 1.8959000000000003e-05,
+      "cumulative_seconds": 2.2837000000000002e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'view' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 2.2572e-05,
+      "cumulative_seconds": 2.2572e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.physics.tensors-107.3.18+107.3.1.lx64.r.cp311.u353/omni/physics/tensors/impl/api.py",
+      "line": 3614,
+      "function": "get_inv_masses",
+      "primitive_calls": 9,
+      "calls": 9,
+      "self_seconds": 1.1566e-05,
+      "cumulative_seconds": 2.1659e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method omni.timeline._timeline.is_playing>",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 2.1249000000000003e-05,
+      "cumulative_seconds": 2.1249000000000003e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.frombuffer>",
+      "primitive_calls": 12,
+      "calls": 12,
+      "self_seconds": 2.1089e-05,
+      "cumulative_seconds": 2.1089e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.physics.tensors-107.3.18+107.3.1.lx64.r.cp311.u353/omni/physics/tensors/impl/frontend_torch.py",
+      "line": 51,
+      "function": "_device_from_frontend",
+      "primitive_calls": 6,
+      "calls": 6,
+      "self_seconds": 2.1036e-05,
+      "cumulative_seconds": 2.1036e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/linalg/linalg.py",
+      "line": 2379,
+      "function": "_norm_dispatcher",
+      "primitive_calls": 112,
+      "calls": 112,
+      "self_seconds": 2.0393000000000003e-05,
+      "cumulative_seconds": 2.0393000000000003e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.sorted>",
+      "primitive_calls": 30,
+      "calls": 30,
+      "self_seconds": 2.0367e-05,
+      "cumulative_seconds": 2.0367e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'append' of 'list' objects>",
+      "primitive_calls": 150,
+      "calls": 150,
+      "self_seconds": 2.0237000000000003e-05,
+      "cumulative_seconds": 2.0237000000000003e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.clip>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 2.0150000000000002e-05,
+      "cumulative_seconds": 2.0150000000000002e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/numeric.py",
+      "line": 67,
+      "function": "zeros_like",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 1.6638000000000002e-05,
+      "cumulative_seconds": 2.0088e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.physics.tensors-107.3.18+107.3.1.lx64.r.cp311.u353/omni/physics/tensors/impl/api.py",
+      "line": 3693,
+      "function": "get_inv_inertias",
+      "primitive_calls": 9,
+      "calls": 9,
+      "self_seconds": 8.718e-06,
+      "cumulative_seconds": 1.9508e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method omni.physics.tensors.bindings._physicsTensors.get_masses>",
+      "primitive_calls": 9,
+      "calls": 9,
+      "self_seconds": 1.9433000000000002e-05,
+      "cumulative_seconds": 1.9433000000000002e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'transpose' of 'numpy.ndarray' objects>",
+      "primitive_calls": 30,
+      "calls": 30,
+      "self_seconds": 1.9399000000000002e-05,
+      "cumulative_seconds": 1.9399000000000002e-05
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/scene/interactive_scene.py",
+      "line": 477,
+      "function": "update",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 1.2351e-05,
+      "cumulative_seconds": 1.93e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'copy' of 'numpy.ndarray' objects>",
+      "primitive_calls": 34,
+      "calls": 34,
+      "self_seconds": 1.9199e-05,
+      "cumulative_seconds": 1.9199e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'fill_' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 1.9076e-05,
+      "cumulative_seconds": 1.9076e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'acquire' of '_thread.lock' objects>",
+      "primitive_calls": 21,
+      "calls": 21,
+      "self_seconds": 1.8844e-05,
+      "cumulative_seconds": 1.8844e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/uuid.py",
+      "line": 721,
+      "function": "uuid4",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 5.603e-06,
+      "cumulative_seconds": 1.8711e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.physics.tensors-107.3.18+107.3.1.lx64.r.cp311.u353/omni/physics/tensors/impl/api.py",
+      "line": 3720,
+      "function": "get_disable_gravities",
+      "primitive_calls": 9,
+      "calls": 9,
+      "self_seconds": 9.302e-06,
+      "cumulative_seconds": 1.8189e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.physics.tensors-107.3.18+107.3.1.lx64.r.cp311.u353/omni/physics/tensors/impl/frontend_torch.py",
+      "line": 83,
+      "function": "as_contiguous_float32",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 8.258000000000001e-06,
+      "cumulative_seconds": 1.788e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.physics.tensors-107.3.18+107.3.1.lx64.r.cp311.u353/omni/physics/tensors/impl/api.py",
+      "line": 3639,
+      "function": "get_coms",
+      "primitive_calls": 9,
+      "calls": 9,
+      "self_seconds": 8.614000000000001e-06,
+      "cumulative_seconds": 1.7628e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.seterrobj>",
+      "primitive_calls": 28,
+      "calls": 28,
+      "self_seconds": 1.7258e-05,
+      "cumulative_seconds": 1.7258e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'tolist' of 'numpy.ndarray' objects>",
+      "primitive_calls": 38,
+      "calls": 38,
+      "self_seconds": 1.6469e-05,
+      "cumulative_seconds": 1.6469e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/cached_checks_v53.py",
+      "line": 24,
+      "function": "_binding_token",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 1.2717e-05,
+      "cumulative_seconds": 1.6380000000000002e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/torch/_tensor.py",
+      "line": 1159,
+      "function": "__len__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 1.1653e-05,
+      "cumulative_seconds": 1.6215e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/numeric.py",
+      "line": 1455,
+      "function": "<listcomp>",
+      "primitive_calls": 30,
+      "calls": 30,
+      "self_seconds": 1.6020000000000002e-05,
+      "cumulative_seconds": 1.6020000000000002e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/copy.py",
+      "line": 243,
+      "function": "_keep_alive",
+      "primitive_calls": 10,
+      "calls": 10,
+      "self_seconds": 1.3084e-05,
+      "cumulative_seconds": 1.552e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/lib/index_tricks.py",
+      "line": 415,
+      "function": "<listcomp>",
+      "primitive_calls": 11,
+      "calls": 11,
+      "self_seconds": 8.607e-06,
+      "cumulative_seconds": 1.528e-05
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/assets/rigid_object/rigid_object.py",
+      "line": 64,
+      "function": "data",
+      "primitive_calls": 50,
+      "calls": 50,
+      "self_seconds": 1.5159000000000002e-05,
+      "cumulative_seconds": 1.5159000000000002e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'hexdigest' of '_hashlib.HASH' objects>",
+      "primitive_calls": 9,
+      "calls": 9,
+      "self_seconds": 1.5012000000000001e-05,
+      "cumulative_seconds": 1.5012000000000001e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/solver_worker_v49.py",
+      "line": 46,
+      "function": "take",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 4.119e-06,
+      "cumulative_seconds": 1.485e-05
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/assets/rigid_object/rigid_object_data.py",
+      "line": 580,
+      "function": "root_lin_vel_w",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 2.284e-06,
+      "cumulative_seconds": 1.4811000000000001e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'conj' of 'numpy.ndarray' objects>",
+      "primitive_calls": 48,
+      "calls": 48,
+      "self_seconds": 1.2709000000000001e-05,
+      "cumulative_seconds": 1.2709000000000001e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/execution_ledger_v48.py",
+      "line": 290,
+      "function": "abort",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 3.603e-06,
+      "cumulative_seconds": 1.2446e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.geterrobj>",
+      "primitive_calls": 56,
+      "calls": 56,
+      "self_seconds": 1.1622000000000002e-05,
+      "cumulative_seconds": 1.1622000000000002e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'astype' of 'numpy.ndarray' objects>",
+      "primitive_calls": 14,
+      "calls": 14,
+      "self_seconds": 1.1558e-05,
+      "cumulative_seconds": 1.1558e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/copy.py",
+      "line": 264,
+      "function": "<genexpr>",
+      "primitive_calls": 6,
+      "calls": 6,
+      "self_seconds": 3.661e-06,
+      "cumulative_seconds": 1.1409e-05
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/assets/rigid_object/rigid_object_data.py",
+      "line": 585,
+      "function": "root_ang_vel_w",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 1.639e-06,
+      "cumulative_seconds": 1.1361e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/fromnumeric.py",
+      "line": 2416,
+      "function": "_all_dispatcher",
+      "primitive_calls": 58,
+      "calls": 58,
+      "self_seconds": 1.1333000000000001e-05,
+      "cumulative_seconds": 1.1333000000000001e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/fromnumeric.py",
+      "line": 2317,
+      "function": "_any_dispatcher",
+      "primitive_calls": 50,
+      "calls": 50,
+      "self_seconds": 1.1303e-05,
+      "cumulative_seconds": 1.1303e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method omni.physics.tensors.bindings._physicsTensors.get_inertias>",
+      "primitive_calls": 9,
+      "calls": 9,
+      "self_seconds": 1.1113e-05,
+      "cumulative_seconds": 1.1113e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/numeric.py",
+      "line": 2374,
+      "function": "_array_equal_dispatcher",
+      "primitive_calls": 58,
+      "calls": 58,
+      "self_seconds": 1.1032e-05,
+      "cumulative_seconds": 1.1032e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/uuid.py",
+      "line": 139,
+      "function": "__init__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 9.676e-06,
+      "cumulative_seconds": 1.0903e-05
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/scene/interactive_scene.py",
+      "line": 357,
+      "function": "num_envs",
+      "primitive_calls": 18,
+      "calls": 18,
+      "self_seconds": 1.0489e-05,
+      "cumulative_seconds": 1.0489e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/numeric.py",
+      "line": 615,
+      "function": "flatnonzero",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 3.247e-06,
+      "cumulative_seconds": 1.0350000000000001e-05
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/free_water_trace_v26.py",
+      "line": 36,
+      "function": "<genexpr>",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 7.752e-06,
+      "cumulative_seconds": 1.0144000000000001e-05
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/multiprocessing/popen_fork.py",
+      "line": 24,
+      "function": "poll",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 4.875e-06,
+      "cumulative_seconds": 9.956000000000001e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/plan_arbiter_v52.py",
+      "line": 68,
+      "function": "invalidate",
+      "primitive_calls": 3,
+      "calls": 3,
+      "self_seconds": 4.9100000000000004e-06,
+      "cumulative_seconds": 9.353e-06
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/threading.py",
+      "line": 601,
+      "function": "clear",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 4.677e-06,
+      "cumulative_seconds": 9.351e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'reset' of '_contextvars.ContextVar' objects>",
+      "primitive_calls": 14,
+      "calls": 14,
+      "self_seconds": 9.296e-06,
+      "cumulative_seconds": 9.296e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/execution_ledger_v48.py",
+      "line": 144,
+      "function": "pending",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 2.289e-06,
+      "cumulative_seconds": 9.086e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method omni.physics.tensors.bindings._physicsTensors.get_inv_inertias>",
+      "primitive_calls": 9,
+      "calls": 9,
+      "self_seconds": 8.911e-06,
+      "cumulative_seconds": 8.911e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/execution_ledger_v48.py",
+      "line": 29,
+      "function": "_label",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 6.863e-06,
+      "cumulative_seconds": 8.865e-06
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/torch/_utils.py",
+      "line": 812,
+      "function": "_get_device_index",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 8.157e-06,
+      "cumulative_seconds": 8.79e-06
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/copyreg.py",
+      "line": 104,
+      "function": "__newobj__",
+      "primitive_calls": 3,
+      "calls": 3,
+      "self_seconds": 6.824e-06,
+      "cumulative_seconds": 8.536000000000001e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method omni.physics.tensors.bindings._physicsTensors.get_inv_masses>",
+      "primitive_calls": 9,
+      "calls": 9,
+      "self_seconds": 8.505e-06,
+      "cumulative_seconds": 8.505e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/plan_arbiter_v52.py",
+      "line": 178,
+      "function": "fallback",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 2.4280000000000003e-06,
+      "cumulative_seconds": 8.392e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'squeeze' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 8.282000000000001e-06,
+      "cumulative_seconds": 8.282000000000001e-06
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/json/encoder.py",
+      "line": 105,
+      "function": "__init__",
+      "primitive_calls": 7,
+      "calls": 7,
+      "self_seconds": 8.086e-06,
+      "cumulative_seconds": 8.086e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method omni.physics.tensors.bindings._physicsTensors.get_disable_gravities>",
+      "primitive_calls": 9,
+      "calls": 9,
+      "self_seconds": 8.028e-06,
+      "cumulative_seconds": 8.028e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'values' of 'collections.OrderedDict' objects>",
+      "primitive_calls": 40,
+      "calls": 40,
+      "self_seconds": 8.001e-06,
+      "cumulative_seconds": 8.001e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method _operator.index>",
+      "primitive_calls": 60,
+      "calls": 60,
+      "self_seconds": 7.919e-06,
+      "cumulative_seconds": 7.919e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method omni.physics.tensors.bindings._physicsTensors.get_coms>",
+      "primitive_calls": 9,
+      "calls": 9,
+      "self_seconds": 7.913e-06,
+      "cumulative_seconds": 7.913e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/fromnumeric.py",
+      "line": 2177,
+      "function": "sum",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 2.466e-06,
+      "cumulative_seconds": 7.704000000000001e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'update' of 'dict' objects>",
+      "primitive_calls": 8,
+      "calls": 8,
+      "self_seconds": 7.673000000000001e-06,
+      "cumulative_seconds": 7.673000000000001e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/multiarray.py",
+      "line": 153,
+      "function": "concatenate",
+      "primitive_calls": 39,
+      "calls": 39,
+      "self_seconds": 7.370000000000001e-06,
+      "cumulative_seconds": 7.370000000000001e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'insert' of 'list' objects>",
+      "primitive_calls": 30,
+      "calls": 30,
+      "self_seconds": 7.3580000000000005e-06,
+      "cumulative_seconds": 7.3580000000000005e-06
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/copyreg.py",
+      "line": 113,
+      "function": "_slotnames",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 5.850000000000001e-06,
+      "cumulative_seconds": 7.267e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch._C._cuda_setDevice>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 7.072e-06,
+      "cumulative_seconds": 7.072e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'set' of '_contextvars.ContextVar' objects>",
+      "primitive_calls": 14,
+      "calls": 14,
+      "self_seconds": 7.052e-06,
+      "cumulative_seconds": 7.052e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'tobytes' of 'numpy.ndarray' objects>",
+      "primitive_calls": 18,
+      "calls": 18,
+      "self_seconds": 6.903000000000001e-06,
+      "cumulative_seconds": 6.903000000000001e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method time.perf_counter>",
+      "primitive_calls": 29,
+      "calls": 29,
+      "self_seconds": 6.888000000000001e-06,
+      "cumulative_seconds": 6.888000000000001e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/bounded_feedback_v46.py",
+      "line": 179,
+      "function": "_binding_matches",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 3.1160000000000003e-06,
+      "cumulative_seconds": 6.86e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/runtime_coordinator_v52.py",
+      "line": 51,
+      "function": "<genexpr>",
+      "primitive_calls": 9,
+      "calls": 9,
+      "self_seconds": 5.434e-06,
+      "cumulative_seconds": 6.669e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/lib/shape_base.py",
+      "line": 608,
+      "function": "_column_stack_dispatcher",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 3.6000000000000003e-06,
+      "cumulative_seconds": 6.669e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/_ufunc_config.py",
+      "line": 426,
+      "function": "__init__",
+      "primitive_calls": 14,
+      "calls": 14,
+      "self_seconds": 6.479e-06,
+      "cumulative_seconds": 6.479e-06
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/assets/rigid_object/rigid_object.py",
+      "line": 86,
+      "function": "root_physx_view",
+      "primitive_calls": 11,
+      "calls": 11,
+      "self_seconds": 6.42e-06,
+      "cumulative_seconds": 6.42e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/plan_arbiter_v52.py",
+      "line": 59,
+      "function": "_owner_check",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 4.778000000000001e-06,
+      "cumulative_seconds": 5.81e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method carb.profiler._profiler.begin_with_location>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 5.805e-06,
+      "cumulative_seconds": 5.805e-06
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/assets/rigid_object/rigid_object.py",
+      "line": 134,
+      "function": "update",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 3.829e-06,
+      "cumulative_seconds": 5.759e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/numeric.py",
+      "line": 1389,
+      "function": "_moveaxis_dispatcher",
+      "primitive_calls": 30,
+      "calls": 30,
+      "self_seconds": 5.680000000000001e-06,
+      "cumulative_seconds": 5.680000000000001e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method carb.profiler._profiler.is_profiler_active>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 5.308000000000001e-06,
+      "cumulative_seconds": 5.308000000000001e-06
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/sim/simulation_context.py",
+      "line": 418,
+      "function": "has_rtx_sensors",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 9.79e-07,
+      "cumulative_seconds": 5.205e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method posix.waitpid>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 5.081e-06,
+      "cumulative_seconds": 5.081e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method '__exit__' of '_thread.lock' objects>",
+      "primitive_calls": 20,
+      "calls": 20,
+      "self_seconds": 4.9610000000000004e-06,
+      "cumulative_seconds": 4.9610000000000004e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/fromnumeric.py",
+      "line": 1881,
+      "function": "nonzero",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 9.660000000000002e-07,
+      "cumulative_seconds": 4.641e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method math.exp>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 4.61e-06,
+      "cumulative_seconds": 4.61e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'encode' of 'str' objects>",
+      "primitive_calls": 7,
+      "calls": 7,
+      "self_seconds": 4.568e-06,
+      "cumulative_seconds": 4.568e-06
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/simulation_context/simulation_context.py",
+      "line": 1415,
+      "function": "_physics_timer_callback_fn",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 4.4040000000000005e-06,
+      "cumulative_seconds": 4.4040000000000005e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/prepared_commands_v45.py",
+      "line": 25,
+      "function": "check_deadline",
+      "primitive_calls": 3,
+      "calls": 3,
+      "self_seconds": 3.614e-06,
+      "cumulative_seconds": 4.313e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/env/boundary_effects.py",
+      "line": 127,
+      "function": "any_enabled",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 4.298e-06,
+      "cumulative_seconds": 4.298e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/solver_worker_v49.py",
+      "line": 94,
+      "function": "_check_owner",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 4.014e-06,
+      "cumulative_seconds": 4.269e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/free_water_v26.py",
+      "line": 65,
+      "function": "<genexpr>",
+      "primitive_calls": 12,
+      "calls": 12,
+      "self_seconds": 4.158000000000001e-06,
+      "cumulative_seconds": 4.158000000000001e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method '__deepcopy__' of 'numpy.ndarray' objects>",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 3.995e-06,
+      "cumulative_seconds": 3.995e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/fromnumeric.py",
+      "line": 3176,
+      "function": "ndim",
+      "primitive_calls": 21,
+      "calls": 21,
+      "self_seconds": 3.914e-06,
+      "cumulative_seconds": 3.914e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/multiarray.py",
+      "line": 669,
+      "function": "result_type",
+      "primitive_calls": 25,
+      "calls": 25,
+      "self_seconds": 3.871e-06,
+      "cumulative_seconds": 3.871e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.zeros>",
+      "primitive_calls": 3,
+      "calls": 3,
+      "self_seconds": 3.832e-06,
+      "cumulative_seconds": 3.832e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/fromnumeric.py",
+      "line": 2831,
+      "function": "_min_dispatcher",
+      "primitive_calls": 15,
+      "calls": 15,
+      "self_seconds": 3.7860000000000003e-06,
+      "cumulative_seconds": 3.7860000000000003e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch._C._get_tracing_state>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 3.695e-06,
+      "cumulative_seconds": 3.695e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'release' of '_thread.lock' objects>",
+      "primitive_calls": 21,
+      "calls": 21,
+      "self_seconds": 3.608e-06,
+      "cumulative_seconds": 3.608e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'setflags' of 'numpy.ndarray' objects>",
+      "primitive_calls": 6,
+      "calls": 6,
+      "self_seconds": 3.6010000000000003e-06,
+      "cumulative_seconds": 3.6010000000000003e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/fromnumeric.py",
+      "line": 3172,
+      "function": "_ndim_dispatcher",
+      "primitive_calls": 21,
+      "calls": 21,
+      "self_seconds": 3.5960000000000004e-06,
+      "cumulative_seconds": 3.5960000000000004e-06
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/threading.py",
+      "line": 271,
+      "function": "__enter__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 2.35e-06,
+      "cumulative_seconds": 3.4980000000000002e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch._C._has_torch_function>",
+      "primitive_calls": 8,
+      "calls": 8,
+      "self_seconds": 3.413e-06,
+      "cumulative_seconds": 3.413e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'values' of 'dict' objects>",
+      "primitive_calls": 23,
+      "calls": 23,
+      "self_seconds": 3.3710000000000004e-06,
+      "cumulative_seconds": 3.3710000000000004e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/workflows/control_trace_v23.py",
+      "line": 148,
+      "function": "_event",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 2.921e-06,
+      "cumulative_seconds": 3.2900000000000003e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'contiguous' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 6,
+      "calls": 6,
+      "self_seconds": 3.2340000000000003e-06,
+      "cumulative_seconds": 3.2340000000000003e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/easyuuv_nc/control_v24.py",
+      "line": 111,
+      "function": "current",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 1.742e-06,
+      "cumulative_seconds": 2.9350000000000003e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/numeric.py",
+      "line": 2166,
+      "function": "_allclose_dispatcher",
+      "primitive_calls": 14,
+      "calls": 14,
+      "self_seconds": 2.9180000000000003e-06,
+      "cumulative_seconds": 2.9180000000000003e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/fromnumeric.py",
+      "line": 2096,
+      "function": "_clip_dispatcher",
+      "primitive_calls": 13,
+      "calls": 13,
+      "self_seconds": 2.855e-06,
+      "cumulative_seconds": 2.855e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/bounded_feedback_v46.py",
+      "line": 217,
+      "function": "finish",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 1.8370000000000002e-06,
+      "cumulative_seconds": 2.6870000000000003e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'data_ptr' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 6,
+      "calls": 6,
+      "self_seconds": 2.6540000000000003e-06,
+      "cumulative_seconds": 2.6540000000000003e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/numeric.py",
+      "line": 2245,
+      "function": "_isclose_dispatcher",
+      "primitive_calls": 14,
+      "calls": 14,
+      "self_seconds": 2.652e-06,
+      "cumulative_seconds": 2.652e-06
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/uuid.py",
+      "line": 334,
+      "function": "hex",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 2.5520000000000003e-06,
+      "cumulative_seconds": 2.5520000000000003e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'numel' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 2.4110000000000003e-06,
+      "cumulative_seconds": 2.4110000000000003e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'startswith' of 'str' objects>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 2.244e-06,
+      "cumulative_seconds": 2.244e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method posix.urandom>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 2.205e-06,
+      "cumulative_seconds": 2.205e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.max>",
+      "primitive_calls": 3,
+      "calls": 3,
+      "self_seconds": 2.2e-06,
+      "cumulative_seconds": 2.2e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/fromnumeric.py",
+      "line": 2687,
+      "function": "_max_dispatcher",
+      "primitive_calls": 8,
+      "calls": 8,
+      "self_seconds": 2.195e-06,
+      "cumulative_seconds": 2.195e-06
+    },
+    {
+      "file": "<string>",
+      "line": 2,
+      "function": "__init__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 2.127e-06,
+      "cumulative_seconds": 2.127e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/fromnumeric.py",
+      "line": 1768,
+      "function": "ravel",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 1.4280000000000001e-06,
+      "cumulative_seconds": 2.108e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'move_to_end' of 'collections.OrderedDict' objects>",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 1.942e-06,
+      "cumulative_seconds": 1.942e-06
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/assets/rigid_object/rigid_object_data.py",
+      "line": 82,
+      "function": "update",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 1.93e-06,
+      "cumulative_seconds": 1.93e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method carb.profiler._profiler.end>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 1.878e-06,
+      "cumulative_seconds": 1.878e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/einsumfunc.py",
+      "line": 1001,
+      "function": "_einsum_dispatcher",
+      "primitive_calls": 5,
+      "calls": 5,
+      "self_seconds": 1.819e-06,
+      "cumulative_seconds": 1.819e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'join' of 'str' objects>",
+      "primitive_calls": 7,
+      "calls": 7,
+      "self_seconds": 1.7870000000000002e-06,
+      "cumulative_seconds": 1.7870000000000002e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method __new__ of type object at 0x562c25c03b40>",
+      "primitive_calls": 3,
+      "calls": 3,
+      "self_seconds": 1.712e-06,
+      "cumulative_seconds": 1.712e-06
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/runtime_coordinator_v52.py",
+      "line": 160,
+      "function": "<dictcomp>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 1.342e-06,
+      "cumulative_seconds": 1.6590000000000001e-06
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/simulation_context/simulation_context.py",
+      "line": 282,
+      "function": "stage",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 1.6510000000000002e-06,
+      "cumulative_seconds": 1.6510000000000002e-06
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/envs/direct_rl_env.py",
+      "line": 238,
+      "function": "physics_dt",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 1.5190000000000002e-06,
+      "cumulative_seconds": 1.5190000000000002e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'to_bytes' of 'int' objects>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 1.477e-06,
+      "cumulative_seconds": 1.477e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.empty>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 1.432e-06,
+      "cumulative_seconds": 1.432e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method fromhex>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 1.3240000000000002e-06,
+      "cumulative_seconds": 1.3240000000000002e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'strip' of 'str' objects>",
+      "primitive_calls": 4,
+      "calls": 4,
+      "self_seconds": 1.314e-06,
+      "cumulative_seconds": 1.314e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method _thread.get_ident>",
+      "primitive_calls": 5,
+      "calls": 5,
+      "self_seconds": 1.2870000000000001e-06,
+      "cumulative_seconds": 1.2870000000000001e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'nonzero' of 'numpy.ndarray' objects>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 1.261e-06,
+      "cumulative_seconds": 1.261e-06
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/dataclasses.py",
+      "line": 1253,
+      "function": "_is_dataclass_instance",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 8.88e-07,
+      "cumulative_seconds": 1.202e-06
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/threading.py",
+      "line": 274,
+      "function": "__exit__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 9.92e-07,
+      "cumulative_seconds": 1.176e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method '__enter__' of '_thread.lock' objects>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 1.148e-06,
+      "cumulative_seconds": 1.148e-06
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/torch/_jit_internal.py",
+      "line": 101,
+      "function": "is_scripting",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 1.092e-06,
+      "cumulative_seconds": 1.092e-06
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/multiprocessing/process.py",
+      "line": 99,
+      "function": "_check_closed",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 1.0250000000000001e-06,
+      "cumulative_seconds": 1.0250000000000001e-06
+    },
+    {
+      "file": "/opt/conda/envs/isaaclab/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/simulation_context/simulation_context.py",
+      "line": 266,
+      "function": "current_time",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 1.0190000000000001e-06,
+      "cumulative_seconds": 1.0190000000000001e-06
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/scene/interactive_scene.py",
+      "line": 362,
+      "function": "env_origins",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 9.68e-07,
+      "cumulative_seconds": 9.68e-07
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method carb.profiler._profiler.supports_dynamic_source_locations>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 9.600000000000001e-07,
+      "cumulative_seconds": 9.600000000000001e-07
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.vars>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 8.540000000000001e-07,
+      "cumulative_seconds": 8.540000000000001e-07
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.promote_types>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 7.46e-07,
+      "cumulative_seconds": 7.46e-07
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'disable' of '_lsprof.Profiler' objects>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 6.900000000000001e-07,
+      "cumulative_seconds": 6.900000000000001e-07
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method sys._getframe>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 6.660000000000001e-07,
+      "cumulative_seconds": 6.660000000000001e-07
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/numeric.py",
+      "line": 1464,
+      "function": "_cross_dispatcher",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 6.6e-07,
+      "cumulative_seconds": 6.6e-07
+    },
+    {
+      "file": "/root/IsaacLab/source/isaaclab/isaaclab/sim/simulation_context.py",
+      "line": 411,
+      "function": "has_gui",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 6.56e-07,
+      "cumulative_seconds": 6.56e-07
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/numeric.py",
+      "line": 63,
+      "function": "_zeros_like_dispatcher",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 6.310000000000001e-07,
+      "cumulative_seconds": 6.310000000000001e-07
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'dim' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 5.900000000000001e-07,
+      "cumulative_seconds": 5.900000000000001e-07
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'count' of 'list' objects>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 5.03e-07,
+      "cumulative_seconds": 5.03e-07
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-v59-20260920/koopman/plan_arbiter_v52.py",
+      "line": 62,
+      "function": "pending",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 5.01e-07,
+      "cumulative_seconds": 5.01e-07
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'get' of 'mappingproxy' objects>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 4.7200000000000004e-07,
+      "cumulative_seconds": 4.7200000000000004e-07
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/multiarray.py",
+      "line": 85,
+      "function": "empty_like",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 4.5500000000000004e-07,
+      "cumulative_seconds": 4.5500000000000004e-07
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/multiarray.py",
+      "line": 1080,
+      "function": "copyto",
+      "primitive_calls": 2,
+      "calls": 2,
+      "self_seconds": 3.77e-07,
+      "cumulative_seconds": 3.77e-07
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method from_bytes>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 3.5200000000000003e-07,
+      "cumulative_seconds": 3.5200000000000003e-07
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'append' of 'collections.deque' objects>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 3.4300000000000004e-07,
+      "cumulative_seconds": 3.4300000000000004e-07
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch._C._has_torch_function_unary>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 2.77e-07,
+      "cumulative_seconds": 2.77e-07
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/fromnumeric.py",
+      "line": 2172,
+      "function": "_sum_dispatcher",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 2.39e-07,
+      "cumulative_seconds": 2.39e-07
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/numeric.py",
+      "line": 611,
+      "function": "_flatnonzero_dispatcher",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 2.2e-07,
+      "cumulative_seconds": 2.2e-07
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/fromnumeric.py",
+      "line": 1764,
+      "function": "_ravel_dispatcher",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 1.79e-07,
+      "cumulative_seconds": 1.79e-07
+    },
+    {
+      "file": "/root/EASYkoopman-phase9-runtime-env-v58/lib/python3.11/site-packages/numpy/core/fromnumeric.py",
+      "line": 1877,
+      "function": "_nonzero_dispatcher",
+      "primitive_calls": 1,
+      "calls": 1,
+      "self_seconds": 1.7500000000000002e-07,
+      "cumulative_seconds": 1.7500000000000002e-07
+    }
+  ]
+}

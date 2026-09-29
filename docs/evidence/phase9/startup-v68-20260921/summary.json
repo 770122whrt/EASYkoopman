@@ -1,0 +1,27 @@
+{
+  "status": "offline_diagnosis_complete_no_deployed_fix",
+  "physical_experiments": 0,
+  "new_fits": 0,
+  "original_failure_reproduced": true,
+  "roll_rate_rollout_error_at_failure": -0.0006835836666583273,
+  "teacher_forced_last_roll_error": -4.712974795539893e-06,
+  "offline_pitch_pass_configurations": [
+    "base",
+    "long_body",
+    "uuv6",
+    "uuv6_angled",
+    "uuv4",
+    "uuv4_angled"
+  ],
+  "offline_only": true,
+  "server": "31348 SSH and RTX4090 query successful; no new experiment launched",
+  "files_sha256": {
+    "docs/evidence/phase9/startup-v68-20260921/offline-axiswise.json": "12d446c53e6447ae36c3e3edb8151773331dd3d56a380dfbed3bf1208efadbb9",
+    "docs/evidence/phase9/startup-v68-20260921/offline-gain-diagnostic.json": "025846af49e69d074718c9d9b53bd946884c3aaf252bc11dad6c972883e74f49",
+    "docs/evidence/phase9/startup-v68-20260921/offline.json": "fc17327447d49dcd575ec113f44316b1d8601acf756116ce10a2d65777d9d653",
+    "workflows/diagnose_startup_v68.py": "0cb390b91be4ba979ebebad71d78c2d4029e256a8d5c90336145748c1e708f75"
+  },
+  "evidence_bytes": 4564382,
+  "proposed_protocol": "docs/phase9_multiconfiguration_v68_proposal.md",
+  "pending_decision": "isolate support-domain failures per configuration instead of global queue stop"
+}

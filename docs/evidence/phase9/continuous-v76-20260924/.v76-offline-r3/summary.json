@@ -1,0 +1,1136 @@
+{
+  "results": [
+    {
+      "trace": "uuv4-failure",
+      "input": {
+        "path": "docs/evidence/phase9/uuv4-pairs-v71-20260921/results/uuv4-pitch-mpc/output/diagnostic.json.gz",
+        "sha256": "8d73e69d07a58f448b13a7a40c6bff369afbd1e69a5d8d6f9904dac3638383c5"
+      },
+      "physics_index": 180,
+      "model_kind": "projected_koopman",
+      "committed_macro_steps": 4,
+      "future_feedback_used_offline_only": false,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "recovered",
+      "reason": null,
+      "cost": 0.00013211076002977735,
+      "baseline_cost": null,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 30,
+      "solver": {
+        "return_status": "Solve_Succeeded",
+        "success": true,
+        "iterations": 35,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": false,
+        "reason": "predicted_state_out_of_support",
+        "cost": null,
+        "rejection": {
+          "reason": "state_out_of_support",
+          "index": 29
+        }
+      },
+      "constraint_violation": 0.0,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 0.00013211076002977735
+      },
+      "elapsed_seconds": 1.6035695746541023,
+      "max_change_from_baseline": 0.041248105466365814,
+      "first_command_change": [
+        9.760261709956808e-09,
+        -0.00274203484877944,
+        0.0,
+        -0.021248288452625275
+      ]
+    },
+    {
+      "trace": "uuv4-failure",
+      "input": {
+        "path": "docs/evidence/phase9/uuv4-pairs-v71-20260921/results/uuv4-pitch-mpc/output/diagnostic.json.gz",
+        "sha256": "8d73e69d07a58f448b13a7a40c6bff369afbd1e69a5d8d6f9904dac3638383c5"
+      },
+      "physics_index": 180,
+      "model_kind": "projected_koopman",
+      "committed_macro_steps": 0,
+      "future_feedback_used_offline_only": false,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "recovered",
+      "reason": null,
+      "cost": 8.070355445383666e-05,
+      "baseline_cost": null,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 30,
+      "solver": {
+        "return_status": "Solve_Succeeded",
+        "success": true,
+        "iterations": 19,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": false,
+        "reason": "predicted_state_out_of_support",
+        "cost": null,
+        "rejection": {
+          "reason": "state_out_of_support",
+          "index": 29
+        }
+      },
+      "constraint_violation": 0.0,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 8.070355445383666e-05
+      },
+      "elapsed_seconds": 1.167913544923067,
+      "max_change_from_baseline": 0.03699212521314621,
+      "first_command_change": [
+        1.0151526508295206e-08,
+        -0.00844516942743212,
+        0.0,
+        -0.019999854266643524
+      ]
+    },
+    {
+      "trace": "uuv4-failure",
+      "input": {
+        "path": "docs/evidence/phase9/uuv4-pairs-v71-20260921/results/uuv4-pitch-mpc/output/diagnostic.json.gz",
+        "sha256": "8d73e69d07a58f448b13a7a40c6bff369afbd1e69a5d8d6f9904dac3638383c5"
+      },
+      "physics_index": 180,
+      "model_kind": "nominal_physics",
+      "committed_macro_steps": 4,
+      "future_feedback_used_offline_only": false,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "recovered",
+      "reason": null,
+      "cost": 0.00013211938307241292,
+      "baseline_cost": null,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 30,
+      "solver": {
+        "return_status": "Solve_Succeeded",
+        "success": true,
+        "iterations": 35,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": false,
+        "reason": "predicted_state_out_of_support",
+        "cost": null,
+        "rejection": {
+          "reason": "state_out_of_support",
+          "index": 29
+        }
+      },
+      "constraint_violation": 0.0,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 0.00013211938307241292
+      },
+      "elapsed_seconds": 1.6133597306907177,
+      "max_change_from_baseline": 0.041248075664043427,
+      "first_command_change": [
+        9.763858832556593e-09,
+        -0.002742030192166567,
+        0.0,
+        -0.021248288452625275
+      ]
+    },
+    {
+      "trace": "uuv4-failure",
+      "input": {
+        "path": "docs/evidence/phase9/uuv4-pairs-v71-20260921/results/uuv4-pitch-mpc/output/diagnostic.json.gz",
+        "sha256": "8d73e69d07a58f448b13a7a40c6bff369afbd1e69a5d8d6f9904dac3638383c5"
+      },
+      "physics_index": 180,
+      "model_kind": "nominal_physics",
+      "committed_macro_steps": 0,
+      "future_feedback_used_offline_only": false,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "recovered",
+      "reason": null,
+      "cost": 8.070390099152812e-05,
+      "baseline_cost": null,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 30,
+      "solver": {
+        "return_status": "Solve_Succeeded",
+        "success": true,
+        "iterations": 19,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": false,
+        "reason": "predicted_state_out_of_support",
+        "cost": null,
+        "rejection": {
+          "reason": "state_out_of_support",
+          "index": 29
+        }
+      },
+      "constraint_violation": 0.0,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 8.070390099152812e-05
+      },
+      "elapsed_seconds": 1.1934292018413544,
+      "max_change_from_baseline": 0.03699212521314621,
+      "first_command_change": [
+        1.0151496421251238e-08,
+        -0.00844516942743212,
+        0.0,
+        -0.019999854266643524
+      ]
+    },
+    {
+      "trace": "uuv4-failure",
+      "input": {
+        "path": "docs/evidence/phase9/uuv4-pairs-v71-20260921/results/uuv4-pitch-mpc/output/diagnostic.json.gz",
+        "sha256": "8d73e69d07a58f448b13a7a40c6bff369afbd1e69a5d8d6f9904dac3638383c5"
+      },
+      "physics_index": 180,
+      "model_kind": "identified_physics",
+      "committed_macro_steps": 4,
+      "future_feedback_used_offline_only": false,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "recovered",
+      "reason": null,
+      "cost": 0.00013211076002977724,
+      "baseline_cost": null,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 30,
+      "solver": {
+        "return_status": "Solve_Succeeded",
+        "success": true,
+        "iterations": 35,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": false,
+        "reason": "predicted_state_out_of_support",
+        "cost": null,
+        "rejection": {
+          "reason": "state_out_of_support",
+          "index": 29
+        }
+      },
+      "constraint_violation": 0.0,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 0.00013211076002977724
+      },
+      "elapsed_seconds": 1.6027694307267666,
+      "max_change_from_baseline": 0.041248105466365814,
+      "first_command_change": [
+        9.760261709956808e-09,
+        -0.00274203484877944,
+        0.0,
+        -0.021248288452625275
+      ]
+    },
+    {
+      "trace": "uuv4-failure",
+      "input": {
+        "path": "docs/evidence/phase9/uuv4-pairs-v71-20260921/results/uuv4-pitch-mpc/output/diagnostic.json.gz",
+        "sha256": "8d73e69d07a58f448b13a7a40c6bff369afbd1e69a5d8d6f9904dac3638383c5"
+      },
+      "physics_index": 180,
+      "model_kind": "identified_physics",
+      "committed_macro_steps": 0,
+      "future_feedback_used_offline_only": false,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "recovered",
+      "reason": null,
+      "cost": 8.070355445383665e-05,
+      "baseline_cost": null,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 30,
+      "solver": {
+        "return_status": "Solve_Succeeded",
+        "success": true,
+        "iterations": 19,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": false,
+        "reason": "predicted_state_out_of_support",
+        "cost": null,
+        "rejection": {
+          "reason": "state_out_of_support",
+          "index": 29
+        }
+      },
+      "constraint_violation": 0.0,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 8.070355445383665e-05
+      },
+      "elapsed_seconds": 1.2380865514278412,
+      "max_change_from_baseline": 0.03699212521314621,
+      "first_command_change": [
+        1.0151526508295206e-08,
+        -0.00844516942743212,
+        0.0,
+        -0.019999854266643524
+      ]
+    },
+    {
+      "trace": "uuv4_angled-failure",
+      "input": {
+        "path": "docs/evidence/phase9/remaining-coverage-v73-20260921/results/uuv4_angled-pitch-mpc/output/diagnostic.json.gz",
+        "sha256": "fbde8a75b110c94d640512e17d899b77bf78bf7bab628d90ae721bee4adbfcfb"
+      },
+      "physics_index": 180,
+      "model_kind": "projected_koopman",
+      "committed_macro_steps": 4,
+      "future_feedback_used_offline_only": false,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "recovered",
+      "reason": null,
+      "cost": 0.00022322549996559864,
+      "baseline_cost": null,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 30,
+      "solver": {
+        "return_status": "Solved_To_Acceptable_Level",
+        "success": true,
+        "iterations": 56,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": false,
+        "reason": "predicted_state_out_of_support",
+        "cost": null,
+        "rejection": {
+          "reason": "state_out_of_support",
+          "index": 32
+        }
+      },
+      "constraint_violation": 3.2782554622301507e-09,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 0.00022322549996559864
+      },
+      "elapsed_seconds": 3.1069689840078354,
+      "max_change_from_baseline": 0.05896306037902832,
+      "first_command_change": [
+        -0.0007189371072193751,
+        -0.013164759147912264,
+        0.0,
+        -0.01450204849243164
+      ]
+    },
+    {
+      "trace": "uuv4_angled-failure",
+      "input": {
+        "path": "docs/evidence/phase9/remaining-coverage-v73-20260921/results/uuv4_angled-pitch-mpc/output/diagnostic.json.gz",
+        "sha256": "fbde8a75b110c94d640512e17d899b77bf78bf7bab628d90ae721bee4adbfcfb"
+      },
+      "physics_index": 180,
+      "model_kind": "projected_koopman",
+      "committed_macro_steps": 0,
+      "future_feedback_used_offline_only": false,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "recovered",
+      "reason": null,
+      "cost": 0.00015677756282261117,
+      "baseline_cost": null,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 30,
+      "solver": {
+        "return_status": "Solve_Succeeded",
+        "success": true,
+        "iterations": 19,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": false,
+        "reason": "predicted_state_out_of_support",
+        "cost": null,
+        "rejection": {
+          "reason": "state_out_of_support",
+          "index": 32
+        }
+      },
+      "constraint_violation": 0.0,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 0.00015677756282261117
+      },
+      "elapsed_seconds": 1.0020439699292183,
+      "max_change_from_baseline": 0.04900357127189636,
+      "first_command_change": [
+        8.138969942450558e-09,
+        -0.005714051192626357,
+        0.0,
+        1.4901161193847656e-07
+      ]
+    },
+    {
+      "trace": "uuv4_angled-failure",
+      "input": {
+        "path": "docs/evidence/phase9/remaining-coverage-v73-20260921/results/uuv4_angled-pitch-mpc/output/diagnostic.json.gz",
+        "sha256": "fbde8a75b110c94d640512e17d899b77bf78bf7bab628d90ae721bee4adbfcfb"
+      },
+      "physics_index": 180,
+      "model_kind": "nominal_physics",
+      "committed_macro_steps": 4,
+      "future_feedback_used_offline_only": false,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "recovered",
+      "reason": null,
+      "cost": 0.00022322757824591477,
+      "baseline_cost": null,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 30,
+      "solver": {
+        "return_status": "Solved_To_Acceptable_Level",
+        "success": true,
+        "iterations": 56,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": false,
+        "reason": "predicted_state_out_of_support",
+        "cost": null,
+        "rejection": {
+          "reason": "state_out_of_support",
+          "index": 32
+        }
+      },
+      "constraint_violation": 3.2782554622301507e-09,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 0.00022322757824591477
+      },
+      "elapsed_seconds": 2.998781908303499,
+      "max_change_from_baseline": 0.05896233022212982,
+      "first_command_change": [
+        -0.0007196806518798837,
+        -0.013166577089577913,
+        0.0,
+        -0.014502346515655518
+      ]
+    },
+    {
+      "trace": "uuv4_angled-failure",
+      "input": {
+        "path": "docs/evidence/phase9/remaining-coverage-v73-20260921/results/uuv4_angled-pitch-mpc/output/diagnostic.json.gz",
+        "sha256": "fbde8a75b110c94d640512e17d899b77bf78bf7bab628d90ae721bee4adbfcfb"
+      },
+      "physics_index": 180,
+      "model_kind": "nominal_physics",
+      "committed_macro_steps": 0,
+      "future_feedback_used_offline_only": false,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "recovered",
+      "reason": null,
+      "cost": 0.00015678044058441853,
+      "baseline_cost": null,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 30,
+      "solver": {
+        "return_status": "Solve_Succeeded",
+        "success": true,
+        "iterations": 19,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": false,
+        "reason": "predicted_state_out_of_support",
+        "cost": null,
+        "rejection": {
+          "reason": "state_out_of_support",
+          "index": 32
+        }
+      },
+      "constraint_violation": 0.0,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 0.00015678044058441853
+      },
+      "elapsed_seconds": 1.2092311568558216,
+      "max_change_from_baseline": 0.049005329608917236,
+      "first_command_change": [
+        8.139444229726678e-09,
+        -0.005714051192626357,
+        0.0,
+        1.4901161193847656e-07
+      ]
+    },
+    {
+      "trace": "uuv4_angled-failure",
+      "input": {
+        "path": "docs/evidence/phase9/remaining-coverage-v73-20260921/results/uuv4_angled-pitch-mpc/output/diagnostic.json.gz",
+        "sha256": "fbde8a75b110c94d640512e17d899b77bf78bf7bab628d90ae721bee4adbfcfb"
+      },
+      "physics_index": 180,
+      "model_kind": "identified_physics",
+      "committed_macro_steps": 4,
+      "future_feedback_used_offline_only": false,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "recovered",
+      "reason": null,
+      "cost": 0.0002232254999655985,
+      "baseline_cost": null,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 30,
+      "solver": {
+        "return_status": "Solved_To_Acceptable_Level",
+        "success": true,
+        "iterations": 56,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": false,
+        "reason": "predicted_state_out_of_support",
+        "cost": null,
+        "rejection": {
+          "reason": "state_out_of_support",
+          "index": 32
+        }
+      },
+      "constraint_violation": 3.2782554622301507e-09,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 0.0002232254999655985
+      },
+      "elapsed_seconds": 2.9839404933154583,
+      "max_change_from_baseline": 0.05896306037902832,
+      "first_command_change": [
+        -0.0007189371072193751,
+        -0.013164759147912264,
+        0.0,
+        -0.01450204849243164
+      ]
+    },
+    {
+      "trace": "uuv4_angled-failure",
+      "input": {
+        "path": "docs/evidence/phase9/remaining-coverage-v73-20260921/results/uuv4_angled-pitch-mpc/output/diagnostic.json.gz",
+        "sha256": "fbde8a75b110c94d640512e17d899b77bf78bf7bab628d90ae721bee4adbfcfb"
+      },
+      "physics_index": 180,
+      "model_kind": "identified_physics",
+      "committed_macro_steps": 0,
+      "future_feedback_used_offline_only": false,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "recovered",
+      "reason": null,
+      "cost": 0.00015677756282261139,
+      "baseline_cost": null,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 30,
+      "solver": {
+        "return_status": "Solve_Succeeded",
+        "success": true,
+        "iterations": 19,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": false,
+        "reason": "predicted_state_out_of_support",
+        "cost": null,
+        "rejection": {
+          "reason": "state_out_of_support",
+          "index": 32
+        }
+      },
+      "constraint_violation": 0.0,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 0.00015677756282261139
+      },
+      "elapsed_seconds": 1.1943689547479153,
+      "max_change_from_baseline": 0.04900357127189636,
+      "first_command_change": [
+        8.138969942450558e-09,
+        -0.005714051192626357,
+        0.0,
+        1.4901161193847656e-07
+      ]
+    },
+    {
+      "trace": "uuv4-feedback",
+      "input": {
+        "path": "docs/evidence/phase9/lifecycle-fix-v70-20260921/results/uuv4-pitch-feedback/output/diagnostic.json.gz",
+        "sha256": "77e5c681fa6d1af0d2f484dad6c2365317b875a764f82f1aa60580a3769b3cd4"
+      },
+      "physics_index": 120,
+      "model_kind": "projected_koopman",
+      "committed_macro_steps": 0,
+      "future_feedback_used_offline_only": true,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "optimized",
+      "reason": null,
+      "cost": 9.892728223178055e-05,
+      "baseline_cost": 0.00012630126353672144,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 30,
+      "solver": {
+        "return_status": "Solve_Succeeded",
+        "success": true,
+        "iterations": 29,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 0.00012630126353672144
+      },
+      "constraint_violation": 0.0,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 9.892728223178055e-05
+      },
+      "elapsed_seconds": 1.7175497151911259,
+      "max_change_from_baseline": 0.03826264292001724,
+      "first_command_change": [
+        4.6851771351441585e-09,
+        0.002356927376240492,
+        0.0,
+        -0.01826285570859909
+      ]
+    },
+    {
+      "trace": "uuv4-feedback",
+      "input": {
+        "path": "docs/evidence/phase9/lifecycle-fix-v70-20260921/results/uuv4-pitch-feedback/output/diagnostic.json.gz",
+        "sha256": "77e5c681fa6d1af0d2f484dad6c2365317b875a764f82f1aa60580a3769b3cd4"
+      },
+      "physics_index": 120,
+      "model_kind": "nominal_physics",
+      "committed_macro_steps": 0,
+      "future_feedback_used_offline_only": true,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "optimized",
+      "reason": null,
+      "cost": 9.892725436188794e-05,
+      "baseline_cost": 0.00012630126495061448,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 30,
+      "solver": {
+        "return_status": "Solve_Succeeded",
+        "success": true,
+        "iterations": 29,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 0.00012630126495061448
+      },
+      "constraint_violation": 0.0,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 9.892725436188794e-05
+      },
+      "elapsed_seconds": 1.674672745168209,
+      "max_change_from_baseline": 0.03826264292001724,
+      "first_command_change": [
+        4.6851771351441585e-09,
+        0.002356927376240492,
+        0.0,
+        -0.01826285570859909
+      ]
+    },
+    {
+      "trace": "uuv4-feedback",
+      "input": {
+        "path": "docs/evidence/phase9/lifecycle-fix-v70-20260921/results/uuv4-pitch-feedback/output/diagnostic.json.gz",
+        "sha256": "77e5c681fa6d1af0d2f484dad6c2365317b875a764f82f1aa60580a3769b3cd4"
+      },
+      "physics_index": 120,
+      "model_kind": "identified_physics",
+      "committed_macro_steps": 0,
+      "future_feedback_used_offline_only": true,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "optimized",
+      "reason": null,
+      "cost": 9.892728223178055e-05,
+      "baseline_cost": 0.00012630126353672144,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 30,
+      "solver": {
+        "return_status": "Solve_Succeeded",
+        "success": true,
+        "iterations": 29,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 0.00012630126353672144
+      },
+      "constraint_violation": 0.0,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 9.892728223178055e-05
+      },
+      "elapsed_seconds": 1.7961024902760983,
+      "max_change_from_baseline": 0.03826264292001724,
+      "first_command_change": [
+        4.6851771351441585e-09,
+        0.002356927376240492,
+        0.0,
+        -0.01826285570859909
+      ]
+    },
+    {
+      "trace": "base-feedback",
+      "input": {
+        "path": "docs/evidence/phase9/rate30-primary-v67-20260921/r3/results/base-pitch-feedback/output/diagnostic.json.gz",
+        "sha256": "f637aaaa5a200be357e66701de02a9655f2d5bbf2b1cc0e206dcfd77e0a1c067"
+      },
+      "physics_index": 120,
+      "model_kind": "projected_koopman",
+      "committed_macro_steps": 0,
+      "future_feedback_used_offline_only": true,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "optimized",
+      "reason": null,
+      "cost": 8.130378543936901e-05,
+      "baseline_cost": 8.265009651966631e-05,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 40,
+      "solver": {
+        "return_status": "Solve_Succeeded",
+        "success": true,
+        "iterations": 26,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 8.265009651966631e-05
+      },
+      "constraint_violation": 0.0,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 8.130378543936901e-05
+      },
+      "elapsed_seconds": 2.2941762916743755,
+      "max_change_from_baseline": 0.010094783268868923,
+      "first_command_change": [
+        1.1713931213908069e-10,
+        -0.004781144671142101,
+        2.348800308027421e-06,
+        0.004442158198799007
+      ]
+    },
+    {
+      "trace": "base-feedback",
+      "input": {
+        "path": "docs/evidence/phase9/rate30-primary-v67-20260921/r3/results/base-pitch-feedback/output/diagnostic.json.gz",
+        "sha256": "f637aaaa5a200be357e66701de02a9655f2d5bbf2b1cc0e206dcfd77e0a1c067"
+      },
+      "physics_index": 120,
+      "model_kind": "nominal_physics",
+      "committed_macro_steps": 0,
+      "future_feedback_used_offline_only": true,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "optimized",
+      "reason": null,
+      "cost": 8.130400389350147e-05,
+      "baseline_cost": 8.265033616964899e-05,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 40,
+      "solver": {
+        "return_status": "Solve_Succeeded",
+        "success": true,
+        "iterations": 26,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 8.265033616964899e-05
+      },
+      "constraint_violation": 0.0,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 8.130400389350147e-05
+      },
+      "elapsed_seconds": 2.2446884028613567,
+      "max_change_from_baseline": 0.010094769299030304,
+      "first_command_change": [
+        1.163840482321099e-10,
+        -0.004781150259077549,
+        2.3661339128011605e-06,
+        0.004442163321073167
+      ]
+    },
+    {
+      "trace": "base-feedback",
+      "input": {
+        "path": "docs/evidence/phase9/rate30-primary-v67-20260921/r3/results/base-pitch-feedback/output/diagnostic.json.gz",
+        "sha256": "f637aaaa5a200be357e66701de02a9655f2d5bbf2b1cc0e206dcfd77e0a1c067"
+      },
+      "physics_index": 120,
+      "model_kind": "identified_physics",
+      "committed_macro_steps": 0,
+      "future_feedback_used_offline_only": true,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "optimized",
+      "reason": null,
+      "cost": 8.130378543936904e-05,
+      "baseline_cost": 8.26500965196663e-05,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 40,
+      "solver": {
+        "return_status": "Solve_Succeeded",
+        "success": true,
+        "iterations": 26,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 8.26500965196663e-05
+      },
+      "constraint_violation": 0.0,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 8.130378543936904e-05
+      },
+      "elapsed_seconds": 2.1909605264663696,
+      "max_change_from_baseline": 0.010094783268868923,
+      "first_command_change": [
+        1.1713931213908069e-10,
+        -0.004781144671142101,
+        2.348800308027421e-06,
+        0.004442158198799007
+      ]
+    },
+    {
+      "trace": "long_body-feedback",
+      "input": {
+        "path": "docs/evidence/phase9/remaining-coverage-v73-20260921/results/long_body-pitch-feedback/output/diagnostic.json.gz",
+        "sha256": "0991675e9953a41bf66e3add90143ae79df411c5cb6fb0ef78729a9b054032d7"
+      },
+      "physics_index": 120,
+      "model_kind": "projected_koopman",
+      "committed_macro_steps": 0,
+      "future_feedback_used_offline_only": true,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "optimized",
+      "reason": null,
+      "cost": 7.365886139770157e-05,
+      "baseline_cost": 7.451270465444613e-05,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 40,
+      "solver": {
+        "return_status": "Maximum_Iterations_Exceeded",
+        "success": false,
+        "iterations": 160,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 7.451270465444613e-05
+      },
+      "constraint_violation": 0.0,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 7.365886139770157e-05
+      },
+      "elapsed_seconds": 11.724003203213215,
+      "max_change_from_baseline": 0.010601474205031991,
+      "first_command_change": [
+        0.002421592827886343,
+        -0.007954985601827502,
+        -0.0039322576485574245,
+        -0.0038680374273099005
+      ]
+    },
+    {
+      "trace": "long_body-feedback",
+      "input": {
+        "path": "docs/evidence/phase9/remaining-coverage-v73-20260921/results/long_body-pitch-feedback/output/diagnostic.json.gz",
+        "sha256": "0991675e9953a41bf66e3add90143ae79df411c5cb6fb0ef78729a9b054032d7"
+      },
+      "physics_index": 120,
+      "model_kind": "nominal_physics",
+      "committed_macro_steps": 0,
+      "future_feedback_used_offline_only": true,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "baseline_retained",
+      "reason": null,
+      "cost": 7.45126994304101e-05,
+      "baseline_cost": 7.45126994304101e-05,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 40,
+      "solver": {
+        "return_status": "Maximum_Iterations_Exceeded",
+        "success": false,
+        "iterations": 160,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 7.45126994304101e-05
+      },
+      "constraint_violation": 0.0,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 7.647142162588296e-05
+      },
+      "elapsed_seconds": 11.925835002213717,
+      "max_change_from_baseline": 0.0,
+      "first_command_change": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "trace": "long_body-feedback",
+      "input": {
+        "path": "docs/evidence/phase9/remaining-coverage-v73-20260921/results/long_body-pitch-feedback/output/diagnostic.json.gz",
+        "sha256": "0991675e9953a41bf66e3add90143ae79df411c5cb6fb0ef78729a9b054032d7"
+      },
+      "physics_index": 120,
+      "model_kind": "identified_physics",
+      "committed_macro_steps": 0,
+      "future_feedback_used_offline_only": true,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "optimized",
+      "reason": null,
+      "cost": 7.365886139770157e-05,
+      "baseline_cost": 7.451270465444613e-05,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 40,
+      "solver": {
+        "return_status": "Maximum_Iterations_Exceeded",
+        "success": false,
+        "iterations": 160,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 7.451270465444613e-05
+      },
+      "constraint_violation": 0.0,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 7.365886139770157e-05
+      },
+      "elapsed_seconds": 11.297100707888603,
+      "max_change_from_baseline": 0.010601474205031991,
+      "first_command_change": [
+        0.002421592827886343,
+        -0.007954985601827502,
+        -0.0039322576485574245,
+        -0.0038680374273099005
+      ]
+    },
+    {
+      "trace": "uuv6-feedback",
+      "input": {
+        "path": "docs/evidence/phase9/remaining-coverage-v73-20260921/results/uuv6-pitch-feedback/output/diagnostic.json.gz",
+        "sha256": "f2a5469e7fa1b0e73aa653b0884f9611977514b427133230487e28fa82fbb085"
+      },
+      "physics_index": 120,
+      "model_kind": "projected_koopman",
+      "committed_macro_steps": 0,
+      "future_feedback_used_offline_only": true,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "optimized",
+      "reason": null,
+      "cost": 8.468548651660343e-05,
+      "baseline_cost": 0.00011285136846130657,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 40,
+      "solver": {
+        "return_status": "Solve_Succeeded",
+        "success": true,
+        "iterations": 45,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 0.00011285136846130657
+      },
+      "constraint_violation": 0.0,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 8.468548651660343e-05
+      },
+      "elapsed_seconds": 3.309519190341234,
+      "max_change_from_baseline": 0.05004088580608368,
+      "first_command_change": [
+        -7.52054973851557e-09,
+        0.004511987790465355,
+        0.0084408185211223,
+        -0.019999802112579346
+      ]
+    },
+    {
+      "trace": "uuv6-feedback",
+      "input": {
+        "path": "docs/evidence/phase9/remaining-coverage-v73-20260921/results/uuv6-pitch-feedback/output/diagnostic.json.gz",
+        "sha256": "f2a5469e7fa1b0e73aa653b0884f9611977514b427133230487e28fa82fbb085"
+      },
+      "physics_index": 120,
+      "model_kind": "nominal_physics",
+      "committed_macro_steps": 0,
+      "future_feedback_used_offline_only": true,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "optimized",
+      "reason": null,
+      "cost": 8.468515913979438e-05,
+      "baseline_cost": 0.000112851375846,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 40,
+      "solver": {
+        "return_status": "Solve_Succeeded",
+        "success": true,
+        "iterations": 45,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 0.000112851375846
+      },
+      "constraint_violation": 0.0,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 8.468515913979438e-05
+      },
+      "elapsed_seconds": 3.3842469193041325,
+      "max_change_from_baseline": 0.05004088580608368,
+      "first_command_change": [
+        -7.52254158964405e-09,
+        0.004511987790465355,
+        0.008442476275305116,
+        -0.019999802112579346
+      ]
+    },
+    {
+      "trace": "uuv6-feedback",
+      "input": {
+        "path": "docs/evidence/phase9/remaining-coverage-v73-20260921/results/uuv6-pitch-feedback/output/diagnostic.json.gz",
+        "sha256": "f2a5469e7fa1b0e73aa653b0884f9611977514b427133230487e28fa82fbb085"
+      },
+      "physics_index": 120,
+      "model_kind": "identified_physics",
+      "committed_macro_steps": 0,
+      "future_feedback_used_offline_only": true,
+      "model_sha256": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+      "status": "optimized",
+      "reason": null,
+      "cost": 8.468548651660343e-05,
+      "baseline_cost": 0.00011285136846130657,
+      "exact_feasible": true,
+      "runtime_eligible": false,
+      "search_kind": "continuous_nonlinear_program",
+      "decision_variables": 40,
+      "solver": {
+        "return_status": "Solve_Succeeded",
+        "success": true,
+        "iterations": 45,
+        "global_optimum_claimed": false
+      },
+      "baseline_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 0.00011285136846130657
+      },
+      "constraint_violation": 0.0,
+      "solution_check": {
+        "feasible": true,
+        "reason": null,
+        "cost": 8.468548651660343e-05
+      },
+      "elapsed_seconds": 3.319205280393362,
+      "max_change_from_baseline": 0.05004088580608368,
+      "first_command_change": [
+        -7.52054973851557e-09,
+        0.004511987790465355,
+        0.0084408185211223,
+        -0.019999802112579346
+      ]
+    }
+  ],
+  "physics_runs": 0,
+  "model_fits": 0,
+  "realtime_qualified": false,
+  "evidence": "offline_recorded_state_counterfactual"
+}

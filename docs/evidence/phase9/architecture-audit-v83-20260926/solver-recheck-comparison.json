@@ -1,0 +1,46 @@
+[
+  {
+    "configuration": "base",
+    "max_cost_difference": 2.222614453595284e-17,
+    "same_ranking": {
+      "physics": [
+        "physics",
+        "learned_0.001",
+        "learned_0.1"
+      ],
+      "learned_0.001": [
+        "physics",
+        "learned_0.001",
+        "learned_0.1"
+      ],
+      "learned_0.1": [
+        "physics",
+        "learned_0.001",
+        "learned_0.1"
+      ]
+    },
+    "all_nine_feasible": true
+  },
+  {
+    "configuration": "uuv4",
+    "max_cost_difference": 4.2257573308612795e-11,
+    "same_ranking": {
+      "physics": [
+        "learned_0.001",
+        "physics",
+        "learned_0.1"
+      ],
+      "learned_0.001": [
+        "learned_0.001",
+        "physics",
+        "learned_0.1"
+      ],
+      "learned_0.1": [
+        "learned_0.001",
+        "physics",
+        "learned_0.1"
+      ]
+    },
+    "all_nine_feasible": true
+  }
+]

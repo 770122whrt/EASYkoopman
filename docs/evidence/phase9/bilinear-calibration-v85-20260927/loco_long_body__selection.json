@@ -1,0 +1,86 @@
+{
+  "fold": "loco_long_body",
+  "source_configurations": [
+    "asymmetric",
+    "base",
+    "heavy_moderate",
+    "uuv4",
+    "uuv4_angled",
+    "uuv6",
+    "uuv6_angled"
+  ],
+  "inner_training_configurations": [
+    "asymmetric",
+    "base",
+    "heavy_moderate",
+    "uuv4",
+    "uuv4_angled",
+    "uuv6"
+  ],
+  "development_configuration": "uuv6_angled",
+  "outer_target_configuration": "long_body",
+  "inner_fit_episode_hashes": {
+    "i29-base-fit-8720-prbs": "e713f82299dede5095a0d054fe89a027280b340b6ac7561236621b4cf647d33d",
+    "i29-base-fit-8721-multisine": "ed1e4b0821ffeddf2de3db80b5c53c3f600430e0e83b8c0308b91a7c546f2c2d",
+    "i29-base-fit-8722-chirp": "337193e1247f3c0435dbd76d2bc79865929547e036dfb27221c9f24dc680834a",
+    "i29-heavy_moderate-fit-8726-prbs": "6ccde4b51c4433d2011d2457739c27c19a57b09fc7c431b11ac1a56c5177e31e",
+    "i29-heavy_moderate-fit-8727-multisine": "f9997b100698e89db477362090b660a58deaf447df306e48874e2d60fce89594",
+    "i29-heavy_moderate-fit-8728-chirp": "84608bc55c0700e56b4e3dc1ce5d73b52dc4e90a710f6ac85be4c3602437a776",
+    "i29-asymmetric-fit-8729-prbs": "ce3b222de866cabe4f5c3d11109f03169681e5ca50e01aadee99e28042df67ca",
+    "i29-asymmetric-fit-8730-multisine": "52716471778b5f3f932a0bc91cc320d8a23246ff1046e907fe482623378ff061",
+    "i29-asymmetric-fit-8731-chirp": "da8ef74175bc056ed0236f5c955f5a2b87b321bc23f1980fdc69747efe2522f7",
+    "i29-uuv6-fit-8732-prbs": "dda5a0f164d3ae8dde72e84fc1cd4107bd33ef08887eafd6a9dff2000ee7a5a1",
+    "i29-uuv6-fit-8733-multisine": "134313a32e4f10bdc33ce66e8a40976d1d85d3a1c8bfd7f0097e6b0be795c24f",
+    "i29-uuv6-fit-8734-chirp": "c42081ea88ec04fd810cc87e32e5d319897950ade94c09a3ea84b9b5b6550141",
+    "i29-uuv4-fit-8738-prbs": "a99954360bd03e57df70d53e3d7945f2c69a095b478b550a766aa2b6d8595af1",
+    "i29-uuv4-fit-8739-multisine": "36aefe94cf46356f9423c76610e7f34051da052e82535067ce7cdfe0291c34b1",
+    "i29-uuv4-fit-8740-chirp": "bbb308cf2d82568892c03e08e301e571c3315d5ac284eb1313967e3b7e9659de",
+    "i29-uuv4_angled-fit-8741-prbs": "fdd45f54c88449d0f3e5962cd393592e9c561e601c227176a10de48c64f9f79d",
+    "i29-uuv4_angled-fit-8742-multisine": "ad46f25901a3eb4b76bb99c51b90f6f9553059c2ce8acdfb8524f1257e032847",
+    "i29-uuv4_angled-fit-8743-chirp": "628ce440f2353df6d786ac2a57d8c28efbd977c7a7a55b1e5cbd5436f567bf22"
+  },
+  "development_episode_hashes": {
+    "i29-uuv6_angled-fit-8735-prbs": "39a128e14dd29007e1b8fa348e24685973aced3a08abac7f2ce5f78f72b4dd44",
+    "i29-uuv6_angled-fit-8736-multisine": "042bda8954c60034df91430ec5f4628ed9fb3e877aa6916be0a5e44e363ae52d",
+    "i29-uuv6_angled-fit-8737-chirp": "337163d4b40fbcef7aaf2e1cebf71c072c47a8fff23d327a48d4440c80b7a5e1"
+  },
+  "choice": {
+    "ridge": 0.001,
+    "failures": 0,
+    "score": 36.0302991495785,
+    "windows": 9,
+    "candidates": [
+      {
+        "ridge": 1e-08,
+        "failures": 9,
+        "score": null,
+        "windows": 9
+      },
+      {
+        "ridge": 1e-06,
+        "failures": 9,
+        "score": null,
+        "windows": 9
+      },
+      {
+        "ridge": 0.0001,
+        "failures": 2,
+        "score": 24.633003575960846,
+        "windows": 9
+      },
+      {
+        "ridge": 0.001,
+        "failures": 0,
+        "score": 36.0302991495785,
+        "windows": 9
+      },
+      {
+        "ridge": 0.1,
+        "failures": 2,
+        "score": 31.301678800850574,
+        "windows": 9
+      }
+    ]
+  },
+  "selected_before_outer_evaluation": true
+}

@@ -1,0 +1,16 @@
+{
+  "resource": "environment",
+  "phase": "begin",
+  "status": "diagnostic_exception",
+  "exception": "ValueError:runtime_full_cycle_deadline",
+  "cleanup_completed": {
+    "worker": true,
+    "environment": false,
+    "simulation_app": false
+  },
+  "cleanup_errors": [],
+  "worker_closed": {
+    "process_stopped": true,
+    "io_threads_stopped": true
+  }
+}

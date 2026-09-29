@@ -1,0 +1,26 @@
+{
+  "status": "no_plan",
+  "reason": "solver_timeout",
+  "commands": null,
+  "cost": null,
+  "baseline_cost": 0.0007368569660954049,
+  "exact_feasible": false,
+  "runtime_eligible": false,
+  "search_kind": "continuous_nonlinear_program",
+  "decision_variables": 60,
+  "solver": {
+    "return_status": "Maximum_CpuTime_Exceeded",
+    "success": false,
+    "iterations": 590,
+    "global_optimum_claimed": false
+  },
+  "baseline_check": {
+    "feasible": true,
+    "reason": null,
+    "cost": 0.0007368569660954049
+  },
+  "elapsed_seconds": 62.28230388648808,
+  "configuration": "uuv4",
+  "model": "Rc_0.1",
+  "initial_plan_sha256": "06699edc0f11a87785bc209867cfb07ed22426c7dd77322bfc952fed7672d0f7"
+}

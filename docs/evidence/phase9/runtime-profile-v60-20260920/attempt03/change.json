@@ -1,0 +1,6 @@
+{
+  "compute_change": "CUDA_MODULE_LOADING=EAGER before torch/CUDA imports",
+  "instrumentation_change": "reenable faulthandler after app launch and close",
+  "formula_or_physics_changes": false,
+  "reason": "attempt02 profile dominated by first-use torch dynamics operations"
+}

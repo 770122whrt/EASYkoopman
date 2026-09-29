@@ -1,0 +1,66 @@
+{
+  "status": "global_stop",
+  "configurations": {
+    "long_body": {
+      "status": "four_arms_accepted",
+      "cases": {
+        "long_body-pitch-feedback": "accepted",
+        "long_body-pitch-mpc": "accepted",
+        "long_body-depth-feedback": "accepted",
+        "long_body-depth-mpc": "accepted"
+      },
+      "not_run": []
+    },
+    "uuv6": {
+      "status": "four_arms_accepted",
+      "cases": {
+        "uuv6-pitch-feedback": "accepted",
+        "uuv6-pitch-mpc": "accepted",
+        "uuv6-depth-feedback": "accepted",
+        "uuv6-depth-mpc": "accepted"
+      },
+      "not_run": []
+    },
+    "uuv6_angled": {
+      "status": "four_arms_accepted",
+      "cases": {
+        "uuv6_angled-pitch-feedback": "accepted",
+        "uuv6_angled-pitch-mpc": "accepted",
+        "uuv6_angled-depth-feedback": "accepted",
+        "uuv6_angled-depth-mpc": "accepted"
+      },
+      "not_run": []
+    },
+    "uuv4_angled": {
+      "status": "configuration_support_no_go",
+      "cases": {
+        "uuv4_angled-pitch-feedback": "accepted",
+        "uuv4_angled-pitch-mpc": "configuration_no_go"
+      },
+      "not_run": [
+        "uuv4_angled-depth-feedback",
+        "uuv4_angled-depth-mpc"
+      ]
+    },
+    "heavy_moderate": {
+      "status": "running",
+      "cases": {
+        "heavy_moderate-pitch-feedback": "global_stop"
+      },
+      "not_run": []
+    }
+  },
+  "new_fits": 0,
+  "charged_seconds": 819.0902196061797,
+  "physical_starts": 15,
+  "manifest_sha256": "383ad20c2c345380e3b64198635dd99615e982c5006083ade08fd3bf9a3bdeae",
+  "inherited": {
+    "base": "four_arms_accepted_r3",
+    "asymmetric": "support_no_go_at10physics_steps_r3",
+    "uuv4": "pitch_feedback_passed_mpc_support_no_go209steps11activations_remaining_depth_skipped"
+  },
+  "exception": "ValueError:unclassified_or_integrity_failure:heavy_moderate-pitch-feedback",
+  "retained_bytes": 187093151,
+  "addon_bytes": 6707528,
+  "wall_seconds": 826.3470104727894
+}

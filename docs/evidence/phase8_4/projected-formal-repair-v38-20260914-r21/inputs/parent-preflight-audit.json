@@ -1,0 +1,188 @@
+{
+  "status": "projected_formal_source_runtime_inventory_pullback_accepted",
+  "role": "preflight",
+  "source_commit": "1ba1d0e3dc8dcbc83263e678b7eea259672a8f83",
+  "freeze_sha256": "85fda36f7e8ef69502395b8e87b48afc7421d73d153b59454febd83277e9b6d7",
+  "trace_sha256": {
+    "p38-base-preflight-9300-prbs": "4eeb470fc515d97a7fd10adff3a8319eb4242db43e8e6bb94df1146122989485",
+    "p38-long_body-preflight-9301-prbs": "eb7fdf0d8352b252aa6260d4e17e3a320b0518b1a5ad690e193e7befb7706c7e",
+    "p38-heavy_moderate-preflight-9302-prbs": "25886404b639516ef1fb3ac1b8cece104e5997cb63ccbc516a6a924cd109b9cd",
+    "p38-asymmetric-preflight-9303-prbs": "28428112a8043d22eefeb23fe1bcd416ab6cf4230174675c73cde92b119aae26",
+    "p38-uuv6-preflight-9304-prbs": "04d182f3a385253a51eecc10eaf68b297b524169b1153c15a6facf3c045a99ff",
+    "p38-uuv6_angled-preflight-9305-prbs": "dd43533631f6029c48a66797911c67105c294b7c1e2a8ef89289280b7b6fc638",
+    "p38-uuv4-preflight-9306-prbs": "771b30e01c868f20531dc314dbe07122f6b26076f7c116d1b19f0a370ccff601",
+    "p38-uuv4_angled-preflight-9307-prbs": "4cfa5f13ef54f957b7b45aeee74718b44ef90d99e0ebdf7036b6a2cc5ae4bbb0"
+  },
+  "semantic_sha256": {
+    "p38-base-preflight-9300-prbs": "00e3dd4cdcf89235ab84f6c9b4e936f81090264c058d63e41c62d61fbd3c2881",
+    "p38-long_body-preflight-9301-prbs": "2192b3de737b8c6adfdbf00539816d281bf6e9173c9a25e361d4bd3163b33fa6",
+    "p38-heavy_moderate-preflight-9302-prbs": "b3a67d5553ae9a07a57617052fc5e73d05d984292183be544abe529427950400",
+    "p38-asymmetric-preflight-9303-prbs": "4c391bb5fff8b4be67602a68cb9a60877ef7812e632f6eee356f9c915210e3ee",
+    "p38-uuv6-preflight-9304-prbs": "f9c74dd9b149243f8f167a2ba3d0630cae0957df9cb484edc2579c8828cfde88",
+    "p38-uuv6_angled-preflight-9305-prbs": "5cae6471563af47af081c7577f561bdeaa76a7a979184405a3b8ab6ebdff5ec0",
+    "p38-uuv4-preflight-9306-prbs": "8a91914474ae3e46e4a592eac8dd032b214bb9d714fff2b049fd9c6f051e0ccc",
+    "p38-uuv4_angled-preflight-9307-prbs": "fdc4232440dc4462b1dcee1829574ab82d71a7281e75dd3fe15f5670ce2e6b0f"
+  },
+  "archive_sha256": "4c3caa13f7f36d078b9236ed5766ac495ebdd4c6702f72ca9f4003aecf1505aa",
+  "semantic_recomputation": {
+    "p38-base-preflight-9300-prbs": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/maximum_motion/tilt_rad",
+          "server": 0.03934519317209799,
+          "local": 0.03934519317209798,
+          "absolute_difference": 6.938893903907228e-18,
+          "allowed_difference": 4.0345193172097995e-11
+        }
+      ]
+    },
+    "p38-long_body-preflight-9301-prbs": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/maximum_motion/tilt_rad",
+          "server": 0.042658364528684815,
+          "local": 0.04265836452868481,
+          "absolute_difference": 6.938893903907228e-18,
+          "allowed_difference": 4.3658364528684824e-11
+        }
+      ]
+    },
+    "p38-heavy_moderate-preflight-9302-prbs": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": []
+    },
+    "p38-asymmetric-preflight-9303-prbs": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": []
+    },
+    "p38-uuv6-preflight-9304-prbs": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/1",
+          "server": 5.960464477539063e-08,
+          "local": 7.450580596923828e-08,
+          "absolute_difference": 1.4901161193847656e-08,
+          "allowed_difference": 1e-07
+        },
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/2",
+          "server": 2.7456696329863917e-05,
+          "local": 2.550390321687246e-05,
+          "absolute_difference": 1.9527931129914577e-06,
+          "allowed_difference": 1e-05
+        },
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/3",
+          "server": 3.87399049461834e-06,
+          "local": 3.6837322632266023e-06,
+          "absolute_difference": 1.902582313917378e-07,
+          "allowed_difference": 1e-05
+        }
+      ]
+    },
+    "p38-uuv6_angled-preflight-9305-prbs": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/1",
+          "server": 1.043081283569336e-07,
+          "local": 8.940696716308594e-08,
+          "absolute_difference": 1.4901161193847656e-08,
+          "allowed_difference": 1e-07
+        },
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/2",
+          "server": 3.8537464185139925e-05,
+          "local": 4.405441819699263e-05,
+          "absolute_difference": 5.516954011852704e-06,
+          "allowed_difference": 1e-05
+        },
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/3",
+          "server": 7.6038059884098175e-06,
+          "local": 9.09126563364282e-06,
+          "absolute_difference": 1.4874596452330024e-06,
+          "allowed_difference": 1e-05
+        }
+      ]
+    },
+    "p38-uuv4-preflight-9306-prbs": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/2",
+          "server": 2.5349947563313435e-05,
+          "local": 2.866713660409914e-05,
+          "absolute_difference": 3.3171890407857063e-06,
+          "allowed_difference": 1e-05
+        },
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/3",
+          "server": 4.1323798427583824e-06,
+          "local": 4.986226706193975e-06,
+          "absolute_difference": 8.538468634355922e-07,
+          "allowed_difference": 1e-05
+        }
+      ]
+    },
+    "p38-uuv4_angled-preflight-9307-prbs": {
+      "policy": "semantic-numeric-agreement-v1",
+      "differences": [
+        {
+          "path": "/maximum_control_pwm_speed_wrench_errors/3",
+          "server": 3.8341250094831025e-06,
+          "local": 3.934104015890227e-06,
+          "absolute_difference": 9.997900640712487e-08,
+          "allowed_difference": 1e-05
+        },
+        {
+          "path": "/maximum_motion/tilt_rad",
+          "server": 0.06084528080755581,
+          "local": 0.0608452808075558,
+          "absolute_difference": 6.938893903907228e-18,
+          "allowed_difference": 6.18452808075558e-11
+        },
+        {
+          "path": "/tail/maximum/tilt_rad",
+          "server": 0.06084528080755581,
+          "local": 0.0608452808075558,
+          "absolute_difference": 6.938893903907228e-18,
+          "allowed_difference": 6.18452808075558e-11
+        }
+      ]
+    }
+  },
+  "auditor_revision": {
+    "schema": "projected-v38-auditor-revision",
+    "parent_source_commit": "1ba1d0e3dc8dcbc83263e678b7eea259672a8f83",
+    "parent_freeze_sha256": "85fda36f7e8ef69502395b8e87b48afc7421d73d153b59454febd83277e9b6d7",
+    "auditor_source_commit": "0fd19ff28b0c1f3260a0a6ecbacc3ee0edd783da",
+    "parent_source_manifest_sha256": "d6cc5c7d93c64f7e5e5497341fc2193d02336eaa96970924077d3f702ada2f55",
+    "auditor_source_manifest_sha256": "d345594418bd057ba06f9d2b58d595d278ee8d18c90e19ab9ef15120a9733c37"
+  },
+  "validator_sha256": "be2b9ee408b6a9d7fa1701d6c5051aea2ea8a3fdc85245c8daa654771e446927",
+  "stage_status_sha256": "9ecfc3f22bbcefa536f0a339d4b035dba6e1458b1533af51116c290f35f2c83a",
+  "training_eligible": false,
+  "model_handoff": false,
+  "runtime_sha256": {
+    "conda_environment.txt": "d43766a1fb9443c315638a620e88d966b262bc4680246aefd3c6a88cb045580c",
+    "isaaclab_release_commit.txt": "5065c632a86158d5a9d365cf719cbd657050b0ba09d3a87814957c851f10ca74",
+    "isaaclab_release_tag.txt": "51a76904570dfd01d966325f09cddf7ecc5f7608a65d6f4bf11d135bbb88ba0d",
+    "isaaclab_repo_commit.txt": "74568c75a29522612e3c859c074b161607420d2ce03f9c349ca1f89733559e95",
+    "isaaclab_repo_dirty_files.txt": "d591dfe88e1cf4c530bfb654cb03a8fb25a837d3bb347b6e63d50c5221114b90",
+    "isaaclab_repo_parent_commit.txt": "5065c632a86158d5a9d365cf719cbd657050b0ba09d3a87814957c851f10ca74",
+    "isaaclab_repo_patch.sha256": "aabc5ba5c9760f64517897e3822a89b82d5dc316acc9bd743c0e4761ff7496aa",
+    "isaaclab_version_file.txt": "fe650098093fad42070e8a2cacfb216a6c416af57bd26dd6ff479fef69f8bc71",
+    "python_executable.txt": "8ab3f3c4bae33180495105e2a8dfce7abf4175b780eb6bf421d8e5471cc4afa9",
+    "setuptools_version.txt": "67de5d917f8d7a774dd7aac64a7af32eb0228ae1f35dfbbfdf5d8d257cf17107",
+    "logs/conda_activation.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/editable_install.log": "cd15d898c387191245d3e0f38cec64c9c8bcf4c2440972dfd9c493ae1e6abb4e",
+    "logs/isaaclab_repo_diff.patch": "d056adb8bb64fe7c9c34fffbd2478ef04155df8b60b071da942280952f829079",
+    "logs/python_version.log": "2559727b0cf51e54ab4937e667eddd9c0976e59c91ea45b458f76daf77b04269",
+    "logs/setuptools_version.log": "eb973ecbbf0f845d65f8de6da55e8d9077382fa79f4ac25a1c4b7c85cc7e4305"
+  },
+  "physics_ticks": 4096
+}

@@ -1,0 +1,58 @@
+"""Accept exactly eight supplemental real traces, preserving the raw archive."""
+from pathlib import Path
+import hashlib,json,tarfile
+import numpy as np
+from workflows.validate_control_trace_v23 import validate_interval
+
+root=Path.cwd();base=root/'docs/evidence/phase8_3/server-representation-20260912'
+sha='483d25b153821285712c7a1d25ba770f35b24fcac729fba17b4585647aa03bab'
+archive=base/'representation-evidence.tar.gz'
+assert hashlib.sha256(archive.read_bytes()).hexdigest()==sha
+raw=base/'raw'
+if not raw.exists():
+ raw.mkdir()
+ with tarfile.open(archive) as tar:
+  for m in tar.getmembers():
+   assert m.isfile() and (raw/m.name).resolve().is_relative_to(raw.resolve()),m.name
+  tar.extractall(raw,filter='data')
+index=json.loads((raw/'inventory.json').read_text())
+assert len(index)==49
+assert {p.relative_to(raw).as_posix() for p in raw.rglob('*') if p.is_file()}==set(index)|{'inventory.json'}
+for n,meta in index.items():
+ p=raw/n;assert p.stat().st_size==meta['bytes'] and hashlib.sha256(p.read_bytes()).hexdigest()==meta['sha256'],n
+expected={(c,8202,'prbs') for c in ['base','uuv4']}|{(c,8201,e) for c in ['base','uuv4','uuv6'] for e in ['zero','step']}
+assert {p.parent.name for p in (raw/'results').glob('*/trace.json')}=={f'repr-{c}-{s}-{e}' for c,s,e in expected}
+assert (raw/'runner.exit_status').read_text().strip()=='0'
+assert (raw/'source-head.txt').read_text().strip()=='a9a6e20f4ac05b183cf28fd4710f5a21478b9d7c'
+assert not (raw/'source-status.txt').read_text().strip()
+manifest=json.loads((raw/'SOURCE_MANIFEST.json').read_text())
+for n,h in manifest['files_sha256'].items():assert hashlib.sha256((root/n).read_bytes()).hexdigest()==h,n
+cases=[]
+for c,s,e in sorted(expected):
+ name=f'repr-{c}-{s}-{e}';d=json.loads((raw/'results'/name/'trace.json').read_text());q=d['request']
+ assert d['source_commit']=='a9a6e20f4ac05b183cf28fd4710f5a21478b9d7c' and d['status']=='completed_exploratory_trace'
+ assert (raw/(name+'.exit_status')).read_text().strip()=='0'
+ assert (q['configuration'],q['seed'],q['excitation'])==(c,s,e)
+ assert q['condition']=='cold' and q['observed_intervals']==32 and q['preparation_intervals']==0
+ assert q['control_history_reset_mode']=='episode_local_v1' and q['inertia_sync_mode']=='declared_v1'
+ assert q['physics_initialization_mode']=='authored_static_v1'
+ assert q['physics_dt_s']==1/120 and q['decimation']==2 and q['control_dt_s']==1/60
+ assert len(d['boundary_states'])==32 and len(d['substeps'])==64
+ prov=d['runtime_provenance'];assert prov['actual_isaac_sim']=='5.0' and prov['actual_isaac_lab']=='2.2.1'
+ p=prov['runtime_provenance'];assert p['isaac_lab_release_commit']=='0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20'
+ assert p['isaac_lab_repo_commit']=='c91a125c73c8b574878419a9583afc0b63b99f0a'
+ assert p['isaac_lab_repo_patch_sha256']=='d056adb8bb64fe7c9c34fffbd2478ef04155df8b60b071da942280952f829079'
+ for cls,rel,path in [('EasyUUVEnv','easyuuv_nc/env/easyuuv_env.py',root/'easyuuv_nc/env/easyuuv_env.py'),('DirectRLEnv','direct_rl_env.py',raw/'direct_rl_env.py')]:
+  expected_path='/root/EASYkoopman-phase8-3-initialization-20260912/'+rel if cls=='EasyUUVEnv' else '/root/IsaacLab/source/isaaclab/isaaclab/envs/direct_rl_env.py'
+  assert d['loaded_sources'][cls]['path']==expected_path
+  assert d['loaded_sources'][cls]['sha256']==hashlib.sha256(path.read_bytes()).hexdigest()
+ for i in range(32):validate_interval(d['substeps'][i*2:i*2+2],configuration=c)
+ for r in d['substeps']:
+  assert r['stage']=='observed'
+  b=r['backend_after_physics'];cache=np.asarray(b['cache_state_world_wxyz_13']);pose=np.asarray(b['transform_actor_world_xyzw']);vel=np.asarray(b['velocity_com_world_6'])
+  assert np.array_equal(cache[:,:3],pose[:,:3]) and np.array_equal(cache[:,3:7],pose[:,[6,3,4,5]]) and np.array_equal(cache[:,7:],vel)
+ cases.append({'case':name,'configuration':c,'seed':s,'excitation':e,'intervals':32})
+report={'status':'supplemental_repaired_traces_accepted','archive_sha256':sha,'inventory_files':len(index),'cases':cases,'new_intervals':256,'new_physics_substeps':512,'cumulative_intervals':1312,'model_handoff':False}
+(base/'acceptance.json').write_text(json.dumps(report,indent=2)+'\n')
+(base/'validate-pullback.py.txt').write_text(Path(__file__).read_text())
+print(json.dumps(report))

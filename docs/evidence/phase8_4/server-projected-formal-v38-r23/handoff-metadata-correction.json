@@ -1,0 +1,30 @@
+{
+  "schema": "projected-v38-handoff-metadata-correction-v1",
+  "created_at": "2026-09-20T02:05:27.405620+08:00",
+  "original": {
+    "path": "prediction-control-handoff.json",
+    "sha256": "748f0c5daf7d20649763c28a4c01e6d20d76239b01998949d463338d3a77797b",
+    "invalid_channel_names": [
+      "surge",
+      "sway",
+      "heave",
+      "yaw"
+    ],
+    "status": "superseded_do_not_consume"
+  },
+  "successor": {
+    "path": "prediction-control-handoff-v2.json",
+    "sha256": "5d8c4aa1264d93307dc0cf692757441509e75809206ed80006543ca5e4239632",
+    "channels": [
+      "roll",
+      "pitch",
+      "yaw",
+      "depth"
+    ]
+  },
+  "checked": "frozen CONTROL_CHANNELS and all eight control masks; uuv4 yaw index2 unavailable",
+  "source_or_models_or_predictions_changed": false,
+  "closeout_sha256": "ca77ecc765bd63e87e41f04ddb33bda322ad8dda09a8d2e8b0e8bc01053bf4ec",
+  "charged_budget_unchanged": true,
+  "scope": "documentation_metadata_correction_only"
+}

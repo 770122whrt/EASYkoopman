@@ -1,0 +1,31 @@
+{
+  "status": "accepted_bounded_simulation_time_closed_loop",
+  "physics_steps": 240,
+  "replay_max_errors": [
+    0.0,
+    0.0,
+    4.553910272875328e-06,
+    2.2882613559538356e-07
+  ],
+  "plan_replay_max_error": 0.0,
+  "min_clearance_m": 5.228465337825205,
+  "normalized_tracking_score": 0.2525956113755937,
+  "case": {
+    "configuration": "base",
+    "controller": "nominal_physics",
+    "profile": "depth4_h20",
+    "controls": 60,
+    "seed": 19760,
+    "reference": [
+      5.5,
+      0.9998000066665778,
+      0.0,
+      0.01999866669333308,
+      0.0
+    ],
+    "task": "pitch_0.04_rad"
+  },
+  "real_time_qualified": false,
+  "training_eligible": false,
+  "trace_sha256": "02397c26e88a6cd94f0fc73b2971256ad2d561a951e3d44506334386800ec006"
+}

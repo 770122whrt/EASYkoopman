@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "E:\code for project\Agentic AUV\EasyUUV\.pytest-tmp\phase84-runtime-20260912-r8\verified-clone\workflows\run_formal_stage_v25.py", line 93, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "E:\code for project\Agentic AUV\EasyUUV\.pytest-tmp\phase84-runtime-20260912-r8\verified-clone\workflows\run_formal_stage_v25.py", line 88, in main
+    cases,source,_=prepare(root,args.transfer,args.stage)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\code for project\Agentic AUV\EasyUUV\.pytest-tmp\phase84-runtime-20260912-r8\verified-clone\workflows\run_formal_stage_v25.py", line 21, in prepare
+    for case in cases:authorize(roles,policy,approval,source,case['run_id'])
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\code for project\Agentic AUV\EasyUUV\.pytest-tmp\phase84-runtime-20260912-r8\verified-clone\workflows\formal_contract_v25.py", line 66, in authorize
+    if approval.get('decision')!='approved':raise ValueError('formal_d23_not_approved')
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: formal_d23_not_approved

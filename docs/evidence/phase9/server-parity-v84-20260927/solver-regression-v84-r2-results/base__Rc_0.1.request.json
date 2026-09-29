@@ -1,0 +1,24 @@
+{
+  "root": "/root/shared-nvme/agentic-auv/workspaces/model-comparison-v84-20260927",
+  "assets": "/root/shared-nvme/agentic-auv/assets/frozen-v38-v76-20260924",
+  "models": "/root/shared-nvme/agentic-auv/workspaces/model-comparison-v84-20260927/docs/evidence/phase9/model-comparison-v84-20260927",
+  "historical_models": "/root/shared-nvme/agentic-auv/workspaces/learned-control-v82-20260926/docs/evidence/phase9/learned-velocity-v81-20260926/normalized-quaternion",
+  "configuration": "base",
+  "model": "Rc_0.1",
+  "paths": {
+    "physics": "/root/shared-nvme/agentic-auv/experiments/preview-v80-20260926/base-identified-on-r1/trace.json.gz",
+    "learned_0.001": "/root/shared-nvme/agentic-auv/experiments/learned-control-v82-20260926/base-learned-0.001-on-r1/trace.json.gz",
+    "learned_0.1": "/root/shared-nvme/agentic-auv/experiments/learned-control-v82-20260926/base-learned-0.1-on-r1/trace.json.gz"
+  },
+  "expected_identities": {
+    "/root/shared-nvme/agentic-auv/workspaces/learned-control-v82-20260926/docs/evidence/phase9/learned-velocity-v81-20260926/normalized-quaternion/pooled__learned_0.001.json": "8f973c20e66eb06ef8077723ca172d3513ea434e167d106a6c35ac72f7ef5180",
+    "/root/shared-nvme/agentic-auv/workspaces/learned-control-v82-20260926/docs/evidence/phase9/learned-velocity-v81-20260926/normalized-quaternion/pooled__learned_0.1.json": "7753e54624deaa72f6b234dc681a8dcfdfc74782117b2d6993cd0a25a2f60447",
+    "/root/shared-nvme/agentic-auv/workspaces/model-comparison-v84-20260927/docs/evidence/phase9/model-comparison-v84-20260927/pooled__Rc_0.001.json": "47ffba2c423d0bf8b00ba63aee0a17c3e71393ff29f6391107f21efd10c6ab16",
+    "/root/shared-nvme/agentic-auv/workspaces/model-comparison-v84-20260927/docs/evidence/phase9/model-comparison-v84-20260927/pooled__Rc_0.1.json": "ff97544c6756e360eadee8ce0adc4b1fbdc176026385578b3cc971d0485b4ca5",
+    "/root/shared-nvme/agentic-auv/experiments/preview-v80-20260926/base-identified-on-r1/trace.json.gz": "d30646ea9b9292956cbc5a6b81b0e985e3ed5b427caad86bd6819fd74a75ba37",
+    "/root/shared-nvme/agentic-auv/experiments/learned-control-v82-20260926/base-learned-0.001-on-r1/trace.json.gz": "c47804af3f8be480ec985cf01c7142a57380c9ccb4c33fe1f2f91b2613bb968f",
+    "/root/shared-nvme/agentic-auv/experiments/learned-control-v82-20260926/base-learned-0.1-on-r1/trace.json.gz": "5ef1b1d1b8c4d667e44c37c75e26de32ff9865a60819cc7371bad72f062f7c86"
+  },
+  "expected_support_model": "9704fbb8cc0a40ebc74f3f4d2727cba0f52a0b4221ec6e71d4f5526d98a088f4",
+  "expected_support_id": "2beb7816cf9bf5896c9976c16efa41688a09cb065737a2a39baba7e563644998"
+}

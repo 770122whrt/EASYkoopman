@@ -1,0 +1,165 @@
+{
+  "description": "Read-only source coverage; coordinate ranges are diagnostics, not a new admissibility gate or proof of sole cause",
+  "ranges": [
+    {
+      "group": "coordinates",
+      "name": "height_offset",
+      "training_min": -0.09818172454833984,
+      "training_max": 0.0,
+      "heldout_min": -0.15639448165893555,
+      "heldout_max": 0.0,
+      "outside_training_range_fraction": 0.321875
+    },
+    {
+      "group": "coordinates",
+      "name": "chart_x",
+      "training_min": -0.0303859036737722,
+      "training_max": 0.024021684421291146,
+      "heldout_min": -0.0618438035816417,
+      "heldout_max": 0.027747353843216284,
+      "outside_training_range_fraction": 0.1703125
+    },
+    {
+      "group": "coordinates",
+      "name": "chart_y",
+      "training_min": -0.012890901435816808,
+      "training_max": 0.01272081937960336,
+      "heldout_min": -0.0157306005143282,
+      "heldout_max": 0.027535666172539726,
+      "outside_training_range_fraction": 0.16875
+    },
+    {
+      "group": "coordinates",
+      "name": "chart_z",
+      "training_min": -0.0063591275559832655,
+      "training_max": 0.007002714691775453,
+      "heldout_min": -0.005949825173901196,
+      "heldout_max": 0.010348943281518194,
+      "outside_training_range_fraction": 0.0765625
+    },
+    {
+      "group": "coordinates",
+      "name": "v_x",
+      "training_min": -0.0019089181441813707,
+      "training_max": 0.000513512990437448,
+      "heldout_min": 0.0,
+      "heldout_max": 0.004302132874727249,
+      "outside_training_range_fraction": 0.5546875
+    },
+    {
+      "group": "coordinates",
+      "name": "v_y",
+      "training_min": -0.0037629411090165377,
+      "training_max": 0.0009116979199461639,
+      "heldout_min": -0.000297946622595191,
+      "heldout_max": 0.008536165580153465,
+      "outside_training_range_fraction": 0.4421875
+    },
+    {
+      "group": "coordinates",
+      "name": "v_z",
+      "training_min": -0.052884284406900406,
+      "training_max": 0.05687549710273743,
+      "heldout_min": -0.09873158484697342,
+      "heldout_max": 0.0,
+      "outside_training_range_fraction": 0.1640625
+    },
+    {
+      "group": "coordinates",
+      "name": "w_x",
+      "training_min": -0.2906722128391266,
+      "training_max": 0.31818336248397827,
+      "heldout_min": -0.3008570373058319,
+      "heldout_max": 0.37048500776290894,
+      "outside_training_range_fraction": 0.0703125
+    },
+    {
+      "group": "coordinates",
+      "name": "w_y",
+      "training_min": -0.1602463573217392,
+      "training_max": 0.16101804375648499,
+      "heldout_min": -0.1805676519870758,
+      "heldout_max": 0.16441689431667328,
+      "outside_training_range_fraction": 0.05625
+    },
+    {
+      "group": "coordinates",
+      "name": "w_z",
+      "training_min": -0.08098884671926498,
+      "training_max": 0.08633878827095032,
+      "heldout_min": -0.08936239778995514,
+      "heldout_max": 0.07441529631614685,
+      "outside_training_range_fraction": 0.0390625
+    },
+    {
+      "group": "inputs",
+      "name": "a0",
+      "training_min": -9.364607467591635e-07,
+      "training_max": 8.97911120642595e-07,
+      "heldout_min": -9.015025175821595e-07,
+      "heldout_max": 8.413393245240354e-07,
+      "outside_training_range_fraction": 0.0
+    },
+    {
+      "group": "inputs",
+      "name": "a1",
+      "training_min": -5.8869516022930983e-08,
+      "training_max": 6.029619232766666e-08,
+      "heldout_min": -4.6933648797852125e-08,
+      "heldout_max": 4.297566625581157e-08,
+      "outside_training_range_fraction": 0.0
+    },
+    {
+      "group": "inputs",
+      "name": "a2",
+      "training_min": -0.2429180076938149,
+      "training_max": 0.2534362701803899,
+      "heldout_min": -0.22716100083108928,
+      "heldout_max": 0.24400270856398049,
+      "outside_training_range_fraction": 0.0
+    },
+    {
+      "group": "inputs",
+      "name": "a3",
+      "training_min": -2.7072689753148316,
+      "training_max": 2.620118551753003,
+      "heldout_min": -1.832799070264261,
+      "heldout_max": 1.76776477828279,
+      "outside_training_range_fraction": 0.0
+    },
+    {
+      "group": "inputs",
+      "name": "a4",
+      "training_min": -1.401871680502177,
+      "training_max": 1.4075379184274348,
+      "heldout_min": -1.0409725948096475,
+      "heldout_max": 1.0720109438792,
+      "outside_training_range_fraction": 0.0
+    },
+    {
+      "group": "inputs",
+      "name": "a5",
+      "training_min": -0.7719484215969606,
+      "training_max": 0.7536830301005125,
+      "heldout_min": -0.5502007810158667,
+      "heldout_max": 0.6008744526470583,
+      "outside_training_range_fraction": 0.0
+    }
+  ],
+  "training_design": {
+    "fixed_effective_design": {
+      "columns": 49,
+      "numerical_rank": 48,
+      "effective_rank_at_relative_1e_6": 46,
+      "largest_singular": 118.34723610924456,
+      "smallest_singular": 5.6836501113765487e-14
+    },
+    "bilinear_effective_design": {
+      "columns": 265,
+      "numerical_rank": 224,
+      "effective_rank_at_relative_1e_6": 190,
+      "largest_singular": 194.24301607041207,
+      "smallest_singular": 3.119213334142574e-19
+    }
+  }
+}
