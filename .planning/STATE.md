@@ -1,24 +1,45 @@
 ---
+
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Multi-Configuration Koopman Transfer and Environment-Aware Control
-status: executing
-last_updated: "2026-09-01T16:00:00Z"
-last_activity: 2026-09-01 -- Phase 8.2 formal eight-fold LOCO closed with terminal NO_SELECTION and independent closeout VERIFIED
+status: in_progress
+last_updated: "2026-09-29"
+last_activity: 2026-09-29 -- user fixed two steps: disturbance then physics-Koopman combination; physical baseline frozen without disturbance-data recalibration; commit and push requested
 progress:
-  total_phases: 9
-  completed_phases: 5
-  total_plans: 21
-  completed_plans: 21
-  percent: 100
+  total_phases: 11
+  completed_phases: 7
+  total_plans: 36
+  completed_plans: 33
+  percent: 92
 ---
+
+**2026-09-29当前入口：** 已确认完整提升状态自行传播、允许因果近期观测且模型参数冻结。用户已确定两步：加入扰动，再验证物理与Koopman结合。物理对照冻结、不学习新增扰动数据；本轮更新并提交推送，未启动服务器实验。下一步与Git恢复边界见[本轮交接](checkpoints/phase9-lifted-generalization-handoff-2026-09-29.md)。Phase9/09-04保持开放；以下旧日期段落保留为历史结果，不能作为新实验运行授权。
+
+**当前入口（结果截至2026-09-27，2026-09-28补充中文解释）：** 已完成五种模型的预测比较与单构型诊断。数据校准的物理模型整体最好；限制自由度的学习残差接近物理预测；两种“非线性特征＋矩阵传播”模型尚未合格。同一基础构型换成未参与训练的扫频输入也失败，因此不能只归因于跨构型。六次连续控制优化中一次达到可接受精度、五次超时，新两秒闭环尚未运行。模型中文名称、正则参数λ、论文关系及完整数字见[统一报告与八构型表](../docs/phase9_model_comparison_v84_report.md)。本轮先解释与修正文档，没有新实验；下方旧日期内容为历史证据。
+
+**已完成v82报告（2026-09-26，历史Goal结果）：** 已完成10条2秒真实闭环、18个非等价学习模型及八折留构型预测。uuv4两学习候选相对同MPC辨识物理的综合误差降低11.7%/9.8%；base高3.0%/17.9%，仅部分完整目标改善。已观察局部控制收益，未证明普遍模型优势或未见构型闭环泛化。10条原Linux验收通过，9条本地完整复核，uuv4学习0.001在Windows因果预演未复现、另经原运行时严格重验通过；失败保留。下一步先修求解质量和预演平台分支敏感性，再冻结新任务验证。服务器无本任务遗留进程，可关闭。 [最终报告](../docs/phase9_koopman_mpc_v82_report.md)；[执行范围](../docs/phase9_goal_v80_plan.md)。下方旧日期的运行状态仅为历史。
+
+**当前（2026-09-26）：** 2026-09-26已完成两篇论文与控制/模型/验证三端交叉审核：主线合理；修复短计划广播验收漏洞，新增因果参考独立复核和preview开关。本地/服务器各109项通过。服务器4次真实离线求解均返回可行且通过单决策审核，base/uuv4预演开启预测成本下降57.84%/63.95%，开启臂均达迭代上限且更慢；不是闭环收益。CPU/GPU PWM差异已复现，uuv6旧实际门失败保留。零新物理/拟合；任务已退出、证据回传。先补完整新版采集/轨迹验收及数值余量，再2秒配对；之后另测非等价学习模型。 [报告](../docs/phase9_methodology_crosscheck_2026-09-26.md)。
+
+**以下为此前阶段记录，当前执行入口以上段为准。**
+
+**2026-09-25当前v79本地阶段：** 因果反馈预演、完整备选代价重算、模型身份分离及实际PWM余量检查已实现。36项预演可行，零新NLP/物理/拟合；旧投影与辨识物理等价。新完整提升探针不准入。uuv6实际PWM门存在小幅偏差，服务器恢复后先复核并补新验收，再做2秒控制单因素对照；学习动力学模型另行实现，不混合归因。[v79报告](../docs/phase9_control_model_separation_v79.md)。用户要求先本地，不连接关闭的服务器。
+
+**当前v78已交付：** v78四构型统一设置2秒验证已交付。8个MPC单元中8个完整验收；投影分支1/4个构型的综合误差低于反馈，名义物理分支1/4个。模型冻结、零训练；本轮只作短任务描述性比较，Phase9保持开放。 [v78报告](../docs/phase9_common_profile_v78_report.md)。
+
+**历史v77交付状态（2026-09-24）：** v77有界求解与控制实验已交付。r4首组四构型×两模型8例均完整验收；原repair设置仅base改善0.67%，其他三个构型仍负收益。uuv4提高深度权重并延长时域后，相对反馈改善12.15%，是短任务局部收益，不是统一跨构型或独特Koopman收益证明。模型冻结、零训练，Phase9保持开放。 [v77报告](../docs/phase9_reliable_control_v77_report.md)。
+
+**当前范围（2026-09-24）：** 用户明确授权连续优化、离线归因与小范围匹配闭环；同一MPC换模型，另设反馈对照。控制频率性能后置，模型冻结、零训练。首组base/uuv4/long_body/uuv6，后续四构型与Agent仍条件开放；旧v73不重启、不改写。
 
 # Project State: EASYkoopman
 
-**Updated:** 2026-09-01
-**Current focus:** Phase 8.2 closed — terminal `NO_SELECTION` with `VERIFIED` closeout; awaiting user decision on Phase 9 direction
+**Updated:** 2026-09-29
+**Current focus:** 用户已确定加扰动、物理与Koopman结合两步；物理基线不重新校准，完整提升与冻结参数历史接口要求保持。具体交接见上方链接。未新增训练、求解或闭环，模型与求解缺口仍保留。
 **Active milestone:** `v2.0 Multi-Configuration Koopman Transfer and Environment-Aware Control`
-**Branch:** `v2.0-multi-configuration`
+**Branch:** `no-selection` (verified at this planning update; recheck before execution)
+
+**Research direction:** User confirmed Koopman-UUV / Agentic-AUV as the main objective; senior advice plus evidence-led agent judgment guide the route. Routine details are delegated. Linear/per-config/persistence remain comparators, not automatic replacement goals.
 
 ## Project Reference
 
@@ -28,10 +49,7 @@ See `.planning/PROJECT.md`.
 
 ## Current Position
 
-Phase: 08.2 (fresh-server-evaluation-and-closeout) — COMPLETE
-Plan: 4/4 Phase 8.2 plans complete
-Status: Fresh v2.1 exact-eight dataset collected, pulled back and committed; formal eight-fold LOCO executed with per-fold pre-test freeze; terminal decision `NO_SELECTION` published; independent closeout passed with verdict `VERIFIED`; no Phase 9 handoff model exists
-Last activity: 2026-09-01 -- Gate 4 formal chain + Gate 5 closeout completed; evaluation/selection/closeout roots committed and immutable
+v82旧闭环结果与v84/v85负结果保留，详见[统一报告](../docs/phase9_model_comparison_v84_report.md)。当前讨论与下一项工作以[2026-09-29交接](checkpoints/phase9-lifted-generalization-handoff-2026-09-29.md)为准，未新增2秒闭环。
 
 ## Milestone Goal
 
@@ -107,6 +125,8 @@ All three boundaries are visible on `origin/v2.0-multi-configuration`: simulator
 
 ## Planning Result
 
+Historical planning setup (superseded by Current focus): [advice analysis](../docs/phase8_3_senior_advice_analysis.md), [8.3 context](phases/08.3-control-identification-forensics/08.3-CONTEXT.md) and three serial plans are ready for future execution; [8.4 context](phases/08.4-conditional-identification-experiment/08.4-CONTEXT.md) is conditional. No new evidence or scientific requirement has been marked complete. KIDO-02..05 labels were corrected from existing8.2 verification. The following bullets are a chronological historical record; older pending/absent-artifact statements describe their time of writing, not current status.
+
 - Phase 6 SPEC ambiguity gate passed at `0.08` with QUAL-01..08 locked.
 - Research and pattern mapping are complete.
 - Four execution plans cover 8/8 QUAL requirements and 14/14 locked D-ID decisions.
@@ -174,4 +194,4 @@ All three boundaries are visible on `origin/v2.0-multi-configuration`: simulator
 
 ## Next Action
 
-Phase 8.2 is closed with a valid terminal `NO_SELECTION`; no Phase 9 handoff model exists. Do not retune or rewrite the frozen result. The user must decide whether to (a) proceed to Phase 9-12 with a linear/conditional-linear nominal model plus bounded fallback carrying the negative result, or (b) close v2.0 as a dual-negative milestone, or (c) open a new versioned identification protocol (e.g. quadratic-damping observables u|u|) under a fresh D-23 approval. Do not enter Phase 9 without an explicit decision.
+Read [v38本地就绪报告](../docs/phase8_4_v38_tolerance_repair.md) and [正式运行手册](../docs/phase8_4_projected_formal_v38_runbook.md). 本地任务1已完成；提请一次绑定freeze85fda36f…e9b6d7的新D-23。批准且服务器开启后，只运行新v38 preflight→validation→独立复核/GO→test；不重跑已冻结实验，不复用旧test，不重新拟合。当前无新正式批准、数据或Phase9 handoff。

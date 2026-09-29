@@ -1,0 +1,174 @@
+............................................s........................... [  4%]
+........................................................................ [  8%]
+........................................................................ [ 12%]
+........................................................................ [ 16%]
+........................................................................ [ 20%]
+......ssss.............................................................. [ 24%]
+........................................................................ [ 28%]
+........................................................................ [ 32%]
+........................................................................ [ 36%]
+........................................................................ [ 40%]
+........................................................................ [ 44%]
+.................................ssssssssssssssss........sssssssssssssss [ 48%]
+s................s...................................................... [ 52%]
+........................................................................ [ 56%]
+........................................................................ [ 60%]
+........................................................................ [ 64%]
+........................................................................ [ 68%]
+........................................................................ [ 72%]
+...............................................................FFFFF.... [ 76%]
+.....sss................................................................ [ 80%]
+........................................................................ [ 84%]
+........................................................................ [ 88%]
+....................................s................................... [ 92%]
+.................s.........................s....sss..................... [ 96%]
+.......................................................................  [100%]
+================================== FAILURES ===================================
+_________________ test_solver_pairing_and_causal_origin[None] _________________
+
+bad = None
+
+    @pytest.mark.parametrize('bad',[None,'baseline','prefix','origin','float_origin'])
+    def test_solver_pairing_and_causal_origin(bad):
+>       from koopman.bounded_mpc_v67 import BoundedMPC
+
+tests\test_rate30_v67.py:82: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+koopman\bounded_mpc_v67.py:15: in <module>
+    from koopman.compiled_forecast_v64 import forecast_compiled, warm_forecast
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    """Prepared CPU rollout of the same v43 model with optional exact common prefix.
+    
+    Only the known stateless compiled predictor uses this path. Other predictors or
+    numerical failures retain v45's scalar branch isolation. Fixed four-control
+    chunks return to Python deadline checks; process isolation remains required.
+    No candidate, model, objective, actuator clock or output field is removed.
+    """
+    import math
+    
+    import numpy as np
+>   from numba import njit
+E   ModuleNotFoundError: No module named 'numba'
+
+koopman\compiled_forecast_v64.py:11: ModuleNotFoundError
+_______________ test_solver_pairing_and_causal_origin[baseline] _______________
+
+bad = 'baseline'
+
+    @pytest.mark.parametrize('bad',[None,'baseline','prefix','origin','float_origin'])
+    def test_solver_pairing_and_causal_origin(bad):
+>       from koopman.bounded_mpc_v67 import BoundedMPC
+
+tests\test_rate30_v67.py:82: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+koopman\bounded_mpc_v67.py:15: in <module>
+    from koopman.compiled_forecast_v64 import forecast_compiled, warm_forecast
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    """Prepared CPU rollout of the same v43 model with optional exact common prefix.
+    
+    Only the known stateless compiled predictor uses this path. Other predictors or
+    numerical failures retain v45's scalar branch isolation. Fixed four-control
+    chunks return to Python deadline checks; process isolation remains required.
+    No candidate, model, objective, actuator clock or output field is removed.
+    """
+    import math
+    
+    import numpy as np
+>   from numba import njit
+E   ModuleNotFoundError: No module named 'numba'
+
+koopman\compiled_forecast_v64.py:11: ModuleNotFoundError
+________________ test_solver_pairing_and_causal_origin[prefix] ________________
+
+bad = 'prefix'
+
+    @pytest.mark.parametrize('bad',[None,'baseline','prefix','origin','float_origin'])
+    def test_solver_pairing_and_causal_origin(bad):
+>       from koopman.bounded_mpc_v67 import BoundedMPC
+
+tests\test_rate30_v67.py:82: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+koopman\bounded_mpc_v67.py:15: in <module>
+    from koopman.compiled_forecast_v64 import forecast_compiled, warm_forecast
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    """Prepared CPU rollout of the same v43 model with optional exact common prefix.
+    
+    Only the known stateless compiled predictor uses this path. Other predictors or
+    numerical failures retain v45's scalar branch isolation. Fixed four-control
+    chunks return to Python deadline checks; process isolation remains required.
+    No candidate, model, objective, actuator clock or output field is removed.
+    """
+    import math
+    
+    import numpy as np
+>   from numba import njit
+E   ModuleNotFoundError: No module named 'numba'
+
+koopman\compiled_forecast_v64.py:11: ModuleNotFoundError
+________________ test_solver_pairing_and_causal_origin[origin] ________________
+
+bad = 'origin'
+
+    @pytest.mark.parametrize('bad',[None,'baseline','prefix','origin','float_origin'])
+    def test_solver_pairing_and_causal_origin(bad):
+>       from koopman.bounded_mpc_v67 import BoundedMPC
+
+tests\test_rate30_v67.py:82: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+koopman\bounded_mpc_v67.py:15: in <module>
+    from koopman.compiled_forecast_v64 import forecast_compiled, warm_forecast
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    """Prepared CPU rollout of the same v43 model with optional exact common prefix.
+    
+    Only the known stateless compiled predictor uses this path. Other predictors or
+    numerical failures retain v45's scalar branch isolation. Fixed four-control
+    chunks return to Python deadline checks; process isolation remains required.
+    No candidate, model, objective, actuator clock or output field is removed.
+    """
+    import math
+    
+    import numpy as np
+>   from numba import njit
+E   ModuleNotFoundError: No module named 'numba'
+
+koopman\compiled_forecast_v64.py:11: ModuleNotFoundError
+_____________ test_solver_pairing_and_causal_origin[float_origin] _____________
+
+bad = 'float_origin'
+
+    @pytest.mark.parametrize('bad',[None,'baseline','prefix','origin','float_origin'])
+    def test_solver_pairing_and_causal_origin(bad):
+>       from koopman.bounded_mpc_v67 import BoundedMPC
+
+tests\test_rate30_v67.py:82: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+koopman\bounded_mpc_v67.py:15: in <module>
+    from koopman.compiled_forecast_v64 import forecast_compiled, warm_forecast
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    """Prepared CPU rollout of the same v43 model with optional exact common prefix.
+    
+    Only the known stateless compiled predictor uses this path. Other predictors or
+    numerical failures retain v45's scalar branch isolation. Fixed four-control
+    chunks return to Python deadline checks; process isolation remains required.
+    No candidate, model, objective, actuator clock or output field is removed.
+    """
+    import math
+    
+    import numpy as np
+>   from numba import njit
+E   ModuleNotFoundError: No module named 'numba'
+
+koopman\compiled_forecast_v64.py:11: ModuleNotFoundError
+- generated xml file: E:\code for project\Agentic AUV\EasyUUV\.pytest-tmp\commit-20260929\tests.xml -
+=========================== short test summary info ===========================
+FAILED tests/test_rate30_v67.py::test_solver_pairing_and_causal_origin[None]
+FAILED tests/test_rate30_v67.py::test_solver_pairing_and_causal_origin[baseline]
+FAILED tests/test_rate30_v67.py::test_solver_pairing_and_causal_origin[prefix]
+FAILED tests/test_rate30_v67.py::test_solver_pairing_and_causal_origin[origin]
+FAILED tests/test_rate30_v67.py::test_solver_pairing_and_causal_origin[float_origin]
+5 failed, 1747 passed, 55 skipped in 250.61s (0:04:10)
