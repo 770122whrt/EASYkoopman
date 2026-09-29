@@ -7,7 +7,9 @@ import numpy as np
 from koopman.bounded_mpc_v44 import SupportDomain
 from koopman.control_objective_v44 import state_features,control_mask
 from koopman.lifted_propagation_v84 import coordinates,seal
-from workflows.protocol_v87 import cases
+from workflows.disturbance_protocol import get_protocol
+
+cases = get_protocol('v87').cases
 
 MODEL_SHA='5857a0e8d09cd04e33112b457b6a60f8b4147f3819815634edb6149ac95e137e'
 RULE='union_old_and_train_plus_20pct_span_with_fixed_floor_v88'
@@ -87,7 +89,7 @@ def restore_domain(record,old,model_sha,training_hashes):
 
 
 def load_domain(path,expected_sha,old,model):
-    from workflows.fit_disturbance_v87 import load_record
+    from workflows.fit_disturbance import load_record
     payload=Path(path).read_bytes()
     if hashlib.sha256(payload).hexdigest()!=expected_sha:raise ValueError('v88_support_file_hash')
     if hashlib.sha256(Path(model).read_bytes()).hexdigest()!=MODEL_SHA:raise ValueError('v88_frozen_model')

@@ -38,7 +38,7 @@ def reconstruct(data,case,source_commit,trace_sha256):
     from workflows.validate_formal_trace_v25 import validate_trace
     from workflows.control_seam_v23 import ControlKernel
     from workflows.pilot_control_v24 import commands
-    from easyuuv_nc.control_v24 import ActuatorState
+    from easyuuv_nc.control import ActuatorState
     validate_trace(data,case,source_commit)
     rows=data['substeps'];telemetry=rows[0]['before']['telemetry'];backend=rows[0]['before']['backend']
     context=PhysicalContext(float(np.asarray(backend['mass_kg']).item()),np.asarray(backend['inertia_9']).reshape(3,3).diagonal(),

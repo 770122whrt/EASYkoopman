@@ -12,6 +12,8 @@ This repository contains code implementation for simulator of the paper "EasyUUV
 - [当前状态](.planning/STATE.md)：正在执行什么、哪些证据尚未取得。
 - [项目边界](.planning/PROJECT.md)与[控制链合同](docs/phase9_control_chain_contract.md)：研究目标、完整提升传播及共同控制接口。
 - [v88运行说明](docs/phase9_matrix_v88_runbook.md)：本轮数据、冻结、验证和服务器运行规则。
+- [合并后的代码与待清理清单](docs/phase9_cleanup_proposal_2026-09-29.md)：当前模块入口；旧文件删除须另行确认。
+- [统一实验索引](experiments/README.md)：v86/v87/v88配置、冻结数据和结果位置。
 
 当前验证环境为 Isaac Sim 5.0 + Isaac Lab 2.2.1；主服务器为 `suanliyun-agentic-AUV`。下方上游 Isaac Lab 1.x 部署、训练和硬件链接保留为历史资料，不代表本分支已经取得硬件或当前 Koopman 控制效果。旧交接与规划通过研究索引查阅。
 

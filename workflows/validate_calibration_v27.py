@@ -48,7 +48,7 @@ def validate_trace(data,q,source,root):
     start=data['observed_start_boundary'];compare_values(start['state_11'][0],[q['starting_z_m'],1,0,0,0,0,0,0,0,0,0])
     if np.any(start['actuator_speed_n']):raise ValueError('free_water_actuator_initialization')
     from workflows.control_seam_v23 import ControlKernel
-    from easyuuv_nc.control_v24 import ActuatorState
+    from easyuuv_nc.control import ActuatorState
     from easyuuv_nc.embodiments import EMBODIMENT_CONFIGS
     kernel=ControlKernel(q['configuration']);estimator=ActuatorState(kernel.env._num_thrusters,tau=kernel.tau,dt=1/120,clock='float32_accumulated_v1')
     validate_calibration(data['calibration'])

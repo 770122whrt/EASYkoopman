@@ -5,7 +5,7 @@ milestone: v2.0
 milestone_name: Multi-Configuration Koopman Transfer and Environment-Aware Control
 status: in_progress
 last_updated: "2026-09-29"
-last_activity: 2026-09-29 -- v88 matrix completed: conditional hybrid prediction gain; 36 feasible solves; no closed loop
+last_activity: 2026-09-29 -- current modules consolidated and locally verified; file removal awaits user confirmation
 progress:
   total_phases: 11
   completed_phases: 7
@@ -15,6 +15,8 @@ progress:
 ---
 
 # Project State: EASYkoopman
+
+**当前工作：模块合并，等待清除确认。** `codex/consolidate-current-modules` 已合并control、连续MPC、控制器编排及扰动实验入口，27个旧模块不再进入当前148文件源码包；旧文件尚未删除，历史调用与迁移测试尚待退役。279项定向测试通过，v88原24轨迹复算结论不变。`easyuuv_v2-main/` 只ignore，不提交、不删除。资产引用统一到包内，两个重复USD等待用户确认清除。见[合并与清理清单](../docs/phase9_cleanup_proposal_2026-09-29.md)；更早候选不能按版本号直接删除。本次没有新增Isaac或闭环结果。
 
 **2026-09-29：v88三档扰动矩阵。** 用户最终指定0%、10%、30%附加二次阻力，扩大共同控制范围，完成实验结果与代码后PR合并。模型沿用v87冻结参数，物理不重校准；范围仅依据v87训练数据，在新验证/测试前冻结。Phase 9 / 09-04与`no_selection`保持开放。
 

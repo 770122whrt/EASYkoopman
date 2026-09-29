@@ -1,0 +1,34 @@
+{
+  "scope": "local refactor verification; no new Isaac run or training",
+  "analysis_source_sha256": "cdf0ee8a77947c69b68e55ea2874715cbb4ec3fbc2e94e98999ef4b0f50b078f",
+  "tests": {
+    "tests": 279,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "metric_tolerance": 1e-10,
+  "replay": {
+    "validation": {
+      "trajectories": 12,
+      "windows": 144,
+      "maximum_metric_difference": 1.2515317016244254e-13,
+      "gates_identical": true
+    },
+    "test": {
+      "trajectories": 12,
+      "windows": 144,
+      "maximum_metric_difference": 4.654875660273228e-14,
+      "gates_identical": true
+    }
+  },
+  "source_bundle": {
+    "source_manifest_sha256": "d0f059bbb8ed071aaca1798a9fbbe648ec54bd5e9ccf6dbd41ae2dc2a3b16bc0",
+    "historical_source_manifest_sha256": null,
+    "source_archive_sha256": "234d85122665478121f145b0d33c7bcdb129c0c4ccaccf63bf78894120ea30d6",
+    "verified_files": 148
+  },
+  "isolated_bundle_imports": true,
+  "deleted_files": 0,
+  "previous_git_commit": "1d7d1f4379b763e7bd6146ab650203128078260d"
+}

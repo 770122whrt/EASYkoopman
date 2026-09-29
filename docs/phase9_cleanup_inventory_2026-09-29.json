@@ -1,0 +1,4204 @@
+{
+  "git_head": "1d7d1f4379b763e7bd6146ab650203128078260d",
+  "status": "proposal_only_no_deletions",
+  "method": "AST imports plus literal module/path references; conservative package initializers; dynamic imports, data paths and subprocess arguments require manual migration review. Outside closure means candidate, not safe to delete. Bare test-module imports resolve against tests/. File-level closure includes incidental historical packaging references and is not a minimal function-level dependency list.",
+  "entrypoints": [
+    "workflows/collect_disturbance_data_v88.py",
+    "workflows/disturbance_data_v88.py",
+    "workflows/evaluate_disturbance_v88.py",
+    "workflows/freeze_support_v88.py",
+    "workflows/prepare_disturbance_v88.py",
+    "workflows/protocol_v88.py",
+    "workflows/solve_disturbance_v88.py",
+    "workflows/fit_disturbance_v87.py",
+    "easyuuv_nc/env/easyuuv_env.py",
+    "easyuuv_nc/control_v67.py"
+  ],
+  "regression_entrypoints": [
+    "tests/test_support_v88.py",
+    "tests/test_solver_v88.py",
+    "tests/test_matrix_data_v88.py",
+    "tests/test_timeout_candidate_v86.py",
+    "tests/test_disturbance_lifted_v86.py",
+    "tests/test_data_v86.py",
+    "tests/test_command_state_v39.py",
+    "tests/test_continuous_prediction_v76.py",
+    "tests/test_continuous_mpc_v76.py",
+    "tests/test_continuous_mpc_v80.py",
+    "tests/test_preview_solver_v80.py"
+  ],
+  "runtime_closure": [
+    "agents/__init__.py",
+    "agents/rsl_rl_ppo_cfg.py",
+    "easyuuv_nc/__init__.py",
+    "easyuuv_nc/control_v24.py",
+    "easyuuv_nc/control_v67.py",
+    "easyuuv_nc/disturbance_v86.py",
+    "easyuuv_nc/embodiments.py",
+    "easyuuv_nc/env/__init__.py",
+    "easyuuv_nc/env/agents/__init__.py",
+    "easyuuv_nc/env/agents/rsl_rl_ppo_cfg.py",
+    "easyuuv_nc/env/assets/__init__.py",
+    "easyuuv_nc/env/assets/warpauv.py",
+    "easyuuv_nc/env/boundary_effects.py",
+    "easyuuv_nc/env/easyuuv_env.py",
+    "easyuuv_nc/env/gain_tuner.py",
+    "easyuuv_nc/env/rigid_body_hydrodynamics.py",
+    "easyuuv_nc/env/thruster_dynamics.py",
+    "easyuuv_nc/env/wave_disturbance_manager.py",
+    "easyuuv_nc/initialization_v23.py",
+    "easyuuv_nc/package_paths.py",
+    "easyuuv_nc/task_registration.py",
+    "easyuuv_nc/thrust_allocation.py",
+    "isaaclab_app.py",
+    "isaaclab_compat.py",
+    "koopman/__init__.py",
+    "koopman/actuator_memory_v21.py",
+    "koopman/bounded_feedback_v46.py",
+    "koopman/bounded_feedback_v47.py",
+    "koopman/bounded_mpc_v44.py",
+    "koopman/bounded_mpc_v45.py",
+    "koopman/bounded_mpc_v51.py",
+    "koopman/bounded_mpc_v64.py",
+    "koopman/bounded_mpc_v67.py",
+    "koopman/cached_checks_v53.py",
+    "koopman/collection_v2.py",
+    "koopman/command_batch_v42.py",
+    "koopman/command_batch_v45.py",
+    "koopman/command_prediction_v37.py",
+    "koopman/command_state_v39.py",
+    "koopman/compiled_forecast_v64.py",
+    "koopman/compiled_projected_v43.py",
+    "koopman/compiled_recovery_v64.py",
+    "koopman/continuous_mpc_v76.py",
+    "koopman/continuous_mpc_v80.py",
+    "koopman/continuous_prediction_v76.py",
+    "koopman/contracts_v21.py",
+    "koopman/control_objective_v44.py",
+    "koopman/control_support_v88.py",
+    "koopman/d23_approval_v21.py",
+    "koopman/dataset.py",
+    "koopman/dataset_v2.py",
+    "koopman/diagnostics_v23.py",
+    "koopman/disturbance_lifted_v86.py",
+    "koopman/edmd.py",
+    "koopman/evidence_v2.py",
+    "koopman/execution_ledger_v48.py",
+    "koopman/feedback_preview_v79.py",
+    "koopman/inexact_tracking_v66.py",
+    "koopman/learned_velocity_v81.py",
+    "koopman/lifted_edmd.py",
+    "koopman/lifted_propagation_v84.py",
+    "koopman/lifting.py",
+    "koopman/metrics_v21.py",
+    "koopman/model.py",
+    "koopman/model_separation_v79.py",
+    "koopman/mpc.py",
+    "koopman/mpc_controller.py",
+    "koopman/normalization.py",
+    "koopman/observables.py",
+    "koopman/physical_control_v76.py",
+    "koopman/physical_prediction_v29.py",
+    "koopman/physical_terms_v26.py",
+    "koopman/plan_arbiter_v52.py",
+    "koopman/plan_continuity_v54.py",
+    "koopman/prepared_allocation_v42.py",
+    "koopman/prepared_commands_v45.py",
+    "koopman/prepared_execution_v49.py",
+    "koopman/prepared_projected_v40.py",
+    "koopman/preview_mpc_v79.py",
+    "koopman/preview_solver_v80.py",
+    "koopman/preview_solver_v87.py",
+    "koopman/projected_edmd_v24.py",
+    "koopman/protocol_v2.py",
+    "koopman/rate30_v67.py",
+    "koopman/recovery_solver_v50.py",
+    "koopman/recovery_solver_v51.py",
+    "koopman/reliable_mpc_v77.py",
+    "koopman/runtime.py",
+    "koopman/runtime_coordinator_v52.py",
+    "koopman/schema_v2.py",
+    "koopman/schema_v21.py",
+    "koopman/so3_v21.py",
+    "koopman/solver_worker_v49.py",
+    "koopman/sparse_world_edmd_v30.py",
+    "koopman_data.py",
+    "tests/test_projected_archive_v38.py",
+    "tests/test_projected_audit_v38.py",
+    "tests/test_projected_budget_v38.py",
+    "tests/test_projected_release_v38.py",
+    "tests/test_projected_repair_v38.py",
+    "workflows/actuator_replay_v28.py",
+    "workflows/audit_projected_v38.py",
+    "workflows/calibration_trace_v27.py",
+    "workflows/collect_disturbance_data_v86.py",
+    "workflows/collect_disturbance_data_v87.py",
+    "workflows/collect_disturbance_data_v88.py",
+    "workflows/collect_formal_v25.py",
+    "workflows/collect_koopman_v21_identification.py",
+    "workflows/collect_koopman_v2_identification.py",
+    "workflows/collect_koopman_v2_smoke.py",
+    "workflows/collect_projected_formal_v38.py",
+    "workflows/collect_runtime_v57.py",
+    "workflows/collector_exit_v28.py",
+    "workflows/control_seam_v23.py",
+    "workflows/control_trace_v23.py",
+    "workflows/disturbance_data_v86.py",
+    "workflows/disturbance_data_v87.py",
+    "workflows/disturbance_data_v88.py",
+    "workflows/easyuuv_v2_qualification_artifact.py",
+    "workflows/evaluate_disturbance_v88.py",
+    "workflows/evaluate_projected_edmd_v24.py",
+    "workflows/evaluate_projected_formal_v38.py",
+    "workflows/feedback_inverse_v28.py",
+    "workflows/feedback_inverse_v31.py",
+    "workflows/feedback_v28.py",
+    "workflows/feedback_v31.py",
+    "workflows/fit_disturbance_v86.py",
+    "workflows/fit_disturbance_v87.py",
+    "workflows/fit_learned_velocity_v81.py",
+    "workflows/formal_contract_v25.py",
+    "workflows/formal_evidence_v25.py",
+    "workflows/free_water_microtrace_v26.py",
+    "workflows/free_water_runtime_v26.py",
+    "workflows/free_water_trace_v26.py",
+    "workflows/free_water_v26.py",
+    "workflows/freeze_support_v88.py",
+    "workflows/geometry_v76.py",
+    "workflows/identification_adapter_v29.py",
+    "workflows/identification_prediction_v32.py",
+    "workflows/identification_protocol_v29.py",
+    "workflows/identification_protocol_v32.py",
+    "workflows/identify_sparse_world_v30.py",
+    "workflows/isaac_execution_v55.py",
+    "workflows/koopman_bridge_v2.py",
+    "workflows/koopman_bridge_v21.py",
+    "workflows/koopman_logging.py",
+    "workflows/package_projected_repair_v38.py",
+    "workflows/package_projected_v38.py",
+    "workflows/package_projected_validation_repair_v38.py",
+    "workflows/phase9_preflight_v57.py",
+    "workflows/pilot_control_v24.py",
+    "workflows/prepare_disturbance_v88.py",
+    "workflows/projected_adapter_v38.py",
+    "workflows/projected_archive_v38.py",
+    "workflows/projected_budget_v38.py",
+    "workflows/projected_evaluation_v38.py",
+    "workflows/projected_models_v38.py",
+    "workflows/projected_prediction_v38.py",
+    "workflows/projected_protocol_v38.py",
+    "workflows/projected_release_v38.py",
+    "workflows/projected_resource_v38.py",
+    "workflows/protocol_v80.py",
+    "workflows/protocol_v86.py",
+    "workflows/protocol_v87.py",
+    "workflows/protocol_v88.py",
+    "workflows/qualify_easyuuv_v2.py",
+    "workflows/run_projected_formal_v38.py",
+    "workflows/runtime_assets_v56.py",
+    "workflows/runtime_audit_v57.py",
+    "workflows/runtime_audit_v67.py",
+    "workflows/runtime_episode_v57.py",
+    "workflows/runtime_episode_v59.py",
+    "workflows/runtime_episode_v67.py",
+    "workflows/runtime_lifecycle_v70.py",
+    "workflows/solve_disturbance_v88.py",
+    "workflows/sparse_evaluation_v32.py",
+    "workflows/validate_control_trace_v23.py",
+    "workflows/validate_effects_v67.py",
+    "workflows/validate_feedback_v28.py",
+    "workflows/validate_formal_trace_v25.py",
+    "workflows/validate_free_water_v26.py",
+    "workflows/validate_identification_v29.py",
+    "workflows/validate_phase8_pilot_policy.py",
+    "workflows/validate_projected_formal_v38.py",
+    "workflows/validate_runtime_v57.py",
+    "workflows/workpoint_v27.py"
+  ],
+  "regression_added_dependencies": [
+    "koopman/backend_gate_v80.py",
+    "koopman/command_batch_v41.py",
+    "koopman/reliable_runtime_v77.py",
+    "tests/test_bounded_feedback_v46.py",
+    "tests/test_bounded_mpc_v44.py",
+    "tests/test_command_batch_v41.py",
+    "tests/test_command_state_v39.py",
+    "tests/test_continuous_mpc_v76.py",
+    "tests/test_continuous_mpc_v80.py",
+    "tests/test_continuous_prediction_v76.py",
+    "tests/test_control_separation_v79.py",
+    "tests/test_data_v86.py",
+    "tests/test_disturbance_lifted_v86.py",
+    "tests/test_execution_ledger_v48.py",
+    "tests/test_isaac_execution_v55.py",
+    "tests/test_isaac_execution_v67.py",
+    "tests/test_lifted_propagation_v84.py",
+    "tests/test_matrix_data_v88.py",
+    "tests/test_plan_arbiter_v52.py",
+    "tests/test_prepared_projected_v40.py",
+    "tests/test_preview_solver_v80.py",
+    "tests/test_reliable_mpc_v77.py",
+    "tests/test_solver_v88.py",
+    "tests/test_support_v88.py",
+    "tests/test_timeout_candidate_v86.py",
+    "workflows/isaac_execution_v67.py"
+  ],
+  "outside_selected_closure_candidates": [
+    "easyuuv_nc/custom_workflows/__init__.py",
+    "easyuuv_nc/custom_workflows/cli_args.py",
+    "easyuuv_nc/custom_workflows/workflow_config.py",
+    "easyuuv_nc/custom_workflows/workflow_paths.py",
+    "easyuuv_nc/easyuuv_stdw_wrapper.py",
+    "easyuuv_nc/env/thrust_allocation.py",
+    "easyuuv_nc/esuot/__init__.py",
+    "easyuuv_nc/esuot/adapter.py",
+    "easyuuv_nc/esuot/light.py",
+    "easyuuv_nc/esuot/semidual.py",
+    "easyuuv_nc/esuot/transport.py",
+    "easyuuv_nc/probe/probe_clean_package.py",
+    "easyuuv_nc/probe/probe_subfolder_bootstrap.py",
+    "easyuuv_nc/stdw_dir_guard.py",
+    "easyuuv_nc/stdw_integration/__init__.py",
+    "easyuuv_nc/stdw_integration/flow_matching.py",
+    "easyuuv_nc/stdw_integration/logging.py",
+    "easyuuv_nc/stdw_integration/metrics.py",
+    "easyuuv_nc/stdw_integration/phase56.py",
+    "easyuuv_nc/stdw_integration/plots.py",
+    "easyuuv_nc/stdw_integration/scheduler.py",
+    "easyuuv_nc/stdw_integration/signals.py",
+    "easyuuv_nc/stdw_integration/state_features.py",
+    "easyuuv_nc/utils/__init__.py",
+    "easyuuv_nc/utils/stdw_buffer.py",
+    "easyuuv_nc/workflows/__init__.py",
+    "easyuuv_nc/workflows/adapt.py",
+    "easyuuv_nc/workflows/adaptation/__init__.py",
+    "easyuuv_nc/workflows/adaptation/action_bridge.py",
+    "easyuuv_nc/workflows/adaptation/cli_parsers.py",
+    "easyuuv_nc/workflows/adaptation/env_io.py",
+    "easyuuv_nc/workflows/adaptation/failsafe.py",
+    "easyuuv_nc/workflows/adaptation/phase56.py",
+    "easyuuv_nc/workflows/adaptation/policy.py",
+    "easyuuv_nc/workflows/adaptation/pose.py",
+    "easyuuv_nc/workflows/adaptation/pseudo_action.py",
+    "easyuuv_nc/workflows/adaptation/zeta.py",
+    "easyuuv_nc/workflows/disturbance_schedule.py",
+    "easyuuv_nc/workflows/scenarios.py",
+    "easyuuv_nc/workflows/tools/__init__.py",
+    "easyuuv_nc/workflows/tools/train_inv_dynamics_proxy_obs12_v1.py",
+    "easyuuv_nc/workflows/train.py",
+    "koopman/baselines.py",
+    "koopman/baselines_v2.py",
+    "koopman/bilinear_lifted_v85.py",
+    "koopman/command_prediction_v36.py",
+    "koopman/compact_residual_v84.py",
+    "koopman/continuous_runtime_v76.py",
+    "koopman/controlled_lift_v33.py",
+    "koopman/dataset_v21.py",
+    "koopman/direction_probe_v23.py",
+    "koopman/evaluation.py",
+    "koopman/evaluation_logs.py",
+    "koopman/evaluation_v2.py",
+    "koopman/evaluation_v21.py",
+    "koopman/gate_report.py",
+    "koopman/kinematic_dictionary_v35.py",
+    "koopman/loco_v2.py",
+    "koopman/loco_v21.py",
+    "koopman/metrics_v2.py",
+    "koopman/model_v2.py",
+    "koopman/model_v21.py",
+    "koopman/paper_lifted_selection.py",
+    "koopman/phase5_2_profiles.py",
+    "koopman/phase5_2_reward.py",
+    "koopman/phase5_3_profiles.py",
+    "koopman/phase5_4_profiles.py",
+    "koopman/platform_features_v2.py",
+    "koopman/platform_features_v21.py",
+    "koopman/policy_adapter.py",
+    "koopman/ppo_training_adapter.py",
+    "koopman/preprocessing_v2.py",
+    "koopman/preview_solver_v82.py",
+    "koopman/preview_solver_v86.py",
+    "koopman/representation_probe_v23.py",
+    "koopman/selection.py",
+    "koopman/selection_v2.py",
+    "koopman/selection_v21.py",
+    "koopman/splits.py",
+    "koopman/splits_v2.py",
+    "koopman/stability_repair_v23.py",
+    "koopman/state_projection_v34.py",
+    "koopman/structured_edmd_v25.py",
+    "koopman/sweep.py",
+    "koopman/v1_compatibility.py",
+    "tests/test_actuator_replay_v28.py",
+    "tests/test_actuator_trace_v23.py",
+    "tests/test_analyze_executed_prediction_v82.py",
+    "tests/test_analyze_initial_plans_v82.py",
+    "tests/test_backend_readback_v23.py",
+    "tests/test_benchmark_command_state_v39.py",
+    "tests/test_bilinear_calibration_v85.py",
+    "tests/test_bilinear_lifted_v85.py",
+    "tests/test_bounded_feedback_v47.py",
+    "tests/test_bounded_mpc_v45.py",
+    "tests/test_cached_checks_v53.py",
+    "tests/test_calibration_runner_v27.py",
+    "tests/test_calibration_trace_v27.py",
+    "tests/test_causal_inputs_v84.py",
+    "tests/test_collector_supervisor_v28.py",
+    "tests/test_command_batch_v42.py",
+    "tests/test_command_prediction_v36.py",
+    "tests/test_command_prediction_v37.py",
+    "tests/test_compact_residual_v84.py",
+    "tests/test_compiled_forecast_v64.py",
+    "tests/test_compiled_mpc_v64.py",
+    "tests/test_compiled_projected_v43.py",
+    "tests/test_continuous_runtime_v76.py",
+    "tests/test_control_history_v23.py",
+    "tests/test_control_report_v82.py",
+    "tests/test_control_seam_v23.py",
+    "tests/test_control_trace_v23.py",
+    "tests/test_control_v86.py",
+    "tests/test_controlled_lift_v33.py",
+    "tests/test_deadzone_mpc_v51.py",
+    "tests/test_direct30_v67.py",
+    "tests/test_direct_control_v24.py",
+    "tests/test_direction_probe_v23.py",
+    "tests/test_diverse_v87.py",
+    "tests/test_easyuuv_v2_catalog.py",
+    "tests/test_easyuuv_v2_package.py",
+    "tests/test_easyuuv_v2_qualification.py",
+    "tests/test_easyuuv_v2_qualification_runner.py",
+    "tests/test_effects_comparison_v65.py",
+    "tests/test_effects_comparison_v67.py",
+    "tests/test_effects_validation_v65.py",
+    "tests/test_evaluate_formal_v25.py",
+    "tests/test_evaluate_projected_edmd_v24.py",
+    "tests/test_feedback_inverse_v28.py",
+    "tests/test_feedback_inverse_v31.py",
+    "tests/test_feedback_v28.py",
+    "tests/test_fit_disturbance_v86.py",
+    "tests/test_forecast_diagnostics_v73.py",
+    "tests/test_formal_contract_v25.py",
+    "tests/test_formal_evidence_v25.py",
+    "tests/test_formal_metrics_v25.py",
+    "tests/test_formal_models_v25.py",
+    "tests/test_free_water_microtrace_v26.py",
+    "tests/test_free_water_runtime_v26.py",
+    "tests/test_free_water_trace_v26.py",
+    "tests/test_free_water_v26.py",
+    "tests/test_geometry_v76.py",
+    "tests/test_identification_adapter_v29.py",
+    "tests/test_identification_coverage_v29.py",
+    "tests/test_identification_prediction_v29.py",
+    "tests/test_identification_protocol_v29.py",
+    "tests/test_identification_runner_v29.py",
+    "tests/test_identification_v32.py",
+    "tests/test_identify_sparse_world_v30.py",
+    "tests/test_inertia_sync_v23.py",
+    "tests/test_inexact_tracking_v66.py",
+    "tests/test_initial_mechanics_v23.py",
+    "tests/test_isaaclab2_source_contract.py",
+    "tests/test_kinematic_dictionary_v35.py",
+    "tests/test_koopman_actuator_memory_v21.py",
+    "tests/test_koopman_baselines.py",
+    "tests/test_koopman_bridge_v2.py",
+    "tests/test_koopman_bridge_v21.py",
+    "tests/test_koopman_cli.py",
+    "tests/test_koopman_collection_v2.py",
+    "tests/test_koopman_data.py",
+    "tests/test_koopman_dataset.py",
+    "tests/test_koopman_dataset_v2.py",
+    "tests/test_koopman_dataset_v21.py",
+    "tests/test_koopman_diagnostics_v23.py",
+    "tests/test_koopman_edmd.py",
+    "tests/test_koopman_evaluation.py",
+    "tests/test_koopman_evaluation_v21.py",
+    "tests/test_koopman_gate_report.py",
+    "tests/test_koopman_lifted_edmd.py",
+    "tests/test_koopman_lifting.py",
+    "tests/test_koopman_loco_v2.py",
+    "tests/test_koopman_loco_v21.py",
+    "tests/test_koopman_log_cli.py",
+    "tests/test_koopman_metrics_v2.py",
+    "tests/test_koopman_metrics_v21.py",
+    "tests/test_koopman_model.py",
+    "tests/test_koopman_model_v2.py",
+    "tests/test_koopman_model_v21.py",
+    "tests/test_koopman_mpc.py",
+    "tests/test_koopman_mpc_controller.py",
+    "tests/test_koopman_mpc_workflows.py",
+    "tests/test_koopman_observables.py",
+    "tests/test_koopman_offline_contract.py",
+    "tests/test_koopman_platform_features_v2.py",
+    "tests/test_koopman_platform_features_v21.py",
+    "tests/test_koopman_runtime.py",
+    "tests/test_koopman_schema_v2.py",
+    "tests/test_koopman_schema_v21.py",
+    "tests/test_koopman_selection.py",
+    "tests/test_koopman_selection_v2.py",
+    "tests/test_koopman_selection_v21.py",
+    "tests/test_koopman_so3_v21.py",
+    "tests/test_koopman_splits.py",
+    "tests/test_koopman_splits_v2.py",
+    "tests/test_koopman_sweep.py",
+    "tests/test_koopman_v1_compatibility.py",
+    "tests/test_learned_control_v82.py",
+    "tests/test_learned_symbolic_v81.py",
+    "tests/test_learned_velocity_v81.py",
+    "tests/test_lifted_calibration_v84.py",
+    "tests/test_model_comparison_v84.py",
+    "tests/test_mpc_benchmark_origin_v64.py",
+    "tests/test_multiconfig_queue_v68.py",
+    "tests/test_paper_lifted_backend_report.py",
+    "tests/test_paper_lifted_selection.py",
+    "tests/test_phase1_source_contract.py",
+    "tests/test_phase3_5_mpc_reports.py",
+    "tests/test_phase45_checkpoint_discovery.py",
+    "tests/test_phase45_source_contract.py",
+    "tests/test_phase46_source_contract.py",
+    "tests/test_phase4_log_metrics.py",
+    "tests/test_phase4_summary_workflow.py",
+    "tests/test_phase5_1_checkpoint_provenance.py",
+    "tests/test_phase5_1_selected_checkpoint_manifest.py",
+    "tests/test_phase5_1_stability_validator.py",
+    "tests/test_phase5_2_checkpoint_provenance.py",
+    "tests/test_phase5_2_health_analysis.py",
+    "tests/test_phase5_2_profiles.py",
+    "tests/test_phase5_2_reward_profile.py",
+    "tests/test_phase5_3_candidate_selection.py",
+    "tests/test_phase5_3_checkpoint_provenance.py",
+    "tests/test_phase5_3_profiles.py",
+    "tests/test_phase5_3_tuning_handoff.py",
+    "tests/test_phase5_4_candidate_selection.py",
+    "tests/test_phase5_4_checkpoint_provenance.py",
+    "tests/test_phase5_4_health_analysis.py",
+    "tests/test_phase5_4_profiles.py",
+    "tests/test_phase5_checkpoint_provenance.py",
+    "tests/test_phase5_training_contract.py",
+    "tests/test_phase7_server_evidence_contract.py",
+    "tests/test_phase81_collector_provenance.py",
+    "tests/test_phase81_d23_approval.py",
+    "tests/test_phase81_entrypoints.py",
+    "tests/test_phase81_formal_chain.py",
+    "tests/test_phase81_protocol_contract.py",
+    "tests/test_phase82_operational_contract.py",
+    "tests/test_phase8_main_server_contract.py",
+    "tests/test_phase8_ood_evaluation_contract.py",
+    "tests/test_phase8_pilot_server_contract.py",
+    "tests/test_phase8_protocol_evidence.py",
+    "tests/test_phase9_preflight_v57.py",
+    "tests/test_physical_control_v76.py",
+    "tests/test_physical_prediction_v29.py",
+    "tests/test_physical_replay_v73.py",
+    "tests/test_physical_terms_v26.py",
+    "tests/test_pilot_control_v24.py",
+    "tests/test_plan_continuity_v54.py",
+    "tests/test_policy_adapter.py",
+    "tests/test_portable_validation_v82.py",
+    "tests/test_ppo_koopman_logging.py",
+    "tests/test_prepared_allocation_v42.py",
+    "tests/test_prepared_commands_v45.py",
+    "tests/test_prepared_execution_v49.py",
+    "tests/test_preview_decision_v79.py",
+    "tests/test_preview_trace_v80.py",
+    "tests/test_progress_stop_v73.py",
+    "tests/test_projected_adapter_v38.py",
+    "tests/test_projected_analysis_v38.py",
+    "tests/test_projected_edmd_v24.py",
+    "tests/test_projected_formal_v38.py",
+    "tests/test_projected_prediction_v38.py",
+    "tests/test_projected_resource_v38.py",
+    "tests/test_protocol_v77.py",
+    "tests/test_protocol_v86.py",
+    "tests/test_rate30_bootstrap_v67.py",
+    "tests/test_rate30_v67.py",
+    "tests/test_recovery_solver_v50.py",
+    "tests/test_release_v86.py",
+    "tests/test_reliable_runtime_v77.py",
+    "tests/test_reliable_server_v77.py",
+    "tests/test_representation_probe_v23.py",
+    "tests/test_residual_attribution_v84.py",
+    "tests/test_runtime_addon_v64.py",
+    "tests/test_runtime_addon_v67.py",
+    "tests/test_runtime_assets_v56.py",
+    "tests/test_runtime_audit_v57.py",
+    "tests/test_runtime_audit_v67.py",
+    "tests/test_runtime_collector_v57.py",
+    "tests/test_runtime_coordinator_v52.py",
+    "tests/test_runtime_episode_v57.py",
+    "tests/test_runtime_episode_v65.py",
+    "tests/test_runtime_episode_v67.py",
+    "tests/test_runtime_lifecycle_v62.py",
+    "tests/test_runtime_lifecycle_v70.py",
+    "tests/test_runtime_prepare_v61.py",
+    "tests/test_runtime_prepare_v69.py",
+    "tests/test_runtime_profile_v60.py",
+    "tests/test_runtime_release_v58.py",
+    "tests/test_runtime_repair_v59.py",
+    "tests/test_runtime_snapshot_v62.py",
+    "tests/test_runtime_stage_v58.py",
+    "tests/test_runtime_timing_v67.py",
+    "tests/test_single_configuration_v85.py",
+    "tests/test_solver_regression_v84.py",
+    "tests/test_solver_worker_v49.py",
+    "tests/test_sparse_evaluation_v30.py",
+    "tests/test_sparse_parallel_v32.py",
+    "tests/test_sparse_world_edmd_v30.py",
+    "tests/test_stability_repair_v23.py",
+    "tests/test_startup_solver_v76.py",
+    "tests/test_state_projection_v34.py",
+    "tests/test_structured_edmd_v25.py",
+    "tests/test_support_failure_v68.py",
+    "tests/test_support_failure_v72.py",
+    "tests/test_thruster_dynamics.py",
+    "tests/test_trace_control_request_v23.py",
+    "tests/test_trace_source_guard_v23.py",
+    "tests/test_tracking_replay_v70.py",
+    "tests/test_tracking_replay_v73.py",
+    "tests/test_validate_continuous_v76.py",
+    "tests/test_validate_control_trace_v23.py",
+    "tests/test_validate_formal_trace_v25.py",
+    "tests/test_validate_free_water_v26.py",
+    "tests/test_validate_reliable_v77.py",
+    "tests/test_validate_runtime_v57.py",
+    "tests/test_validation_release_v30.py",
+    "tests/test_workpoint_v27.py",
+    "workflows/actuator_trace_v23.py",
+    "workflows/analyze_continuous_v76.py",
+    "workflows/analyze_effects_v65.py",
+    "workflows/analyze_effects_v67.py",
+    "workflows/analyze_executed_prediction_v82.py",
+    "workflows/analyze_failure_v68.py",
+    "workflows/analyze_initial_plans_v82.py",
+    "workflows/analyze_phase5_2_health.py",
+    "workflows/analyze_reliable_v77.py",
+    "workflows/assemble_report_v82.py",
+    "workflows/audit_architecture_v83.py",
+    "workflows/audit_direction_v76.py",
+    "workflows/audit_koopman_v2_pilot.py",
+    "workflows/benchmark_bounded_feedback_v46.py",
+    "workflows/benchmark_bounded_feedback_v47.py",
+    "workflows/benchmark_bounded_mpc_v44.py",
+    "workflows/benchmark_command_batch_v41.py",
+    "workflows/benchmark_command_state_v39.py",
+    "workflows/benchmark_compiled_mpc_v64.py",
+    "workflows/benchmark_compiled_projected_v43.py",
+    "workflows/benchmark_prepared_allocation_v42.py",
+    "workflows/benchmark_prepared_commands_v45.py",
+    "workflows/benchmark_prepared_projected_v40.py",
+    "workflows/benchmark_recovery_worker_v50.py",
+    "workflows/benchmark_recovery_worker_v51.py",
+    "workflows/build_koopman_v2_inventory.py",
+    "workflows/build_koopman_v2_splits.py",
+    "workflows/build_phase82_dataset_index.py",
+    "workflows/build_phase8_main_envelope.py",
+    "workflows/calibrate_bilinear_v85.py",
+    "workflows/calibrate_lifted_v84.py",
+    "workflows/check_command_prediction_v36.py",
+    "workflows/check_command_prediction_v37.py",
+    "workflows/check_koopman_mpc_backend.py",
+    "workflows/check_learned_nlp_v82.py",
+    "workflows/check_multiconfig_worker_v68.py",
+    "workflows/check_rate30_worker_v67.py",
+    "workflows/check_runtime_assets_v56.py",
+    "workflows/cli_args.py",
+    "workflows/close_phase82.py",
+    "workflows/collect_calibration_v27.py",
+    "workflows/collect_continuous_v76.py",
+    "workflows/collect_disturbance_control_v86.py",
+    "workflows/collect_disturbance_control_v87.py",
+    "workflows/collect_effects_v65.py",
+    "workflows/collect_effects_v67.py",
+    "workflows/collect_feedback_v28.py",
+    "workflows/collect_identification_v29.py",
+    "workflows/collect_learned_v82.py",
+    "workflows/collect_preview_v80.py",
+    "workflows/collect_reliable_v77.py",
+    "workflows/collect_reliable_v78.py",
+    "workflows/collect_runtime_v59.py",
+    "workflows/collect_validation_v30.py",
+    "workflows/collect_validation_v32.py",
+    "workflows/compare_effects_v65.py",
+    "workflows/compare_effects_v67.py",
+    "workflows/compare_models_v84.py",
+    "workflows/continuous_replay_v76.py",
+    "workflows/controlled_lift_v33.py",
+    "workflows/diagnose_continuous_v76.py",
+    "workflows/diagnose_control_seam_v23.py",
+    "workflows/diagnose_direction_v23.py",
+    "workflows/diagnose_execution_ledger_v48.py",
+    "workflows/diagnose_fallback_limits_v46.py",
+    "workflows/diagnose_koopman_v23.py",
+    "workflows/diagnose_platform_v82.py",
+    "workflows/diagnose_progress_stop_v73.py",
+    "workflows/diagnose_residual_v84.py",
+    "workflows/diagnose_runtime_assets_v56.py",
+    "workflows/diagnose_separation_v79.py",
+    "workflows/diagnose_startup_v68.py",
+    "workflows/diagnose_warp_v67.py",
+    "workflows/discover_ppo_checkpoints.py",
+    "workflows/evaluate_formal_v25.py",
+    "workflows/evaluate_koopman.py",
+    "workflows/evaluate_paper_lifted_backend.py",
+    "workflows/evaluate_sparse_parallel_v32.py",
+    "workflows/evaluate_sparse_world_v30.py",
+    "workflows/evaluate_sparse_world_v32.py",
+    "workflows/evidence_inventory.py",
+    "workflows/exercise_runtime_v52.py",
+    "workflows/exercise_runtime_v53.py",
+    "workflows/exercise_runtime_v54.py",
+    "workflows/finalize_continuous_v76.py",
+    "workflows/forecast_diagnostics_v73.py",
+    "workflows/formal_metrics_v25.py",
+    "workflows/formal_models_v25.py",
+    "workflows/gen_policy.py",
+    "workflows/identification_adapter_v32.py",
+    "workflows/identification_coverage_v29.py",
+    "workflows/identification_prediction_v29.py",
+    "workflows/kinematic_dictionary_v35.py",
+    "workflows/merge_easyuuv_v2_qualification.py",
+    "workflows/merge_koopman_v2_evidence.py",
+    "workflows/package_multiconfig_v68.py",
+    "workflows/package_projected_resource_v38.py",
+    "workflows/package_rate30_v67.py",
+    "workflows/package_runtime_v58.py",
+    "workflows/package_runtime_v59.py",
+    "workflows/phase9_preflight_v59.py",
+    "workflows/plan_phase5_4_refinement.py",
+    "workflows/play_controller.py",
+    "workflows/play_eval.py",
+    "workflows/play_eval_step.py",
+    "workflows/play_eval_task2.py",
+    "workflows/play_ppo_koopman.py",
+    "workflows/plot_continuous_v76.py",
+    "workflows/prepare_disturbance_v86.py",
+    "workflows/prepare_disturbance_v87.py",
+    "workflows/profile_bounded_mpc_v44.py",
+    "workflows/profile_command_batch_v41.py",
+    "workflows/profile_command_state_v39.py",
+    "workflows/profile_feedback_v67.py",
+    "workflows/profile_prepared_allocation_v42.py",
+    "workflows/protocol_v77.py",
+    "workflows/replay_execution_ledger_v48.py",
+    "workflows/replay_partial_audit_v72.py",
+    "workflows/replay_stopped_v76.py",
+    "workflows/report_common_profile_v78.py",
+    "workflows/report_koopman_v82.py",
+    "workflows/review_effects_v67.py",
+    "workflows/review_multiconfig_v68.py",
+    "workflows/review_multiconfig_v70.py",
+    "workflows/review_multiconfig_v73.py",
+    "workflows/run_calibration_v27.py",
+    "workflows/run_continuous_v76.py",
+    "workflows/run_controlled_lift_v33.py",
+    "workflows/run_feedback_v28.py",
+    "workflows/run_formal_stage_v25.py",
+    "workflows/run_free_water_stage_v26.py",
+    "workflows/run_identification_v29.py",
+    "workflows/run_kinematic_dictionary_v35.py",
+    "workflows/run_koopman_mpc_offline.py",
+    "workflows/run_koopman_v21_loco.py",
+    "workflows/run_koopman_v2_loco.py",
+    "workflows/run_learned_v82.py",
+    "workflows/run_preview_v80.py",
+    "workflows/run_reliable_v77.py",
+    "workflows/run_runtime_v58.py",
+    "workflows/run_runtime_v59.py",
+    "workflows/run_state_projection_v34.py",
+    "workflows/run_validation_v30.py",
+    "workflows/run_validation_v32.py",
+    "workflows/runtime_acceleration_v61.py",
+    "workflows/runtime_acceleration_v62.py",
+    "workflows/runtime_addon_v64.py",
+    "workflows/runtime_addon_v67.py",
+    "workflows/runtime_audit_v65.py",
+    "workflows/runtime_cpu_check_v62.py",
+    "workflows/runtime_episode_v65.py",
+    "workflows/runtime_lifecycle_v62.py",
+    "workflows/runtime_prepare_v61.py",
+    "workflows/runtime_prepare_v69.py",
+    "workflows/runtime_profile_v60.py",
+    "workflows/runtime_snapshot_v62.py",
+    "workflows/runtime_timing_v67.py",
+    "workflows/select_koopman_model.py",
+    "workflows/select_koopman_v2.py",
+    "workflows/select_koopman_v21.py",
+    "workflows/select_paper_lifted_model.py",
+    "workflows/select_phase5_3_candidate.py",
+    "workflows/select_phase5_4_candidate.py",
+    "workflows/server_method_audit_v79.py",
+    "workflows/single_configuration_v85.py",
+    "workflows/solve_disturbance_v86.py",
+    "workflows/solve_disturbance_v87.py",
+    "workflows/solver_regression_v84.py",
+    "workflows/sparse_evaluation_v30.py",
+    "workflows/split_koopman_logs.py",
+    "workflows/state_projection_v34.py",
+    "workflows/summarize_coverage_v73.py",
+    "workflows/summarize_phase4_evaluation.py",
+    "workflows/supervise_multiconfig_v68.py",
+    "workflows/supervise_rate30_v67.py",
+    "workflows/sweep_koopman_models.py",
+    "workflows/trace_control_v23.py",
+    "workflows/train.py",
+    "workflows/train_koopman.py",
+    "workflows/train_ppo_koopman.py",
+    "workflows/validate_calibration_v27.py",
+    "workflows/validate_continuous_v76.py",
+    "workflows/validate_disturbance_control_v86.py",
+    "workflows/validate_disturbance_control_v87.py",
+    "workflows/validate_easyuuv_v2_qualification.py",
+    "workflows/validate_effects_v65.py",
+    "workflows/validate_effects_v73.py",
+    "workflows/validate_identification_v32.py",
+    "workflows/validate_koopman_log.py",
+    "workflows/validate_koopman_v2.py",
+    "workflows/validate_learned_v82.py",
+    "workflows/validate_phase5_1_checkpoint_provenance.py",
+    "workflows/validate_phase5_1_stability_summary.py",
+    "workflows/validate_phase5_2_checkpoint_provenance.py",
+    "workflows/validate_phase5_3_checkpoint_provenance.py",
+    "workflows/validate_phase5_4_checkpoint_provenance.py",
+    "workflows/validate_phase5_checkpoint_provenance.py",
+    "workflows/validate_phase81_d23_approval.py",
+    "workflows/validate_phase82_dataset_index.py",
+    "workflows/validate_phase8_evidence.py",
+    "workflows/validate_portable_v82.py",
+    "workflows/validate_ppo_koopman_log.py",
+    "workflows/validate_preview_decision_v79.py",
+    "workflows/validate_preview_v80.py",
+    "workflows/validate_reliable_v77.py",
+    "workflows/validate_runtime_v59.py",
+    "workflows/validate_support_failure_v68.py",
+    "workflows/validate_support_failure_v72.py",
+    "workflows/validate_tracking_v66.py",
+    "workflows/validate_tracking_v67.py",
+    "workflows/validate_tracking_v70.py",
+    "workflows/validate_tracking_v73.py",
+    "workflows/validation_release_v30.py",
+    "workflows/validation_release_v32.py",
+    "workflows/verify_causal_inputs_v84.py",
+    "workflows/verify_native_fix_v70.py",
+    "workflows/verify_return_v82.py",
+    "workflows/write_koopman_gate_report.py",
+    "workflows/write_phase5_1_selected_checkpoint_manifest.py"
+  ],
+  "import_edges": {
+    "agents/__init__.py": [
+      "agents/__init__.py",
+      "agents/rsl_rl_ppo_cfg.py"
+    ],
+    "agents/rsl_rl_ppo_cfg.py": [
+      "isaaclab_compat.py"
+    ],
+    "easyuuv_nc/__init__.py": [
+      "agents/__init__.py",
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/env/__init__.py",
+      "easyuuv_nc/task_registration.py"
+    ],
+    "easyuuv_nc/control_v24.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/thrust_allocation.py"
+    ],
+    "easyuuv_nc/control_v67.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/control_v24.py",
+      "easyuuv_nc/thrust_allocation.py"
+    ],
+    "easyuuv_nc/disturbance_v86.py": [],
+    "easyuuv_nc/embodiments.py": [],
+    "easyuuv_nc/env/__init__.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/env/__init__.py",
+      "easyuuv_nc/env/agents/__init__.py",
+      "easyuuv_nc/env/easyuuv_env.py"
+    ],
+    "easyuuv_nc/env/agents/__init__.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/env/__init__.py",
+      "easyuuv_nc/env/agents/__init__.py",
+      "easyuuv_nc/env/agents/rsl_rl_ppo_cfg.py"
+    ],
+    "easyuuv_nc/env/agents/rsl_rl_ppo_cfg.py": [
+      "isaaclab_compat.py"
+    ],
+    "easyuuv_nc/env/assets/__init__.py": [],
+    "easyuuv_nc/env/assets/warpauv.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/package_paths.py",
+      "isaaclab_compat.py"
+    ],
+    "easyuuv_nc/env/boundary_effects.py": [
+      "isaaclab_compat.py"
+    ],
+    "easyuuv_nc/env/easyuuv_env.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/control_v24.py",
+      "easyuuv_nc/disturbance_v86.py",
+      "easyuuv_nc/embodiments.py",
+      "easyuuv_nc/env/__init__.py",
+      "easyuuv_nc/env/assets/__init__.py",
+      "easyuuv_nc/env/assets/warpauv.py",
+      "easyuuv_nc/env/boundary_effects.py",
+      "easyuuv_nc/env/gain_tuner.py",
+      "easyuuv_nc/env/rigid_body_hydrodynamics.py",
+      "easyuuv_nc/env/thruster_dynamics.py",
+      "easyuuv_nc/env/wave_disturbance_manager.py",
+      "easyuuv_nc/initialization_v23.py",
+      "easyuuv_nc/thrust_allocation.py",
+      "isaaclab_compat.py"
+    ],
+    "easyuuv_nc/env/gain_tuner.py": [],
+    "easyuuv_nc/env/rigid_body_hydrodynamics.py": [
+      "isaaclab_compat.py"
+    ],
+    "easyuuv_nc/env/thruster_dynamics.py": [
+      "isaaclab_compat.py"
+    ],
+    "easyuuv_nc/env/wave_disturbance_manager.py": [],
+    "easyuuv_nc/initialization_v23.py": [],
+    "easyuuv_nc/package_paths.py": [],
+    "easyuuv_nc/task_registration.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/env/__init__.py",
+      "easyuuv_nc/env/agents/__init__.py"
+    ],
+    "easyuuv_nc/thrust_allocation.py": [],
+    "isaaclab_app.py": [],
+    "isaaclab_compat.py": [],
+    "koopman/__init__.py": [
+      "koopman/__init__.py",
+      "koopman/dataset.py",
+      "koopman/edmd.py",
+      "koopman/lifted_edmd.py",
+      "koopman/lifting.py",
+      "koopman/model.py",
+      "koopman/mpc.py",
+      "koopman/mpc_controller.py",
+      "koopman/runtime.py"
+    ],
+    "koopman/actuator_memory_v21.py": [],
+    "koopman/backend_gate_v80.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/thrust_allocation.py",
+      "koopman/__init__.py",
+      "koopman/feedback_preview_v79.py",
+      "koopman/rate30_v67.py"
+    ],
+    "koopman/bounded_feedback_v46.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/command_prediction_v37.py",
+      "koopman/control_objective_v44.py",
+      "koopman/physical_terms_v26.py",
+      "koopman/prepared_allocation_v42.py",
+      "koopman/prepared_commands_v45.py",
+      "koopman/prepared_projected_v40.py",
+      "koopman/projected_edmd_v24.py",
+      "workflows/feedback_inverse_v28.py",
+      "workflows/feedback_inverse_v31.py",
+      "workflows/workpoint_v27.py"
+    ],
+    "koopman/bounded_feedback_v47.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_feedback_v46.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/control_objective_v44.py",
+      "koopman/prepared_commands_v45.py",
+      "workflows/workpoint_v27.py"
+    ],
+    "koopman/bounded_mpc_v44.py": [
+      "koopman/__init__.py",
+      "koopman/command_batch_v42.py",
+      "koopman/command_prediction_v37.py",
+      "koopman/command_state_v39.py",
+      "koopman/control_objective_v44.py",
+      "koopman/prepared_allocation_v42.py",
+      "koopman/prepared_projected_v40.py",
+      "workflows/identify_sparse_world_v30.py"
+    ],
+    "koopman/bounded_mpc_v45.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/command_batch_v45.py",
+      "koopman/command_state_v39.py",
+      "koopman/control_objective_v44.py",
+      "koopman/prepared_allocation_v42.py",
+      "koopman/prepared_commands_v45.py",
+      "koopman/prepared_projected_v40.py"
+    ],
+    "koopman/bounded_mpc_v51.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/command_batch_v45.py",
+      "koopman/command_state_v39.py",
+      "koopman/control_objective_v44.py",
+      "koopman/prepared_allocation_v42.py",
+      "koopman/prepared_commands_v45.py",
+      "koopman/prepared_projected_v40.py",
+      "workflows/feedback_inverse_v28.py"
+    ],
+    "koopman/bounded_mpc_v64.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/command_state_v39.py",
+      "koopman/compiled_forecast_v64.py",
+      "koopman/control_objective_v44.py",
+      "koopman/prepared_allocation_v42.py",
+      "koopman/prepared_commands_v45.py",
+      "koopman/prepared_projected_v40.py",
+      "workflows/feedback_inverse_v28.py"
+    ],
+    "koopman/bounded_mpc_v67.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/command_state_v39.py",
+      "koopman/compiled_forecast_v64.py",
+      "koopman/control_objective_v44.py",
+      "koopman/prepared_allocation_v42.py",
+      "koopman/prepared_commands_v45.py",
+      "koopman/prepared_projected_v40.py",
+      "workflows/feedback_inverse_v28.py"
+    ],
+    "koopman/cached_checks_v53.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_feedback_v46.py",
+      "koopman/bounded_feedback_v47.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/prepared_execution_v49.py",
+      "koopman/recovery_solver_v51.py"
+    ],
+    "koopman/collection_v2.py": [
+      "koopman/__init__.py",
+      "koopman/dataset_v2.py",
+      "koopman/evidence_v2.py",
+      "koopman/schema_v2.py"
+    ],
+    "koopman/command_batch_v41.py": [
+      "koopman/__init__.py",
+      "koopman/command_state_v39.py",
+      "workflows/control_seam_v23.py",
+      "workflows/identification_prediction_v32.py"
+    ],
+    "koopman/command_batch_v42.py": [
+      "koopman/__init__.py",
+      "koopman/command_state_v39.py",
+      "koopman/prepared_allocation_v42.py",
+      "workflows/identification_prediction_v32.py"
+    ],
+    "koopman/command_batch_v45.py": [
+      "koopman/__init__.py",
+      "koopman/command_state_v39.py",
+      "koopman/prepared_commands_v45.py",
+      "workflows/identification_prediction_v32.py"
+    ],
+    "koopman/command_prediction_v37.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "koopman/__init__.py",
+      "koopman/projected_edmd_v24.py",
+      "workflows/actuator_replay_v28.py",
+      "workflows/control_seam_v23.py",
+      "workflows/identification_prediction_v32.py",
+      "workflows/workpoint_v27.py"
+    ],
+    "koopman/command_state_v39.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "koopman/__init__.py",
+      "koopman/command_prediction_v37.py",
+      "workflows/actuator_replay_v28.py",
+      "workflows/control_seam_v23.py",
+      "workflows/identification_prediction_v32.py"
+    ],
+    "koopman/compiled_forecast_v64.py": [
+      "koopman/__init__.py",
+      "koopman/command_batch_v45.py",
+      "koopman/command_state_v39.py",
+      "koopman/compiled_projected_v43.py",
+      "koopman/prepared_commands_v45.py",
+      "koopman/prepared_projected_v40.py",
+      "workflows/actuator_replay_v28.py",
+      "workflows/identification_prediction_v32.py"
+    ],
+    "koopman/compiled_projected_v43.py": [
+      "koopman/__init__.py",
+      "koopman/physical_terms_v26.py",
+      "koopman/prepared_projected_v40.py",
+      "koopman/sparse_world_edmd_v30.py"
+    ],
+    "koopman/compiled_recovery_v64.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_mpc_v64.py",
+      "workflows/runtime_assets_v56.py"
+    ],
+    "koopman/continuous_mpc_v76.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/continuous_prediction_v76.py",
+      "koopman/control_objective_v44.py",
+      "koopman/prepared_commands_v45.py",
+      "workflows/feedback_inverse_v28.py"
+    ],
+    "koopman/continuous_mpc_v80.py": [
+      "koopman/__init__.py",
+      "koopman/continuous_mpc_v76.py",
+      "koopman/preview_solver_v80.py"
+    ],
+    "koopman/continuous_prediction_v76.py": [
+      "koopman/__init__.py",
+      "koopman/command_state_v39.py",
+      "koopman/prepared_allocation_v42.py",
+      "koopman/prepared_projected_v40.py"
+    ],
+    "koopman/contracts_v21.py": [],
+    "koopman/control_objective_v44.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "koopman/__init__.py",
+      "koopman/physical_terms_v26.py",
+      "koopman/projected_edmd_v24.py"
+    ],
+    "koopman/control_support_v88.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/control_objective_v44.py",
+      "koopman/lifted_propagation_v84.py",
+      "workflows/fit_disturbance_v87.py",
+      "workflows/protocol_v87.py"
+    ],
+    "koopman/d23_approval_v21.py": [
+      "koopman/__init__.py",
+      "koopman/contracts_v21.py",
+      "koopman/evidence_v2.py"
+    ],
+    "koopman/dataset.py": [
+      "koopman_data.py"
+    ],
+    "koopman/dataset_v2.py": [
+      "koopman/__init__.py",
+      "koopman/schema_v2.py"
+    ],
+    "koopman/diagnostics_v23.py": [
+      "koopman/__init__.py",
+      "koopman/metrics_v21.py",
+      "koopman/so3_v21.py"
+    ],
+    "koopman/disturbance_lifted_v86.py": [
+      "koopman/__init__.py",
+      "koopman/lifted_propagation_v84.py",
+      "koopman/prepared_projected_v40.py"
+    ],
+    "koopman/edmd.py": [
+      "koopman/__init__.py",
+      "koopman/dataset.py",
+      "koopman/lifting.py",
+      "koopman/model.py",
+      "koopman/normalization.py"
+    ],
+    "koopman/evidence_v2.py": [
+      "koopman/__init__.py",
+      "koopman/protocol_v2.py"
+    ],
+    "koopman/execution_ledger_v48.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_feedback_v46.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/command_prediction_v37.py",
+      "koopman/command_state_v39.py",
+      "koopman/control_objective_v44.py",
+      "koopman/physical_terms_v26.py",
+      "koopman/prepared_projected_v40.py"
+    ],
+    "koopman/feedback_preview_v79.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/control_objective_v44.py",
+      "koopman/prepared_commands_v45.py",
+      "koopman/reliable_mpc_v77.py",
+      "workflows/feedback_inverse_v28.py"
+    ],
+    "koopman/inexact_tracking_v66.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_feedback_v46.py",
+      "koopman/bounded_feedback_v47.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/cached_checks_v53.py",
+      "koopman/compiled_recovery_v64.py",
+      "koopman/control_objective_v44.py",
+      "koopman/prepared_commands_v45.py",
+      "koopman/prepared_projected_v40.py",
+      "workflows/workpoint_v27.py"
+    ],
+    "koopman/learned_velocity_v81.py": [
+      "koopman/__init__.py",
+      "koopman/prepared_projected_v40.py",
+      "koopman/projected_edmd_v24.py",
+      "koopman/sparse_world_edmd_v30.py",
+      "workflows/identify_sparse_world_v30.py"
+    ],
+    "koopman/lifted_edmd.py": [
+      "koopman/__init__.py",
+      "koopman/dataset.py",
+      "koopman/normalization.py",
+      "koopman/observables.py",
+      "koopman_data.py"
+    ],
+    "koopman/lifted_propagation_v84.py": [
+      "koopman/__init__.py",
+      "koopman/physical_terms_v26.py",
+      "koopman/prepared_projected_v40.py"
+    ],
+    "koopman/lifting.py": [
+      "koopman_data.py"
+    ],
+    "koopman/metrics_v21.py": [
+      "koopman/__init__.py",
+      "koopman/actuator_memory_v21.py",
+      "koopman/contracts_v21.py",
+      "koopman/evidence_v2.py",
+      "koopman/so3_v21.py"
+    ],
+    "koopman/model.py": [
+      "koopman/__init__.py",
+      "koopman/lifting.py",
+      "koopman/normalization.py",
+      "koopman_data.py"
+    ],
+    "koopman/model_separation_v79.py": [
+      "koopman/__init__.py",
+      "koopman/physical_control_v76.py",
+      "koopman/physical_terms_v26.py",
+      "koopman/prepared_projected_v40.py",
+      "koopman/sparse_world_edmd_v30.py",
+      "workflows/identify_sparse_world_v30.py",
+      "workflows/sparse_evaluation_v32.py"
+    ],
+    "koopman/mpc.py": [
+      "koopman_data.py"
+    ],
+    "koopman/mpc_controller.py": [
+      "koopman/__init__.py",
+      "koopman/mpc.py",
+      "koopman_data.py"
+    ],
+    "koopman/normalization.py": [],
+    "koopman/observables.py": [
+      "koopman_data.py"
+    ],
+    "koopman/physical_control_v76.py": [
+      "koopman/__init__.py",
+      "koopman/physical_prediction_v29.py",
+      "koopman/physical_terms_v26.py",
+      "koopman/prepared_projected_v40.py",
+      "koopman/sparse_world_edmd_v30.py",
+      "workflows/identify_sparse_world_v30.py"
+    ],
+    "koopman/physical_prediction_v29.py": [
+      "koopman/__init__.py",
+      "koopman/physical_terms_v26.py",
+      "koopman/projected_edmd_v24.py"
+    ],
+    "koopman/physical_terms_v26.py": [
+      "koopman/__init__.py",
+      "koopman/projected_edmd_v24.py"
+    ],
+    "koopman/plan_arbiter_v52.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_feedback_v46.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/control_objective_v44.py",
+      "koopman/execution_ledger_v48.py",
+      "koopman/recovery_solver_v50.py"
+    ],
+    "koopman/plan_continuity_v54.py": [
+      "koopman/__init__.py",
+      "koopman/plan_arbiter_v52.py",
+      "koopman/runtime_coordinator_v52.py"
+    ],
+    "koopman/prepared_allocation_v42.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "workflows/control_seam_v23.py"
+    ],
+    "koopman/prepared_commands_v45.py": [
+      "koopman/__init__.py",
+      "koopman/command_prediction_v37.py",
+      "koopman/command_state_v39.py",
+      "koopman/prepared_allocation_v42.py",
+      "koopman/prepared_projected_v40.py"
+    ],
+    "koopman/prepared_execution_v49.py": [
+      "koopman/__init__.py",
+      "koopman/command_state_v39.py",
+      "koopman/execution_ledger_v48.py",
+      "koopman/prepared_allocation_v42.py"
+    ],
+    "koopman/prepared_projected_v40.py": [
+      "koopman/__init__.py",
+      "koopman/physical_terms_v26.py",
+      "koopman/projected_edmd_v24.py",
+      "koopman/sparse_world_edmd_v30.py",
+      "workflows/identify_sparse_world_v30.py"
+    ],
+    "koopman/preview_mpc_v79.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_feedback_v46.py",
+      "koopman/control_objective_v44.py",
+      "koopman/feedback_preview_v79.py",
+      "koopman/inexact_tracking_v66.py",
+      "koopman/model_separation_v79.py",
+      "koopman/reliable_mpc_v77.py"
+    ],
+    "koopman/preview_solver_v80.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_feedback_v46.py",
+      "koopman/continuous_mpc_v80.py",
+      "koopman/control_objective_v44.py",
+      "koopman/feedback_preview_v79.py",
+      "koopman/inexact_tracking_v66.py",
+      "koopman/model_separation_v79.py",
+      "koopman/preview_mpc_v79.py",
+      "koopman/reliable_mpc_v77.py",
+      "koopman/solver_worker_v49.py"
+    ],
+    "koopman/preview_solver_v87.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_feedback_v46.py",
+      "koopman/continuous_mpc_v80.py",
+      "koopman/control_objective_v44.py",
+      "koopman/disturbance_lifted_v86.py",
+      "koopman/inexact_tracking_v66.py",
+      "koopman/physical_control_v76.py",
+      "koopman/preview_mpc_v79.py",
+      "koopman/preview_solver_v80.py",
+      "workflows/fit_disturbance_v87.py",
+      "workflows/identify_sparse_world_v30.py",
+      "workflows/protocol_v87.py"
+    ],
+    "koopman/projected_edmd_v24.py": [],
+    "koopman/protocol_v2.py": [
+      "koopman/__init__.py",
+      "koopman/collection_v2.py",
+      "koopman/evidence_v2.py"
+    ],
+    "koopman/rate30_v67.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_feedback_v46.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/bounded_mpc_v67.py",
+      "koopman/cached_checks_v53.py",
+      "koopman/compiled_recovery_v64.py",
+      "koopman/control_objective_v44.py",
+      "koopman/execution_ledger_v48.py",
+      "koopman/inexact_tracking_v66.py",
+      "koopman/plan_continuity_v54.py",
+      "koopman/runtime_coordinator_v52.py",
+      "workflows/runtime_assets_v56.py"
+    ],
+    "koopman/recovery_solver_v50.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_feedback_v46.py",
+      "koopman/bounded_feedback_v47.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/bounded_mpc_v45.py",
+      "koopman/compiled_projected_v43.py",
+      "koopman/control_objective_v44.py",
+      "koopman/execution_ledger_v48.py",
+      "koopman/prepared_commands_v45.py",
+      "koopman/prepared_projected_v40.py",
+      "workflows/identify_sparse_world_v30.py",
+      "workflows/projected_release_v38.py"
+    ],
+    "koopman/recovery_solver_v51.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_mpc_v51.py",
+      "koopman/recovery_solver_v50.py"
+    ],
+    "koopman/reliable_mpc_v77.py": [
+      "koopman/__init__.py",
+      "koopman/continuous_mpc_v76.py",
+      "koopman/control_objective_v44.py",
+      "koopman/physical_control_v76.py",
+      "koopman/prepared_allocation_v42.py",
+      "koopman/prepared_projected_v40.py",
+      "koopman/solver_worker_v49.py"
+    ],
+    "koopman/reliable_runtime_v77.py": [
+      "koopman/__init__.py",
+      "koopman/rate30_v67.py",
+      "koopman/runtime_coordinator_v52.py"
+    ],
+    "koopman/runtime.py": [
+      "koopman/__init__.py",
+      "koopman/lifted_edmd.py",
+      "koopman/model.py",
+      "koopman_data.py"
+    ],
+    "koopman/runtime_coordinator_v52.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/control_objective_v44.py",
+      "koopman/plan_arbiter_v52.py",
+      "koopman/prepared_projected_v40.py",
+      "koopman/recovery_solver_v50.py"
+    ],
+    "koopman/schema_v2.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py"
+    ],
+    "koopman/schema_v21.py": [
+      "koopman/__init__.py",
+      "koopman/actuator_memory_v21.py",
+      "koopman/schema_v2.py"
+    ],
+    "koopman/so3_v21.py": [],
+    "koopman/solver_worker_v49.py": [],
+    "koopman/sparse_world_edmd_v30.py": [
+      "koopman/__init__.py",
+      "koopman/physical_prediction_v29.py",
+      "koopman/physical_terms_v26.py",
+      "koopman/projected_edmd_v24.py"
+    ],
+    "koopman_data.py": [],
+    "tests/test_bounded_feedback_v46.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "koopman/__init__.py",
+      "koopman/bounded_feedback_v46.py",
+      "koopman/bounded_mpc_v44.py",
+      "tests/test_bounded_mpc_v44.py",
+      "tests/test_prepared_projected_v40.py",
+      "workflows/control_seam_v23.py",
+      "workflows/workpoint_v27.py"
+    ],
+    "tests/test_bounded_mpc_v44.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/control_objective_v44.py",
+      "tests/test_command_batch_v41.py",
+      "tests/test_prepared_projected_v40.py"
+    ],
+    "tests/test_command_batch_v41.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "koopman/__init__.py",
+      "koopman/command_batch_v41.py",
+      "koopman/command_state_v39.py",
+      "koopman/prepared_projected_v40.py",
+      "tests/test_prepared_projected_v40.py"
+    ],
+    "tests/test_command_state_v39.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "koopman/__init__.py",
+      "koopman/command_prediction_v37.py",
+      "koopman/command_state_v39.py",
+      "koopman/physical_prediction_v29.py",
+      "koopman/projected_edmd_v24.py",
+      "workflows/workpoint_v27.py"
+    ],
+    "tests/test_continuous_mpc_v76.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/command_state_v39.py",
+      "koopman/continuous_mpc_v76.py",
+      "koopman/control_objective_v44.py",
+      "koopman/prepared_projected_v40.py",
+      "tests/test_prepared_projected_v40.py"
+    ],
+    "tests/test_continuous_mpc_v80.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/continuous_mpc_v76.py",
+      "koopman/continuous_mpc_v80.py",
+      "koopman/prepared_projected_v40.py",
+      "tests/test_prepared_projected_v40.py"
+    ],
+    "tests/test_continuous_prediction_v76.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "koopman/__init__.py",
+      "koopman/command_state_v39.py",
+      "koopman/continuous_prediction_v76.py",
+      "koopman/prepared_projected_v40.py",
+      "tests/test_prepared_projected_v40.py"
+    ],
+    "tests/test_control_separation_v79.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/command_state_v39.py",
+      "koopman/feedback_preview_v79.py",
+      "koopman/model_separation_v79.py",
+      "koopman/preview_mpc_v79.py",
+      "koopman/reliable_runtime_v77.py",
+      "tests/test_isaac_execution_v67.py",
+      "tests/test_prepared_projected_v40.py",
+      "tests/test_reliable_mpc_v77.py"
+    ],
+    "tests/test_data_v86.py": [
+      "workflows/disturbance_data_v86.py"
+    ],
+    "tests/test_disturbance_lifted_v86.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/disturbance_v86.py",
+      "easyuuv_nc/env/easyuuv_env.py",
+      "koopman/__init__.py",
+      "koopman/command_state_v39.py",
+      "koopman/continuous_prediction_v76.py",
+      "koopman/disturbance_lifted_v86.py",
+      "koopman/lifted_propagation_v84.py",
+      "koopman/physical_control_v76.py",
+      "tests/test_lifted_propagation_v84.py",
+      "tests/test_prepared_projected_v40.py"
+    ],
+    "tests/test_execution_ledger_v48.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "koopman/__init__.py",
+      "koopman/bounded_feedback_v46.py",
+      "koopman/bounded_feedback_v47.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/command_state_v39.py",
+      "koopman/execution_ledger_v48.py",
+      "tests/test_bounded_feedback_v46.py",
+      "tests/test_prepared_projected_v40.py"
+    ],
+    "tests/test_isaac_execution_v55.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/control_v24.py",
+      "koopman/__init__.py",
+      "koopman/bounded_feedback_v46.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/cached_checks_v53.py",
+      "koopman/execution_ledger_v48.py",
+      "koopman/plan_continuity_v54.py",
+      "tests/test_bounded_feedback_v46.py",
+      "tests/test_plan_arbiter_v52.py",
+      "tests/test_prepared_projected_v40.py",
+      "workflows/control_seam_v23.py",
+      "workflows/control_trace_v23.py",
+      "workflows/isaac_execution_v55.py",
+      "workflows/validate_formal_trace_v25.py"
+    ],
+    "tests/test_isaac_execution_v67.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/control_v24.py",
+      "easyuuv_nc/control_v67.py",
+      "koopman/__init__.py",
+      "koopman/bounded_feedback_v46.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/cached_checks_v53.py",
+      "koopman/execution_ledger_v48.py",
+      "koopman/rate30_v67.py",
+      "tests/test_bounded_feedback_v46.py",
+      "tests/test_isaac_execution_v55.py",
+      "tests/test_plan_arbiter_v52.py",
+      "tests/test_prepared_projected_v40.py",
+      "workflows/control_trace_v23.py",
+      "workflows/isaac_execution_v67.py"
+    ],
+    "tests/test_lifted_propagation_v84.py": [
+      "koopman/__init__.py",
+      "koopman/lifted_propagation_v84.py",
+      "tests/test_prepared_projected_v40.py"
+    ],
+    "tests/test_matrix_data_v88.py": [
+      "workflows/disturbance_data_v88.py",
+      "workflows/evaluate_disturbance_v88.py",
+      "workflows/prepare_disturbance_v88.py",
+      "workflows/protocol_v87.py",
+      "workflows/protocol_v88.py"
+    ],
+    "tests/test_plan_arbiter_v52.py": [
+      "koopman/__init__.py",
+      "koopman/execution_ledger_v48.py",
+      "koopman/plan_arbiter_v52.py",
+      "koopman/recovery_solver_v50.py",
+      "tests/test_bounded_feedback_v46.py",
+      "tests/test_bounded_mpc_v44.py",
+      "tests/test_execution_ledger_v48.py"
+    ],
+    "tests/test_prepared_projected_v40.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "koopman/__init__.py",
+      "koopman/prepared_projected_v40.py",
+      "koopman/projected_edmd_v24.py",
+      "koopman/sparse_world_edmd_v30.py",
+      "workflows/identify_sparse_world_v30.py",
+      "workflows/workpoint_v27.py"
+    ],
+    "tests/test_preview_solver_v80.py": [
+      "koopman/__init__.py",
+      "koopman/backend_gate_v80.py",
+      "koopman/feedback_preview_v79.py",
+      "koopman/model_separation_v79.py",
+      "koopman/preview_solver_v80.py",
+      "tests/test_control_separation_v79.py",
+      "workflows/control_seam_v23.py",
+      "workflows/protocol_v80.py"
+    ],
+    "tests/test_projected_archive_v38.py": [
+      "workflows/projected_archive_v38.py",
+      "workflows/projected_protocol_v38.py",
+      "workflows/projected_release_v38.py",
+      "workflows/validate_projected_formal_v38.py"
+    ],
+    "tests/test_projected_audit_v38.py": [
+      "workflows/audit_projected_v38.py",
+      "workflows/projected_archive_v38.py",
+      "workflows/projected_release_v38.py"
+    ],
+    "tests/test_projected_budget_v38.py": [
+      "workflows/projected_budget_v38.py",
+      "workflows/projected_protocol_v38.py"
+    ],
+    "tests/test_projected_release_v38.py": [
+      "workflows/collect_projected_formal_v38.py",
+      "workflows/feedback_v31.py",
+      "workflows/projected_evaluation_v38.py",
+      "workflows/projected_protocol_v38.py",
+      "workflows/projected_release_v38.py"
+    ],
+    "tests/test_projected_repair_v38.py": [
+      "workflows/evaluate_projected_formal_v38.py",
+      "workflows/package_projected_repair_v38.py",
+      "workflows/package_projected_validation_repair_v38.py",
+      "workflows/projected_adapter_v38.py",
+      "workflows/projected_archive_v38.py"
+    ],
+    "tests/test_reliable_mpc_v77.py": [
+      "koopman/__init__.py",
+      "koopman/reliable_mpc_v77.py"
+    ],
+    "tests/test_solver_v88.py": [
+      "workflows/solve_disturbance_v88.py"
+    ],
+    "tests/test_support_v88.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/control_support_v88.py",
+      "koopman/lifted_propagation_v84.py",
+      "workflows/disturbance_data_v87.py",
+      "workflows/protocol_v87.py"
+    ],
+    "tests/test_timeout_candidate_v86.py": [
+      "tests/test_continuous_mpc_v76.py"
+    ],
+    "workflows/actuator_replay_v28.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/control_v24.py"
+    ],
+    "workflows/audit_projected_v38.py": [
+      "workflows/evaluate_projected_formal_v38.py",
+      "workflows/formal_evidence_v25.py",
+      "workflows/projected_adapter_v38.py",
+      "workflows/projected_archive_v38.py",
+      "workflows/projected_evaluation_v38.py",
+      "workflows/projected_protocol_v38.py",
+      "workflows/projected_release_v38.py"
+    ],
+    "workflows/calibration_trace_v27.py": [
+      "koopman/__init__.py",
+      "koopman/projected_edmd_v24.py",
+      "workflows/free_water_trace_v26.py",
+      "workflows/validate_free_water_v26.py"
+    ],
+    "workflows/collect_disturbance_data_v86.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/control_v67.py",
+      "easyuuv_nc/env/__init__.py",
+      "easyuuv_nc/env/easyuuv_env.py",
+      "isaaclab_app.py",
+      "koopman/__init__.py",
+      "koopman/diagnostics_v23.py",
+      "workflows/calibration_trace_v27.py",
+      "workflows/collect_disturbance_data_v86.py",
+      "workflows/control_trace_v23.py",
+      "workflows/disturbance_data_v86.py",
+      "workflows/feedback_v31.py",
+      "workflows/free_water_runtime_v26.py",
+      "workflows/geometry_v76.py",
+      "workflows/protocol_v86.py",
+      "workflows/runtime_episode_v59.py",
+      "workflows/runtime_episode_v67.py",
+      "workflows/runtime_lifecycle_v70.py"
+    ],
+    "workflows/collect_disturbance_data_v87.py": [
+      "workflows/collect_disturbance_data_v86.py",
+      "workflows/protocol_v87.py"
+    ],
+    "workflows/collect_disturbance_data_v88.py": [
+      "workflows/collect_disturbance_data_v86.py",
+      "workflows/disturbance_data_v88.py",
+      "workflows/protocol_v88.py"
+    ],
+    "workflows/collect_formal_v25.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/control_v24.py",
+      "easyuuv_nc/embodiments.py",
+      "easyuuv_nc/env/__init__.py",
+      "easyuuv_nc/env/easyuuv_env.py",
+      "isaaclab_app.py",
+      "isaaclab_compat.py",
+      "koopman/__init__.py",
+      "koopman/diagnostics_v23.py",
+      "workflows/collect_koopman_v21_identification.py",
+      "workflows/control_seam_v23.py",
+      "workflows/control_trace_v23.py",
+      "workflows/formal_contract_v25.py",
+      "workflows/pilot_control_v24.py",
+      "workflows/qualify_easyuuv_v2.py",
+      "workflows/validate_control_trace_v23.py"
+    ],
+    "workflows/collect_koopman_v21_identification.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/env/__init__.py",
+      "easyuuv_nc/env/easyuuv_env.py",
+      "isaaclab_app.py",
+      "koopman/__init__.py",
+      "koopman/d23_approval_v21.py",
+      "koopman/schema_v2.py",
+      "koopman/schema_v21.py",
+      "workflows/collect_koopman_v2_identification.py",
+      "workflows/koopman_bridge_v21.py",
+      "workflows/qualify_easyuuv_v2.py"
+    ],
+    "workflows/collect_koopman_v2_identification.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/env/__init__.py",
+      "easyuuv_nc/env/easyuuv_env.py",
+      "isaaclab_app.py",
+      "koopman/__init__.py",
+      "koopman/evidence_v2.py",
+      "koopman/protocol_v2.py",
+      "koopman/schema_v2.py",
+      "workflows/collect_koopman_v2_smoke.py",
+      "workflows/koopman_bridge_v2.py",
+      "workflows/qualify_easyuuv_v2.py",
+      "workflows/validate_phase8_pilot_policy.py"
+    ],
+    "workflows/collect_koopman_v2_smoke.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/env/__init__.py",
+      "easyuuv_nc/env/easyuuv_env.py",
+      "isaaclab_app.py",
+      "koopman/__init__.py",
+      "koopman/schema_v2.py",
+      "workflows/koopman_bridge_v2.py",
+      "workflows/qualify_easyuuv_v2.py"
+    ],
+    "workflows/collect_projected_formal_v38.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/env/__init__.py",
+      "easyuuv_nc/env/easyuuv_env.py",
+      "easyuuv_nc/package_paths.py",
+      "isaaclab_app.py",
+      "isaaclab_compat.py",
+      "koopman/__init__.py",
+      "koopman/diagnostics_v23.py",
+      "workflows/calibration_trace_v27.py",
+      "workflows/collect_formal_v25.py",
+      "workflows/collect_koopman_v21_identification.py",
+      "workflows/collect_projected_formal_v38.py",
+      "workflows/collector_exit_v28.py",
+      "workflows/control_trace_v23.py",
+      "workflows/feedback_v31.py",
+      "workflows/free_water_runtime_v26.py",
+      "workflows/projected_budget_v38.py",
+      "workflows/projected_protocol_v38.py",
+      "workflows/projected_release_v38.py",
+      "workflows/qualify_easyuuv_v2.py"
+    ],
+    "workflows/collect_runtime_v57.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/env/__init__.py",
+      "easyuuv_nc/env/easyuuv_env.py",
+      "easyuuv_nc/package_paths.py",
+      "isaaclab_app.py",
+      "isaaclab_compat.py",
+      "koopman/__init__.py",
+      "koopman/diagnostics_v23.py",
+      "koopman/solver_worker_v49.py",
+      "workflows/control_trace_v23.py",
+      "workflows/free_water_runtime_v26.py",
+      "workflows/isaac_execution_v55.py",
+      "workflows/phase9_preflight_v57.py",
+      "workflows/qualify_easyuuv_v2.py",
+      "workflows/runtime_assets_v56.py",
+      "workflows/runtime_episode_v57.py",
+      "workflows/validate_feedback_v28.py",
+      "workflows/validate_formal_trace_v25.py"
+    ],
+    "workflows/collector_exit_v28.py": [],
+    "workflows/control_seam_v23.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "easyuuv_nc/env/easyuuv_env.py",
+      "easyuuv_nc/env/thruster_dynamics.py",
+      "easyuuv_nc/thrust_allocation.py",
+      "isaaclab_compat.py",
+      "workflows/control_trace_v23.py"
+    ],
+    "workflows/control_trace_v23.py": [
+      "workflows/koopman_logging.py"
+    ],
+    "workflows/disturbance_data_v86.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/disturbance_v86.py",
+      "easyuuv_nc/embodiments.py",
+      "easyuuv_nc/env/easyuuv_env.py",
+      "koopman/__init__.py",
+      "koopman/lifted_propagation_v84.py",
+      "koopman/physical_control_v76.py",
+      "koopman/physical_terms_v26.py",
+      "koopman/projected_edmd_v24.py",
+      "workflows/actuator_replay_v28.py",
+      "workflows/calibration_trace_v27.py",
+      "workflows/collect_disturbance_data_v86.py",
+      "workflows/collect_disturbance_data_v87.py",
+      "workflows/control_seam_v23.py",
+      "workflows/feedback_v31.py",
+      "workflows/identify_sparse_world_v30.py",
+      "workflows/protocol_v86.py",
+      "workflows/protocol_v87.py",
+      "workflows/runtime_episode_v59.py",
+      "workflows/validate_control_trace_v23.py",
+      "workflows/validate_effects_v67.py",
+      "workflows/workpoint_v27.py"
+    ],
+    "workflows/disturbance_data_v87.py": [
+      "workflows/disturbance_data_v86.py",
+      "workflows/protocol_v87.py"
+    ],
+    "workflows/disturbance_data_v88.py": [
+      "koopman/control_support_v88.py",
+      "workflows/collect_disturbance_data_v88.py",
+      "workflows/disturbance_data_v86.py",
+      "workflows/disturbance_data_v88.py",
+      "workflows/evaluate_disturbance_v88.py",
+      "workflows/fit_disturbance_v87.py",
+      "workflows/freeze_support_v88.py",
+      "workflows/prepare_disturbance_v88.py",
+      "workflows/protocol_v88.py",
+      "workflows/solve_disturbance_v88.py"
+    ],
+    "workflows/easyuuv_v2_qualification_artifact.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py"
+    ],
+    "workflows/evaluate_disturbance_v88.py": [
+      "koopman/__init__.py",
+      "koopman/disturbance_lifted_v86.py",
+      "koopman/lifted_propagation_v84.py",
+      "workflows/disturbance_data_v88.py",
+      "workflows/fit_disturbance_v86.py",
+      "workflows/fit_learned_velocity_v81.py",
+      "workflows/protocol_v88.py"
+    ],
+    "workflows/evaluate_projected_edmd_v24.py": [
+      "koopman/__init__.py",
+      "koopman/projected_edmd_v24.py"
+    ],
+    "workflows/evaluate_projected_formal_v38.py": [
+      "koopman/__init__.py",
+      "koopman/physical_prediction_v29.py",
+      "workflows/collect_koopman_v21_identification.py",
+      "workflows/evaluate_projected_formal_v38.py",
+      "workflows/identification_prediction_v32.py",
+      "workflows/identify_sparse_world_v30.py",
+      "workflows/projected_adapter_v38.py",
+      "workflows/projected_budget_v38.py",
+      "workflows/projected_evaluation_v38.py",
+      "workflows/projected_models_v38.py",
+      "workflows/projected_prediction_v38.py",
+      "workflows/projected_protocol_v38.py",
+      "workflows/projected_release_v38.py",
+      "workflows/projected_resource_v38.py",
+      "workflows/run_projected_formal_v38.py",
+      "workflows/sparse_evaluation_v32.py"
+    ],
+    "workflows/feedback_inverse_v28.py": [
+      "workflows/control_seam_v23.py",
+      "workflows/workpoint_v27.py"
+    ],
+    "workflows/feedback_inverse_v31.py": [
+      "workflows/control_seam_v23.py",
+      "workflows/feedback_inverse_v28.py",
+      "workflows/workpoint_v27.py"
+    ],
+    "workflows/feedback_v28.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "koopman/__init__.py",
+      "koopman/projected_edmd_v24.py",
+      "workflows/calibration_trace_v27.py",
+      "workflows/control_seam_v23.py",
+      "workflows/feedback_inverse_v28.py",
+      "workflows/workpoint_v27.py"
+    ],
+    "workflows/feedback_v31.py": [
+      "workflows/feedback_inverse_v31.py",
+      "workflows/feedback_v28.py",
+      "workflows/workpoint_v27.py"
+    ],
+    "workflows/fit_disturbance_v86.py": [
+      "koopman/__init__.py",
+      "koopman/disturbance_lifted_v86.py",
+      "koopman/lifted_propagation_v84.py",
+      "workflows/disturbance_data_v86.py",
+      "workflows/fit_learned_velocity_v81.py",
+      "workflows/protocol_v86.py"
+    ],
+    "workflows/fit_disturbance_v87.py": [
+      "koopman/__init__.py",
+      "koopman/disturbance_lifted_v86.py",
+      "koopman/lifted_propagation_v84.py",
+      "workflows/disturbance_data_v87.py",
+      "workflows/fit_disturbance_v86.py",
+      "workflows/fit_learned_velocity_v81.py",
+      "workflows/protocol_v87.py"
+    ],
+    "workflows/fit_learned_velocity_v81.py": [
+      "koopman/__init__.py",
+      "koopman/learned_velocity_v81.py",
+      "koopman/prepared_projected_v40.py",
+      "koopman/sparse_world_edmd_v30.py",
+      "workflows/identify_sparse_world_v30.py"
+    ],
+    "workflows/formal_contract_v25.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "workflows/collect_formal_v25.py",
+      "workflows/collect_koopman_v21_identification.py",
+      "workflows/validate_formal_trace_v25.py"
+    ],
+    "workflows/formal_evidence_v25.py": [
+      "workflows/formal_contract_v25.py",
+      "workflows/validate_formal_trace_v25.py"
+    ],
+    "workflows/free_water_microtrace_v26.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/env/__init__.py",
+      "easyuuv_nc/env/easyuuv_env.py",
+      "easyuuv_nc/package_paths.py",
+      "isaaclab_app.py",
+      "isaaclab_compat.py",
+      "koopman/__init__.py",
+      "koopman/diagnostics_v23.py",
+      "workflows/collect_formal_v25.py",
+      "workflows/collect_koopman_v21_identification.py",
+      "workflows/control_trace_v23.py",
+      "workflows/free_water_runtime_v26.py",
+      "workflows/free_water_trace_v26.py",
+      "workflows/pilot_control_v24.py",
+      "workflows/qualify_easyuuv_v2.py"
+    ],
+    "workflows/free_water_runtime_v26.py": [
+      "koopman/__init__.py",
+      "koopman/projected_edmd_v24.py",
+      "workflows/control_trace_v23.py"
+    ],
+    "workflows/free_water_trace_v26.py": [
+      "workflows/control_trace_v23.py",
+      "workflows/free_water_runtime_v26.py",
+      "workflows/free_water_v26.py"
+    ],
+    "workflows/free_water_v26.py": [
+      "koopman/__init__.py",
+      "koopman/projected_edmd_v24.py"
+    ],
+    "workflows/freeze_support_v88.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/control_support_v88.py",
+      "koopman/lifted_propagation_v84.py",
+      "workflows/disturbance_data_v87.py",
+      "workflows/fit_disturbance_v86.py",
+      "workflows/fit_disturbance_v87.py",
+      "workflows/protocol_v87.py"
+    ],
+    "workflows/geometry_v76.py": [
+      "workflows/control_trace_v23.py",
+      "workflows/free_water_runtime_v26.py"
+    ],
+    "workflows/identification_adapter_v29.py": [
+      "koopman/__init__.py",
+      "koopman/projected_edmd_v24.py",
+      "workflows/actuator_replay_v28.py",
+      "workflows/control_seam_v23.py",
+      "workflows/identification_protocol_v29.py",
+      "workflows/validate_identification_v29.py"
+    ],
+    "workflows/identification_prediction_v32.py": [
+      "workflows/actuator_replay_v28.py",
+      "workflows/control_seam_v23.py",
+      "workflows/evaluate_projected_edmd_v24.py",
+      "workflows/feedback_v31.py"
+    ],
+    "workflows/identification_protocol_v29.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "workflows/workpoint_v27.py"
+    ],
+    "workflows/identification_protocol_v32.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "workflows/workpoint_v27.py"
+    ],
+    "workflows/identify_sparse_world_v30.py": [
+      "koopman/__init__.py",
+      "koopman/projected_edmd_v24.py",
+      "koopman/sparse_world_edmd_v30.py",
+      "workflows/identification_adapter_v29.py",
+      "workflows/identification_protocol_v29.py"
+    ],
+    "workflows/isaac_execution_v55.py": [
+      "koopman/__init__.py",
+      "koopman/execution_ledger_v48.py",
+      "koopman/runtime_coordinator_v52.py",
+      "workflows/calibration_trace_v27.py",
+      "workflows/control_trace_v23.py",
+      "workflows/free_water_runtime_v26.py"
+    ],
+    "workflows/isaac_execution_v67.py": [
+      "koopman/__init__.py",
+      "koopman/execution_ledger_v48.py",
+      "koopman/runtime_coordinator_v52.py",
+      "workflows/calibration_trace_v27.py",
+      "workflows/control_trace_v23.py",
+      "workflows/free_water_runtime_v26.py"
+    ],
+    "workflows/koopman_bridge_v2.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "koopman/__init__.py",
+      "koopman/schema_v2.py",
+      "workflows/koopman_logging.py"
+    ],
+    "workflows/koopman_bridge_v21.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "koopman/__init__.py",
+      "koopman/actuator_memory_v21.py",
+      "koopman/schema_v21.py",
+      "workflows/koopman_bridge_v2.py"
+    ],
+    "workflows/koopman_logging.py": [
+      "koopman_data.py"
+    ],
+    "workflows/package_projected_repair_v38.py": [
+      "workflows/evaluate_projected_formal_v38.py",
+      "workflows/package_projected_repair_v38.py",
+      "workflows/package_projected_v38.py",
+      "workflows/projected_archive_v38.py",
+      "workflows/projected_budget_v38.py",
+      "workflows/projected_protocol_v38.py",
+      "workflows/projected_release_v38.py"
+    ],
+    "workflows/package_projected_v38.py": [
+      "workflows/feedback_v31.py",
+      "workflows/projected_budget_v38.py",
+      "workflows/projected_evaluation_v38.py",
+      "workflows/projected_models_v38.py",
+      "workflows/projected_protocol_v38.py",
+      "workflows/projected_release_v38.py"
+    ],
+    "workflows/package_projected_validation_repair_v38.py": [
+      "workflows/package_projected_repair_v38.py",
+      "workflows/package_projected_v38.py",
+      "workflows/package_projected_validation_repair_v38.py",
+      "workflows/projected_archive_v38.py",
+      "workflows/projected_budget_v38.py",
+      "workflows/projected_protocol_v38.py",
+      "workflows/projected_release_v38.py"
+    ],
+    "workflows/phase9_preflight_v57.py": [
+      "easyuuv_nc/env/easyuuv_env.py",
+      "koopman/cached_checks_v53.py",
+      "koopman/plan_continuity_v54.py",
+      "koopman/runtime_coordinator_v52.py",
+      "koopman/solver_worker_v49.py",
+      "workflows/collect_runtime_v57.py",
+      "workflows/isaac_execution_v55.py",
+      "workflows/phase9_preflight_v57.py",
+      "workflows/runtime_assets_v56.py",
+      "workflows/runtime_audit_v57.py",
+      "workflows/runtime_episode_v57.py",
+      "workflows/validate_runtime_v57.py"
+    ],
+    "workflows/pilot_control_v24.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/control_v24.py",
+      "easyuuv_nc/embodiments.py",
+      "easyuuv_nc/env/__init__.py",
+      "easyuuv_nc/env/easyuuv_env.py",
+      "isaaclab_app.py",
+      "isaaclab_compat.py",
+      "koopman/__init__.py",
+      "koopman/diagnostics_v23.py",
+      "workflows/collect_koopman_v21_identification.py",
+      "workflows/control_seam_v23.py",
+      "workflows/control_trace_v23.py",
+      "workflows/qualify_easyuuv_v2.py",
+      "workflows/validate_control_trace_v23.py"
+    ],
+    "workflows/prepare_disturbance_v88.py": [
+      "easyuuv_nc/__init__.py",
+      "koopman/__init__.py",
+      "workflows/disturbance_data_v88.py",
+      "workflows/protocol_v88.py"
+    ],
+    "workflows/projected_adapter_v38.py": [
+      "koopman/__init__.py",
+      "koopman/command_prediction_v37.py",
+      "koopman/projected_edmd_v24.py",
+      "workflows/actuator_replay_v28.py",
+      "workflows/control_seam_v23.py",
+      "workflows/projected_protocol_v38.py",
+      "workflows/validate_projected_formal_v38.py"
+    ],
+    "workflows/projected_archive_v38.py": [
+      "tests/test_projected_archive_v38.py",
+      "tests/test_projected_audit_v38.py",
+      "tests/test_projected_budget_v38.py",
+      "tests/test_projected_release_v38.py",
+      "tests/test_projected_repair_v38.py",
+      "workflows/audit_projected_v38.py",
+      "workflows/evaluate_projected_formal_v38.py",
+      "workflows/formal_evidence_v25.py",
+      "workflows/package_projected_repair_v38.py",
+      "workflows/package_projected_validation_repair_v38.py",
+      "workflows/projected_adapter_v38.py",
+      "workflows/projected_archive_v38.py",
+      "workflows/projected_budget_v38.py",
+      "workflows/projected_protocol_v38.py",
+      "workflows/projected_release_v38.py",
+      "workflows/projected_resource_v38.py",
+      "workflows/run_projected_formal_v38.py"
+    ],
+    "workflows/projected_budget_v38.py": [
+      "workflows/projected_protocol_v38.py",
+      "workflows/projected_resource_v38.py"
+    ],
+    "workflows/projected_evaluation_v38.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "workflows/projected_protocol_v38.py"
+    ],
+    "workflows/projected_models_v38.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/control_v24.py",
+      "easyuuv_nc/embodiments.py",
+      "koopman/command_prediction_v37.py",
+      "koopman/physical_prediction_v29.py",
+      "koopman/physical_terms_v26.py",
+      "koopman/projected_edmd_v24.py",
+      "koopman/sparse_world_edmd_v30.py",
+      "workflows/actuator_replay_v28.py",
+      "workflows/control_seam_v23.py",
+      "workflows/feedback_v31.py",
+      "workflows/identification_prediction_v32.py",
+      "workflows/identify_sparse_world_v30.py"
+    ],
+    "workflows/projected_prediction_v38.py": [
+      "koopman/__init__.py",
+      "koopman/command_prediction_v37.py",
+      "workflows/actuator_replay_v28.py",
+      "workflows/control_seam_v23.py",
+      "workflows/identification_prediction_v32.py"
+    ],
+    "workflows/projected_protocol_v38.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "workflows/workpoint_v27.py"
+    ],
+    "workflows/projected_release_v38.py": [
+      "workflows/audit_projected_v38.py",
+      "workflows/collect_projected_formal_v38.py",
+      "workflows/evaluate_projected_formal_v38.py",
+      "workflows/feedback_v31.py",
+      "workflows/projected_adapter_v38.py",
+      "workflows/projected_archive_v38.py",
+      "workflows/projected_budget_v38.py",
+      "workflows/projected_evaluation_v38.py",
+      "workflows/projected_models_v38.py",
+      "workflows/projected_prediction_v38.py",
+      "workflows/projected_protocol_v38.py",
+      "workflows/projected_release_v38.py",
+      "workflows/projected_resource_v38.py",
+      "workflows/run_projected_formal_v38.py",
+      "workflows/validate_projected_formal_v38.py"
+    ],
+    "workflows/projected_resource_v38.py": [
+      "workflows/projected_budget_v38.py",
+      "workflows/projected_protocol_v38.py"
+    ],
+    "workflows/protocol_v80.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py"
+    ],
+    "workflows/protocol_v86.py": [
+      "koopman/__init__.py",
+      "workflows/protocol_v80.py"
+    ],
+    "workflows/protocol_v87.py": [
+      "koopman/__init__.py",
+      "workflows/collect_disturbance_data_v87.py",
+      "workflows/protocol_v86.py"
+    ],
+    "workflows/protocol_v88.py": [
+      "koopman/__init__.py",
+      "workflows/collect_disturbance_data_v88.py"
+    ],
+    "workflows/qualify_easyuuv_v2.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "easyuuv_nc/env/__init__.py",
+      "easyuuv_nc/env/easyuuv_env.py",
+      "isaaclab_app.py",
+      "workflows/easyuuv_v2_qualification_artifact.py"
+    ],
+    "workflows/run_projected_formal_v38.py": [
+      "workflows/collect_koopman_v21_identification.py",
+      "workflows/collect_projected_formal_v38.py",
+      "workflows/projected_budget_v38.py",
+      "workflows/projected_protocol_v38.py",
+      "workflows/projected_release_v38.py",
+      "workflows/projected_resource_v38.py",
+      "workflows/validate_projected_formal_v38.py"
+    ],
+    "workflows/runtime_assets_v56.py": [
+      "koopman/__init__.py",
+      "koopman/bounded_feedback_v46.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/cached_checks_v53.py",
+      "koopman/compiled_projected_v43.py",
+      "koopman/projected_edmd_v24.py",
+      "workflows/identify_sparse_world_v30.py",
+      "workflows/projected_release_v38.py"
+    ],
+    "workflows/runtime_audit_v57.py": [
+      "koopman/__init__.py",
+      "koopman/cached_checks_v53.py",
+      "koopman/diagnostics_v23.py",
+      "koopman/execution_ledger_v48.py",
+      "koopman/plan_continuity_v54.py",
+      "koopman/recovery_solver_v50.py",
+      "workflows/validate_control_trace_v23.py"
+    ],
+    "workflows/runtime_audit_v67.py": [
+      "koopman/__init__.py",
+      "koopman/diagnostics_v23.py",
+      "koopman/execution_ledger_v48.py",
+      "koopman/rate30_v67.py",
+      "koopman/recovery_solver_v50.py",
+      "workflows/validate_control_trace_v23.py"
+    ],
+    "workflows/runtime_episode_v57.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "koopman/__init__.py",
+      "koopman/cached_checks_v53.py",
+      "koopman/plan_continuity_v54.py",
+      "koopman/prepared_projected_v40.py",
+      "koopman/projected_edmd_v24.py",
+      "workflows/runtime_audit_v57.py"
+    ],
+    "workflows/runtime_episode_v59.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "koopman/__init__.py",
+      "koopman/cached_checks_v53.py",
+      "koopman/plan_continuity_v54.py",
+      "koopman/prepared_projected_v40.py",
+      "koopman/projected_edmd_v24.py",
+      "workflows/runtime_audit_v57.py"
+    ],
+    "workflows/runtime_episode_v67.py": [
+      "koopman/__init__.py",
+      "koopman/inexact_tracking_v66.py",
+      "koopman/rate30_v67.py",
+      "workflows/runtime_audit_v67.py",
+      "workflows/runtime_episode_v59.py"
+    ],
+    "workflows/runtime_lifecycle_v70.py": [],
+    "workflows/solve_disturbance_v88.py": [
+      "koopman/__init__.py",
+      "koopman/command_state_v39.py",
+      "koopman/continuous_prediction_v76.py",
+      "koopman/control_objective_v44.py",
+      "koopman/control_support_v88.py",
+      "koopman/diagnostics_v23.py",
+      "koopman/preview_solver_v87.py",
+      "workflows/disturbance_data_v88.py",
+      "workflows/fit_disturbance_v86.py",
+      "workflows/protocol_v87.py",
+      "workflows/protocol_v88.py",
+      "workflows/runtime_assets_v56.py"
+    ],
+    "workflows/sparse_evaluation_v32.py": [
+      "koopman/__init__.py",
+      "koopman/projected_edmd_v24.py",
+      "koopman/sparse_world_edmd_v30.py",
+      "workflows/evaluate_projected_edmd_v24.py",
+      "workflows/identification_prediction_v32.py",
+      "workflows/identification_protocol_v32.py"
+    ],
+    "workflows/validate_control_trace_v23.py": [],
+    "workflows/validate_effects_v67.py": [
+      "koopman/__init__.py",
+      "koopman/execution_ledger_v48.py",
+      "koopman/projected_edmd_v24.py",
+      "workflows/actuator_replay_v28.py",
+      "workflows/calibration_trace_v27.py",
+      "workflows/collect_formal_v25.py",
+      "workflows/collect_runtime_v57.py",
+      "workflows/control_seam_v23.py",
+      "workflows/phase9_preflight_v57.py",
+      "workflows/runtime_assets_v56.py",
+      "workflows/runtime_audit_v67.py",
+      "workflows/runtime_episode_v59.py",
+      "workflows/validate_control_trace_v23.py",
+      "workflows/validate_free_water_v26.py"
+    ],
+    "workflows/validate_feedback_v28.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "easyuuv_nc/env/easyuuv_env.py",
+      "workflows/actuator_replay_v28.py",
+      "workflows/calibration_trace_v27.py",
+      "workflows/collect_formal_v25.py",
+      "workflows/control_seam_v23.py",
+      "workflows/feedback_v28.py",
+      "workflows/free_water_runtime_v26.py",
+      "workflows/free_water_v26.py",
+      "workflows/validate_control_trace_v23.py",
+      "workflows/validate_formal_trace_v25.py",
+      "workflows/validate_free_water_v26.py",
+      "workflows/workpoint_v27.py"
+    ],
+    "workflows/validate_formal_trace_v25.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/control_v24.py",
+      "easyuuv_nc/env/easyuuv_env.py",
+      "workflows/collect_formal_v25.py",
+      "workflows/control_seam_v23.py",
+      "workflows/formal_contract_v25.py",
+      "workflows/pilot_control_v24.py",
+      "workflows/validate_control_trace_v23.py"
+    ],
+    "workflows/validate_free_water_v26.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/control_v24.py",
+      "easyuuv_nc/embodiments.py",
+      "easyuuv_nc/env/easyuuv_env.py",
+      "workflows/collect_formal_v25.py",
+      "workflows/control_seam_v23.py",
+      "workflows/free_water_microtrace_v26.py",
+      "workflows/free_water_runtime_v26.py",
+      "workflows/free_water_v26.py",
+      "workflows/pilot_control_v24.py",
+      "workflows/validate_control_trace_v23.py",
+      "workflows/validate_formal_trace_v25.py"
+    ],
+    "workflows/validate_identification_v29.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "easyuuv_nc/env/easyuuv_env.py",
+      "workflows/actuator_replay_v28.py",
+      "workflows/calibration_trace_v27.py",
+      "workflows/collect_formal_v25.py",
+      "workflows/control_seam_v23.py",
+      "workflows/feedback_v28.py",
+      "workflows/free_water_runtime_v26.py",
+      "workflows/free_water_v26.py",
+      "workflows/identification_protocol_v29.py",
+      "workflows/validate_control_trace_v23.py",
+      "workflows/validate_formal_trace_v25.py",
+      "workflows/validate_free_water_v26.py",
+      "workflows/workpoint_v27.py"
+    ],
+    "workflows/validate_phase8_pilot_policy.py": [
+      "koopman/__init__.py",
+      "koopman/protocol_v2.py"
+    ],
+    "workflows/validate_projected_formal_v38.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "easyuuv_nc/env/easyuuv_env.py",
+      "workflows/actuator_replay_v28.py",
+      "workflows/calibration_trace_v27.py",
+      "workflows/collect_formal_v25.py",
+      "workflows/control_seam_v23.py",
+      "workflows/feedback_v31.py",
+      "workflows/free_water_runtime_v26.py",
+      "workflows/free_water_v26.py",
+      "workflows/projected_protocol_v38.py",
+      "workflows/validate_control_trace_v23.py",
+      "workflows/validate_formal_trace_v25.py",
+      "workflows/validate_free_water_v26.py",
+      "workflows/workpoint_v27.py"
+    ],
+    "workflows/validate_runtime_v57.py": [
+      "koopman/__init__.py",
+      "koopman/execution_ledger_v48.py",
+      "koopman/plan_continuity_v54.py",
+      "koopman/projected_edmd_v24.py",
+      "koopman/runtime_coordinator_v52.py",
+      "workflows/actuator_replay_v28.py",
+      "workflows/calibration_trace_v27.py",
+      "workflows/collect_formal_v25.py",
+      "workflows/collect_runtime_v57.py",
+      "workflows/control_seam_v23.py",
+      "workflows/isaac_execution_v55.py",
+      "workflows/phase9_preflight_v57.py",
+      "workflows/runtime_assets_v56.py",
+      "workflows/runtime_audit_v57.py",
+      "workflows/runtime_episode_v57.py",
+      "workflows/validate_control_trace_v23.py",
+      "workflows/validate_free_water_v26.py"
+    ],
+    "workflows/workpoint_v27.py": [
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/embodiments.py",
+      "easyuuv_nc/env/easyuuv_env.py",
+      "workflows/control_seam_v23.py"
+    ]
+  },
+  "dynamic_import_calls": [
+    [
+      "easyuuv_nc/custom_workflows/workflow_config.py",
+      54,
+      "importlib.import_module(module_name)"
+    ],
+    [
+      "easyuuv_nc/custom_workflows/workflow_config.py",
+      49,
+      "importlib.import_module(module_name)"
+    ],
+    [
+      "koopman/selection_v21.py",
+      1256,
+      "__import__('koopman.evaluation_v21', fromlist=['_PersistenceIncrementModelV21'])"
+    ],
+    [
+      "koopman/selection_v21.py",
+      1209,
+      "__import__('koopman.evaluation_v21', fromlist=['DatasetFormalLocoBackendV21'])"
+    ],
+    [
+      "tests/test_analyze_executed_prediction_v82.py",
+      11,
+      "importlib.import_module('workflows.analyze_executed_prediction_v82')"
+    ],
+    [
+      "tests/test_analyze_initial_plans_v82.py",
+      10,
+      "importlib.import_module('workflows.analyze_initial_plans_v82')"
+    ],
+    [
+      "tests/test_causal_inputs_v84.py",
+      9,
+      "importlib.import_module('workflows.verify_causal_inputs_v84')"
+    ],
+    [
+      "tests/test_compact_residual_v84.py",
+      14,
+      "importlib.import_module('koopman.compact_residual_v84')"
+    ],
+    [
+      "tests/test_control_separation_v79.py",
+      14,
+      "importlib.import_module(name)"
+    ],
+    [
+      "tests/test_data_v86.py",
+      7,
+      "importlib.import_module('workflows.disturbance_data_v86')"
+    ],
+    [
+      "tests/test_disturbance_lifted_v86.py",
+      13,
+      "importlib.import_module('koopman.disturbance_lifted_v86')"
+    ],
+    [
+      "tests/test_disturbance_lifted_v86.py",
+      79,
+      "importlib.import_module('easyuuv_nc.disturbance_v86')"
+    ],
+    [
+      "tests/test_diverse_v87.py",
+      7,
+      "importlib.import_module('workflows.protocol_v87')"
+    ],
+    [
+      "tests/test_koopman_schema_v2.py",
+      417,
+      "importlib.import_module('koopman.schema_v2')"
+    ],
+    [
+      "tests/test_learned_control_v82.py",
+      22,
+      "importlib.import_module('koopman.preview_solver_v82')"
+    ],
+    [
+      "tests/test_learned_velocity_v81.py",
+      14,
+      "importlib.import_module('koopman.learned_velocity_v81')"
+    ],
+    [
+      "tests/test_lifted_propagation_v84.py",
+      11,
+      "importlib.import_module('koopman.lifted_propagation_v84')"
+    ],
+    [
+      "tests/test_model_comparison_v84.py",
+      8,
+      "importlib.import_module('workflows.compare_models_v84')"
+    ],
+    [
+      "tests/test_preview_solver_v80.py",
+      11,
+      "importlib.import_module(name)"
+    ],
+    [
+      "tests/test_protocol_v86.py",
+      8,
+      "importlib.import_module('workflows.protocol_v86')"
+    ],
+    [
+      "tests/test_reliable_mpc_v77.py",
+      10,
+      "importlib.import_module('koopman.reliable_mpc_v77')"
+    ],
+    [
+      "tests/test_runtime_collector_v57.py",
+      10,
+      "importlib.import_module('workflows.collect_runtime_v57')"
+    ],
+    [
+      "tests/test_runtime_lifecycle_v62.py",
+      11,
+      "importlib.import_module('workflows.runtime_lifecycle_v62')"
+    ],
+    [
+      "tests/test_runtime_lifecycle_v70.py",
+      8,
+      "importlib.import_module('workflows.runtime_lifecycle_v70')"
+    ],
+    [
+      "tests/test_runtime_lifecycle_v70.py",
+      34,
+      "importlib.import_module('workflows.runtime_lifecycle_v70')"
+    ],
+    [
+      "tests/test_runtime_lifecycle_v70.py",
+      41,
+      "importlib.import_module('workflows.runtime_lifecycle_v70')"
+    ],
+    [
+      "tests/test_runtime_prepare_v61.py",
+      9,
+      "importlib.import_module('workflows.runtime_prepare_v61')"
+    ],
+    [
+      "tests/test_runtime_profile_v60.py",
+      12,
+      "importlib.import_module('workflows.runtime_profile_v60')"
+    ],
+    [
+      "tests/test_solver_regression_v84.py",
+      9,
+      "importlib.import_module('workflows.solver_regression_v84')"
+    ]
+  ],
+  "experiment_directory_inventory": {
+    ".tmp": {
+      "tracked_files": 0,
+      "tracked_bytes": 0,
+      "untracked_files": 6,
+      "untracked_bytes": 371966
+    },
+    "docs/evidence/phase8_3/causal-reconstruction-20260912": {
+      "tracked_files": 7,
+      "tracked_bytes": 238896,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase8_3/control-seam-20260912": {
+      "tracked_files": 7,
+      "tracked_bytes": 197087,
+      "untracked_files": 1,
+      "untracked_bytes": 10065919
+    },
+    "docs/evidence/phase8_3/direction-assay-20260912": {
+      "tracked_files": 6,
+      "tracked_bytes": 508679,
+      "untracked_files": 1,
+      "untracked_bytes": 16096
+    },
+    "docs/evidence/phase8_3/fixed-source-20260912.json": {
+      "tracked_files": 1,
+      "tracked_bytes": 269936,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase8_3/repair-20260912": {
+      "tracked_files": 9,
+      "tracked_bytes": 199360,
+      "untracked_files": 2,
+      "untracked_bytes": 4375288
+    },
+    "docs/evidence/phase8_3/representation-assay-20260912": {
+      "tracked_files": 3,
+      "tracked_bytes": 19265,
+      "untracked_files": 1,
+      "untracked_bytes": 580514
+    },
+    "docs/evidence/phase8_3/runtime-package-20260912-r2": {
+      "tracked_files": 6,
+      "tracked_bytes": 90638,
+      "untracked_files": 1,
+      "untracked_bytes": 66
+    },
+    "docs/evidence/phase8_3/runtime-package-20260912-r3": {
+      "tracked_files": 4,
+      "tracked_bytes": 89456,
+      "untracked_files": 1,
+      "untracked_bytes": 66
+    },
+    "docs/evidence/phase8_3/runtime-package-20260912-r4": {
+      "tracked_files": 4,
+      "tracked_bytes": 89685,
+      "untracked_files": 1,
+      "untracked_bytes": 66
+    },
+    "docs/evidence/phase8_3/runtime-package-20260912-r5": {
+      "tracked_files": 4,
+      "tracked_bytes": 89959,
+      "untracked_files": 1,
+      "untracked_bytes": 66
+    },
+    "docs/evidence/phase8_3/server-connect-20260912-powered-on": {
+      "tracked_files": 2,
+      "tracked_bytes": 2316,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase8_3/server-first-pair-20260912": {
+      "tracked_files": 1,
+      "tracked_bytes": 3410,
+      "untracked_files": 36,
+      "untracked_bytes": 1332395
+    },
+    "docs/evidence/phase8_3/server-inertia-repair-20260912": {
+      "tracked_files": 2,
+      "tracked_bytes": 19020,
+      "untracked_files": 87,
+      "untracked_bytes": 11254449
+    },
+    "docs/evidence/phase8_3/server-initialization-repair-20260912": {
+      "tracked_files": 2,
+      "tracked_bytes": 13960,
+      "untracked_files": 108,
+      "untracked_bytes": 28157773
+    },
+    "docs/evidence/phase8_3/server-representation-20260912": {
+      "tracked_files": 2,
+      "tracked_bytes": 5885,
+      "untracked_files": 52,
+      "untracked_bytes": 11974245
+    },
+    "docs/evidence/phase8_3/server-reset-counterexample-20260912": {
+      "tracked_files": 1,
+      "tracked_bytes": 1702,
+      "untracked_files": 93,
+      "untracked_bytes": 14202156
+    },
+    "docs/evidence/phase8_4/calibration-package-20260913-r10": {
+      "tracked_files": 12,
+      "tracked_bytes": 213464,
+      "untracked_files": 3,
+      "untracked_bytes": 881
+    },
+    "docs/evidence/phase8_4/calibration-package-20260913-r11": {
+      "tracked_files": 11,
+      "tracked_bytes": 213030,
+      "untracked_files": 1,
+      "untracked_bytes": 66
+    },
+    "docs/evidence/phase8_4/command-prediction-v36-20260913": {
+      "tracked_files": 8,
+      "tracked_bytes": 69590,
+      "untracked_files": 5,
+      "untracked_bytes": 20874
+    },
+    "docs/evidence/phase8_4/command-prediction-v37-20260913": {
+      "tracked_files": 14,
+      "tracked_bytes": 88987,
+      "untracked_files": 9,
+      "untracked_bytes": 38183
+    },
+    "docs/evidence/phase8_4/control-inverse-repair-20260913-v31": {
+      "tracked_files": 5,
+      "tracked_bytes": 11625,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase8_4/controlled-lift-v33-20260913": {
+      "tracked_files": 7,
+      "tracked_bytes": 238337,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase8_4/evaluator-package-20260913-e1": {
+      "tracked_files": 4,
+      "tracked_bytes": 96007,
+      "untracked_files": 1,
+      "untracked_bytes": 66
+    },
+    "docs/evidence/phase8_4/evaluator-package-20260913-e2": {
+      "tracked_files": 8,
+      "tracked_bytes": 100253,
+      "untracked_files": 1,
+      "untracked_bytes": 66
+    },
+    "docs/evidence/phase8_4/feedback-package-20260913-r12": {
+      "tracked_files": 12,
+      "tracked_bytes": 118722,
+      "untracked_files": 1,
+      "untracked_bytes": 66
+    },
+    "docs/evidence/phase8_4/feedback-package-20260913-r13": {
+      "tracked_files": 13,
+      "tracked_bytes": 120545,
+      "untracked_files": 1,
+      "untracked_bytes": 66
+    },
+    "docs/evidence/phase8_4/feedback-package-20260913-r14": {
+      "tracked_files": 13,
+      "tracked_bytes": 122259,
+      "untracked_files": 1,
+      "untracked_bytes": 66
+    },
+    "docs/evidence/phase8_4/feedback-package-20260913-r15": {
+      "tracked_files": 14,
+      "tracked_bytes": 138330,
+      "untracked_files": 1,
+      "untracked_bytes": 66
+    },
+    "docs/evidence/phase8_4/feedback-package-20260913-r16": {
+      "tracked_files": 13,
+      "tracked_bytes": 129826,
+      "untracked_files": 1,
+      "untracked_bytes": 66
+    },
+    "docs/evidence/phase8_4/formal-approval-20260913": {
+      "tracked_files": 2,
+      "tracked_bytes": 1278,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase8_4/formal-validation-closeout-20260913": {
+      "tracked_files": 4,
+      "tracked_bytes": 187165,
+      "untracked_files": 3,
+      "untracked_bytes": 19160
+    },
+    "docs/evidence/phase8_4/free-water-inspection-20260913": {
+      "tracked_files": 1,
+      "tracked_bytes": 2358,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase8_4/free-water-package-20260913-r9": {
+      "tracked_files": 8,
+      "tracked_bytes": 106508,
+      "untracked_files": 1,
+      "untracked_bytes": 66
+    },
+    "docs/evidence/phase8_4/fresh-pilot-20260912": {
+      "tracked_files": 8,
+      "tracked_bytes": 37758,
+      "untracked_files": 45,
+      "untracked_bytes": 6254803
+    },
+    "docs/evidence/phase8_4/identification-fit-20260913-r17": {
+      "tracked_files": 29,
+      "tracked_bytes": 462796,
+      "untracked_files": 25,
+      "untracked_bytes": 3398998
+    },
+    "docs/evidence/phase8_4/identification-package-20260913-r17": {
+      "tracked_files": 13,
+      "tracked_bytes": 136663,
+      "untracked_files": 1,
+      "untracked_bytes": 66
+    },
+    "docs/evidence/phase8_4/identification-preparation-20260913-r17": {
+      "tracked_files": 2,
+      "tracked_bytes": 506991,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase8_4/kinematic-dictionary-v35-20260913": {
+      "tracked_files": 3,
+      "tracked_bytes": 17096,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase8_4/known-input-semantics-20260912": {
+      "tracked_files": 2,
+      "tracked_bytes": 19170,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase8_4/pilot-integrity-audit-20260912": {
+      "tracked_files": 2,
+      "tracked_bytes": 5529,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase8_4/projected-edmd-pilot-20260912": {
+      "tracked_files": 34,
+      "tracked_bytes": 2147886,
+      "untracked_files": 2,
+      "untracked_bytes": 25626459
+    },
+    "docs/evidence/phase8_4/projected-formal-package-v38-20260914-r20": {
+      "tracked_files": 16,
+      "tracked_bytes": 239002,
+      "untracked_files": 2,
+      "untracked_bytes": 1194
+    },
+    "docs/evidence/phase8_4/projected-formal-repair-v38-20260914-r21": {
+      "tracked_files": 24,
+      "tracked_bytes": 281393,
+      "untracked_files": 4,
+      "untracked_bytes": 99956
+    },
+    "docs/evidence/phase8_4/projected-formal-repair-v38-20260914-r22": {
+      "tracked_files": 38,
+      "tracked_bytes": 497446,
+      "untracked_files": 9,
+      "untracked_bytes": 139693
+    },
+    "docs/evidence/phase8_4/runtime-package-20260912-r6": {
+      "tracked_files": 4,
+      "tracked_bytes": 91179,
+      "untracked_files": 1,
+      "untracked_bytes": 66
+    },
+    "docs/evidence/phase8_4/runtime-package-20260912-r7": {
+      "tracked_files": 4,
+      "tracked_bytes": 91584,
+      "untracked_files": 1,
+      "untracked_bytes": 66
+    },
+    "docs/evidence/phase8_4/runtime-package-20260912-r8": {
+      "tracked_files": 11,
+      "tracked_bytes": 160400,
+      "untracked_files": 1,
+      "untracked_bytes": 66
+    },
+    "docs/evidence/phase8_4/server-calibration-20260913-r11": {
+      "tracked_files": 6,
+      "tracked_bytes": 203938,
+      "untracked_files": 160,
+      "untracked_bytes": 133300816
+    },
+    "docs/evidence/phase8_4/server-direct-seam-20260912": {
+      "tracked_files": 3,
+      "tracked_bytes": 39159,
+      "untracked_files": 69,
+      "untracked_bytes": 11681901
+    },
+    "docs/evidence/phase8_4/server-feedback-20260913-r12": {
+      "tracked_files": 4,
+      "tracked_bytes": 8685,
+      "untracked_files": 57,
+      "untracked_bytes": 14676147
+    },
+    "docs/evidence/phase8_4/server-feedback-20260913-r13": {
+      "tracked_files": 2,
+      "tracked_bytes": 4283,
+      "untracked_files": 62,
+      "untracked_bytes": 16646896
+    },
+    "docs/evidence/phase8_4/server-feedback-20260913-r14": {
+      "tracked_files": 10,
+      "tracked_bytes": 69660,
+      "untracked_files": 191,
+      "untracked_bytes": 198542394
+    },
+    "docs/evidence/phase8_4/server-feedback-20260913-r15": {
+      "tracked_files": 4,
+      "tracked_bytes": 25916,
+      "untracked_files": 180,
+      "untracked_bytes": 190126752
+    },
+    "docs/evidence/phase8_4/server-feedback-20260913-r16": {
+      "tracked_files": 10,
+      "tracked_bytes": 88886,
+      "untracked_files": 192,
+      "untracked_bytes": 231847666
+    },
+    "docs/evidence/phase8_4/server-formal-20260912-r8": {
+      "tracked_files": 4,
+      "tracked_bytes": 46387,
+      "untracked_files": 292,
+      "untracked_bytes": 1236667789
+    },
+    "docs/evidence/phase8_4/server-free-water-20260913-r9": {
+      "tracked_files": 7,
+      "tracked_bytes": 415869,
+      "untracked_files": 145,
+      "untracked_bytes": 42828066
+    },
+    "docs/evidence/phase8_4/server-fresh-pilot-20260912-r7": {
+      "tracked_files": 3,
+      "tracked_bytes": 10840,
+      "untracked_files": 106,
+      "untracked_bytes": 114348999
+    },
+    "docs/evidence/phase8_4/server-identification-20260913-r17": {
+      "tracked_files": 5,
+      "tracked_bytes": 70776,
+      "untracked_files": 284,
+      "untracked_bytes": 501806334
+    },
+    "docs/evidence/phase8_4/server-projected-formal-v38-r20": {
+      "tracked_files": 16,
+      "tracked_bytes": 106911,
+      "untracked_files": 882,
+      "untracked_bytes": 205913951
+    },
+    "docs/evidence/phase8_4/server-projected-formal-v38-r21": {
+      "tracked_files": 15,
+      "tracked_bytes": 304258,
+      "untracked_files": 693,
+      "untracked_bytes": 742803727
+    },
+    "docs/evidence/phase8_4/server-projected-formal-v38-r22": {
+      "tracked_files": 257,
+      "tracked_bytes": 11606783,
+      "untracked_files": 341,
+      "untracked_bytes": 21735159
+    },
+    "docs/evidence/phase8_4/server-projected-formal-v38-r23": {
+      "tracked_files": 279,
+      "tracked_bytes": 11851776,
+      "untracked_files": 1052,
+      "untracked_bytes": 764744714
+    },
+    "docs/evidence/phase8_4/server-structured-pilot-20260912-r7": {
+      "tracked_files": 2,
+      "tracked_bytes": 9868,
+      "untracked_files": 105,
+      "untracked_bytes": 114339413
+    },
+    "docs/evidence/phase8_4/server-validation-20260913-r18": {
+      "tracked_files": 4,
+      "tracked_bytes": 16885,
+      "untracked_files": 104,
+      "untracked_bytes": 90398544
+    },
+    "docs/evidence/phase8_4/server-validation-20260913-r19": {
+      "tracked_files": 4,
+      "tracked_bytes": 38578,
+      "untracked_files": 156,
+      "untracked_bytes": 264634713
+    },
+    "docs/evidence/phase8_4/state-dynamics-local-20260913": {
+      "tracked_files": 7,
+      "tracked_bytes": 395000,
+      "untracked_files": 2,
+      "untracked_bytes": 11159
+    },
+    "docs/evidence/phase8_4/state-projection-v34-20260913": {
+      "tracked_files": 4,
+      "tracked_bytes": 18085,
+      "untracked_files": 1,
+      "untracked_bytes": 594554
+    },
+    "docs/evidence/phase8_4/structured-edmd-pilot-20260912": {
+      "tracked_files": 39,
+      "tracked_bytes": 2219374,
+      "untracked_files": 2,
+      "untracked_bytes": 38275954
+    },
+    "docs/evidence/phase8_4/structured-pilot-20260912": {
+      "tracked_files": 6,
+      "tracked_bytes": 26511,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase8_4/structured-pilot-integrity-audit-20260912": {
+      "tracked_files": 2,
+      "tracked_bytes": 5529,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase8_4/validation-analysis-closeout-20260913-r19": {
+      "tracked_files": 3,
+      "tracked_bytes": 161300,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase8_4/validation-package-20260913-r18": {
+      "tracked_files": 18,
+      "tracked_bytes": 233127,
+      "untracked_files": 35,
+      "untracked_bytes": 2224236
+    },
+    "docs/evidence/phase8_4/validation-package-20260913-r19": {
+      "tracked_files": 20,
+      "tracked_bytes": 247591,
+      "untracked_files": 35,
+      "untracked_bytes": 2224236
+    },
+    "docs/evidence/phase9/algorithm-profile-v63-local": {
+      "tracked_files": 3,
+      "tracked_bytes": 76168,
+      "untracked_files": 2,
+      "untracked_bytes": 44230
+    },
+    "docs/evidence/phase9/allocation-v42-checks-20260920": {
+      "tracked_files": 6,
+      "tracked_bytes": 21232,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/allocation-v42-pilot-20260920": {
+      "tracked_files": 3,
+      "tracked_bytes": 15500,
+      "untracked_files": 11,
+      "untracked_bytes": 73202
+    },
+    "docs/evidence/phase9/allocation-v42-profile-20260920": {
+      "tracked_files": 2,
+      "tracked_bytes": 42800,
+      "untracked_files": 1,
+      "untracked_bytes": 7246
+    },
+    "docs/evidence/phase9/allocation-v69-20260921": {
+      "tracked_files": 1,
+      "tracked_bytes": 1198,
+      "untracked_files": 1,
+      "untracked_bytes": 1016
+    },
+    "docs/evidence/phase9/arbiter-v52-checks-20260920": {
+      "tracked_files": 14,
+      "tracked_bytes": 66840,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/architecture-audit-v83-20260926": {
+      "tracked_files": 5,
+      "tracked_bytes": 284204,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/batch-v41-full-20260920": {
+      "tracked_files": 3,
+      "tracked_bytes": 26653,
+      "untracked_files": 7,
+      "untracked_bytes": 55680
+    },
+    "docs/evidence/phase9/batch-v41-pilot-20260920": {
+      "tracked_files": 2,
+      "tracked_bytes": 13831,
+      "untracked_files": 7,
+      "untracked_bytes": 55680
+    },
+    "docs/evidence/phase9/batch-v41-profile-20260920": {
+      "tracked_files": 3,
+      "tracked_bytes": 42087,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/bilinear-calibration-v85-20260927": {
+      "tracked_files": 121,
+      "tracked_bytes": 46219927,
+      "untracked_files": 5,
+      "untracked_bytes": 40247
+    },
+    "docs/evidence/phase9/cached-checks-v53-20260920": {
+      "tracked_files": 8,
+      "tracked_bytes": 16458,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/causal-inputs-v84-20260927": {
+      "tracked_files": 1,
+      "tracked_bytes": 9770,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/command-state-profile-v39-20260920": {
+      "tracked_files": 2,
+      "tracked_bytes": 149231,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/command-state-v39-20260920": {
+      "tracked_files": 2,
+      "tracked_bytes": 189843,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/common-profile-v78-20260924": {
+      "tracked_files": 91,
+      "tracked_bytes": 528422,
+      "untracked_files": 38,
+      "untracked_bytes": 19888880
+    },
+    "docs/evidence/phase9/compiled-mpc-v64-local": {
+      "tracked_files": 1,
+      "tracked_bytes": 1340,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/compiled-mpc-v64-local-r2": {
+      "tracked_files": 16,
+      "tracked_bytes": 395112,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/compiled-mpc-v64-server-20260921": {
+      "tracked_files": 76,
+      "tracked_bytes": 1525641,
+      "untracked_files": 49,
+      "untracked_bytes": 242480
+    },
+    "docs/evidence/phase9/compiled-v43-checks-20260920": {
+      "tracked_files": 12,
+      "tracked_bytes": 327074,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/compiled-v43-pilot-20260920": {
+      "tracked_files": 3,
+      "tracked_bytes": 17310,
+      "untracked_files": 14,
+      "untracked_bytes": 85770
+    },
+    "docs/evidence/phase9/continuity-v54-checks-20260920": {
+      "tracked_files": 7,
+      "tracked_bytes": 30251,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/continuous-v76-20260924": {
+      "tracked_files": 333,
+      "tracked_bytes": 2019897,
+      "untracked_files": 122,
+      "untracked_bytes": 17076094
+    },
+    "docs/evidence/phase9/control-effects-v65-20260921": {
+      "tracked_files": 52,
+      "tracked_bytes": 620016,
+      "untracked_files": 64,
+      "untracked_bytes": 2843981
+    },
+    "docs/evidence/phase9/deadzone-v49-probe-20260920": {
+      "tracked_files": 4,
+      "tracked_bytes": 3501,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/deadzone-v51-checks-20260920": {
+      "tracked_files": 9,
+      "tracked_bytes": 20654,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/disturbance-v86-20260929": {
+      "tracked_files": 52,
+      "tracked_bytes": 1186505,
+      "untracked_files": 83,
+      "untracked_bytes": 29754958
+    },
+    "docs/evidence/phase9/diverse-v87-20260929": {
+      "tracked_files": 86,
+      "tracked_bytes": 1181640,
+      "untracked_files": 248,
+      "untracked_bytes": 120830554
+    },
+    "docs/evidence/phase9/execution-v48-checks-20260920": {
+      "tracked_files": 10,
+      "tracked_bytes": 33740,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/execution-v48-diagnosis-20260920": {
+      "tracked_files": 4,
+      "tracked_bytes": 18000,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/execution-v48-replay-20260920": {
+      "tracked_files": 10,
+      "tracked_bytes": 94694,
+      "untracked_files": 12,
+      "untracked_bytes": 113592
+    },
+    "docs/evidence/phase9/execution-v49-checks-20260920": {
+      "tracked_files": 7,
+      "tracked_bytes": 35707,
+      "untracked_files": 6,
+      "untracked_bytes": 47638
+    },
+    "docs/evidence/phase9/failure-audit-v72-20260921": {
+      "tracked_files": 5,
+      "tracked_bytes": 40423,
+      "untracked_files": 29,
+      "untracked_bytes": 235414
+    },
+    "docs/evidence/phase9/fallback-v46-checks-20260920": {
+      "tracked_files": 11,
+      "tracked_bytes": 43191,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/fallback-v46-limit-diagnosis-20260920": {
+      "tracked_files": 2,
+      "tracked_bytes": 19885,
+      "untracked_files": 1,
+      "untracked_bytes": 6508
+    },
+    "docs/evidence/phase9/fallback-v46-pilot-20260920": {
+      "tracked_files": 9,
+      "tracked_bytes": 516335,
+      "untracked_files": 11,
+      "untracked_bytes": 632336
+    },
+    "docs/evidence/phase9/fallback-v47-checks-20260920": {
+      "tracked_files": 9,
+      "tracked_bytes": 40684,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/fallback-v47-pilot-20260920": {
+      "tracked_files": 9,
+      "tracked_bytes": 878414,
+      "untracked_files": 12,
+      "untracked_bytes": 1032219
+    },
+    "docs/evidence/phase9/git-snapshot-20260929": {
+      "tracked_files": 4,
+      "tracked_bytes": 1679787,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/isaac-adapter-v55-checks-20260920": {
+      "tracked_files": 13,
+      "tracked_bytes": 47517,
+      "untracked_files": 7,
+      "untracked_bytes": 56585
+    },
+    "docs/evidence/phase9/learned-control-v82-20260926": {
+      "tracked_files": 156,
+      "tracked_bytes": 18915756,
+      "untracked_files": 72,
+      "untracked_bytes": 26729572
+    },
+    "docs/evidence/phase9/learned-velocity-v81-20260926": {
+      "tracked_files": 95,
+      "tracked_bytes": 10931411,
+      "untracked_files": 7,
+      "untracked_bytes": 96285
+    },
+    "docs/evidence/phase9/lifecycle-fix-v70-20260921": {
+      "tracked_files": 14,
+      "tracked_bytes": 48183,
+      "untracked_files": 29,
+      "untracked_bytes": 659532
+    },
+    "docs/evidence/phase9/lifted-calibration-v84-20260927": {
+      "tracked_files": 120,
+      "tracked_bytes": 32572494,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/matrix-v88-20260929": {
+      "tracked_files": 86,
+      "tracked_bytes": 2728081,
+      "untracked_files": 247,
+      "untracked_bytes": 118755466
+    },
+    "docs/evidence/phase9/method-audit-v79-20260926": {
+      "tracked_files": 15,
+      "tracked_bytes": 332888,
+      "untracked_files": 6,
+      "untracked_bytes": 26391625
+    },
+    "docs/evidence/phase9/model-comparison-v84-20260927": {
+      "tracked_files": 85,
+      "tracked_bytes": 29358734,
+      "untracked_files": 3,
+      "untracked_bytes": 27940
+    },
+    "docs/evidence/phase9/mpc-v44-checks-20260920": {
+      "tracked_files": 16,
+      "tracked_bytes": 28718,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/mpc-v44-pilot-20260920": {
+      "tracked_files": 11,
+      "tracked_bytes": 742444,
+      "untracked_files": 12,
+      "untracked_bytes": 94558
+    },
+    "docs/evidence/phase9/mpc-v44-profile-20260920": {
+      "tracked_files": 2,
+      "tracked_bytes": 150992,
+      "untracked_files": 9,
+      "untracked_bytes": 69487
+    },
+    "docs/evidence/phase9/multiconfig-v68-20260921": {
+      "tracked_files": 12,
+      "tracked_bytes": 24097,
+      "untracked_files": 29,
+      "untracked_bytes": 238163
+    },
+    "docs/evidence/phase9/multiconfig-v69-20260921": {
+      "tracked_files": 12,
+      "tracked_bytes": 45139,
+      "untracked_files": 28,
+      "untracked_bytes": 637732
+    },
+    "docs/evidence/phase9/native-exit-v69-20260921": {
+      "tracked_files": 14,
+      "tracked_bytes": 3427,
+      "untracked_files": 17,
+      "untracked_bytes": 885551
+    },
+    "docs/evidence/phase9/native-exit-v70-20260921": {
+      "tracked_files": 9,
+      "tracked_bytes": 3783,
+      "untracked_files": 7,
+      "untracked_bytes": 574373
+    },
+    "docs/evidence/phase9/prepared-commands-v45-checks-20260920": {
+      "tracked_files": 8,
+      "tracked_bytes": 53467,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/prepared-commands-v45-pilot-20260920": {
+      "tracked_files": 9,
+      "tracked_bytes": 1570291,
+      "untracked_files": 15,
+      "untracked_bytes": 1892172
+    },
+    "docs/evidence/phase9/prepared-v40-full-20260920": {
+      "tracked_files": 3,
+      "tracked_bytes": 193679,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/prepared-v40-pilot-20260920": {
+      "tracked_files": 3,
+      "tracked_bytes": 15597,
+      "untracked_files": 5,
+      "untracked_bytes": 41831
+    },
+    "docs/evidence/phase9/preview-v80-20260926": {
+      "tracked_files": 161,
+      "tracked_bytes": 1747867,
+      "untracked_files": 65,
+      "untracked_bytes": 33395833
+    },
+    "docs/evidence/phase9/rate30-primary-v67-20260921": {
+      "tracked_files": 29,
+      "tracked_bytes": 160277,
+      "untracked_files": 36,
+      "untracked_bytes": 1189360
+    },
+    "docs/evidence/phase9/rate30-v67-20260921": {
+      "tracked_files": 17,
+      "tracked_bytes": 1166319,
+      "untracked_files": 69,
+      "untracked_bytes": 23746601
+    },
+    "docs/evidence/phase9/recovery-v50-checks-20260920": {
+      "tracked_files": 10,
+      "tracked_bytes": 23356,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/recovery-v50-diagnosis-20260920": {
+      "tracked_files": 5,
+      "tracked_bytes": 6813,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/recovery-v50-worker-20260920": {
+      "tracked_files": 10,
+      "tracked_bytes": 477077,
+      "untracked_files": 18,
+      "untracked_bytes": 157944
+    },
+    "docs/evidence/phase9/recovery-v51-worker-20260920": {
+      "tracked_files": 10,
+      "tracked_bytes": 536290,
+      "untracked_files": 22,
+      "untracked_bytes": 182533
+    },
+    "docs/evidence/phase9/reliable-v77-20260924": {
+      "tracked_files": 263,
+      "tracked_bytes": 1277275,
+      "untracked_files": 116,
+      "untracked_bytes": 43131729
+    },
+    "docs/evidence/phase9/remaining-coverage-v73-20260921": {
+      "tracked_files": 134,
+      "tracked_bytes": 971786,
+      "untracked_files": 87,
+      "untracked_bytes": 6413362
+    },
+    "docs/evidence/phase9/residual-attribution-v84-20260927": {
+      "tracked_files": 3,
+      "tracked_bytes": 9514162,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/root-cause-v74-20260922": {
+      "tracked_files": 1,
+      "tracked_bytes": 36086,
+      "untracked_files": 2,
+      "untracked_bytes": 5744
+    },
+    "docs/evidence/phase9/runtime-assets-v56-checks-20260920": {
+      "tracked_files": 13,
+      "tracked_bytes": 13082,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/runtime-assets-v56-diagnosis-20260920": {
+      "tracked_files": 2,
+      "tracked_bytes": 718,
+      "untracked_files": 1,
+      "untracked_bytes": 6687
+    },
+    "docs/evidence/phase9/runtime-assets-v56-diagnosis02-20260920": {
+      "tracked_files": 2,
+      "tracked_bytes": 27193,
+      "untracked_files": 1,
+      "untracked_bytes": 6691
+    },
+    "docs/evidence/phase9/runtime-assets-v56-relocation-20260920": {
+      "tracked_files": 2,
+      "tracked_bytes": 33587,
+      "untracked_files": 3,
+      "untracked_bytes": 23758
+    },
+    "docs/evidence/phase9/runtime-collector-v57-checks-20260920": {
+      "tracked_files": 26,
+      "tracked_bytes": 67719,
+      "untracked_files": 10,
+      "untracked_bytes": 65745
+    },
+    "docs/evidence/phase9/runtime-profile-v60-20260920": {
+      "tracked_files": 44,
+      "tracked_bytes": 855781,
+      "untracked_files": 26,
+      "untracked_bytes": 248734
+    },
+    "docs/evidence/phase9/runtime-release-v58-checks-20260920": {
+      "tracked_files": 29,
+      "tracked_bytes": 114909,
+      "untracked_files": 9,
+      "untracked_bytes": 56040
+    },
+    "docs/evidence/phase9/runtime-repair-v59-checks-20260920": {
+      "tracked_files": 5,
+      "tracked_bytes": 3006,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/runtime-v52-diagnosis-20260920": {
+      "tracked_files": 6,
+      "tracked_bytes": 40382,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/runtime-v52-fixture-20260920": {
+      "tracked_files": 10,
+      "tracked_bytes": 317880,
+      "untracked_files": 27,
+      "untracked_bytes": 238509
+    },
+    "docs/evidence/phase9/runtime-v52-worker-diagnosis-20260920": {
+      "tracked_files": 6,
+      "tracked_bytes": 39456,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/runtime-v53-pilot-20260920": {
+      "tracked_files": 4,
+      "tracked_bytes": 245188,
+      "untracked_files": 30,
+      "untracked_bytes": 259138
+    },
+    "docs/evidence/phase9/runtime-v54-pilot-20260920": {
+      "tracked_files": 4,
+      "tracked_bytes": 249012,
+      "untracked_files": 33,
+      "untracked_bytes": 275344
+    },
+    "docs/evidence/phase9/runtime-v62-20260920": {
+      "tracked_files": 40,
+      "tracked_bytes": 776130,
+      "untracked_files": 36,
+      "untracked_bytes": 214925
+    },
+    "docs/evidence/phase9/separation-v79-20260925": {
+      "tracked_files": 4,
+      "tracked_bytes": 102198,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "docs/evidence/phase9/server-parity-v84-20260927": {
+      "tracked_files": 45,
+      "tracked_bytes": 308380,
+      "untracked_files": 19,
+      "untracked_bytes": 1389668
+    },
+    "docs/evidence/phase9/server-preflight-v58-20260920": {
+      "tracked_files": 31,
+      "tracked_bytes": 1213981,
+      "untracked_files": 15,
+      "untracked_bytes": 25195346
+    },
+    "docs/evidence/phase9/server-preflight-v59-20260920": {
+      "tracked_files": 25,
+      "tracked_bytes": 318240,
+      "untracked_files": 9,
+      "untracked_bytes": 25204493
+    },
+    "docs/evidence/phase9/single-configuration-v85-20260927": {
+      "tracked_files": 26,
+      "tracked_bytes": 4428002,
+      "untracked_files": 6,
+      "untracked_bytes": 44819
+    },
+    "docs/evidence/phase9/startup-v68-20260921": {
+      "tracked_files": 3,
+      "tracked_bytes": 41094,
+      "untracked_files": 2,
+      "untracked_bytes": 4524774
+    },
+    "docs/evidence/phase9/suanliyun-v75-20260922": {
+      "tracked_files": 7,
+      "tracked_bytes": 126873,
+      "untracked_files": 1,
+      "untracked_bytes": 222
+    },
+    "docs/evidence/phase9/uuv4-pairs-v71-20260921": {
+      "tracked_files": 15,
+      "tracked_bytes": 45747,
+      "untracked_files": 52,
+      "untracked_bytes": 894597
+    },
+    "docs/evidence/phase9/worker-v49-checks-20260920": {
+      "tracked_files": 4,
+      "tracked_bytes": 11759,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "easyuuv_v2-main": {
+      "tracked_files": 0,
+      "tracked_bytes": 0,
+      "untracked_files": 345,
+      "untracked_bytes": 147869742
+    },
+    "source/results/koopman_models": {
+      "tracked_files": 2,
+      "tracked_bytes": 10621,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "source/results/koopman_phase1": {
+      "tracked_files": 6,
+      "tracked_bytes": 4374148,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "source/results/koopman_phase2_5": {
+      "tracked_files": 86,
+      "tracked_bytes": 893900,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "source/results/koopman_phase2_5_verify_20260701_231802": {
+      "tracked_files": 86,
+      "tracked_bytes": 895090,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "source/results/koopman_phase3": {
+      "tracked_files": 2,
+      "tracked_bytes": 2783,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "source/results/koopman_phase3_5": {
+      "tracked_files": 8,
+      "tracked_bytes": 61220,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "source/results/koopman_phase4": {
+      "tracked_files": 22,
+      "tracked_bytes": 17775675,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "source/results/koopman_phase5": {
+      "tracked_files": 3,
+      "tracked_bytes": 9438,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "source/results/koopman_phase5_1": {
+      "tracked_files": 7,
+      "tracked_bytes": 3963103,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "source/results/koopman_phase5_2_server": {
+      "tracked_files": 22,
+      "tracked_bytes": 18039043,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "source/results/koopman_phase5_3_server": {
+      "tracked_files": 4,
+      "tracked_bytes": 11465,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "source/results/koopman_phase5_4": {
+      "tracked_files": 141,
+      "tracked_bytes": 63150412,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "source/results/koopman_phase6": {
+      "tracked_files": 64,
+      "tracked_bytes": 75182,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "source/results/koopman_phase7": {
+      "tracked_files": 46,
+      "tracked_bytes": 106855,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "source/results/koopman_phase8_2": {
+      "tracked_files": 399,
+      "tracked_bytes": 173806251,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "source/results/koopman_phase8_dataset": {
+      "tracked_files": 294,
+      "tracked_bytes": 159083695,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "source/results/koopman_phase8_evaluation": {
+      "tracked_files": 107,
+      "tracked_bytes": 2036059,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "source/results/koopman_phase8_pilot": {
+      "tracked_files": 52,
+      "tracked_bytes": 6506399,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "source/results/koopman_phase8_selection": {
+      "tracked_files": 2,
+      "tracked_bytes": 4896,
+      "untracked_files": 0,
+      "untracked_bytes": 0
+    },
+    "source/results/phase8.4-controlled-lift-v33-20260913": {
+      "tracked_files": 0,
+      "tracked_bytes": 0,
+      "untracked_files": 40,
+      "untracked_bytes": 8616684
+    },
+    "source/results/phase8.4-kinematic-dictionary-v35-20260913": {
+      "tracked_files": 0,
+      "tracked_bytes": 0,
+      "untracked_files": 40,
+      "untracked_bytes": 2077897
+    },
+    "source/results/phase8.4-sparse-world-pilot-v30-20260913": {
+      "tracked_files": 0,
+      "tracked_bytes": 0,
+      "untracked_files": 563,
+      "untracked_bytes": 14921273
+    },
+    "source/results/phase8.4-state-projection-v34-20260913": {
+      "tracked_files": 0,
+      "tracked_bytes": 0,
+      "untracked_files": 31,
+      "untracked_bytes": 1822357
+    },
+    "tmp": {
+      "tracked_files": 0,
+      "tracked_bytes": 0,
+      "untracked_files": 5,
+      "untracked_bytes": 2227263
+    }
+  },
+  "untracked_preservation_policy": "No untracked files approved for deletion; inventory sizes do not prove duplication or backup.",
+  "counts": {
+    "tracked_core_python": 744,
+    "conservative_current_entry_closure": 186,
+    "with_selected_regression_closure": 212,
+    "outside_selected_closure_candidates": 537
+  },
+  "selected_archive_candidates": [
+    {
+      "path": "docs/evidence/phase9/disturbance-v86-20260929/release-r2/source.tar.gz",
+      "bytes": 13286067,
+      "sha256": "5685abd066f2714455d3b54571b90d6e1451441800dc42ae5c45255c1d97ecd8",
+      "archive_members": 735,
+      "status": "readable_archive_headers_only_not_full_restore_verified"
+    },
+    {
+      "path": "docs/evidence/phase9/disturbance-v86-20260929/server-evidence.tar.gz",
+      "bytes": 7546333,
+      "sha256": "28cbb2f453181358e3acc7d08de11332f88fc1c7c0043d5a74807d948f27cab5",
+      "archive_members": 115,
+      "status": "readable_archive_headers_only_not_full_restore_verified"
+    },
+    {
+      "path": "docs/evidence/phase9/diverse-v87-20260929/release-r1/source.tar.gz",
+      "bytes": 13292920,
+      "sha256": "9ee09de46994e8ff48545b096a04521b602fea17529d2cb409bee4516a4a59f2",
+      "archive_members": 745,
+      "status": "readable_archive_headers_only_not_full_restore_verified"
+    },
+    {
+      "path": "docs/evidence/phase9/diverse-v87-20260929/server-evidence.tar.gz",
+      "bytes": 53360448,
+      "sha256": "fcefaeb2ad71625cf2251cc7300b2b7aab8c20dbcd6a46ffbae2d44786be38e1",
+      "archive_members": 308,
+      "status": "readable_archive_headers_only_not_full_restore_verified"
+    },
+    {
+      "path": "docs/evidence/phase9/matrix-v88-20260929/release-r1/source.tar.gz",
+      "bytes": 13360722,
+      "sha256": "65c0e24d801ffc11456191968556834dd69611f03bc5e5a9c015d737a003ef49",
+      "archive_members": 758,
+      "status": "readable_archive_headers_only_not_full_restore_verified"
+    },
+    {
+      "path": "docs/evidence/phase9/matrix-v88-20260929/server-evidence.tar.gz",
+      "bytes": 52301843,
+      "sha256": "7a6ff3b7737a8664ae3947d3bd220cfd0b1963e9d87e6f4ea655d033e9d24375",
+      "archive_members": 309,
+      "status": "readable_archive_headers_only_not_full_restore_verified"
+    }
+  ],
+  "current_consolidation": {
+    "branch": "codex/consolidate-current-modules",
+    "base": "1d7d1f4379b763e7bd6146ab650203128078260d",
+    "active_package_files": [
+      "docs/evidence/phase9/diverse-v87-20260929/server/model.json",
+      "docs/evidence/phase9/learned-velocity-v81-20260926/normalized-quaternion/pooled__physical.json",
+      "docs/evidence/phase9/matrix-v88-20260929/support.json",
+      "easyuuv_nc/__init__.py",
+      "easyuuv_nc/control.py",
+      "easyuuv_nc/data/embodiment/Props/instanceable_meshes.usd",
+      "easyuuv_nc/data/embodiment/config.yaml",
+      "easyuuv_nc/data/embodiment/embodiment.usd",
+      "easyuuv_nc/disturbance_v86.py",
+      "easyuuv_nc/embodiments.py",
+      "easyuuv_nc/env/__init__.py",
+      "easyuuv_nc/env/agents/__init__.py",
+      "easyuuv_nc/env/agents/rsl_rl_ppo_cfg.py",
+      "easyuuv_nc/env/assets/__init__.py",
+      "easyuuv_nc/env/assets/warpauv.py",
+      "easyuuv_nc/env/boundary_effects.py",
+      "easyuuv_nc/env/easyuuv_env.py",
+      "easyuuv_nc/env/gain_tuner.py",
+      "easyuuv_nc/env/rigid_body_hydrodynamics.py",
+      "easyuuv_nc/env/thruster_dynamics.py",
+      "easyuuv_nc/env/wave_disturbance_manager.py",
+      "easyuuv_nc/initialization_v23.py",
+      "easyuuv_nc/package_paths.py",
+      "easyuuv_nc/task_registration.py",
+      "easyuuv_nc/thrust_allocation.py",
+      "experiments/phase9/v86/protocol.json",
+      "experiments/phase9/v87/protocol.json",
+      "experiments/phase9/v88/protocol.json",
+      "isaaclab_app.py",
+      "isaaclab_compat.py",
+      "koopman/__init__.py",
+      "koopman/actuator_memory_v21.py",
+      "koopman/bounded_feedback_v46.py",
+      "koopman/bounded_feedback_v47.py",
+      "koopman/bounded_mpc_v44.py",
+      "koopman/bounded_mpc_v45.py",
+      "koopman/bounded_mpc_v51.py",
+      "koopman/bounded_mpc_v64.py",
+      "koopman/bounded_mpc_v67.py",
+      "koopman/cached_checks_v53.py",
+      "koopman/collection_v2.py",
+      "koopman/command_batch_v42.py",
+      "koopman/command_batch_v45.py",
+      "koopman/command_prediction_v37.py",
+      "koopman/command_state_v39.py",
+      "koopman/compiled_forecast_v64.py",
+      "koopman/compiled_projected_v43.py",
+      "koopman/compiled_recovery_v64.py",
+      "koopman/continuous_mpc.py",
+      "koopman/continuous_prediction_v76.py",
+      "koopman/contracts_v21.py",
+      "koopman/control_objective_v44.py",
+      "koopman/control_solver.py",
+      "koopman/control_support_v88.py",
+      "koopman/d23_approval_v21.py",
+      "koopman/dataset_v2.py",
+      "koopman/diagnostics_v23.py",
+      "koopman/disturbance_lifted_v86.py",
+      "koopman/evidence_v2.py",
+      "koopman/execution_ledger_v48.py",
+      "koopman/inexact_tracking_v66.py",
+      "koopman/lifted_propagation_v84.py",
+      "koopman/metrics_v21.py",
+      "koopman/physical_control_v76.py",
+      "koopman/physical_prediction_v29.py",
+      "koopman/physical_terms_v26.py",
+      "koopman/plan_arbiter_v52.py",
+      "koopman/plan_continuity_v54.py",
+      "koopman/planning_margin.py",
+      "koopman/prepared_allocation_v42.py",
+      "koopman/prepared_commands_v45.py",
+      "koopman/prepared_execution_v49.py",
+      "koopman/prepared_projected_v40.py",
+      "koopman/projected_edmd_v24.py",
+      "koopman/protocol_v2.py",
+      "koopman/rate30_v67.py",
+      "koopman/recovery_solver_v50.py",
+      "koopman/recovery_solver_v51.py",
+      "koopman/runtime_coordinator_v52.py",
+      "koopman/schema_v2.py",
+      "koopman/schema_v21.py",
+      "koopman/so3_v21.py",
+      "koopman/solver_worker_v49.py",
+      "koopman/sparse_world_edmd_v30.py",
+      "koopman_data.py",
+      "workflows/actuator_replay_v28.py",
+      "workflows/calibration_trace_v27.py",
+      "workflows/collect_disturbance_data.py",
+      "workflows/collect_formal_v25.py",
+      "workflows/collect_koopman_v21_identification.py",
+      "workflows/collect_koopman_v2_identification.py",
+      "workflows/collect_koopman_v2_smoke.py",
+      "workflows/collect_runtime_v57.py",
+      "workflows/control_seam_v23.py",
+      "workflows/control_trace_v23.py",
+      "workflows/disturbance_data.py",
+      "workflows/disturbance_protocol.py",
+      "workflows/easyuuv_v2_qualification_artifact.py",
+      "workflows/evaluate_disturbance.py",
+      "workflows/evaluate_projected_edmd_v24.py",
+      "workflows/feedback_inverse_v28.py",
+      "workflows/feedback_inverse_v31.py",
+      "workflows/feedback_v28.py",
+      "workflows/feedback_v31.py",
+      "workflows/fit_disturbance.py",
+      "workflows/formal_contract_v25.py",
+      "workflows/free_water_microtrace_v26.py",
+      "workflows/free_water_runtime_v26.py",
+      "workflows/free_water_trace_v26.py",
+      "workflows/free_water_v26.py",
+      "workflows/freeze_support.py",
+      "workflows/geometry_v76.py",
+      "workflows/identification_adapter_v29.py",
+      "workflows/identification_prediction_v32.py",
+      "workflows/identification_protocol_v29.py",
+      "workflows/identify_sparse_world_v30.py",
+      "workflows/isaac_execution_v55.py",
+      "workflows/koopman_bridge_v2.py",
+      "workflows/koopman_bridge_v21.py",
+      "workflows/koopman_logging.py",
+      "workflows/phase9_preflight_v57.py",
+      "workflows/pilot_control_v24.py",
+      "workflows/prepare_disturbance.py",
+      "workflows/projected_budget_v38.py",
+      "workflows/projected_evaluation_v38.py",
+      "workflows/projected_models_v38.py",
+      "workflows/projected_protocol_v38.py",
+      "workflows/projected_release_v38.py",
+      "workflows/projected_resource_v38.py",
+      "workflows/protocol_v80.py",
+      "workflows/qualify_easyuuv_v2.py",
+      "workflows/runtime_assets_v56.py",
+      "workflows/runtime_audit_v57.py",
+      "workflows/runtime_audit_v67.py",
+      "workflows/runtime_episode_v57.py",
+      "workflows/runtime_episode_v59.py",
+      "workflows/runtime_episode_v67.py",
+      "workflows/runtime_lifecycle_v70.py",
+      "workflows/solve_disturbance.py",
+      "workflows/source_freeze.py",
+      "workflows/validate_control_trace_v23.py",
+      "workflows/validate_effects_v67.py",
+      "workflows/validate_feedback_v28.py",
+      "workflows/validate_formal_trace_v25.py",
+      "workflows/validate_free_water_v26.py",
+      "workflows/validate_identification_v29.py",
+      "workflows/validate_phase8_pilot_policy.py",
+      "workflows/workpoint_v27.py"
+    ],
+    "merged_legacy_modules": [
+      {
+        "path": "easyuuv_nc/control_v24.py",
+        "role": "direct_control",
+        "replaced_by": [
+          "easyuuv_nc/control.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "2db624da6fc5c934d82f01689920d551a5a50ce1",
+        "sha256": "0672472f2138e1a387f8f9890975b6cdfcfea1db06aef8300016553164c21ffa",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "easyuuv_nc/control_v67.py",
+        "role": "direct_control",
+        "replaced_by": [
+          "easyuuv_nc/control.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "e3f3425368d2a328ff242c3e73ecf6fa8ac9d188",
+        "sha256": "7432b96b6502d454d1f2c8df75c219dfae533cd32315684d68590a8f9f9019f8",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "koopman/continuous_mpc_v76.py",
+        "role": "continuous_mpc",
+        "replaced_by": [
+          "koopman/continuous_mpc.py",
+          "koopman/planning_margin.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "89ca53730bc6fb513fcfbd6e03ab953d27b44ecb",
+        "sha256": "bdd0faa2e7bc17f27e1b4be92a9ecf3c521debda1985d5e54bb9baca700f61cd",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "koopman/continuous_mpc_v80.py",
+        "role": "continuous_mpc",
+        "replaced_by": [
+          "koopman/continuous_mpc.py",
+          "koopman/planning_margin.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "13219185a3dc912be4f95e7496e3c3bf1e19b148",
+        "sha256": "a9d8ee63bcd5addcecee1f8b3babd6bb1178fdbfa50038f5e65ac2b2383e373b",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "koopman/reliable_mpc_v77.py",
+        "role": "controller_orchestration",
+        "replaced_by": [
+          "koopman/control_solver.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "9afd4921a3e514fcf96404629ad2b4e0b4577712",
+        "sha256": "b5128d519fca2bdd7c35d5b1dd950855c2cb400a92315c21293d981e93ae1433",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "koopman/feedback_preview_v79.py",
+        "role": "controller_orchestration",
+        "replaced_by": [
+          "koopman/control_solver.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "4a585e6806fb4d409346ebb82975fd66ea760054",
+        "sha256": "2603e737ebd32ebe088b77cfefa79b5c27ca568c036bfd7b7f7e99d8f2ef3889",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "koopman/preview_mpc_v79.py",
+        "role": "controller_orchestration",
+        "replaced_by": [
+          "koopman/control_solver.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "0e53c015ddb1659120ce0289790841880aa042cc",
+        "sha256": "b3fc87d64436162ae7d629435f043516ab353879fd4ea8addf8fcbdd3873048d",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "koopman/preview_solver_v80.py",
+        "role": "controller_orchestration",
+        "replaced_by": [
+          "koopman/control_solver.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "52a1cd1390cb2c2f6cc80ffd8a0a59bc29a1fc85",
+        "sha256": "45884c14e9b1926400701d8fc4085416aee2ea3fe3a8c710b103af12f5c524eb",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "koopman/preview_solver_v87.py",
+        "role": "controller_orchestration",
+        "replaced_by": [
+          "koopman/control_solver.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "7bc7dd58a4b308fa3f369321c61999fa70e7f17f",
+        "sha256": "c56ee2f50dac4411e123be94c6294856fa3283a42a8c009ef14ca74624087f6e",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "workflows/protocol_v86.py",
+        "role": "protocol",
+        "replaced_by": [
+          "workflows/disturbance_protocol.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "5227b41658ce15352c2fe4938fa0b1eb5ae8d528",
+        "sha256": "45a920fc1e16b2a8497bc61a648512cc0def25242e7e12c880e739d772b17f9b",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "workflows/protocol_v87.py",
+        "role": "protocol",
+        "replaced_by": [
+          "workflows/disturbance_protocol.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "170b54668a52310f7976c0412e745154ddfebc3c",
+        "sha256": "5f0296b7ab21657592c859c1b981c9a3caf8477d7d40541e2e66db012b7645fc",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "workflows/protocol_v88.py",
+        "role": "protocol",
+        "replaced_by": [
+          "workflows/disturbance_protocol.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "24f9f6f44dae6e3a67688fb7718d2016b25c1a2d",
+        "sha256": "bb94e40309e3941b12508759e32361a93f383845f2f9ee421508d904787f353b",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "workflows/disturbance_data_v86.py",
+        "role": "data_admission",
+        "replaced_by": [
+          "workflows/disturbance_data.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "a8719fa3fcd77fad53ac3514e71a0d270d6a0565",
+        "sha256": "0e9112a7ba95bbaa4413c5f787efda77597e2eb5eeef730203bba155d0e142e5",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "workflows/disturbance_data_v87.py",
+        "role": "data_admission",
+        "replaced_by": [
+          "workflows/disturbance_data.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "a4dd0e4d85599b778b12e93115542d6ce2aa300a",
+        "sha256": "cc4258ef763e12be148f8ee76dd8cf343cc688ca10f7c45206ad83e1987dc4da",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "workflows/disturbance_data_v88.py",
+        "role": "data_admission",
+        "replaced_by": [
+          "workflows/disturbance_data.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "878b927e527d7b270af8f4bc9e338268d3e1a316",
+        "sha256": "19a149a7c7056407c305646280ea8d1df8b39ec99d8fb2e4da7a297971e831a2",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "workflows/collect_disturbance_data_v86.py",
+        "role": "collector",
+        "replaced_by": [
+          "workflows/collect_disturbance_data.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "2acf6841094a6819a1d04787fdd142d151ef0ad1",
+        "sha256": "fbacb91d954a13ede6aaeb0149d73a39cb0f429d0081686d0018e9f6dbb8a4e9",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "workflows/collect_disturbance_data_v87.py",
+        "role": "collector",
+        "replaced_by": [
+          "workflows/collect_disturbance_data.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "b522feda7521d284bcebf6e0d4b71b3fe1e800c0",
+        "sha256": "f494f66e9fb20e592e1f0ffe23aebbd5f7131855e34cfc579321a6912e635336",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "workflows/collect_disturbance_data_v88.py",
+        "role": "collector",
+        "replaced_by": [
+          "workflows/collect_disturbance_data.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "a340464fc03d0ffe5c58bc95ad05eef816c6a601",
+        "sha256": "5d64fbd8bb1dc480d7028da5828a9df147fd8e633327d1f3f204e72fe16c4ee7",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "workflows/fit_disturbance_v86.py",
+        "role": "fit",
+        "replaced_by": [
+          "workflows/fit_disturbance.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "b402526d99089f282ea960a20f16d0aaadc8f863",
+        "sha256": "5c6c4350f101c645fb90ec30de9dfda3b8fdaadb264b066b42c1b4daf799bb79",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "workflows/fit_disturbance_v87.py",
+        "role": "fit",
+        "replaced_by": [
+          "workflows/fit_disturbance.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "07db7b23051384b2c8f93b23647023a65e2209fd",
+        "sha256": "c02170f56f4996def1fdc2d51b65e1cfe273fabdf84dab701f025c296d6e0980",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "workflows/evaluate_disturbance_v88.py",
+        "role": "evaluate",
+        "replaced_by": [
+          "workflows/evaluate_disturbance.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "60b36ea35914b48477bc513c60dba974602db734",
+        "sha256": "e47aae8d093f9d7b6b6a9bdfb1ca2b5a5d33f4bc93e38748b227491133e45a9a",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "workflows/solve_disturbance_v87.py",
+        "role": "solve",
+        "replaced_by": [
+          "workflows/solve_disturbance.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "d9564ae52f4471a46fe6c839d4b538dc7745ad9f",
+        "sha256": "16922816d33583d515b07b05241e410e7a1d214f1db2a09c4d87e96c0bd0e1ca",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "workflows/solve_disturbance_v88.py",
+        "role": "solve",
+        "replaced_by": [
+          "workflows/solve_disturbance.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "565165b2e7a3343e44f13c06e7d881264130a80a",
+        "sha256": "62263acfd800cb82170f8d1c1598ce13f0b7409ef65968668571f823d5a77f26",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "workflows/freeze_support_v88.py",
+        "role": "freeze_support",
+        "replaced_by": [
+          "workflows/freeze_support.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "36e99d00673f9c53989ae36b5bc2ebadb4d9eac5",
+        "sha256": "fb8eb0a1e250d3aa061b932424df7cdc7f6475dd0da4f2989ee69417fafee50e",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "workflows/prepare_disturbance_v86.py",
+        "role": "package",
+        "replaced_by": [
+          "workflows/prepare_disturbance.py",
+          "workflows/source_freeze.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "2091dcf0f851b4bfc2b09588656d995d3f3d1b36",
+        "sha256": "61a61c66d0441497afe1eb986c3de88d030c61f112b684266552d63973ddd3b8",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "workflows/prepare_disturbance_v87.py",
+        "role": "package",
+        "replaced_by": [
+          "workflows/prepare_disturbance.py",
+          "workflows/source_freeze.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "bc77dd6d195925ff18463b82967450e4e9257262",
+        "sha256": "8182d9b5c9e8a7e01f8a125fc07f35b5ef6764b846fafdf57c86783058f52ebf",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      },
+      {
+        "path": "workflows/prepare_disturbance_v88.py",
+        "role": "package",
+        "replaced_by": [
+          "workflows/prepare_disturbance.py",
+          "workflows/source_freeze.py"
+        ],
+        "in_current_package_closure": false,
+        "git_blob": "9de915907115fa83a0a6ce5882643f2622ab6706",
+        "sha256": "8af62d59a21ca8f52b9204fc934974cf01c318f86a877c39fdf03891c063b893",
+        "status": "awaiting_user_confirmation_and_retirement_of_historical_callers_and_migration_oracles"
+      }
+    ],
+    "duplicate_asset_candidates": [
+      {
+        "duplicate": "data/easyuuv/model.usd",
+        "canonical": "easyuuv_nc/data/embodiment/embodiment.usd",
+        "identical": true,
+        "sha256": "40148fbe201b993448d2dfbac118ef48acdb71641c1ed88caa2b6168b9ae146d",
+        "bytes": 46387855,
+        "status": "awaiting_user_confirmation"
+      },
+      {
+        "duplicate": "data/easyuuv/Props/instanceable_meshes.usd",
+        "canonical": "easyuuv_nc/data/embodiment/Props/instanceable_meshes.usd",
+        "identical": true,
+        "sha256": "77ee093bb8ff6b1b9a70e2312bc7f0aa63c1bef60d08b83a5c3de833c2351ef5",
+        "bytes": 27767211,
+        "status": "awaiting_user_confirmation"
+      },
+      {
+        "duplicate": "data/easyuuv/config.yaml",
+        "canonical": "easyuuv_nc/data/embodiment/config.yaml",
+        "identical": false,
+        "sha256": "cd038a0acb5cea9b793890ad18f3aabfc879db6494beb10e5b16765df31c45e0",
+        "bytes": 551,
+        "status": "awaiting_user_confirmation"
+      }
+    ],
+    "protected_ignored_directory": "easyuuv_v2-main/",
+    "deletions_performed": 0,
+    "analysis_source_identity": "cdf0ee8a77947c69b68e55ea2874715cbb4ec3fbc2e94e98999ef4b0f50b078f",
+    "scope_note": "Merged current control and disturbance workflows. Lower-level mathematical, actuator and historical artifact helpers remain where required; historical entrypoints and comparison tests are not yet removed."
+  }
+}

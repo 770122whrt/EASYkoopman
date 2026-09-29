@@ -43,17 +43,16 @@
 
 | 职责 | 入口 |
 |---|---|
-| v88范围冻结与共同求解 | [control_support_v88.py](../koopman/control_support_v88.py)、[freeze_support_v88.py](../workflows/freeze_support_v88.py)、[solve_disturbance_v88.py](../workflows/solve_disturbance_v88.py) |
-| v87三模型构建与身份绑定（v88复用） | [preview_solver_v87.py](../koopman/preview_solver_v87.py) |
+| 共同控制范围、冻结与求解 | [control_support_v88.py](../koopman/control_support_v88.py)、[freeze_support.py](../workflows/freeze_support.py)、[solve_disturbance.py](../workflows/solve_disturbance.py) |
+| 三模型构建、身份绑定与共同控制器 | [control_solver.py](../koopman/control_solver.py) |
 | 完整提升、混合残差与NumPy/CasADi实现 | [disturbance_lifted_v86.py](../koopman/disturbance_lifted_v86.py) |
 | 因果记忆及每次预测会话 | [command_state_v39.py](../koopman/command_state_v39.py)、[continuous_prediction_v76.py](../koopman/continuous_prediction_v76.py) |
-| 连续求解、候选与原始约束残差 | [continuous_mpc_v76.py](../koopman/continuous_mpc_v76.py) |
-| 预演、父进程精确复核及计划选择 | [preview_mpc_v79.py](../koopman/preview_mpc_v79.py)、[reliable_mpc_v77.py](../koopman/reliable_mpc_v77.py) |
-| 隔离求解进程 | [preview_solver_v80.py](../koopman/preview_solver_v80.py) |
-| TAM前接入与真实环境 | [control_v67.py](../easyuuv_nc/control_v67.py)、[easyuuv_env.py](../easyuuv_nc/env/easyuuv_env.py) |
-| 离线独立求解检查 | [solve_disturbance_v87.py](../workflows/solve_disturbance_v87.py) |
+| 连续求解、候选与原始约束残差 | [continuous_mpc.py](../koopman/continuous_mpc.py)、[planning_margin.py](../koopman/planning_margin.py) |
+| 预演、父进程精确复核、计划选择及隔离求解进程 | [control_solver.py](../koopman/control_solver.py) |
+| TAM前接入与真实环境 | [control.py](../easyuuv_nc/control.py)、[easyuuv_env.py](../easyuuv_nc/env/easyuuv_env.py) |
+| 实验协议与独立数据验收 | [disturbance_protocol.py](../workflows/disturbance_protocol.py)、[disturbance_data.py](../workflows/disturbance_data.py) |
 
-模块名中的旧版本号不自动表示已废弃；当前入口仍显式复用这些共享实现。反之，旧 collector 或报告存在也不表示它是本轮运行入口。
+模块名中的旧版本号不自动表示已废弃；数学、支持域及执行器预测等下层模块仍有当前依赖。上表的control、连续MPC、控制器编排及实验入口已完成有效实现合并，旧副本等待用户确认清除。旧collector或报告存在不表示它仍是当前运行入口。
 
 ## 历史解释与效果边界
 

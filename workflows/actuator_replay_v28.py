@@ -6,7 +6,7 @@ float32 tensor compares it equal. No measured rotor correction is used here.
 """
 import math
 import numpy as np
-from easyuuv_nc.control_v24 import ActuatorState
+from easyuuv_nc.control import ActuatorState
 
 
 class Float32PWMActuatorState(ActuatorState):

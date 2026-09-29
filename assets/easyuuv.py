@@ -1,7 +1,8 @@
 from isaaclab_compat import RigidObjectCfg, sim_utils
 
-import os
-USD_PATH = os.path.join(os.path.dirname(__file__), "../data/easyuuv/model.usd")
+from easyuuv_nc.package_paths import EMBODIMENT_USD_PATH
+
+USD_PATH = str(EMBODIMENT_USD_PATH)
 
 EasyUUV_CFG = RigidObjectCfg(
     prim_path="{ENV_REGEX_NS}/Robot",

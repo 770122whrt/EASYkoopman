@@ -7,7 +7,7 @@
 
 ## Preserve project boundaries
 
-- Keep the v1.0 historical records, models, and evidence frozen unless a task explicitly targets that history. Implement current milestone work through the versioned interfaces identified by the current phase contract.
+- Keep the v1.0 historical records, models, and evidence frozen unless a task explicitly targets that history. Use the current interfaces identified by the phase contract; experiment version numbers describe frozen protocols and evidence, not a requirement to copy implementation modules.
 - Preserve the control and evidence invariants in `.planning/PROJECT.md`: high-level policies must not bypass bounded low-level control, configuration and topology constraints must remain explicit, and model, checkpoint, or evidence promotion must fail closed on missing or inconsistent provenance.
 - Do not treat local fixtures, mocks, or Isaac-free runs as Isaac physics evidence. Server/Isaac claims require the applicable runbook's real-server collection, validation, inventory, and pullback gates. Do not manually pre-create, copy, or relabel canonical success artifacts under `source/results/` to satisfy those gates.
 

@@ -89,7 +89,7 @@ def execute(q):
         from isaaclab_compat import DirectRLEnv
         from easyuuv_nc import register_gym_tasks
         from easyuuv_nc.env.easyuuv_env import EasyUUVEnvCfg,EasyUUVEnv
-        from easyuuv_nc.control_v24 import queue_sequence,ActuatorState
+        from easyuuv_nc.control import queue_sequence,ActuatorState
         from workflows.control_trace_v23 import ControlTraceSession,_copy,_states
         from workflows.control_seam_v23 import mechanical_readback
         from workflows.qualify_easyuuv_v2 import detect_runtime_provenance

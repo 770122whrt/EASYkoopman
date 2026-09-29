@@ -7,7 +7,7 @@ from workflows.collect_formal_v25 import validate_interval
 from workflows.validate_control_trace_v23 import compare_values,validate_clock_step
 from workflows.control_seam_v23 import ControlKernel
 from workflows.pilot_control_v24 import commands
-from easyuuv_nc.control_v24 import ActuatorState
+from easyuuv_nc.control import ActuatorState
 
 DIRECT_RL_SHA='8d4c64aef3a4b9e258fb069211c5cae1293d7b5b742ce3b5c523dceaa298317c'
 
