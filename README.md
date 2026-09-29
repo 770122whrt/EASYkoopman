@@ -1,101 +1,30 @@
-# EasyUUV-Isaac-Simulation
+# EASYkoopman
 
-[![WebSite](https://img.shields.io/badge/Github_Page-PDF-77DDFF.svg)](https://360zmem.github.io/easyuuv/) [![WebSite](https://img.shields.io/github/last-commit/360ZMEM/EasyUUV-Isaac-Simulation?color=green)](https://github.com/360ZMEM/EasyUUV-Isaac-Simulation)
+基于 EasyUUV / Isaac 的完整提升 Koopman 预测与共同 MPC 控制研究。当前比较冻结物理、完整提升 Koopman、物理＋Koopman 三个模型；自进化和 Agent 尚未实施。
 
-This repository contains code implementation for simulator of the paper "EasyUUV: An LLM-Enhanced Universal and Lightweight Sim-to-Real Reinforcement Learning Framework for UUV Attitude Control".
+当前结论：在 20% 附加二次阻力上训练后，结合模型在新的 30% 阻力轨迹上，z/姿态预测误差比冻结物理降低 **53.31% / 58.91%**；0% 和 10% 时物理更准。纯 Koopman 未通过整体预测门限，本轮没有进入闭环。这是同构型、同扰动形式下的有限预测泛化证据。
 
-## 当前研究入口
+| 目录 | 内容 |
+|---|---|
+| `easyuuv_nc/` | 唯一仿真环境、机械构型、控制接入与 USD 资产 |
+| `koopman/` | 物理/提升预测、执行器记忆、共同 MPC、独立候选检查 |
+| `workflows/` | 采集、验收、训练、预测评估、求解验证与源码打包 |
+| `tests/` | 当前契约、冻结数值对照和边界测试 |
+| `experiments/` | 协议、冻结模型、正负结果与整理验证 |
+| `docs/` | 当前运行说明、控制合同、目录整理记录 |
+| `.planning/` | 研究目标、当前状态及阶段历史 |
+| `results/`（本地忽略） | 集中存放原始轨迹、日志、历史源码包与旧资料 |
 
-当前v88比较0%、10%、30%附加阻力，三个模型参数冻结、共同控制范围仅依据训练数据扩大。30%独立测试中，结合模型的z/姿态预测误差比物理下降约53%/59%；0%与10%下物理更准。预测改善不代表闭环效果，`no_selection`保留。
+- [运行与复算](docs/runbook.md)
+- [实验结果与泛化边界](experiments/README.md)
+- [控制链合同](docs/control-contract.md)
+- [目录整理与恢复](docs/repository-layout.md)
+- [项目目标](.planning/PROJECT.md)与[当前状态](.planning/STATE.md)
 
-- [研究索引与历史结论](docs/phase9_research_index.md)：从这里定位当前协议、结果、代码和历史报告。
-- [当前状态](.planning/STATE.md)：正在执行什么、哪些证据尚未取得。
-- [项目边界](.planning/PROJECT.md)与[控制链合同](docs/phase9_control_chain_contract.md)：研究目标、完整提升传播及共同控制接口。
-- [v88运行说明](docs/phase9_matrix_v88_runbook.md)：本轮数据、冻结、验证和服务器运行规则。
+当前使用 Isaac Sim 5.0 / Isaac Lab 2.2.1，主服务器为 `suanliyun-agentic-AUV`。本地测试不依赖 Isaac，但不证明仿真运行或闭环效果。实验工作流从本仓库或经过核验的源码包运行；`pip install -e .` 安装环境包。
 
-当前验证环境为 Isaac Sim 5.0 + Isaac Lab 2.2.1；主服务器为 `suanliyun-agentic-AUV`。下方上游 Isaac Lab 1.x 部署、训练和硬件链接保留为历史资料，不代表本分支已经取得硬件或当前 Koopman 控制效果。旧交接与规划通过研究索引查阅。
+旧实现可从 Git 提交 `7bbbbef` 恢复。`easyuuv_v2-main/` 为本地参考，始终忽略，不提交。实验编号只标识冻结协议与证据，不再维护多套版本化生产代码。
 
-## 上游项目与部署资料（历史）
+## 上游来源
 
-The hardware deployment code repository refers to [**HERE**](https://github.com/360ZMEM/EasyUUV-UUV-Deploy)
-
-![intro](README.assets/intro.png)
-
-## Simulator Deployment
-
-### Environment Setup
-
-This project utilizes a simulator based on Isaac Sim/Lab. The code has been tested on a system with NVIDIA GeForce RTX 4060 (requiring approximately 5600MB GPU memory for 2048 parallel environments), Ubuntu 24.04 LTS, IsaacSim v4.0.0, and IsaacLab v1.0.0 (installation instructions are provided based on this configuration). Theoretically, the code should also work with other Isaac Lab V1 versions such as IsaacSim v4.2.0 + IsaacLab v1.4.1. For migration to IsaacLab V2, please refer to [this link](https://isaac-sim.github.io/IsaacLab/main/source/refs/migration.html).
-
-First, you should [download Isaac Sim](https://docs.isaacsim.omniverse.nvidia.com/4.5.0/installation/download.html) and confirm version 4.0.0 is selected. Next, install Isaac Lab v1.0.0 using:
-
-```bash
-git clone --branch v1.0.0 https://github.com/isaac-sim/IsaacLab.git
-```
-
-To ensure compatibility with RSL-RL, modify the file `<IsaacLab_Path>/source/extensions/omni.isaac.lab_tasks/setup.py` following [these instructions](https://github.com/isaac-sim/IsaacLab/pull/1808/files/8af43cb048cdaa976c24a0f2b569ea9e45db533d) before installation. Then follow the [Isaac Lab installation guide](https://isaac-sim.github.io/IsaacLab/v1.4.1/source/setup/installation/binaries_installation.html) to complete the setup and verify functionality through tests.
-
-### Deployment Configuration
-
-Create a symbolic link or copy the directory to install the reinforcement learning environment:
-
-```bash
-git clone https://github.com/360ZMEM/EasyUUV-Isaac-Simulation.git
-ln -s EasyUUV-Isaac-Simulation <IsaacLab_Path>/source/extensions/omni.isaac.lab_tasks/omni/isaac/lab_tasks/direct/EasyUUV-Isaac-Simulation
-```
-
-### Training
-
-Train using the following command (ensure correct Python environment activation and execution from IsaacLab root directory; `--headless` flag is recommended for improved performance):
-
-```bash
-./isaaclab.sh -p source/standalone/workflows/rsl_rl/train.py --task EasyUUV-Direct-v1 --num_envs 1024 --headless
-```
-
-Note that when visualization is enabled, loading USD files consumes significant memory. Therefore, if the `--headless` option is not specified, you should reduce the `--num_envs` parameter (e.g., to 512); otherwise, it may lead to excessive resource usage or crashes.
-
-Monitor training with Tensorboard:
-
-```bash
-tensorboard --logdir <IsaacLab_Path>/logs/rsl_rl/EasyUUV-Isaac-Simulation/
-```
-
-Generated policy checkpoints can be exported to Torch JIT/ONNX formats using:
-
-```bash
-./isaaclab.sh -p <IsaacLab_Path>/source/extensions/omni.isaac.lab_tasks/omni/isaac/lab_tasks/direct/EasyUUV-Isaac-Simulation/workflows/gen_policy.py
-```
-
-Exported files will be saved at `<IsaacLab_Path>/logs/rsl_rl/EasyUUV-Isaac-Simulation/<latest_date>/exported/policy.pt` (contains both Torch JIT and ONNX formats). Load Torch JIT models with `torch.jit.load()`. Note that RSL-RL creates date-stamped folders for each training session, where `<latest_date>` represents the most recent timestamp folder.
-
-### Evaluation
-
-The `workflows` directory contains trajectory tracking implementations. For example:
-
-```bash
-./isaaclab.sh -p <IsaacLab_Path>/source/extensions/omni.isaac.lab_tasks/omni/isaac/lab_tasks/direct/EasyUUV-Isaac-Simulation/workflows/play_eval_task1.py
-```
-
-- `play_eval.py`: Tracks sinusoidal signals.
-- `play_eval_task2.py`: Tracks irregular dynamic signals.
-- `play_eval_step.py`: Tracks step signals.
-- `play_controller.py`: Direct controller implementation (w/o RL).
-
-Note: Requires prior configuration of `wandb` for real-time visualization. Also, we provide offline file for tracking result: `<IsaacLab_Path>/source/results/rsl_rl/EasyUUV-Isaac-Simulation/.*/model_.*_play/logs.csv`.
-
-## Acknowledgement
-
-This repository is modified based on [this codebase](https://github.com/warplab/isaac-auv-env).
-
-# Cite
-
-If you find it useful for your work please cite:
-
-```bibtex
-@article{xie2025easyuuv,
-      title={EasyUUV: An LLM-Enhanced Universal and Lightweight Sim-to-Real Reinforcement Learning Framework for UUV Attitude Control},
-      author={Xie, Guanwen and Xu, Jingzehua and Tang, Jiwei and Huang, Yubo and Zhang, Shuai and Li, Xiaofan},
-      journal={arXiv preprint arXiv:2510.22126},
-      year={2025}
-    }
-```
+仿真基于 [EasyUUV](https://github.com/360ZMEM/EasyUUV-Isaac-Simulation) 与 [warplab Isaac AUV](https://github.com/warplab/isaac-auv-env)。保留原项目 LICENSE；上游部署与论文引用原文见 [整理前 README](https://github.com/770122whrt/EASYkoopman/blob/7bbbbef/README.md)。上游硬件成果不代表本项目已完成硬件验证。

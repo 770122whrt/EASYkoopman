@@ -11,4 +11,4 @@ requires-python = ">=3.10"
 include = ["easyuuv_nc*"]
 
 [tool.setuptools.package-data]
-easyuuv_nc = ["data/embodiment/*.usd", "data/embodiment/*.yaml"]
+easyuuv_nc = ["data/embodiment/*.usd", "data/embodiment/Props/*.usd", "data/embodiment/*.yaml"]

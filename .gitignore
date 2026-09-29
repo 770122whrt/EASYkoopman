@@ -7,8 +7,16 @@ __pycache__/
 /source/results/phase8.4-structured-formal-v25-20260912/
 *.egg-info/
 .vscode/
+# Local upstream reference checkout; never publish it with this project.
+/easyuuv_v2-main/
+/results/
+/.tmp/
+/tmp/
+/.pytest_cache/
+/.pytest_current_*/
 *.md
 !README.md
 !AGENTS.md
 !.planning/**/*.md
 !docs/**/*.md
+!experiments/**/*.md

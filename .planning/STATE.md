@@ -5,7 +5,7 @@ milestone: v2.0
 milestone_name: Multi-Configuration Koopman Transfer and Environment-Aware Control
 status: in_progress
 last_updated: "2026-09-29"
-last_activity: 2026-09-29 -- v88 matrix completed: conditional hybrid prediction gain; 36 feasible solves; no closed loop
+last_activity: 2026-09-29 -- approved legacy cleanup validated: 221 tests and 24 frozen replays; delivered through PR3
 progress:
   total_phases: 11
   completed_phases: 7
@@ -16,14 +16,16 @@ progress:
 
 # Project State: EASYkoopman
 
+**当前工作：已获准清理旧版本并合并main。** 当前生产代码已按职责归并，历史结果集中本地 `results/history/`，原始证据保留。221项当前测试与24轨迹复算已通过，当前76文件包不依赖版本化生产模块。通过PR #3交付；实时合并状态以Git为准，具体整理记录见 [目录记录](../docs/repository-layout.md)。参考目录 `easyuuv_v2-main/` 保持ignore、不提交。
+
 **2026-09-29：v88三档扰动矩阵。** 用户最终指定0%、10%、30%附加二次阻力，扩大共同控制范围，完成实验结果与代码后PR合并。模型沿用v87冻结参数，物理不重校准；范围仅依据v87训练数据，在新验证/测试前冻结。Phase 9 / 09-04与`no_selection`保持开放。
 
 ## 当前入口
 
-- [v88结果报告](../docs/phase9_matrix_v88_report.md)：数字、正负结果与结论边界。
-- [v88运行说明](../docs/phase9_matrix_v88_runbook.md)：预先固定的矩阵、范围与准入规则。
-- [研究索引](../docs/phase9_research_index.md)：当前代码与历史。
-- [项目边界](PROJECT.md)、[控制链合同](../docs/phase9_control_chain_contract.md)。
+- [v88结果报告](../experiments/phase9/v88/report.md)：数字、正负结果与结论边界。
+- [v88运行说明](../experiments/phase9/v88/protocol.md)：预先固定的矩阵、范围与准入规则。
+- [研究索引](../experiments/README.md)：当前代码与历史。
+- [项目边界](PROJECT.md)、[控制链合同](../docs/control-contract.md)。
 
 ## 已取得的证据
 
@@ -35,14 +37,14 @@ progress:
 
 ## 当前停止条件与交付
 
-三档均未达到原“三模型预测和求解全部通过”的闭环准入规则，不运行2秒闭环，不看测试重训或扩界。离线求解已完成，308文件证据归档已全部核验，结果与代码通过PR交付；原始未跟踪材料保留。本轮开发分支为`codex/phase9-disturbance-matrix-v88`，交付目标为PR合并main；实时分支状态应以Git为准。此前PR #1已合并main。
+三档均未达到原“三模型预测和求解全部通过”的闭环准入规则，不运行2秒闭环，不看测试重训或扩界。离线求解已完成，308文件证据归档已全部核验，结果与代码通过PR交付；原始未跟踪材料保留。v88结果已通过PR #2合并main；当前清理工作使用PR #3，实时分支状态以Git为准。
 
 本地核心109项、补充支持/求解5项、矩阵6项通过（有重叠，不相加）；服务器109项通过、1项打包测试未选择（本地通过）。仅为相关定向回归，不是全仓库全绿。
 
 ## 历史与保留边界
 
-[v87报告](../docs/phase9_diverse_v87_report.md)：20%扰动扩大训练后，测试物理12/16、Koopman4/16、结合16/16；旧范围求解各1/4，未闭环。v88复用其模型，使用新的轨迹与不同强度，不能混算两轮结果。
+[v87报告](../experiments/phase9/v87/report.md)：20%扰动扩大训练后，测试物理12/16、Koopman4/16、结合16/16；旧范围求解各1/4，未闭环。v88复用其模型，使用新的轨迹与不同强度，不能混算两轮结果。
 
-[v86报告](../docs/phase9_disturbance_v86_report.md)：8条20%轨迹，扫频物理6/6、Koopman3/6、结合5/6，未闭环。旧v82局部闭环收益不构成完整提升Koopman的有效性证明。全部原始材料及负结果保留。
+[v86报告](../experiments/phase9/v86/report.md)：8条20%轨迹，扫频物理6/6、Koopman3/6、结合5/6，未闭环。旧v82局部闭环收益不构成完整提升Koopman的有效性证明。全部原始材料及负结果保留。
 
-更早入口原文见[历史档案](../docs/history/phase9_status_before_v87_20260929.md)。[交接](checkpoints/phase9-lifted-generalization-handoff-2026-09-29.md)与[Git快照](../docs/phase9_git_snapshot_2026-09-29.md)保留写作时点语境。不同扰动形式、未见构型、长时稳定、实际闭环收益、实时性、自进化与Agent增量仍未证明。
+更早入口原文见[历史档案](https://github.com/770122whrt/EASYkoopman/blob/7bbbbef/docs/history/phase9_status_before_v87_20260929.md)。[交接](checkpoints/phase9-lifted-generalization-handoff-2026-09-29.md)与[Git快照](https://github.com/770122whrt/EASYkoopman/blob/7bbbbef/docs/phase9_git_snapshot_2026-09-29.md)保留写作时点语境。不同扰动形式、未见构型、长时稳定、实际闭环收益、实时性、自进化与Agent增量仍未证明。

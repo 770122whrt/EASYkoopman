@@ -4,17 +4,21 @@
 
 以 EasyUUV / Isaac 仿真建立 Koopman-UUV 与后续 Agentic-AUV 的可复现证据：先验证预测与有界控制，再研究跨构型、环境适应及上层 Agent 的增量作用。普通线性、persistence、物理模型和分构型模型可作对照或必要 fallback，不能因其局部表现更好而自动替换研究目标。
 
-v1.0 冻结于 tag `v1.0`。v2.0 已完成八构型接入与拓扑无关数据/控制接口；Phase 8.2 以 `VERIFIED / NO_SELECTION` 结束，没有向 Phase 9 交付合格模型。Phase 9 保持开放，阶段证据与当前工作见[研究索引](../docs/phase9_research_index.md)、[STATE](STATE.md)和[ROADMAP](ROADMAP.md)。
+v1.0 冻结于 tag `v1.0`。v2.0 已完成八构型接入与拓扑无关数据/控制接口；Phase 8.2 以 `VERIFIED / NO_SELECTION` 结束，没有向 Phase 9 交付合格模型。Phase 9 保持开放，阶段证据与当前工作见[研究索引](../experiments/README.md)、[STATE](STATE.md)和[ROADMAP](ROADMAP.md)。
 
-## 最新授权：v88（2026-09-29）
+## 最新授权：源码归并与main交付（2026-09-29）
 
-扩大共同控制工作范围，依据v87训练数据和固定物理约束提前冻结；使用相同已冻结模型比较0%、10%、30%附加二次阻力的新验证/测试轨迹。模型不重训，物理参数不调整；完整提升约束保持。完成报告与代码后PR合并。详见[v88运行说明](../docs/phase9_matrix_v88_runbook.md)。下述v87是其模型与历史证据来源。
+用户已批准删除旧版本代码、归并当前实现并合并main。原始结果集中本地 `results/history/`，核心参数与结果留在 `experiments/`；`easyuuv_v2-main/` 只忽略、不提交。清理不改变研究目标、门限或模型。
+
+## 当前实验：v88（2026-09-29）
+
+扩大共同控制工作范围，依据v87训练数据和固定物理约束提前冻结；使用相同已冻结模型比较0%、10%、30%附加二次阻力的新验证/测试轨迹。模型不重训，物理参数不调整；完整提升约束保持。完成报告与代码后PR合并。详见[v88运行说明](../experiments/phase9/v88/protocol.md)。下述v87是其模型与历史证据来源。
 
 ## 模型来源：v87历史协议（2026-09-29）
 
 用户要求扩大含扰动场景重新离线训练与独立测试，继续比较三臂：冻结物理、完整提升 Koopman、冻结物理＋自主提升学习部分。物理基线不利用新增扰动数据重新校准，也不读取隐藏扰动真值。结合策略保留，但其整体优势和闭环收益仍需实验。
 
-本轮固定 base 构型与额外 20% 二次阻力，扩大输入类型、幅值和轨迹时长。训练、验证、测试按整条轨迹分离；模型在测试时全部冻结，不能反复使用测试结果调到获胜。数据数量、信号、参数与门限由[v87运行说明](../docs/phase9_diverse_v87_runbook.md)及版本化协议统一管理，不在入口文档重复维护。
+本轮固定 base 构型与额外 20% 二次阻力，扩大输入类型、幅值和轨迹时长。训练、验证、测试按整条轨迹分离；模型在测试时全部冻结，不能反复使用测试结果调到获胜。数据数量、信号、参数与门限由[v87运行说明](../experiments/phase9/v87/protocol.md)及版本化协议统一管理，不在入口文档重复维护。
 
 允许审查并修复共同控制链、数据校验和求解器问题。先完成预测与求解验证，再按准入条件执行相同任务、初态和扰动下的 2 秒配对闭环；之后才考虑更长时间与更多构型。本轮不开展在线自进化、Agent 或额外模型家族。
 
@@ -36,6 +40,6 @@ v1.0 冻结于 tag `v1.0`。v2.0 已完成八构型接入与拓扑无关数据/�
 
 ## 历史与文档分工
 
-[STATE](STATE.md)只记录当前工作；[研究索引](../docs/phase9_research_index.md)负责代码入口与历史导航；[控制链合同](../docs/phase9_control_chain_contract.md)负责共同执行语义；版本运行说明负责精确协议，版本报告负责数字结论。旧文档中“当前”“下一步”只代表其版本时点。
+[STATE](STATE.md)只记录当前工作；[研究索引](../experiments/README.md)负责代码入口与历史导航；[控制链合同](../docs/control-contract.md)负责共同执行语义；版本运行说明负责精确协议，版本报告负责数字结论。旧文档中“当前”“下一步”只代表其版本时点。
 
-本次整理前 PROJECT、STATE、README 与控制链合同原文完整保存在[历史档案](../docs/history/phase9_status_before_v87_20260929.md)。冻结里程碑见[MILESTONES](MILESTONES.md)、[v1.0总结](reports/MILESTONE_SUMMARY-v1.0.md)及[Phase 8.2验证](phases/08.2-phase-8-1-fresh-server-evaluation-and-closeout/08.2-VERIFICATION.md)。历史具体目录以研究索引链接核对为准。
+本次整理前 PROJECT、STATE、README 与控制链合同原文完整保存在[历史档案](https://github.com/770122whrt/EASYkoopman/blob/7bbbbef/docs/history/phase9_status_before_v87_20260929.md)。冻结里程碑见[MILESTONES](MILESTONES.md)、[v1.0总结](reports/MILESTONE_SUMMARY-v1.0.md)及[Phase 8.2验证](phases/08.2-phase-8-1-fresh-server-evaluation-and-closeout/08.2-VERIFICATION.md)。历史具体目录以研究索引链接核对为准。

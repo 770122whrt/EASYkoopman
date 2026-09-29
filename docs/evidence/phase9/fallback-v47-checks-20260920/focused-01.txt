@@ -1,8 +1,0 @@
-.....................................                                    [100%]
-============================== warnings summary ===============================
-tests/test_bounded_feedback_v47.py::test_geometry_seed_reaches_known_static_target_from_zero_deadzone[-0.13-base]
-  E:\code for project\Agentic AUV\EasyUUV\workflows\control_seam_v23.py:85: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:209.)
-    a=torch.as_tensor(action,dtype=torch.float32).reshape(1,4)
-
--- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-37 passed, 1 warning in 4.95s

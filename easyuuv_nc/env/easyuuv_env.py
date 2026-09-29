@@ -1498,7 +1498,7 @@ class EasyUUVEnv(DirectRLEnv):
     def _setup_scene(self):
         self.cfg.robot_cfg.init_state = RigidObjectCfg.InitialStateCfg(pos=(0.0, 0.0, self.cfg.starting_depth))
         self._robot = RigidObject(self.cfg.robot_cfg)
-        from easyuuv_nc.initialization_v23 import author_initial_mechanics
+        from easyuuv_nc.initialization import author_initial_mechanics
         self._initial_mechanics_v23 = author_initial_mechanics(self.cfg, sim_utils)
 
         ground_mode = str(getattr(self.cfg, "ground_plane_mode", "grid"))
@@ -1539,7 +1539,7 @@ class EasyUUVEnv(DirectRLEnv):
         if self._debug: print("concatenated actions shape: ", self._actions)
 
         if getattr(self.cfg, "control_input_mode", "legacy_action") != "legacy_action":
-            from easyuuv_nc.control_v24 import begin_interval
+            from easyuuv_nc.control import begin_interval
             begin_interval(self, actions)  # Validate before the legacy clip/mutation.
 
         # 阻尼项缓冲：在覆盖前把上一/上上步动作存好（reward 消费）。
@@ -1772,11 +1772,11 @@ class EasyUUVEnv(DirectRLEnv):
         if env_ids is None:
             env_ids = self._robot._ALL_INDICES
         if getattr(self.cfg, "physics_initialization_mode", "legacy") == "authored_static_v1":
-            from easyuuv_nc.initialization_v23 import initial_mechanics
+            from easyuuv_nc.initialization import initial_mechanics
             initial_mechanics(self.cfg)  # Reject newly enabled randomization before reset writes.
         self._reset_control_history(env_ids)
         if getattr(self.cfg, "control_input_mode", "legacy_action") != "legacy_action":
-            from easyuuv_nc.control_v24 import reset_direct
+            from easyuuv_nc.control import reset_direct
             reset_direct(self, env_ids)
         super()._reset_idx(env_ids)
         ids = torch.as_tensor(env_ids, device=self.device, dtype=torch.long) if not isinstance(env_ids, torch.Tensor) else env_ids.to(device=self.device, dtype=torch.long)
@@ -2162,7 +2162,7 @@ class EasyUUVEnv(DirectRLEnv):
 
     def _pid_control(self, actions, actions_d, actions_i) -> torch.Tensor:
         if getattr(self.cfg, "control_input_mode", "legacy_action") != "legacy_action":
-            from easyuuv_nc.control_v24 import direct_pwm
+            from easyuuv_nc.control import direct_pwm
             return direct_pwm(self)
         # 将action修改为PID控制，随后输出PWM波的正规化频率。
         motorValue = torch.zeros(self.num_envs, self._num_thrusters, device=self.device)
@@ -2515,7 +2515,7 @@ class EasyUUVEnv(DirectRLEnv):
 
         # Opt-in experiment disturbance; do not change/export the mechanical
         # drag multiplier used by model context, compensation or input scaling.
-        from easyuuv_nc.disturbance_v86 import extra_quadratic_drag
+        from easyuuv_nc.disturbance import extra_quadratic_drag
         extra_f, extra_t = extra_quadratic_drag(density_forces, density_torques,
             getattr(self.cfg, 'hidden_quadratic_drag_fraction_v86', 0.))
         forces = forces + extra_f

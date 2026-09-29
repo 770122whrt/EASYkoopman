@@ -1,0 +1,34 @@
+{
+  "scope": "local cleanup/refactor validation; no new training, Isaac run or closed loop",
+  "source_identity": "9521eecae9f181595405ac0fa8e7f817eeaff913fb954fb51424c392188c8634",
+  "source_files": 76,
+  "tests": {
+    "tests": 221,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "metric_tolerance": 1e-10,
+  "replay": {
+    "validation": {
+      "trajectories": 12,
+      "model_windows": 144,
+      "maximum_metric_difference": 1.2515317016244254e-13,
+      "gates_identical": true
+    },
+    "test": {
+      "trajectories": 12,
+      "model_windows": 144,
+      "maximum_metric_difference": 4.654875660273228e-14,
+      "gates_identical": true
+    }
+  },
+  "source_bundle": {
+    "source_manifest_sha256": "7a90811f56f21b897ef250d631b343b80d873eff22f7aaa56bf61dd5e070d494",
+    "historical_source_manifest_sha256": null,
+    "source_archive_sha256": "1af7a09829bb250e961712107dc53fe04a593da8e6e32f4e4520afbc91ea6efa",
+    "verified_files": 76
+  },
+  "isolated_bundle_imports": true,
+  "snapshot_before_cleanup": "7bbbbef125ec4e7e397da65f6da859fea05fb5ca"
+}

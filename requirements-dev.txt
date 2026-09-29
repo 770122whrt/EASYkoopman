@@ -1,6 +1,6 @@
-# Local, Isaac-free Phase 6 development and contract verification.
-# Isaac Sim and Isaac Lab are provisioned separately on the server.
+# Local tests and offline prediction/optimization; Isaac is provisioned separately.
 -e .
 pytest>=8,<9
 torch==2.8.0
 numpy==1.26.4
+casadi==3.7.2
