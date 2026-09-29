@@ -1,6 +1,6 @@
 # 当前控制链与比较合同
 
-2026-09-29。本文描述 v86/v87 共用的三臂控制语义。当前范围和状态见[研究索引](phase9_research_index.md)与[STATE](../.planning/STATE.md)，精确数据和参数见[v87运行说明](phase9_diverse_v87_runbook.md)。本文不是效果报告；v86 未运行扰动闭环，v87 尚在实施验证。
+2026-09-29。本文描述 v86–v88 共用的三个模型对照方案（也称“三臂”）的控制语义。当前范围和状态见[研究索引](phase9_research_index.md)与[STATE](../.planning/STATE.md)，精确数据和参数见[v88运行说明](phase9_matrix_v88_runbook.md)。本文不是效果报告；v86/v87均未运行扰动闭环，当前结果应查对应版本报告。
 
 ## 三个预测模型与共同下游
 
@@ -35,11 +35,16 @@
 
 必须分别保留：求解器状态、最后有限原始候选、约束残差、原始候选的独立可行性、最终计划、计划来源及 fallback。超时或迭代上限不是收敛；返回候选可经检查采用，最终 fallback 可行也不能证明原始候选可行。v87 的求解验收修复围绕这一分离，具体实施和实测结果见版本报告。
 
+## v88共同控制范围
+
+物理参数与控制工作范围分开管理。v88保留v87模型参数，用原16条训练轨迹和旧范围的并集加固定余量形成新范围，在新0%/10%/30%验证与测试前封存。父进程检查、优化器worker、反馈预演共用同一范围；物理拟合来源保持原值，控制范围训练来源另行记录。硬约束、提升坐标边界、PWM/变化率和接触限制继续有效；范围筛查通过不等于求解可行、模型精确或实际控制成功。
+
 ## 代码职责
 
 | 职责 | 入口 |
 |---|---|
-| v87三臂构建与身份绑定 | [preview_solver_v87.py](../koopman/preview_solver_v87.py) |
+| v88范围冻结与共同求解 | [control_support_v88.py](../koopman/control_support_v88.py)、[freeze_support_v88.py](../workflows/freeze_support_v88.py)、[solve_disturbance_v88.py](../workflows/solve_disturbance_v88.py) |
+| v87三模型构建与身份绑定（v88复用） | [preview_solver_v87.py](../koopman/preview_solver_v87.py) |
 | 完整提升、混合残差与NumPy/CasADi实现 | [disturbance_lifted_v86.py](../koopman/disturbance_lifted_v86.py) |
 | 因果记忆及每次预测会话 | [command_state_v39.py](../koopman/command_state_v39.py)、[continuous_prediction_v76.py](../koopman/continuous_prediction_v76.py) |
 | 连续求解、候选与原始约束残差 | [continuous_mpc_v76.py](../koopman/continuous_mpc_v76.py) |

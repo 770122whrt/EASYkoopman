@@ -6,12 +6,12 @@ This repository contains code implementation for simulator of the paper "EasyUUV
 
 ## 当前研究入口
 
-本分支研究冻结物理模型、完整提升 Koopman 及两者结合的预测与控制。v87已完成扩大训练和独立预测/求解比较：结合模型测试16/16窗口通过，纯Koopman4/16；原闭环准入未通过，按用户决定不运行闭环，`no_selection`保留。
+当前v88比较0%、10%、30%附加阻力，三个模型参数冻结、共同控制范围仅依据训练数据扩大。30%独立测试中，结合模型的z/姿态预测误差比物理下降约53%/59%；0%与10%下物理更准。预测改善不代表闭环效果，`no_selection`保留。
 
 - [研究索引与历史结论](docs/phase9_research_index.md)：从这里定位当前协议、结果、代码和历史报告。
 - [当前状态](.planning/STATE.md)：正在执行什么、哪些证据尚未取得。
 - [项目边界](.planning/PROJECT.md)与[控制链合同](docs/phase9_control_chain_contract.md)：研究目标、完整提升传播及共同控制接口。
-- [v87运行说明](docs/phase9_diverse_v87_runbook.md)：本轮数据、冻结、验证和服务器运行规则。
+- [v88运行说明](docs/phase9_matrix_v88_runbook.md)：本轮数据、冻结、验证和服务器运行规则。
 
 当前验证环境为 Isaac Sim 5.0 + Isaac Lab 2.2.1；主服务器为 `suanliyun-agentic-AUV`。下方上游 Isaac Lab 1.x 部署、训练和硬件链接保留为历史资料，不代表本分支已经取得硬件或当前 Koopman 控制效果。旧交接与规划通过研究索引查阅。
 
