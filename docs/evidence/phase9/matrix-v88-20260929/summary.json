@@ -1,0 +1,524 @@
+{
+  "model_sha256": "5857a0e8d09cd04e33112b457b6a60f8b4147f3819815634edb6149ac95e137e",
+  "source_manifest_sha256": "82ad974f920e8e4a668d675802b4cecaff5bb1fe4a59ef743a9d101de62c9b45",
+  "support_sha256": "f7f317119e48adcdda8eddbd1e91b0a8f392e59492c4ca93f706923b6bcc9a89",
+  "model_fits": 0,
+  "closed_loop_runs": 0,
+  "levels": {
+    "0.0": {
+      "validation": {
+        "physics": {
+          "windows": 16,
+          "passed_windows": 16,
+          "passed": true,
+          "metrics": {
+            "z_rmse_m": {
+              "pooled_rmse": 1.0725612823137085e-06,
+              "worst_rmse": 2.074894308638725e-06
+            },
+            "attitude_rmse_rad": {
+              "pooled_rmse": 0.00010224275333527078,
+              "worst_rmse": 0.0001367582319228493
+            },
+            "linear_velocity_rmse_m_s": {
+              "pooled_rmse": 4.481214022326107e-06,
+              "worst_rmse": 1.1356178181892417e-05
+            },
+            "angular_velocity_rmse_rad_s": {
+              "pooled_rmse": 0.00012030377922641633,
+              "worst_rmse": 0.00020063542453028845
+            }
+          }
+        },
+        "koopman": {
+          "windows": 16,
+          "passed_windows": 9,
+          "passed": false,
+          "metrics": {
+            "z_rmse_m": {
+              "pooled_rmse": 0.0066005635688239465,
+              "worst_rmse": 0.025504816171867308
+            },
+            "attitude_rmse_rad": {
+              "pooled_rmse": 0.003963596518576381,
+              "worst_rmse": 0.008298213788664728
+            },
+            "linear_velocity_rmse_m_s": {
+              "pooled_rmse": 0.009347330538621298,
+              "worst_rmse": 0.025710476166022792
+            },
+            "angular_velocity_rmse_rad_s": {
+              "pooled_rmse": 0.006700170622825687,
+              "worst_rmse": 0.015960235520466035
+            }
+          }
+        },
+        "hybrid": {
+          "windows": 16,
+          "passed_windows": 15,
+          "passed": false,
+          "metrics": {
+            "z_rmse_m": {
+              "pooled_rmse": 0.0009795541099331298,
+              "worst_rmse": 0.0023360490453237853
+            },
+            "attitude_rmse_rad": {
+              "pooled_rmse": 0.0009065595522822894,
+              "worst_rmse": 0.0016067066978179415
+            },
+            "linear_velocity_rmse_m_s": {
+              "pooled_rmse": 0.00215619129256438,
+              "worst_rmse": 0.005268434188500625
+            },
+            "angular_velocity_rmse_rad_s": {
+              "pooled_rmse": 0.002171368008678073,
+              "worst_rmse": 0.0038230307654452504
+            }
+          }
+        }
+      },
+      "test": {
+        "physics": {
+          "windows": 16,
+          "passed_windows": 16,
+          "passed": true,
+          "metrics": {
+            "z_rmse_m": {
+              "pooled_rmse": 9.064256227296706e-07,
+              "worst_rmse": 1.9360864379189526e-06
+            },
+            "attitude_rmse_rad": {
+              "pooled_rmse": 0.00011633845255877749,
+              "worst_rmse": 0.00024602505299997195
+            },
+            "linear_velocity_rmse_m_s": {
+              "pooled_rmse": 5.993228909058621e-06,
+              "worst_rmse": 1.2752301517699693e-05
+            },
+            "angular_velocity_rmse_rad_s": {
+              "pooled_rmse": 0.00020074976205125214,
+              "worst_rmse": 0.00040596944236590465
+            }
+          }
+        },
+        "koopman": {
+          "windows": 16,
+          "passed_windows": 1,
+          "passed": false,
+          "metrics": {
+            "z_rmse_m": {
+              "pooled_rmse": 0.010103086381376917,
+              "worst_rmse": 0.028160028409503823
+            },
+            "attitude_rmse_rad": {
+              "pooled_rmse": 0.007759704060740738,
+              "worst_rmse": 0.016652430561978078
+            },
+            "linear_velocity_rmse_m_s": {
+              "pooled_rmse": 0.020882867764253427,
+              "worst_rmse": 0.059751144578734976
+            },
+            "angular_velocity_rmse_rad_s": {
+              "pooled_rmse": 0.013914346244949227,
+              "worst_rmse": 0.03570440741166543
+            }
+          }
+        },
+        "hybrid": {
+          "windows": 16,
+          "passed_windows": 13,
+          "passed": false,
+          "metrics": {
+            "z_rmse_m": {
+              "pooled_rmse": 0.0014538022346448018,
+              "worst_rmse": 0.00378434857296492
+            },
+            "attitude_rmse_rad": {
+              "pooled_rmse": 0.0014889653979702794,
+              "worst_rmse": 0.002653066027921374
+            },
+            "linear_velocity_rmse_m_s": {
+              "pooled_rmse": 0.0035544906607846353,
+              "worst_rmse": 0.008733157421323875
+            },
+            "angular_velocity_rmse_rad_s": {
+              "pooled_rmse": 0.0030358856455640773,
+              "worst_rmse": 0.0055717088261004796
+            }
+          }
+        }
+      },
+      "solver": {
+        "physics": {
+          "cases": 4,
+          "passed": 4,
+          "all_passed": true,
+          "old_support_accepted": 1,
+          "new_support_accepted": 4,
+          "failures": []
+        },
+        "koopman": {
+          "cases": 4,
+          "passed": 4,
+          "all_passed": true,
+          "old_support_accepted": 1,
+          "new_support_accepted": 4,
+          "failures": []
+        },
+        "hybrid": {
+          "cases": 4,
+          "passed": 4,
+          "all_passed": true,
+          "old_support_accepted": 1,
+          "new_support_accepted": 4,
+          "failures": []
+        }
+      },
+      "closed_loop_eligible": false
+    },
+    "0.1": {
+      "validation": {
+        "physics": {
+          "windows": 16,
+          "passed_windows": 16,
+          "passed": true,
+          "metrics": {
+            "z_rmse_m": {
+              "pooled_rmse": 0.00044723611408059284,
+              "worst_rmse": 0.0011240815763170994
+            },
+            "attitude_rmse_rad": {
+              "pooled_rmse": 0.0004740341458645598,
+              "worst_rmse": 0.0008924122717843645
+            },
+            "linear_velocity_rmse_m_s": {
+              "pooled_rmse": 0.0009752073118645618,
+              "worst_rmse": 0.002464781997042925
+            },
+            "angular_velocity_rmse_rad_s": {
+              "pooled_rmse": 0.0009190729075253321,
+              "worst_rmse": 0.0018686190038239828
+            }
+          }
+        },
+        "koopman": {
+          "windows": 16,
+          "passed_windows": 10,
+          "passed": false,
+          "metrics": {
+            "z_rmse_m": {
+              "pooled_rmse": 0.006165669091269709,
+              "worst_rmse": 0.023770771584999528
+            },
+            "attitude_rmse_rad": {
+              "pooled_rmse": 0.0037296021544370207,
+              "worst_rmse": 0.008136951865354928
+            },
+            "linear_velocity_rmse_m_s": {
+              "pooled_rmse": 0.008597811984454699,
+              "worst_rmse": 0.0239799709291619
+            },
+            "angular_velocity_rmse_rad_s": {
+              "pooled_rmse": 0.006189512236546724,
+              "worst_rmse": 0.014618567028259977
+            }
+          }
+        },
+        "hybrid": {
+          "windows": 16,
+          "passed_windows": 16,
+          "passed": true,
+          "metrics": {
+            "z_rmse_m": {
+              "pooled_rmse": 0.0005374253090829913,
+              "worst_rmse": 0.0011201687683467189
+            },
+            "attitude_rmse_rad": {
+              "pooled_rmse": 0.000525650376472252,
+              "worst_rmse": 0.000921546755203655
+            },
+            "linear_velocity_rmse_m_s": {
+              "pooled_rmse": 0.0012243063051015884,
+              "worst_rmse": 0.002536055276976503
+            },
+            "angular_velocity_rmse_rad_s": {
+              "pooled_rmse": 0.001306924141242816,
+              "worst_rmse": 0.002271598786101036
+            }
+          }
+        }
+      },
+      "test": {
+        "physics": {
+          "windows": 16,
+          "passed_windows": 16,
+          "passed": true,
+          "metrics": {
+            "z_rmse_m": {
+              "pooled_rmse": 0.0005927276404227761,
+              "worst_rmse": 0.0012924402979839504
+            },
+            "attitude_rmse_rad": {
+              "pooled_rmse": 0.0007744353266985088,
+              "worst_rmse": 0.0014096182584018872
+            },
+            "linear_velocity_rmse_m_s": {
+              "pooled_rmse": 0.001276026083273491,
+              "worst_rmse": 0.002543651616607823
+            },
+            "angular_velocity_rmse_rad_s": {
+              "pooled_rmse": 0.0014353401299794272,
+              "worst_rmse": 0.003188911496134446
+            }
+          }
+        },
+        "koopman": {
+          "windows": 16,
+          "passed_windows": 3,
+          "passed": false,
+          "metrics": {
+            "z_rmse_m": {
+              "pooled_rmse": 0.009184448691749473,
+              "worst_rmse": 0.025276085376389146
+            },
+            "attitude_rmse_rad": {
+              "pooled_rmse": 0.007447160664566782,
+              "worst_rmse": 0.01602958516146726
+            },
+            "linear_velocity_rmse_m_s": {
+              "pooled_rmse": 0.019308459249395744,
+              "worst_rmse": 0.05443916836932803
+            },
+            "angular_velocity_rmse_rad_s": {
+              "pooled_rmse": 0.01333101123441778,
+              "worst_rmse": 0.03248786106721602
+            }
+          }
+        },
+        "hybrid": {
+          "windows": 16,
+          "passed_windows": 15,
+          "passed": false,
+          "metrics": {
+            "z_rmse_m": {
+              "pooled_rmse": 0.0009407956610482207,
+              "worst_rmse": 0.0028382542073577505
+            },
+            "attitude_rmse_rad": {
+              "pooled_rmse": 0.0008523695431625873,
+              "worst_rmse": 0.0018626687754387144
+            },
+            "linear_velocity_rmse_m_s": {
+              "pooled_rmse": 0.002516630838767212,
+              "worst_rmse": 0.007079290383770018
+            },
+            "angular_velocity_rmse_rad_s": {
+              "pooled_rmse": 0.0018680405273791805,
+              "worst_rmse": 0.004626068670527162
+            }
+          }
+        }
+      },
+      "solver": {
+        "physics": {
+          "cases": 4,
+          "passed": 4,
+          "all_passed": true,
+          "old_support_accepted": 1,
+          "new_support_accepted": 4,
+          "failures": []
+        },
+        "koopman": {
+          "cases": 4,
+          "passed": 4,
+          "all_passed": true,
+          "old_support_accepted": 1,
+          "new_support_accepted": 4,
+          "failures": []
+        },
+        "hybrid": {
+          "cases": 4,
+          "passed": 4,
+          "all_passed": true,
+          "old_support_accepted": 1,
+          "new_support_accepted": 4,
+          "failures": []
+        }
+      },
+      "closed_loop_eligible": false
+    },
+    "0.3": {
+      "validation": {
+        "physics": {
+          "windows": 16,
+          "passed_windows": 14,
+          "passed": false,
+          "metrics": {
+            "z_rmse_m": {
+              "pooled_rmse": 0.0012617826151344186,
+              "worst_rmse": 0.003195460208337977
+            },
+            "attitude_rmse_rad": {
+              "pooled_rmse": 0.00126761873993799,
+              "worst_rmse": 0.0024930838876556683
+            },
+            "linear_velocity_rmse_m_s": {
+              "pooled_rmse": 0.002760319532032074,
+              "worst_rmse": 0.006906743941566577
+            },
+            "angular_velocity_rmse_rad_s": {
+              "pooled_rmse": 0.0028190941726459373,
+              "worst_rmse": 0.0056558318205895235
+            }
+          }
+        },
+        "koopman": {
+          "windows": 16,
+          "passed_windows": 9,
+          "passed": false,
+          "metrics": {
+            "z_rmse_m": {
+              "pooled_rmse": 0.005747610520329034,
+              "worst_rmse": 0.021112306022307802
+            },
+            "attitude_rmse_rad": {
+              "pooled_rmse": 0.0034162794285577894,
+              "worst_rmse": 0.00805388056186747
+            },
+            "linear_velocity_rmse_m_s": {
+              "pooled_rmse": 0.007925729010722811,
+              "worst_rmse": 0.021710897962172064
+            },
+            "angular_velocity_rmse_rad_s": {
+              "pooled_rmse": 0.00574061265948428,
+              "worst_rmse": 0.012297318887251005
+            }
+          }
+        },
+        "hybrid": {
+          "windows": 16,
+          "passed_windows": 16,
+          "passed": true,
+          "metrics": {
+            "z_rmse_m": {
+              "pooled_rmse": 0.0004744799147187162,
+              "worst_rmse": 0.001103902838652334
+            },
+            "attitude_rmse_rad": {
+              "pooled_rmse": 0.0004231977437954773,
+              "worst_rmse": 0.000840001632440214
+            },
+            "linear_velocity_rmse_m_s": {
+              "pooled_rmse": 0.00113645741024843,
+              "worst_rmse": 0.0028069665294209655
+            },
+            "angular_velocity_rmse_rad_s": {
+              "pooled_rmse": 0.0011512473643109573,
+              "worst_rmse": 0.0023292735543959404
+            }
+          }
+        }
+      },
+      "test": {
+        "physics": {
+          "windows": 16,
+          "passed_windows": 11,
+          "passed": false,
+          "metrics": {
+            "z_rmse_m": {
+              "pooled_rmse": 0.0016598775076542892,
+              "worst_rmse": 0.0034508919518859062
+            },
+            "attitude_rmse_rad": {
+              "pooled_rmse": 0.0021610584473272416,
+              "worst_rmse": 0.0040072785598150844
+            },
+            "linear_velocity_rmse_m_s": {
+              "pooled_rmse": 0.003571319047212984,
+              "worst_rmse": 0.007048889348414111
+            },
+            "angular_velocity_rmse_rad_s": {
+              "pooled_rmse": 0.004329670399573528,
+              "worst_rmse": 0.0095004273698083
+            }
+          }
+        },
+        "koopman": {
+          "windows": 16,
+          "passed_windows": 2,
+          "passed": false,
+          "metrics": {
+            "z_rmse_m": {
+              "pooled_rmse": 0.0078350695927426,
+              "worst_rmse": 0.020708771450658282
+            },
+            "attitude_rmse_rad": {
+              "pooled_rmse": 0.007068453239984186,
+              "worst_rmse": 0.01604250176716459
+            },
+            "linear_velocity_rmse_m_s": {
+              "pooled_rmse": 0.017136405366507207,
+              "worst_rmse": 0.04618640099528772
+            },
+            "angular_velocity_rmse_rad_s": {
+              "pooled_rmse": 0.012870812100172463,
+              "worst_rmse": 0.026790855378258614
+            }
+          }
+        },
+        "hybrid": {
+          "windows": 16,
+          "passed_windows": 16,
+          "passed": true,
+          "metrics": {
+            "z_rmse_m": {
+              "pooled_rmse": 0.0007749262413561033,
+              "worst_rmse": 0.001568692861920252
+            },
+            "attitude_rmse_rad": {
+              "pooled_rmse": 0.000887929690749689,
+              "worst_rmse": 0.0016160931399095237
+            },
+            "linear_velocity_rmse_m_s": {
+              "pooled_rmse": 0.0020645038276195502,
+              "worst_rmse": 0.004349816402324837
+            },
+            "angular_velocity_rmse_rad_s": {
+              "pooled_rmse": 0.00223954344545012,
+              "worst_rmse": 0.004630248718017557
+            }
+          }
+        }
+      },
+      "solver": {
+        "physics": {
+          "cases": 4,
+          "passed": 4,
+          "all_passed": true,
+          "old_support_accepted": 1,
+          "new_support_accepted": 4,
+          "failures": []
+        },
+        "koopman": {
+          "cases": 4,
+          "passed": 4,
+          "all_passed": true,
+          "old_support_accepted": 1,
+          "new_support_accepted": 4,
+          "failures": []
+        },
+        "hybrid": {
+          "cases": 4,
+          "passed": 4,
+          "all_passed": true,
+          "old_support_accepted": 1,
+          "new_support_accepted": 4,
+          "failures": []
+        }
+      },
+      "closed_loop_eligible": false
+    }
+  },
+  "solver_distinct_initial_states": 12,
+  "all_workers_closed": true
+}
