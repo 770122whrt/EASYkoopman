@@ -29,7 +29,18 @@ from koopman.command_state_v39 import CausalCommandState
 from koopman.control_objective_v44 import tracking_terms,control_mask,trajectory_cost
 
 
-def validate(data,assets,native_exit,*,learned_model,learned_sha256):
+def validate(data,assets,native_exit,*,learned_model,learned_sha256,experiment='v82',expected_manifest_sha=None):
+    if experiment not in ('v82','v86','v87'):raise ValueError('validation_experiment')
+    if experiment=='v87':
+        from koopman import preview_solver_v87 as api
+        if expected_manifest_sha is None or data['source_manifest_sha256']!=expected_manifest_sha:
+            raise ValueError('v87_source_binding')
+    elif experiment=='v86':
+        from koopman import preview_solver_v86 as api
+    else:
+        from koopman import preview_solver_v82 as api
+    load_model,verify_support,case_spec=api.load_model,api.verify_support,api.case_spec
+    model_identity,make_predictor=api.model_identity,api.make_predictor
     if native_exit!=0 or data['status']!='completed_pending_independent_acceptance':raise ValueError('native_or_status')
     if (data['cleanup_errors'] or not data['cleanup_completed']['environment'] or
             not data['cleanup_completed']['simulation_app'] or not data['native_alias_release']['robot_released']):
@@ -37,6 +48,8 @@ def validate(data,assets,native_exit,*,learned_model,learned_sha256):
     if (data['model_fits']!=0 or data['real_time_qualified'] is not False
             or data['timing_mode']!='synchronous_nonrealtime'):raise ValueError('scope')
     loaded=load_model(learned_model,learned_sha256);verify_support(loaded,assets)
+    if experiment=='v87' and loaded.record['collection_manifest_sha256']!=expected_manifest_sha:
+        raise ValueError('v87_model_source_binding')
     q=data['case'];cfg=q['configuration'];kind=q['controller']
     expected_case=case_spec(cfg,kind,q['preview_enabled'],q['task'])
     if q!=expected_case:raise ValueError('case_contract')
@@ -52,7 +65,7 @@ def validate(data,assets,native_exit,*,learned_model,learned_sha256):
     for field in ('pwm_planning_margin','pwm_optimizer_margin'):
         if field in identity and identity[field]!=data['model'][field]:raise ValueError('model_identity')
     spec=settings(q['profile']);horizon=spec['horizon'];weights=spec['weights']
-    if data['schema']!='learned-control-v82' or data['model']['weights']!=asdict(weights) or data['model']['horizon_macro_steps']!=horizon:
+    if data['schema']!='learned-control-'+experiment or data['model']['weights']!=asdict(weights) or data['model']['horizon_macro_steps']!=horizon:
         raise ValueError('profile_contract')
     if q['controller']!='feedback':
         if not data['cleanup_completed']['worker'] or data['worker_closed']!={'process_stopped':True,'io_threads_stopped':True}:raise ValueError('worker_cleanup')
@@ -137,6 +150,14 @@ def validate(data,assets,native_exit,*,learned_model,learned_sha256):
             checked=audit_decision(checker=checker,origin=origin,state=initial,previous=previous,
                 reference=q['reference'],feedback_result=feedback_result,prior_decision=prior,
                 decision=audit,feedback_factory=feedback_factory)
+            if experiment=='v87':
+                from workflows.solve_disturbance_v87 import check_candidate
+                candidate_check=check_candidate(checker,origin,initial,previous,q['reference'],audit)
+                checked['raw_candidate_check']=candidate_check
+                if audit.get('selected_source')=='solver_candidate':
+                    if not candidate_check['feasible']:raise ValueError('v87_selected_candidate_infeasible')
+                    same(audit['selection_plans']['worker'],np.asarray(audit['candidate_commands'],dtype=np.float32),
+                        atol=1e-7,label='v87_worker_candidate_binding')
             decision_checks.append(dict(physics_index=4*i,**checked))
             micro=np.repeat(seq,2,axis=0)
             forecast=origin.forecast(initial,micro,predictor)
@@ -178,6 +199,13 @@ def validate(data,assets,native_exit,*,learned_model,learned_sha256):
                 np.max(np.abs(wrench-np.asarray(t['applied_wrench_6'])[0]))])
             screen=domain_screen(row,geom,5.5)
             if not screen['screen_pass']:raise ValueError('actual_safety')
+            if experiment in ('v86','v87'):
+                from koopman.physical_terms_v26 import state_terms
+                disturbance=cmd['_disturbance_audit_v86']
+                if disturbance['fraction']!=q['hidden_drag_fraction']:raise ValueError('v86_disturbance')
+                quadratic=state_terms(np.asarray(before['state_11']),c)['quadratic_drag']*np.r_[[c.mass]*3,c.inertia]
+                np.testing.assert_allclose(disturbance['quadratic_wrench_b'],quadratic,rtol=1e-5,atol=1e-4)
+                np.testing.assert_allclose(disturbance['extra_wrench_b'],q['hidden_drag_fraction']*quadratic,rtol=1e-5,atol=1e-4)
             clearances.append(screen['minimum_hull_clearance_m'])
             live.record_issued(u,physics_index=j,episode_id=episode)
             digest=hashlib.sha256(bytes.fromhex(digest)+j.to_bytes(8,'little')+u.tobytes()).hexdigest()
@@ -199,8 +227,8 @@ def validate(data,assets,native_exit,*,learned_model,learned_sha256):
         real_time_qualified=False,training_eligible=False,actual_pwm_checks=pwm_checks,
         backend_allocation_checks=len(backend_rows),
         decision_audits=len(decision_checks),decision_checks=decision_checks,
-        acceptance_schema='learned-control-v82-acceptance/1',
-        comparison_scope='pooled_fit8_development',blind_evaluation=False,
+        acceptance_schema='learned-control-'+experiment+'-acceptance/1',
+        comparison_scope='base_fixed_disturbance_fresh_tasks' if experiment in ('v86','v87') else 'pooled_fit8_development',blind_evaluation=False,
         prediction_artifact_sha256=loaded.file_sha256,prediction_content_sha256=expected_identity['prediction_content_sha256'],
         common_support_model_sha256=assets.model_sha256,representation_benefit_claimed=False,v38_model_admission_claimed=False)
 

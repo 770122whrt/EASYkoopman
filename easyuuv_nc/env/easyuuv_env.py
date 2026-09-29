@@ -2513,6 +2513,19 @@ class EasyUUVEnv(DirectRLEnv):
         forces = density_forces + buoyancy_forces + viscosity_forces + thruster_forces
         torques = density_torques + buoyancy_torques + viscosity_torques + thruster_torques
 
+        # Opt-in experiment disturbance; do not change/export the mechanical
+        # drag multiplier used by model context, compensation or input scaling.
+        from easyuuv_nc.disturbance_v86 import extra_quadratic_drag
+        extra_f, extra_t = extra_quadratic_drag(density_forces, density_torques,
+            getattr(self.cfg, 'hidden_quadratic_drag_fraction_v86', 0.))
+        forces = forces + extra_f
+        torques = torques + extra_t
+        if hasattr(self.cfg, 'hidden_quadratic_drag_fraction_v86'):
+            self._disturbance_audit_v86 = dict(
+                fraction=self.cfg.hidden_quadratic_drag_fraction_v86,
+                quadratic_wrench_b=torch.cat((density_forces, density_torques), dim=-1).detach().clone(),
+                extra_wrench_b=torch.cat((extra_f, extra_t), dim=-1).detach().clone())
+
         # M4 近边界效应——加性 body-frame wrench 修正（默认 off → any_enabled=False → 零修正）。
         if self.boundary_models.any_enabled:
             b_df, b_dt, b_info = self.boundary_models.compute_boundary_wrench(

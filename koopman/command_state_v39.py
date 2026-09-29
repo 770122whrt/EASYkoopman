@@ -105,7 +105,8 @@ class _PredictionOrigin:
     def forecast(self, initial_state, planned_commands, predictor, *, deadline=None):
         """Forecast 1..128 controls without modifying this origin or live state.
 
-        Predictor must be stateless, as in v37. Deadline checks are cooperative;
+        A start_forecast predictor owns private latent memory for this rollout;
+        legacy callables remain stateless. Deadline checks are cooperative;
         a blocking predictor cannot be preempted by this in-process interface.
         Solver isolation and runtime command arbitration remain separate work.
         """
@@ -127,6 +128,8 @@ class _PredictionOrigin:
         kernel = ControlKernel(self._configuration)
         estimator = deepcopy(self._actuator)
         context = replace(self._context)
+        step_predictor = (predictor.start_forecast(x[None], context)
+                          if hasattr(predictor, 'start_forecast') else predictor)
         initial_speed, initial_clock = estimator.current(), estimator.elapsed_time
         scale = np.r_[[context.mass]*3, context.inertia]
         states, pwm_rows, speeds, inputs, applied, times, issued = [], [], [], [], [], [], []
@@ -143,7 +146,7 @@ class _PredictionOrigin:
                     speed = estimator.advance_pwm(allocation['pwm'])
                     wrench = kernel.B.numpy() @ (kernel.env.cfg.rotor_constant*np.abs(speed)*speed)
                     acceleration = wrench/scale
-                    following = np.asarray(predictor(x[None], acceleration[None], context), dtype=float)
+                    following = np.asarray(step_predictor(x[None], acceleration[None], context), dtype=float)
                     check_time()
                     if following.shape != (1, 11) or not valid_predictions(following)[0]:
                         raise ValueError('command_prediction_invalid')

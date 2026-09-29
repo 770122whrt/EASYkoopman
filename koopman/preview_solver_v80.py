@@ -68,8 +68,8 @@ class _Engine:
 
 
 class ProcessTransport(PreviousTransport):
-    def __init__(self,spec,*,limits=SynchronousLimits()):
-        self.worker=IsolatedSolverWorker(_Engine,spec,limits=limits)
+    def __init__(self,spec,*,limits=SynchronousLimits(),engine_factory=_Engine):
+        self.worker=IsolatedSolverWorker(engine_factory,spec,limits=limits)
         keys=('OPENBLAS_NUM_THREADS','OMP_NUM_THREADS','MKL_NUM_THREADS');prior={k:os.environ.get(k) for k in keys}
         try:
             for k in keys:os.environ[k]='1'

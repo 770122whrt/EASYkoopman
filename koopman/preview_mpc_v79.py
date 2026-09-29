@@ -68,7 +68,9 @@ class PreviewMPC:
             answer = self.worker.call(dict(origin=origin, initial_state=initial_state,
                          baseline=held, previous=old, reference=ref, initial_guess=guess))
             result['solver'] = answer.get('solver', {})
-            for key in ('worker_pid','worker_cpu_seconds','worker_threads','constraint_violation'):
+            for key in ('worker_pid','worker_cpu_seconds','worker_threads','constraint_violation',
+                        'candidate_commands','candidate_failure','command_bound_violation',
+                        'solution_check','selected_source'):
                 result[key] = answer.get(key)
             result['worker_reason'] = answer.get('reason'); result['worker_status'] = answer.get('status')
             failed = answer.get('commands') is None

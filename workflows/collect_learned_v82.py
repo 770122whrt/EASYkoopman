@@ -16,23 +16,44 @@ import time
 import traceback
 
 
-def main():
+def main(*, experiment='v82'):
+    if experiment not in ('v82','v86','v87'):raise ValueError('collector_experiment')
+    if experiment=='v87':
+        from koopman import preview_solver_v87 as model_api
+    elif experiment=='v86':
+        from koopman import preview_solver_v86 as model_api
+    else:
+        from koopman import preview_solver_v82 as model_api
     p=argparse.ArgumentParser();p.add_argument('--configuration',choices=('base','uuv4','long_body','uuv6','asymmetric','heavy_moderate','uuv4_angled','uuv6_angled'),required=True)
-    p.add_argument('--controller',choices=('learned_velocity','matched_physics'),required=True)
+    p.add_argument('--controller',choices=model_api.KINDS,required=True)
     p.add_argument('--learned-model',type=Path,required=True);p.add_argument('--learned-sha256',required=True)
     p.add_argument('--assets',required=True);p.add_argument('--output',type=Path,required=True)
     p.add_argument('--manifest',type=Path,required=True)
     p.add_argument('--preview',choices=('off','on'),required=True)
     p.add_argument('--task',choices=('pitch_pos','pitch_neg'),default='pitch_pos')
+    if experiment in ('v86','v87'):
+        p.add_argument('--validation-report',type=Path,required=True)
+        p.add_argument('--test-report',type=Path,required=True)
+        p.add_argument('--solver-report',type=Path,required=True)
     a=p.parse_args();a.output.mkdir(parents=True,exist_ok=False)
     root=Path(__file__).resolve().parents[1];manifest=json.loads(a.manifest.read_text())
     for rel,digest in manifest['files'].items():
         if hashlib.sha256((root/rel).read_bytes()).hexdigest()!=digest:raise ValueError('source_changed:'+rel)
     from workflows.protocol_v77 import settings
-    from koopman.preview_solver_v82 import case_spec
+    case_spec=model_api.case_spec
+    if experiment in ('v86','v87'):
+        if experiment=='v87':
+            from workflows.collect_disturbance_control_v87 import verify_control_gate
+            from workflows.disturbance_data_v87 import verify_manifest
+        else:
+            from workflows.collect_disturbance_control_v86 import verify_control_gate
+            from workflows.disturbance_data_v86 import verify_manifest
+        verify_manifest(a.manifest)
+        kw={'model':a.learned_model} if experiment=='v87' else {}
+        verify_control_gate(a.learned_sha256,a.controller,a.validation_report,a.test_report,a.solver_report,**kw)
     profile=settings('depth4_h20')
     case=case_spec(a.configuration,a.controller,a.preview=='on',a.task)
-    report=dict(schema='learned-control-v82',collector_pid=os.getpid(),case=case,status='started',cleanup_errors=[],
+    report=dict(schema='learned-control-'+experiment,collector_pid=os.getpid(),case=case,status='started',cleanup_errors=[],
         model_fits=0,real_time_qualified=False,timing_mode='synchronous_nonrealtime',contact_authoring=[],
         source_manifest_sha256=hashlib.sha256(a.manifest.read_bytes()).hexdigest(),
         physical_steps=0,completed_controls=0)
@@ -55,7 +76,8 @@ def main():
         from workflows.geometry_v76 import read_geometry
         from workflows.isaac_execution_v67 import IsaacExecutionSession
         from workflows.runtime_assets_v56 import AssetLocation,load_assets,read
-        from koopman.preview_solver_v82 import create_solver,PLANNING_MARGIN,OPTIMIZER_MARGIN,load_model,verify_support
+        create_solver,load_model,verify_support=model_api.create_solver,model_api.load_model,model_api.verify_support
+        PLANNING_MARGIN,OPTIMIZER_MARGIN=model_api.PLANNING_MARGIN,model_api.OPTIMIZER_MARGIN
         from koopman.backend_gate_v80 import BackendLedger,backend_pwm
         from koopman.feedback_preview_v79 import audit_observed_pwm
         from koopman.reliable_runtime_v77 import ReliableCoordinator
@@ -81,6 +103,7 @@ def main():
             model_identity=solver.model_identity)
         install_control_clock();register_gym_tasks();cfg=EasyUUVEnvCfg()
         configure_environment(cfg,a.configuration,case['seed']);cfg.ground_plane_mode='local_cuboid'
+        if experiment in ('v86','v87'):cfg.hidden_quadratic_drag_fraction_v86=case['hidden_drag_fraction']
         cfg.robot_cfg.spawn.func=contact_report_spawner(cfg.robot_cfg.spawn.func,report['contact_authoring'])
         env=gym.make('EasyUUV-Direct-v1',cfg=cfg);resources['env']=env;runtime=env.unwrapped
         assert runtime.sim.cfg.dt==1/120 and runtime.cfg.decimation==4 and runtime.step_dt==1/30

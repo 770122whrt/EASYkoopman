@@ -74,6 +74,7 @@ class SymbolicPlant:
         if not isinstance(b, _PreparedProjected):
             raise ValueError('symbolic_prepared_projected_required')
         self.base = b
+        self.predictor = predictor
         self.configuration = configuration
         self.allocator = PreparedDirectAllocation(configuration)
         a = self.allocator
@@ -104,6 +105,8 @@ class SymbolicPlant:
         controls = ca.SX.sym('controls', 4, horizon)
         alphas = ca.SX.sym('alphas', 4*horizon)
         state, speed = initial, initial_speed
+        latent = (self.predictor.symbolic_initialize(initial)
+                  if hasattr(self.predictor, 'symbolic_initialize') else None)
         states, speeds, raws = [], [], []
         threshold = float(np.float32(.02))
         scale = ca.DM([self.base._key[0]]*3 + list(self.base._inertia))
@@ -118,7 +121,10 @@ class SymbolicPlant:
                 speed = alpha*speed+(1-alpha)*target
                 force = self.allocator.rotor_constant*ca.fabs(speed)*speed
                 acceleration = (ca.DM(self.allocator.wrench_matrix) @ force)/scale
-                state = self.step(state, acceleration)
+                if latent is None:
+                    state = self.step(state, acceleration)
+                else:
+                    state, latent = self.predictor.symbolic_advance(state, latent, acceleration, self.step)
                 states.append(state); speeds.append(speed)
         f = ca.Function('command_rollout', [initial, initial_speed, controls, alphas],
                         [ca.horzcat(*states), ca.horzcat(*speeds), ca.horzcat(*raws)])

@@ -84,7 +84,7 @@ class ControlTraceSession:
         for name in ('old_actions', 'actions_i', '_actions', '_goal', 'PID_args',
                      '_thrust', '_moment', '_thruster_dynamics_time_s',
                      '_actions_d_filt', '_depth_integral_state',
-                     '_last_motor_values_raw', '_last_motor_values_clipped'):
+                       '_last_motor_values_raw', '_last_motor_values_clipped', '_disturbance_audit_v86'):
             if hasattr(env, name):
                 result[name] = _copy(getattr(env, name))
         if self.backend_readback_enabled:

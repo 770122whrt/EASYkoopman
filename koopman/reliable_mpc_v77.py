@@ -168,7 +168,9 @@ class ReliableMPC:
                 result['warm_start_used']=False
             request=dict(origin=origin,initial_state=initial_state,baseline=base,previous=old,reference=ref,initial_guess=guess)
             answer=self.worker.call(request);result['solver']=answer.get('solver',{})
-            for k in ('worker_pid','worker_cpu_seconds','worker_threads','constraint_violation'):result[k]=answer.get(k)
+            for k in ('worker_pid','worker_cpu_seconds','worker_threads','constraint_violation',
+                      'candidate_commands','candidate_failure','command_bound_violation',
+                      'solution_check','selected_source'):result[k]=answer.get(k)
             result['worker_reason']=answer.get('reason');result['worker_status']=answer.get('status')
             failed=answer.get('commands') is None
             self._failures=self._failures+1 if failed else 0

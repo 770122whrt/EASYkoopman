@@ -158,7 +158,8 @@ class ContinuousMPC:
         result = dict(status='no_plan', reason=None, commands=None, predictions=None,
                       cost=None, baseline_cost=None, exact_feasible=False,
                       runtime_eligible=False, search_kind='continuous_nonlinear_program',
-                      decision_variables=len(self.axes)*self.horizon, solver=None)
+                      decision_variables=len(self.axes)*self.horizon, solver=None,
+                      candidate_commands=None, candidate_failure=None, selected_source=None)
 
         def finish(reason=None):
             result['reason'] = reason; result['elapsed_seconds'] = time.perf_counter()-start
@@ -190,20 +191,35 @@ class ContinuousMPC:
                                   lbg=self._lower_g, ubg=self._upper_g)
             stats = self._solver.stats()
             result['solver'] = dict(return_status=stats['return_status'], success=bool(stats['success']),
-                                    iterations=int(stats.get('iter_count', -1)), global_optimum_claimed=False)
-            if stats['return_status'] in ('Maximum_CpuTime_Exceeded', 'Maximum_WallTime_Exceeded'):
-                return finish('solver_timeout')
-            answer = np.zeros((self.horizon, 4))
-            answer[:, self.axes] = np.asarray(solved['x']).reshape((len(self.axes), self.horizon), order='F').T
-            values = np.asarray(solved['g']).ravel()
-            result['constraint_violation'] = float(max(0., np.max(self._lower_g-values), np.max(values-self._upper_g)))
-            checked = self.check(origin, x, answer, old, ref)
+                                    iterations=int(stats.get('iter_count', -1)), global_optimum_claimed=False,
+                                    timed_out=stats['return_status'] in ('Maximum_CpuTime_Exceeded', 'Maximum_WallTime_Exceeded'))
+            candidate = np.asarray(solved.get('x', []), dtype=float).ravel()
+            checked = dict(feasible=False, reason='candidate_unavailable', cost=None, predictions=None)
+            if candidate.size == len(self.axes)*self.horizon and np.isfinite(candidate).all():
+                answer = np.zeros((self.horizon, 4))
+                answer[:, self.axes] = candidate.reshape((len(self.axes), self.horizon), order='F').T
+                result['candidate_commands'] = answer.copy()
+                # Recompute constraints from the iterate; returned g is not trusted.
+                _, values = self._evaluate(answer[:, self.axes].T, parameters)
+                values = np.asarray(values).ravel()
+                result['constraint_violation'] = (float(max(0., np.max(self._lower_g-values),
+                    np.max(values-self._upper_g))) if np.isfinite(values).all() else None)
+                result['command_bound_violation'] = float(max(0.,
+                    np.max(lower.ravel(order='F')-candidate), np.max(candidate-upper.ravel(order='F'))))
+                checked = self.check(origin, x, answer, old, ref)
+                if committed_prefix and not np.array_equal(answer[:committed_prefix].astype(np.float32),
+                                                           base[:committed_prefix].astype(np.float32)):
+                    checked = dict(feasible=False, reason='committed_prefix_changed', cost=None, predictions=None)
+            else:
+                result['candidate_failure'] = 'nonfinite_or_invalid_shape'
             result['solution_check'] = {k: v for k, v in checked.items() if k != 'predictions'}
             if checked['feasible'] and (not baseline_check['feasible'] or checked['cost'] < baseline_check['cost']):
                 status = 'optimized' if baseline_check['feasible'] else 'recovered'
                 chosen, check = answer, checked
+                result['selected_source'] = 'solver_candidate'
             elif baseline_check['feasible']:
                 status, chosen, check = 'baseline_retained', base, baseline_check
+                result['selected_source'] = 'baseline'
             else:
                 return finish('no_exact_feasible_solution_found')
             result.update(status=status, commands=chosen.astype(np.float32), predictions=check['predictions'],
