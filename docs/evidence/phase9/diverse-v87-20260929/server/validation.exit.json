@@ -1,0 +1,20 @@
+{
+  "native_exit": 0,
+  "group_stopped": true,
+  "seconds": 28.175876820459962,
+  "command": [
+    "/root/shared-nvme/agentic-auv/runtime/bin/python",
+    "-B",
+    "-m",
+    "workflows.fit_disturbance_v87",
+    "validation",
+    "--data",
+    "data",
+    "--manifest",
+    "v87-manifest.json",
+    "--output",
+    "validation.json",
+    "--model",
+    "model.json"
+  ]
+}

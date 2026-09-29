@@ -4,7 +4,18 @@
 
 This repository contains code implementation for simulator of the paper "EasyUUV: An LLM-Enhanced Universal and Lightweight Sim-to-Real Reinforcement Learning Framework for UUV Attitude Control".
 
-> **EASYkoopman migration status:** This branch extends the upstream EasyUUV simulator with offline Koopman identification, bounded Koopman-MPC control, a PPO-to-reference adapter, Koopman-MPC-conditioned PPO training and evidence-gated evaluation. The validated server environment is Isaac Sim 5.0 + Isaac Lab 2.2.1; the upstream Isaac Lab 1.0 instructions below are retained for historical reference. New contributors should start with [`docs/Agentic_AUV_project_handover.md`](docs/Agentic_AUV_project_handover.md) and [`.planning/ROADMAP.md`](.planning/ROADMAP.md).
+## 当前研究入口
+
+本分支研究冻结物理模型、完整提升 Koopman 及两者结合的预测与控制。v87已完成扩大训练和独立预测/求解比较：结合模型测试16/16窗口通过，纯Koopman4/16；原闭环准入未通过，按用户决定不运行闭环，`no_selection`保留。
+
+- [研究索引与历史结论](docs/phase9_research_index.md)：从这里定位当前协议、结果、代码和历史报告。
+- [当前状态](.planning/STATE.md)：正在执行什么、哪些证据尚未取得。
+- [项目边界](.planning/PROJECT.md)与[控制链合同](docs/phase9_control_chain_contract.md)：研究目标、完整提升传播及共同控制接口。
+- [v87运行说明](docs/phase9_diverse_v87_runbook.md)：本轮数据、冻结、验证和服务器运行规则。
+
+当前验证环境为 Isaac Sim 5.0 + Isaac Lab 2.2.1；主服务器为 `suanliyun-agentic-AUV`。下方上游 Isaac Lab 1.x 部署、训练和硬件链接保留为历史资料，不代表本分支已经取得硬件或当前 Koopman 控制效果。旧交接与规划通过研究索引查阅。
+
+## 上游项目与部署资料（历史）
 
 The hardware deployment code repository refers to [**HERE**](https://github.com/360ZMEM/EasyUUV-UUV-Deploy)
 
