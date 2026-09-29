@@ -2,8 +2,8 @@
 import argparse
 from pathlib import Path
 import numpy as np
-from koopman.disturbance_lifted_v86 import prepare
-from koopman.lifted_propagation_v84 import coordinates
+from koopman.disturbance_model import prepare
+from koopman.lifted_state import coordinates
 from workflows.disturbance_data import (context,frozen_model,load_episode,verify_manifest,MODEL_SHA256,
     write_new,errors,execution_provenance)
 from workflows.disturbance_protocol import get_protocol

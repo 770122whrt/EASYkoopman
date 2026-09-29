@@ -9,8 +9,14 @@ __pycache__/
 .vscode/
 # Local upstream reference checkout; never publish it with this project.
 /easyuuv_v2-main/
+/results/
+/.tmp/
+/tmp/
+/.pytest_cache/
+/.pytest_current_*/
 *.md
 !README.md
 !AGENTS.md
 !.planning/**/*.md
 !docs/**/*.md
+!experiments/**/*.md

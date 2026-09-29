@@ -21,15 +21,15 @@ def assess_answer(checker,origin,state,old,reference,answer):
 def run(data,manifest,model,assets_path,support,support_sha,output,*,source_archive=None):
     import torch
     torch.set_num_threads(1)
-    from workflows.runtime_assets_v56 import AssetLocation,load_assets
+    from workflows.runtime_assets import AssetLocation,load_assets
     from workflows.disturbance_data import load_episode,verify_manifest
-    from workflows.protocol_v80 import case_spec
-    from koopman.control_support_v88 import load_domain,MODEL_SHA
-    from koopman.command_state_v39 import CausalCommandState
+    from workflows.control_task import reference as task_reference
+    from koopman.training_support import load_domain,MODEL_SHA
+    from koopman.command_state import CausalCommandState
     from koopman.control_solver import load_model,verify_support,make_predictor,create_solver,KINDS
-    from koopman.continuous_prediction_v76 import SymbolicPlant
-    from koopman.control_objective_v44 import state_features,control_mask
-    from koopman.diagnostics_v23 import json_safe
+    from koopman.symbolic_prediction import SymbolicPlant
+    from koopman.control_objective import state_features,control_mask
+    from koopman.diagnostics import json_safe
     if Path(output).exists():raise FileExistsError(output)
     assets=load_assets(AssetLocation(assets_path,'.','assets/v38/inputs',
         '5d8c4aa1264d93307dc0cf692757441509e75809206ed80006543ca5e4239632'),model_key='nonlinear__pooled')
@@ -68,7 +68,7 @@ def run(data,manifest,model,assets_path,support,support_sha,output,*,source_arch
                     delta=float(np.max(abs(exact['predictions']-symbolic['predictions'])))
                     item['numpy_symbolic_max_error']=delta
                     if delta>1e-5:raise ValueError('v88_symbolic_parity')
-                    reference=np.asarray(case_spec('base','identified_physics',True,'pitch_pos')['reference'])
+                    reference=np.asarray(task_reference('pitch_pos'))
                     answer=solver.solve(origin=origin,initial_state=x,baseline=np.tile(old,(20,1)),previous=old,reference=reference)
                     item['solve']=answer
                     item.update(assess_answer(solver.checker,origin,x,old,reference,answer))

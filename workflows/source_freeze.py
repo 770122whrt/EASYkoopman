@@ -24,9 +24,9 @@ ENTRY_POINTS = (
 DATA_FILES = (
     "experiments/phase9/v86/protocol.json", "experiments/phase9/v87/protocol.json",
     "experiments/phase9/v88/protocol.json",
-    "docs/evidence/phase9/learned-velocity-v81-20260926/normalized-quaternion/pooled__physical.json",
-    "docs/evidence/phase9/diverse-v87-20260929/server/model.json",
-    "docs/evidence/phase9/matrix-v88-20260929/support.json",
+    "experiments/artifacts/physical.json",
+    "experiments/artifacts/model.json",
+    "experiments/artifacts/support.json",
     "easyuuv_nc/data/embodiment/embodiment.usd",
     "easyuuv_nc/data/embodiment/Props/instanceable_meshes.usd",
     "easyuuv_nc/data/embodiment/config.yaml",

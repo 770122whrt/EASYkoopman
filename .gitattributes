@@ -1,4 +1,7 @@
 *.sh text eol=lf
+# Source freezes hash file bytes; checkout must not rewrite Python or plant assets.
+*.py -text
+easyuuv_nc/data/** -text
 source/results/koopman_phase8_dataset/** -text
 docs/evidence/** -text
 experiments/** -text

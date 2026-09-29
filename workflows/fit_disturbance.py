@@ -4,8 +4,8 @@ import hashlib
 import json
 from pathlib import Path
 import numpy as np
-from koopman.disturbance_lifted_v86 import fit,prepare
-from koopman.lifted_propagation_v84 import seal,coordinates
+from koopman.disturbance_model import fit,prepare
+from koopman.lifted_state import seal,coordinates
 from workflows.disturbance_data import (context,frozen_physics,load_episode,verify_manifest,PHYSICAL_SHA256,
     write_new,execution_provenance)
 from workflows.disturbance_protocol import get_protocol

@@ -5,10 +5,10 @@ import json
 from pathlib import Path
 import numpy as np
 from easyuuv_nc.embodiments import EMBODIMENT_CONFIGS
-from koopman.projected_edmd_v24 import PhysicalContext
-from koopman.physical_control_v76 import PhysicalPredictor
-from workflows.identify_sparse_world_v30 import from_record
-from workflows.workpoint_v27 import mechanics
+from koopman.physics_context import PhysicalContext
+from koopman.physical_predictor import PhysicalPredictor
+from workflows.frozen_physics import from_record
+from workflows.mechanics import mechanics
 from workflows.disturbance_protocol import get_protocol
 from workflows import source_freeze
 
@@ -16,7 +16,8 @@ _DEFAULT_SPEC = get_protocol()
 cases, protocol, excitation = _DEFAULT_SPEC.cases, _DEFAULT_SPEC.protocol, _DEFAULT_SPEC.excitation
 
 ROOT=Path(__file__).resolve().parents[1]
-PHYSICAL_PATH='docs/evidence/phase9/learned-velocity-v81-20260926/normalized-quaternion/pooled__physical.json'
+PHYSICAL_PATH='experiments/artifacts/physical.json'
+HISTORICAL_PHYSICAL_PATH='docs/evidence/phase9/learned-velocity-v81-20260926/normalized-quaternion/pooled__physical.json'
 PHYSICAL_SHA256='82d7f0c1c20faa3299d5b3f9f81a64c5a66888c255a6ceb953bba5384c8cd0f3'
 
 
@@ -49,10 +50,11 @@ def verify_manifest(path, *, spec=None, source_archive=None):
             required.update({'workflows/protocol_v87.py', 'workflows/collect_disturbance_data_v87.py'})
         if spec.VERSION == 'v88':
             required.update({'workflows/protocol_v88.py', 'workflows/collect_disturbance_data_v88.py',
-                             MODEL_PATH, SUPPORT_PATH, PHYSICAL_PATH})
+                             HISTORICAL_MODEL_PATH, HISTORICAL_SUPPORT_PATH, HISTORICAL_PHYSICAL_PATH})
     if not required <= set(files):
         raise ValueError('current_manifest_sources')
-    if spec.VERSION == 'v88' and files.get(MODEL_PATH) != MODEL_SHA256:
+    model_path=MODEL_PATH if manifest.get('schema')=='current-source-freeze' else HISTORICAL_MODEL_PATH
+    if spec.VERSION == 'v88' and files.get(model_path) != MODEL_SHA256:
         raise ValueError('current_manifest_model')
     verified = source_freeze.verify(path, root=ROOT, source_archive=source_archive)
     frozen_physics()
@@ -79,15 +81,15 @@ def validate_trace(report, receipt, manifest_sha,*,spec=None):
                 or not report['cleanup_completed']['simulation_app'] or len(rows)!=4*q['controls']
                 or report['effective_hidden_drag_fraction']!=q['hidden_drag_fraction']):
             raise ValueError('identity_or_completion')
-        from workflows.runtime_episode_v59 import check_runtime_context
-        from workflows.calibration_trace_v27 import domain_screen
-        from workflows.validate_control_trace_v23 import compare_values, validate_clock_step
-        from workflows.control_seam_v23 import ControlKernel
-        from workflows.actuator_replay_v28 import Float32PWMActuatorState
-        from workflows.feedback_v31 import validate_decision
-        from koopman.lifted_propagation_v84 import coordinates
-        from koopman.physical_terms_v26 import state_terms
-        from workflows.validate_effects_v67 import check_state_backend,validate_interval
+        from workflows.runtime_context import check_runtime_context
+        from workflows.observation_trace import domain_screen
+        from workflows.control_validation import compare_values, validate_clock_step
+        from workflows.control_kernel import ControlKernel
+        from workflows.actuator_replay import Float32PWMActuatorState
+        from workflows.collection_feedback import validate_decision
+        from koopman.lifted_state import coordinates
+        from koopman.physical_terms import state_terms
+        from workflows.control_validation import check_state_backend,validate_interval
         start=report['observed_start_boundary'];c=context()
         check_runtime_context(start,'base',c)
         compare_values(start['state_11'][0],[5.5,1,0,0,0,0,0,0,0,0,0])
@@ -145,9 +147,11 @@ def load_episode(directory,manifest_sha,*,spec=None):
     return validate_trace(report,receipt,manifest_sha,spec=spec)
 
 
-MODEL_PATH='docs/evidence/phase9/diverse-v87-20260929/server/model.json'
+MODEL_PATH='experiments/artifacts/model.json'
+HISTORICAL_MODEL_PATH='docs/evidence/phase9/diverse-v87-20260929/server/model.json'
 MODEL_SHA256='5857a0e8d09cd04e33112b457b6a60f8b4147f3819815634edb6149ac95e137e'
-SUPPORT_PATH='docs/evidence/phase9/matrix-v88-20260929/support.json'
+SUPPORT_PATH='experiments/artifacts/support.json'
+HISTORICAL_SUPPORT_PATH='docs/evidence/phase9/matrix-v88-20260929/support.json'
 
 
 def frozen_model(path=ROOT/MODEL_PATH):

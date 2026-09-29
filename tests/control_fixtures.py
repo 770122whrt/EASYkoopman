@@ -1,10 +1,10 @@
 """Shared offline model/control fixtures; no test-module imports."""
 import numpy as np
 from easyuuv_nc.embodiments import EMBODIMENT_CONFIGS
-from koopman.projected_edmd_v24 import PhysicalContext
-from koopman.sparse_world_edmd_v30 import core_matrix
-from workflows.identify_sparse_world_v30 import SparseModel
-from workflows.workpoint_v27 import mechanics
+from koopman.physics_context import PhysicalContext
+from koopman.sparse_physics import core_matrix
+from workflows.frozen_physics import SparseModel
+from workflows.mechanics import mechanics
 
 
 def context(name='base'):
@@ -26,3 +26,39 @@ def states(count=7):
     # Include half-turn attitude and norm just inside the original admission.
     x[0, 1:5] = [0, 1.0009, 0, 0]
     return x
+
+
+def state(n=1):
+    x = np.zeros((n, 11))
+    x[:, 0] = 5.5
+    x[:, 1] = 1
+    return x
+
+
+def oracle(name='frozen_contract_7bbbbef.json'):
+    import json
+    from pathlib import Path
+    return json.loads((Path(__file__).parent / 'fixtures' / name).read_text(encoding='utf8'))
+
+
+def assert_frozen(actual, expected, *, atol=1e-12):
+    """Compare frozen numeric behavior; omit only measured wall-clock durations."""
+    import pytest
+    if isinstance(actual, dict):
+        actual = {k: v for k, v in actual.items() if k not in ('elapsed_seconds', 'elapsed_ms', 'prepare_ms')}
+        assert actual.keys() == expected.keys()
+        for key in actual:
+            assert_frozen(actual[key], expected[key], atol=atol)
+    elif isinstance(actual, np.ndarray):
+        np.testing.assert_allclose(actual, np.asarray(expected, dtype=actual.dtype), rtol=1e-12, atol=atol)
+    elif isinstance(actual, (list, tuple)):
+        assert len(actual) == len(expected)
+        for a, b in zip(actual, expected):
+            assert_frozen(a, b, atol=atol)
+    elif isinstance(actual, (float, np.floating)):
+        if not np.isfinite(actual):
+            assert str(actual) == expected
+        else:
+            assert actual == pytest.approx(expected, rel=1e-12, abs=atol)
+    else:
+        assert actual == expected

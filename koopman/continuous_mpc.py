@@ -8,11 +8,11 @@ import time
 import casadi as ca
 import numpy as np
 
-from koopman.bounded_mpc_v44 import SupportDomain, COMMAND_ATOL
-from koopman.control_objective_v44 import ObjectiveWeights, checked_reference, control_mask, trajectory_cost
-from koopman.continuous_prediction_v76 import SymbolicPlant, rotation
-from koopman.prepared_commands_v45 import PreparedCommands
-from workflows.feedback_inverse_v28 import MINIMUM_DEADZONE_DISTANCE
+from koopman.support_domain import SupportDomain, COMMAND_ATOL
+from koopman.control_objective import ObjectiveWeights, checked_reference, control_mask, trajectory_cost
+from koopman.symbolic_prediction import SymbolicPlant, rotation
+from koopman.command_plan import PreparedCommands
+from workflows.feedback_inverse import MINIMUM_DEADZONE_DISTANCE
 from koopman.planning_margin import enforce_interior, tighten_deadzone_bounds
 
 

@@ -2,15 +2,15 @@
 import argparse
 import hashlib
 from pathlib import Path
-from koopman.control_support_v88 import derive_record,restore_domain,MODEL_SHA
-from koopman.lifted_propagation_v84 import seal
+from koopman.training_support import derive_record,restore_domain,MODEL_SHA
+from koopman.lifted_state import seal
 from workflows.disturbance_data import load_episode,verify_manifest,write_new,execution_provenance
 from workflows.fit_disturbance import load_record
 from workflows.disturbance_protocol import get_protocol
 
 SPEC=get_protocol("v87")
 cases=SPEC.cases
-from koopman.bounded_mpc_v44 import load_fit_domains
+from koopman.support_domain import load_fit_domains
 
 TRAIN_MANIFEST_SHA='a79174de72c5b3c3e5dce1f88c634b78c4bba76108486a3783c848dc708f7285'
 OLD_MODEL='source/results/phase8.4-sparse-world-pilot-v30-20260913/models/nonlinear__pooled.json'

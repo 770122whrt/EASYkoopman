@@ -1498,7 +1498,7 @@ class EasyUUVEnv(DirectRLEnv):
     def _setup_scene(self):
         self.cfg.robot_cfg.init_state = RigidObjectCfg.InitialStateCfg(pos=(0.0, 0.0, self.cfg.starting_depth))
         self._robot = RigidObject(self.cfg.robot_cfg)
-        from easyuuv_nc.initialization_v23 import author_initial_mechanics
+        from easyuuv_nc.initialization import author_initial_mechanics
         self._initial_mechanics_v23 = author_initial_mechanics(self.cfg, sim_utils)
 
         ground_mode = str(getattr(self.cfg, "ground_plane_mode", "grid"))
@@ -1772,7 +1772,7 @@ class EasyUUVEnv(DirectRLEnv):
         if env_ids is None:
             env_ids = self._robot._ALL_INDICES
         if getattr(self.cfg, "physics_initialization_mode", "legacy") == "authored_static_v1":
-            from easyuuv_nc.initialization_v23 import initial_mechanics
+            from easyuuv_nc.initialization import initial_mechanics
             initial_mechanics(self.cfg)  # Reject newly enabled randomization before reset writes.
         self._reset_control_history(env_ids)
         if getattr(self.cfg, "control_input_mode", "legacy_action") != "legacy_action":
@@ -2515,7 +2515,7 @@ class EasyUUVEnv(DirectRLEnv):
 
         # Opt-in experiment disturbance; do not change/export the mechanical
         # drag multiplier used by model context, compensation or input scaling.
-        from easyuuv_nc.disturbance_v86 import extra_quadratic_drag
+        from easyuuv_nc.disturbance import extra_quadratic_drag
         extra_f, extra_t = extra_quadratic_drag(density_forces, density_torques,
             getattr(self.cfg, 'hidden_quadratic_drag_fraction_v86', 0.))
         forces = forces + extra_f

@@ -3,7 +3,7 @@
 ## Start here
 
 - Run repository commands from this `EasyUUV` Git root. For milestone or phase work, use `.planning/PROJECT.md`, `.planning/ROADMAP.md`, and `.planning/STATE.md` to locate the current contract, then read only the task-relevant `*-SPEC.md`, `*-CONTEXT.md`, or `*-PLAN.md`. Keep phase-specific hashes, thresholds, artifact paths, and procedures in those files and their runbooks rather than copying them here.
-- Treat the upstream Isaac Lab 1.x setup in `README.md` as historical. Use the planning files and their linked runbooks under `docs/` for current environment and workflow guidance.
+- Use `docs/runbook.md`, `docs/control-contract.md`, and `experiments/README.md` for current commands, control semantics, and evidence. Historical source and removed runbooks are recoverable at Git commit `7bbbbef`; local raw materials are under ignored `results/history/`. The current workflow runs from this checkout or a verified source bundle, not the environment-only wheel.
 
 ## Preserve project boundaries
 

@@ -1,7 +1,7 @@
 """Current three-model controller: causal preview, isolated solve, exact admission.
 
-Consolidates the active v77/v79/v80/v87 behavior. Frozen scientific identities
-remain unchanged; historical implementations are retained pending removal approval.
+Frozen scientific identities remain unchanged. Earlier implementations are
+recoverable from their Git snapshots and frozen experiment source archives.
 """
 from dataclasses import dataclass
 from types import SimpleNamespace
@@ -11,14 +11,14 @@ import os
 from pathlib import Path
 import time
 import numpy as np
-from koopman.solver_worker_v49 import IsolatedSolverWorker, WorkerLimits
-from koopman.bounded_mpc_v44 import COMMAND_ATOL
-from koopman.control_objective_v44 import ObjectiveWeights, control_mask, checked_reference, trajectory_cost
-from koopman.prepared_commands_v45 import PreparedCommands
-from koopman.disturbance_lifted_v86 import prepare, physical_identity
-from koopman.inexact_tracking_v66 import InexactTrackingFeedback
-from koopman.bounded_feedback_v46 import FeedbackConfig
-from workflows.feedback_inverse_v28 import MINIMUM_DEADZONE_DISTANCE
+from koopman.solver_worker import IsolatedSolverWorker, WorkerLimits
+from koopman.support_domain import COMMAND_ATOL
+from koopman.control_objective import ObjectiveWeights, control_mask, checked_reference, trajectory_cost
+from koopman.command_plan import PreparedCommands
+from koopman.disturbance_model import prepare, physical_identity
+from koopman.feedback import InexactTrackingFeedback
+from koopman.feedback import FeedbackConfig
+from workflows.feedback_inverse import MINIMUM_DEADZONE_DISTANCE
 from workflows.fit_disturbance import load_record
 from koopman.planning_margin import enforce_interior, PLANNING_MARGIN, OPTIMIZER_MARGIN
 
@@ -41,7 +41,7 @@ class SynchronousLimits(WorkerLimits):
 
 class ExactChecker:
     def __init__(self,domain,predictor,*,horizon=10,weights=ObjectiveWeights()):
-        from koopman.prepared_allocation_v42 import PreparedDirectAllocation
+        from koopman.allocation import PreparedDirectAllocation
         self.domain,self.predictor,self.horizon,self.weights=domain,predictor,horizon,weights
         self.mask=control_mask(domain.configuration)
         self.plant=SimpleNamespace(allocator=PreparedDirectAllocation(domain.configuration))
@@ -343,8 +343,8 @@ def load_model(path,expected_sha256):
 
 
 def make_predictor(kind,loaded,context):
-    from workflows.identify_sparse_world_v30 import from_record
-    from koopman.physical_control_v76 import PhysicalPredictor
+    from workflows.frozen_physics import from_record
+    from koopman.physical_predictor import PhysicalPredictor
     if kind not in KINDS:raise ValueError('v87_model_kind')
     physical=PhysicalPredictor(from_record(loaded.record['physical_prior']),context,identified=True)
     if physical_identity(physical)!=loaded.record['physical_identity']:raise ValueError('v87_context_binding')
